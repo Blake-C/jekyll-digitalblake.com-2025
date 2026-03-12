@@ -15,6 +15,9 @@ author:
 permalink: /:year/:month/:day/:title/
 
 # Build settings
+sass:
+    style: compressed
+
 plugins:
     - jekyll-feed
     - jekyll-seo-tag
