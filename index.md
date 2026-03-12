@@ -10,9 +10,9 @@ description: "I Am A Front-end Web Developer - Blake Cerecero"
     <div class="row align-center align-middle">
         <div class="medium-6 small-12 medium-order-2 columns">
             <picture>
-                <source srcset="/assets/images/profile-2022-v3.webp" type="image/webp" />
+                <source srcset="{{ '/assets/images/profile-2022-v3.webp' | relative_url }}" type="image/webp" />
 
-                <img loading="lazy" width="245" height="245" class="profile-image" alt="" src="/assets/images/profile-2022-v3.webp" />
+                <img loading="lazy" width="245" height="245" class="profile-image" alt="" src="{{ '/assets/images/profile-2022-v3.webp' | relative_url }}" />
             </picture>
 
             <div class="profile-name">

@@ -9,7 +9,7 @@
                 <a data-micromodal-trigger="{{ modal_id }}" class="sites-gallery__button js_sites-gallery__button" href="">
                     <h3 class="sites-gallery__item-title">{{ site_item.title }}</h3>
 
-                    <img loading="lazy" width="600" height="400" class="sites-gallery__image wp-post-image" alt="" decoding="async" src="{{ site_item.thumbnail }}" />
+                    <img loading="lazy" width="600" height="400" class="sites-gallery__image wp-post-image" alt="" decoding="async" src="{{ site_item.thumbnail | relative_url }}" />
                 </a>
 
                 <div class="modal micromodal-slide" id="{{ modal_id }}" aria-hidden="true">
@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
 
-                                    <img loading="lazy" class="attachment-full size-full wp-post-image" alt="" decoding="async" src="{{ site_item.image }}" />
+                                    <img loading="lazy" class="attachment-full size-full wp-post-image" alt="" decoding="async" src="{{ site_item.image | relative_url }}" />
                                 </div>
                             </div>
                         </div>
