@@ -1,0 +1,8 @@
+@use 'header';
+@use 'footer';
+
+.main-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
