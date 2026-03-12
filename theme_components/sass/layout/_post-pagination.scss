@@ -51,6 +51,10 @@
 .post-pagination {
 	ul {
 		background-color: $blue;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		justify-content: center;
 		margin: 0 40px;
 		padding: 4px;
 		position: relative;

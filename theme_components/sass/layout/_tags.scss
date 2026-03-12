@@ -1,6 +1,11 @@
 @use 'sass:color';
 
 .tags-links {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+
 	a {
 		background-color: $accent-2;
 		border-radius: 30px;
@@ -19,4 +24,11 @@
 			text-decoration: none;
 		}
 	}
+}
+
+.cat-links {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
 }
