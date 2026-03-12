@@ -11,12 +11,6 @@
             }
         },
         {
-            "files": "_posts/*.html",
-            "options": {
-                "parser": "html"
-            }
-        },
-        {
             "files": ["*.css", "*.scss"],
             "options": {
                 "singleQuote": false

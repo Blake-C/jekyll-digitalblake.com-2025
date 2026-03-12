@@ -9,23 +9,26 @@ tags: ["javascript", "react"]
 image: "/assets/uploads/2019/06/react-screen-facebook.webp"
 ---
 
-<h2>Notes for myself</h2>
-<p>
-    Course: <a href="https://scrimba.com/p/p7P5Hd">https://scrimba.com/p/p7P5Hd</a><br />
+## Notes for myself
+
+Course: [https://scrimba.com/p/p7P5Hd](https://scrimba.com/p/p7P5Hd)  
+
     Private Repo:
-    <a href="https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019"
-        >https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019</a
-    ><br />
-    React Docs: <a href="https://reactjs.org/">https://reactjs.org/</a>
-</p>
-<p>App Start:</p>
+    [https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019](https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019)  
+
+    React Docs: [https://reactjs.org/](https://reactjs.org/)
+
+App Start:
+
 <pre><code class="line-numbers lang-js">import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Todo from './components/Todo/Todo'
 
-ReactDOM.render(<Todo />, document.getElementById('root'))
+ReactDOM.render(<todo></todo>, document.getElementById('root'))
 </code></pre>
-<p>App Class Component:</p>
+
+App Class Component:
+
 <pre><code class="line-numbers lang-js">import React, { Component } from 'react'
 import TodoItem from './TodoItem/TodoItem'
 import todosData from './todosData'
@@ -54,21 +57,19 @@ class Todo extends Component {
     render() {
         const todoElements = this.state.data.map(data => {
             return (
-                <TodoItem
-                    data={data}
-                    key={data.id}
-                    handleOnChange={this.handleOnChange}
-                />
+                <todoitem data="{data}" handleonchange="{this.handleOnChange}" key="{data.id}"></todoitem>
             )
         })
 
-        return <form className="todo">{todoElements}</form>
+        return <form classname="todo">{todoElements}</form>
     }
 }
 
 export default Todo
 </code></pre>
-<p>App Functional Component:</p>
+
+App Functional Component:
+
 <pre><code class="line-numbers lang-js">import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -76,19 +77,15 @@ function TodoItem(props) {
     const { id, completed, text } = props.data
 
     return (
-        <div className="todo-item">
-            <label htmlFor={`item_${id}`}>
-                <input
-                    type="checkbox"
-                    id={`item_${id}`}
-                    checked={completed}
-                    onChange={() => {
+        <div classname="todo-item">
+            <label htmlfor="{`item_${id}`}">
+                <input =="" checked="{completed}" id="{`item_${id}`}" onchange="{()" type="checkbox"/> {
                         props.handleOnChange(id)
                     }}
                 />
                 {text}
             </label>
-            <br />
+            <br/>
         </div>
     )
 }
@@ -101,7 +98,9 @@ TodoItem.propTypes = {
 
 export default TodoItem
 </code></pre>
-<p>App Data:</p>
+
+App Data:
+
 <pre><code class="line-numbers lang-js">const todosData = [
     {
         id: 1,

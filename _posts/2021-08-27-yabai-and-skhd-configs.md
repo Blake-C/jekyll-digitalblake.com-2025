@@ -8,8 +8,10 @@ tags: ["command-line", "learning", "shell-script"]
 image: "/assets/uploads/2021/08/random-1-1200x630-facebook-share-1.webp"
 ---
 
-<h2 class="wp-block-heading">Yabai</h2>
-<p>yabairc:</p>
+## Yabai
+
+yabairc:
+
 <pre class="wp-block-code lang-bash"><code>#!/usr/bin/env sh
 
 # the scripting-addition must be loaded manually if
@@ -127,7 +129,9 @@ yabai -m signal --add event=application_activated action="zsh ~/.config/yabai/ap
 yabai -m signal --add event=window_created action="zsh ~/.config/yabai/window-created.zsh"
 
 echo "yabai configuration loaded.."</code></pre>
-<p>window-created.zsh</p>
+
+window-created.zsh
+
 <pre class="wp-block-code lang-bash"><code>#! /usr/bin/zsh
 
 is_app() {
@@ -142,7 +146,9 @@ if [[ $(is_app "Finder") == "Finder" ]]; then
         & yabai -m window --move abs:0:709 \
         & yabai -m window --resize abs:1500:730
 fi</code></pre>
-<p>application-activated.zsh</p>
+
+application-activated.zsh
+
 <pre class="wp-block-code lang-bash"><code>#! /usr/bin/zsh
 
 # When there are more than 3 windows open on the current space we stack Google
@@ -177,8 +183,11 @@ local TRANSMIT_ID=$(echo $WINDOWS_ARRAY | jq -r 'map(select(.app=="Transmit")) |
 if [[ $CHROME_ID != 'null' && $TRANSMIT_ID != 'null' ]]; then;
     yabai -m window $CHROME_ID --stack $TRANSMIT_ID
 fi</code></pre>
-<h2 class="wp-block-heading">SKHD</h2>
-<p>skhdrc:</p>
+
+## SKHD
+
+skhdrc:
+
 <pre class="wp-block-code lang-bash"><code># Services
 hyper - z : brew services restart yabai
 hyper - x : brew services restart skhd

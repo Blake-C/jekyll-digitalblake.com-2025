@@ -8,55 +8,41 @@ tags: ["learning", "question", "thoughts"]
 image: "/assets/uploads/2019/03/moon-fb.webp"
 ---
 
-<p>
-    For the longest time the most difficult challenge was finding a group of like minded people outside of school and
+For the longest time the most difficult challenge was finding a group of like minded people outside of school and
     work. Even today I have not found a face to face group of people to discuss web development with and explore new
     technologies. The closest thing I have right now are programming Twitch streams where you can watch as someone
     develops there project and discuss it with them and other developers in Twitch chat. I have learned to develop my
     own thought processes behind problem solving from just watch how others do it themselves.
-</p>
-<p>Here are some of the Twitch streams I follow:</p>
-<ul>
-    <li>
-        <a href="https://www.twitch.tv/talk2megooseman">https://www.twitch.tv/talk2megooseman</a>
-    </li>
-    <li>
-        <a href="https://www.twitch.tv/adam13531">https://www.twitch.tv/adam13531</a>
-    </li>
-    <li>
-        <a href="https://www.twitch.tv/serpent_ai">https://www.twitch.tv/serpent_ai</a>
-    </li>
-    <li>
-        <a href="https://www.twitch.tv/windybeardgames">https://www.twitch.tv/windybeardgames</a>
-    </li>
-    <li>
-        <a href="https://www.twitch.tv/adenfloriantv">https://www.twitch.tv/adenfloriantv</a>
-    </li>
-</ul>
-<h2>Currently, my biggest challenge is two fold.</h2>
-<p>
-    One, procrastinating with tooling. I am a bit of a tooling junky who likes playing with build tools over getting
-    actual work done. This has had it&#8217;s benefits in getting interested in dev ops type tooling like Docker. But at
+
+Here are some of the Twitch streams I follow:
+
+- [https://www.twitch.tv/talk2megooseman](https://www.twitch.tv/talk2megooseman)
+- [https://www.twitch.tv/adam13531](https://www.twitch.tv/adam13531)
+- [https://www.twitch.tv/serpent_ai](https://www.twitch.tv/serpent_ai)
+- [https://www.twitch.tv/windybeardgames](https://www.twitch.tv/windybeardgames)
+- [https://www.twitch.tv/adenfloriantv](https://www.twitch.tv/adenfloriantv)
+
+## Currently, my biggest challenge is two fold.
+
+One, procrastinating with tooling. I am a bit of a tooling junky who likes playing with build tools over getting
+    actual work done. This has had it’s benefits in getting interested in dev ops type tooling like Docker. But at
     the same time it comes with the price of not learning or getting better at problem solving in a specific language
     vs. problem solving in getting tooling setup around development. The easiest solution to this is to just stop. Stop
-    with the tooling and force yourself to say &#8220;I am done, it&#8217;s as good as it&#8217;s going to get&#8221;.
-</p>
-<p>
-    Second, getting myself motivated in learning new technologies. I love learning and using new things. This can be a
+    with the tooling and force yourself to say “I am done, it’s as good as it’s going to get”.
+
+Second, getting myself motivated in learning new technologies. I love learning and using new things. This can be a
     programming language or the tooling around those languages. But, there comes in a time in your career where you
     realize that you have spent more time learning something new vs. actually using it to create production ready
     projects. This happened to me with Angular 1.0. I thought it would have a benefit to the work I was doing at the
     time, but it ended up being knowledge never fully utilized. Did I gain something from it, yes. Did it create actual
     work, no.
-</p>
-<p>
-    The solution to the motivation and learning problem is just becoming better at predicting what you need to know and
+
+The solution to the motivation and learning problem is just becoming better at predicting what you need to know and
     when you need to know it. Become picky at learning new technologies and becoming better and see how something might
     be a fad. This is a skill that simply comes with time.
-</p>
-<p>Things I am currently learning:</p>
-<ul>
-    <li>CSS Grid</li>
-    <li>React</li>
-    <li>Node</li>
-</ul>
+
+Things I am currently learning:
+
+- CSS Grid
+- React
+- Node

@@ -8,45 +8,36 @@ tags: ["command-line", "linux", "ubuntu"]
 image: "/assets/uploads/2021/02/random-1-1200x630-facebook-share.webp"
 ---
 
-<figure class="wp-block-image size-large is-style-default">
-    <img
-        loading="lazy"
-        fetchpriority="high"
-        decoding="async"
-        width="900"
-        height="300"
-        alt=""
-        class="wp-image-412"
-        srcset="
-            /assets/uploads/2021/02/random-1.webp         900w,
-            /assets/uploads/2021/02/random-1-300x100.webp 300w,
-            /assets/uploads/2021/02/random-1-768x256.webp 768w
-        "
-        sizes="(max-width: 900px) 100vw, 900px"
-        src="/assets/uploads/2021/02/random-1.webp"
-    />
-</figure>
-<p>Adding new user, change USERNAME with the name you want to use.</p>
+![](/assets/uploads/2021/02/random-1.webp)
+
+Adding new user, change USERNAME with the name you want to use.
+
 <pre class="wp-block-code lang-bash line-numbers"><code>adduser USERNAME
 usermod -aG sudo USERNAME
 
 # switch to user
 su - USERNAME</code></pre>
-<p>Log out and log back in as new user. Be sure to add SSH key to new users ~/.ssh if using SSH to login.</p>
-<p>Change directory user and group:</p>
+
+Log out and log back in as new user. Be sure to add SSH key to new users ~/.ssh if using SSH to login.
+
+Change directory user and group:
+
 <pre class="wp-block-code lang-bash line-numbers"><code># changes recursively
 sudo chown -R username:group directory
 
 # changes only the directory
 sudo chown username:group directory</code></pre>
-<p>To add zsh and OMZ:</p>
+
+To add zsh and OMZ:
+
 <pre class="wp-block-code lang-bash line-numbers"><code>sudo apt update
 sudo apt install zsh
 chsh -s $(which zsh)</code></pre>
-<p>Follow these instructions to install OMZ:</p>
-<ul class="wp-block-list">
-    <li><a href="https://ohmyz.sh/#install">https://ohmyz.sh/#install</a></li>
-</ul>
+
+Follow these instructions to install OMZ:
+
+- [https://ohmyz.sh/#install](https://ohmyz.sh/#install)
+
 <pre class="wp-block-code lang-bash line-numbers"><code>vim ~/.zshrc
 
 # add:
