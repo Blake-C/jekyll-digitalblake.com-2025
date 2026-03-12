@@ -2,7 +2,7 @@
     {%- for nav in site.nav_pages -%}
         <li class="menu-item">
             <a
-                href="{{ nav.url }}"
+                href="{{ nav.url | relative_url }}"
                 {% if nav.target %}
                     target="{{ nav.target }}" rel="noopener"
                 {% endif %}
