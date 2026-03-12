@@ -6,7 +6,7 @@ body_class: "home wp-singular page-template-default page wp-theme-wp-foundation-
 description: "I Am A Front-end Web Developer - Blake Cerecero"
 ---
 
-<section class="intro">
+<section class="intro" role="main">
     <div class="row align-center align-middle">
         <div class="medium-6 small-12 medium-order-2 columns">
             <picture>
@@ -30,6 +30,7 @@ description: "I Am A Front-end Web Developer - Blake Cerecero"
             <p>Lets work Together</p>
         </div>
     </div>
+
 </section>
 
 {%- include github-projects.html -%}
