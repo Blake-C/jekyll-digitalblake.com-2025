@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Install Ubuntu and Docker Desktop for Windows 10 (Early 2021)"
+description: "Learn how to set up Ubuntu on Windows 10 using Window Subsystem for Linux (WSL)"
 date: 2021-01-29 01:04:59 -0600
 modified_date: 2021-02-03 22:04:18 -0600
 categories: ["Guides"]

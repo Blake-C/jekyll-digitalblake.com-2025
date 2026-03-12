@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to Quickly Change Node Versions Between Projects Using Nvm And Shell Scripting"
+description: "Learn how I quickly switch between node versions when working on different projects."
 date: 2020-05-09 03:16:08 -0500
 modified_date: 2020-10-02 21:09:51 -0500
 categories: ["Snippets"]

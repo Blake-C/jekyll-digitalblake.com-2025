@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Setting up Sublime Text 3 with Prettier on macOS High Sierra"
+description: "Learn how to setup Sublime Text with JsPretter and the Prettier CLI on macOS to format your code and enjoy more consistent formatting."
 date: 2018-08-30 23:50:53 -0500
 modified_date: 2020-10-02 21:09:54 -0500
 categories: ["Guides"]

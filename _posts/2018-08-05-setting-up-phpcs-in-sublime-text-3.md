@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Setting up PHPCS in Sublime Text 3"
+description: "Learn how to install the Sublime Text 3 PHPCS linter packages and view errors/warnings while you type your code."
 date: 2018-08-05 04:36:21 -0500
 modified_date: 2020-10-02 21:09:55 -0500
 categories: ["Guides"]

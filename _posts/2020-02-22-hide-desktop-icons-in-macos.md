@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Hide Desktop Icons in macOS"
+description: "Conducting a training or giving a presentation? Look more professional and hide your desktop."
 date: 2020-02-22 14:20:02 -0600
 modified_date: 2020-10-02 21:09:52 -0500
 categories: ["Snippets"]

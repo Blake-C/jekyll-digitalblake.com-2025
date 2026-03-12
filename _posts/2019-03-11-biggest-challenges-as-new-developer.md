@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "What are/were your biggest challenges as a new software developer?"
+description: "For the longest time the most difficult challenge was finding a group of like minded people outside of school and work. Even today I have not found a face to face group of people to discuss web development with and explore new technologies."
 date: 2019-03-11 22:14:00 -0500
 modified_date: 2020-10-02 21:09:53 -0500
 categories: ["Articles"]

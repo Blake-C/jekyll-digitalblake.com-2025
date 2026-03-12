@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Setting up WordPress Coding Standards (WPCS) Globally"
+description: "Coding a WordPress theme can be difficult when work on a team. And it's for this reason you should have a standard way to determine what quality code should look like. Learn how to setup the WordPress Coding Standard to help assist your team in writing maintainable code."
 date: 2018-08-05 20:22:58 -0500
 modified_date: 2020-10-02 21:09:55 -0500
 categories: ["Guides"]

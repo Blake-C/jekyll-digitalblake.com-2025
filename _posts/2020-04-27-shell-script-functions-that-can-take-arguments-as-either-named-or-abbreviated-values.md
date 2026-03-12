@@ -1,5 +1,7 @@
 ---
 layout: post
+title: "Shell script functions that can take arguments as either named or abbreviated values"
+description: "Using case statements in shell script functions to pass in named or abbreviated parameters as arguments."
 date: 2020-04-27 06:29:54 -0500
 modified_date: 2020-10-02 21:09:52 -0500
 categories: ["Snippets"]
