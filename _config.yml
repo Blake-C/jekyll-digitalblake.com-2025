@@ -53,6 +53,12 @@ nav_pages:
       url: "/assets/uploads/2024/07/Blake-Cerecero-Web-Resume-v3.pdf"
       target: "_blank"
 
+collections:
+    github_projects:
+        output: false
+    websites:
+        output: false
+
 # Exclude from processing
 exclude:
     - .sass-cache/
