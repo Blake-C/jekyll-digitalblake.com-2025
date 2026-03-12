@@ -41,6 +41,6 @@
         "watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules",
         "watch:scripts": "webpack --watch",
         "build": "npm run build:styles && npm run build:scripts && bundle exec jekyll build",
-        "dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --livereload; wait)"
+        "dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --livereload --port 4005; wait)"
     }
 }
