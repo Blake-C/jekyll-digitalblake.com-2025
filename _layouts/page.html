@@ -1,18 +1,16 @@
 ---
 layout: base
 ---
-
 <div class="row">
-  <main class="medium-12 small-12 columns" role="main" id="content">
-    <div class="wrapper">
-      <div class="row">
-        <div class="large-9 medium-12 small-12 columns">
-          {{ content }}
+    <main class="medium-12 small-12 columns" role="main" id="content">
+        <div class="wrapper">
+            <div class="row">
+                <div class="large-9 medium-12 small-12 columns">
+                    {{ content }}
+                </div>
+
+                {%- include sidebar.html -%}
+            </div>
         </div>
-
-        {%- include sidebar.html -%}
-
-      </div>
-    </div>
-  </main>
+    </main>
 </div>

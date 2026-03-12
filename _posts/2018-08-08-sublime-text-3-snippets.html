@@ -9,57 +9,52 @@ image: "/assets/uploads/2018/08/sublime-text-snippet.webp"
 ---
 
 <h3>Sublime Text Snippets</h3>
-								<p>When creating a Sublime Text snippet you have 4 distinct sections.</p>
-								<ol>
-									<li>
-										Content
-										<ul>
-											<li>
-												The content is the snippet code itself. The snippet can have several
-												field markers for tab completion and cursor placement.
-											</li>
-										</ul>
-									</li>
-									<li>
-										Tab Trigger
-										<ul>
-											<li>
-												The trigger is the keyword that will start to appear in the Sublime
-												Text contextual menu (auto-complete) as you start to type to get the
-												snippet.
-											</li>
-										</ul>
-									</li>
-									<li>
-										Scope
-										<ul>
-											<li>
-												The scope will determine what file types the snippet will appear in.
-												To include multiple file types you only have to list them out in a
-												comma separated list.
-												<ul>
-													<li>
-														<code>&lt;scope&gt;source.js,source.jsx&lt;/scope&gt;</code>
-													</li>
-													<li>
-														<code>&lt;scope&gt;source.php,embedding.php&lt;/scope&gt;</code>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-									<li>
-										Description
-										<ul>
-											<li>
-												The description shows up in the auto-complete menu as you type the
-												snippet name.
-											</li>
-										</ul>
-									</li>
-								</ol>
-								<h3>Simple Snippet</h3>
-								<pre><code class="line-numbers lang-xml"><snippet>
+<p>When creating a Sublime Text snippet you have 4 distinct sections.</p>
+<ol>
+    <li>
+        Content
+        <ul>
+            <li>
+                The content is the snippet code itself. The snippet can have several field markers for tab completion
+                and cursor placement.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Tab Trigger
+        <ul>
+            <li>
+                The trigger is the keyword that will start to appear in the Sublime Text contextual menu (auto-complete)
+                as you start to type to get the snippet.
+            </li>
+        </ul>
+    </li>
+    <li>
+        Scope
+        <ul>
+            <li>
+                The scope will determine what file types the snippet will appear in. To include multiple file types you
+                only have to list them out in a comma separated list.
+                <ul>
+                    <li>
+                        <code>&lt;scope&gt;source.js,source.jsx&lt;/scope&gt;</code>
+                    </li>
+                    <li>
+                        <code>&lt;scope&gt;source.php,embedding.php&lt;/scope&gt;</code>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Description
+        <ul>
+            <li>The description shows up in the auto-complete menu as you type the snippet name.</li>
+        </ul>
+    </li>
+</ol>
+<h3>Simple Snippet</h3>
+<pre><code class="line-numbers lang-xml"><snippet>
     <content><![CDATA[
 console.log(${1:your_value});
 $0
@@ -69,25 +64,23 @@ $0
     <description>console.log statement</description>
 </snippet>
 </code></pre>
-								<p>
-									In the above example you can see all 4 main sections of a Sublime Text snippet.
-									The interesting part happens within the content section. This snippet simply
-									outputs <code>console.log();</code> in JavaScript and JSX files and places the
-									cursor within the parentheses. Then when done, places the cursors after the
-									<code>console.log</code> statement. How does this work?
-								</p>
-								<p>
-									Inside the parentheses you will see the first field marker:
-									<code>${1:your_value}</code>
-								</p>
-								<p>
-									This marker is the first tab stop in the snippet. It will output your_value
-									highlighted and ready to be replaced with whatever you type. Then we end on the
-									second field marker at <code>$0</code>. This field marker is where the cursor
-									will be placed once all actions in the snippet are complete.
-								</p>
-								<h3>Moderate Snippet</h3>
-								<pre><code class="line-numbers lang-xml"><snippet>
+<p>
+    In the above example you can see all 4 main sections of a Sublime Text snippet. The interesting part happens within
+    the content section. This snippet simply outputs <code>console.log();</code> in JavaScript and JSX files and places
+    the cursor within the parentheses. Then when done, places the cursors after the <code>console.log</code> statement.
+    How does this work?
+</p>
+<p>
+    Inside the parentheses you will see the first field marker:
+    <code>${1:your_value}</code>
+</p>
+<p>
+    This marker is the first tab stop in the snippet. It will output your_value highlighted and ready to be replaced
+    with whatever you type. Then we end on the second field marker at <code>$0</code>. This field marker is where the
+    cursor will be placed once all actions in the snippet are complete.
+</p>
+<h3>Moderate Snippet</h3>
+<pre><code class="line-numbers lang-xml"><snippet>
     <content><![CDATA[<?php if ( have_rows( '${1:repeater_field_name}' ) ) : ?>
     <?php while ( have_rows( '${1:repeater_field_name}' ) ) : ?>
         <?php the_row(); ?>
@@ -101,38 +94,37 @@ $0
     <description>An ACF repeater filed group</description>
 </snippet>
 </code></pre>
-								<p>
-									Here is a more complicated example where we have multiple field markers, and in
-									one instance the same field marker twice. If you need to rename two parts of
-									your snippet at the same time you can use the same field marker where both will
-									be selected when you tab to that instance of the field marker.
-								</p>
-								<p>
-									This snippet is for a WordPress ACF Repeater template. The reason why I chose a
-									PHP example here is to show you how to escape the <code>$</code> symbol in a
-									snippet. The <code>$</code> is a reserved symbol that will determin the tab
-									stops and to escape them you simply add a backslash, <code>\$</code>. You can
-									see this on line 6 of the above example.
-								</p>
-								<h3>Additional Information</h3>
-								<p>
-									There is an easy way to quickly generate a snippet template under Tools >
-									Developer > New Snippet. When saving these files it&#8217;s important to
-									rememeber that you can only have one snippet per file. For this reason I suggest
-									you create a custom-snippets folder where you can store these. When you go to
-									save the snippet that has been created using the Sublime Text menu, you&#8217;ll
-									be show the proper location to save the file. For me this location is
-									~/Library/Application Support/Sublime Text 3/Packages/User/custom-snippets. Be
-									sure to save the file as <code>.sublime-snippet</code> otherwise Sublime Text
-									will not recognize your file.
-								</p>
-								<p>
-									<img loading="lazy" decoding="async" alt="Sublime Text Snippet Location"
-										src="/assets/uploads/2018/08/sublime-text-snippet.webp" />
-								</p>
-								<p>
-									More information can be found on Sublime Text snippets on the snippets
-									documentaion page:
-									<a
-										href="http://sublimetext.info/docs/en/extensibility/snippets.html">http://sublimetext.info/docs/en/extensibility/snippets.html</a>
-								</p>
+<p>
+    Here is a more complicated example where we have multiple field markers, and in one instance the same field marker
+    twice. If you need to rename two parts of your snippet at the same time you can use the same field marker where both
+    will be selected when you tab to that instance of the field marker.
+</p>
+<p>
+    This snippet is for a WordPress ACF Repeater template. The reason why I chose a PHP example here is to show you how
+    to escape the <code>$</code> symbol in a snippet. The <code>$</code> is a reserved symbol that will determin the tab
+    stops and to escape them you simply add a backslash, <code>\$</code>. You can see this on line 6 of the above
+    example.
+</p>
+<h3>Additional Information</h3>
+<p>
+    There is an easy way to quickly generate a snippet template under Tools > Developer > New Snippet. When saving these
+    files it&#8217;s important to rememeber that you can only have one snippet per file. For this reason I suggest you
+    create a custom-snippets folder where you can store these. When you go to save the snippet that has been created
+    using the Sublime Text menu, you&#8217;ll be show the proper location to save the file. For me this location is
+    ~/Library/Application Support/Sublime Text 3/Packages/User/custom-snippets. Be sure to save the file as
+    <code>.sublime-snippet</code> otherwise Sublime Text will not recognize your file.
+</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="Sublime Text Snippet Location"
+        src="/assets/uploads/2018/08/sublime-text-snippet.webp"
+    />
+</p>
+<p>
+    More information can be found on Sublime Text snippets on the snippets documentaion page:
+    <a href="http://sublimetext.info/docs/en/extensibility/snippets.html"
+        >http://sublimetext.info/docs/en/extensibility/snippets.html</a
+    >
+</p>

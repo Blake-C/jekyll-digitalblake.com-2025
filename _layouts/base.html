@@ -1,23 +1,22 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!-- [if gt IE 8]><! -->
 <html lang="{{ page.lang | default: site.lang | default: 'en-US' }}" class="no-js">
-<!--<![endif]-->
+    <!-- <![endif] -->
 
-{%- include head.html -%}
+    {%- include head.html -%}
 
-<body class="{{ page.body_class | default: 'wp-theme-wp-foundation-six' }}">
-  <a class="skip-link show-for-sr" href="#content">Skip to content</a>
+    <body class="{{ page.body_class | default: 'wp-theme-wp-foundation-six' }}">
+        <a class="skip-link show-for-sr" href="#content">Skip to content</a>
 
-  {%- include header.html -%}
+        {%- include header.html -%}
 
-  {{ content }}
+        {{ content }}
 
-  {%- include footer.html -%}
+        {%- include footer.html -%}
 
-  {%- include sub-footer.html -%}
-
-</body>
+        {%- include sub-footer.html -%}
+    </body>
 </html>

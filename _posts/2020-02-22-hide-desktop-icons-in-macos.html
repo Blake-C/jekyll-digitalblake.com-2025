@@ -9,33 +9,24 @@ image: "/assets/uploads/2020/02/facebook-hide-desktop-icons-in-macos.webp"
 ---
 
 <p>
-									When I need to hold a training through a screen share with my desktop in full
-									display I usually don&#8217;t want the people I am training to see any current
-									projects, research, and notes that might be sitting on my desktop. There are
-									several reasons why you might want to hide your desktop while doing a screen
-									share:
-								</p>
-								<ul>
-									<li>You have a messy desktop</li>
-									<li>You don&#8217;t want research you&#8217;re doing on full display</li>
-									<li>
-										You don&#8217;t want to potentially share any sensitive material like client
-										names
-									</li>
-									<li>To look more professional</li>
-								</ul>
-								<p>
-									I also didn&#8217;t want to have to remember the command to quickly kill the
-									desktop in macOS so I created a quick shell script where I can just call
-									<code>desktop</code> in my terminal and tell it to hide; then get on with my
-									training. Run the command again and tell the script to show the desktop when
-									you&#8217;re done.
-								</p>
-								<p>
-									Add the follow script to your .bash_profile, .zshrc, or which ever default shell
-									you are using.
-								</p>
-								<pre><code class="line-numbers lang-bash">desktop(){
+    When I need to hold a training through a screen share with my desktop in full display I usually don&#8217;t want the
+    people I am training to see any current projects, research, and notes that might be sitting on my desktop. There are
+    several reasons why you might want to hide your desktop while doing a screen share:
+</p>
+<ul>
+    <li>You have a messy desktop</li>
+    <li>You don&#8217;t want research you&#8217;re doing on full display</li>
+    <li>You don&#8217;t want to potentially share any sensitive material like client names</li>
+    <li>To look more professional</li>
+</ul>
+<p>
+    I also didn&#8217;t want to have to remember the command to quickly kill the desktop in macOS so I created a quick
+    shell script where I can just call
+    <code>desktop</code> in my terminal and tell it to hide; then get on with my training. Run the command again and
+    tell the script to show the desktop when you&#8217;re done.
+</p>
+<p>Add the follow script to your .bash_profile, .zshrc, or which ever default shell you are using.</p>
+<pre><code class="line-numbers lang-bash">desktop(){
     vared -p "Show or hide Desktop? (show/hide): " -c SHOWHIDEDESKTOP
 
     if [[ "$SHOWHIDEDESKTOP" == "hide" ]]; then
@@ -53,12 +44,11 @@ image: "/assets/uploads/2020/02/facebook-hide-desktop-icons-in-macos.webp"
     SHOWHIDEDESKTOP=""
 }
 </code></pre>
-								<p>
-									One big thing you want to remember, if you choose to use this:
-									<strong>YOU WILL NOT HAVE ACCESS TO YOUR DESKTOP, AT ALL!</strong>
-								</p>
-								<p>
-									If you need to drag and drop items from your desktop during your training you
-									will need to rely on the finder as everything on your desktop will be
-									inaccessible.
-								</p>
+<p>
+    One big thing you want to remember, if you choose to use this:
+    <strong>YOU WILL NOT HAVE ACCESS TO YOUR DESKTOP, AT ALL!</strong>
+</p>
+<p>
+    If you need to drag and drop items from your desktop during your training you will need to rely on the finder as
+    everything on your desktop will be inaccessible.
+</p>

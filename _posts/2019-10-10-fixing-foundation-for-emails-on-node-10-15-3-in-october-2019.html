@@ -9,87 +9,105 @@ image: "/assets/uploads/2019/10/facebook.webp"
 ---
 
 <p>
-									If you have been wanting to use Foundation for Emails, you&#8217;ll notice that
-									the email building framework has not been updated since 2016. That&#8217;s over
-									3 years ago.
-								</p>
-								<p>
-									<img loading="lazy" decoding="async"
-										alt="June 30th 2016 was the last time the framework was updated."
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.05.27-AM.webp" />
-								</p>
-								<p>
-									Here is what you need to do to get the packages building to start your next
-									email template.
-								</p>
-								<h2>1. If you have not already, install the foundation-cli tooling for node.</h2>
-								<pre><code class="line-numbers lang-bash">npm install --global foundation-cli
+    If you have been wanting to use Foundation for Emails, you&#8217;ll notice that the email building framework has not
+    been updated since 2016. That&#8217;s over 3 years ago.
+</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="June 30th 2016 was the last time the framework was updated."
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.05.27-AM.webp"
+    />
+</p>
+<p>Here is what you need to do to get the packages building to start your next email template.</p>
+<h2>1. If you have not already, install the foundation-cli tooling for node.</h2>
+<pre><code class="line-numbers lang-bash">npm install --global foundation-cli
 </code></pre>
-								<h2>2. Then build your email project.</h2>
-								<pre><code class="line-numbers lang-bash">foundation new --framework emails
+<h2>2. Then build your email project.</h2>
+<pre><code class="line-numbers lang-bash">foundation new --framework emails
 </code></pre>
-								<h2>
-									3. Then you&#8217;ll notice the first issue the framework has when building.
-								</h2>
-								<p>
-									The node modules did not install. Change directories into the project folder so
-									that we can fix the issue.
-								</p>
-								<p>
-									<img loading="lazy" decoding="async"
-										alt="Installation instructions for the foundation for emails framework"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.08.49-AM.webp" />
-								</p>
-								<p>
-									I like to use a tool called npm-check to update my node modules. When you have
-									npm-check installed run <code>npm-check -u</code> in the project directory to
-									see a list of all the outdated packages.
-								</p>
-								<pre><code class="line-numbers lang-bash">npm install npm-check -g
+<h2>3. Then you&#8217;ll notice the first issue the framework has when building.</h2>
+<p>The node modules did not install. Change directories into the project folder so that we can fix the issue.</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="Installation instructions for the foundation for emails framework"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.08.49-AM.webp"
+    />
+</p>
+<p>
+    I like to use a tool called npm-check to update my node modules. When you have npm-check installed run
+    <code>npm-check -u</code> in the project directory to see a list of all the outdated packages.
+</p>
+<pre><code class="line-numbers lang-bash">npm install npm-check -g
 npm-check -u
 </code></pre>
-								<p>
-									<img loading="lazy" decoding="async" alt="A list of the outdated npm packages"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.09.19-AM.webp" />
-								</p>
-								<p>Update all the modules and you&#8217;ll then see the node_modules directory.</p>
-								<p>
-									<img loading="lazy" decoding="async" alt="The updated node modules"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.10.29-AM.webp" />
-								</p>
-								<h2>4. Now we can build the project</h2>
-								<p>
-									Now when you run <code>npm run build</code>, you&#8217;ll still get an error.
-									The issue here is how gulp was added to the framework. We will have to fix this.
-								</p>
-								<p>
-									<img loading="lazy" decoding="async" alt="Gulp error in terminal"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.10.48-AM.webp" />
-								</p>
-								<p>
-									First, open the <code>package.json</code> files for the project and delete the
-									line for gulp under the devDependencies.
-								</p>
-								<p>
-									<img loading="lazy" decoding="async"
-										alt="The project package.json file where the gulp line is located"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.11.14-AM.webp" />
-								</p>
-								<p>
-									Next, delete the <code>package-lock.json</code> file. Reinstall gulp with
-									<code>npm install gulp -D</code>. Then finally run <code>npm run build</code>.
-								</p>
-								<pre><code class="line-numbers lang-bash">rm package-lock.json
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="A list of the outdated npm packages"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.09.19-AM.webp"
+    />
+</p>
+<p>Update all the modules and you&#8217;ll then see the node_modules directory.</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="The updated node modules"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.10.29-AM.webp"
+    />
+</p>
+<h2>4. Now we can build the project</h2>
+<p>
+    Now when you run <code>npm run build</code>, you&#8217;ll still get an error. The issue here is how gulp was added
+    to the framework. We will have to fix this.
+</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="Gulp error in terminal"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.10.48-AM.webp"
+    />
+</p>
+<p>
+    First, open the <code>package.json</code> files for the project and delete the line for gulp under the
+    devDependencies.
+</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="The project package.json file where the gulp line is located"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.11.14-AM.webp"
+    />
+</p>
+<p>
+    Next, delete the <code>package-lock.json</code> file. Reinstall gulp with <code>npm install gulp -D</code>. Then
+    finally run <code>npm run build</code>.
+</p>
+<pre><code class="line-numbers lang-bash">rm package-lock.json
 npm install gulp -D
 npm run build
 </code></pre>
-								<p>
-									<img loading="lazy" decoding="async"
-										alt="Fixing the gulp issues preventing the build process"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.52-AM.webp" />
-								</p>
-								<p>Now you can use the framework as intended.</p>
-								<p>
-									<img loading="lazy" decoding="async" alt="The framework running in the browser"
-										src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.57-AM.webp" />
-								</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="Fixing the gulp issues preventing the build process"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.52-AM.webp"
+    />
+</p>
+<p>Now you can use the framework as intended.</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="The framework running in the browser"
+        src="/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.57-AM.webp"
+    />
+</p>

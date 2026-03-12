@@ -2,15 +2,15 @@
     &__top {
         display: grid;
         grid-template-columns: 4fr 8fr;
-        grid-template-areas: 'services socials';
+        grid-template-areas: "services socials";
     }
 
     &__socials {
-        grid-area: 'socials';
+        grid-area: "socials";
     }
 
     &__services {
-        grid-area: 'services';
+        grid-area: "services";
     }
 
     &__lower {
