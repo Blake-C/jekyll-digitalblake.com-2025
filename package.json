@@ -4,9 +4,13 @@
     "private": true,
     "devDependencies": {
         "@shopify/prettier-plugin-liquid": "^1.5.0",
-        "prettier": "^3.0.0"
+        "prettier": "^3.0.0",
+        "terser": "5.46.0"
     },
     "scripts": {
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "minify:js": "terser assets/js/lazyload.js --compress --mangle --output assets/js/lazyload.min.js && terser assets/js/main.js --compress --mangle --output assets/js/main.min.js && terser assets/js/site.js --compress --mangle --output assets/js/site.min.js",
+        "build": "npm run minify:js && bundle exec jekyll build",
+        "dev": "npm run minify:js && bundle exec jekyll serve --livereload"
     }
 }
