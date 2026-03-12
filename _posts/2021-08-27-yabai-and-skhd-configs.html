@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  "Yabai and SKHD Configs"
-date:   2021-08-27
-categories: ['Snippets']
-tags: ['command-line', 'learning', 'shell script']
-author: Blake Cerecero
+title: "Yabai and SKHD Configs"
+date: 2021-08-27 22:24:57 -0500
+description: "Snippets from my yabai and skhd configurations and scripts."
+categories: ["Snippets"]
+tags: ["command-line", "learning", "shell-script"]
+image: "/assets/uploads/2021/08/random-1-1200x630-facebook-share-1.webp"
 ---
-## Yabai
-yabairc:
 
-```bash
-#!/usr/bin/env sh
+<h2 class="wp-block-heading">Yabai</h2>
+								<p>yabairc:</p>
+								<pre class="wp-block-code lang-bash"><code>#!/usr/bin/env sh
 
 # the scripting-addition must be loaded manually if
 # you are running yabai on macOS Big Sur. Uncomment
@@ -126,12 +126,9 @@ yabai -m config --space $(yabai -m query --displays | jq 'map(select(.index==2))
 yabai -m signal --add event=application_activated action="zsh ~/.config/yabai/application-activated.zsh"
 yabai -m signal --add event=window_created action="zsh ~/.config/yabai/window-created.zsh"
 
-echo "yabai configuration loaded.."
-```
-window-created.zsh
-
-```bash
-#! /usr/bin/zsh
+echo "yabai configuration loaded.."</code></pre>
+								<p>window-created.zsh</p>
+								<pre class="wp-block-code lang-bash"><code>#! /usr/bin/zsh
 
 is_app() {
     echo $(yabai -m query --spaces --space \
@@ -144,13 +141,9 @@ if [[ $(is_app "Finder") == "Finder" ]]; then
     yabai -m window --focus $YABAI_WINDOW_ID \
         & yabai -m window --move abs:0:709 \
         & yabai -m window --resize abs:1500:730
-fi
-```
-
-application-activated.zsh
-
-```bash
-#! /usr/bin/zsh
+fi</code></pre>
+								<p>application-activated.zsh</p>
+								<pre class="wp-block-code lang-bash"><code>#! /usr/bin/zsh
 
 # When there are more than 3 windows open on the current space we stack Google
 # Chrome and Transmit along with stacking VSCode and Tower if both are open.
@@ -183,14 +176,10 @@ local TRANSMIT_ID=$(echo $WINDOWS_ARRAY | jq -r 'map(select(.app=="Transmit")) |
 
 if [[ $CHROME_ID != 'null' && $TRANSMIT_ID != 'null' ]]; then;
     yabai -m window $CHROME_ID --stack $TRANSMIT_ID
-fi
-```
-
-## SKHD
-skhdrc:
-
-```bash
-# Services
+fi</code></pre>
+								<h2 class="wp-block-heading">SKHD</h2>
+								<p>skhdrc:</p>
+								<pre class="wp-block-code lang-bash"><code># Services
 hyper - z : brew services restart yabai
 hyper - x : brew services restart skhd
 
@@ -277,5 +266,4 @@ hyper - left : yabai -m window --stack west
 #   | jq -re ".index" \
 #   | xargs -I{} yabai -m query --windows --space {} \
 #   | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(.focused == 1)))).id" \
-#   | xargs -I{} yabai -m window {} --insert stack
-```
+#   | xargs -I{} yabai -m window {} --insert stack</code></pre>

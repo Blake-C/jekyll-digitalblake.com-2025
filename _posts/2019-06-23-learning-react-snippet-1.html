@@ -1,0 +1,134 @@
+---
+layout: post
+title: "Learning React Snippet (1)"
+date: 2019-06-23 11:33:42 -0500
+modified_date: 2020-10-02 21:09:52 -0500
+description: "Snippet from React learning course."
+categories: ["Snippets"]
+tags: ["javascript", "react"]
+image: "/assets/uploads/2019/06/react-screen-facebook.webp"
+---
+
+<h2>Notes for myself</h2>
+								<p>
+									Course: <a
+										href="https://scrimba.com/p/p7P5Hd">https://scrimba.com/p/p7P5Hd</a><br />
+									Private Repo:
+									<a
+										href="https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019">https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019</a><br />
+									React Docs: <a href="https://reactjs.org/">https://reactjs.org/</a>
+								</p>
+								<p>App Start:</p>
+								<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import Todo from './components/Todo/Todo'
+
+ReactDOM.render(<Todo />, document.getElementById('root'))
+</code></pre>
+								<p>App Class Component:</p>
+								<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
+import TodoItem from './TodoItem/TodoItem'
+import todosData from './todosData'
+import './todo.scss'
+
+class Todo extends Component {
+    state = {
+        data: todosData,
+    }
+
+    handleOnChange = id => {
+        this.setState(prevState => {
+            const newState = prevState.data.map(item => {
+                if (item.id === id) {
+                    item.completed = !item.completed
+                }
+                return item
+            })
+
+            return {
+                data: newState,
+            }
+        })
+    }
+
+    render() {
+        const todoElements = this.state.data.map(data => {
+            return (
+                <TodoItem
+                    data={data}
+                    key={data.id}
+                    handleOnChange={this.handleOnChange}
+                />
+            )
+        })
+
+        return <form className="todo">{todoElements}</form>
+    }
+}
+
+export default Todo
+</code></pre>
+								<p>App Functional Component:</p>
+								<pre><code class="line-numbers lang-js">import React from 'react'
+import PropTypes from 'prop-types'
+
+function TodoItem(props) {
+    const { id, completed, text } = props.data
+
+    return (
+        <div className="todo-item">
+            <label htmlFor={`item_${id}`}>
+                <input
+                    type="checkbox"
+                    id={`item_${id}`}
+                    checked={completed}
+                    onChange={() => {
+                        props.handleOnChange(id)
+                    }}
+                />
+                {text}
+            </label>
+            <br />
+        </div>
+    )
+}
+
+// PropTypes
+TodoItem.propTypes = {
+    data: PropTypes.object.isRequired,
+    handleOnChange: PropTypes.func.isRequired,
+}
+
+export default TodoItem
+</code></pre>
+								<p>App Data:</p>
+								<pre><code class="line-numbers lang-js">const todosData = [
+    {
+        id: 1,
+        text: 'Take out the trash',
+        completed: true,
+    },
+    {
+        id: 2,
+        text: 'Grocery shopping',
+        completed: false,
+    },
+    {
+        id: 3,
+        text: 'Clean gecko tank',
+        completed: false,
+    },
+    {
+        id: 4,
+        text: 'Mow lawn',
+        completed: true,
+    },
+    {
+        id: 5,
+        text: 'Catch up on Arrested Development',
+        completed: false,
+    },
+]
+
+export default todosData
+</code></pre>

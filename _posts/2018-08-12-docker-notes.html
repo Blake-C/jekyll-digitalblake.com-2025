@@ -1,0 +1,195 @@
+---
+layout: post
+title: "Docker Notes"
+date: 2018-08-12 14:53:54 -0500
+modified_date: 2020-10-02 21:09:54 -0500
+categories: ["Notes"]
+tags: ["docker"]
+---
+
+<h3>Resources</h3>
+								<ul>
+									<li>
+										Getting started with Docker:
+										<a href="https://docs.docker.com/mac/">https://docs.docker.com/mac/</a>
+									</li>
+									<li>
+										Docker Toolbox:
+										<a
+											href="https://docs.docker.com/toolbox/overview/">https://docs.docker.com/toolbox/overview/</a>
+									</li>
+									<li>
+										<a
+											href="https://visible.vc/engineering/docker-environment-for-wordpress/">https://visible.vc/engineering/docker-environment-for-wordpress/</a>
+									</li>
+									<li>
+										<a
+											href="https://visible.vc/engineering/optimize-wordpress-theme-assets-and-deploy-to-s3-cloudfront/">https://visible.vc/engineering/optimize-wordpress-theme-assets-and-deploy-to-s3-cloudfront/</a>
+									</li>
+								</ul>
+								<h3>Commands</h3>
+								<ul>
+									<li>
+										<code>docker images</code>
+										<ul>
+											<li>List docker repos</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker run [username]/[repo]</code>
+										<ul>
+											<li>runs image, otherwise pulls it down</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker rmi -f [image-id]</code>
+										<ul>
+											<li>removed docker image based off ID or repo name</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker push [username]/[repo]</code>
+										<ul>
+											<li>pushes the docker image to repo</li>
+											<li><code>docker push [username]/[repo]:[tag]</code></li>
+										</ul>
+									</li>
+									<li>
+										<code>docker login --username=[username] --email=[emailaddress]</code>
+										<ul>
+											<li>login into docker hub</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker tag [image-id] [username]/[repo]:[tag]</code>
+										<ul>
+											<li>tag image before pushing</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker commit [container-id] [image-name]</code>
+										<ul>
+											<li>saves changes in a container as a new image</li>
+											<li>
+												<code>docker commit [container-id] [username]/[repo]:[tag]</code>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker build [options] [path]</code>
+										<ul>
+											<li>build container</li>
+											<li>
+												<code>docker build -t [username]/[repo]:[tag] .</code>
+												<ul>
+													<li><code>.</code> for current directory</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker-machine ls</code>
+										<ul>
+											<li>list docker machines</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker ps</code>
+										<ul>
+											<li>Lists containers</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker ps -l</code>
+										<ul>
+											<li>List container details</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker-compose up -d</code>
+										<ul>
+											<li>Run docker container</li>
+											<li>-d => in the background</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker info</code>
+										<ul>
+											<li>Get info on containers, images, and VM</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker-machine env default</code>
+										<ul>
+											<li>Get environment info</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker ps -a</code>
+										<ul>
+											<li>List all containers</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker run -it [image-name] bin/bash</code>
+										<ul>
+											<li>Run container and enter bash shell</li>
+											<li>-i => standard in (makes it interactive)</li>
+											<li>-t => sudo terminal</li>
+										</ul>
+									</li>
+									<li>
+										control + p + q
+										<ul>
+											<li>Exit container without stopping it</li>
+										</ul>
+									</li>
+									<li>
+										control + c
+										<ul>
+											<li>Exit container and stop it</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker run -d -P [image-name]</code>
+										<ul>
+											<li>Attaches container to local port to view in browser</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker start [container-name/id]</code>
+										<ul>
+											<li>Starts a container</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker stop [container-name/id]</code>
+										<ul>
+											<li>Stops a container</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker exec -it [container-id] /bin/bash</code>
+										<ul>
+											<li>Start terminal process into container</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker run -it -d -P -v $PWD:/www ubuntu:14.04</code>
+										<ul>
+											<li>Mount volume to container</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker run -d -p 8080:80 nginx</code>
+										<ul>
+											<li>Start a container and map to host port 80</li>
+										</ul>
+									</li>
+									<li>
+										<code>docker rm $(docker ps -a -q)</code>
+										<ul>
+											<li>Remove all containers</li>
+										</ul>
+									</li>
+								</ul>

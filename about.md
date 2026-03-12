@@ -2,17 +2,10 @@
 layout: page
 title: About
 permalink: /about/
+description: "Blake Cerecero — Front-end Web Developer specializing in WordPress, Drupal, and modern JavaScript."
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+<div class="about-content">
+  <h1>Blake Cerecero</h1>
+  <p>I've developed in multiple content management systems from the ever popular WordPress to the developer friendly and powerful Drupal. Using these CMS's I have been able to build sites that are both flexible and user-friendly.</p>
+</div>

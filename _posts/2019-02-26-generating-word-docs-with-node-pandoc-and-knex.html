@@ -1,0 +1,148 @@
+---
+layout: post
+title: "Generating Word Docs with Node, Pandoc, and Knex"
+date: 2019-02-26 02:40:55 -0600
+modified_date: 2020-10-02 21:09:53 -0500
+description: "Using Node, Pandoc, and Knex to create Word Docs from database table."
+categories: ["Articles"]
+tags: ["javascript", "joomla", "knex", "node", "pandoc"]
+---
+
+<p>
+									To start, this is not something I wanted to do, it was a client request that
+									lead to this being a thing. Usually, at Gray Digital Group, we use GatherContent
+									to process changes to our clients content before integrating it into their new
+									sites. However, there was this one instance where our client wanted to edit
+									their content from Word Docs.
+								</p>
+								<p>
+									There was two ways I could go about this, go from page to page and copy the
+									content out and past it into a Word Doc, save it, and give it a reasonable name.
+									Or take the clever approach and use a programmatic approach. I chose the latter
+									(Because I would be damned if I was going to sit for several hours copying and
+									pasting content into Word Docs).
+								</p>
+								<h2>Background</h2>
+								<p>
+									Here was the setup, I was working with a Joomla! 2.5 site that had not been
+									updated in ages. We did have access to the database and all the server assets.
+									There was hover 200 page items that need to be turned into Word Docs for our
+									client to edit.
+								</p>
+								<h3>Approach #1</h3>
+								<p>
+									All the content in a Joomla! database is help in the jos_content table. My first
+									approach was to export this table to a CSV file and use a node module called
+									<a href="https://www.npmjs.com/package/csvtojson">csvtojson</a> to parse through
+									the data using node.
+								</p>
+								<p>
+									The first problem I had was the HTML had newline characters and returns, this
+									made it difficult to parse the data in a reliable manner. What I did to get
+									around this was to do three things when exporting the data from PHPMyAdmin.
+								</p>
+								<ol>
+									<li>
+										Set a custom &#8220;Columns separated with&#8221; field with something I
+										could reliably search for.
+									</li>
+									<li>Checked off Remove carriage return/line feed characters within columns</li>
+									<li>Checked off Put columns names in the first row</li>
+								</ol>
+								<p>
+									After exporting this new data I was able to use the csvtojson node module to
+									parse the data with my custom csv column delimiter. Then loop over our new json
+									object and use <a href="https://pandoc.org/">pandoc</a> to generate the Word
+									Docs.
+								</p>
+								<p>
+									I also had to be sure that the files and images from the database were properly
+									linked back to the site with the sites full URL. I accomplished this with a
+									regular expression that searched for missing absolute paths and prepended the
+									site URL.
+								</p>
+								<h3>Approach #2</h3>
+								<p>
+									Later the same day I wanted to find an easier way to accomplish getting the data
+									from the Joomla! database. I started to research how to access a MySql database
+									from node and ran across <a href="https://knexjs.org/">knex</a>. This tool
+									allowed me to connect directly to the database and query the data I wanted. With
+									this I could omit the csvtojson node module as knex returned the data as a json
+									object I could loop through.
+								</p>
+								<p>
+									What took me 10 hours to research and development in the office took me about 2
+									hours to figure out when working on this at home. There are some additional
+									details but once to parse through the code I think they make since without
+									explanation.
+								</p>
+								<p>This is what I put together:</p>
+								<pre><code class="line-numbers lang-javascript">import knex from 'knex'
+import pandoc from 'node-pandoc'
+import fs from 'node-fs-extra'
+
+const knex_query = knex({
+    client: 'mysql',
+    connection: {
+        host: 'localhost',
+        port: '3306', // when using docker you need to expose mysql port
+        user: 'root',
+        password: 'root',
+        database: 'wp_foundation_six',
+    },
+})
+
+function joomla_articles(table, live_domain = '/', output_dir = './_output/articles/') {
+    knex_query
+        .from(table)
+        .select('id', 'title', 'alias', 'introtext', 'fulltext')
+        .then(rows => {
+            rows.forEach(row => {
+                const body_content = `${row.introtext} ${row.fulltext}`
+                const fixed_urls = body_content.replace(/(href|src)="(?!http|https|mailto)/gm, `$1="${live_domain}`)
+                const page_url = `${live_domain}index.php?option=com_content&view=article&id=${row.id}`
+
+                const html_content = `
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                    </head>
+                    <body>
+                        <p>Site URL: <a href="${page_url}">${page_url}</a></p>
+                        <hr/>
+                        <h1>${row.title}</h1>
+                        ${fixed_urls}
+                    </body>
+                    </html>
+                `
+
+                fs.mkdirs(output_dir)
+
+                // Arguments can be either a single String or in an Array
+                const args = `-f html -t docx -o ${output_dir}${row.id}--${row.alias}.docx`
+
+                // Set your callback function
+                const callback = (err, result) => {
+                    if (err) console.error('Oh Nos: ', err)
+                    return console.log(result), result
+                }
+
+                // Call pandoc
+                pandoc(html_content, args, callback)
+            })
+        })
+}
+joomla_articles('jos_content')
+</code></pre>
+								<h2>Final Thoughts</h2>
+								<ul>
+									<li>I could stare at this all day, it&#8217;s so beautiful 🙂</li>
+									<li>Content integration is going to be a pain 🙁</li>
+									<li>Don&#8217;t do this if you don&#8217;t have to.</li>
+								</ul>
+								<p>
+									Git repo that includes a WordPress example:
+									<a
+										href="https://github.com/Blake-C/data-converter">https://github.com/Blake-C/data-converter</a>
+								</p>

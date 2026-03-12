@@ -1,0 +1,128 @@
+---
+layout: post
+date: 2020-04-27 06:29:54 -0500
+modified_date: 2020-10-02 21:09:52 -0500
+categories: ["Snippets"]
+tags: ["command-line", "learning", "macos", "shell-script"]
+image: "/assets/uploads/2020/04/facebook.webp"
+---
+
+<pre><code class="line-numbers lang-bash">while [ $# -gt 0 ]; do
+    case "$1" in
+        --from*|-f*)
+            if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
+            local FROM="${1#*=}"
+        ;;
+        --to*|-t*)
+            if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
+            local TO="${1#*=}"
+        ;;
+        --file*|-z*)
+            if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
+            local SINGLEFILE="${1#*=}"
+        ;;
+        --help|-h)
+            doc_convert_usage
+            return;
+        ;;
+        *)
+            >&2 printf "Error: Invalid argument\n"
+            return;
+        ;;
+    esac
+    shift
+done
+</code></pre>
+								<h2>What does this code do?</h2>
+								<ul>
+									<li>First we are grabbing the positional parameters</li>
+									<li>
+										Then we loop through each parameters and pass them through a case statement
+									</li>
+									<li>
+										Depending on what we pass in we will be able to check for a named argument
+										or an abbreviated version using the pipe symbol <code>--from*|-f*)</code>.
+									</li>
+									<li>
+										In each case we check if an equals sign was used. This gives us the ability
+										to pass in arguments as <code>myfunction arg1=somevalue1</code> or as
+										<code>myfunction arg1 somevalue1</code>.
+									</li>
+								</ul>
+								<p>We get the best of both worlds for passing in values to our shell scripts.</p>
+								<h2>Example in context</h2>
+								<p>
+									Here is a full example I&#8217;ve used in the past to show the above code in
+									context of a full function. This is the function I use to quickly convert word
+									documents into pdfs through the command line.
+								</p>
+								<pre><code class="line-numbers lang-bash">doc_convert_usage() {
+    echo "doc_convert -f docx -t pdf"
+    echo "-f\t from\t default=docx|doc\t The file type you are wanting to convert"
+    echo "-t\t to\t default=pdf\t\t The file type you are converting to"
+    echo "-z\t file\t default=none\t\t Use to target a single"
+}
+
+doc_convert() {
+    command -v soffice >/dev/null 2>&1 || { echo "Install LibreOffice and add soffice to your path. Aborting." >&2; return; }
+    command -v greadlink >/dev/null 2>&1 || { echo "You need coreutils, instal with: brew install coreutils. Aborting." >&2; return; }
+
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --from*|-f*)
+                if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
+                local FROM="${1#*=}"
+            ;;
+            --to*|-t*)
+                if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
+                local TO="${1#*=}"
+            ;;
+            --file*|-z*)
+                if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
+                local SINGLEFILE="${1#*=}"
+            ;;
+            --help|-h)
+                doc_convert_usage
+                return;
+            ;;
+            *)
+                >&2 printf "Error: Invalid argument\n"
+                return;
+            ;;
+        esac
+        shift
+    done
+
+    if [ -z "${FROM}" ]; then
+        local FROM="docx|doc"
+    fi
+
+    if [ -z "${TO}" ]; then
+        local TO="pdf"
+    fi
+
+    echo "\n**************************\n"
+    echo "You are about to convert \"${FROM}\" files to \"${TO}\":";
+
+    local PERMISSONTOCHANGEFILES
+    vared -p "Convert? (y/n): " -c PERMISSONTOCHANGEFILES
+
+    if [[ "$PERMISSONTOCHANGEFILES" == "y" ]]; then
+        if [ -z "${SINGLEFILE}" ]; then
+            for DOCUMENT in $(find -E . -type f -iregex ".*\.(${FROM})$")
+                do
+                    local FILE=$(greadlink -f "${DOCUMENT}")
+                    local FILEURL=$(dirname "${FILE}")
+
+                    soffice --headless --convert-to "${TO}" "${DOCUMENT}" --outdir "${FILEURL}"
+                done
+        else
+            soffice --headless --convert-to "${TO}" "${SINGLEFILE}"
+        fi
+    else
+        echo "\nNothing has been converted\n"
+    fi
+
+    return;
+}
+</code></pre>
