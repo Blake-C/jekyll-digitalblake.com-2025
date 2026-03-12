@@ -8,20 +8,19 @@ categories: ["Notes"]
 tags: ["php", "php7", "phpcs", "wordpress"]
 ---
 
-<p>
-    These notes are from a LinkedIn Learning Course that can be found here:
-    <a href="https://www.linkedin.com/learning/php-7-new-features"
-        >https://www.linkedin.com/learning/php-7-new-features</a
-    >
-</p>
-<h2>Scalar Type Declarations</h2>
-<p>Three Techniques:</p>
-<ul>
-    <li>None: returns as-is</li>
-    <li>Coercive: coerces value before returning it</li>
-    <li>Strict: raises error if type does not match</li>
-</ul>
-<h3>None</h3>
+These notes are from a LinkedIn Learning Course that can be found here:
+    [https://www.linkedin.com/learning/php-7-new-features](https://www.linkedin.com/learning/php-7-new-features)
+
+## Scalar Type Declarations
+
+Three Techniques:
+
+- None: returns as-is
+- Coercive: coerces value before returning it
+- Strict: raises error if type does not match
+
+### None
+
 <pre><code class="line-numbers lang-php">function sum($a, $b) {
     echo $a . " " . gettype($a) . " + ";
     echo $b . " " . gettype($b) . " = ";
@@ -36,7 +35,9 @@ sum("2", "3");
 sum(2.0, 3.0);
 // 2 double + 3 double = 5 double
 </code></pre>
-<h3>Coercive</h3>
+
+### Coercive
+
 <pre><code class="line-numbers lang-php">function sum(int $a,int $b) {
     echo $a . " " . gettype($a) . " + ";
     echo $b . " " . gettype($b) . " = ";
@@ -51,7 +52,9 @@ sum("2", "3");
 sum(2.0, 3.0);
 // 2 integer + 3 integer = 5 integer
 </code></pre>
-<h3>Strict</h3>
+
+### Strict
+
 <pre><code class="line-numbers lang-php">declare(strict_types=1);
 
 function sum(int $a,int $b) {
@@ -68,22 +71,25 @@ sum("2", "3");
 sum(2.0, 3.0);
 // TypeError: Argument must be of the type integer, float given
 </code></pre>
-<h3>Types</h3>
-<ul>
-    <li>array</li>
-    <li>bool</li>
-    <li>float</li>
-    <li>int</li>
-    <li>string</li>
-</ul>
-<h2>Return Type Declarations</h2>
-<p>Three Techniques:</p>
-<ul>
-    <li>None: returns as-is</li>
-    <li>Coercive: coerces value before returning it</li>
-    <li>Strict: raises error if type does not match</li>
-</ul>
-<h3>None</h3>
+
+### Types
+
+- array
+- bool
+- float
+- int
+- string
+
+## Return Type Declarations
+
+Three Techniques:
+
+- None: returns as-is
+- Coercive: coerces value before returning it
+- Strict: raises error if type does not match
+
+### None
+
 <pre><code class="line-numbers lang-php">function sum($a, $b) {
     return $a + $b;
 }
@@ -95,7 +101,9 @@ echo gettype(sum("2", "3"));
 echo gettype(sum(2.0, 3.0));
 // double
 </code></pre>
-<h3>Coercive</h3>
+
+### Coercive
+
 <pre><code class="line-numbers lang-php">function sum($a, $b): int {
     return $a + $b;
 }
@@ -107,7 +115,9 @@ echo gettype(sum("2", "3"));
 echo gettype(sum(2.0, 3.0));
 // integer
 </code></pre>
-<h3>Strict</h3>
+
+### Strict
+
 <pre><code class="line-numbers lang-php">declare(strict_types=1);
 
 function sum($a, $b): int {
@@ -121,31 +131,35 @@ echo gettype(sum("2", "3"));
 echo gettype(sum(2.0, 3.0));
 // TypeError: Return value must be of the type integer, float returned
 </code></pre>
-<h2>Combined Comparison Operator</h2>
-<p>Also known as:</p>
-<blockquote>
-    <p>spaceship operator</p>
-</blockquote>
-<p>Comparison Operators</p>
-<ul>
-    <li>==, ===</li>
-    <li>!=, !==</li>
-    <li>&lt;, &lt;=</li>
-    <li>> , >=</li>
-</ul>
-<p>Combined Comparison Operator</p>
-<ul>
-    <li>&lt;=></li>
-</ul>
+
+## Combined Comparison Operator
+
+Also known as:
+
+> spaceship operator
+
+Comparison Operators
+
+- ==, ===
+- !=, !==
+- <, <=
+- > , >=
+
+Combined Comparison Operator
+
+- <=>
+
 <pre><code class="line-numbers lang-php">$swatch_price <=> $rolex_price
 </code></pre>
-<ul>
-    <li>Returns -1 when left side is less than right side.</li>
-    <li>Returns 0 when both sides are equal.</li>
-    <li>Returns 1 when left side is greater then right side.</li>
-</ul>
-<p>Example 1:</p>
-<p>Switch case.</p>
+
+- Returns -1 when left side is less than right side.
+- Returns 0 when both sides are equal.
+- Returns 1 when left side is greater then right side.
+
+Example 1:
+
+Switch case.
+
 <pre><code class="line-numbers lang-php">$a = 100;
 $b = 200;
 
@@ -158,8 +172,11 @@ switch($a <=> $b) {
         echo '$a is greater than $b'; break;
 }
 </code></pre>
-<p>Example 2:</p>
-<p>Sort array by price.</p>
+
+Example 2:
+
+Sort array by price.
+
 <pre><code class="line-numbers lang-php">$watches = array(
     array('brand': 'Swatch', 'price': 50.0),
     array('brand': 'Timex', 'price': 5.0),
@@ -173,30 +190,36 @@ function sort_by_price($watch1, $watch2) {
 
 usort($watch, 'sort_by_price');
 </code></pre>
-<p>
-    When watch1 before watch2 ascending order.<br />
+
+When watch1 before watch2 ascending order.  
+
     When watch1 after watch2 descending order.
-</p>
-<ul>
-    <li><a href="http://php.net/manual/en/function.usort.php">usort docs</a></li>
-    <li>
-        <a href="http://php.net/manual/en/language.operators.comparison.php">Comparison Operators</a>
-    </li>
-</ul>
-<h2>Null Coalescing Operator</h2>
-<p>What it looks like: ??</p>
-<p>Returns first value that exists and is not NULL</p>
-<p>Example 1:</p>
+
+- [usort docs](http://php.net/manual/en/function.usort.php)
+- [Comparison Operators](http://php.net/manual/en/language.operators.comparison.php)
+
+## Null Coalescing Operator
+
+What it looks like: ??
+
+Returns first value that exists and is not NULL
+
+Example 1:
+
 <pre><code class="line-numbers lang-php">$value = $user_value ?? $default_value;
 </code></pre>
-<p>Same as:</p>
+
+Same as:
+
 <pre><code class="line-numbers lang-php">if (isset($user_value)) {
     $value = $user_value;
 } else {
     $value = $default_value;
 }
 </code></pre>
-<p>Examples:</p>
+
+Examples:
+
 <pre><code class="line-numbers lang-php">echo $page_title ?? 'My Cool PHP App';
 
 $username = $_POST['username'] ?? 'guest';

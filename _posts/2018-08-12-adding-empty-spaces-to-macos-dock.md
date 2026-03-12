@@ -7,15 +7,16 @@ categories: ["Snippets"]
 tags: ["macos", "shell-script"]
 ---
 
-<h3>Shell Script Function</h3>
-<p>
-    I always forget what this command is so I add this function to my
-    <code>~/.bash_profile</code> or <code>~/.zshrc</code> files to make adding more spaces to my dock easier.
-</p>
+### Shell Script Function
+
+I always forget what this command is so I add this function to my
+    `~/.bash_profile` or `~/.zshrc` files to make adding more spaces to my dock easier.
+
 <pre><code class="line-numbers lang-bash">dockSpace(){
     defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
 
     killall Dock
 }
 </code></pre>
-<p>Having spaces in your docker sometimes makes it easier to organize your applications into groups.</p>
+
+Having spaces in your docker sometimes makes it easier to organize your applications into groups.

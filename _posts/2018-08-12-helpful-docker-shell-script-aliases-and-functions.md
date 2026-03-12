@@ -8,29 +8,34 @@ tags: ["docker", "shell-script"]
 render_with_liquid: false
 ---
 
-<h3>Docker Alias</h3>
-<p>Helpful short aliases for executing docker command more quickly.</p>
+### Docker Alias
+
+Helpful short aliases for executing docker command more quickly.
+
 <pre><code class="line-numbers lang-bash">alias dps="docker container list -a --format \"table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\""
 alias dimg="docker image list"
 alias dup="docker-compose up -d"
 alias ddown="docker-compose down"
 </code></pre>
-<p>The dps command above is probably the most helpful when working on narrow devices.</p>
-<h3>Docker Functions</h3>
-<p>The following two functions would go into your <code>~/.bash_profile</code> or <code>~/.zshrc</code> file.</p>
-<p>
-    The dockerit shell script function can be used to mount your current directory into the general-cli container giving
+
+The dps command above is probably the most helpful when working on narrow devices.
+
+### Docker Functions
+
+The following two functions would go into your `~/.bash_profile` or `~/.zshrc` file.
+
+The dockerit shell script function can be used to mount your current directory into the general-cli container giving
     you access to basic command line tools. This is helpful for when you are working on a new machine and have not setup
     all your command line tooling yet.
-</p>
+
 <pre><code class="line-numbers lang-bash">dockit() {
     docker run --rm -it -v $PWD:/var/www/public_html digitalblake/general-cli:0.0.6 zsh
 }
 </code></pre>
-<p>
-    The dsh function is useful for when working the wp-foundation-six project or are using the general-cli docker image
+
+The dsh function is useful for when working the wp-foundation-six project or are using the general-cli docker image
     with a project. This is just a quick way to enter into the general-cli container.
-</p>
+
 <pre><code class="line-numbers lang-bash">dsh() {
     docker exec -it $(dps | grep cli | head -c12) zsh
 }

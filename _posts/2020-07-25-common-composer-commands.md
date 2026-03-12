@@ -8,35 +8,51 @@ tags: ["build-systems", "command-line", "composer", "learning", "macos", "php", 
 image: "/assets/uploads/2020/07/common-composer-commands.webp"
 ---
 
-<p>
-    These commands can be used globally or locally. To use locally just remove the global keyword. To learn more about
+These commands can be used globally or locally. To use locally just remove the global keyword. To learn more about
     these commands and others that are not listed here go to the
-    <a href="https://getcomposer.org/doc/03-cli.md">composer documentation</a>.
-</p>
-<hr />
-<p>To show installed packages:</p>
+    [composer documentation](https://getcomposer.org/doc/03-cli.md).
+
+---
+
+To show installed packages:
+
 <pre><code class="line-numbers lang-bash">composer global show
 </code></pre>
-<p>To show primary packages without dependencies:</p>
+
+To show primary packages without dependencies:
+
 <pre><code class="line-numbers lang-bash">composer global show --self
 </code></pre>
-<p>To show all packages installed regardless of dependencies:</p>
+
+To show all packages installed regardless of dependencies:
+
 <pre><code class="line-numbers lang-bash">composer global show --all
 </code></pre>
-<p>To show all outdated packages:</p>
+
+To show all outdated packages:
+
 <pre><code class="line-numbers lang-bash">composer global outdated
 </code></pre>
-<p>To upgrade packages:</p>
+
+To upgrade packages:
+
 <pre><code class="line-numbers lang-bash">composer global upgrade
 </code></pre>
-<p>To install packages</p>
+
+To install packages
+
 <pre><code class="line-numbers lang-bash">composer global require "vendor/package"
 </code></pre>
-<p>To remove packages:</p>
+
+To remove packages:
+
 <pre><code class="line-numbers lang-bash">composer global remove "vendor/package"
 </code></pre>
+
 <pre><code class="line-numbers lang-bash">composer global remove "vendor/*"
 </code></pre>
-<p>To update composer:</p>
+
+To update composer:
+
 <pre><code class="line-numbers lang-bash">composer global self-update
 </code></pre>

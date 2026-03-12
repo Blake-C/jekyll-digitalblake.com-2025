@@ -7,86 +7,94 @@ categories: ["Guides"]
 tags: ["composer", "homebrew", "phpcs", "wordpress", "wpcs"]
 ---
 
-<h3>Install Homebrew</h3>
-<p>This guide is for developers how are using a Unix like system, more specifically macOS is the system I am using.</p>
-<ul>
-    <li>
-        <a href="https://brew.sh/">Follow the insuctions on the homebrew website</a>
-    </li>
-</ul>
-<h3>Using Homebrew to Install Composer</h3>
+### Install Homebrew
+
+This guide is for developers how are using a Unix like system, more specifically macOS is the system I am using.
+
+- [Follow the insuctions on the homebrew website](https://brew.sh/)
+
+### Using Homebrew to Install Composer
+
 <pre><code class="line-numbers lang-bash">brew install composer
 </code></pre>
-<h3>Install PHPCS</h3>
-<p>
-    Install PHPCS using composer, follow the instructions found on the
-    <a href="https://github.com/squizlabs/PHP_CodeSniffer">phpcs github page</a>.
-</p>
+
+### Install PHPCS
+
+Install PHPCS using composer, follow the instructions found on the
+    [phpcs github page](https://github.com/squizlabs/PHP_CodeSniffer).
+
 <pre><code class="line-numbers lang-bash">composer global require "squizlabs/php_codesniffer=*"
 </code></pre>
-<h3>Create Utilities Directory</h3>
-<p>
-    Create a directory in your user folder called utilities. Then clone down the
-    <a href="https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards">WPCS</a>
+
+### Create Utilities Directory
+
+Create a directory in your user folder called utilities. Then clone down the
+    [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
     and
-    <a href="https://github.com/PHPCompatibility/PHPCompatibility">PHPCompatibility</a>
+    [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility)
     repos.
-</p>
+
 <pre><code class="line-numbers lang-bash">mkdir ~/utilities
 cd ~/utilities
 git clone https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git
 git clone https://github.com/PHPCompatibility/PHPCompatibility.git
 </code></pre>
-<p>
-    Now change directories into the WordPress-Coding-Standards repo. Then use git to checkout the latest release. You
+
+Now change directories into the WordPress-Coding-Standards repo. Then use git to checkout the latest release. You
     can find what version is the most recent on the main
-    <a href="https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/releases">projects releases</a>
+    [projects releases](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/releases)
     page. For me this would be v0.14.1.
-</p>
+
 <pre><code class="line-numbers lang-bash">cd ~/utilities/WordPress-Coding-Standards
 git checkout 0.14.1
 </code></pre>
-<p>
-    Do the same thing for PHPCompatibility. Change directories into PHPCompatibility and checkout the most recent or the
+
+Do the same thing for PHPCompatibility. Change directories into PHPCompatibility and checkout the most recent or the
     version your team is using. For me this would be v8.2.0.
-</p>
+
 <pre><code class="line-numbers lang-bash">cd ~/utilities/PHPCompatibility
 git checkout 8.2.0
 </code></pre>
-<h3>Access PHPCS Globally</h3>
-<p>
-    In order to access PHPCS globally you need to add composer to your global $PATH. Add the following to your
-    <code>~/.bash_profile</code> or if you are using ZSH to your <code>~/.zshrc</code>. The $HOME variable will default
-    to your user directory similiar to when you type <code>cd ~</code>.
-</p>
+
+### Access PHPCS Globally
+
+In order to access PHPCS globally you need to add composer to your global $PATH. Add the following to your
+    `~/.bash_profile` or if you are using ZSH to your `~/.zshrc`. The $HOME variable will default
+    to your user directory similiar to when you type `cd ~`.
+
 <pre><code class="line-numbers lang-bash">export PATH="$PATH:$HOME/.composer/vendor/bin"
 </code></pre>
-<p>
-    Now when you run <code>phpcs --version</code>, you will get the current PHPCS version output. If you don&#8217;t,
+
+Now when you run `phpcs --version`, you will get the current PHPCS version output. If you don’t,
     then look back at the instructions for the above tools to be sure they have installed successfully.
-</p>
+
 <pre><code class="line-numbers lang-bash">phpcs --version
 PHP_CodeSniffer version 3.3.0 (stable) by Squiz (http://www.squiz.net)
 </code></pre>
-<p>If you run <code>phpcs -i</code> you&#8217;ll get the default coding standards list.</p>
+
+If you run `phpcs -i` you’ll get the default coding standards list.
+
 <pre><code class="line-numbers lang-bash">phpcs -i
 The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR12
 </code></pre>
-<p>To add our WPCS and PHPCompatibility standards to this list run this command.</p>
+
+To add our WPCS and PHPCompatibility standards to this list run this command.
+
 <pre><code class="line-numbers lang-bash">phpcs --config-set installed_paths $HOME/utilities/WordPress-Coding-Standards,/$HOME/utilities/PHPCompatibility
 </code></pre>
-<p>
-    Now when you run <code>phpcs -i</code> you will see WPCS and PHPCompatibility standards listed after the original
+
+Now when you run `phpcs -i` you will see WPCS and PHPCompatibility standards listed after the original
     standards.
-</p>
+
 <pre><code class="line-numbers lang-bash">phpcs -i
 The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR12, WordPress-VIP, WordPress, WordPress-Extra, WordPress-Docs, WordPress-Core and PHPCompatibility
 </code></pre>
-<h3>Setup the WordPress Theme for PHPCS</h3>
-<p>
-    At the root of your WordPress Theme or Plugin create a file called
-    <code>phpcs.xml</code> and add the following configurations. Feel free to change these to best suit your needs.
-</p>
+
+### Setup the WordPress Theme for PHPCS
+
+At the root of your WordPress Theme or Plugin create a file called
+    `phpcs.xml` and add the following configurations. Feel free to change these to best suit your needs.
+
 <pre><code class="line-numbers lang-xml"><?xml version="1.0"?>
 <ruleset name="WordPress Theme Coding Standards">
     <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
@@ -104,16 +112,16 @@ The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR1
          v flag: Print verbose output.
          n flag: Do not print warnings.
     -->
-    <arg value="psv"/>
+    <arg value="psv"></arg>
 
     <!-- Strip the filepaths down to the relevant bit. -->
-    <arg name="basepath" value="./"/>
+    <arg name="basepath" value="./"></arg>
 
     <!-- Check up to 8 files simultanously. -->
-    <arg name="parallel" value="8"/>
+    <arg name="parallel" value="8"></arg>
 
     <!-- Only check the PHP files. JS files are checked separately with JSCS and JSHint. -->
-    <arg name="extensions" value="php"/>
+    <arg name="extensions" value="php"></arg>
 
     <!-- Check all files in this directory and the directories below it. -->
     <file>.</file>
@@ -127,14 +135,14 @@ The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR1
     <!-- Include the WordPress ruleset, with exclusions. -->
     <rule ref="WordPress">
         <!-- Getting error on placeholder files, index.php -->
-        <exclude name="Squiz.Commenting.FileComment.SpacingAfterComment" />
+        <exclude name="Squiz.Commenting.FileComment.SpacingAfterComment"></exclude>
     </rule>
 
     <!-- Verify that the text_domain is set to the desired text-domain.
          Multiple valid text domains can be provided as a comma-delimited list. -->
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="wp_foundation_six" />
+            <property name="text_domain" type="array" value="wp_foundation_six"></property>
         </properties>
     </rule>
 
@@ -142,7 +150,7 @@ The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR1
          on the theme hierarchy. -->
     <rule ref="WordPress.Files.FileName">
         <properties>
-            <property name="is_theme" value="true" />
+            <property name="is_theme" value="true"></property>
         </properties>
     </rule>
 
@@ -151,18 +159,18 @@ The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR1
          as set in the "Requires at least" tag in the readme.txt file. -->
     <rule ref="WordPress.WP.DeprecatedFunctions">
         <properties>
-            <property name="minimum_supported_version" value="4.5" />
+            <property name="minimum_supported_version" value="4.5"></property>
         </properties>
     </rule>
 
     <!-- Include sniffs for PHP cross-version compatibility. -->
-    <config name="testVersion" value="7.1-99.0"/>
+    <config name="testVersion" value="7.1-99.0"></config>
 
     <!-- Verify that everything in the global namespace is prefixed with a theme specific prefix.
          Multiple valid prefixes can be provided as a comma-delimited list. -->
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
-            <property name="prefixes" type="array" value="wp_foundation_six,wpfs" />
+            <property name="prefixes" type="array" value="wp_foundation_six,wpfs"></property>
         </properties>
     </rule>
 
@@ -173,40 +181,42 @@ The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR1
              * /wp-includes/compat.php
              * /wp-includes/random_compat/random.php
         -->
-        <exclude name="PHPCompatibility.PHP.NewClasses.errorFound"/>
-        <exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"/>
+        <exclude name="PHPCompatibility.PHP.NewClasses.errorFound"></exclude>
+        <exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"></exclude>
 
-        <exclude name="PHPCompatibility.PHP.NewConstants.json_pretty_printFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.php_version_idFound"/>
+        <exclude name="PHPCompatibility.PHP.NewConstants.json_pretty_printFound"></exclude>
+        <exclude name="PHPCompatibility.PHP.NewConstants.php_version_idFound"></exclude>
 
-        <exclude name="PHPCompatibility.PHP.NewFunctions.hash_equalsFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.json_last_error_msgFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.random_intFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.random_bytesFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.hash_equalsFound"></exclude>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.json_last_error_msgFound"></exclude>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.random_intFound"></exclude>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.random_bytesFound"></exclude>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"></exclude>
 
-        <exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"/>
+        <exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"></exclude>
     </rule>
 
     <!-- Whitelist the WP Core mysql_to_rfc3339() function. -->
     <rule ref="PHPCompatibility.PHP.RemovedExtensions">
         <properties>
-            <property name="functionWhitelist" type="array" value="mysql_to_rfc3339"/>
+            <property name="functionWhitelist" type="array" value="mysql_to_rfc3339"></property>
         </properties>
     </rule>
 </ruleset>
 </code></pre>
-<p>
-    Now if you change directories into your WordPress theme and run
-    <code>phpcs --standard=phpcs.xml --colors</code>, PHPCS will run through the standards setup in your XML file and
+
+Now if you change directories into your WordPress theme and run
+    `phpcs --standard=phpcs.xml --colors`, PHPCS will run through the standards setup in your XML file and
     let you know if there are any errors or warnings.
-</p>
+
 <pre><code class="line-numbers lang-bash">phpcs --standard=phpcs.xml --colors
 .................................................. 50 / 50 (100%)
 
 Time: 7.63 secs; Memory: 14Mb
 </code></pre>
-<p>With errors:</p>
+
+With errors:
+
 <pre><code class="line-numbers lang-bash">phpcs --standard=phpcs.xml --colors
 ...................................E.............. 50 / 50 (100%)
 
@@ -221,10 +231,10 @@ PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 
 Time: 5.76 secs; Memory: 14Mb
 </code></pre>
-<p>
-    You can use PHPCBF (PHP Code Beautifier and Fixer) to automatically fix some issues. Typically these would be
+
+You can use PHPCBF (PHP Code Beautifier and Fixer) to automatically fix some issues. Typically these would be
     formatting and non-breaking changes.
-</p>
+
 <pre><code class="line-numbers lang-bash">phpcbf --standard=phpcs.xml --colors
 ...................................F.............. 50 / 50 (100%)
 
@@ -239,7 +249,9 @@ A TOTAL OF 1 ERROR WERE FIXED IN 1 FILE
 
 Time: 5.81 secs; Memory: 14Mb
 </code></pre>
-<p>If you need to test a single file you can do so like this:</p>
+
+If you need to test a single file you can do so like this:
+
 <pre><code class="line-numbers lang-bash">phpcs --standard=phpcs.xml --colors header.php
 . 1 / 1 (100%)
 
@@ -247,10 +259,15 @@ No fixable errors were found
 
 Time: 312ms; Memory: 12Mb
 </code></pre>
-<h3>Update (2018-09-13)</h3>
-<p>A previous version of this article said to use:</p>
+
+### Update (2018-09-13)
+
+A previous version of this article said to use:
+
 <pre><code class="line-numbers lang-bash">phpcs --config-set installed_paths $HOME/utilities/wpcs,/$HOME/utilities/PHPCompatibility
 </code></pre>
-<p>This was incorrect, the correct pathing would be:</p>
+
+This was incorrect, the correct pathing would be:
+
 <pre><code class="line-numbers lang-bash">phpcs --config-set installed_paths $HOME/utilities/WordPress-Coding-Standards,/$HOME/utilities/PHPCompatibility
 </code></pre>
