@@ -37,7 +37,7 @@ layout: base
                                     <span class="byline post-meta"
                                         >By
                                         <span class="author vcard"
-                                            ><a class="url fn n" href="/author/{{ post_author_id }}/">
+                                            ><a class="url fn n" href="{{ '/author/' | append: post_author_id | append: '/' | relative_url }}">
                                                 {{- post_author_name -}}
                                             </a></span
                                         ></span
@@ -60,7 +60,8 @@ layout: base
                                     <p class="cat-links">
                                         <strong>View other</strong>
                                         {%- for cat in page.categories %}
-                                            <a href="/category/{{ cat | slugify }}/" rel="category tag">{{ cat }}</a>
+                                            {%- capture cat_path -%}/category/{{ cat | slugify }}/{%- endcapture -%}
+                                            <a href="{{ cat_path | relative_url }}" rel="category tag">{{ cat }}</a>
                                             {%- unless forloop.last %}, {% endunless %}
                                         {%- endfor %}
                                     </p>
@@ -69,7 +70,8 @@ layout: base
                                     <p class="tags-links">
                                         <strong>Tagged in:</strong>
                                         {%- for tag in page.tags %}
-                                            <a href="/tag/{{ tag | slugify }}/" rel="tag">{{ tag }}</a>
+                                            {%- capture tag_path -%}/tag/{{ tag | slugify }}/{%- endcapture -%}
+                                            <a href="{{ tag_path | relative_url }}" rel="tag">{{ tag }}</a>
                                             {%- unless forloop.last %} {% endunless %}
                                         {%- endfor %}
                                     </p>

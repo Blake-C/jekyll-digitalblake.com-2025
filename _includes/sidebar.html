@@ -15,8 +15,9 @@
             <ul>
                 {%- assign sorted_categories = site.categories | sort -%}
                 {%- for category in sorted_categories -%}
+                    {%- capture cat_path -%}/category/{{ category[0] | slugify }}/{%- endcapture -%}
                     <li class="cat-item">
-                        <a href="/category/{{ category[0] | slugify }}/">{{ category[0] }}</a>
+                        <a href="{{ cat_path | relative_url }}">{{ category[0] }}</a>
                     </li>
                 {%- endfor -%}
             </ul>
