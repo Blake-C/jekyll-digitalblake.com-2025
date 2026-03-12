@@ -1,0 +1,46 @@
+.sites-gallery {
+	background-image: url('../images/pattern-1.svg');
+	margin-bottom: -40px;
+	padding: 60px 0 90px;
+
+	&__title {
+		margin-bottom: 70px;
+		text-align: center;
+
+		&::before {
+			background-image: $sprite;
+			background-position: -107px 0;
+			content: '';
+			display: inline-block;
+			height: 63px;
+			margin-right: 10px;
+			margin-top: -5px;
+			vertical-align: middle;
+			width: 67px;
+		}
+	}
+
+	&__button {
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: flex-end;
+	}
+
+	&__image {
+		border: 1px solid $gray222;
+		margin-bottom: 40px;
+		width: auto;
+
+		@at-root .ie-11 & {
+			height: 100%;
+		}
+	}
+
+	&__item-title {
+		font-size: rem-calc(18);
+		line-height: 1.3;
+		text-align: center;
+	}
+}

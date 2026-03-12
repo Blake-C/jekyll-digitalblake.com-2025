@@ -1,0 +1,117 @@
+.page-links {
+	background-color: $blue;
+	clear: both;
+	color: $white;
+	font-weight: 700;
+	margin: 25px 20px 0;
+	padding: 5px 15px;
+	position: relative;
+
+	a {
+		border-radius: 5px;
+		color: $white;
+
+		&:hover,
+		&:focus {
+			background-color: $white;
+			color: $blue;
+		}
+	}
+
+	span {
+		display: inline-block;
+		padding: 0 10px;
+	}
+
+	&::after,
+	&::before {
+		border: 19px solid $blue;
+		border-bottom-color: transparent;
+		border-top-color: transparent;
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 0;
+		position: absolute;
+		top: 0;
+		width: 0;
+	}
+
+	&::before {
+		border-left-color: transparent;
+		left: -38px;
+	}
+
+	&::after {
+		border-right-color: transparent;
+		right: -38px;
+	}
+}
+
+.post-pagination {
+	ul {
+		background-color: $blue;
+		margin: 0 40px;
+		padding: 4px;
+		position: relative;
+		text-align: center;
+
+		&::after,
+		&::before {
+			border: 24px solid $blue;
+			border-bottom-color: transparent;
+			border-top-color: transparent;
+			bottom: 0;
+			content: '';
+			display: block;
+			height: 0;
+			position: absolute;
+			top: 0;
+			width: 0;
+		}
+
+		&::before {
+			border-left-color: transparent;
+			left: -48px;
+		}
+
+		&::after {
+			border-right-color: transparent;
+			right: -48px;
+		}
+	}
+
+	li {
+		display: inline-block;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		&.active {
+			a {
+				background-color: $white;
+				color: $black;
+
+				&:hover {
+					background-color: rgba($white, 0.8);
+				}
+			}
+		}
+	}
+
+	a {
+		border-radius: 5px;
+		color: $white;
+		display: block;
+		font-weight: 700;
+		padding: 6px 15px;
+		transition: background-color 0.3s;
+
+		&:hover,
+		&:focus {
+			background-color: $white;
+			color: $black;
+			text-decoration: none;
+		}
+	}
+}

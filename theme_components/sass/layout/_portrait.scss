@@ -1,0 +1,28 @@
+@media screen and (orientation: landscape) {
+	.top-header,
+	.intro,
+	.github,
+	.sites-gallery {
+		padding-left: env(safe-area-inset-left);
+		padding-right: env(safe-area-inset-right);
+
+		&.smaller {
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
+	}
+
+	footer {
+		&.main {
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
+	}
+
+	body {
+		> .row {
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
+	}
+}

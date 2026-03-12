@@ -1,0 +1,81 @@
+@use 'sass:color';
+
+/* stylelint-disable selector-class-pattern */
+[type='color'],
+[type='date'],
+[type='datetime-local'],
+[type='datetime'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='time'],
+[type='url'],
+[type='week'],
+textarea {
+	margin: 0;
+}
+
+.gfield_description {
+	font-size: 14px;
+	line-height: 1.2;
+	margin-top: 5px;
+}
+
+.gform_fields {
+	margin: 0;
+	padding: 0;
+
+	li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	textarea {
+		border-radius: 5px;
+		box-shadow: none;
+		margin-bottom: 0;
+		max-height: 150px;
+	}
+
+	input {
+		&[type='text'],
+		&[type='email'] {
+			border-radius: 5px;
+			box-shadow: none;
+			margin-bottom: 0;
+		}
+
+		&[type='file'] {
+			margin-bottom: 0;
+		}
+	}
+
+	label {
+		font-size: rem-calc(16);
+		margin-top: 20px;
+	}
+}
+
+.gform_footer {
+	input {
+		&[type='submit'] {
+			background-color: $red;
+			border-radius: 5px;
+			color: $white;
+			font-weight: 700;
+			margin-top: 20px;
+			padding: 15px 30px;
+			text-transform: uppercase;
+
+			&:hover {
+				background-color: color.adjust($red, $lightness: -6%);
+			}
+		}
+	}
+}
+/* stylelint-enable selector-class-pattern */
