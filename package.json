@@ -36,9 +36,11 @@
     },
     "scripts": {
         "format": "prettier --write .",
-        "build:styles": "sass theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules --style=compressed && postcss assets/css/global-styles.min.css --replace",
+        "build:styles": "sass theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules --style=compressed --no-error-css --charset --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=if-function --silence-deprecation=color-functions && postcss assets/css/global-styles.min.css --replace",
         "build:scripts": "webpack",
+        "watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules",
+        "watch:scripts": "webpack --watch",
         "build": "npm run build:styles && npm run build:scripts && bundle exec jekyll build",
-        "dev": "npm run build:styles && npm run build:scripts && bundle exec jekyll serve --livereload"
+        "dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --livereload; wait)"
     }
 }
