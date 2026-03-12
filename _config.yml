@@ -3,8 +3,8 @@ email: blake@digitalblake.com
 description: >-
     I've developed in multiple content management systems from the ever popular
     WordPress to the developer friendly and powerful Drupal.
-baseurl: ""
-url: "https://digitalblake.com"
+baseurl: "/jekyll-digitalblake.com-2025"
+url: "https://blake-c.github.io"
 twitter_username: BlakeCerecero
 github_username: Blake-C
 author:
