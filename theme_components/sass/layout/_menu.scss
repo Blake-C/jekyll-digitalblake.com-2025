@@ -1,0 +1,54 @@
+@use 'sass:color';
+
+.main-menu {
+	margin: 0;
+	padding: 8px 0;
+	text-align: right;
+
+	li {
+		display: inline;
+
+		@include breakpoint(medium) {
+			&.callout-button {
+				a {
+					background-color: $red;
+					border-radius: 5px;
+					color: $white;
+					margin-left: 10px;
+
+					&:hover,
+					&:focus {
+						background-color: color.adjust($red, $lightness: -6%);
+					}
+				}
+			}
+		}
+	}
+
+	a {
+		color: $blue;
+		display: inline-block;
+		font-size: rem-calc(15);
+		font-weight: 700;
+		padding: 3px 15px;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: all 0.3s;
+
+		&:hover,
+		&:focus {
+			color: color.adjust($red, $lightness: -6%);
+			text-decoration: none;
+		}
+	}
+
+	@include breakpoint(small only) {
+		margin: 25px 0 0;
+		text-align: center;
+		transition: all 0.3s;
+
+		a {
+			font-size: rem-calc(13);
+		}
+	}
+}

@@ -1,0 +1,43 @@
+.comment-list,
+.comment {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.comment-list {
+	.comment {
+		background: $gray244;
+		margin: 0;
+		padding: 20px 0 20px 15px;
+	}
+
+	.children {
+		background: $white;
+		margin: 0;
+		padding: 5px 0 0 5px;
+	}
+
+	.comment-body {
+		padding: 15px 20px;
+	}
+
+	.comment-metadata {
+		font-size: rem-calc(12);
+		margin: 5px 0 15px;
+	}
+
+	.comment-respond {
+		padding: 15px 35px 15px 20px;
+	}
+}
+
+/*
+ *
+ * No easy was to get at Wordpresses default submit buttons on comments
+ * Addeding the submit class to the button stylings for foundation
+ *
+*/
+.submit {
+	@include button;
+}

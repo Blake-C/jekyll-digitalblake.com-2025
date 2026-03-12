@@ -1,0 +1,216 @@
+@use 'sass:color';
+
+body {
+	word-wrap: break-word;
+}
+
+h1 {
+	font-size: rem-calc(28);
+	text-transform: uppercase;
+
+	@include breakpoint(small only) {
+		font-size: rem-calc(20);
+	}
+}
+
+/* Click button for displaying page template parts */
+.regions {
+	background: rgba($black, 0.1);
+	bottom: 10px;
+	color: $white;
+	padding: 10px 20px;
+	position: fixed;
+	right: 10px;
+	z-index: 2000000;
+
+	&:hover,
+	&:focus {
+		color: $white;
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+/* Foundation figure was coming out of the layout container */
+figure {
+	background: $white;
+	margin: 0;
+	/* stylelint-disable-next-line declaration-no-important */
+	max-width: 100% !important;
+	padding: 1em 20px;
+	/* stylelint-disable-next-line declaration-no-important */
+	width: auto !important;
+
+	figcaption {
+		font-size: 12px;
+		margin: 13px 0 0;
+		text-align: center;
+	}
+}
+
+.wp-block-image {
+	background-color: transparent;
+	margin: 0 0 2px;
+	padding: 0;
+}
+
+/* Elements */
+
+table {
+	border: 2px solid $gray222;
+}
+
+blockquote {
+	border-left: 2px solid $blue;
+	font-style: italic;
+	margin: 15px 25px;
+	padding: 15px 0 10px 30px;
+}
+
+p,
+li {
+	code {
+		background-color: $white;
+		border: 1px solid $gray222;
+		display: inline-block;
+		line-height: 1.4;
+		padding: 0 10px;
+	}
+}
+
+/* WordPress styles */
+.alignright {
+	float: right;
+	margin: 0 0 0 25px;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 25px 0 0;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+pre {
+	background-color: $code-background;
+	border: $code-border;
+	color: $code-color;
+	font-family: $code-font-family;
+	font-weight: $code-font-weight;
+	padding: $code-padding;
+	white-space: pre-wrap;
+}
+
+.screen-reader-text {
+	@include element-invisible;
+}
+
+[type='text'],
+[type='password'] {
+	height: 2.48rem;
+}
+
+a {
+	color: $blue;
+	text-decoration: none;
+	text-decoration-skip-ink: auto;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
+button {
+	&:hover,
+	&:focus {
+		cursor: pointer;
+		text-decoration: none;
+	}
+}
+
+.button {
+	background-color: $white;
+	border: 1px solid $gray191;
+	border-radius: 5px;
+	color: $blue;
+	display: inline-block;
+	font-size: rem-calc(14);
+	line-height: 1;
+	padding: 10px;
+	text-decoration: none;
+	transition: all 0.3s;
+
+	&:hover,
+	&:focus {
+		background-color: color.adjust($white, $lightness: -6%);
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	&.red {
+		background-color: $red;
+		color: $white;
+		font-weight: 700;
+		padding: 15px 30px;
+		text-transform: uppercase;
+
+		&:hover,
+		&:focus {
+			background-color: color.adjust($red, $lightness: -6%);
+		}
+	}
+}
+
+input {
+	&[type='submit'] {
+		border-radius: 30px;
+		text-decoration: none;
+		transition: background-color 0.3s;
+
+		&.button-search {
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 0;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: color.adjust($blue, $lightness: 50%);
+			cursor: pointer;
+		}
+	}
+}
+
+.button-search {
+	background-color: $blue;
+	border: 0;
+	color: $white;
+	display: block;
+	height: 40px;
+	line-height: 0.99;
+	margin: 0;
+	padding: 12px 3px;
+	text-align: center;
+	width: 100%;
+}
+
+.search-input {
+	border-bottom-left-radius: 30px;
+	border-color: $blue;
+	border-right: 0;
+	border-top-left-radius: 30px;
+	height: 40px;
+	padding-left: 15px;
+}
+
+.wp-block-buttons {
+	> .wp-block-button {
+		margin-bottom: 16px;
+	}
+}

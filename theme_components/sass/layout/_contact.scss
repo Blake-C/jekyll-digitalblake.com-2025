@@ -1,0 +1,21 @@
+.contact {
+	background-image: url('../images/pattern-1.svg');
+	padding: 60px 0 90px;
+
+	h1 {
+		margin-bottom: 70px;
+		text-align: center;
+
+		&::before {
+			background-image: $sprite;
+			background-position: -250px -59px;
+			content: '';
+			display: inline-block;
+			height: 46px;
+			margin-right: 10px;
+			margin-top: -5px;
+			vertical-align: middle;
+			width: 64px;
+		}
+	}
+}

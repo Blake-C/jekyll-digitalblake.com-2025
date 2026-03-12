@@ -1,0 +1,93 @@
+body {
+	padding-top: 100px;
+
+	@include breakpoint(medium) {
+		padding-top: 148px;
+	}
+}
+
+.top-header {
+	background-color: $yellow;
+	border-bottom: 3px solid $blue;
+	padding: 50px 0;
+	position: fixed;
+	top: 0;
+	transform: translateZ(0);
+	transition: all 0.3s;
+	width: 100%;
+	z-index: 1000;
+
+	.logo-name {
+		a {
+			display: block;
+			text-decoration: none;
+		}
+	}
+
+	@include breakpoint(medium) {
+		&.smaller {
+			padding: 5px 0;
+
+			.name {
+				font-size: rem-calc(20);
+			}
+
+			.main-logo {
+				height: 42px;
+				width: 42px;
+			}
+
+			.main-menu {
+				padding: 4px 0;
+			}
+		}
+	}
+
+	@include breakpoint(small only) {
+		padding: 25px 0;
+		text-align: center;
+
+		.logo-name {
+			height: 50px;
+			overflow: hidden;
+			transition: all 0.3s;
+		}
+
+		&.smaller {
+			padding: 5px 0;
+
+			.logo-name {
+				height: 0;
+			}
+
+			.main-menu {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.name {
+	color: $black;
+	display: inline-block;
+	font-size: rem-calc(27);
+	font-weight: 700;
+	line-height: 1;
+	margin: 11px 0;
+	padding: 0;
+	text-transform: uppercase;
+	transition: all 0.3s;
+
+	@include breakpoint(small only) {
+		font-size: rem-calc(25);
+	}
+}
+
+.main-logo {
+	display: inline-block;
+	height: 50px;
+	margin-right: 20px;
+	transition: all 0.3s;
+	vertical-align: bottom;
+	width: 50px;
+}

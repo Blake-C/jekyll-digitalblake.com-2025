@@ -1,0 +1,18 @@
+.wrapper {
+	margin: 120px 0 40px;
+
+	@include breakpoint(medium) {
+		margin: 80px 0 40px;
+	}
+}
+
+.browserupgrade {
+	background: $gray244;
+	color: $black;
+	margin: 0.2em 0;
+	padding: 0.2em 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2000;
+}
