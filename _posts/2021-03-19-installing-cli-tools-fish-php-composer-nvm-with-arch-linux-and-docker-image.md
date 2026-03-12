@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Installing CLI Tools (fish, php, composer, nvm) with Arch Linux and Docker Image"
+description: "Just some notes from what I was experimenting with Arch Linux and setting up fish shell."
 date: 2021-03-19 01:38:13 -0500
 categories: ["Notes"]
 tags: ["arch", "command-line", "docker", "linux"]

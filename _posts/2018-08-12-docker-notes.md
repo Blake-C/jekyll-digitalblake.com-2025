@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Docker Notes"
+description: "These are just my notes while learning docker with some resources and basic commands."
 date: 2018-08-12 14:53:54 -0500
 modified_date: 2020-10-02 21:09:54 -0500
 categories: ["Notes"]

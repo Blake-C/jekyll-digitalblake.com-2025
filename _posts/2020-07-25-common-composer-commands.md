@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Common Composer Commands"
+description: "These are notes on using composer and basic commands that I commonly use to update, remove, and query packages."
 date: 2020-07-25 09:46:00 -0500
 modified_date: 2020-10-02 21:09:51 -0500
 categories: ["Notes"]

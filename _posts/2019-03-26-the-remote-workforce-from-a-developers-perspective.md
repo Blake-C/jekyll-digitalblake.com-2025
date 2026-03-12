@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Remote Workforce from a Developers Perspective"
+description: "Working remote is one of the privileges we have as developers, but it has it's down sides as well."
 date: 2019-03-26 07:00:43 -0500
 modified_date: 2020-10-02 21:09:53 -0500
 categories: ["Articles"]

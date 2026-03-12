@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Creating User Through Command Line on Linux (Ubuntu 20.04)"
+description: "Just some notes for creating a new user and setting up an environment on Linux (Ubuntu 20.04)"
 date: 2021-02-02 23:37:13 -0600
 modified_date: 2021-02-03 01:43:14 -0600
 categories: ["Notes"]

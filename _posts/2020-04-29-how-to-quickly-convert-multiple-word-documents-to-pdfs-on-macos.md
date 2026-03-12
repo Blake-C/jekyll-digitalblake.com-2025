@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to quickly convert multiple word documents to PDFs on macOS"
+description: "Learn how to use soffice on the command line to quickly convert multiple word documents to pdf documents."
 date: 2020-04-29 05:05:39 -0500
 modified_date: 2020-10-02 21:09:51 -0500
 categories: ["Articles"]
