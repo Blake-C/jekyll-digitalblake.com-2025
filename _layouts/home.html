@@ -62,25 +62,28 @@ layout: base
                     <div class="post-pagination">
                         <ul>
                             {%- if paginator.previous_page -%}
+                                {%- if paginator.previous_page == 1 -%}
+                                    {%- assign prev_path = '/articles/' -%}
+                                {%- else -%}
+                                    {%- capture prev_path -%}/articles/page/{{ paginator.previous_page }}/{%- endcapture -%}
+                                {%- endif -%}
                                 <li>
-                                    <a href="{% if paginator.previous_page == 1 %}/articles/{% else %}/articles/page/{{ paginator.previous_page }}/{% endif %}"
-                                        >Prev</a
-                                    >
+                                    <a href="{{ prev_path | relative_url }}">Prev</a>
                                 </li>
                             {%- endif -%}
                             {%- for i in (1..paginator.total_pages) -%}
-                                <li
-                                    {% if i == paginator.page %}
-                                        class="active"
-                                    {% endif %}
-                                >
-                                    <a href="{% if i == 1 %}/articles/{% else %}/articles/page/{{ i }}/{% endif %}">
-                                        {{- i -}}
-                                    </a>
+                                {%- if i == 1 -%}
+                                    {%- assign page_path = '/articles/' -%}
+                                {%- else -%}
+                                    {%- capture page_path -%}/articles/page/{{ i }}/{%- endcapture -%}
+                                {%- endif -%}
+                                <li{% if i == paginator.page %} class="active"{% endif %}>
+                                    <a href="{{ page_path | relative_url }}">{{- i -}}</a>
                                 </li>
                             {%- endfor -%}
                             {%- if paginator.next_page -%}
-                                <li><a href="/articles/page/{{ paginator.next_page }}/">Next</a></li>
+                                {%- capture next_path -%}/articles/page/{{ paginator.next_page }}/{%- endcapture -%}
+                                <li><a href="{{ next_path | relative_url }}">Next</a></li>
                             {%- endif -%}
                         </ul>
                     </div>
