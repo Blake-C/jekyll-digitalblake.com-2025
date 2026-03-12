@@ -1,45 +1,47 @@
+---
+---
 {
     "name": "DigitalBlake",
     "display": "fullscreen",
-    "start_url": "/",
+    "start_url": "{{ '/' | relative_url }}",
     "icons": [
         {
-            "src": "/assets/icons/android-chrome-36x36.webp",
+            "src": "{{ '/assets/icons/android-chrome-36x36.webp' | relative_url }}",
             "sizes": "36x36",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-48x48.webp",
+            "src": "{{ '/assets/icons/android-chrome-48x48.webp' | relative_url }}",
             "sizes": "48x48",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-72x72.webp",
+            "src": "{{ '/assets/icons/android-chrome-72x72.webp' | relative_url }}",
             "sizes": "72x72",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-96x96.webp",
+            "src": "{{ '/assets/icons/android-chrome-96x96.webp' | relative_url }}",
             "sizes": "96x96",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-144x144.webp",
+            "src": "{{ '/assets/icons/android-chrome-144x144.webp' | relative_url }}",
             "sizes": "144x144",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-192x192.webp",
+            "src": "{{ '/assets/icons/android-chrome-192x192.webp' | relative_url }}",
             "sizes": "192x192",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-256x256.webp",
+            "src": "{{ '/assets/icons/android-chrome-256x256.webp' | relative_url }}",
             "sizes": "256x256",
             "type": "image/webp"
         },
         {
-            "src": "/assets/icons/android-chrome-384x384.webp",
+            "src": "{{ '/assets/icons/android-chrome-384x384.webp' | relative_url }}",
             "sizes": "384x384",
             "type": "image/webp"
         }
