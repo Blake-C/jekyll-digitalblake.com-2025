@@ -1,0 +1,15 @@
+# Generated output
+_site/
+
+# Minified assets
+assets/js/
+assets/css/*.min.css
+
+# Ruby files (not supported by Prettier)
+Gemfile
+Gemfile.lock
+_plugins/
+script/
+
+# Package lock
+package-lock.json

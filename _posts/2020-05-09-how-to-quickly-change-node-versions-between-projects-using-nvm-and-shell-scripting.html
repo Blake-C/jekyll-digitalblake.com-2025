@@ -9,59 +9,47 @@ image: "/assets/uploads/2020/05/facebook.webp"
 ---
 
 <p>
-									I switch between projects that use different versions of node very often. What I
-									typically have to do is open the package.json and find the node version then use
-									nvm to switch to that node version. I do this often enough that I wanted to
-									automate this process to save some time.
-								</p>
-								<h2>Here is my solution:</h2>
-								<p>
-									I have a function to find the node version and a function to switch to that
-									version.
-								</p>
-								<p>
-									First, in the <code>what_node</code> function I use
-									<a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> (rg) to find the
-									line in the <code>package.json</code> file that holds the node version. Note
-									I&#8217;m only looking in the current directory as some sub directories could
-									have their own <code>package.json</code> files.
-								</p>
-								<p>
-									Make sure line numbers and the filenames are turned off in the output to get
-									clean results.
-								</p>
-								<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename
+    I switch between projects that use different versions of node very often. What I typically have to do is open the
+    package.json and find the node version then use nvm to switch to that node version. I do this often enough that I
+    wanted to automate this process to save some time.
+</p>
+<h2>Here is my solution:</h2>
+<p>I have a function to find the node version and a function to switch to that version.</p>
+<p>
+    First, in the <code>what_node</code> function I use <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> (rg)
+    to find the line in the <code>package.json</code> file that holds the node version. Note I&#8217;m only looking in
+    the current directory as some sub directories could have their own <code>package.json</code> files.
+</p>
+<p>Make sure line numbers and the filenames are turned off in the output to get clean results.</p>
+<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename
     "node": "10.15.0"
 </code></pre>
-								<p>Then I <code>awk</code> this over using the colon as the delimiter.</p>
-								<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}'
+<p>Then I <code>awk</code> this over using the colon as the delimiter.</p>
+<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}'
  "10.15.0"
 </code></pre>
-								<p>
-									Now that we have our node version I clean this up with
-									<a href="http://linuxcommand.org/lc3_man_pages/tr1.html">translate</a> (tr) to
-									remove the quite and any white space.
-								</p>
-								<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'
+<p>
+    Now that we have our node version I clean this up with
+    <a href="http://linuxcommand.org/lc3_man_pages/tr1.html">translate</a> (tr) to remove the quite and any white space.
+</p>
+<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'
 10.15.0
 </code></pre>
-								<p>
-									Next is to create a function that will take our node version and switch us over
-									to it using <a href="https://github.com/nvm-sh/nvm">nvm</a>. Because
-									<code>nvm</code> might not have the exact version of node I need for this
-									project I <code>awk</code> the node version to get the major version number and
-									save this in a variable.
-								</p>
-								<pre><code class="line-numbers lang-bash">> what_node | awk -F '.' '{print $1}'
+<p>
+    Next is to create a function that will take our node version and switch us over to it using
+    <a href="https://github.com/nvm-sh/nvm">nvm</a>. Because <code>nvm</code> might not have the exact version of node I
+    need for this project I <code>awk</code> the node version to get the major version number and save this in a
+    variable.
+</p>
+<pre><code class="line-numbers lang-bash">> what_node | awk -F '.' '{print $1}'
 10
 </code></pre>
-								<p>
-									Finally, I use this variable as a check to see if it found anything and with use
-									nvm to switch to that version or output a message telling me no node version was
-									found.
-								</p>
-								<h2>Put together this is what you get:</h2>
-								<pre><code class="line-numbers lang-bash">what_node() {
+<p>
+    Finally, I use this variable as a check to see if it found anything and with use nvm to switch to that version or
+    output a message telling me no node version was found.
+</p>
+<h2>Put together this is what you get:</h2>
+<pre><code class="line-numbers lang-bash">what_node() {
     rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'
 }
 
@@ -77,13 +65,12 @@ switch_node() {
     fi
 }
 </code></pre>
-								<p>Usage:</p>
-								<pre><code class="line-numbers lang-bash">> switch_node
+<p>Usage:</p>
+<pre><code class="line-numbers lang-bash">> switch_node
 Project wants node: 10.15.0
 Now using node v10.18.1 (npm v6.13.4)
 </code></pre>
-								<p>
-									You would place these shell script functions in your
-									<code>.bash_profile</code> or <code>.zshrc</code> files depending on what shell
-									you are using.
-								</p>
+<p>
+    You would place these shell script functions in your
+    <code>.bash_profile</code> or <code>.zshrc</code> files depending on what shell you are using.
+</p>

@@ -9,32 +9,27 @@ image: "/assets/uploads/2018/08/output-sublimelinter.webp"
 ---
 
 <p>
-									Install the
-									<a href="https://packagecontrol.io/packages/SublimeLinter">sublime-linter</a>
-									plugin and the
-									<a
-										href="https://packagecontrol.io/packages/SublimeLinter-phpcs">sublime-linter-phpcs</a>
-									plugin through the Sublime Text package manager. This article assumes that you
-									have already installed PHPCS globally on your machine, if not, follow the
-									instructions on the
-									<a href="https://github.com/squizlabs/PHP_CodeSniffer">PHPCS github page</a>. Or
-									checkout my article on
-									<a href="/articles/setting-up-wordpress-coding-standards-wpcs/">Setting up WordPress
-										Coding Standards (WPCS) Globally</a>.
-								</p>
-								<p>
-									Once both plugins are installed go to Sublime Text > Preferences > Package
-									Settings > SublimeLinter > Settings. These instuctions are assuming you&#8217;re
-									running macOS.
-								</p>
-								<p>
-									In your settings add the following configurations. These settings assume that
-									you will have your phpcs.xml file at the root of you project when opened in
-									Sublime Text. You&#8217;ll also want to tell sublime-linter-phpcs where your
-									.composer/vendor/bin directory is located under the &#8220;paths&#8221; section
-									as seen below.
-								</p>
-								<pre><code class="line-numbers lang-json">{
+    Install the
+    <a href="https://packagecontrol.io/packages/SublimeLinter">sublime-linter</a>
+    plugin and the
+    <a href="https://packagecontrol.io/packages/SublimeLinter-phpcs">sublime-linter-phpcs</a>
+    plugin through the Sublime Text package manager. This article assumes that you have already installed PHPCS globally
+    on your machine, if not, follow the instructions on the
+    <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHPCS github page</a>. Or checkout my article on
+    <a href="/articles/setting-up-wordpress-coding-standards-wpcs/"
+        >Setting up WordPress Coding Standards (WPCS) Globally</a
+    >.
+</p>
+<p>
+    Once both plugins are installed go to Sublime Text > Preferences > Package Settings > SublimeLinter > Settings.
+    These instuctions are assuming you&#8217;re running macOS.
+</p>
+<p>
+    In your settings add the following configurations. These settings assume that you will have your phpcs.xml file at
+    the root of you project when opened in Sublime Text. You&#8217;ll also want to tell sublime-linter-phpcs where your
+    .composer/vendor/bin directory is located under the &#8220;paths&#8221; section as seen below.
+</p>
+<pre><code class="line-numbers lang-json">{
     "linters": {
         "phpcs": {
             "args": "--standard='${folder}/phpcs.xml'",
@@ -54,14 +49,17 @@ image: "/assets/uploads/2018/08/output-sublimelinter.webp"
     }
 }
 </code></pre>
-								<p>
-									When you open your project in Sublime Text you will be able to see any PHPCS
-									errors highlighted. Optionally, you can open the Sublime Text console by
-									clicking the button in the bottom left of the Sublime Text editor and clicking
-									&#8220;Output: SublimeLinter&#8221;. This will display a list of all the PHPCS
-									errors/warnings in a list for all open files.
-								</p>
-								<p>
-									<img loading="lazy" decoding="async" alt="Output: SublimeLinter"
-										src="/assets/uploads/2018/08/output-sublimelinter.webp" />
-								</p>
+<p>
+    When you open your project in Sublime Text you will be able to see any PHPCS errors highlighted. Optionally, you can
+    open the Sublime Text console by clicking the button in the bottom left of the Sublime Text editor and clicking
+    &#8220;Output: SublimeLinter&#8221;. This will display a list of all the PHPCS errors/warnings in a list for all
+    open files.
+</p>
+<p>
+    <img
+        loading="lazy"
+        decoding="async"
+        alt="Output: SublimeLinter"
+        src="/assets/uploads/2018/08/output-sublimelinter.webp"
+    />
+</p>

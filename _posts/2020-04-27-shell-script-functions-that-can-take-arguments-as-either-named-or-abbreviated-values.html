@@ -33,30 +33,26 @@ image: "/assets/uploads/2020/04/facebook.webp"
     shift
 done
 </code></pre>
-								<h2>What does this code do?</h2>
-								<ul>
-									<li>First we are grabbing the positional parameters</li>
-									<li>
-										Then we loop through each parameters and pass them through a case statement
-									</li>
-									<li>
-										Depending on what we pass in we will be able to check for a named argument
-										or an abbreviated version using the pipe symbol <code>--from*|-f*)</code>.
-									</li>
-									<li>
-										In each case we check if an equals sign was used. This gives us the ability
-										to pass in arguments as <code>myfunction arg1=somevalue1</code> or as
-										<code>myfunction arg1 somevalue1</code>.
-									</li>
-								</ul>
-								<p>We get the best of both worlds for passing in values to our shell scripts.</p>
-								<h2>Example in context</h2>
-								<p>
-									Here is a full example I&#8217;ve used in the past to show the above code in
-									context of a full function. This is the function I use to quickly convert word
-									documents into pdfs through the command line.
-								</p>
-								<pre><code class="line-numbers lang-bash">doc_convert_usage() {
+<h2>What does this code do?</h2>
+<ul>
+    <li>First we are grabbing the positional parameters</li>
+    <li>Then we loop through each parameters and pass them through a case statement</li>
+    <li>
+        Depending on what we pass in we will be able to check for a named argument or an abbreviated version using the
+        pipe symbol <code>--from*|-f*)</code>.
+    </li>
+    <li>
+        In each case we check if an equals sign was used. This gives us the ability to pass in arguments as
+        <code>myfunction arg1=somevalue1</code> or as <code>myfunction arg1 somevalue1</code>.
+    </li>
+</ul>
+<p>We get the best of both worlds for passing in values to our shell scripts.</p>
+<h2>Example in context</h2>
+<p>
+    Here is a full example I&#8217;ve used in the past to show the above code in context of a full function. This is the
+    function I use to quickly convert word documents into pdfs through the command line.
+</p>
+<pre><code class="line-numbers lang-bash">doc_convert_usage() {
     echo "doc_convert -f docx -t pdf"
     echo "-f\t from\t default=docx|doc\t The file type you are wanting to convert"
     echo "-t\t to\t default=pdf\t\t The file type you are converting to"

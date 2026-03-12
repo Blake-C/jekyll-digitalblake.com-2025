@@ -10,23 +10,23 @@ image: "/assets/uploads/2019/06/react-screen-facebook.webp"
 ---
 
 <h2>Notes for myself</h2>
-								<p>
-									Course: <a
-										href="https://scrimba.com/p/p7P5Hd">https://scrimba.com/p/p7P5Hd</a><br />
-									Private Repo:
-									<a
-										href="https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019">https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019</a><br />
-									React Docs: <a href="https://reactjs.org/">https://reactjs.org/</a>
-								</p>
-								<p>App Start:</p>
-								<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
+<p>
+    Course: <a href="https://scrimba.com/p/p7P5Hd">https://scrimba.com/p/p7P5Hd</a><br />
+    Private Repo:
+    <a href="https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019"
+        >https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019</a
+    ><br />
+    React Docs: <a href="https://reactjs.org/">https://reactjs.org/</a>
+</p>
+<p>App Start:</p>
+<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Todo from './components/Todo/Todo'
 
 ReactDOM.render(<Todo />, document.getElementById('root'))
 </code></pre>
-								<p>App Class Component:</p>
-								<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
+<p>App Class Component:</p>
+<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
 import TodoItem from './TodoItem/TodoItem'
 import todosData from './todosData'
 import './todo.scss'
@@ -68,8 +68,8 @@ class Todo extends Component {
 
 export default Todo
 </code></pre>
-								<p>App Functional Component:</p>
-								<pre><code class="line-numbers lang-js">import React from 'react'
+<p>App Functional Component:</p>
+<pre><code class="line-numbers lang-js">import React from 'react'
 import PropTypes from 'prop-types'
 
 function TodoItem(props) {
@@ -101,8 +101,8 @@ TodoItem.propTypes = {
 
 export default TodoItem
 </code></pre>
-								<p>App Data:</p>
-								<pre><code class="line-numbers lang-js">const todosData = [
+<p>App Data:</p>
+<pre><code class="line-numbers lang-js">const todosData = [
     {
         id: 1,
         text: 'Take out the trash',

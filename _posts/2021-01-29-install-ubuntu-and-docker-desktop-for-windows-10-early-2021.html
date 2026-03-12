@@ -10,51 +10,66 @@ render_with_liquid: false
 ---
 
 <p>
-									This document was written to help a co-worker set up our
-									<a href="https://github.com/Blake-C/wp-foundation-six">wp-foundation-six</a>
-									project setup on Windows. In the past I&#8217;ve always set this project up on
-									macOS, but Windows has its own challenges. If you just need to get Ubuntu
-									running on Windows you only need to follow down to step 4. Everything else is
-									specific to our use case.
-								</p>
-								<h2 class="wp-block-heading" id="install-ubuntu">1. Install Ubuntu</h2>
-								<p>
-									Open the windows store and install the Ubuntu application. These instructions
-									are based on Ubuntu 20.04.
-								</p>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" fetchpriority="high" decoding="async" width="1000" height="589"
-										alt="" class="wp-image-375"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm-300x177.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm-768x452.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp" />
-								</figure>
-								<h2 class="wp-block-heading" id="install-docker">
-									1.1. Install Docker Desktop for Windows
-								</h2>
-								<p>You can download the Docker Desktop application from Docker website:</p>
-								<ul class="wp-block-list">
-									<li>
-										<a href="https://www.docker.com/products/docker-desktop" target="_blank"
-											rel="noreferrer noopener">https://www.docker.com/products/docker-desktop</a>
-									</li>
-								</ul>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="464" alt=""
-										class="wp-image-423"
-										srcset="/assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp 1000w, /assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM-300x139.webp 300w, /assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM-768x356.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp" />
-								</figure>
-								<h2 class="wp-block-heading" id="install-wsl-v2">2. Install WSL V2</h2>
-								<p>
-									The following instructions are based on
-									<a href="https://docs.docker.com/docker-for-windows/wsl/">Docker Desktop WSL 2
-										backend</a>
-									documentation.
-								</p>
-								<p>In the <strong>windows terminal</strong> run:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code># To check the WSL mode, run:
+    This document was written to help a co-worker set up our
+    <a href="https://github.com/Blake-C/wp-foundation-six">wp-foundation-six</a>
+    project setup on Windows. In the past I&#8217;ve always set this project up on macOS, but Windows has its own
+    challenges. If you just need to get Ubuntu running on Windows you only need to follow down to step 4. Everything
+    else is specific to our use case.
+</p>
+<h2 class="wp-block-heading" id="install-ubuntu">1. Install Ubuntu</h2>
+<p>Open the windows store and install the Ubuntu application. These instructions are based on Ubuntu 20.04.</p>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        fetchpriority="high"
+        decoding="async"
+        width="1000"
+        height="589"
+        alt=""
+        class="wp-image-375"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm-300x177.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm-768x452.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp"
+    />
+</figure>
+<h2 class="wp-block-heading" id="install-docker">1.1. Install Docker Desktop for Windows</h2>
+<p>You can download the Docker Desktop application from Docker website:</p>
+<ul class="wp-block-list">
+    <li>
+        <a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noreferrer noopener"
+            >https://www.docker.com/products/docker-desktop</a
+        >
+    </li>
+</ul>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="464"
+        alt=""
+        class="wp-image-423"
+        srcset="
+            /assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp         1000w,
+            /assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM-300x139.webp  300w,
+            /assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM-768x356.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp"
+    />
+</figure>
+<h2 class="wp-block-heading" id="install-wsl-v2">2. Install WSL V2</h2>
+<p>
+    The following instructions are based on
+    <a href="https://docs.docker.com/docker-for-windows/wsl/">Docker Desktop WSL 2 backend</a>
+    documentation.
+</p>
+<p>In the <strong>windows terminal</strong> run:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code># To check the WSL mode, run:
 wsl.exe -l -v
 
 # To upgrade your existing Linux distro to v2, run:
@@ -62,121 +77,188 @@ wsl.exe --set-version ubuntu 2
 
 # To set v2 as the default version for future installations, run:
 wsl.exe --set-default-version 2</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="585" alt=""
-										class="wp-image-377"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm-768x449.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp" />
-								</figure>
-								<h2 class="wp-block-heading" id="update-docker-settings">
-									3. Update Docker Settings
-								</h2>
-								<p>Open docker for desktop and go to the application settings.</p>
-								<p>
-									Under &#8220;General&#8221; make sure &#8220;Use the WSL 2 based engine&#8221;
-									is checked
-								</p>
-								<p>
-									Then under &#8220;Resources &gt; WSL Integration&#8221; make sure Ubuntu-20.02
-									is checked off for Enable integration with additional distros.
-								</p>
-								<p>Restart docker to make sure these settings have been applied.</p>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="593" alt=""
-										class="wp-image-378"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm-300x178.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm-768x455.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp" />
-								</figure>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="588" alt=""
-										class="wp-image-379"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm-768x452.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp" />
-								</figure>
-								<h2 class="wp-block-heading" id="docker-issues">
-									4. If Docker Has Issues Starting (optional)
-								</h2>
-								<p>
-									If docker refuses to start, shutdown docker and open the
-									<strong>windows terminal</strong>. Then run the following:
-								</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>$ wsl --shutdown
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="585"
+        alt=""
+        class="wp-image-377"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm-768x449.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp"
+    />
+</figure>
+<h2 class="wp-block-heading" id="update-docker-settings">3. Update Docker Settings</h2>
+<p>Open docker for desktop and go to the application settings.</p>
+<p>Under &#8220;General&#8221; make sure &#8220;Use the WSL 2 based engine&#8221; is checked</p>
+<p>
+    Then under &#8220;Resources &gt; WSL Integration&#8221; make sure Ubuntu-20.02 is checked off for Enable integration
+    with additional distros.
+</p>
+<p>Restart docker to make sure these settings have been applied.</p>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="593"
+        alt=""
+        class="wp-image-378"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm-300x178.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm-768x455.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp"
+    />
+</figure>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="588"
+        alt=""
+        class="wp-image-379"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm-768x452.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp"
+    />
+</figure>
+<h2 class="wp-block-heading" id="docker-issues">4. If Docker Has Issues Starting (optional)</h2>
+<p>
+    If docker refuses to start, shutdown docker and open the
+    <strong>windows terminal</strong>. Then run the following:
+</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>$ wsl --shutdown
 $ notepad "$env:USERPROFILE/.wslconfig"</code></pre>
-								<p>Add this to .wslconfig:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>[wsl2]
+<p>Add this to .wslconfig:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>[wsl2]
 memory=1GB   # Make sure you have enough memory</code></pre>
-								<p>
-									<strong><em>Save and restart docker</em></strong>
-								</p>
-								<figure class="wp-block-image size-full is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="595" alt=""
-										class="wp-image-380"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm-300x179.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm-768x457.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp" />
-								</figure>
-								<h2 class="wp-block-heading" id="setting-up-ubuntu">5. Setting Up Ubuntu</h2>
-								<p>
-									Open the <strong>Ubuntu Terminal</strong> and test that you have access to
-									docker by running:
-								</p>
-								<pre
-									class="wp-block-code lang-bash line-numbers"><code>docker container list -a</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="588" alt=""
-										class="wp-image-381"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm-768x452.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp" />
-								</figure>
-								<h3 class="wp-block-heading" id="install-zsh">5.1 Installing ZSH</h3>
-								<p>
-									These are optional tools to make the interface easier to use. These are my
-									preferences; run with whatever shell you prefer.
-								</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt install zsh # installs zsh
+<p>
+    <strong><em>Save and restart docker</em></strong>
+</p>
+<figure class="wp-block-image size-full is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="595"
+        alt=""
+        class="wp-image-380"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm-300x179.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm-768x457.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp"
+    />
+</figure>
+<h2 class="wp-block-heading" id="setting-up-ubuntu">5. Setting Up Ubuntu</h2>
+<p>Open the <strong>Ubuntu Terminal</strong> and test that you have access to docker by running:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>docker container list -a</code></pre>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="588"
+        alt=""
+        class="wp-image-381"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm-768x452.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp"
+    />
+</figure>
+<h3 class="wp-block-heading" id="install-zsh">5.1 Installing ZSH</h3>
+<p>
+    These are optional tools to make the interface easier to use. These are my preferences; run with whatever shell you
+    prefer.
+</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt install zsh # installs zsh
 chsh -s $(which zsh) # makes zsh your default shell on startup</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="588" alt=""
-										class="wp-image-382"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm-768x452.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp" />
-								</figure>
-								<h3 class="wp-block-heading" id="install-omz">5.2 Installing OhMyZSH</h3>
-								<p>
-									When I use zsh, I prefer to install OhMyZSH. Follow their documentation on how
-									to <a href="https://ohmyz.sh/#install">install OMZ</a>.
-								</p>
-								<p>
-									After OMZ is installed open the <code>~/.zshrc</code> file and set the theme to:
-									<code>af-magic</code>. See all the other OMZ themes here:
-								</p>
-								<ul class="wp-block-list">
-									<li>https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</li>
-								</ul>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="588" alt=""
-										class="wp-image-383"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm-768x452.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp" />
-								</figure>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="590" alt=""
-										class="wp-image-384"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm-300x177.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm-768x453.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp" />
-								</figure>
-								<h3 class="wp-block-heading" id="adding-aliases-for-docker">
-									5.3 Add aliases for Docker
-								</h3>
-								<p>Add this to the bottom of your <code>~/.zshrc</code> file:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code># Docker Commands
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="588"
+        alt=""
+        class="wp-image-382"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm-768x452.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp"
+    />
+</figure>
+<h3 class="wp-block-heading" id="install-omz">5.2 Installing OhMyZSH</h3>
+<p>
+    When I use zsh, I prefer to install OhMyZSH. Follow their documentation on how to
+    <a href="https://ohmyz.sh/#install">install OMZ</a>.
+</p>
+<p>
+    After OMZ is installed open the <code>~/.zshrc</code> file and set the theme to: <code>af-magic</code>. See all the
+    other OMZ themes here:
+</p>
+<ul class="wp-block-list">
+    <li>https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</li>
+</ul>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="588"
+        alt=""
+        class="wp-image-383"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm-768x452.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp"
+    />
+</figure>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="590"
+        alt=""
+        class="wp-image-384"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm-300x177.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm-768x453.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp"
+    />
+</figure>
+<h3 class="wp-block-heading" id="adding-aliases-for-docker">5.3 Add aliases for Docker</h3>
+<p>Add this to the bottom of your <code>~/.zshrc</code> file:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code># Docker Commands
 alias dps="docker container list -a --format \"table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\""
 alias dimg="docker image list"
 alias dup="docker-compose up -d"
@@ -186,113 +268,174 @@ alias ddown="docker-compose down"
 dsh() {
     docker exec -it $(dps | grep cli | head -c12) zsh
 }</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="593" alt=""
-										class="wp-image-405"
-										srcset="/assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp 1000w, /assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM-300x178.webp 300w, /assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM-768x455.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp" />
-								</figure>
-								<p>Save your <code>~/.zshrc</code> file and update your shell by running:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>source ~/.zshrc</code></pre>
-								<p>Or you can close and open a new <strong>Ubuntu terminal</strong> window.</p>
-								<h3 class="wp-block-heading" id="install-nvm-and-node">5.4 Install NVM and Node</h3>
-								<p>Install NVM using the instruction from the NVM repo:</p>
-								<ul class="wp-block-list">
-									<li>https://github.com/nvm-sh/nvm</li>
-								</ul>
-								<p>Once installed run:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>nvm install v12.20.1
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="593"
+        alt=""
+        class="wp-image-405"
+        srcset="
+            /assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp         1000w,
+            /assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM-300x178.webp  300w,
+            /assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM-768x455.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp"
+    />
+</figure>
+<p>Save your <code>~/.zshrc</code> file and update your shell by running:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>source ~/.zshrc</code></pre>
+<p>Or you can close and open a new <strong>Ubuntu terminal</strong> window.</p>
+<h3 class="wp-block-heading" id="install-nvm-and-node">5.4 Install NVM and Node</h3>
+<p>Install NVM using the instruction from the NVM repo:</p>
+<ul class="wp-block-list">
+    <li>https://github.com/nvm-sh/nvm</li>
+</ul>
+<p>Once installed run:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>nvm install v12.20.1
 npm install gulp npm-check -g</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="589" alt=""
-										class="wp-image-386"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm-300x177.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm-768x452.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp" />
-								</figure>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="593" alt=""
-										class="wp-image-387"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm-300x178.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm-768x455.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp" />
-								</figure>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="585" alt=""
-										class="wp-image-388"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm-768x449.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp" />
-								</figure>
-								<h3 class="wp-block-heading" id="install-composer">5.5 Install Composer</h3>
-								<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt install php7.4 # use php8 if you are already on it
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="589"
+        alt=""
+        class="wp-image-386"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm-300x177.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm-768x452.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp"
+    />
+</figure>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="593"
+        alt=""
+        class="wp-image-387"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm-300x178.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm-768x455.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp"
+    />
+</figure>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="585"
+        alt=""
+        class="wp-image-388"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm-768x449.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp"
+    />
+</figure>
+<h3 class="wp-block-heading" id="install-composer">5.5 Install Composer</h3>
+<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt install php7.4 # use php8 if you are already on it
 php -v # confirm that php is installed</code></pre>
-								<p>
-									Use the wget script at the bottom of this page on the
-									<a
-										href="https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md">How
-										do I install Composer programmatically</a>
-									page.
-								</p>
-								<p>The follow the instructions on how to install composer globally on this page:</p>
-								<ul class="wp-block-list">
-									<li>https://getcomposer.org/doc/00-intro.md</li>
-								</ul>
-								<pre class="wp-block-code lang-bash line-numbers"><code>sudo mv composer.phar /usr/local/bin/composer
+<p>
+    Use the wget script at the bottom of this page on the
+    <a href="https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md"
+        >How do I install Composer programmatically</a
+    >
+    page.
+</p>
+<p>The follow the instructions on how to install composer globally on this page:</p>
+<ul class="wp-block-list">
+    <li>https://getcomposer.org/doc/00-intro.md</li>
+</ul>
+<pre class="wp-block-code lang-bash line-numbers"><code>sudo mv composer.phar /usr/local/bin/composer
 composer -v</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="587" alt=""
-										class="wp-image-389"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm-300x176.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm-768x451.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp" />
-								</figure>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="621" alt=""
-										class="wp-image-390"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm-300x186.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm-768x477.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp" />
-								</figure>
-								<h2 class="wp-block-heading" id="installing-dh-autoreconf">
-									6. Installing dh-autoreconf:
-								</h2>
-								<p>
-									wp-foundation-six uses imagemin-gifsicle which depends on gifsicle-bin which was
-									removed from the GNU/Linux binary files of gifsicle due to security
-									vulnerabilities in version 5.0.0. That is why the binary has to be built from
-									source and why you need to install <code>dh-autoreconf</code>.
-								</p>
-								<p>Run the following command:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt update
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="587"
+        alt=""
+        class="wp-image-389"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm-300x176.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm-768x451.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp"
+    />
+</figure>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="621"
+        alt=""
+        class="wp-image-390"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm-300x186.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm-768x477.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp"
+    />
+</figure>
+<h2 class="wp-block-heading" id="installing-dh-autoreconf">6. Installing dh-autoreconf:</h2>
+<p>
+    wp-foundation-six uses imagemin-gifsicle which depends on gifsicle-bin which was removed from the GNU/Linux binary
+    files of gifsicle due to security vulnerabilities in version 5.0.0. That is why the binary has to be built from
+    source and why you need to install <code>dh-autoreconf</code>.
+</p>
+<p>Run the following command:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt update
 sudo apt install dh-autoreconf</code></pre>
-								<p>
-									Now you should be able to run <code>npm install</code> without getting any
-									errors.
-								</p>
-								<h2 class="wp-block-heading" id="finishing-up">
-									7. Confirm wp-foundation-six works
-								</h2>
-								<p>
-									If you installed all the docker alias commands into your
-									<code>~/.zshrc</code> files from above; the following will work when ran in
-									order.
-								</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>take ~/repositories
+<p>Now you should be able to run <code>npm install</code> without getting any errors.</p>
+<h2 class="wp-block-heading" id="finishing-up">7. Confirm wp-foundation-six works</h2>
+<p>
+    If you installed all the docker alias commands into your
+    <code>~/.zshrc</code> files from above; the following will work when ran in order.
+</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>take ~/repositories
 git clone https://github.com/Blake-C/wp-foundation-six.git
 cd wp-foundation-six
 dup
 dsh
 wp-init
 exit</code></pre>
-								<p>When wp-init is done you can exit general-cli and go to <a href=""></a></p>
-								<p>When done run the follow to bring down wp-foundation-six:</p>
-								<pre class="wp-block-code lang-bash line-numbers"><code>ddown</code></pre>
-								<figure class="wp-block-image size-large is-style-default">
-									<img loading="lazy" decoding="async" width="1000" height="590" alt=""
-										class="wp-image-391"
-										srcset="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp 1000w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm-300x177.webp 300w, /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm-768x453.webp 768w"
-										sizes="(max-width: 1000px) 100vw, 1000px"
-										src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp" />
-								</figure>
+<p>When wp-init is done you can exit general-cli and go to <a href=""></a></p>
+<p>When done run the follow to bring down wp-foundation-six:</p>
+<pre class="wp-block-code lang-bash line-numbers"><code>ddown</code></pre>
+<figure class="wp-block-image size-large is-style-default">
+    <img
+        loading="lazy"
+        decoding="async"
+        width="1000"
+        height="590"
+        alt=""
+        class="wp-image-391"
+        srcset="
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp         1000w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm-300x177.webp  300w,
+            /assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm-768x453.webp  768w
+        "
+        sizes="(max-width: 1000px) 100vw, 1000px"
+        src="/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp"
+    />
+</figure>
