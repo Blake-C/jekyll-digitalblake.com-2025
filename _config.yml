@@ -28,7 +28,6 @@ sass:
 plugins:
     - jekyll-feed
     - jekyll-seo-tag
-    - jekyll-archives
     - jekyll-paginate-v2
 
 # Pagination (jekyll-paginate-v2)
@@ -41,17 +40,29 @@ pagination:
     sort_field: 'date'
     sort_reverse: true
 
-# Jekyll Archives configuration
-jekyll-archives:
-    enabled:
-        - categories
-        - tags
-    layouts:
-        category: archive
-        tag: archive
-    permalinks:
-        category: '/category/:name/'
-        tag: '/tag/:name/'
+# AutoPages — paginated category and tag archive pages
+autopages:
+    enabled: true
+    categories:
+        enabled: true
+        layouts:
+            - 'archive.html'
+        title: ':cat'
+        permalink: '/category/:cat'
+        slugify:
+            mode: 'default'
+            cased: false
+    tags:
+        enabled: true
+        layouts:
+            - 'archive.html'
+        title: ':tag'
+        permalink: '/tag/:tag'
+        slugify:
+            mode: 'default'
+            cased: false
+    collections:
+        enabled: false
 
 # Navigation items (shown in header nav)
 nav_pages:
