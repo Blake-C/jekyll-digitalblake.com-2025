@@ -9,29 +9,34 @@ tags: ["arch", "command-line", "docker", "linux"]
 
 ## Start the container
 
-<pre class="wp-block-code lang-bash line-numbers"><code>docker run --rm -it --privileged=true archlinux:latest bash
+```bash
+docker run --rm -it --privileged=true archlinux:latest bash
 
 # https://endeavouros.com/docs/pacman/pacman-basic-commands/
 pacman -Syu # Update
 pacman -Syu sudo vim # Install vim
 
 # Run the following and uncomment the line "%wheel ALL=(ALL) ALL"
-sudo EDITOR=vim visudo</code></pre>
+sudo EDITOR=vim visudo
+```
 
 ## Create your user account
 
-<pre class="wp-block-code lang-bash line-numbers"><code>sudo useradd -m digitalblake
+```bash
+sudo useradd -m digitalblake
 sudo passwd digitalblake
 usermod -aG wheel digitalblake
 su - digitalblake
 sudo whoami
 
 # If you need to delete the user:
-sudo userdel --remove digitalblake</code></pre>
+sudo userdel --remove digitalblake
+```
 
 ## Installing fish and set it as your default shell:
 
-<pre class="wp-block-code lang-bash line-numbers"><code>sudo pacman -Fy # Sync the files database
+```bash
+sudo pacman -Fy # Sync the files database
 sudo pacman -Syu fish curl which git
 which fish # if this is different from below, use this value
 chsh -s /usr/bin/fish
@@ -41,11 +46,13 @@ fish
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
 # If you don't want to use tide, don't install it
-fisher install ilancosman/<a class="__cf_email__" data-cfemail="97e3fef3f2d7e1a3b9a6b9a6" href="/cdn-cgi/l/email-protection">[email protected]</a></code></pre>
+fisher install ilancosman/<a class="__cf_email__" data-cfemail="97e3fef3f2d7e1a3b9a6b9a6" href="/cdn-cgi/l/email-protection">[email protected]</a>
+```
 
 ## Installing nvm and node
 
-<pre class="wp-block-code lang-bash line-numbers"><code>sudo pacman -Syu python
+```bash
+sudo pacman -Syu python
 fisher install edc/bass
 
 # https://github.com/nvm-sh/nvm#install--update-script
@@ -61,20 +68,24 @@ nvm --version
 nvm install v12
 node -v
 
-npm i gulp -g</code></pre>
+npm i gulp -g
+```
 
 ## Installing php and composer
 
-<pre class="wp-block-code lang-bash line-numbers"><code>sudo pacman -Syu php php7 wget
+```bash
+sudo pacman -Syu php php7 wget
 
 # https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
 wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet
 
-sudo mv composer.phar /usr/local/bin/composer</code></pre>
+sudo mv composer.phar /usr/local/bin/composer
+```
 
 ## Add fish aliases (functions)
 
-<pre class="wp-block-code lang-bash line-numbers"><code>alias install 'sudo pacman -Syu' -s
+```bash
+alias install 'sudo pacman -Syu' -s
 alias update 'sudo pacman -Syu' -s
 alias remove 'sudo pacman -Rs' -s
 alias search 'pacman -F' -s
@@ -96,7 +107,8 @@ function take -d "Create a directory and set CWD"
                 return
         end
     end
-end</code></pre>
+end
+```
 
 ## Resources
 

@@ -18,13 +18,15 @@ Here is what you need to do to get the packages building to start your next emai
 
 ## 1. If you have not already, install the foundation-cli tooling for node.
 
-<pre><code class="line-numbers lang-bash">npm install --global foundation-cli
-</code></pre>
+```bash
+npm install --global foundation-cli
+```
 
 ## 2. Then build your email project.
 
-<pre><code class="line-numbers lang-bash">foundation new --framework emails
-</code></pre>
+```bash
+foundation new --framework emails
+```
 
 ## 3. Then you’ll notice the first issue the framework has when building.
 
@@ -35,9 +37,10 @@ The node modules did not install. Change directories into the project folder so 
 I like to use a tool called npm-check to update my node modules. When you have npm-check installed run
     `npm-check -u` in the project directory to see a list of all the outdated packages.
 
-<pre><code class="line-numbers lang-bash">npm install npm-check -g
+```bash
+npm install npm-check -g
 npm-check -u
-</code></pre>
+```
 
 ![A list of the outdated npm packages](/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.09.19-AM.webp)
 
@@ -60,10 +63,11 @@ First, open the `package.json` files for the project and delete the line for gul
 Next, delete the `package-lock.json` file. Reinstall gulp with `npm install gulp -D`. Then
     finally run `npm run build`.
 
-<pre><code class="line-numbers lang-bash">rm package-lock.json
+```bash
+rm package-lock.json
 npm install gulp -D
 npm run build
-</code></pre>
+```
 
 ![Fixing the gulp issues preventing the build process](/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.52-AM.webp)
 

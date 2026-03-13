@@ -13,11 +13,12 @@ render_with_liquid: false
 
 Helpful short aliases for executing docker command more quickly.
 
-<pre><code class="line-numbers lang-bash">alias dps="docker container list -a --format \"table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\""
+```bash
+alias dps="docker container list -a --format \"table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\""
 alias dimg="docker image list"
 alias dup="docker-compose up -d"
 alias ddown="docker-compose down"
-</code></pre>
+```
 
 The dps command above is probably the most helpful when working on narrow devices.
 
@@ -29,15 +30,17 @@ The dockerit shell script function can be used to mount your current directory i
     you access to basic command line tools. This is helpful for when you are working on a new machine and have not setup
     all your command line tooling yet.
 
-<pre><code class="line-numbers lang-bash">dockit() {
+```bash
+dockit() {
     docker run --rm -it -v $PWD:/var/www/public_html digitalblake/general-cli:0.0.6 zsh
 }
-</code></pre>
+```
 
 The dsh function is useful for when working the wp-foundation-six project or are using the general-cli docker image
     with a project. This is just a quick way to enter into the general-cli container.
 
-<pre><code class="line-numbers lang-bash">dsh() {
+```bash
+dsh() {
     docker exec -it $(dps | grep cli | head -c12) zsh
 }
-</code></pre>
+```

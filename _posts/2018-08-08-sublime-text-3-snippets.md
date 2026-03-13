@@ -29,7 +29,8 @@ When creating a Sublime Text snippet you have 4 distinct sections.
 
 ### Simple Snippet
 
-<pre><code class="line-numbers lang-xml"><snippet>
+```xml
+<snippet>
     <content><![CDATA[
 console.log(${1:your_value});
 $0
@@ -38,7 +39,7 @@ $0
     <scope>source.js,source.jsx</scope>
     <description>console.log statement</description>
 </snippet>
-</code></pre>
+```
 
 In the above example you can see all 4 main sections of a Sublime Text snippet. The interesting part happens within
     the content section. This snippet simply outputs `console.log();` in JavaScript and JSX files and places
@@ -54,7 +55,8 @@ This marker is the first tab stop in the snippet. It will output your_value high
 
 ### Moderate Snippet
 
-<pre><code class="line-numbers lang-xml"><snippet>
+```xml
+<snippet>
     <content><![CDATA[<?php if ( have_rows( '${1:repeater_field_name}' ) ) : ?>
     <?php while ( have_rows( '${1:repeater_field_name}' ) ) : ?>
         <?php the_row(); ?>
@@ -67,7 +69,7 @@ This marker is the first tab stop in the snippet. It will output your_value high
     <scope>source.php,embedding.php</scope>
     <description>An ACF repeater filed group</description>
 </snippet>
-</code></pre>
+```
 
 Here is a more complicated example where we have multiple field markers, and in one instance the same field marker
     twice. If you need to rename two parts of your snippet at the same time you can use the same field marker where both

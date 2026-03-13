@@ -21,7 +21,8 @@ Three Techniques:
 
 ### None
 
-<pre><code class="line-numbers lang-php">function sum($a, $b) {
+```php
+function sum($a, $b) {
     echo $a . " " . gettype($a) . " + ";
     echo $b . " " . gettype($b) . " = ";
     $result = $a + $b;
@@ -34,11 +35,12 @@ sum("2", "3");
 // 2 string + 3 string = 5 integer
 sum(2.0, 3.0);
 // 2 double + 3 double = 5 double
-</code></pre>
+```
 
 ### Coercive
 
-<pre><code class="line-numbers lang-php">function sum(int $a,int $b) {
+```php
+function sum(int $a,int $b) {
     echo $a . " " . gettype($a) . " + ";
     echo $b . " " . gettype($b) . " = ";
     $result = $a + $b;
@@ -51,11 +53,12 @@ sum("2", "3");
 // 2 integer + 3 integer = 5 integer
 sum(2.0, 3.0);
 // 2 integer + 3 integer = 5 integer
-</code></pre>
+```
 
 ### Strict
 
-<pre><code class="line-numbers lang-php">declare(strict_types=1);
+```php
+declare(strict_types=1);
 
 function sum(int $a,int $b) {
     echo $a . " " . gettype($a) . " + ";
@@ -70,7 +73,7 @@ sum("2", "3");
 // TypeError: Argument must be of the type integer, string given
 sum(2.0, 3.0);
 // TypeError: Argument must be of the type integer, float given
-</code></pre>
+```
 
 ### Types
 
@@ -90,7 +93,8 @@ Three Techniques:
 
 ### None
 
-<pre><code class="line-numbers lang-php">function sum($a, $b) {
+```php
+function sum($a, $b) {
     return $a + $b;
 }
 
@@ -100,11 +104,12 @@ echo gettype(sum("2", "3"));
 // integer
 echo gettype(sum(2.0, 3.0));
 // double
-</code></pre>
+```
 
 ### Coercive
 
-<pre><code class="line-numbers lang-php">function sum($a, $b): int {
+```php
+function sum($a, $b): int {
     return $a + $b;
 }
 
@@ -114,11 +119,12 @@ echo gettype(sum("2", "3"));
 // integer
 echo gettype(sum(2.0, 3.0));
 // integer
-</code></pre>
+```
 
 ### Strict
 
-<pre><code class="line-numbers lang-php">declare(strict_types=1);
+```php
+declare(strict_types=1);
 
 function sum($a, $b): int {
     return $a + $b;
@@ -130,7 +136,7 @@ echo gettype(sum("2", "3"));
 // integer
 echo gettype(sum(2.0, 3.0));
 // TypeError: Return value must be of the type integer, float returned
-</code></pre>
+```
 
 ## Combined Comparison Operator
 
@@ -149,8 +155,9 @@ Combined Comparison Operator
 
 - <=>
 
-<pre><code class="line-numbers lang-php">$swatch_price <=> $rolex_price
-</code></pre>
+```php
+$swatch_price <=> $rolex_price
+```
 
 - Returns -1 when left side is less than right side.
 - Returns 0 when both sides are equal.
@@ -160,7 +167,8 @@ Example 1:
 
 Switch case.
 
-<pre><code class="line-numbers lang-php">$a = 100;
+```php
+$a = 100;
 $b = 200;
 
 switch($a <=> $b) {
@@ -171,13 +179,14 @@ switch($a <=> $b) {
     case 1:
         echo '$a is greater than $b'; break;
 }
-</code></pre>
+```
 
 Example 2:
 
 Sort array by price.
 
-<pre><code class="line-numbers lang-php">$watches = array(
+```php
+$watches = array(
     array('brand': 'Swatch', 'price': 50.0),
     array('brand': 'Timex', 'price': 5.0),
     array('brand': 'Rolex', 'price': 500.0)
@@ -189,7 +198,7 @@ function sort_by_price($watch1, $watch2) {
 }
 
 usort($watch, 'sort_by_price');
-</code></pre>
+```
 
 When watch1 before watch2 ascending order.  
 
@@ -206,23 +215,26 @@ Returns first value that exists and is not NULL
 
 Example 1:
 
-<pre><code class="line-numbers lang-php">$value = $user_value ?? $default_value;
-</code></pre>
+```php
+$value = $user_value ?? $default_value;
+```
 
 Same as:
 
-<pre><code class="line-numbers lang-php">if (isset($user_value)) {
+```php
+if (isset($user_value)) {
     $value = $user_value;
 } else {
     $value = $default_value;
 }
-</code></pre>
+```
 
 Examples:
 
-<pre><code class="line-numbers lang-php">echo $page_title ?? 'My Cool PHP App';
+```php
+echo $page_title ?? 'My Cool PHP App';
 
 $username = $_POST['username'] ?? 'guest';
 
 $value = $a ?? $b ?? $c ?? $d ?? $default;
-</code></pre>
+```

@@ -20,16 +20,18 @@ Course: [https://scrimba.com/p/p7P5Hd](https://scrimba.com/p/p7P5Hd)
 
 App Start:
 
-<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
+```js
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Todo from './components/Todo/Todo'
 
 ReactDOM.render(<todo></todo>, document.getElementById('root'))
-</code></pre>
+```
 
 App Class Component:
 
-<pre><code class="line-numbers lang-js">import React, { Component } from 'react'
+```js
+import React, { Component } from 'react'
 import TodoItem from './TodoItem/TodoItem'
 import todosData from './todosData'
 import './todo.scss'
@@ -66,11 +68,12 @@ class Todo extends Component {
 }
 
 export default Todo
-</code></pre>
+```
 
 App Functional Component:
 
-<pre><code class="line-numbers lang-js">import React from 'react'
+```js
+import React from 'react'
 import PropTypes from 'prop-types'
 
 function TodoItem(props) {
@@ -97,11 +100,12 @@ TodoItem.propTypes = {
 }
 
 export default TodoItem
-</code></pre>
+```
 
 App Data:
 
-<pre><code class="line-numbers lang-js">const todosData = [
+```js
+const todosData = [
     {
         id: 1,
         text: 'Take out the trash',
@@ -130,4 +134,4 @@ App Data:
 ]
 
 export default todosData
-</code></pre>
+```
