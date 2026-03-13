@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Installing CLI Tools (fish, php, composer, nvm) with Arch Linux and Docker Image"
-description: "Just some notes from what I was experimenting with Arch Linux and setting up fish shell."
+title: 'Installing CLI Tools (fish, php, composer, nvm) with Arch Linux and Docker Image'
+description: 'Just some notes from what I was experimenting with Arch Linux and setting up fish shell.'
 date: 2021-03-19 01:38:13 -0500
-categories: ["Notes"]
-tags: ["arch", "command-line", "docker", "linux"]
+categories: ['Notes']
+tags: ['arch', 'command-line', 'docker', 'linux']
 ---
 
 ## Start the container
@@ -116,7 +116,6 @@ end
 - [https://github.com/jorgebucaran/fisher](https://github.com/jorgebucaran/fisher)
 - [https://github.com/IlanCosman/tide](https://github.com/IlanCosman/tide)
 - [https://github.com/IlanCosman/tide/wiki/Fish-version-compatibility](https://github.com/IlanCosman/tide/wiki/Fish-version-compatibility)
-
 - [https://duckduckgo.com/?q=pacman+commands&ia=cheatsheet](https://duckduckgo.com/?q=pacman+commands&ia=cheatsheet)
 - [https://linuxhint.com/add_users_arch_linux/](https://linuxhint.com/add_users_arch_linux/)
 - [https://linuxhint.com/sudo_arch_linux/](https://linuxhint.com/sudo_arch_linux/)

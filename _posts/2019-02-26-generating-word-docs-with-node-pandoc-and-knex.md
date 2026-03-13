@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Generating Word Docs with Node, Pandoc, and Knex"
+title: 'Generating Word Docs with Node, Pandoc, and Knex'
 date: 2019-02-26 02:40:55 -0600
 modified_date: 2020-10-02 21:09:53 -0500
-description: "Using Node, Pandoc, and Knex to create Word Docs from database table."
-categories: ["Articles"]
-tags: ["javascript", "joomla", "knex", "node", "pandoc"]
+description: 'Using Node, Pandoc, and Knex to create Word Docs from database table.'
+categories: ['Articles']
+tags: ['javascript', 'joomla', 'knex', 'node', 'pandoc']
 ---
 
 To start, this is not something I wanted to do, it was a client request that lead to this being a thing. Usually, at Gray Digital Group, we use GatherContent to process changes to our clients content before integrating it into their new sites. However, there was this one instance where our client wanted to edit their content from Word Docs.
@@ -44,27 +44,27 @@ import pandoc from 'node-pandoc'
 import fs from 'node-fs-extra'
 
 const knex_query = knex({
-    client: 'mysql',
-    connection: {
-        host: 'localhost',
-        port: '3306', // when using docker you need to expose mysql port
-        user: 'root',
-        password: 'root',
-        database: 'wp_foundation_six',
-    },
+	client: 'mysql',
+	connection: {
+		host: 'localhost',
+		port: '3306', // when using docker you need to expose mysql port
+		user: 'root',
+		password: 'root',
+		database: 'wp_foundation_six',
+	},
 })
 
 function joomla_articles(table, live_domain = '/', output_dir = './_output/articles/') {
-    knex_query
-        .from(table)
-        .select('id', 'title', 'alias', 'introtext', 'fulltext')
-        .then(rows => {
-            rows.forEach(row => {
-                const body_content = `${row.introtext} ${row.fulltext}`
-                const fixed_urls = body_content.replace(/(href|src)="(?!http|https|mailto)/gm, `$1="${live_domain}`)
-                const page_url = `${live_domain}index.php?option=com_content&view=article&id=${row.id}`
+	knex_query
+		.from(table)
+		.select('id', 'title', 'alias', 'introtext', 'fulltext')
+		.then(rows => {
+			rows.forEach(row => {
+				const body_content = `${row.introtext} ${row.fulltext}`
+				const fixed_urls = body_content.replace(/(href|src)="(?!http|https|mailto)/gm, `$1="${live_domain}`)
+				const page_url = `${live_domain}index.php?option=com_content&view=article&id=${row.id}`
 
-                const html_content = `
+				const html_content = `
                     <!DOCTYPE html>
 
                     <html lang="en">
@@ -80,21 +80,21 @@ function joomla_articles(table, live_domain = '/', output_dir = './_output/artic
                     </html>
                 `
 
-                fs.mkdirs(output_dir)
+				fs.mkdirs(output_dir)
 
-                // Arguments can be either a single String or in an Array
-                const args = `-f html -t docx -o ${output_dir}${row.id}--${row.alias}.docx`
+				// Arguments can be either a single String or in an Array
+				const args = `-f html -t docx -o ${output_dir}${row.id}--${row.alias}.docx`
 
-                // Set your callback function
-                const callback = (err, result) => {
-                    if (err) console.error('Oh Nos: ', err)
-                    return console.log(result), result
-                }
+				// Set your callback function
+				const callback = (err, result) => {
+					if (err) console.error('Oh Nos: ', err)
+					return (console.log(result), result)
+				}
 
-                // Call pandoc
-                pandoc(html_content, args, callback)
-            })
-        })
+				// Call pandoc
+				pandoc(html_content, args, callback)
+			})
+		})
 }
 joomla_articles('jos_content')
 ```

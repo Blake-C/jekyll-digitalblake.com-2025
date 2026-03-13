@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Hide Desktop Icons in macOS"
-description: "Conducting a training or giving a presentation? Look more professional and hide your desktop."
+title: 'Hide Desktop Icons in macOS'
+description: 'Conducting a training or giving a presentation? Look more professional and hide your desktop.'
 date: 2020-02-22 14:20:02 -0600
 modified_date: 2020-10-02 21:09:52 -0500
-categories: ["Snippets"]
-tags: ["command-line", "macos", "shell-script"]
-image: "/assets/uploads/2020/02/facebook-hide-desktop-icons-in-macos.webp"
+categories: ['Snippets']
+tags: ['command-line', 'macos', 'shell-script']
+image: '/assets/uploads/2020/02/facebook-hide-desktop-icons-in-macos.webp'
 ---
 
 When I need to hold a training through a screen share with my desktop in full display I usually don’t want the people I am training to see any current projects, research, and notes that might be sitting on my desktop. There are several reasons why you might want to hide your desktop while doing a screen share:
@@ -41,6 +41,6 @@ desktop(){
 ```
 
 One big thing you want to remember, if you choose to use this:
-    **YOU WILL NOT HAVE ACCESS TO YOUR DESKTOP, AT ALL!**
+**YOU WILL NOT HAVE ACCESS TO YOUR DESKTOP, AT ALL!**
 
 If you need to drag and drop items from your desktop during your training you will need to rely on the finder as everything on your desktop will be inaccessible.

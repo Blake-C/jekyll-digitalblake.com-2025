@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Features New to PHP7"
+title: 'Features New to PHP7'
 date: 2019-02-24 07:13:31 -0600
 modified_date: 2020-10-02 21:09:53 -0500
-description: "A few new PHP7 features that would be useful for frontend developers."
-categories: ["Notes"]
-tags: ["php", "php7", "phpcs", "wordpress"]
+description: 'A few new PHP7 features that would be useful for frontend developers.'
+categories: ['Notes']
+tags: ['php', 'php7', 'phpcs', 'wordpress']
 ---
 
 These notes are from a LinkedIn Learning Course that can be found here: [https://www.linkedin.com/learning/php-7-new-features](https://www.linkedin.com/learning/php-7-new-features)
@@ -145,10 +145,12 @@ Also known as:
 
 Comparison Operators
 
-- ==, ===
-- !=, !==
-- <, <=
-- > , >=
+```
+==, ===
+!=, !==
+<, <=
+>, >=
+```
 
 Combined Comparison Operator
 
@@ -199,9 +201,9 @@ function sort_by_price($watch1, $watch2) {
 usort($watch, 'sort_by_price');
 ```
 
-When watch1 before watch2 ascending order.  
+When watch1 before watch2 ascending order.
 
-    When watch1 after watch2 descending order.
+When watch1 after watch2 descending order.
 
 - [usort docs](http://php.net/manual/en/function.usort.php)
 - [Comparison Operators](http://php.net/manual/en/language.operators.comparison.php)

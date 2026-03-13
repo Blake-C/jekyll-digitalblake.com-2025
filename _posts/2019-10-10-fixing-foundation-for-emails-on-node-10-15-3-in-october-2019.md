@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Fixing Foundation for Emails on node 10.15.3 in October 2019"
-description: "The Foundation for emails framework has not had a release since 2016. Here is how to fix the issues that come with using the outdated npm modules in 2019."
+title: 'Fixing Foundation for Emails on node 10.15.3 in October 2019'
+description: 'The Foundation for emails framework has not had a release since 2016. Here is how to fix the issues that come with using the outdated npm modules in 2019.'
 date: 2019-10-10 01:52:05 -0500
 modified_date: 2020-10-02 21:09:52 -0500
-categories: ["Guides"]
-tags: ["build-systems", "command-line", "foundation", "foundation-for-emails"]
-image: "/assets/uploads/2019/10/facebook.webp"
+categories: ['Guides']
+tags: ['build-systems', 'command-line', 'foundation', 'foundation-for-emails']
+image: '/assets/uploads/2019/10/facebook.webp'
 ---
 
 If you have been wanting to use Foundation for Emails, you’ll notice that the email building framework has not been updated since 2016. That’s over 3 years ago.

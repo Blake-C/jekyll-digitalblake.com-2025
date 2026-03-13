@@ -2,8 +2,8 @@
 layout: base
 title: Home
 permalink: /
-body_class: "home wp-singular page-template-default page wp-theme-wp-foundation-six"
-description: "I Am A Front-end Web Developer - Blake Cerecero"
+body_class: 'home wp-singular page-template-default page wp-theme-wp-foundation-six'
+description: 'I Am A Front-end Web Developer - Blake Cerecero'
 ---
 
 <section class="intro" role="main">

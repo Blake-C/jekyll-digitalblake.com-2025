@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Helpful Docker Shell Script Aliases and Functions"
+title: 'Helpful Docker Shell Script Aliases and Functions'
 description: "Quick shell script snippets for more easily working with docker commands. These are specific to my workflow, but maybe they'll help you with creating new ideas."
 date: 2018-08-12 15:04:46 -0500
 modified_date: 2020-10-02 21:09:54 -0500
-categories: ["Snippets"]
-tags: ["docker", "shell-script"]
+categories: ['Snippets']
+tags: ['docker', 'shell-script']
 render_with_liquid: false
 ---
 

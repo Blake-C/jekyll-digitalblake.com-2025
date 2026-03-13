@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Shell script functions that can take arguments as either named or abbreviated values"
-description: "Using case statements in shell script functions to pass in named or abbreviated parameters as arguments."
+title: 'Shell script functions that can take arguments as either named or abbreviated values'
+description: 'Using case statements in shell script functions to pass in named or abbreviated parameters as arguments.'
 date: 2020-04-27 06:29:54 -0500
 modified_date: 2020-10-02 21:09:52 -0500
-categories: ["Snippets"]
-tags: ["command-line", "learning", "macos", "shell-script"]
-image: "/assets/uploads/2020/04/facebook.webp"
+categories: ['Snippets']
+tags: ['command-line', 'learning', 'macos', 'shell-script']
+image: '/assets/uploads/2020/04/facebook.webp'
 ---
 
 ```bash
@@ -41,10 +41,8 @@ done
 
 - First we are grabbing the positional parameters
 - Then we loop through each parameters and pass them through a case statement
-- Depending on what we pass in we will be able to check for a named argument or an abbreviated version using the
-        pipe symbol `--from*|-f*)`.
-- In each case we check if an equals sign was used. This gives us the ability to pass in arguments as
-        `myfunction arg1=somevalue1` or as `myfunction arg1 somevalue1`.
+- Depending on what we pass in we will be able to check for a named argument or an abbreviated version using the pipe symbol `--from*|-f*)`.
+- In each case we check if an equals sign was used. This gives us the ability to pass in arguments as `myfunction arg1=somevalue1` or as `myfunction arg1 somevalue1`.
 
 We get the best of both worlds for passing in values to our shell scripts.
 

@@ -31,6 +31,6 @@ if ((is_webkit || is_opera || is_ie) && document.getElementById && window.addEve
 				element.focus()
 			}
 		},
-		false
+		false,
 	)
 }

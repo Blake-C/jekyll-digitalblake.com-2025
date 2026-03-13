@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "The Remote Workforce from a Developers Perspective"
+title: 'The Remote Workforce from a Developers Perspective'
 description: "Working remote is one of the privileges we have as developers, but it has it's down sides as well."
 date: 2019-03-26 07:00:43 -0500
 modified_date: 2020-10-02 21:09:53 -0500
-categories: ["Articles"]
-tags: ["goals", "learning", "remote", "thoughts"]
-image: "/assets/uploads/2019/03/michael-coury-70410-unsplash-facebook.webp"
+categories: ['Articles']
+tags: ['goals', 'learning', 'remote', 'thoughts']
+image: '/assets/uploads/2019/03/michael-coury-70410-unsplash-facebook.webp'
 ---
 
 Remote work is one of the privileges we have as developers, but it has it’s down sides as well. Where you work is as important as what you are working on because the choices you make can affect your productivity, health, and motivation. For most people I feel that working remote will be a benefit in terms of being able to focus on your work and lessen your distractions. For others it might not be a choice but a necessity because of ones health circumstances.
@@ -23,7 +23,7 @@ Lastly, and the most personal for myself, is your ability to focus on your healt
 
 Remote work can have it’s challenges for even the most motivated developers. Not seeing your coworkers and sitting in a space by yourself can lead to loneliness and depression. If you do chose to work remote, be sure to spend time with your friends and family. Your mental health is just as important as your physical health.
 
-You lose a little something when working remote vs. being in an office environment. That sense of comradery you get from working together on a project within a closed space. The struggles and personal face to face interaction grows your communication and leadership skills. This is not to say you can’t get these things when working remote but it’s far more difficult in a fully remote environment.
+You lose a little something when working remote vs. being in an office environment. That sense of camaraderie you get from working together on a project within a closed space. The struggles and personal face to face interaction grows your communication and leadership skills. This is not to say you can’t get these things when working remote but it’s far more difficult in a fully remote environment.
 
 ## Tips
 
@@ -34,9 +34,9 @@ Most of what I have to give in tips can be considered common sense. However, the
 - Look at something in the distance to remove strain from your eyes.
 - Be sure to keep all lines of communication open so that your co-workers can get a hold of you as needed.
 - It might also be worth paying a little more for higher quality internet to prevent it from being a bottle neck
-        in your workflow.
+  in your workflow.
 - Consider a hybrid approach where you work remote part of the week, but still have the opportunity to meet up in
-        an office to see your co-workers.
+  an office to see your co-workers.
 
 ## Conclusion
 

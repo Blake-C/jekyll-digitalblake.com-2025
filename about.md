@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-description: "Blake Cerecero — Front-end Web Developer specializing in WordPress, Drupal, and modern JavaScript."
+description: 'Blake Cerecero — Front-end Web Developer specializing in WordPress, Drupal, and modern JavaScript.'
 ---
 
 <div class="about-content">

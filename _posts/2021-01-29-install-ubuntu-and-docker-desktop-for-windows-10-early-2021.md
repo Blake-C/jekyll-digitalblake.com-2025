@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Install Ubuntu and Docker Desktop for Windows 10 (Early 2021)"
-description: "Learn how to set up Ubuntu on Windows 10 using Window Subsystem for Linux (WSL)"
+title: 'Install Ubuntu and Docker Desktop for Windows 10 (Early 2021)'
+description: 'Learn how to set up Ubuntu on Windows 10 using Window Subsystem for Linux (WSL)'
 date: 2021-01-29 01:04:59 -0600
 modified_date: 2021-02-03 22:04:18 -0600
-categories: ["Guides"]
-tags: ["command-line", "docker", "ubuntu", "windows"]
-image: "/assets/uploads/2021/01/random-1-1200x630-facebook-share.webp"
+categories: ['Guides']
+tags: ['command-line', 'docker', 'ubuntu', 'windows']
+image: '/assets/uploads/2021/01/random-1-1200x630-facebook-share.webp'
 render_with_liquid: false
 ---
 
@@ -62,7 +62,7 @@ Restart docker to make sure these settings have been applied.
 ## 4. If Docker Has Issues Starting (optional)
 
 If docker refuses to start, shutdown docker and open the
-    **windows terminal**. Then run the following:
+**windows terminal**. Then run the following:
 
 ```bash
 $ wsl --shutdown
@@ -76,7 +76,7 @@ Add this to .wslconfig:
 memory=1GB   # Make sure you have enough memory
 ```
 
-***Save and restart docker***
+**_Save and restart docker_**
 
 ![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp)
 
@@ -107,7 +107,7 @@ When I use zsh, I prefer to install OhMyZSH. Follow their documentation on how t
 
 After OMZ is installed open the `~/.zshrc` file and set the theme to: `af-magic`. See all the other OMZ themes here:
 
-- https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+- [https://github.com/ohmyzsh/ohmyzsh/wiki/Themes](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 
 ![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp)
 
@@ -144,7 +144,7 @@ Or you can close and open a new **Ubuntu terminal** window.
 
 Install NVM using the instruction from the NVM repo:
 
-- https://github.com/nvm-sh/nvm
+- [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 
 Once installed run:
 
@@ -170,7 +170,7 @@ Use the wget script at the bottom of this page on the [How do I install Composer
 
 The follow the instructions on how to install composer globally on this page:
 
-- https://getcomposer.org/doc/00-intro.md
+- [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md)
 
 ```bash
 sudo mv composer.phar /usr/local/bin/composer

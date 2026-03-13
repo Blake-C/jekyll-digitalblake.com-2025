@@ -102,7 +102,9 @@
 	transform: translateZ(0);
 	transition: -webkit-transform 0.25s ease-out;
 	transition: transform 0.25s ease-out;
-	transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+	transition:
+		transform 0.25s ease-out,
+		-webkit-transform 0.25s ease-out;
 }
 
 .modal__btn:focus,
