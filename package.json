@@ -18,6 +18,7 @@
 		"css-loader": "^6.6.0",
 		"cssnano": "^5.0.17",
 		"cssnano-preset-advanced": "^5.1.12",
+		"husky": "9.1.7",
 		"postcss": "^8.4.6",
 		"postcss-cli": "^9.1.0",
 		"prettier": "^3.0.0",
@@ -41,6 +42,7 @@
 		"watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules",
 		"watch:scripts": "webpack --watch",
 		"build": "npm run build:styles && npm run build:scripts && bundle exec jekyll build",
-		"dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005; wait)"
+		"dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005; wait)",
+		"prepare": "husky"
 	}
 }
