@@ -55,6 +55,9 @@ Array.from(regions).map(regions => {
 })
 
 /*************** Prism Syntax Highlighting ***************/
+document.querySelectorAll('pre > code[class]').forEach(code => {
+    code.parentElement.classList.add('line-numbers')
+})
 Prism.highlightAll()
 
 /*************** Lazy Load Remodal Images ***************/
