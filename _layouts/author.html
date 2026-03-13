@@ -64,25 +64,32 @@ layout: base
 							<div class="post-pagination">
 								<ul>
 									{%- if ap.previous_page -%}
+										{%- if ap.previous_page == 1 -%}
+											{%- assign prev_path = ap.base_path -%}
+										{%- else -%}
+											{%- capture prev_path -%}{{ ap.base_path }}page/{{ ap.previous_page }}/{%- endcapture -%}
+										{%- endif -%}
 										<li>
-											<a href="{% if ap.previous_page == 1 %}{{ ap.base_path }}{% else %}{{ ap.base_path }}page/{{ ap.previous_page }}/{% endif %}"
-												>Prev</a
-											>
+											<a href="{{ prev_path | relative_url }}">Prev</a>
 										</li>
 									{%- endif -%}
 									{%- for i in (1..ap.total_pages) -%}
+										{%- if i == 1 -%}
+											{%- assign page_path = ap.base_path -%}
+										{%- else -%}
+											{%- capture page_path -%}{{ ap.base_path }}page/{{ i }}/{%- endcapture -%}
+										{%- endif -%}
 										<li
 											{% if i == ap.page %}
 												class="active"
 											{% endif %}
 										>
-											<a href="{% if i == 1 %}{{ ap.base_path }}{% else %}{{ ap.base_path }}page/{{ i }}/{% endif %}">
-												{{- i -}}
-											</a>
+											<a href="{{ page_path | relative_url }}">{{- i -}}</a>
 										</li>
 									{%- endfor -%}
 									{%- if ap.next_page -%}
-										<li><a href="{{ ap.base_path }}page/{{ ap.next_page }}/">Next</a></li>
+										{%- capture next_path -%}{{ ap.base_path }}page/{{ ap.next_page }}/{%- endcapture -%}
+										<li><a href="{{ next_path | relative_url }}">Next</a></li>
 									{%- endif -%}
 								</ul>
 							</div>
