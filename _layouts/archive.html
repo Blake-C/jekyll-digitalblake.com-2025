@@ -7,17 +7,18 @@ layout: base
 			<section class="articles-listing archive-listing">
 				<header>
 					<h1 class="page-title">
-						{%- if page.type == 'category' -%}
-							Category: {{ page.title }}
-						{%- elsif page.type == 'tag' -%}
-							Tag: {{ page.title }}
+						{%- if page.pagination.category -%}
+							Category: {{ page.pagination.category }}
+						{%- elsif page.pagination.tag -%}
+							Tag: {{ page.pagination.tag }}
 						{%- else -%}
 							{{ page.title }}
 						{%- endif -%}
 					</h1>
 				</header>
 
-				{%- for post in page.posts -%}
+				{%- assign posts = paginator.posts -%}
+				{%- for post in posts -%}
 					{%- assign month = post.date | date: '%b' -%}
 					{%- assign day = post.date | date: '%-d' -%}
 					{%- assign day_int = day | plus: 0 -%}
@@ -57,6 +58,38 @@ layout: base
 						</a>
 					</article>
 				{%- endfor -%}
+
+				{%- if paginator and paginator.total_pages > 1 -%}
+					<div class="post-pagination">
+						<ul>
+							{%- if paginator.previous_page -%}
+								{%- capture prev_path -%}{{ paginator.previous_page_path }}{%- endcapture -%}
+								<li>
+									<a href="{{ prev_path | relative_url }}">Prev</a>
+								</li>
+							{%- endif -%}
+							{%- assign base_path = page.url | remove: 'index.html' -%}
+							{%- if base_path contains '/page/' -%}
+								{%- assign base_path = base_path | split: '/page/' | first | append: '/' -%}
+							{%- endif -%}
+							{%- for i in (1..paginator.total_pages) -%}
+								{%- if i == 1 -%}
+									{%- assign link_path = base_path -%}
+								{%- else -%}
+									{%- capture link_path -%}{{ base_path }}page/{{ i }}/{%- endcapture -%}
+								{%- endif -%}
+								<li{% if i == paginator.page %} class="active"{% endif %}>
+									<a href="{{ link_path | relative_url }}">{{- i -}}</a>
+								</li>
+							{%- endfor -%}
+							{%- if paginator.next_page -%}
+								<li>
+									<a href="{{ paginator.next_page_path | relative_url }}">Next</a>
+								</li>
+							{%- endif -%}
+						</ul>
+					</div>
+				{%- endif -%}
 			</section>
 		</main>
 
