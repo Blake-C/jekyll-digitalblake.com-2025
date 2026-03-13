@@ -13,3 +13,6 @@ script/
 
 # Package lock
 package-lock.json
+
+# Jekyll Liquid templates with front matter (not valid JSON/HTML for prettier)
+assets/icons/manifest.json

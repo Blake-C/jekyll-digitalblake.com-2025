@@ -78,7 +78,11 @@ layout: base
 								{%- else -%}
 									{%- capture link_path -%}{{ base_path }}page/{{ i }}/{%- endcapture -%}
 								{%- endif -%}
-								<li{% if i == paginator.page %} class="active"{% endif %}>
+								<li
+									{% if i == paginator.page %}
+										class="active"
+									{% endif %}
+								>
 									<a href="{{ link_path | relative_url }}">{{- i -}}</a>
 								</li>
 							{%- endfor -%}
