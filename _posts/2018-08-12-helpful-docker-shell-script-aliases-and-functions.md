@@ -26,9 +26,7 @@ The dps command above is probably the most helpful when working on narrow device
 
 The following two functions would go into your `~/.bash_profile` or `~/.zshrc` file.
 
-The dockerit shell script function can be used to mount your current directory into the general-cli container giving
-    you access to basic command line tools. This is helpful for when you are working on a new machine and have not setup
-    all your command line tooling yet.
+The dockerit shell script function can be used to mount your current directory into the general-cli container giving you access to basic command line tools. This is helpful for when you are working on a new machine and have not setup all your command line tooling yet.
 
 ```bash
 dockit() {
@@ -36,8 +34,7 @@ dockit() {
 }
 ```
 
-The dsh function is useful for when working the wp-foundation-six project or are using the general-cli docker image
-    with a project. This is just a quick way to enter into the general-cli container.
+The dsh function is useful for when working the wp-foundation-six project or are using the general-cli docker image with a project. This is just a quick way to enter into the general-cli container.
 
 ```bash
 dsh() {

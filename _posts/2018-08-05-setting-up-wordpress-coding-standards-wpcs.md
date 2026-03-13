@@ -22,8 +22,7 @@ brew install composer
 
 ### Install PHPCS
 
-Install PHPCS using composer, follow the instructions found on the
-    [phpcs github page](https://github.com/squizlabs/PHP_CodeSniffer).
+Install PHPCS using composer, follow the instructions found on the [phpcs github page](https://github.com/squizlabs/PHP_CodeSniffer).
 
 ```bash
 composer global require "squizlabs/php_codesniffer=*"
@@ -31,11 +30,7 @@ composer global require "squizlabs/php_codesniffer=*"
 
 ### Create Utilities Directory
 
-Create a directory in your user folder called utilities. Then clone down the
-    [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
-    and
-    [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility)
-    repos.
+Create a directory in your user folder called utilities. Then clone down the [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) and [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility) repos.
 
 ```bash
 mkdir ~/utilities
@@ -44,18 +39,14 @@ git clone https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standar
 git clone https://github.com/PHPCompatibility/PHPCompatibility.git
 ```
 
-Now change directories into the WordPress-Coding-Standards repo. Then use git to checkout the latest release. You
-    can find what version is the most recent on the main
-    [projects releases](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/releases)
-    page. For me this would be v0.14.1.
+Now change directories into the WordPress-Coding-Standards repo. Then use git to checkout the latest release. You can find what version is the most recent on the main [projects releases](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/releases) page. For me this would be v0.14.1.
 
 ```bash
 cd ~/utilities/WordPress-Coding-Standards
 git checkout 0.14.1
 ```
 
-Do the same thing for PHPCompatibility. Change directories into PHPCompatibility and checkout the most recent or the
-    version your team is using. For me this would be v8.2.0.
+Do the same thing for PHPCompatibility. Change directories into PHPCompatibility and checkout the most recent or the version your team is using. For me this would be v8.2.0.
 
 ```bash
 cd ~/utilities/PHPCompatibility
@@ -64,16 +55,13 @@ git checkout 8.2.0
 
 ### Access PHPCS Globally
 
-In order to access PHPCS globally you need to add composer to your global $PATH. Add the following to your
-    `~/.bash_profile` or if you are using ZSH to your `~/.zshrc`. The $HOME variable will default
-    to your user directory similiar to when you type `cd ~`.
+In order to access PHPCS globally you need to add composer to your global $PATH. Add the following to your `~/.bash_profile` or if you are using ZSH to your `~/.zshrc`. The $HOME variable will default to your user directory similiar to when you type `cd ~`.
 
 ```bash
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 ```
 
-Now when you run `phpcs --version`, you will get the current PHPCS version output. If you don’t,
-    then look back at the instructions for the above tools to be sure they have installed successfully.
+Now when you run `phpcs --version`, you will get the current PHPCS version output. If you don’t, then look back at the instructions for the above tools to be sure they have installed successfully.
 
 ```bash
 phpcs --version
@@ -93,8 +81,7 @@ To add our WPCS and PHPCompatibility standards to this list run this command.
 phpcs --config-set installed_paths $HOME/utilities/WordPress-Coding-Standards,/$HOME/utilities/PHPCompatibility
 ```
 
-Now when you run `phpcs -i` you will see WPCS and PHPCompatibility standards listed after the original
-    standards.
+Now when you run `phpcs -i` you will see WPCS and PHPCompatibility standards listed after the original standards.
 
 ```bash
 phpcs -i
@@ -103,8 +90,7 @@ The installed coding standards are PEAR, Zend, PSR2, MySource, Squiz, PSR1, PSR1
 
 ### Setup the WordPress Theme for PHPCS
 
-At the root of your WordPress Theme or Plugin create a file called
-    `phpcs.xml` and add the following configurations. Feel free to change these to best suit your needs.
+At the root of your WordPress Theme or Plugin create a file called `phpcs.xml` and add the following configurations. Feel free to change these to best suit your needs.
 
 ```xml
 <?xml version="1.0"?>
@@ -217,9 +203,7 @@ At the root of your WordPress Theme or Plugin create a file called
 </ruleset>
 ```
 
-Now if you change directories into your WordPress theme and run
-    `phpcs --standard=phpcs.xml --colors`, PHPCS will run through the standards setup in your XML file and
-    let you know if there are any errors or warnings.
+Now if you change directories into your WordPress theme and run `phpcs --standard=phpcs.xml --colors`, PHPCS will run through the standards setup in your XML file and let you know if there are any errors or warnings.
 
 ```bash
 phpcs --standard=phpcs.xml --colors
@@ -246,8 +230,7 @@ PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 Time: 5.76 secs; Memory: 14Mb
 ```
 
-You can use PHPCBF (PHP Code Beautifier and Fixer) to automatically fix some issues. Typically these would be
-    formatting and non-breaking changes.
+You can use PHPCBF (PHP Code Beautifier and Fixer) to automatically fix some issues. Typically these would be formatting and non-breaking changes.
 
 ```bash
 phpcbf --standard=phpcs.xml --colors

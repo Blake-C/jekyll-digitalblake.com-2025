@@ -8,52 +8,33 @@ categories: ["Articles"]
 tags: ["javascript", "joomla", "knex", "node", "pandoc"]
 ---
 
-To start, this is not something I wanted to do, it was a client request that lead to this being a thing. Usually, at
-    Gray Digital Group, we use GatherContent to process changes to our clients content before integrating it into their
-    new sites. However, there was this one instance where our client wanted to edit their content from Word Docs.
+To start, this is not something I wanted to do, it was a client request that lead to this being a thing. Usually, at Gray Digital Group, we use GatherContent to process changes to our clients content before integrating it into their new sites. However, there was this one instance where our client wanted to edit their content from Word Docs.
 
-There was two ways I could go about this, go from page to page and copy the content out and past it into a Word Doc,
-    save it, and give it a reasonable name. Or take the clever approach and use a programmatic approach. I chose the
-    latter (Because I would be damned if I was going to sit for several hours copying and pasting content into Word
-    Docs).
+There was two ways I could go about this, go from page to page and copy the content out and past it into a Word Doc, save it, and give it a reasonable name. Or take the clever approach and use a programmatic approach. I chose the latter (Because I would be damned if I was going to sit for several hours copying and pasting content into Word Docs).
 
 ## Background
 
-Here was the setup, I was working with a Joomla! 2.5 site that had not been updated in ages. We did have access to
-    the database and all the server assets. There was hover 200 page items that need to be turned into Word Docs for our
-    client to edit.
+Here was the setup, I was working with a Joomla! 2.5 site that had not been updated in ages. We did have access to the database and all the server assets. There was hover 200 page items that need to be turned into Word Docs for our client to edit.
 
 ### Approach #1
 
-All the content in a Joomla! database is help in the jos_content table. My first approach was to export this table
-    to a CSV file and use a node module called
-    [csvtojson](https://www.npmjs.com/package/csvtojson) to parse through the data using node.
+All the content in a Joomla! database is help in the jos_content table. My first approach was to export this table to a CSV file and use a node module called [csvtojson](https://www.npmjs.com/package/csvtojson) to parse through the data using node.
 
-The first problem I had was the HTML had newline characters and returns, this made it difficult to parse the data in
-    a reliable manner. What I did to get around this was to do three things when exporting the data from PHPMyAdmin.
+The first problem I had was the HTML had newline characters and returns, this made it difficult to parse the data in a reliable manner. What I did to get around this was to do three things when exporting the data from PHPMyAdmin.
 
 1. Set a custom “Columns separated with” field with something I could reliably search for.
 2. Checked off Remove carriage return/line feed characters within columns
 3. Checked off Put columns names in the first row
 
-After exporting this new data I was able to use the csvtojson node module to parse the data with my custom csv
-    column delimiter. Then loop over our new json object and use [pandoc](https://pandoc.org/) to generate
-    the Word Docs.
+After exporting this new data I was able to use the csvtojson node module to parse the data with my custom csv column delimiter. Then loop over our new json object and use [pandoc](https://pandoc.org/) to generate the Word Docs.
 
-I also had to be sure that the files and images from the database were properly linked back to the site with the
-    sites full URL. I accomplished this with a regular expression that searched for missing absolute paths and prepended
-    the site URL.
+I also had to be sure that the files and images from the database were properly linked back to the site with the sites full URL. I accomplished this with a regular expression that searched for missing absolute paths and prepended the site URL.
 
 ### Approach #2
 
-Later the same day I wanted to find an easier way to accomplish getting the data from the Joomla! database. I
-    started to research how to access a MySql database from node and ran across [knex](https://knexjs.org/).
-    This tool allowed me to connect directly to the database and query the data I wanted. With this I could omit the
-    csvtojson node module as knex returned the data as a json object I could loop through.
+Later the same day I wanted to find an easier way to accomplish getting the data from the Joomla! database. I started to research how to access a MySql database from node and ran across [knex](https://knexjs.org/). This tool allowed me to connect directly to the database and query the data I wanted. With this I could omit the csvtojson node module as knex returned the data as a json object I could loop through.
 
-What took me 10 hours to research and development in the office took me about 2 hours to figure out when working on
-    this at home. There are some additional details but once to parse through the code I think they make since without
-    explanation.
+What took me 10 hours to research and development in the office took me about 2 hours to figure out when working on this at home. There are some additional details but once to parse through the code I think they make since without explanation.
 
 This is what I put together:
 
@@ -124,5 +105,4 @@ joomla_articles('jos_content')
 - Content integration is going to be a pain 🙁
 - Don’t do this if you don’t have to.
 
-Git repo that includes a WordPress example:
-    [https://github.com/Blake-C/data-converter](https://github.com/Blake-C/data-converter)
+Git repo that includes a WordPress example: [https://github.com/Blake-C/data-converter](https://github.com/Blake-C/data-converter)

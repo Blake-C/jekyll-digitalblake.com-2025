@@ -10,8 +10,7 @@ tags: ["macos", "shell-script"]
 
 ### Shell Script Function
 
-I always forget what this command is so I add this function to my
-    `~/.bash_profile` or `~/.zshrc` files to make adding more spaces to my dock easier.
+I always forget what this command is so I add this function to my `~/.bash_profile` or `~/.zshrc` files to make adding more spaces to my dock easier.
 
 ```bash
 dockSpace(){

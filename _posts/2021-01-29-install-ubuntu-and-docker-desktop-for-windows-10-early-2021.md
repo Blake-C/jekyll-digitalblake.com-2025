@@ -10,11 +10,7 @@ image: "/assets/uploads/2021/01/random-1-1200x630-facebook-share.webp"
 render_with_liquid: false
 ---
 
-This document was written to help a co-worker set up our
-    [wp-foundation-six](https://github.com/Blake-C/wp-foundation-six)
-    project setup on Windows. In the past I’ve always set this project up on macOS, but Windows has its own
-    challenges. If you just need to get Ubuntu running on Windows you only need to follow down to step 4. Everything
-    else is specific to our use case.
+This document was written to help a co-worker set up our [wp-foundation-six](https://github.com/Blake-C/wp-foundation-six) project setup on Windows. In the past I’ve always set this project up on macOS, but Windows has its own challenges. If you just need to get Ubuntu running on Windows you only need to follow down to step 4. Everything else is specific to our use case.
 
 ## 1. Install Ubuntu
 
@@ -32,9 +28,7 @@ You can download the Docker Desktop application from Docker website:
 
 ## 2. Install WSL V2
 
-The following instructions are based on
-    [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/)
-    documentation.
+The following instructions are based on [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/) documentation.
 
 In the **windows terminal** run:
 
@@ -57,8 +51,7 @@ Open docker for desktop and go to the application settings.
 
 Under “General” make sure “Use the WSL 2 based engine” is checked
 
-Then under “Resources > WSL Integration” make sure Ubuntu-20.02 is checked off for Enable integration
-    with additional distros.
+Then under “Resources > WSL Integration” make sure Ubuntu-20.02 is checked off for Enable integration with additional distros.
 
 Restart docker to make sure these settings have been applied.
 
@@ -99,8 +92,7 @@ docker container list -a
 
 ### 5.1 Installing ZSH
 
-These are optional tools to make the interface easier to use. These are my preferences; run with whatever shell you
-    prefer.
+These are optional tools to make the interface easier to use. These are my preferences; run with whatever shell you prefer.
 
 ```bash
 sudo apt install zsh # installs zsh
@@ -111,11 +103,9 @@ chsh -s $(which zsh) # makes zsh your default shell on startup
 
 ### 5.2 Installing OhMyZSH
 
-When I use zsh, I prefer to install OhMyZSH. Follow their documentation on how to
-    [install OMZ](https://ohmyz.sh/#install).
+When I use zsh, I prefer to install OhMyZSH. Follow their documentation on how to [install OMZ](https://ohmyz.sh/#install).
 
-After OMZ is installed open the `~/.zshrc` file and set the theme to: `af-magic`. See all the
-    other OMZ themes here:
+After OMZ is installed open the `~/.zshrc` file and set the theme to: `af-magic`. See all the other OMZ themes here:
 
 - https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
@@ -176,9 +166,7 @@ sudo apt install php7.4 # use php8 if you are already on it
 php -v # confirm that php is installed
 ```
 
-Use the wget script at the bottom of this page on the
-    [How do I install Composer programmatically](https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md)
-    page.
+Use the wget script at the bottom of this page on the [How do I install Composer programmatically](https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md) page.
 
 The follow the instructions on how to install composer globally on this page:
 
@@ -195,9 +183,7 @@ composer -v
 
 ## 6. Installing dh-autoreconf:
 
-wp-foundation-six uses imagemin-gifsicle which depends on gifsicle-bin which was removed from the GNU/Linux binary
-    files of gifsicle due to security vulnerabilities in version 5.0.0. That is why the binary has to be built from
-    source and why you need to install `dh-autoreconf`.
+wp-foundation-six uses imagemin-gifsicle which depends on gifsicle-bin which was removed from the GNU/Linux binary files of gifsicle due to security vulnerabilities in version 5.0.0. That is why the binary has to be built from source and why you need to install `dh-autoreconf`.
 
 Run the following command:
 
@@ -210,8 +196,7 @@ Now you should be able to run `npm install` without getting any errors.
 
 ## 7. Confirm wp-foundation-six works
 
-If you installed all the docker alias commands into your
-    `~/.zshrc` files from above; the following will work when ran in order.
+If you installed all the docker alias commands into your `~/.zshrc` files from above; the following will work when ran in order.
 
 ```bash
 take ~/repositories

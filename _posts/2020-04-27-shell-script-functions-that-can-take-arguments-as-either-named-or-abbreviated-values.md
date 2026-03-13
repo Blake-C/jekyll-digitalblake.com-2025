@@ -50,8 +50,7 @@ We get the best of both worlds for passing in values to our shell scripts.
 
 ## Example in context
 
-Here is a full example I’ve used in the past to show the above code in context of a full function. This is the
-    function I use to quickly convert word documents into pdfs through the command line.
+Here is a full example I’ve used in the past to show the above code in context of a full function. This is the function I use to quickly convert word documents into pdfs through the command line.
 
 ```bash
 doc_convert_usage() {

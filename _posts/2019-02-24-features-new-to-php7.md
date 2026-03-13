@@ -8,8 +8,7 @@ categories: ["Notes"]
 tags: ["php", "php7", "phpcs", "wordpress"]
 ---
 
-These notes are from a LinkedIn Learning Course that can be found here:
-    [https://www.linkedin.com/learning/php-7-new-features](https://www.linkedin.com/learning/php-7-new-features)
+These notes are from a LinkedIn Learning Course that can be found here: [https://www.linkedin.com/learning/php-7-new-features](https://www.linkedin.com/learning/php-7-new-features)
 
 ## Scalar Type Declarations
 

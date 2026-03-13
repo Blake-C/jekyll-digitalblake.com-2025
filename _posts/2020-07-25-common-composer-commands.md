@@ -9,9 +9,7 @@ tags: ["build-systems", "command-line", "composer", "learning", "macos", "php", 
 image: "/assets/uploads/2020/07/common-composer-commands.webp"
 ---
 
-These commands can be used globally or locally. To use locally just remove the global keyword. To learn more about
-    these commands and others that are not listed here go to the
-    [composer documentation](https://getcomposer.org/doc/03-cli.md).
+These commands can be used globally or locally. To use locally just remove the global keyword. To learn more about these commands and others that are not listed here go to the [composer documentation](https://getcomposer.org/doc/03-cli.md).
 
 ---
 
