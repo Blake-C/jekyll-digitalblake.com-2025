@@ -1,46 +1,46 @@
 {
-    "name": "jekyll-digitalblake-com-2025",
-    "version": "1.0.0",
-    "private": true,
-    "browserslist": [
-        "> 1% or last 2 versions",
-        "not dead",
-        "not IE 11"
-    ],
-    "devDependencies": {
-        "@babel/core": "^7.17.2",
-        "@babel/preset-env": "^7.16.11",
-        "@shopify/prettier-plugin-liquid": "^1.5.0",
-        "autoprefixer": "^10.4.2",
-        "babel-loader": "^8.2.3",
-        "babel-plugin-prismjs": "^2.1.0",
-        "core-js": "^3.21.0",
-        "css-loader": "^6.6.0",
-        "cssnano": "^5.0.17",
-        "cssnano-preset-advanced": "^5.1.12",
-        "postcss": "^8.4.6",
-        "postcss-cli": "^9.1.0",
-        "prettier": "^3.0.0",
-        "sass": "^1.49.7",
-        "style-loader": "^3.3.1",
-        "terser": "5.46.0",
-        "webpack": "^5.68.0",
-        "webpack-cli": "^4.9.2"
-    },
-    "dependencies": {
-        "detect-browser": "^5.3.0",
-        "foundation-sites": "^6.7.4",
-        "jump.js": "^1.0.2",
-        "micromodal": "^0.4.10",
-        "prismjs": "^1.26.0"
-    },
-    "scripts": {
-        "format": "prettier --write .",
-        "build:styles": "sass theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules --style=compressed --no-error-css --charset --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=if-function --silence-deprecation=color-functions && postcss assets/css/global-styles.min.css --replace",
-        "build:scripts": "webpack",
-        "watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules",
-        "watch:scripts": "webpack --watch",
-        "build": "npm run build:styles && npm run build:scripts && bundle exec jekyll build",
-        "dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005; wait)"
-    }
+	"name": "jekyll-digitalblake-com-2025",
+	"version": "1.0.0",
+	"private": true,
+	"browserslist": [
+		"> 1% or last 2 versions",
+		"not dead",
+		"not IE 11"
+	],
+	"devDependencies": {
+		"@babel/core": "^7.17.2",
+		"@babel/preset-env": "^7.16.11",
+		"@shopify/prettier-plugin-liquid": "^1.5.0",
+		"autoprefixer": "^10.4.2",
+		"babel-loader": "^8.2.3",
+		"babel-plugin-prismjs": "^2.1.0",
+		"core-js": "^3.21.0",
+		"css-loader": "^6.6.0",
+		"cssnano": "^5.0.17",
+		"cssnano-preset-advanced": "^5.1.12",
+		"postcss": "^8.4.6",
+		"postcss-cli": "^9.1.0",
+		"prettier": "^3.0.0",
+		"sass": "^1.49.7",
+		"style-loader": "^3.3.1",
+		"terser": "5.46.0",
+		"webpack": "^5.68.0",
+		"webpack-cli": "^4.9.2"
+	},
+	"dependencies": {
+		"detect-browser": "^5.3.0",
+		"foundation-sites": "^6.7.4",
+		"jump.js": "^1.0.2",
+		"micromodal": "^0.4.10",
+		"prismjs": "^1.26.0"
+	},
+	"scripts": {
+		"format": "prettier --write .",
+		"build:styles": "sass theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules --style=compressed --no-error-css --charset --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=if-function --silence-deprecation=color-functions && postcss assets/css/global-styles.min.css --replace",
+		"build:scripts": "webpack",
+		"watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules",
+		"watch:scripts": "webpack --watch",
+		"build": "npm run build:styles && npm run build:scripts && bundle exec jekyll build",
+		"dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005; wait)"
+	}
 }

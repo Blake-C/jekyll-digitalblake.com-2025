@@ -2,109 +2,112 @@
 layout: base
 ---
 <div class="row">
-    <main class="medium-12 small-12 columns" role="main" id="content">
-        <div class="wrapper">
-            <article
-                id="post-{{ page.slug }}"
-                class="main-content-block post type-post status-publish format-standard hentry{% if page.categories %} {% for cat in page.categories %}category-{{ cat | slugify }}{% unless forloop.last %} {% endunless %}{% endfor %}{% endif %}{% if page.tags %} {% for tag in page.tags %}tag-{{ tag | slugify }}{% unless forloop.last %} {% endunless %}{% endfor %}{% endif %}"
-            >
-                <div class="row">
-                    <div class="large-9 medium-12 small-12 columns">
-                        <header class="entry-header">
-                            <h1 class="entry-title">{{ page.title | escape }}</h1>
-                            <div class="entry-meta">
-                                <p>
-                                    {%- assign date_format = '%B %-d, %Y' -%}
-                                    {%- assign pdate = page.date | date_to_xmlschema -%}
-                                    <span class="posted-on post-meta"
-                                        >Posted:
-                                        <time class="entry-date published" datetime="{{ pdate }}">
-                                            {{- page.date | date: date_format -}}
-                                        </time></span
-                                    >
-                                    {%- if page.modified_date -%}
-                                        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-                                        <span class="updated-on post-meta"
-                                            >Updated:
-                                            <time class="updated" datetime="{{ mdate }}">
-                                                {{- page.modified_date | date: date_format -}}
-                                            </time></span
-                                        >
-                                    {%- endif -%}
-                                    {%- assign post_author_id = page.author | default: site.author.id -%}
-                                    {%- assign post_author = site.data.authors[post_author_id] -%}
-                                    {%- assign post_author_name = post_author.name | default: site.author.name -%}
-                                    <span class="byline post-meta"
-                                        >By
-                                        <span class="author vcard"
-                                            ><a class="url fn n" href="{{ '/author/' | append: post_author_id | append: '/' | relative_url }}">
-                                                {{- post_author_name -}}
-                                            </a></span
-                                        ></span
-                                    >
-                                </p>
-                            </div>
-                        </header>
-                    </div>
-                </div>
+	<main class="medium-12 small-12 columns" role="main" id="content">
+		<div class="wrapper">
+			<article
+				id="post-{{ page.slug }}"
+				class="main-content-block post type-post status-publish format-standard hentry{% if page.categories %} {% for cat in page.categories %}category-{{ cat | slugify }}{% unless forloop.last %} {% endunless %}{% endfor %}{% endif %}{% if page.tags %} {% for tag in page.tags %}tag-{{ tag | slugify }}{% unless forloop.last %} {% endunless %}{% endfor %}{% endif %}"
+			>
+				<div class="row">
+					<div class="large-9 medium-12 small-12 columns">
+						<header class="entry-header">
+							<h1 class="entry-title">{{ page.title | escape }}</h1>
+							<div class="entry-meta">
+								<p>
+									{%- assign date_format = '%B %-d, %Y' -%}
+									{%- assign pdate = page.date | date_to_xmlschema -%}
+									<span class="posted-on post-meta"
+										>Posted:
+										<time class="entry-date published" datetime="{{ pdate }}">
+											{{- page.date | date: date_format -}}
+										</time></span
+									>
+									{%- if page.modified_date -%}
+										{%- assign mdate = page.modified_date | date_to_xmlschema -%}
+										<span class="updated-on post-meta"
+											>Updated:
+											<time class="updated" datetime="{{ mdate }}">
+												{{- page.modified_date | date: date_format -}}
+											</time></span
+										>
+									{%- endif -%}
+									{%- assign post_author_id = page.author | default: site.author.id -%}
+									{%- assign post_author = site.data.authors[post_author_id] -%}
+									{%- assign post_author_name = post_author.name | default: site.author.name -%}
+									<span class="byline post-meta"
+										>By
+										<span class="author vcard"
+											><a
+												class="url fn n"
+												href="{{ '/author/' | append: post_author_id | append: '/' | relative_url }}"
+											>
+												{{- post_author_name -}}
+											</a></span
+										></span
+									>
+								</p>
+							</div>
+						</header>
+					</div>
+				</div>
 
-                <div class="row">
-                    <div class="large-9 medium-12 small-12 columns">
-                        <div class="entry-content">
-                            {{ content }}
-                        </div>
+				<div class="row">
+					<div class="large-9 medium-12 small-12 columns">
+						<div class="entry-content">
+							{{ content }}
+						</div>
 
-                        {%- if page.categories or page.tags -%}
-                            <footer class="entry-footer">
-                                {%- if page.categories -%}
-                                    <p class="cat-links">
-                                        <strong>View other</strong>
-                                        {%- for cat in page.categories %}
-                                            {%- capture cat_path -%}/category/{{ cat | slugify }}/{%- endcapture -%}
-                                            <a href="{{ cat_path | relative_url }}" rel="category tag">{{ cat }}</a>
-                                            {%- unless forloop.last %}, {% endunless %}
-                                        {%- endfor %}
-                                    </p>
-                                {%- endif -%}
-                                {%- if page.tags -%}
-                                    <p class="tags-links">
-                                        <strong>Tagged in:</strong>
-                                        {%- for tag in page.tags %}
-                                            {%- capture tag_path -%}/tag/{{ tag | slugify }}/{%- endcapture -%}
-                                            <a href="{{ tag_path | relative_url }}" rel="tag">{{ tag }}</a>
-                                            {%- unless forloop.last %} {% endunless %}
-                                        {%- endfor %}
-                                    </p>
-                                {%- endif -%}
-                            </footer>
-                        {%- endif -%}
+						{%- if page.categories or page.tags -%}
+							<footer class="entry-footer">
+								{%- if page.categories -%}
+									<p class="cat-links">
+										<strong>View other</strong>
+										{%- for cat in page.categories %}
+											{%- capture cat_path -%}/category/{{ cat | slugify }}/{%- endcapture -%}
+											<a href="{{ cat_path | relative_url }}" rel="category tag">{{ cat }}</a>
+											{%- unless forloop.last %}, {% endunless %}
+										{%- endfor %}
+									</p>
+								{%- endif -%}
+								{%- if page.tags -%}
+									<p class="tags-links">
+										<strong>Tagged in:</strong>
+										{%- for tag in page.tags %}
+											{%- capture tag_path -%}/tag/{{ tag | slugify }}/{%- endcapture -%}
+											<a href="{{ tag_path | relative_url }}" rel="tag">{{ tag }}</a>
+											{%- unless forloop.last %} {% endunless %}
+										{%- endfor %}
+									</p>
+								{%- endif -%}
+							</footer>
+						{%- endif -%}
 
-                        {%- if page.previous or page.next -%}
-                            <nav class="navigation post-navigation" aria-label="Posts">
-                                <h2 class="screen-reader-text">Post navigation</h2>
-                                <div class="nav-links">
-                                    {%- if page.previous -%}
-                                        <div class="nav-previous">
-                                            <a href="{{ page.previous.url | relative_url }}" rel="prev"
-                                                >Prev. Post: <em>{{ page.previous.title | escape }}</em></a
-                                            >
-                                        </div>
-                                    {%- endif -%}
-                                    {%- if page.next -%}
-                                        <div class="nav-next">
-                                            <a href="{{ page.next.url | relative_url }}" rel="next"
-                                                >Next Post: <em>{{ page.next.title | escape }}</em></a
-                                            >
-                                        </div>
-                                    {%- endif -%}
-                                </div>
-                            </nav>
-                        {%- endif -%}
-                    </div>
+						{%- if page.previous or page.next -%}
+							<nav class="navigation post-navigation" aria-label="Posts">
+								<h2 class="screen-reader-text">Post navigation</h2>
+								<div class="nav-links">
+									{%- if page.previous -%}
+										<div class="nav-previous">
+											<a href="{{ page.previous.url | relative_url }}" rel="prev"
+												>Prev. Post: <em>{{ page.previous.title | escape }}</em></a
+											>
+										</div>
+									{%- endif -%}
+									{%- if page.next -%}
+										<div class="nav-next">
+											<a href="{{ page.next.url | relative_url }}" rel="next"
+												>Next Post: <em>{{ page.next.title | escape }}</em></a
+											>
+										</div>
+									{%- endif -%}
+								</div>
+							</nav>
+						{%- endif -%}
+					</div>
 
-                    {%- include sidebar.html -%}
-                </div>
-            </article>
-        </div>
-    </main>
+					{%- include sidebar.html -%}
+				</div>
+			</article>
+		</div>
+	</main>
 </div>

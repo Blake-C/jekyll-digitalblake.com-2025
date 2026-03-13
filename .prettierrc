@@ -1,20 +1,18 @@
 {
-    "tabWidth": 4,
-    "useTabs": false,
-    "printWidth": 120,
-    "plugins": ["@shopify/prettier-plugin-liquid"],
-    "overrides": [
-        {
-            "files": ["*.html", "*.liquid"],
-            "options": {
-                "parser": "liquid-html"
-            }
-        },
-        {
-            "files": ["*.css", "*.scss"],
-            "options": {
-                "singleQuote": false
-            }
-        }
-    ]
+	"tabWidth": 4,
+	"useTabs": true,
+	"printWidth": 120,
+	"singleQuote": true,
+	"semi": false,
+	"arrowParens": "avoid",
+	"plugins": ["@shopify/prettier-plugin-liquid"],
+	"overrides": [
+		{
+			"files": ["*.html", "*.liquid"],
+			"options": {
+				"parser": "liquid-html",
+				"singleQuote": false
+			}
+		}
+	]
 }

@@ -1,18 +1,18 @@
 ---
 layout: post
-title: "Setting up WordPress Coding Standards (WPCS) Globally"
+title: 'Setting up WordPress Coding Standards (WPCS) Globally'
 description: "Coding a WordPress theme can be difficult when work on a team. And it's for this reason you should have a standard way to determine what quality code should look like. Learn how to setup the WordPress Coding Standard to help assist your team in writing maintainable code."
 date: 2018-08-05 20:22:58 -0500
 modified_date: 2020-10-02 21:09:55 -0500
-categories: ["Guides"]
-tags: ["composer", "homebrew", "phpcs", "wordpress", "wpcs"]
+categories: ['Guides']
+tags: ['composer', 'homebrew', 'phpcs', 'wordpress', 'wpcs']
 ---
 
 ### Install Homebrew
 
 This guide is for developers how are using a Unix like system, more specifically macOS is the system I am using.
 
-- [Follow the insuctions on the homebrew website](https://brew.sh/)
+- [Follow the instructions on the homebrew website](https://brew.sh/)
 
 ### Using Homebrew to Install Composer
 
@@ -55,7 +55,7 @@ git checkout 8.2.0
 
 ### Access PHPCS Globally
 
-In order to access PHPCS globally you need to add composer to your global $PATH. Add the following to your `~/.bash_profile` or if you are using ZSH to your `~/.zshrc`. The $HOME variable will default to your user directory similiar to when you type `cd ~`.
+In order to access PHPCS globally you need to add composer to your global $PATH. Add the following to your `~/.bash_profile` or if you are using ZSH to your `~/.zshrc`. The $HOME variable will default to your user directory similar to when you type `cd ~`.
 
 ```bash
 export PATH="$PATH:$HOME/.composer/vendor/bin"

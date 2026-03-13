@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "How to Quickly Change Node Versions Between Projects Using Nvm And Shell Scripting"
-description: "Learn how I quickly switch between node versions when working on different projects."
+title: 'How to Quickly Change Node Versions Between Projects Using Nvm And Shell Scripting'
+description: 'Learn how I quickly switch between node versions when working on different projects.'
 date: 2020-05-09 03:16:08 -0500
 modified_date: 2020-10-02 21:09:51 -0500
-categories: ["Snippets"]
-tags: ["command-line", "learning", "macos", "node", "shell-script"]
-image: "/assets/uploads/2020/05/facebook.webp"
+categories: ['Snippets']
+tags: ['command-line', 'learning', 'macos', 'node', 'shell-script']
+image: '/assets/uploads/2020/05/facebook.webp'
 ---
 
 I switch between projects that use different versions of node very often. What I typically have to do is open the package.json and find the node version then use nvm to switch to that node version. I do this often enough that I wanted to automate this process to save some time.

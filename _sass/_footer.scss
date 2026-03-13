@@ -1,24 +1,24 @@
 .main-footer {
-    &__top {
-        display: grid;
-        grid-template-columns: 4fr 8fr;
-        grid-template-areas: "services socials";
-    }
+	&__top {
+		display: grid;
+		grid-template-columns: 4fr 8fr;
+		grid-template-areas: 'services socials';
+	}
 
-    &__socials {
-        grid-area: "socials";
-    }
+	&__socials {
+		grid-area: 'socials';
+	}
 
-    &__services {
-        grid-area: "services";
-    }
+	&__services {
+		grid-area: 'services';
+	}
 
-    &__lower {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
+	&__lower {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
 
-    &__copyright {
-        text-align: right;
-    }
+	&__copyright {
+		text-align: right;
+	}
 }

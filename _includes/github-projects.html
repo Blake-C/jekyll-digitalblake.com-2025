@@ -1,24 +1,34 @@
 <section class="github" id="projects">
-    <h2 class="github__title">GitHub Projects</h2>
+	<h2 class="github__title">GitHub Projects</h2>
 
-    <div class="row small-up-1 medium-up-2 large-up-3">
-        {%- for project in site.github_projects -%}
-        <div class="column">
-            <div class="git-project">
-                <h3 class="git-project__title">{{ project.title }}</h3>
+	<div class="row small-up-1 medium-up-2 large-up-3">
+		{%- for project in site.github_projects -%}
+			<div class="column">
+				<div class="git-project">
+					<h3 class="git-project__title">{{ project.title }}</h3>
 
-                <p><strong>Description<br /></strong>{{ project.description }}</p>
+					<p>
+						<strong>Description<br></strong>{{ project.description }}
+					</p>
 
-                <p><strong>Language<br /></strong>{{ project.language }}</p>
+					<p>
+						<strong>Language<br></strong>{{ project.language }}
+					</p>
 
-                <div class="wp-block-buttons">
-                    <div class="wp-block-button">
-                        <a class="button" aria-label="View {{ project.title }}" href="{{ project.link }}"
-                            target="_blank" rel="noreferrer noopener">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {%- endfor -%}
-    </div>
+					<div class="wp-block-buttons">
+						<div class="wp-block-button">
+							<a
+								class="button"
+								aria-label="View {{ project.title }}"
+								href="{{ project.link }}"
+								target="_blank"
+								rel="noreferrer noopener"
+								>View Project</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		{%- endfor -%}
+	</div>
 </section>

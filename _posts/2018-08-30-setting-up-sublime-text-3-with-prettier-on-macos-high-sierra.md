@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Setting up Sublime Text 3 with Prettier on macOS High Sierra"
-description: "Learn how to setup Sublime Text with JsPretter and the Prettier CLI on macOS to format your code and enjoy more consistent formatting."
+title: 'Setting up Sublime Text 3 with Prettier on macOS High Sierra'
+description: 'Learn how to setup Sublime Text with JsPretter and the Prettier CLI on macOS to format your code and enjoy more consistent formatting.'
 date: 2018-08-30 23:50:53 -0500
 modified_date: 2020-10-02 21:09:54 -0500
-categories: ["Guides"]
-tags: ["javascript", "prettier", "sublime-text", "wordpress"]
-image: "/assets/uploads/2018/08/prettier-sublime-facebook.webp"
+categories: ['Guides']
+tags: ['javascript', 'prettier', 'sublime-text', 'wordpress']
+image: '/assets/uploads/2018/08/prettier-sublime-facebook.webp'
 ---
 
 > Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing
->         it with its own rules that take the maximum line length into account, wrapping code when necessary.
+> it with its own rules that take the maximum line length into account, wrapping code when necessary.
 
 I’ve fallen in love with Prettier and how I can write my code and leave the formatting up to my tooling. Here are several reason why you should use prettier.
 
@@ -26,7 +26,7 @@ Here is what this process will look like.
 
 - Install Prettier globally using NPM. This also means you need node installed
 - Install the
-        [JsPrettier](https://packagecontrol.io/packages/JsPrettier) Sublime Text package
+  [JsPrettier](https://packagecontrol.io/packages/JsPrettier) Sublime Text package
 - Configure JsPrettier Settings
 - Configure .prettierrc within your project
 
@@ -58,28 +58,25 @@ Here is what my settings file for JsPrettier looks like:
 
 ```json
 {
-    "debug": false,
-    "node_path": "/Users/your-user-directory/.nvm/versions/node/v8.9.1/bin/node",
-    "auto_format_on_save": true,
-    "prettier_cli_path": "/Users/your-user-directory/.nvm/versions/node/v8.9.1/bin/prettier",
-    "auto_format_on_save_requires_prettier_config": true,
-    "auto_format_on_save_excludes": [
-        "*/node_modules/*",
-        "*.json"
-    ],
-    "allow_inline_formatting": false,
-    "prettier_options": {
-        "arrowParens": "avoid",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": false,
-        "parser": "babylon",
-        "printWidth": 80,
-        "semi": false,
-        "tabWidth": 4,
-        "singleQuote": true,
-        "trailingComma": "es5",
-        "useTabs": true
-    },
+	"debug": false,
+	"node_path": "/Users/your-user-directory/.nvm/versions/node/v8.9.1/bin/node",
+	"auto_format_on_save": true,
+	"prettier_cli_path": "/Users/your-user-directory/.nvm/versions/node/v8.9.1/bin/prettier",
+	"auto_format_on_save_requires_prettier_config": true,
+	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json"],
+	"allow_inline_formatting": false,
+	"prettier_options": {
+		"arrowParens": "avoid",
+		"bracketSpacing": true,
+		"jsxBracketSameLine": false,
+		"parser": "babylon",
+		"printWidth": 80,
+		"semi": false,
+		"tabWidth": 4,
+		"singleQuote": true,
+		"trailingComma": "es5",
+		"useTabs": true
+	}
 }
 ```
 
@@ -101,12 +98,12 @@ Here is why the .prettierrc file in my projects looks like:
 
 ```json
 {
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "trailingComma": "es5",
-    "useTabs": true
+	"printWidth": 80,
+	"semi": false,
+	"singleQuote": true,
+	"tabWidth": 4,
+	"trailingComma": "es5",
+	"useTabs": true
 }
 ```
 
