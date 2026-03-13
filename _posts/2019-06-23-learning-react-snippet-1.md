@@ -13,8 +13,7 @@ image: "/assets/uploads/2019/06/react-screen-facebook.webp"
 
 Course: [https://scrimba.com/p/p7P5Hd](https://scrimba.com/p/p7P5Hd)  
 
-    Private Repo:
-    [https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019](https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019)  
+    Private Repo: [https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019](https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019)
 
     React Docs: [https://reactjs.org/](https://reactjs.org/)
 
