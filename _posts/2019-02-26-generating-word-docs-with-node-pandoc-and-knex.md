@@ -57,7 +57,8 @@ What took me 10 hours to research and development in the office took me about 2 
 
 This is what I put together:
 
-<pre><code class="line-numbers lang-javascript">import knex from 'knex'
+```javascript
+import knex from 'knex'
 import pandoc from 'node-pandoc'
 import fs from 'node-fs-extra'
 
@@ -115,7 +116,7 @@ function joomla_articles(table, live_domain = '/', output_dir = './_output/artic
         })
 }
 joomla_articles('jos_content')
-</code></pre>
+```
 
 ## Final Thoughts
 

@@ -25,7 +25,8 @@ In your settings add the following configurations. These settings assume that yo
     the root of you project when opened in Sublime Text. You’ll also want to tell sublime-linter-phpcs where your
     .composer/vendor/bin directory is located under the “paths” section as seen below.
 
-<pre><code class="line-numbers lang-json">{
+```json
+{
     "linters": {
         "phpcs": {
             "args": "--standard='${folder}/phpcs.xml'",
@@ -44,7 +45,7 @@ In your settings add the following configurations. These settings assume that yo
         "windows": []
     }
 }
-</code></pre>
+```
 
 When you open your project in Sublime Text you will be able to see any PHPCS errors highlighted. Optionally, you can
     open the Sublime Text console by clicking the button in the bottom left of the Sublime Text editor and clicking

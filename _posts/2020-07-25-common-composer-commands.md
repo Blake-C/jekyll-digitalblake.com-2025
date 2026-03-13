@@ -17,43 +17,52 @@ These commands can be used globally or locally. To use locally just remove the g
 
 To show installed packages:
 
-<pre><code class="line-numbers lang-bash">composer global show
-</code></pre>
+```bash
+composer global show
+```
 
 To show primary packages without dependencies:
 
-<pre><code class="line-numbers lang-bash">composer global show --self
-</code></pre>
+```bash
+composer global show --self
+```
 
 To show all packages installed regardless of dependencies:
 
-<pre><code class="line-numbers lang-bash">composer global show --all
-</code></pre>
+```bash
+composer global show --all
+```
 
 To show all outdated packages:
 
-<pre><code class="line-numbers lang-bash">composer global outdated
-</code></pre>
+```bash
+composer global outdated
+```
 
 To upgrade packages:
 
-<pre><code class="line-numbers lang-bash">composer global upgrade
-</code></pre>
+```bash
+composer global upgrade
+```
 
 To install packages
 
-<pre><code class="line-numbers lang-bash">composer global require "vendor/package"
-</code></pre>
+```bash
+composer global require "vendor/package"
+```
 
 To remove packages:
 
-<pre><code class="line-numbers lang-bash">composer global remove "vendor/package"
-</code></pre>
+```bash
+composer global remove "vendor/package"
+```
 
-<pre><code class="line-numbers lang-bash">composer global remove "vendor/*"
-</code></pre>
+```bash
+composer global remove "vendor/*"
+```
 
 To update composer:
 
-<pre><code class="line-numbers lang-bash">composer global self-update
-</code></pre>
+```bash
+composer global self-update
+```

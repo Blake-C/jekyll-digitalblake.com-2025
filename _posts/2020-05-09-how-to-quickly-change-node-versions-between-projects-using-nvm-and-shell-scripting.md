@@ -23,38 +23,43 @@ First, in the `what_node` function I use [ripgrep](https://github.com/BurntSushi
 
 Make sure line numbers and the filenames are turned off in the output to get clean results.
 
-<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename
+```bash
+> rg \"node\" 'package.json' --no-line-number --no-filename
     "node": "10.15.0"
-</code></pre>
+```
 
 Then I `awk` this over using the colon as the delimiter.
 
-<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}'
+```bash
+> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}'
  "10.15.0"
-</code></pre>
+```
 
 Now that we have our node version I clean this up with
     [translate](http://linuxcommand.org/lc3_man_pages/tr1.html) (tr) to remove the quite and any white space.
 
-<pre><code class="line-numbers lang-bash">> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'
+```bash
+> rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'
 10.15.0
-</code></pre>
+```
 
 Next is to create a function that will take our node version and switch us over to it using
     [nvm](https://github.com/nvm-sh/nvm). Because `nvm` might not have the exact version of node I
     need for this project I `awk` the node version to get the major version number and save this in a
     variable.
 
-<pre><code class="line-numbers lang-bash">> what_node | awk -F '.' '{print $1}'
+```bash
+> what_node | awk -F '.' '{print $1}'
 10
-</code></pre>
+```
 
 Finally, I use this variable as a check to see if it found anything and with use nvm to switch to that version or
     output a message telling me no node version was found.
 
 ## Put together this is what you get:
 
-<pre><code class="line-numbers lang-bash">what_node() {
+```bash
+what_node() {
     rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'
 }
 
@@ -69,14 +74,15 @@ switch_node() {
         printf "\e[m"
     fi
 }
-</code></pre>
+```
 
 Usage:
 
-<pre><code class="line-numbers lang-bash">> switch_node
+```bash
+> switch_node
 Project wants node: 10.15.0
 Now using node v10.18.1 (npm v6.13.4)
-</code></pre>
+```
 
 You would place these shell script functions in your
     `.bash_profile` or `.zshrc` files depending on what shell you are using.

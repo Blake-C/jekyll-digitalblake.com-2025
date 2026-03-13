@@ -12,7 +12,8 @@ image: "/assets/uploads/2021/08/random-1-1200x630-facebook-share-1.webp"
 
 yabairc:
 
-<pre class="wp-block-code lang-bash"><code>#!/usr/bin/env sh
+```bash
+#!/usr/bin/env sh
 
 # the scripting-addition must be loaded manually if
 # you are running yabai on macOS Big Sur. Uncomment
@@ -128,11 +129,13 @@ yabai -m config --space $(yabai -m query --displays | jq 'map(select(.index==2))
 yabai -m signal --add event=application_activated action="zsh ~/.config/yabai/application-activated.zsh"
 yabai -m signal --add event=window_created action="zsh ~/.config/yabai/window-created.zsh"
 
-echo "yabai configuration loaded.."</code></pre>
+echo "yabai configuration loaded.."
+```
 
 window-created.zsh
 
-<pre class="wp-block-code lang-bash"><code>#! /usr/bin/zsh
+```bash
+#! /usr/bin/zsh
 
 is_app() {
     echo $(yabai -m query --spaces --space \
@@ -145,11 +148,13 @@ if [[ $(is_app "Finder") == "Finder" ]]; then
     yabai -m window --focus $YABAI_WINDOW_ID \
         & yabai -m window --move abs:0:709 \
         & yabai -m window --resize abs:1500:730
-fi</code></pre>
+fi
+```
 
 application-activated.zsh
 
-<pre class="wp-block-code lang-bash"><code>#! /usr/bin/zsh
+```bash
+#! /usr/bin/zsh
 
 # When there are more than 3 windows open on the current space we stack Google
 # Chrome and Transmit along with stacking VSCode and Tower if both are open.
@@ -182,13 +187,15 @@ local TRANSMIT_ID=$(echo $WINDOWS_ARRAY | jq -r 'map(select(.app=="Transmit")) |
 
 if [[ $CHROME_ID != 'null' && $TRANSMIT_ID != 'null' ]]; then;
     yabai -m window $CHROME_ID --stack $TRANSMIT_ID
-fi</code></pre>
+fi
+```
 
 ## SKHD
 
 skhdrc:
 
-<pre class="wp-block-code lang-bash"><code># Services
+```bash
+# Services
 hyper - z : brew services restart yabai
 hyper - x : brew services restart skhd
 
@@ -275,4 +282,5 @@ hyper - left : yabai -m window --stack west
 #   | jq -re ".index" \
 #   | xargs -I{} yabai -m query --windows --space {} \
 #   | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(.focused == 1)))).id" \
-#   | xargs -I{} yabai -m window {} --insert stack</code></pre>
+#   | xargs -I{} yabai -m window {} --insert stack
+```

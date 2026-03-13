@@ -9,7 +9,8 @@ tags: ["command-line", "learning", "macos", "shell-script"]
 image: "/assets/uploads/2020/04/facebook.webp"
 ---
 
-<pre><code class="line-numbers lang-bash">while [ $# -gt 0 ]; do
+```bash
+while [ $# -gt 0 ]; do
     case "$1" in
         --from*|-f*)
             if [[ "$1" != *=* ]]; then shift; fi # Value is next arg if no `=`
@@ -34,7 +35,7 @@ image: "/assets/uploads/2020/04/facebook.webp"
     esac
     shift
 done
-</code></pre>
+```
 
 ## What does this code do?
 
@@ -52,7 +53,8 @@ We get the best of both worlds for passing in values to our shell scripts.
 Here is a full example I’ve used in the past to show the above code in context of a full function. This is the
     function I use to quickly convert word documents into pdfs through the command line.
 
-<pre><code class="line-numbers lang-bash">doc_convert_usage() {
+```bash
+doc_convert_usage() {
     echo "doc_convert -f docx -t pdf"
     echo "-f\t from\t default=docx|doc\t The file type you are wanting to convert"
     echo "-t\t to\t default=pdf\t\t The file type you are converting to"
@@ -121,4 +123,4 @@ doc_convert() {
 
     return;
 }
-</code></pre>
+```

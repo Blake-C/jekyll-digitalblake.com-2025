@@ -25,7 +25,8 @@ I also didn’t want to have to remember the command to quickly kill the desktop
 
 Add the follow script to your .bash_profile, .zshrc, or which ever default shell you are using.
 
-<pre><code class="line-numbers lang-bash">desktop(){
+```bash
+desktop(){
     vared -p "Show or hide Desktop? (show/hide): " -c SHOWHIDEDESKTOP
 
     if [[ "$SHOWHIDEDESKTOP" == "hide" ]]; then
@@ -42,7 +43,7 @@ Add the follow script to your .bash_profile, .zshrc, or which ever default shell
 
     SHOWHIDEDESKTOP=""
 }
-</code></pre>
+```
 
 One big thing you want to remember, if you choose to use this:
     **YOU WILL NOT HAVE ACCESS TO YOUR DESKTOP, AT ALL!**

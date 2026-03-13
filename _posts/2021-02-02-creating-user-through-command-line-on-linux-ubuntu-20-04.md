@@ -13,33 +13,40 @@ image: "/assets/uploads/2021/02/random-1-1200x630-facebook-share.webp"
 
 Adding new user, change USERNAME with the name you want to use.
 
-<pre class="wp-block-code lang-bash line-numbers"><code>adduser USERNAME
+```bash
+adduser USERNAME
 usermod -aG sudo USERNAME
 
 # switch to user
-su - USERNAME</code></pre>
+su - USERNAME
+```
 
 Log out and log back in as new user. Be sure to add SSH key to new users ~/.ssh if using SSH to login.
 
 Change directory user and group:
 
-<pre class="wp-block-code lang-bash line-numbers"><code># changes recursively
+```bash
+# changes recursively
 sudo chown -R username:group directory
 
 # changes only the directory
-sudo chown username:group directory</code></pre>
+sudo chown username:group directory
+```
 
 To add zsh and OMZ:
 
-<pre class="wp-block-code lang-bash line-numbers"><code>sudo apt update
+```bash
+sudo apt update
 sudo apt install zsh
-chsh -s $(which zsh)</code></pre>
+chsh -s $(which zsh)
+```
 
 Follow these instructions to install OMZ:
 
 - [https://ohmyz.sh/#install](https://ohmyz.sh/#install)
 
-<pre class="wp-block-code lang-bash line-numbers"><code>vim ~/.zshrc
+```bash
+vim ~/.zshrc
 
 # add:
 alias l="ls --color -lahGg --group-directories-first --time-style='+ %a. %b %d %Y - %r '"
@@ -49,4 +56,5 @@ alias ll="ls --color -lah --group-directories-first"
 sudo apt install coreutils
 
 # load in zshrc changes
-source ~/.zshrc</code></pre>
+source ~/.zshrc
+```

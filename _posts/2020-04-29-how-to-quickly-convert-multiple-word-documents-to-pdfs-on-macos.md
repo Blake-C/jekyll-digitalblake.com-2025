@@ -42,7 +42,8 @@ The way we can go about this is to specify an output file format then the input 
 - Then we say what we are converting to with `--convert-to pdf`
 - And finally give it the name of our file
 
-<pre><code class="line-numbers lang-bash">cd ~/Desktop/convert
+```bash
+cd ~/Desktop/convert
 
 ls -lagh
 total 28K
@@ -52,7 +53,7 @@ drwx------+ 7 224  Wed. Apr 29 2020 - 04:32:56 AM  ..
 
 /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf mywordoc.docx
 convert /Users/bcerecero/Desktop/convert/mywordoc.docx -> /Users/bcerecero/Desktop/convert/mywordoc.pdf using filter : writer_pdf_Export
-</code></pre>
+```
 
 It will then convert the document from docx to pdf without losing formatting or images.
 
@@ -67,17 +68,19 @@ To do this for multiple files we are going to use another command line applicati
 
 If you run this command by itself it’ll look as follows:
 
-<pre><code class="line-numbers lang-bash">find -E . -type f -iregex ".*\.(doc|docx)$"
+```bash
+find -E . -type f -iregex ".*\.(doc|docx)$"
 ./mywordoc.docx
-</code></pre>
+```
 
 Now that we captured all of our Word documents we will use finds
     `-exec` option to pass the found files into soffice:
 
-<pre><code class="line-numbers lang-bash">find -E . -type f -iregex '.*\.(doc|docx)$' -exec /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf '{}' \+
+```bash
+find -E . -type f -iregex '.*\.(doc|docx)$' -exec /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf '{}' \+
 
 convert /Users/bcerecero/Desktop/convert/mywordoc.docx -> /Users/bcerecero/Desktop/convert/mywordoc.pdf using filter : writer_pdf_Export
-</code></pre>
+```
 
 - We use find to get all doc or docx files
 - Pass them into soffice using finds `-exec` option
@@ -91,16 +94,18 @@ When the command is executed it will show each file that was converted. One thin
 Also, note that I ended the command with `\;` rather than `\+` so that we could add the
     `--outdir` option after the `'{}'`.
 
-<pre><code class="line-numbers lang-bash">find -E . -type f -iregex '.*\.(doc|docx)$' -exec /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf '{}' --outdir './converted-files' \;
+```bash
+find -E . -type f -iregex '.*\.(doc|docx)$' -exec /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf '{}' --outdir './converted-files' \;
 
 convert /Users/bcerecero/Desktop/convert/mywordoc2.docx -> /Users/bcerecero/Desktop/convert/converted-files/mywordoc2.pdf using filter : writer_pdf_Export
 convert /Users/bcerecero/Desktop/convert/mywordoc.docx -> /Users/bcerecero/Desktop/convert/converted-files/mywordoc.pdf using filter : writer_pdf_Export
-</code></pre>
+```
 
 One more option for passing the output of find into soffice is to pipe it into xargs like so:
 
-<pre><code class="line-numbers lang-bash">find -E . -type f -iregex '.*\.(doc|docx)$' | xargs -I{} /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf {} --outdir ./converted-documents
-</code></pre>
+```bash
+find -E . -type f -iregex '.*\.(doc|docx)$' | xargs -I{} /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf {} --outdir ./converted-documents
+```
 
 ## Making soffice easier to use
 

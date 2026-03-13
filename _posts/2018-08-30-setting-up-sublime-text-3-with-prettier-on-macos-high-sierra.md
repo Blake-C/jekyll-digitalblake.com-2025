@@ -69,7 +69,8 @@ Now it’s time to configure JsPrettier. To do this goto
 
 Here is what my settings file for JsPrettier looks like:
 
-<pre><code class="line-numbers lang-json">{
+```json
+{
     "debug": false,
     "node_path": "/Users/your-user-directory/.nvm/versions/node/v8.9.1/bin/node",
     "auto_format_on_save": true,
@@ -93,7 +94,7 @@ Here is what my settings file for JsPrettier looks like:
         "useTabs": true
     },
 }
-</code></pre>
+```
 
 The first thing that should standout are the `node_path` and `prettier_cli_path` settings. If
     you installed Node without using nvm I don’t think you will need these settings, but if you run into the issue
@@ -124,7 +125,8 @@ What we have done so far is set global setting within Sublime Text. Not super us
 
 Here is why the .prettierrc file in my projects looks like:
 
-<pre><code class="line-numbers lang-json">{
+```json
+{
     "printWidth": 80,
     "semi": false,
     "singleQuote": true,
@@ -132,7 +134,7 @@ Here is why the .prettierrc file in my projects looks like:
     "trailingComma": "es5",
     "useTabs": true
 }
-</code></pre>
+```
 
 The project that I use can be found at
     [https://github.com/Blake-C/wp-foundation-six](https://github.com/Blake-C/wp-foundation-six). The
@@ -144,11 +146,12 @@ If there are files and directories you want Prettier to ignore you can add a .pr
 
 Here is what my .prettierignore file looks like:
 
-<pre><code class="line-numbers lang-json">*.json
+```json
+*.json
 *.yml
 node_modules
 assets
-</code></pre>
+```
 
 I don’t like having Prettier touch my JSON and YAML files so I have those ignored entirely.
 
