@@ -1,7 +1,21 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+# Dependencies
+/node_modules
+/vendor
+
+# Jekyll build output
+_site/
+_build/
+
+# Compiled assets and temporary files
+assets/
+tmp/
+
+# Node/NPM cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS and Editor files
 .DS_Store
-node_modules
+.vscode/
+*.swp
