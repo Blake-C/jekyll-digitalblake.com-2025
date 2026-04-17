@@ -3,10 +3,40 @@
 	font-display: swap;
 	font-family: Montserrat;
 	font-style: normal;
+	font-weight: 900;
+	src:
+		url('../fonts/montserrat-black-webfont.woff2') format('woff2'),
+		url('../fonts/montserrat-black-webfont.woff') format('woff');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 800;
+	src:
+		url('../fonts/montserrat-extrabold-webfont.woff2') format('woff2'),
+		url('../fonts/montserrat-extrabold-webfont.woff') format('woff');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: Montserrat;
+	font-style: normal;
 	font-weight: 700;
 	src:
 		url('../fonts/montserrat-bold-webfont.woff2') format('woff2'),
 		url('../fonts/montserrat-bold-webfont.woff') format('woff');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 500;
+	src:
+		url('../fonts/montserrat-medium-webfont.woff2') format('woff2'),
+		url('../fonts/montserrat-medium-webfont.woff') format('woff');
 }
 
 @font-face {

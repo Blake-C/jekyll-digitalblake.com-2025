@@ -1,112 +1,53 @@
 .intro {
-	background-image: url('../images/pattern-1.svg');
-	border-bottom: 3px solid $blue;
-	padding: 100px 0;
+	@extend %cover;
+
+	background-image: url('../images/header-background.svg');
+	color: $white;
+	line-height: 26px;
+	padding: 230px 0;
 
 	.title {
+		font-size: rem-calc(64);
+		font-weight: 800;
+		line-height: 0;
+		text-transform: capitalize;
+	}
+
+	.line-1 {
+		margin: 0;
+		font-size: rem-calc(32);
 		line-height: 1;
-		text-align: center;
-		text-transform: uppercase;
+	}
 
-		span {
-			display: block;
-		}
+	.line-2 {
+		font-size: rem-calc(16);
+		margin: 15px 0;
+	}
 
-		.line-1 {
-			font-size: rem-calc(23);
-		}
-
-		.line-2 {
-			font-size: rem-calc(15);
-			margin: 15px 0;
-		}
-
-		.line-3 {
-			font-size: rem-calc(56);
-		}
+	.line-3 {
+		font-weight: 500;
+		margin-top: 64px;
 	}
 
 	p {
-		font-size: rem-calc(12);
-		font-weight: 700;
-		text-align: center;
-		text-transform: uppercase;
+		font-size: rem-calc(18);
+		font-weight: 800;
 	}
 
 	@include breakpoint(small only) {
 		.title {
-			.line-1 {
-				font-size: rem-calc(20);
-			}
-
-			.line-2 {
-				font-size: rem-calc(14);
-			}
-
-			.line-3 {
-				font-size: rem-calc(40);
-			}
 		}
-	}
-}
 
-.profile-image {
-	border: 5px solid $blue;
-	border-radius: 100%;
-	display: block;
-	margin: 0 auto;
-	overflow: hidden;
-	position: relative;
-	z-index: 5;
+		.line-1 {
+			font-size: rem-calc(20);
+		}
 
-	@include breakpoint(small only) {
-		max-width: 220px;
-	}
-}
+		.line-2 {
+			font-size: rem-calc(14);
+		}
 
-.profile-name {
-	margin: -25px auto 0;
-	position: relative;
-	width: 210px;
-
-	p {
-		background-color: $blue;
-		color: $white;
-		font-size: rem-calc(14);
-		font-weight: 700;
-		line-height: 1;
-		margin: 0;
-		padding: 10px;
-		position: relative;
-		z-index: 10;
-	}
-
-	&::before,
-	&::after {
-		background-image: $sprite;
-		background-repeat: no-repeat;
-		content: '';
-		display: block;
-		height: 36px;
-		position: absolute;
-		width: 82px;
-		z-index: 0;
-	}
-
-	&::before {
-		background-position: -230px -153px;
-		left: -50px;
-		top: -14px;
-	}
-
-	&::after {
-		background-position: -229px -109px;
-		right: -50px;
-		top: -14px;
-	}
-
-	@include breakpoint(small only) {
-		margin-bottom: 30px;
-		width: 190px;
+		.line-3 {
+			font-size: rem-calc(40);
+		}
 	}
 }
