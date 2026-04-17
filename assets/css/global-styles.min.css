@@ -1174,15 +1174,16 @@ footer.main .copyright {
 .github {
   background-color: rgb(25, 25, 54);
   background-image: url("../images/projects-background.webp");
-  border-bottom: 3px solid rgb(27, 22, 43);
   padding: 60px 0 90px;
 }
 .github__title {
+  color: #fefefe;
+  font-size: 1.875rem;
+  font-weight: 900;
+  letter-spacing: 4.8px;
   margin-bottom: 70px;
   text-align: center;
-  color: #fefefe;
   text-transform: uppercase;
-  font-size: 1.875rem;
 }
 @media screen and (min-width: 64em) {
   .github__title {
@@ -1387,13 +1388,13 @@ body {
     padding: clamp(150px, 8vw, 230px) 0 clamp(90px, 8vw, 230px);
   }
   .intro .title {
-    font-size: 2.875rem;
+    font-size: 2.25rem;
   }
   .intro .line-1 {
     font-size: 1.5rem;
   }
   .intro .line-2 {
-    font-size: 1.25rem;
+    font-size: 0.875rem;
   }
   .intro .line-3 {
     font-size: 1rem;
@@ -1997,6 +1998,7 @@ textarea {
 .sites-gallery__title {
   font-size: 1.875rem;
   font-weight: 900;
+  letter-spacing: 4.8px;
   margin-bottom: 70px;
   text-align: center;
   text-transform: uppercase;

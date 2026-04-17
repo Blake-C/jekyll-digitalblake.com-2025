@@ -3,15 +3,16 @@
 
 	background-color: $primary;
 	background-image: url('../images/projects-background.webp');
-	border-bottom: 3px solid $blue;
 	padding: 60px 0 90px;
 
 	&__title {
+		color: $white;
+		font-size: rem-calc(30px);
+		font-weight: 900;
+		letter-spacing: 4.8px;
 		margin-bottom: 70px;
 		text-align: center;
-		color: $white;
 		text-transform: uppercase;
-		font-size: rem-calc(30px);
 
 		@include breakpoint(large down) {
 			font-size: rem-calc(40px);
