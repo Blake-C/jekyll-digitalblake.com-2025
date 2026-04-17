@@ -61,7 +61,7 @@
 	http://thesassway.com/intermediate/understanding-placeholder-selectors
 	http://www.sitepoint.com/sass-mixin-placeholder/
  */
-.intro {
+.intro, .github {
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1051,6 +1051,7 @@ footer.main .copyright {
 
 .github {
   background-color: rgb(25, 25, 54);
+  background-image: url("../images/projects-background.webp");
   border-bottom: 3px solid rgb(27, 22, 43);
   padding: 60px 0 90px;
 }
@@ -1058,24 +1059,24 @@ footer.main .copyright {
   margin-bottom: 70px;
   text-align: center;
   color: #fefefe;
+  text-transform: uppercase;
+  font-size: 1.875rem;
 }
-.github__title::before {
-  background-image: url("../images/sprites.svg?v2");
-  background-position: -180px -2px;
-  content: "";
-  display: inline-block;
-  height: 56px;
-  margin-right: 10px;
-  margin-top: -5px;
-  vertical-align: middle;
-  width: 67px;
+@media screen and (min-width: 64em) {
+  .github__title {
+    font-size: 2.5rem;
+  }
 }
 .github .columns {
   display: flex;
 }
 
 .git-project {
-  background: linear-gradient(45deg, rgb(27, 22, 43), rgb(46, 42, 105));
+  backdrop-filter: blur(11px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 48px 18px -36px rgba(0, 0, 0, 0.18);
   color: #fefefe;
   margin-bottom: 30px;
   padding: 30px 20px 80px;
@@ -1083,30 +1084,33 @@ footer.main .copyright {
   width: 100%;
 }
 .git-project__title {
-  font-size: 1.625rem;
+  font-size: 1.1875rem;
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
 }
 .git-project strong, .git-project__subheading {
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   line-height: 1;
+  text-transform: uppercase;
   margin-bottom: 5px;
   margin-top: 40px;
-  text-transform: uppercase;
 }
 .git-project__description {
   font-size: 0.9375rem;
   margin-top: 0;
 }
-.git-project .button {
+.git-project__link {
   bottom: 30px;
   margin-top: 20px;
   position: absolute;
+  color: #fefefe;
+  font-size: 1.1875rem;
+  font-weight: 900;
 }
 @media screen and (max-width: 47.4375em) {
-  .git-project__title {
-    font-size: 1.4375rem;
+  .git-project strong, .git-project__link, .git-project__title {
+    font-size: 1rem;
   }
 }
 

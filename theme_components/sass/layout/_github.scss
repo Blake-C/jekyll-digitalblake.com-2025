@@ -1,5 +1,8 @@
 .github {
+	@extend %cover;
+
 	background-color: $primary;
+	background-image: url('../images/projects-background.webp');
 	border-bottom: 3px solid $blue;
 	padding: 60px 0 90px;
 
@@ -7,17 +10,11 @@
 		margin-bottom: 70px;
 		text-align: center;
 		color: $white;
+		text-transform: uppercase;
+		font-size: rem-calc(30px);
 
-		&::before {
-			background-image: $sprite;
-			background-position: -180px -2px;
-			content: '';
-			display: inline-block;
-			height: 56px;
-			margin-right: 10px;
-			margin-top: -5px;
-			vertical-align: middle;
-			width: 67px;
+		@include breakpoint(large down) {
+			font-size: rem-calc(40px);
 		}
 	}
 
@@ -27,7 +24,11 @@
 }
 
 .git-project {
-	background: linear-gradient(45deg, $blue, $blue-end);
+	backdrop-filter: blur(11px);
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	box-shadow: 0 48px 18px -36px rgba(0, 0, 0, 0.18);
 	color: $white;
 	margin-bottom: 30px;
 	padding: 30px 20px 80px;
@@ -35,7 +36,7 @@
 	width: 100%;
 
 	&__title {
-		font-size: rem-calc(26);
+		font-size: rem-calc(19);
 		line-height: 1;
 		margin: 0;
 		text-transform: uppercase;
@@ -43,11 +44,11 @@
 
 	strong,
 	&__subheading {
-		font-size: rem-calc(18);
+		font-size: rem-calc(19);
 		line-height: 1;
+		text-transform: uppercase;
 		margin-bottom: 5px;
 		margin-top: 40px;
-		text-transform: uppercase;
 	}
 
 	&__description {
@@ -55,15 +56,21 @@
 		margin-top: 0;
 	}
 
-	.button {
+	&__link {
 		bottom: 30px;
 		margin-top: 20px;
 		position: absolute;
+		color: $white;
+		font-size: rem-calc(19);
+		// font-family: Montserrat;
+		font-weight: 900;
 	}
 
 	@include breakpoint(small only) {
+		strong,
+		&__link,
 		&__title {
-			font-size: rem-calc(23);
+			font-size: rem-calc(16);
 		}
 	}
 }
