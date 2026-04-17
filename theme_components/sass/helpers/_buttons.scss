@@ -1,0 +1,48 @@
+@use 'sass:color';
+
+/*
+ * Minimal button mixin.
+ *
+ * Replaces Foundation's `button` mixin for the single remaining call site
+ * (the WordPress comment .submit button). Output matches Foundation's
+ * previous compiled CSS.
+ */
+
+@mixin button($background: $blue, $color: $white, $font-size: 0.9rem, $padding: 0.85em 1em) {
+	-webkit-appearance: none;
+	background-color: $background;
+	border: 1px solid transparent;
+	border-radius: $global-radius;
+	color: $color;
+	cursor: pointer;
+	display: inline-block;
+	font-family: inherit;
+	font-size: $font-size;
+	line-height: 1;
+	margin: 0 0 $global-margin;
+	outline: 0;
+	padding: $padding;
+	text-align: center;
+	transition:
+		background-color 0.25s ease-out,
+		color 0.25s ease-out;
+	vertical-align: middle;
+
+	&:hover,
+	&:focus {
+		background-color: color.scale($background, $lightness: -15%);
+		color: $color;
+	}
+
+	&.disabled,
+	&[disabled] {
+		background-color: $background;
+		color: $color;
+
+		&:focus,
+		&:hover {
+			background-color: $background;
+			color: $color;
+		}
+	}
+}
