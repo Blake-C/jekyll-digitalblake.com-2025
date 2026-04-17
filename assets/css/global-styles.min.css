@@ -1949,7 +1949,7 @@ textarea {
 .sites-gallery {
   background-image: url("../images/websites-background.webp");
   margin-bottom: -40px;
-  padding: 60px 0 90px;
+  padding: 60px 0 150px;
 }
 .sites-gallery__glass-background {
   backdrop-filter: blur(11px);
