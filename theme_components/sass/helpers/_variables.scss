@@ -1,4 +1,10 @@
 /* Colors */
+$white: #fefefe;
+$black: #0a0a0a;
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
+
 $accent-blue: rgb(0 114 188);
 $gray244: rgb(244 244 244);
 $yellow: rgb(252 255 138);
@@ -17,3 +23,25 @@ $sprite: url('../images/sprites.svg?v2');
 
 /* Fonts */
 $montserrat: 'Montserrat', sans-serif;
+$body-font-family: $montserrat;
+$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
+
+/* Globals */
+$body-background: $white;
+$body-font-color: $black;
+$global-font-size: 100%;
+$global-lineheight: 1.8;
+$global-weight-normal: normal;
+$global-weight-bold: bold;
+$global-margin: 1rem;
+$global-padding: 1rem;
+$global-radius: 0;
+$global-width: 72.5rem; /* 1160px at 16px base */
+
+/* Code */
+$code-color: $black;
+$code-font-family: $font-family-monospace;
+$code-font-weight: $global-weight-normal;
+$code-background: $light-gray;
+$code-border: 1px solid $medium-gray;
+$code-padding: 0.125rem 0.3125rem 0.0625rem; /* rem-calc(2 5 1) */
