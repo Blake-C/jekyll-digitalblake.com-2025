@@ -1,11 +1,14 @@
 footer {
 	&.main {
-		background-color: $blue;
+		background:
+			url('../images/footer-background.svg') bottom right no-repeat,
+			linear-gradient(to top, rgb(42, 42, 80), rgb(25, 25, 50));
 		color: $white;
-		padding: 40px 0;
+		padding: 60px 0;
 		width: 100%;
 
 		h2 {
+			color: $accent-4;
 			font-size: rem-calc(15);
 			font-weight: 700;
 			margin-bottom: 5px;
@@ -22,34 +25,6 @@ footer {
 		a {
 			color: $white;
 			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-
-			&[href*='twitter'] {
-				&::before {
-					background-position: -35px -83px;
-				}
-			}
-
-			&[href*='linkedin'] {
-				&::before {
-					background-position: -35px -5px;
-				}
-			}
-
-			&[href*='git'] {
-				&::before {
-					background-position: -35px -31px;
-				}
-			}
-
-			&[href*='codepen'] {
-				&::before {
-					background-position: -35px -57px;
-				}
-			}
 		}
 
 		ul {
@@ -74,41 +49,21 @@ footer {
 			max-width: 100%;
 		}
 
-		.connect {
-			a {
-				&::before {
-					background-image: $sprite;
-					content: '';
-					display: inline-block;
-					height: 19px;
-					margin-right: 8px;
-					margin-top: -5px;
-					vertical-align: middle;
-					width: 21px;
-				}
-			}
-		}
-
-		.freelance {
-			margin-top: 30px;
-
-			a {
-				&::after {
-					background-image: $sprite;
-					background-position: -6px -128px;
-					content: '';
-					display: inline-block;
-					height: 19px;
-					margin-left: 8px;
-					margin-top: -5px;
-					vertical-align: middle;
-					width: 21px;
-				}
-			}
-		}
-
 		.copyright {
 			text-align: right;
+		}
+	}
+
+	.sub-footer {
+		color: $accent-4;
+		padding-top: rem-calc(65);
+	}
+
+	@include breakpoint(large down) {
+		&.main {
+			background:
+				url('../images/footer-background.svg') bottom center no-repeat,
+				linear-gradient(to top, rgb(42, 42, 80), rgb(25, 25, 50));
 		}
 	}
 

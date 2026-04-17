@@ -1072,12 +1072,13 @@ fieldset {
 }
 
 footer.main {
-  background-color: rgb(27, 22, 43);
+  background: url("../images/footer-background.svg") bottom right no-repeat, linear-gradient(to top, rgb(42, 42, 80), rgb(25, 25, 50));
   color: #fefefe;
-  padding: 40px 0;
+  padding: 60px 0;
   width: 100%;
 }
 footer.main h2 {
+  color: rgb(211, 212, 255);
   font-size: 0.9375rem;
   font-weight: 700;
   margin-bottom: 5px;
@@ -1092,21 +1093,6 @@ footer.main p {
 footer.main a {
   color: #fefefe;
   text-decoration: none;
-}
-footer.main a:hover {
-  text-decoration: underline;
-}
-footer.main a[href*=twitter]::before {
-  background-position: -35px -83px;
-}
-footer.main a[href*=linkedin]::before {
-  background-position: -35px -5px;
-}
-footer.main a[href*=git]::before {
-  background-position: -35px -31px;
-}
-footer.main a[href*=codepen]::before {
-  background-position: -35px -57px;
 }
 footer.main ul {
   font-size: 0.8125rem;
@@ -1126,32 +1112,17 @@ footer.main hr {
   margin: 20px 0;
   max-width: 100%;
 }
-footer.main .connect a::before {
-  background-image: url("../images/sprites.svg?v2");
-  content: "";
-  display: inline-block;
-  height: 19px;
-  margin-right: 8px;
-  margin-top: -5px;
-  vertical-align: middle;
-  width: 21px;
-}
-footer.main .freelance {
-  margin-top: 30px;
-}
-footer.main .freelance a::after {
-  background-image: url("../images/sprites.svg?v2");
-  background-position: -6px -128px;
-  content: "";
-  display: inline-block;
-  height: 19px;
-  margin-left: 8px;
-  margin-top: -5px;
-  vertical-align: middle;
-  width: 21px;
-}
 footer.main .copyright {
   text-align: right;
+}
+footer .sub-footer {
+  color: rgb(211, 212, 255);
+  padding-top: 4.0625rem;
+}
+@media screen and (min-width: 64em) {
+  footer.main {
+    background: url("../images/footer-background.svg") bottom center no-repeat, linear-gradient(to top, rgb(42, 42, 80), rgb(25, 25, 50));
+  }
 }
 @media screen and (min-width: 47.5em) {
   footer.main .connect {
