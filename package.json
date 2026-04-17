@@ -30,16 +30,15 @@
 	},
 	"dependencies": {
 		"detect-browser": "^5.3.0",
-		"foundation-sites": "^6.7.4",
 		"jump.js": "^1.0.2",
 		"micromodal": "^0.4.10",
 		"prismjs": "^1.26.0"
 	},
 	"scripts": {
 		"format": "prettier --write .",
-		"build:styles": "sass theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules --style=compressed --no-error-css --charset --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=if-function --silence-deprecation=color-functions && postcss assets/css/global-styles.min.css --replace",
+		"build:styles": "sass theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --style=compressed --no-error-css --charset && postcss assets/css/global-styles.min.css --replace",
 		"build:scripts": "webpack",
-		"watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css --load-path=node_modules",
+		"watch:styles": "sass --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css",
 		"watch:scripts": "webpack --watch",
 		"build": "npm run build:styles && npm run build:scripts && bundle exec jekyll build",
 		"dev": "npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005; wait)",
