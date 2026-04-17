@@ -1,0 +1,183 @@
+/*
+ * Base / global styles.
+ *
+ * Replaces the subset of Foundation's normalize + foundation-global-styles
+ * + foundation-forms + foundation-visibility-classes that the project
+ * actually relies on.
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: $global-font-size;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	background: $body-background;
+	color: $body-font-color;
+	font-family: $body-font-family;
+	font-weight: $global-weight-normal;
+	line-height: $global-lineheight;
+	margin: 0;
+	padding: 0;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+img {
+	display: inline-block;
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+a {
+	background-color: transparent;
+}
+
+hr {
+	box-sizing: content-box;
+	height: 0;
+	overflow: visible;
+}
+
+pre {
+	font-family: $font-family-monospace;
+	font-size: 1em;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+	font-family: $font-family-monospace;
+	font-size: 1em;
+}
+
+small {
+	font-size: 80%;
+}
+
+/* Form elements — normalize + Foundation-form baseline used by the project */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+}
+
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	cursor: auto;
+	line-height: 1;
+	overflow: visible;
+	padding: 0;
+	text-transform: none;
+}
+
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+[type='color'],
+[type='date'],
+[type='datetime-local'],
+[type='datetime'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='time'],
+[type='url'],
+[type='week'],
+textarea {
+	background-color: $white;
+	border: 1px solid $medium-gray;
+	border-radius: 0;
+	box-shadow: inset 0 1px 2px rgba($black, 0.1);
+	box-sizing: border-box;
+	color: $black;
+	display: block;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: $global-weight-normal;
+	height: 2.7375rem;
+	line-height: $global-lineheight;
+	margin: 0 0 $global-margin;
+	padding: 0.5rem;
+	transition:
+		box-shadow 0.5s,
+		border-color 0.25s ease-in-out;
+	width: 100%;
+
+	&:focus {
+		background-color: $white;
+		border: 1px solid $dark-gray;
+		box-shadow: 0 0 5px $medium-gray;
+		outline: none;
+	}
+}
+
+textarea {
+	height: auto;
+	max-width: 100%;
+	min-height: 50px;
+	overflow: auto;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-color: $white;
+	border: 1px solid $medium-gray;
+	border-radius: 0;
+	box-sizing: border-box;
+	color: $black;
+	font-family: inherit;
+	font-size: 1rem;
+	height: 2.7375rem;
+	line-height: $global-lineheight;
+	margin: 0 0 $global-margin;
+	padding: 0.5rem;
+	width: 100%;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Screen reader only. */
+.show-for-sr {
+	@include element-invisible;
+}
