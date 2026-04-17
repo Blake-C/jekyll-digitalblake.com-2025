@@ -61,7 +61,7 @@
 	http://thesassway.com/intermediate/understanding-placeholder-selectors
 	http://www.sitepoint.com/sass-mixin-placeholder/
  */
-.intro, .github {
+.sites-gallery, .intro, .github {
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -284,6 +284,7 @@ fieldset {
  *   .row                                  — flex container, centered, max-width
  *   .columns                              — flex item with responsive gutter
  *   .small-N / .medium-N / .large-N       — explicit width (N = 1–12)
+ *   .small-offset-N / .medium-offset-N / .large-offset-N — left margin (N = 0–11)
  *   .small-up-N / .medium-up-N / .large-up-N — block grid, N items per row (1–8)
  */
 /* 20px */
@@ -380,6 +381,55 @@ fieldset {
 .small-12 {
   flex: 0 0 100%;
   max-width: 100%;
+}
+
+/* Column offsets — small (always) */
+.small-offset-0 {
+  margin-left: 0%;
+}
+
+.small-offset-1 {
+  margin-left: 8.3333333333%;
+}
+
+.small-offset-2 {
+  margin-left: 16.6666666667%;
+}
+
+.small-offset-3 {
+  margin-left: 25%;
+}
+
+.small-offset-4 {
+  margin-left: 33.3333333333%;
+}
+
+.small-offset-5 {
+  margin-left: 41.6666666667%;
+}
+
+.small-offset-6 {
+  margin-left: 50%;
+}
+
+.small-offset-7 {
+  margin-left: 58.3333333333%;
+}
+
+.small-offset-8 {
+  margin-left: 66.6666666667%;
+}
+
+.small-offset-9 {
+  margin-left: 75%;
+}
+
+.small-offset-10 {
+  margin-left: 83.3333333333%;
+}
+
+.small-offset-11 {
+  margin-left: 91.6666666667%;
 }
 
 /* Block grid — small (always) */
@@ -504,6 +554,42 @@ fieldset {
     flex: 0 0 100%;
     max-width: 100%;
   }
+  .medium-offset-0 {
+    margin-left: 0%;
+  }
+  .medium-offset-1 {
+    margin-left: 8.3333333333%;
+  }
+  .medium-offset-2 {
+    margin-left: 16.6666666667%;
+  }
+  .medium-offset-3 {
+    margin-left: 25%;
+  }
+  .medium-offset-4 {
+    margin-left: 33.3333333333%;
+  }
+  .medium-offset-5 {
+    margin-left: 41.6666666667%;
+  }
+  .medium-offset-6 {
+    margin-left: 50%;
+  }
+  .medium-offset-7 {
+    margin-left: 58.3333333333%;
+  }
+  .medium-offset-8 {
+    margin-left: 66.6666666667%;
+  }
+  .medium-offset-9 {
+    margin-left: 75%;
+  }
+  .medium-offset-10 {
+    margin-left: 83.3333333333%;
+  }
+  .medium-offset-11 {
+    margin-left: 91.6666666667%;
+  }
   .medium-up-1 {
     flex-wrap: wrap;
   }
@@ -617,6 +703,42 @@ fieldset {
   .large-12 {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+  .large-offset-0 {
+    margin-left: 0%;
+  }
+  .large-offset-1 {
+    margin-left: 8.3333333333%;
+  }
+  .large-offset-2 {
+    margin-left: 16.6666666667%;
+  }
+  .large-offset-3 {
+    margin-left: 25%;
+  }
+  .large-offset-4 {
+    margin-left: 33.3333333333%;
+  }
+  .large-offset-5 {
+    margin-left: 41.6666666667%;
+  }
+  .large-offset-6 {
+    margin-left: 50%;
+  }
+  .large-offset-7 {
+    margin-left: 58.3333333333%;
+  }
+  .large-offset-8 {
+    margin-left: 66.6666666667%;
+  }
+  .large-offset-9 {
+    margin-left: 75%;
+  }
+  .large-offset-10 {
+    margin-left: 83.3333333333%;
+  }
+  .large-offset-11 {
+    margin-left: 91.6666666667%;
   }
   .large-up-1 {
     flex-wrap: wrap;
@@ -1853,24 +1975,36 @@ textarea {
 }
 
 .sites-gallery {
-  background-image: url("../images/pattern-1.svg");
+  background-image: url("../images/websites-background.webp");
   margin-bottom: -40px;
   padding: 60px 0 90px;
 }
+.sites-gallery__glass-background {
+  backdrop-filter: blur(11px);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 48px 18px -36px rgba(0, 0, 0, 0.18);
+  margin: 0 1rem 0;
+  padding: 2.5rem 1rem 0;
+}
+@media screen and (min-width: 47.5em) {
+  .sites-gallery__glass-background {
+    padding: 2.5rem 0 0;
+    margin: 0;
+  }
+}
 .sites-gallery__title {
+  font-size: 1.875rem;
+  font-weight: 900;
   margin-bottom: 70px;
   text-align: center;
+  text-transform: uppercase;
 }
-.sites-gallery__title::before {
-  background-image: url("../images/sprites.svg?v2");
-  background-position: -107px 0;
-  content: "";
-  display: inline-block;
-  height: 63px;
-  margin-right: 10px;
-  margin-top: -5px;
-  vertical-align: middle;
-  width: 67px;
+@media screen and (min-width: 64em) {
+  .sites-gallery__title {
+    font-size: 2.5rem;
+  }
 }
 .sites-gallery__button {
   cursor: pointer;
@@ -1880,7 +2014,8 @@ textarea {
   justify-content: flex-end;
 }
 .sites-gallery__image {
-  border: 1px solid rgb(222, 222, 222);
+  border-radius: 10px;
+  border: 5px solid #fefefe;
   margin-bottom: 40px;
   width: auto;
 }

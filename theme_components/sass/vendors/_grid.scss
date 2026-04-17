@@ -7,6 +7,7 @@
  *   .row                                  — flex container, centered, max-width
  *   .columns                              — flex item with responsive gutter
  *   .small-N / .medium-N / .large-N       — explicit width (N = 1–12)
+ *   .small-offset-N / .medium-offset-N / .large-offset-N — left margin (N = 0–11)
  *   .small-up-N / .medium-up-N / .large-up-N — block grid, N items per row (1–8)
  */
 
@@ -51,6 +52,10 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	max-width: $w;
 }
 
+@mixin -column-offset($n) {
+	margin-left: math.div(100%, $grid-columns) * $n;
+}
+
 @mixin -block-grid($n) {
 	flex-wrap: wrap;
 
@@ -69,6 +74,13 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	}
 }
 
+/* Column offsets — small (always) */
+@for $i from 0 through $grid-columns - 1 {
+	.small-offset-#{$i} {
+		@include -column-offset($i);
+	}
+}
+
 /* Block grid — small (always) */
 @for $i from 1 through 8 {
 	.small-up-#{$i} {
@@ -83,6 +95,12 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 		}
 	}
 
+	@for $i from 0 through $grid-columns - 1 {
+		.medium-offset-#{$i} {
+			@include -column-offset($i);
+		}
+	}
+
 	@for $i from 1 through 8 {
 		.medium-up-#{$i} {
 			@include -block-grid($i);
@@ -94,6 +112,12 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	@for $i from 1 through $grid-columns {
 		.large-#{$i} {
 			@include -column-width($i);
+		}
+	}
+
+	@for $i from 0 through $grid-columns - 1 {
+		.large-offset-#{$i} {
+			@include -column-offset($i);
 		}
 	}
 
