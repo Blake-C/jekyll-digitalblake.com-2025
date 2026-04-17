@@ -14,6 +14,8 @@ link: https://www.sa-lsa.org/
 link_text: View Live Site
 ---
 
-Organizing legal volunteers to help our local community, San Antonio Legal Services Association (SALSA) needed an easy to use platform that would allow them to create custom landing pages to share training resources with legal volunteers. To this end we chose WordPress as the go to content management system with much flexibility and easy to use blocks that would allow SALSA to quickly build out landing pages.
+San Antonio Legal Services Association (SALSA) organizes pro bono legal volunteers across the city, and they needed a platform that could both push training resources to volunteers and route them to available cases; without staff maintaining the same data in two admin systems.
 
-Alongside sharing volunteer resources we integrated two APIs. Volunteer Hub is a service where legal volunteers could search for new pro bono opportunities and we are using PHP to authenticate the API to generate a list of the three upcoming clinics and events. Then we are using WP All Import to pull in data from the Legal Server API where available cases are being integrated into a custom post type with custom filtering. This allows legal volunteers to easily sign up for or show their interest in helping those in need.
+I chose WordPress for the content layer so SALSA staff could build training landing pages themselves using familiar blocks, and put the engineering effort into the integration layer underneath. I wrote PHP to authenticate against the Volunteer Hub API and pull the three upcoming pro bono clinics and events onto the site automatically, so the homepage is always current without anyone touching it. On the case side, I used WP All Import to sync the Legal Server API into a custom post type, which turned available cases into filterable listings volunteers can browse and sign up for directly.
+
+The net effect: Legal Server stays the single source of truth for case data, staff never re-enter it, and volunteers find both their training and their next case in one place.

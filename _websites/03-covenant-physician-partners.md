@@ -16,4 +16,8 @@ link: https://web.archive.org/web/20200902015029/https://covenantphysicianpartne
 link_text: View Archived Site
 ---
 
-Empowering Physicians to live out their mission, Covenant Physician Partners is built on the WordPress content management system using our advanced development theme. Custom programming using ES6, Babel, and Webpack allows us to program to the latest standard then transpile our code for multiple browsers for interactive SVG maps for searching and filtering physician practice locations. Utilizing Advanced Custom Fields we created custom Gutenberg Blocks that can be used to filter out data from the custom post types for practice location and physician data.
+Covenant Physician Partners is a national network of physician-led practices, and the primary task for visitors is finding a nearby location. The existing directory was a flat text list which my team rebuilt as an interactive SVG map of the United States.
+
+I wrote the front-end in modern ES6 and ran it through Babel and Webpack so I could use current syntax while still supporting the browser matrix Covenant's audience actually uses. Clicking a state on the SVG filters the practice list to that region in real time, and both practices and physicians are modeled as custom post types so the marketing team can add, edit, and relate them without touching code. On top of that, I built custom Gutenberg blocks with Advanced Custom Fields that let editors drop filtered practice or physician lists into any landing page from the block inserter.
+
+The result is a location search that works on a phone or a desktop and a content workflow where the internal team can publish new practices and physicians end-to-end on their own.

@@ -16,4 +16,8 @@ link: http://touchpoint.health/
 link_text: View Live Site
 ---
 
-This WordPress website hosts Podcasts being pulled in from Podbean. Initially starting out with a single podcast, it has expanded to more than 5 shows. Some of the primary features of this site is the use of custom post types to organize shows with detail pages for the shows connected to listing pages for the podcasts. Very little work has to be done to create a new show and start loading it up with episodes then relate hosts, social streams, and ads.
+Touch Point Media launched with a single healthcare podcast and a clear intention to grow into a multi-show network. I built the site so that growth would be a content task, not an engineering task.
+
+I modeled shows, episodes, hosts, ads, and social streams as related custom post types in WordPress and wired episode ingestion to Podbean so new episodes appear on the site automatically, with no manual entry. Each new show gets its own landing page and episode archive the moment it's added, and hosts, ads, and social accounts are related in by reference so nothing is duplicated across shows.
+
+The network has since scaled from one show to more than fifteen on the same architecture, with no custom code added per show — exactly the ratio of engineering-to-content effort I was aiming for.
