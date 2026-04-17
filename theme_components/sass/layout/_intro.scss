@@ -1,15 +1,43 @@
 .intro {
 	@extend %cover;
 
-	background-image: url('../images/header-background.svg');
+	background-image: url('../images/header-background.webp');
 	color: $white;
 	line-height: 26px;
-	padding: 230px 0;
+	padding: clamp(150px, 8vw, 230px) 0;
+	position: relative;
+
+	&:before {
+		background-color: rgba(255, 255, 255, 0.12);
+		backdrop-filter: blur(10px);
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+		box-shadow: 1px 0 1px rgba(195, 227, 254, 0.37);
+		transition: left 0.3s;
+
+		@include breakpoint(large down) {
+			left: -50%;
+		}
+	}
+
+	> .row {
+		position: relative;
+		z-index: 20;
+	}
 
 	.title {
-		font-size: rem-calc(64);
+		font-size: rem-calc(60);
 		font-weight: 800;
-		line-height: 0;
+		line-height: 1;
+		margin-bottom: rem-calc(16);
 		text-transform: capitalize;
 	}
 
@@ -21,7 +49,7 @@
 
 	.line-2 {
 		font-size: rem-calc(16);
-		margin: 15px 0;
+		margin: rem-calc(16) 0;
 	}
 
 	.line-3 {
@@ -35,19 +63,23 @@
 	}
 
 	@include breakpoint(small only) {
+		padding: clamp(150px, 8vw, 230px) 0 clamp(90px, 8vw, 230px);
+
 		.title {
+			font-size: rem-calc(46);
 		}
 
 		.line-1 {
-			font-size: rem-calc(20);
+			font-size: rem-calc(24);
 		}
 
 		.line-2 {
-			font-size: rem-calc(14);
+			font-size: rem-calc(20);
 		}
 
 		.line-3 {
-			font-size: rem-calc(40);
+			font-size: rem-calc(16);
+			margin-top: rem-calc(36);
 		}
 	}
 }

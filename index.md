@@ -8,7 +8,7 @@ description: 'I Am A Front-end Web Developer - Blake Cerecero'
 
 <section class="intro" role="main">
     <div class="row">
-        <div class="medium-6 small-12 columns">
+        <div class="large-6 medium-12 small-12 columns">
             <div>
                 <h1 class="title">Blake Cerecero</h1>
                 <p class="line-1">Senior Web Developer</p>

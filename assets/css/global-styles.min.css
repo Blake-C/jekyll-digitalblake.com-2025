@@ -1200,15 +1200,42 @@ body {
 }
 
 .intro {
-  background-image: url("../images/header-background.svg");
+  background-image: url("../images/header-background.webp");
   color: #fefefe;
   line-height: 26px;
-  padding: 230px 0;
+  padding: clamp(150px, 8vw, 230px) 0;
+  position: relative;
+}
+.intro:before {
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  box-shadow: 1px 0 1px rgba(195, 227, 254, 0.37);
+  transition: left 0.3s;
+}
+@media screen and (min-width: 64em) {
+  .intro:before {
+    left: -50%;
+  }
+}
+.intro > .row {
+  position: relative;
+  z-index: 20;
 }
 .intro .title {
-  font-size: 4rem;
+  font-size: 3.75rem;
   font-weight: 800;
-  line-height: 0;
+  line-height: 1;
+  margin-bottom: 1rem;
   text-transform: capitalize;
 }
 .intro .line-1 {
@@ -1218,7 +1245,7 @@ body {
 }
 .intro .line-2 {
   font-size: 1rem;
-  margin: 15px 0;
+  margin: 1rem 0;
 }
 .intro .line-3 {
   font-weight: 500;
@@ -1229,14 +1256,21 @@ body {
   font-weight: 800;
 }
 @media screen and (max-width: 47.4375em) {
+  .intro {
+    padding: clamp(150px, 8vw, 230px) 0 clamp(90px, 8vw, 230px);
+  }
+  .intro .title {
+    font-size: 2.875rem;
+  }
   .intro .line-1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
   .intro .line-2 {
-    font-size: 0.875rem;
+    font-size: 1.25rem;
   }
   .intro .line-3 {
-    font-size: 2.5rem;
+    font-size: 1rem;
+    margin-top: 2.25rem;
   }
 }
 
