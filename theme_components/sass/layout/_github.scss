@@ -1,11 +1,12 @@
 .github {
-	background-color: $yellow;
+	background-color: $primary;
 	border-bottom: 3px solid $blue;
 	padding: 60px 0 90px;
 
 	&__title {
 		margin-bottom: 70px;
 		text-align: center;
+		color: $white;
 
 		&::before {
 			background-image: $sprite;

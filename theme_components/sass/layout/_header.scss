@@ -7,7 +7,7 @@ body {
 }
 
 .top-header {
-	background-color: $yellow;
+	background-color: $primary;
 	border-bottom: 3px solid $blue;
 	padding: 50px 0;
 	position: fixed;
@@ -68,7 +68,7 @@ body {
 }
 
 .name {
-	color: $black;
+	color: $white;
 	display: inline-block;
 	font-size: rem-calc(27);
 	font-weight: 700;

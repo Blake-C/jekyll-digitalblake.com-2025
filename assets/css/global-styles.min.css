@@ -1050,13 +1050,14 @@ footer.main .copyright {
 }
 
 .github {
-  background-color: rgb(252, 255, 138);
+  background-color: rgb(25, 25, 54);
   border-bottom: 3px solid rgb(27, 22, 43);
   padding: 60px 0 90px;
 }
 .github__title {
   margin-bottom: 70px;
   text-align: center;
+  color: #fefefe;
 }
 .github__title::before {
   background-image: url("../images/sprites.svg?v2");
@@ -1123,7 +1124,7 @@ body {
 }
 
 .top-header {
-  background-color: rgb(252, 255, 138);
+  background-color: rgb(25, 25, 54);
   border-bottom: 3px solid rgb(27, 22, 43);
   padding: 50px 0;
   position: fixed;
@@ -1174,7 +1175,7 @@ body {
 }
 
 .name {
-  color: #0a0a0a;
+  color: #fefefe;
   display: inline-block;
   font-size: 1.6875rem;
   font-weight: 700;
@@ -1314,7 +1315,7 @@ body {
   }
 }
 .main-menu a {
-  color: rgb(27, 22, 43);
+  color: #fefefe;
   display: inline-block;
   font-size: 0.9375rem;
   font-weight: 700;
