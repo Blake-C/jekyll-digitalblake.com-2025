@@ -4,7 +4,8 @@
 	"private": true,
 	"sideEffects": [
 		"*.css",
-		"*.scss"
+		"*.scss",
+		"./theme_components/js/modules/*.js"
 	],
 	"browserslist": [
 		"defaults and supports es6-module",
