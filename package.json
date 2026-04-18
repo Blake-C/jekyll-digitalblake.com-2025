@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"browserslist": [
-		"> 1% or last 2 versions",
+		"defaults and supports es6-module",
 		"not dead",
 		"not IE 11"
 	],
