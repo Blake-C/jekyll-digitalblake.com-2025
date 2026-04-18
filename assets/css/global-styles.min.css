@@ -1335,7 +1335,7 @@ body {
   position: relative;
 }
 .intro:before {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(10px);
   bottom: 0;
   content: "";
@@ -1348,10 +1348,11 @@ body {
   width: 100%;
   z-index: 0;
   box-shadow: 1px 0 1px rgba(195, 227, 254, 0.37);
-  transition: left 0.3s;
+  transition: left 0.3s, background-color 0.3s;
 }
 @media screen and (min-width: 64em) {
   .intro:before {
+    background-color: rgba(255, 255, 255, 0.12);
     left: -50%;
   }
 }
