@@ -4,6 +4,7 @@ _site/
 # Minified assets
 assets/js/
 assets/css/*.min.css
+_includes/*.min.css
 
 # Ruby files (not supported by Prettier)
 Gemfile
