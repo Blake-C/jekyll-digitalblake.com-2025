@@ -91,6 +91,10 @@ theme_components/
   sass/         # SCSS source files
 ```
 
+## Security notes
+
+`_websites/*.md` body content is rendered as raw HTML inside the homepage gallery modal (see [`_includes/sites-gallery.html`](_includes/sites-gallery.html)). The collection is treated as trusted, first-party content. Do **not** accept outside contributions to `_websites/` without first sanitizing or escaping the body — a malicious entry would execute as inline HTML/JS on every page that embeds the gallery.
+
 ## Syntax Highlighting
 
 Rouge (Jekyll's default) is disabled. [Prism.js](https://prismjs.com/) handles syntax highlighting and line numbers, loaded via webpack with the following plugins: `line-numbers`, `autolinker`, `show-language`, `normalize-whitespace`, `copy-to-clipboard`.

@@ -70,6 +70,12 @@
 
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
+	<meta name="referrer" content="strict-origin-when-cross-origin">
+	<meta
+		http-equiv="Content-Security-Policy"
+		content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+	>
+
 	<!-- Page Title & SEO -->
 	{%- if page.title -%}
 		<title>
