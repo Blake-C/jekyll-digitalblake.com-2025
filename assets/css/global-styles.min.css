@@ -1457,7 +1457,7 @@ body {
   transition: all 0.3s;
 }
 .main-menu a:hover, .main-menu a:focus {
-  color: rgb(180.4, 5.1298578199, 0);
+  color: rgb(224.4, 217.36, 0);
   text-decoration: none;
 }
 @media screen and (max-width: 47.4375em) {
