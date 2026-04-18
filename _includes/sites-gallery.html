@@ -11,21 +11,22 @@
 								{%- assign modal_id = 'modal-' | append: forloop.index -%}
 
 								<div class="large-4 medium-6 small-12 columns">
-									<a
+									<button
+										type="button"
 										data-micromodal-trigger="{{ modal_id }}"
 										class="sites-gallery__button js_sites-gallery__button"
-										href=""
+										aria-label="View details for {{ site_item.title | escape }}"
 									>
 										<img
 											loading="lazy"
 											width="600"
 											height="400"
 											class="sites-gallery__image wp-post-image"
-											alt=""
+											alt="Screenshot of {{ site_item.title | escape }}"
 											decoding="async"
 											src="{{ site_item.thumbnail | relative_url }}"
 										>
-									</a>
+									</button>
 								</div>
 							{%- endfor -%}
 						</div>

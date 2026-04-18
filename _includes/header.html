@@ -1,8 +1,14 @@
 <header class="top-header" id="top_header">
 	<div class="row">
 		<div class="large-4 medium-5 small-12 columns logo-name">
-			<a href="{{ '/' | relative_url }}" title="">
-				<svg class="main-logo" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+			<a href="{{ '/' | relative_url }}">
+				<svg
+					class="main-logo"
+					aria-hidden="true"
+					focusable="false"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 50 50"
+				>
 					<defs>
 					  <style>
 					    .cls-1 { fill: #fff; }
@@ -15,8 +21,7 @@
 				<p class="name">DigitalBlake</p>
 			</a>
 		</div>
-		<nav class="large-8 medium-7 small-12 columns">
-			<p class="show-for-sr">Main Navigation</p>
+		<nav class="large-8 medium-7 small-12 columns" aria-label="Main">
 			{% include nav-items.html %}
 		</nav>
 	</div>

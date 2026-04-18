@@ -1,14 +1,12 @@
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
-<!-- [if gt IE 8]><! -->
 <html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
-	<!-- <![endif] -->
-
 	{%- include head.html -%}
 
-	<body class="{{ page.body_class | default: 'wp-theme-wp-foundation-six' }}">
+	<body
+		{% if page.body_class %}
+			class="{{ page.body_class }}"
+		{% endif %}
+	>
 		<a class="skip-link show-for-sr" href="#content">Skip to content</a>
 
 		{%- include header.html -%}
