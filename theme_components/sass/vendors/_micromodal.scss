@@ -7,7 +7,7 @@
 .modal {
 	&__title {
 		font-size: 1.75rem;
-		margin: breakpoints.rem-calc(28);
+		margin: breakpoints.rem-calc(28 28 28 0);
 
 		@include breakpoints.breakpoint(small only) {
 			font-size: breakpoints.rem-calc(16);
@@ -62,7 +62,7 @@
 .modal__content {
 	color: rgba(0, 0, 0, 0.8);
 	line-height: 1.5;
-	text-align: center;
+	// text-align: center;
 
 	img {
 		border: 1px solid variables.$gray222;
