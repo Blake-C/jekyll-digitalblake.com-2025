@@ -8,6 +8,7 @@ _build/
 
 # Compiled assets and temporary files
 tmp/
+_includes/*.min.css.map
 
 # Node/NPM cache
 npm-debug.log*
