@@ -1,2 +1,1 @@
-prettier --write .
-git add -u
+npx lint-staged
