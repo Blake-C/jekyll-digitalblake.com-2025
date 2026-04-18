@@ -23,8 +23,6 @@
 		"core-js": "^3.21.0",
 		"css-loader": "^6.6.0",
 		"css-minimizer-webpack-plugin": "8.0.0",
-		"cssnano": "^5.0.17",
-		"cssnano-preset-advanced": "^5.1.12",
 		"eslint": "10.2.1",
 		"eslint-config-prettier": "10.1.8",
 		"globals": "17.5.0",
@@ -63,7 +61,7 @@
 		"*.{js,mjs}": [
 			"eslint --fix"
 		],
-		"*.{css,scss}": [
+		"theme_components/sass/**/*.scss": [
 			"stylelint --fix"
 		],
 		"*": [
