@@ -135,11 +135,12 @@
 	{%- endif -%}
 	<meta name="twitter:creator" content="@{{ site.twitter_username }}">
 	<meta name="twitter:site" content="@{{ site.twitter_username }}">
+	{%- assign default_author = site.data.authors[site.author.id] -%}
 	{%- if page.layout == 'post' -%}
 		<meta name="twitter:label1" content="Written by">
-		<meta name="twitter:data1" content="{{ site.author.name }}">
+		<meta name="twitter:data1" content="{{ default_author.name }}">
 	{%- endif -%}
-	<meta name="author" content="{{ site.author.name }}">
+	<meta name="author" content="{{ default_author.name }}">
 
 	<!-- Stylesheets -->
 	<style>

@@ -9,7 +9,6 @@ twitter_username: BlakeCerecero
 github_username: Blake-C
 author:
     id: digitalblake
-    name: Blake Cerecero
     twitter: BlakeCerecero
 
 permalink: /:year/:month/:day/:title/

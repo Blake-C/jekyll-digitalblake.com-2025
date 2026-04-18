@@ -33,7 +33,7 @@ layout: base
 									{%- endif -%}
 									{%- assign post_author_id = page.author | default: site.author.id -%}
 									{%- assign post_author = site.data.authors[post_author_id] -%}
-									{%- assign post_author_name = post_author.name | default: site.author.name -%}
+									{%- assign post_author_name = post_author.name -%}
 									<span class="byline post-meta"
 										>By
 										<span class="author vcard"
