@@ -1,4 +1,6 @@
 const path = require('path')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
@@ -8,8 +10,8 @@ module.exports = {
 		prism: './theme_components/js/prism-scripts.js',
 	},
 	output: {
-		path: path.resolve(__dirname, 'assets/js'),
-		filename: '[name].min.js',
+		path: path.resolve(__dirname, 'assets'),
+		filename: 'js/[name].min.js',
 	},
 	optimization: {
 		minimizer: [
@@ -25,8 +27,14 @@ module.exports = {
 				},
 				extractComments: false,
 			}),
+			new CssMinimizerPlugin(),
 		],
 	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].min.css',
+		}),
+	],
 	module: {
 		rules: [
 			{
@@ -79,7 +87,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 		],
 	},

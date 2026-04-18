@@ -159,6 +159,22 @@
 			media="all"
 		>
 	</noscript>
+	{%- if page.layout == 'post' -%}
+		<link
+			rel="preload"
+			as="style"
+			href="{{ '/assets/css/prism.min.css' | relative_url }}"
+			onload="this.onload=null;this.rel='stylesheet'"
+		>
+		<noscript>
+			<link
+				rel="stylesheet"
+				href="{{ '/assets/css/prism.min.css' | relative_url }}"
+				type="text/css"
+				media="all"
+			>
+		</noscript>
+	{%- endif -%}
 
 	<!-- Feed -->
 	{%- feed_meta -%}
