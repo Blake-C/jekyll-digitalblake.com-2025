@@ -50,6 +50,9 @@ jobs:
               env:
                   JEKYLL_ENV: production
 
+            - name: Validate HTML with html-proofer
+              run: bundle exec htmlproofer ./_site --disable-external --swap-urls "^/jekyll-digitalblake.com-2025:" --ignore-empty-alt --ignore-empty-mailto
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
               with:
