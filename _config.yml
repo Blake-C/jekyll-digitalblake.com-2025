@@ -10,6 +10,7 @@ author:
     id: digitalblake
 
 permalink: /:year/:month/:day/:title/
+timezone: America/Chicago
 
 # Build settings
 highlighter: none
