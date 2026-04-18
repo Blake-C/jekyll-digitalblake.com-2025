@@ -26,14 +26,23 @@ $breakpoints: (
 		@if $value == 0 {
 			$result: list.append($result, 0);
 		} @else if meta.type-of($value) == 'number' {
-			$px: if(math.is-unitless($value), $value * 1px, strip-unit($value) * 1px);
+			$px: $value * 1px;
+
+			@if not math.is-unitless($value) {
+				$px: strip-unit($value) * 1px;
+			}
+
 			$result: list.append($result, math.div($px, $base) * 1rem);
 		} @else {
 			$result: list.append($result, $value);
 		}
 	}
 
-	@return if(list.length($result) == 1, list.nth($result, 1), $result);
+	@if list.length($result) == 1 {
+		@return list.nth($result, 1);
+	}
+
+	@return $result;
 }
 
 @function -bp-to-em($value) {
@@ -46,7 +55,12 @@ $breakpoints: (
 
 @mixin breakpoint($value) {
 	$bp: list.nth($value, 1);
-	$modifier: if(list.length($value) > 1, list.nth($value, 2), null);
+	$modifier: null;
+
+	@if list.length($value) > 1 {
+		$modifier: list.nth($value, 2);
+	}
+
 	$min: map.get($breakpoints, $bp);
 
 	@if $modifier == 'only' {
