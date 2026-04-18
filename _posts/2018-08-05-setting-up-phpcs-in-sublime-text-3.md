@@ -9,7 +9,7 @@ tags: ['php', 'phpcs', 'sublime-text']
 image: '/assets/uploads/2018/08/output-sublimelinter.webp'
 ---
 
-Install the [sublime-linter](https://packagecontrol.io/packages/SublimeLinter) plugin and the [sublime-linter-phpcs](https://packagecontrol.io/packages/SublimeLinter-phpcs) plugin through the Sublime Text package manager. This article assumes that you have already installed PHPCS globally on your machine, if not, follow the instructions on the [PHPCS github page](https://github.com/squizlabs/PHP_CodeSniffer). Or checkout my article on [Setting up WordPress Coding Standards (WPCS) Globally](/articles/setting-up-wordpress-coding-standards-wpcs/).
+Install the [sublime-linter](https://packagecontrol.io/packages/SublimeLinter) plugin and the [sublime-linter-phpcs](https://packagecontrol.io/packages/SublimeLinter-phpcs) plugin through the Sublime Text package manager. This article assumes that you have already installed PHPCS globally on your machine, if not, follow the instructions on the [PHPCS github page](https://github.com/squizlabs/PHP_CodeSniffer). Or checkout my article on [Setting up WordPress Coding Standards (WPCS) Globally](/2018/08/05/setting-up-wordpress-coding-standards-wpcs/).
 
 Once both plugins are installed go to Sublime Text > Preferences > Package Settings > SublimeLinter > Settings. These instructions are assuming you’re running macOS.
 

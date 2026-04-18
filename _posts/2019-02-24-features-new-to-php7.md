@@ -205,8 +205,8 @@ When watch1 before watch2 ascending order.
 
 When watch1 after watch2 descending order.
 
-- [usort docs](http://php.net/manual/en/function.usort.php)
-- [Comparison Operators](http://php.net/manual/en/language.operators.comparison.php)
+- [usort docs](https://php.net/manual/en/function.usort.php)
+- [Comparison Operators](https://php.net/manual/en/language.operators.comparison.php)
 
 ## Null Coalescing Operator
 

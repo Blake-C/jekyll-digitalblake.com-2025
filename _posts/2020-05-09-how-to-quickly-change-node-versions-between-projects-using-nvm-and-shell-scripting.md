@@ -31,7 +31,7 @@ Then I `awk` this over using the colon as the delimiter.
  "10.15.0"
 ```
 
-Now that we have our node version I clean this up with [translate](http://linuxcommand.org/lc3_man_pages/tr1.html) (tr) to remove the quite and any white space.
+Now that we have our node version I clean this up with [translate](https://linuxcommand.org/lc3_man_pages/tr1.html) (tr) to remove the quite and any white space.
 
 ```bash
 > rg \"node\" 'package.json' --no-line-number --no-filename | awk -F ':' '{print $2}' | tr -dc '0-9.\n'

@@ -208,7 +208,7 @@ wp-init
 exit
 ```
 
-When wp-init is done you can exit general-cli and go to []()
+When wp-init is done you can exit general-cli.
 
 When done run the follow to bring down wp-foundation-six:
 

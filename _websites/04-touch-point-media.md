@@ -12,7 +12,7 @@ team:
       role: Designer
     - name: Blake Cerecero
       role: Developer
-link: http://touchpoint.health/
+link: https://touchpoint.health/
 link_text: View Live Site
 ---
 
