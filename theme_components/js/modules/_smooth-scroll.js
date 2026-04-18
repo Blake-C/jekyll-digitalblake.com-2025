@@ -1,51 +1,37 @@
 /**
- * Smooth Scroll
- *
- * @link https://www.sitepoint.com/smooth-scrolling-vanilla-javascript/
+ * Smooth scroll to in-page anchors and move focus for keyboard users.
  */
-import jump from 'jump.js'
 
-let duration = 400
+document.body.addEventListener('click', event => {
+	const link = event.target.closest('a[href]')
 
-let pageUrl = location.hash ? stripHash(location.href) : location.href
-delegatedLinkHijacking()
-
-function delegatedLinkHijacking() {
-	document.body.addEventListener('click', onClick, false)
-
-	function onClick(event) {
-		if (!isInPageLink(event.target)) return
-
-		event.stopPropagation()
-		event.preventDefault()
-
-		jump(event.target.hash, {
-			duration: duration,
-			callback: function () {
-				setFocus(event.target.hash)
-			},
-		})
+	if (!link || !isInPageLink(link)) {
+		return
 	}
-}
 
-function isInPageLink(n) {
-	return n.tagName.toLowerCase() === 'a' && n.hash.length > 0 && stripHash(n.href) === pageUrl
-}
+	const target = document.getElementById(decodeURIComponent(link.hash.substring(1)))
 
-function stripHash(url) {
-	return url.slice(0, url.lastIndexOf('#'))
-}
-
-// Adapted from:
-// https://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/
-function setFocus(hash) {
-	var element = document.getElementById(hash.substring(1))
-
-	if (element) {
-		if (!/^(?:a|select|input|button|textarea)$/i.test(element.tagName)) {
-			element.tabIndex = -1
-		}
-
-		element.focus()
+	if (!target) {
+		return
 	}
+
+	event.preventDefault()
+	target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+	setFocus(target)
+})
+
+function isInPageLink(node) {
+	if (!node.hash || node.hash.length < 2) {
+		return false
+	}
+
+	return node.origin === location.origin && node.pathname === location.pathname
+}
+
+function setFocus(element) {
+	if (!/^(?:a|select|input|button|textarea)$/i.test(element.tagName)) {
+		element.tabIndex = -1
+	}
+
+	element.focus({ preventScroll: true })
 }

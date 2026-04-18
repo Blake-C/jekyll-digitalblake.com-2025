@@ -2,10 +2,13 @@ const path = require('path')
 
 module.exports = {
 	mode: 'production',
-	entry: './theme_components/js/global-scripts.js',
+	entry: {
+		main: './theme_components/js/global-scripts.js',
+		prism: './theme_components/js/prism-scripts.js',
+	},
 	output: {
 		path: path.resolve(__dirname, 'assets/js'),
-		filename: 'main.min.js',
+		filename: '[name].min.js',
 	},
 	module: {
 		rules: [

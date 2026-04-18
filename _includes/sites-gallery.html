@@ -39,58 +39,60 @@
 
 {%- for site_item in site.websites -%}
 	{%- assign modal_id = 'modal-' | append: forloop.index -%}
-	<div class="modal micromodal-slide" id="{{ modal_id }}" aria-hidden="true">
-		<div class="modal__overlay" tabindex="-1" data-micromodal-close>
-			<div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title">
-				<div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title">
-					<header>
-						<h4 class="modal__title" id="{{ modal_id }}-title">{{ site_item.title }}</h4>
+	<template id="{{ modal_id }}-template">
+		<div class="modal micromodal-slide" id="{{ modal_id }}" aria-hidden="true">
+			<div class="modal__overlay" tabindex="-1" data-micromodal-close>
+				<div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title">
+					<div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title">
+						<header>
+							<h4 class="modal__title" id="{{ modal_id }}-title">{{ site_item.title }}</h4>
 
-						<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-					</header>
+							<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+						</header>
 
-					<div id="{{ modal_id }}-content">
-						{{ site_item.content }}
+						<div id="{{ modal_id }}-content">
+							{{ site_item.content }}
 
-						{%- if site_item.agency -%}
-							<p class="has-text-align-center">
-								<strong>Worked on while at<br></strong>{{ site_item.agency }}
-							</p>
-						{%- endif -%}
+							{%- if site_item.agency -%}
+								<p class="has-text-align-center">
+									<strong>Worked on while at<br></strong>{{ site_item.agency }}
+								</p>
+							{%- endif -%}
 
-						{%- if site_item.team -%}
-							<p class="has-text-align-center">
-								<strong>Team</strong><br>
-								{%- for member in site_item.team -%}
-									{{ member.name }} ({{ member.role }})
-									{%- unless forloop.last -%}<br>{%- endunless -%}
-								{%- endfor -%}
-							</p>
-						{%- endif -%}
+							{%- if site_item.team -%}
+								<p class="has-text-align-center">
+									<strong>Team</strong><br>
+									{%- for member in site_item.team -%}
+										{{ member.name }} ({{ member.role }})
+										{%- unless forloop.last -%}<br>{%- endunless -%}
+									{%- endfor -%}
+								</p>
+							{%- endif -%}
 
-						<div class="wp-block-buttons is-content-justification-center">
-							<div class="wp-block-button">
-								<a
-									class="button primary"
-									href="{{ site_item.link }}"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									{{- site_item.link_text -}}
-								</a>
+							<div class="wp-block-buttons is-content-justification-center">
+								<div class="wp-block-button">
+									<a
+										class="button primary"
+										href="{{ site_item.link }}"
+										target="_blank"
+										rel="noreferrer noopener"
+									>
+										{{- site_item.link_text -}}
+									</a>
+								</div>
 							</div>
-						</div>
 
-						<img
-							loading="lazy"
-							class="attachment-full size-full wp-post-image"
-							alt=""
-							decoding="async"
-							src="{{ site_item.image | relative_url }}"
-						>
+							<img
+								loading="lazy"
+								class="attachment-full size-full wp-post-image"
+								alt=""
+								decoding="async"
+								data-src="{{ site_item.image | relative_url }}"
+							>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</template>
 {%- endfor -%}
