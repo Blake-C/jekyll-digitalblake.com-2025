@@ -1,13 +1,13 @@
 @charset 'UTF-8';
 
-@import 'helpers/variables';
-@import 'helpers/breakpoints';
-@import 'helpers/fonts';
-@import 'helpers/mixins';
-@import 'helpers/functions';
-@import 'helpers/helpers';
-@import 'partials/base';
-@import 'vendors/grid';
-@import 'layout/header';
-@import 'layout/menu';
-@import 'layout/intro';
+@use 'helpers/variables';
+@use 'helpers/breakpoints';
+@use 'helpers/fonts';
+@use 'helpers/mixins';
+@use 'helpers/functions';
+@use 'helpers/helpers';
+@use 'partials/base';
+@use 'vendors/grid';
+@use 'layout/header';
+@use 'layout/menu';
+@use 'layout/intro';

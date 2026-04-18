@@ -1,14 +1,17 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 body {
 	padding-top: 100px;
 
-	@include breakpoint(medium) {
+	@include breakpoints.breakpoint(medium) {
 		padding-top: 148px;
 	}
 }
 
 .top-header {
-	background-color: $primary;
-	border-bottom: 3px solid $blue;
+	background-color: variables.$primary;
+	border-bottom: 3px solid variables.$blue;
 	padding: 50px 0;
 	position: fixed;
 	top: 0;
@@ -24,12 +27,12 @@ body {
 		}
 	}
 
-	@include breakpoint(medium) {
+	@include breakpoints.breakpoint(medium) {
 		&.smaller {
 			padding: 5px 0;
 
 			.name {
-				font-size: rem-calc(20);
+				font-size: breakpoints.rem-calc(20);
 			}
 
 			.main-logo {
@@ -43,7 +46,7 @@ body {
 		}
 	}
 
-	@include breakpoint(small only) {
+	@include breakpoints.breakpoint(small only) {
 		padding: 25px 0;
 		text-align: center;
 
@@ -68,9 +71,9 @@ body {
 }
 
 .name {
-	color: $white;
+	color: variables.$white;
 	display: inline-block;
-	font-size: rem-calc(27);
+	font-size: breakpoints.rem-calc(27);
 	font-weight: 700;
 	line-height: 1;
 	margin: 11px 0;
@@ -78,8 +81,8 @@ body {
 	text-transform: uppercase;
 	transition: all 0.3s;
 
-	@include breakpoint(small only) {
-		font-size: rem-calc(25);
+	@include breakpoints.breakpoint(small only) {
+		font-size: breakpoints.rem-calc(25);
 	}
 }
 

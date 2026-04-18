@@ -1,3 +1,6 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 @use 'sass:color';
 
 body {
@@ -5,19 +8,19 @@ body {
 }
 
 h1 {
-	font-size: rem-calc(28);
+	font-size: breakpoints.rem-calc(28);
 	text-transform: uppercase;
 
-	@include breakpoint(small only) {
-		font-size: rem-calc(20);
+	@include breakpoints.breakpoint(small only) {
+		font-size: breakpoints.rem-calc(20);
 	}
 }
 
 /* Click button for displaying page template parts */
 .regions {
-	background: rgba($black, 0.1);
+	background: rgba(variables.$black, 0.1);
 	bottom: 10px;
-	color: $white;
+	color: variables.$white;
 	padding: 10px 20px;
 	position: fixed;
 	right: 10px;
@@ -25,7 +28,7 @@ h1 {
 
 	&:hover,
 	&:focus {
-		color: $white;
+		color: variables.$white;
 	}
 }
 
@@ -35,7 +38,7 @@ h1 {
 
 /* Foundation figure was coming out of the layout container */
 figure {
-	background: $white;
+	background: variables.$white;
 	margin: 0;
 	/* stylelint-disable-next-line declaration-no-important */
 	max-width: 100% !important;
@@ -59,11 +62,11 @@ figure {
 /* Elements */
 
 table {
-	border: 2px solid $gray222;
+	border: 2px solid variables.$gray222;
 }
 
 blockquote {
-	border-left: 2px solid $blue;
+	border-left: 2px solid variables.$blue;
 	font-style: italic;
 	margin: 15px 25px;
 	padding: 15px 0 10px 30px;
@@ -72,8 +75,8 @@ blockquote {
 p,
 li {
 	code {
-		background-color: $white;
-		border: 1px solid $gray222;
+		background-color: variables.$white;
+		border: 1px solid variables.$gray222;
 		display: inline-block;
 		line-height: 1.4;
 		padding: 0 10px;
@@ -98,17 +101,17 @@ li {
 }
 
 pre {
-	background-color: $code-background;
-	border: $code-border;
-	color: $code-color;
-	font-family: $code-font-family;
-	font-weight: $code-font-weight;
-	padding: $code-padding;
+	background-color: variables.$code-background;
+	border: variables.$code-border;
+	color: variables.$code-color;
+	font-family: variables.$code-font-family;
+	font-weight: variables.$code-font-weight;
+	padding: variables.$code-padding;
 	white-space: pre-wrap;
 }
 
 .screen-reader-text {
-	@include element-invisible;
+	@include breakpoints.element-invisible;
 }
 
 [type='text'],
@@ -117,7 +120,7 @@ pre {
 }
 
 a {
-	color: $blue;
+	color: variables.$blue;
 	text-decoration: none;
 	text-decoration-skip-ink: auto;
 
@@ -136,12 +139,12 @@ button {
 }
 
 .button {
-	background-color: $white;
-	border: 1px solid $gray191;
+	background-color: variables.$white;
+	border: 1px solid variables.$gray191;
 	border-radius: 5px;
-	color: $blue;
+	color: variables.$blue;
 	display: inline-block;
-	font-size: rem-calc(14);
+	font-size: breakpoints.rem-calc(14);
 	line-height: 1;
 	padding: 10px;
 	text-decoration: none;
@@ -149,21 +152,21 @@ button {
 
 	&:hover,
 	&:focus {
-		background-color: color.adjust($white, $lightness: -6%);
+		background-color: color.adjust(variables.$white, $lightness: -6%);
 		cursor: pointer;
 		text-decoration: none;
 	}
 
 	&.red {
-		background-color: $red;
-		color: $white;
+		background-color: variables.$red;
+		color: variables.$white;
 		font-weight: 700;
 		padding: 15px 30px;
 		text-transform: uppercase;
 
 		&:hover,
 		&:focus {
-			background-color: color.adjust($red, $lightness: -6%);
+			background-color: color.adjust(variables.$red, $lightness: -6%);
 		}
 	}
 }
@@ -181,16 +184,16 @@ input {
 
 		&:hover,
 		&:focus {
-			background-color: color.adjust($blue, $lightness: 50%);
+			background-color: color.adjust(variables.$blue, $lightness: 50%);
 			cursor: pointer;
 		}
 	}
 }
 
 .button-search {
-	background-color: $blue;
+	background-color: variables.$blue;
 	border: 0;
-	color: $white;
+	color: variables.$white;
 	display: block;
 	height: 40px;
 	line-height: 0.99;
@@ -202,7 +205,7 @@ input {
 
 .search-input {
 	border-bottom-left-radius: 30px;
-	border-color: $blue;
+	border-color: variables.$blue;
 	border-right: 0;
 	border-top-left-radius: 30px;
 	height: 40px;

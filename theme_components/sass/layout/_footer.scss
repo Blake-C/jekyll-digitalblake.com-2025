@@ -1,34 +1,37 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 footer {
 	&.main {
 		background:
 			url('../images/footer-background.svg') bottom right no-repeat,
 			linear-gradient(to top, rgb(42, 42, 80), rgb(25, 25, 50));
-		color: $white;
+		color: variables.$white;
 		padding: 60px 0;
 		width: 100%;
 
 		h2 {
-			color: $accent-4;
-			font-size: rem-calc(15);
+			color: variables.$accent-4;
+			font-size: breakpoints.rem-calc(15);
 			font-weight: 700;
 			margin-bottom: 5px;
 			text-transform: uppercase;
 		}
 
 		p {
-			font-size: rem-calc(13);
+			font-size: breakpoints.rem-calc(13);
 			font-weight: 700;
 			line-height: 24px;
 			margin: 0;
 		}
 
 		a {
-			color: $white;
+			color: variables.$white;
 			text-decoration: none;
 		}
 
 		ul {
-			font-size: rem-calc(13);
+			font-size: breakpoints.rem-calc(13);
 			font-weight: 700;
 			line-height: 24px;
 			margin: 0;
@@ -41,7 +44,7 @@ footer {
 		}
 
 		strong {
-			font-family: $montserrat;
+			font-family: variables.$montserrat;
 		}
 
 		hr {
@@ -55,11 +58,11 @@ footer {
 	}
 
 	.sub-footer {
-		color: $accent-4;
-		padding-top: rem-calc(65);
+		color: variables.$accent-4;
+		padding-top: breakpoints.rem-calc(65);
 	}
 
-	@include breakpoint(large down) {
+	@include breakpoints.breakpoint(large down) {
 		&.main {
 			background:
 				url('../images/footer-background.svg') bottom center no-repeat,
@@ -67,7 +70,7 @@ footer {
 		}
 	}
 
-	@include breakpoint(medium) {
+	@include breakpoints.breakpoint(medium) {
 		&.main {
 			.connect {
 				padding-left: 15%;
@@ -75,7 +78,7 @@ footer {
 		}
 	}
 
-	@include breakpoint(small only) {
+	@include breakpoints.breakpoint(small only) {
 		&.main {
 			padding: 25px 0;
 

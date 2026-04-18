@@ -1,3 +1,5 @@
+@use '../helpers/variables';
+
 .contact {
 	background-image: url('../images/pattern-1.svg');
 	padding: 60px 0 90px;
@@ -7,7 +9,7 @@
 		text-align: center;
 
 		&::before {
-			background-image: $sprite;
+			background-image: variables.$sprite;
 			background-position: -250px -59px;
 			content: '';
 			display: inline-block;

@@ -1,13 +1,16 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 /**************************\
   Basic Modal Styles
 \**************************/
 .modal {
 	&__title {
 		font-size: 1.75rem;
-		margin: rem-calc(28);
+		margin: breakpoints.rem-calc(28);
 
-		@include breakpoint(small only) {
-			font-size: rem-calc(16);
+		@include breakpoints.breakpoint(small only) {
+			font-size: breakpoints.rem-calc(16);
 		}
 	}
 }
@@ -33,7 +36,7 @@
 	position: relative;
 	margin: 0 auto;
 
-	@include breakpoint(medium) {
+	@include breakpoints.breakpoint(medium) {
 		margin: 30px auto;
 	}
 }
@@ -62,7 +65,7 @@
 	text-align: center;
 
 	img {
-		border: 1px solid $gray222;
+		border: 1px solid variables.$gray222;
 	}
 
 	ul {

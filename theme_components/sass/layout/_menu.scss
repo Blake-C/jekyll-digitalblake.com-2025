@@ -1,3 +1,6 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 @use 'sass:color';
 
 .main-menu {
@@ -8,17 +11,17 @@
 	li {
 		display: inline;
 
-		@include breakpoint(medium) {
+		@include breakpoints.breakpoint(medium) {
 			&.callout-button {
 				a {
-					background-color: $red;
+					background-color: variables.$red;
 					border-radius: 5px;
-					color: $white;
+					color: variables.$white;
 					margin-left: 10px;
 
 					&:hover,
 					&:focus {
-						background-color: color.adjust($red, $lightness: -6%);
+						background-color: color.adjust(variables.$red, $lightness: -6%);
 					}
 				}
 			}
@@ -26,9 +29,9 @@
 	}
 
 	a {
-		color: $white;
+		color: variables.$white;
 		display: inline-block;
-		font-size: rem-calc(15);
+		font-size: breakpoints.rem-calc(15);
 		font-weight: 700;
 		padding: 3px 15px;
 		text-decoration: none;
@@ -37,18 +40,18 @@
 
 		&:hover,
 		&:focus {
-			color: color.adjust($red, $lightness: -6%);
+			color: color.adjust(variables.$red, $lightness: -6%);
 			text-decoration: none;
 		}
 	}
 
-	@include breakpoint(small only) {
+	@include breakpoints.breakpoint(small only) {
 		margin: 25px 0 0;
 		text-align: center;
 		transition: all 0.3s;
 
 		a {
-			font-size: rem-calc(13);
+			font-size: breakpoints.rem-calc(13);
 		}
 	}
 }

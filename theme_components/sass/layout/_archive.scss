@@ -1,9 +1,12 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 .entry-title {
 	line-height: 1.2;
 	margin: 0;
 
 	a {
-		color: $black;
+		color: variables.$black;
 		text-decoration: none;
 	}
 }
@@ -31,12 +34,12 @@
 	}
 
 	.date-meta {
-		background-color: $accent-2;
+		background-color: variables.$accent-2;
 		height: 100%;
 		padding: 20px;
 
 		span {
-			color: $white;
+			color: variables.$white;
 			display: block;
 			font-size: 30px;
 			font-weight: 700;
@@ -48,13 +51,13 @@
 
 	&:nth-child(even) {
 		.date-meta {
-			background-color: $accent-2;
+			background-color: variables.$accent-2;
 		}
 	}
 
 	&:nth-child(odd) {
 		.date-meta {
-			background-color: $accent-3;
+			background-color: variables.$accent-3;
 		}
 	}
 
@@ -65,7 +68,7 @@
 
 		&:hover,
 		&:focus {
-			background-color: $gray244;
+			background-color: variables.$gray244;
 			text-decoration: none;
 		}
 
@@ -74,7 +77,7 @@
 		}
 	}
 
-	@include breakpoint(small only) {
+	@include breakpoints.breakpoint(small only) {
 		.date-meta {
 			height: auto;
 			line-height: 1;

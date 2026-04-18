@@ -1,3 +1,6 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 @use 'sass:math';
 
 /*
@@ -20,13 +23,13 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	flex-flow: row wrap;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: $global-width;
+	max-width: variables.$global-width;
 
 	.row {
 		margin-left: calc(#{$grid-gutter-small} / -2);
 		margin-right: calc(#{$grid-gutter-small} / -2);
 
-		@include breakpoint(medium) {
+		@include breakpoints.breakpoint(medium) {
 			margin-left: calc(#{$grid-gutter-medium} / -2);
 			margin-right: calc(#{$grid-gutter-medium} / -2);
 		}
@@ -40,7 +43,7 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	padding-left: calc(#{$grid-gutter-small} / 2);
 	padding-right: calc(#{$grid-gutter-small} / 2);
 
-	@include breakpoint(medium) {
+	@include breakpoints.breakpoint(medium) {
 		padding-left: calc(#{$grid-gutter-medium} / 2);
 		padding-right: calc(#{$grid-gutter-medium} / 2);
 	}
@@ -88,7 +91,7 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	}
 }
 
-@include breakpoint(medium) {
+@include breakpoints.breakpoint(medium) {
 	@for $i from 1 through $grid-columns {
 		.medium-#{$i} {
 			@include -column-width($i);
@@ -108,7 +111,7 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	}
 }
 
-@include breakpoint(large) {
+@include breakpoints.breakpoint(large) {
 	@for $i from 1 through $grid-columns {
 		.large-#{$i} {
 			@include -column-width($i);

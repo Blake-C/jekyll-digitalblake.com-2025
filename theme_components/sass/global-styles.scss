@@ -1,45 +1,45 @@
 @charset 'UTF-8';
 
 /* Variables and globals */
-@import 'helpers/variables';
+@use 'helpers/variables';
 
 /* Breakpoints, rem-calc, element-invisible */
-@import 'helpers/breakpoints';
+@use 'helpers/breakpoints';
 
 /* Helpers */
-@import 'helpers/fonts';
-@import 'helpers/mixins';
-@import 'helpers/functions';
-@import 'helpers/helpers';
-@import 'helpers/buttons';
+@use 'helpers/fonts';
+@use 'helpers/mixins';
+@use 'helpers/functions';
+@use 'helpers/helpers';
+@use 'helpers/buttons';
 
 /* Base / normalize / form baseline */
-@import 'partials/base';
+@use 'partials/base';
 
 /* Grid system */
-@import 'vendors/grid';
+@use 'vendors/grid';
 
 /* Modal styles */
-@import 'vendors/micromodal';
+@use 'vendors/micromodal';
 
 /* Layouts */
-@import 'layout/comments';
-@import 'layout/contact';
-@import 'layout/footer';
-@import 'layout/github';
-@import 'layout/header';
-@import 'layout/intro';
-@import 'layout/main';
-@import 'layout/menu';
-@import 'layout/sidebar';
-@import 'layout/archive';
-@import 'layout/posts';
-@import 'layout/tags';
-@import 'layout/forms';
-@import 'layout/post-pagination';
-@import 'layout/password-form';
-@import 'layout/sites-gallery';
-@import 'layout/portrait';
+@use 'layout/comments';
+@use 'layout/contact';
+@use 'layout/footer';
+@use 'layout/github';
+@use 'layout/header';
+@use 'layout/intro';
+@use 'layout/main';
+@use 'layout/menu';
+@use 'layout/sidebar';
+@use 'layout/archive';
+@use 'layout/posts';
+@use 'layout/tags';
+@use 'layout/forms';
+@use 'layout/post-pagination';
+@use 'layout/password-form';
+@use 'layout/sites-gallery';
+@use 'layout/portrait';
 
 /* Generic / overrides */
-@import 'partials/generic-styles';
+@use 'partials/generic-styles';

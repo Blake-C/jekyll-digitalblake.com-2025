@@ -1,3 +1,7 @@
+@use '../helpers/breakpoints';
+@use '../helpers/helpers';
+@use '../helpers/variables';
+
 .intro {
 	@extend %cover;
 
@@ -6,7 +10,7 @@
 	@media (max-width: 768px) {
 		background-image: url('../images/header-background-sm.webp');
 	}
-	color: $white;
+	color: variables.$white;
 	line-height: 26px;
 	padding: clamp(150px, 8vw, 230px) 0;
 	position: relative;
@@ -27,7 +31,7 @@
 		box-shadow: 1px 0 1px rgba(195, 227, 254, 0.37);
 		transition: left 0.3s;
 
-		@include breakpoint(large down) {
+		@include breakpoints.breakpoint(large down) {
 			left: -50%;
 		}
 	}
@@ -38,22 +42,22 @@
 	}
 
 	.title {
-		font-size: rem-calc(60);
+		font-size: breakpoints.rem-calc(60);
 		font-weight: 800;
 		line-height: 1;
-		margin-bottom: rem-calc(16);
+		margin-bottom: breakpoints.rem-calc(16);
 		text-transform: capitalize;
 	}
 
 	.line-1 {
 		margin: 0;
-		font-size: rem-calc(32);
+		font-size: breakpoints.rem-calc(32);
 		line-height: 1;
 	}
 
 	.line-2 {
-		font-size: rem-calc(16);
-		margin: rem-calc(16) 0;
+		font-size: breakpoints.rem-calc(16);
+		margin: breakpoints.rem-calc(16) 0;
 	}
 
 	.line-3 {
@@ -62,28 +66,28 @@
 	}
 
 	p {
-		font-size: rem-calc(18);
+		font-size: breakpoints.rem-calc(18);
 		font-weight: 800;
 	}
 
-	@include breakpoint(small only) {
+	@include breakpoints.breakpoint(small only) {
 		padding: clamp(150px, 8vw, 230px) 0 clamp(90px, 8vw, 230px);
 
 		.title {
-			font-size: rem-calc(36);
+			font-size: breakpoints.rem-calc(36);
 		}
 
 		.line-1 {
-			font-size: rem-calc(24);
+			font-size: breakpoints.rem-calc(24);
 		}
 
 		.line-2 {
-			font-size: rem-calc(14);
+			font-size: breakpoints.rem-calc(14);
 		}
 
 		.line-3 {
-			font-size: rem-calc(16);
-			margin-top: rem-calc(36);
+			font-size: breakpoints.rem-calc(16);
+			margin-top: breakpoints.rem-calc(36);
 		}
 	}
 }

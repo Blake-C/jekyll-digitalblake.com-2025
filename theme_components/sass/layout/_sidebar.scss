@@ -1,10 +1,13 @@
+@use '../helpers/breakpoints';
+@use '../helpers/variables';
+
 .sidebar {
-	background-color: $gray244;
-	border-left: 3px solid $blue;
+	background-color: variables.$gray244;
+	border-left: 3px solid variables.$blue;
 	margin: 40px 0 0;
 	padding: 35px;
 
-	@include breakpoint(large) {
+	@include breakpoints.breakpoint(large) {
 		margin: 0;
 	}
 

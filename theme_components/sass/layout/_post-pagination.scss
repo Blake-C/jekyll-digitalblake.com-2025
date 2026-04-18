@@ -1,7 +1,9 @@
+@use '../helpers/variables';
+
 .page-links {
-	background-color: $blue;
+	background-color: variables.$blue;
 	clear: both;
-	color: $white;
+	color: variables.$white;
 	font-weight: 700;
 	margin: 25px 20px 0;
 	padding: 5px 15px;
@@ -9,12 +11,12 @@
 
 	a {
 		border-radius: 5px;
-		color: $white;
+		color: variables.$white;
 
 		&:hover,
 		&:focus {
-			background-color: $white;
-			color: $blue;
+			background-color: variables.$white;
+			color: variables.$blue;
 		}
 	}
 
@@ -25,7 +27,7 @@
 
 	&::after,
 	&::before {
-		border: 19px solid $blue;
+		border: 19px solid variables.$blue;
 		border-bottom-color: transparent;
 		border-top-color: transparent;
 		bottom: 0;
@@ -50,7 +52,7 @@
 
 .post-pagination {
 	ul {
-		background-color: $blue;
+		background-color: variables.$blue;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 6px;
@@ -62,7 +64,7 @@
 
 		&::after,
 		&::before {
-			border: 24px solid $blue;
+			border: 24px solid variables.$blue;
 			border-bottom-color: transparent;
 			border-top-color: transparent;
 			bottom: 0;
@@ -93,11 +95,11 @@
 
 		&.active {
 			a {
-				background-color: $white;
-				color: $black;
+				background-color: variables.$white;
+				color: variables.$black;
 
 				&:hover {
-					background-color: rgba($white, 0.8);
+					background-color: rgba(variables.$white, 0.8);
 				}
 			}
 		}
@@ -105,7 +107,7 @@
 
 	a {
 		border-radius: 5px;
-		color: $white;
+		color: variables.$white;
 		display: block;
 		font-weight: 700;
 		padding: 6px 15px;
@@ -113,8 +115,8 @@
 
 		&:hover,
 		&:focus {
-			background-color: $white;
-			color: $black;
+			background-color: variables.$white;
+			color: variables.$black;
 			text-decoration: none;
 		}
 	}
