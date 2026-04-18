@@ -98,7 +98,7 @@ html {
 }
 
 body {
-  background: #fefefe;
+  background: #e4e4e4;
   color: #0a0a0a;
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
@@ -1473,7 +1473,7 @@ body {
 /* Breakpoints, rem-calc, element-invisible */
 /* Variables and globals */
 .sidebar {
-  background-color: rgb(244, 244, 244);
+  background-color: #fefefe;
   border-left: 3px solid rgb(27, 22, 43);
   margin: 40px 0 0;
   padding: 35px;
@@ -1596,6 +1596,7 @@ body {
   background-color: rgb(255, 73, 73);
 }
 .post-item .post-link {
+  background-color: #fefefe;
   display: block;
   padding: 0;
   transition: background-color 0.3s;
