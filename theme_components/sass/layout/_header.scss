@@ -5,14 +5,14 @@ body {
 	padding-top: 100px;
 
 	@include breakpoints.breakpoint(medium) {
-		padding-top: 148px;
+		padding-top: 113px;
 	}
 }
 
 .top-header {
 	background-color: variables.$primary;
 	border-bottom: 3px solid variables.$blue;
-	padding: 50px 0;
+	padding: 30px 0;
 	position: fixed;
 	top: 0;
 	transform: translateZ(0);
@@ -22,8 +22,13 @@ body {
 
 	.logo-name {
 		a {
-			display: block;
+			align-items: center;
+			display: flex;
 			text-decoration: none;
+
+			@include breakpoints.breakpoint(small only) {
+				justify-content: center;
+			}
 		}
 	}
 
@@ -36,8 +41,8 @@ body {
 			}
 
 			.main-logo {
-				height: 42px;
-				width: 42px;
+				height: 28px;
+				width: 28px;
 			}
 
 			.main-menu {
@@ -89,7 +94,7 @@ body {
 .main-logo {
 	display: inline-block;
 	height: 50px;
-	margin-right: 20px;
+	margin-right: 12px;
 	transition: all 0.3s;
 	vertical-align: bottom;
 	width: 50px;

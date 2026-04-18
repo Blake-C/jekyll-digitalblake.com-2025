@@ -798,14 +798,14 @@ body {
 }
 @media screen and (min-width: 47.5em) {
   body {
-    padding-top: 148px;
+    padding-top: 113px;
   }
 }
 
 .top-header {
   background-color: rgb(25, 25, 54);
   border-bottom: 3px solid rgb(27, 22, 43);
-  padding: 50px 0;
+  padding: 30px 0;
   position: fixed;
   top: 0;
   transform: translateZ(0);
@@ -814,8 +814,14 @@ body {
   z-index: 1000;
 }
 .top-header .logo-name a {
-  display: block;
+  align-items: center;
+  display: flex;
   text-decoration: none;
+}
+@media screen and (max-width: 47.4375em) {
+  .top-header .logo-name a {
+    justify-content: center;
+  }
 }
 @media screen and (min-width: 47.5em) {
   .top-header.smaller {
@@ -825,8 +831,8 @@ body {
     font-size: 1.25rem;
   }
   .top-header.smaller .main-logo {
-    height: 42px;
-    width: 42px;
+    height: 28px;
+    width: 28px;
   }
   .top-header.smaller .main-menu {
     padding: 4px 0;
@@ -873,7 +879,7 @@ body {
 .main-logo {
   display: inline-block;
   height: 50px;
-  margin-right: 20px;
+  margin-right: 12px;
   transition: all 0.3s;
   vertical-align: bottom;
   width: 50px;
