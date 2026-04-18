@@ -27,42 +27,4 @@ module.exports = {
 			}),
 		],
 	},
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				exclude: /node_modules/,
-				options: {
-					presets: [['@babel/preset-env', { modules: false }]],
-					plugins: [
-						[
-							'prismjs',
-							{
-								languages: [
-									'javascript',
-									'css',
-									'css-extras',
-									'scss',
-									'markup',
-									'php',
-									'php-extras',
-									'bash',
-									'yaml',
-									'json',
-								],
-								plugins: [
-									'line-numbers',
-									'autolinker',
-									'show-language',
-									'normalize-whitespace',
-									'copy-to-clipboard',
-								],
-							},
-						],
-					],
-				},
-			},
-		],
-	},
 }
