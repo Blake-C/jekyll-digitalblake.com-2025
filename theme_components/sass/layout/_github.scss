@@ -5,6 +5,10 @@
 	background-image: url('../images/projects-background.webp');
 	padding: 60px 0 90px;
 
+	@media (max-width: 768px) {
+		background-image: url('../images/projects-background-sm.webp');
+	}
+
 	&__title {
 		color: $white;
 		font-size: rem-calc(30px);

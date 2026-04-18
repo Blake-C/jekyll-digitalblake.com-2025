@@ -5,6 +5,10 @@
 	margin-bottom: -40px;
 	padding: 60px 0 150px;
 
+	@media (max-width: 768px) {
+		background-image: url('../images/websites-background-sm.webp');
+	}
+
 	&__glass-background {
 		backdrop-filter: blur(11px);
 		background: rgba(255, 255, 255, 0.12);

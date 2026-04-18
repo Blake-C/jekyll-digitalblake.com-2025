@@ -4,6 +4,7 @@ title: Home
 permalink: /
 description: 'I Am A Front-end Web Developer - Blake Cerecero'
 preload_image: /assets/images/header-background.webp
+preload_image_mobile: /assets/images/header-background-sm.webp
 ---
 
 <main id="content">

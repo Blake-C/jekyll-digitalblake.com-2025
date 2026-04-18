@@ -6,7 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 	{%- if page.preload_image -%}
-		<link rel="preload" as="image" href="{{ page.preload_image | relative_url }}" fetchpriority="high">
+		{%- if page.preload_image_mobile -%}
+			<link
+				rel="preload"
+				as="image"
+				href="{{ page.preload_image | relative_url }}"
+				imagesrcset="{{ page.preload_image_mobile | relative_url }} 768w, {{ page.preload_image | relative_url }} 1440w"
+				imagesizes="100vw"
+				fetchpriority="high"
+			>
+		{%- else -%}
+			<link rel="preload" as="image" href="{{ page.preload_image | relative_url }}" fetchpriority="high">
+		{%- endif -%}
 	{%- endif -%}
 
 	<!-- Favicons & App Icons -->

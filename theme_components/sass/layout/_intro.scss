@@ -2,6 +2,10 @@
 	@extend %cover;
 
 	background-image: url('../images/header-background.webp');
+
+	@media (max-width: 768px) {
+		background-image: url('../images/header-background-sm.webp');
+	}
 	color: $white;
 	line-height: 26px;
 	padding: clamp(150px, 8vw, 230px) 0;
