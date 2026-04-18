@@ -2,6 +2,10 @@
 	"name": "jekyll-digitalblake-com-2025",
 	"version": "1.0.0",
 	"private": true,
+	"sideEffects": [
+		"*.css",
+		"*.scss"
+	],
 	"browserslist": [
 		"defaults and supports es6-module",
 		"not dead",

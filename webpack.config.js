@@ -1,4 +1,5 @@
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
 	mode: 'production',
@@ -9,6 +10,22 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'assets/js'),
 		filename: '[name].min.js',
+	},
+	optimization: {
+		minimizer: [
+			new TerserPlugin({
+				terserOptions: {
+					compress: {
+						drop_console: true,
+						passes: 2,
+					},
+					format: {
+						comments: false,
+					},
+				},
+				extractComments: false,
+			}),
+		],
 	},
 	module: {
 		rules: [
