@@ -126,20 +126,7 @@
 		<meta property="og:image:height" content="630">
 	{%- endif -%}
 
-	<!-- Twitter Card -->
-	<meta name="twitter:card" content="summary_large_image">
-	{%- if page.twitter_image -%}
-		<meta name="twitter:image" content="{{ page.twitter_image | absolute_url }}">
-	{%- elsif page.image -%}
-		<meta name="twitter:image" content="{{ page.image | absolute_url }}">
-	{%- endif -%}
-	<meta name="twitter:creator" content="@{{ site.twitter_username }}">
-	<meta name="twitter:site" content="@{{ site.twitter_username }}">
 	{%- assign default_author = site.data.authors[site.author.id] -%}
-	{%- if page.layout == 'post' -%}
-		<meta name="twitter:label1" content="Written by">
-		<meta name="twitter:data1" content="{{ default_author.name }}">
-	{%- endif -%}
 	<meta name="author" content="{{ default_author.name }}">
 
 	<!-- Stylesheets -->
