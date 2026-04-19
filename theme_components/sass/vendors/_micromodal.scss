@@ -2,11 +2,12 @@
 @use '../helpers/variables';
 
 .modal__overlay {
+	backdrop-filter: blur(11px);
 	background: rgba(0, 0, 0, 0.8);
 	bottom: 0;
 	left: 0;
 	overflow-y: auto;
-	padding: breakpoints.rem-calc(20) breakpoints.rem-calc(16);
+	padding: 0;
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -19,7 +20,7 @@
 
 .modal__container {
 	background: variables.$white;
-	border-radius: 8px;
+	border-radius: 0;
 	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
 	margin: 0 auto;
 	max-width: 860px;
@@ -27,6 +28,10 @@
 	padding: 0;
 	position: relative;
 	width: 100%;
+
+	@include breakpoints.breakpoint(medium) {
+		border-radius: 8px;
+	}
 }
 
 .modal__close {

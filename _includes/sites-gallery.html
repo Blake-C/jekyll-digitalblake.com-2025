@@ -85,7 +85,7 @@
 								{%- endif -%}
 								{%- if site_item.team -%}
 									<p class="modal__meta-item">
-										<strong>Team:</strong>
+										<strong>Team: </strong>
 										{%- for member in site_item.team -%}
 											{{ member.name }} ({{ member.role }})
 											{%- unless forloop.last %}, {% endunless %}
@@ -103,8 +103,7 @@
 								rel="noreferrer noopener"
 							>
 								{{- site_item.link_text }}
-								<span aria-hidden="true">↗</span></a
-							>
+							</a>
 						</div>
 					</div>
 				</div>
