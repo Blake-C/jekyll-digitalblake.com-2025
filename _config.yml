@@ -1,8 +1,9 @@
 title: DigitalBlake
 email: blake@digitalblake.com
 description: >-
-    I've developed in multiple content management systems from the ever popular
-    WordPress to the developer friendly and powerful Drupal.
+    Senior web developer with 15 years building fast, accessible CMS-driven sites —
+    WordPress, Drupal, Sitecore, Jekyll, and custom JavaScript applications.
+default_og_image: '/assets/images/og-fallback.webp'
 baseurl: '/jekyll-digitalblake.com-2025'
 url: 'https://blake-c.github.io'
 github_username: Blake-C
@@ -67,6 +68,8 @@ nav_pages:
       url: '/#projects'
     - title: Articles
       url: '/articles/'
+    - title: About
+      url: '/about/'
     - title: 'Résumé'
       url: '/assets/uploads/2024/07/Blake-Cerecero-Web-Resume-v3.pdf'
       target: '_blank'
