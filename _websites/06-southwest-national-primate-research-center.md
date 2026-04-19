@@ -14,6 +14,11 @@ team:
       role: Developer
 link: https://snprc.org/
 link_text: View Live Site
+tech:
+    - WordPress
+    - REST API
+    - PHP
+    - SVG
 ---
 
 The Southwest National Primate Research Center (SNPRC) is the sister site to the Texas Biomedical Research Institute, and the two organizations share many of the same scientists. The client didn't want to maintain duplicate scientist bios across two WordPress installs, one source of truth, two presentations.

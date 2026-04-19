@@ -14,6 +14,10 @@ team:
       role: Developer
 link: https://touchpoint.health/
 link_text: View Live Site
+tech:
+    - WordPress
+    - PHP
+    - Podbean API
 ---
 
 Touch Point Media launched with a single healthcare podcast and a clear intention to grow into a multi-show network. I built the site so that growth would be a content task, not an engineering task.

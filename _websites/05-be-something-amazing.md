@@ -10,6 +10,11 @@ team:
       role: Designer/Developer
 link: https://web.archive.org/web/20201126100255/https://besomethingamazing.com/
 link_text: View Archived Site
+tech:
+    - Drupal 7
+    - PHP
+    - MixItUp
+    - SCSS
 ---
 
 Be Something Amazing is a Drupal 7 career site aimed at helping visitors discover skilled-trade careers, and the team wanted both a visual refresh and a more engaging way to explore careers than a static page of links.

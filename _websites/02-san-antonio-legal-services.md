@@ -12,6 +12,11 @@ team:
       role: Designer/Developer
 link: https://www.sa-lsa.org/
 link_text: View Live Site
+tech:
+    - WordPress
+    - PHP
+    - REST API
+    - WP All Import
 ---
 
 San Antonio Legal Services Association (SALSA) organizes pro bono legal volunteers across the city, and they needed a platform that could both push training resources to volunteers and route them to available cases; without staff maintaining the same data in two admin systems.

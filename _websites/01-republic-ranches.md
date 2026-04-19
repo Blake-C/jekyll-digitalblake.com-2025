@@ -12,6 +12,12 @@ team:
       role: Designer/Developer
 link: https://republicranches.com/
 link_text: View Live Site
+tech:
+    - WordPress
+    - Google Maps API
+    - PHP
+    - ES6
+    - SCSS
 ---
 
 Republic Ranches sells Texas land and ranch properties with listings across the United States, and the team needed a search experience that matched how buyers actually discover land by location first, then by features. I designed and built the site around that intent.
