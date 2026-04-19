@@ -34,6 +34,20 @@
 	}
 }
 
+.modal__close-dock {
+	display: flex;
+	height: 0;
+	justify-content: flex-end;
+	margin: 0 auto;
+	max-width: 860px;
+	overflow: visible;
+	padding: 0 breakpoints.rem-calc(12);
+	position: sticky;
+	top: breakpoints.rem-calc(12);
+	width: 100%;
+	z-index: 20;
+}
+
 .modal__close {
 	align-items: center;
 	backdrop-filter: blur(4px);
@@ -43,14 +57,11 @@
 	color: variables.$white;
 	cursor: pointer;
 	display: flex;
+	flex-shrink: 0;
 	height: breakpoints.rem-calc(38);
 	justify-content: center;
-	position: absolute;
-	right: breakpoints.rem-calc(12);
-	top: breakpoints.rem-calc(12);
 	transition: background 0.2s;
 	width: breakpoints.rem-calc(38);
-	z-index: 20;
 
 	&::before {
 		content: '\2715';
