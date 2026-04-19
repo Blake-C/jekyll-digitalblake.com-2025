@@ -24,6 +24,73 @@
 	}
 }
 
+.related-posts {
+	border-top: 1px solid variables.$light-gray;
+	margin-top: breakpoints.rem-calc(32);
+	padding-top: breakpoints.rem-calc(24);
+
+	&__title {
+		font-size: breakpoints.rem-calc(16);
+		font-weight: 700;
+		letter-spacing: 1px;
+		margin-bottom: breakpoints.rem-calc(12);
+		text-transform: uppercase;
+	}
+
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__item {
+		border-bottom: 1px solid variables.$light-gray;
+		display: flex;
+		flex-direction: column;
+		gap: breakpoints.rem-calc(2);
+		padding: breakpoints.rem-calc(10) 0;
+
+		@include breakpoints.breakpoint(medium) {
+			align-items: baseline;
+			flex-direction: row;
+			gap: breakpoints.rem-calc(12);
+		}
+	}
+
+	&__link {
+		color: variables.$accent-1;
+		font-weight: 700;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+
+	&__date {
+		color: variables.$dark-gray;
+		font-size: breakpoints.rem-calc(13);
+		white-space: nowrap;
+	}
+}
+
+.post-cta {
+	border-top: 1px solid variables.$light-gray;
+	margin-top: breakpoints.rem-calc(24);
+	padding-top: breakpoints.rem-calc(20);
+
+	p {
+		font-size: breakpoints.rem-calc(15);
+		margin: 0;
+	}
+
+	a {
+		color: variables.$accent-1;
+		font-weight: 700;
+	}
+}
+
 .main-content-block {
 	.entry-title {
 		margin-bottom: 30px;
