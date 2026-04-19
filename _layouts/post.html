@@ -118,26 +118,6 @@ layout: base
 								{%- endfor -%}
 								{%- if related_posts.size >= 3 -%}{%- break -%}{%- endif -%}
 							{%- endfor -%}
-							{%- if related_posts.size > 0 -%}
-								<section class="related-posts" aria-label="Related articles">
-									<h3 class="related-posts__title">More articles</h3>
-									<ul class="related-posts__list">
-										{%- for post in related_posts -%}
-											<li class="related-posts__item">
-												<a href="{{ post.url | relative_url }}" class="related-posts__link">
-													{{- post.title | escape -}}
-												</a>
-												<time
-													class="related-posts__date"
-													datetime="{{ post.date | date_to_xmlschema }}"
-												>
-													{{- post.date | date: '%B %-d, %Y' -}}
-												</time>
-											</li>
-										{%- endfor -%}
-									</ul>
-								</section>
-							{%- endif -%}
 						{%- endif -%}
 
 						<div class="post-cta">
