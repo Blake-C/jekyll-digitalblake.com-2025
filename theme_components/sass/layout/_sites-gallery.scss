@@ -5,11 +5,13 @@
 .sites-gallery {
 	@extend %cover;
 
-	background-image: url('../images/websites-background.webp');
+	// background-image: url('../images/websites-background.webp');
+	// background-position: center;
+	background: linear-gradient(to bottom, #e8f5f6, #74a2bf);
 	padding: bp.rem-calc(80) 0 bp.rem-calc(100);
 
 	@include bp.breakpoint(small only) {
-		background-image: url('../images/websites-background-sm.webp');
+		// background-image: url('../images/websites-background-sm.webp');
 		padding: bp.rem-calc(60) 0 bp.rem-calc(80);
 	}
 
