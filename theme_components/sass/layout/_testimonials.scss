@@ -46,17 +46,12 @@
 	}
 
 	&__avatar {
-		align-items: center;
-		background: rgba(255, 255, 255, 0.15);
 		border-radius: 50%;
-		color: variables.$white;
-		display: flex;
+		display: block;
 		flex-shrink: 0;
-		font-size: breakpoints.rem-calc(13);
-		font-weight: 700;
 		height: breakpoints.rem-calc(42);
-		justify-content: center;
-		letter-spacing: 0.5px;
+		object-fit: cover;
+		object-position: center top;
 		width: breakpoints.rem-calc(42);
 	}
 
