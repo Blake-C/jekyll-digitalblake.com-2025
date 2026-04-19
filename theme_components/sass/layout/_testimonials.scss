@@ -7,12 +7,16 @@
 	padding: breakpoints.rem-calc(80) 0;
 
 	&__title {
-		font-size: breakpoints.rem-calc(30);
+		font-size: breakpoints.rem-calc(16);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		margin-bottom: breakpoints.rem-calc(48);
 		text-align: center;
 		text-transform: uppercase;
+
+		@include breakpoints.breakpoint(medium) {
+			font-size: breakpoints.rem-calc(30);
+		}
 	}
 
 	&__card {
