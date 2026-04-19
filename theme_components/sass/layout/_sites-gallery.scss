@@ -8,7 +8,7 @@
 	background-image: url('../images/websites-background.webp');
 	padding: breakpoints.rem-calc(80) 0 breakpoints.rem-calc(100);
 
-	@media (max-width: 768px) {
+	@include breakpoints.breakpoint(small only) {
 		background-image: url('../images/websites-background-sm.webp');
 		padding: breakpoints.rem-calc(60) 0 breakpoints.rem-calc(80);
 	}
