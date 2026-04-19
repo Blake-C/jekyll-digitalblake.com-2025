@@ -2,7 +2,7 @@
 layout: base
 title: Home
 permalink: /
-description: 'Senior web developer with 15 years building fast, accessible CMS and JavaScript-driven sites — WordPress, Drupal, Sitecore, and beyond.'
+description: 'Senior web developer with 15 years building fast, accessible sites on WordPress, Drupal, Sitecore, and beyond.'
 preload_image: /assets/images/header-background.webp
 preload_image_mobile: /assets/images/header-background-sm.webp
 ---
@@ -19,7 +19,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     <h1 class="title">Blake Cerecero</h1>
                     <p class="line-1">Senior Web Developer</p>
                     <p class="line-2">WordPress · Drupal · Sitecore · JavaScript · PHP · Jekyll</p>
-                    <p class="line-3">Fifteen years of agency and in-house work building CMS architectures, leading migrations, and shipping code that makes the next developer's job easier, not harder. The answer is always "let me look into that" — never just "no."</p>
+                    <p class="line-3">Fifteen years of agency and in-house work building CMS architectures, leading migrations, and shipping code that makes the next developer's job easier, not harder. The answer is always "let me look into that," never just "no."</p>
                     <div class="intro__cta">
                         <a
                             href="https://www.linkedin.com/in/blakecerecero/"
