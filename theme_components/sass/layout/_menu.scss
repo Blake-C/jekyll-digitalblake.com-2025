@@ -31,7 +31,7 @@
 	a {
 		color: variables.$white;
 		display: inline-block;
-		font-size: breakpoints.rem-calc(15);
+		font-size: breakpoints.rem-calc(14);
 		font-weight: 700;
 		padding: 3px 15px;
 		text-decoration: none;
@@ -46,9 +46,24 @@
 	}
 
 	@include breakpoints.breakpoint(small only) {
-		margin: 25px 0 0;
-		text-align: center;
-		transition: all 0.3s;
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		margin: 8px 0 0;
+		overflow-x: auto;
+		padding: 8px breakpoints.rem-calc(48) 8px 0;
+		scrollbar-width: none;
+		text-align: left;
+		transition: margin 0.3s;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		li {
+			display: block;
+			flex-shrink: 0;
+		}
 
 		a {
 			font-size: breakpoints.rem-calc(13);

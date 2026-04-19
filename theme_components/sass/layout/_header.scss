@@ -27,7 +27,7 @@ body {
 			text-decoration: none;
 
 			@include breakpoints.breakpoint(small only) {
-				justify-content: center;
+				margin: 0 16px;
 			}
 		}
 	}
@@ -59,6 +59,11 @@ body {
 			height: 50px;
 			overflow: hidden;
 			transition: all 0.3s;
+		}
+
+		nav {
+			-webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+			mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
 		}
 
 		&.smaller {
