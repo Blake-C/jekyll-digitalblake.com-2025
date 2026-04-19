@@ -1,11 +1,11 @@
-@use '../helpers/breakpoints';
+@use '../helpers/breakpoints' as bp;
 @use '../helpers/helpers';
-@use '../helpers/variables';
+@use '../helpers/variables' as v;
 
 .github {
 	@extend %cover;
 
-	background-color: variables.$primary;
+	background-color: v.$primary;
 	background-image: url('../images/projects-background.webp');
 	padding: 60px 0 90px;
 
@@ -14,16 +14,16 @@
 	}
 
 	&__title {
-		color: variables.$white;
-		font-size: breakpoints.rem-calc(30px);
+		color: v.$white;
+		font-size: bp.rem-calc(30px);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		margin-bottom: 70px;
 		text-align: center;
 		text-transform: uppercase;
 
-		@include breakpoints.breakpoint(large down) {
-			font-size: breakpoints.rem-calc(40px);
+		@include bp.breakpoint(large down) {
+			font-size: bp.rem-calc(40px);
 		}
 	}
 
@@ -38,14 +38,14 @@
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	box-shadow: 0 48px 18px -36px rgba(0, 0, 0, 0.18);
-	color: variables.$white;
+	color: v.$white;
 	margin-bottom: 30px;
 	padding: 30px 20px 80px;
 	position: relative;
 	width: 100%;
 
 	&__title {
-		font-size: breakpoints.rem-calc(19);
+		font-size: bp.rem-calc(19);
 		line-height: 1;
 		margin: 0;
 		text-transform: uppercase;
@@ -53,7 +53,7 @@
 
 	strong,
 	&__subheading {
-		font-size: breakpoints.rem-calc(19);
+		font-size: bp.rem-calc(19);
 		line-height: 1;
 		text-transform: uppercase;
 		margin-bottom: 5px;
@@ -61,7 +61,7 @@
 	}
 
 	&__description {
-		font-size: breakpoints.rem-calc(15);
+		font-size: bp.rem-calc(15);
 		margin-top: 0;
 	}
 
@@ -69,23 +69,23 @@
 		bottom: 30px;
 		margin-top: 20px;
 		position: absolute;
-		color: variables.$white;
-		font-size: breakpoints.rem-calc(19);
+		color: v.$white;
+		font-size: bp.rem-calc(19);
 		// font-family: Montserrat;
 		font-weight: 900;
 	}
 
-	@include breakpoints.breakpoint(small only) {
+	@include bp.breakpoint(small only) {
 		strong,
 		&__link,
 		&__title {
-			font-size: breakpoints.rem-calc(16);
+			font-size: bp.rem-calc(16);
 		}
 	}
 }
 
 .no-cssgradients {
 	.git-project {
-		background: variables.$blue;
+		background: v.$blue;
 	}
 }

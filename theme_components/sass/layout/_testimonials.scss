@@ -1,21 +1,21 @@
-@use '../helpers/breakpoints';
-@use '../helpers/variables';
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
 
 .testimonials {
-	background: variables.$primary;
-	color: variables.$white;
-	padding: breakpoints.rem-calc(80) 0;
+	background: v.$primary;
+	color: v.$white;
+	padding: bp.rem-calc(80) 0;
 
 	&__title {
-		font-size: breakpoints.rem-calc(16);
+		font-size: bp.rem-calc(16);
 		font-weight: 900;
 		letter-spacing: 4.8px;
-		margin-bottom: breakpoints.rem-calc(48);
+		margin-bottom: bp.rem-calc(48);
 		text-align: center;
 		text-transform: uppercase;
 
-		@include breakpoints.breakpoint(medium) {
-			font-size: breakpoints.rem-calc(30);
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(30);
 		}
 	}
 
@@ -26,54 +26,54 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		margin: 0 0 breakpoints.rem-calc(24);
-		padding: breakpoints.rem-calc(28) breakpoints.rem-calc(24);
+		margin: 0 0 bp.rem-calc(24);
+		padding: bp.rem-calc(28) bp.rem-calc(24);
 
-		@include breakpoints.breakpoint(large) {
+		@include bp.breakpoint(large) {
 			height: 100%;
 			margin-bottom: 0;
 		}
 	}
 
 	&__quote {
-		font-size: breakpoints.rem-calc(16);
+		font-size: bp.rem-calc(16);
 		font-style: italic;
 		font-weight: 400;
 		line-height: 1.7;
-		margin: 0 0 breakpoints.rem-calc(20);
+		margin: 0 0 bp.rem-calc(20);
 	}
 
 	&__attribution {
 		align-items: center;
 		display: flex;
-		gap: breakpoints.rem-calc(12);
+		gap: bp.rem-calc(12);
 	}
 
 	&__avatar {
 		border-radius: 50%;
 		display: block;
 		flex-shrink: 0;
-		height: breakpoints.rem-calc(42);
+		height: bp.rem-calc(42);
 		object-fit: cover;
 		object-position: center top;
-		width: breakpoints.rem-calc(42);
+		width: bp.rem-calc(42);
 	}
 
 	&__meta {
 		display: flex;
 		flex-direction: column;
-		gap: breakpoints.rem-calc(2);
+		gap: bp.rem-calc(2);
 	}
 
 	&__name {
-		font-size: breakpoints.rem-calc(15);
+		font-size: bp.rem-calc(15);
 		font-style: normal;
 		font-weight: 700;
 		line-height: 1.2;
 	}
 
 	&__role {
-		font-size: breakpoints.rem-calc(13);
+		font-size: bp.rem-calc(13);
 		line-height: 1.3;
 		opacity: 0.7;
 	}

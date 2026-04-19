@@ -1,5 +1,5 @@
-@use '../helpers/breakpoints';
-@use '../helpers/variables';
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
 
 .modal__overlay {
 	backdrop-filter: blur(11px);
@@ -13,13 +13,13 @@
 	top: 0;
 	z-index: 1000;
 
-	@include breakpoints.breakpoint(medium) {
-		padding: breakpoints.rem-calc(32) breakpoints.rem-calc(24);
+	@include bp.breakpoint(medium) {
+		padding: bp.rem-calc(32) bp.rem-calc(24);
 	}
 }
 
 .modal__container {
-	background: variables.$white;
+	background: v.$white;
 	border-radius: 0;
 	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
 	margin: 0 auto;
@@ -29,7 +29,7 @@
 	position: relative;
 	width: 100%;
 
-	@include breakpoints.breakpoint(medium) {
+	@include bp.breakpoint(medium) {
 		border-radius: 8px;
 	}
 }
@@ -41,9 +41,9 @@
 	margin: 0 auto;
 	max-width: 860px;
 	overflow: visible;
-	padding: 0 breakpoints.rem-calc(12);
+	padding: 0 bp.rem-calc(12);
 	position: sticky;
-	top: breakpoints.rem-calc(12);
+	top: bp.rem-calc(12);
 	width: 100%;
 	z-index: 20;
 }
@@ -54,18 +54,18 @@
 	background: rgba(0, 0, 0, 0.52);
 	border: 2px solid rgba(255, 255, 255, 0.35);
 	border-radius: 50%;
-	color: variables.$white;
+	color: v.$white;
 	cursor: pointer;
 	display: flex;
 	flex-shrink: 0;
-	height: breakpoints.rem-calc(38);
+	height: bp.rem-calc(38);
 	justify-content: center;
 	transition: background 0.2s;
-	width: breakpoints.rem-calc(38);
+	width: bp.rem-calc(38);
 
 	&::before {
 		content: '\2715';
-		font-size: breakpoints.rem-calc(16);
+		font-size: bp.rem-calc(16);
 		line-height: 1;
 	}
 
@@ -74,7 +74,7 @@
 	}
 
 	&:focus-visible {
-		outline: 2px solid variables.$accent-2;
+		outline: 2px solid v.$accent-2;
 		outline-offset: 2px;
 	}
 }
@@ -82,7 +82,7 @@
 .modal__hero-image {
 	border: 0;
 	display: block;
-	height: clamp(#{breakpoints.rem-calc(180)}, 40vh, #{breakpoints.rem-calc(420)});
+	height: clamp(#{bp.rem-calc(180)}, 40vh, #{bp.rem-calc(420)});
 	object-fit: cover;
 	object-position: top center;
 	width: 100%;
@@ -91,31 +91,31 @@
 .modal__content {
 	color: rgba(0, 0, 0, 0.85);
 	line-height: 1.7;
-	padding: breakpoints.rem-calc(24) breakpoints.rem-calc(20);
+	padding: bp.rem-calc(24) bp.rem-calc(20);
 
-	@include breakpoints.breakpoint(medium) {
-		padding: breakpoints.rem-calc(32);
+	@include bp.breakpoint(medium) {
+		padding: bp.rem-calc(32);
 	}
 }
 
 .modal__header {
-	margin-bottom: breakpoints.rem-calc(20);
+	margin-bottom: bp.rem-calc(20);
 }
 
 .modal__title {
-	font-size: breakpoints.rem-calc(20);
+	font-size: bp.rem-calc(20);
 	line-height: 1.2;
-	margin: 0 0 breakpoints.rem-calc(12);
+	margin: 0 0 bp.rem-calc(12);
 
-	@include breakpoints.breakpoint(medium) {
-		font-size: breakpoints.rem-calc(26);
+	@include bp.breakpoint(medium) {
+		font-size: bp.rem-calc(26);
 	}
 }
 
 .modal__tech-tags {
 	display: flex;
 	flex-wrap: wrap;
-	gap: breakpoints.rem-calc(6);
+	gap: bp.rem-calc(6);
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -126,63 +126,63 @@
 	border: 1px solid rgba(122, 106, 247, 0.35);
 	border-radius: 4px;
 	color: rgb(74, 60, 160);
-	font-size: breakpoints.rem-calc(11);
+	font-size: bp.rem-calc(11);
 	font-weight: 700;
 	letter-spacing: 0.3px;
 	line-height: 1;
-	padding: breakpoints.rem-calc(4) breakpoints.rem-calc(8);
+	padding: bp.rem-calc(4) bp.rem-calc(8);
 }
 
 .modal__case-study {
 	p {
-		font-size: breakpoints.rem-calc(15);
+		font-size: bp.rem-calc(15);
 		line-height: 1.8;
-		margin-bottom: breakpoints.rem-calc(16);
+		margin-bottom: bp.rem-calc(16);
 
-		@include breakpoints.breakpoint(medium) {
-			font-size: breakpoints.rem-calc(16);
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(16);
 		}
 	}
 
 	a {
-		color: variables.$accent-1;
+		color: v.$accent-1;
 		font-weight: 600;
 	}
 }
 
 .modal__meta {
-	border-top: 1px solid variables.$light-gray;
-	margin-top: breakpoints.rem-calc(24);
-	padding-top: breakpoints.rem-calc(16);
+	border-top: 1px solid v.$light-gray;
+	margin-top: bp.rem-calc(24);
+	padding-top: bp.rem-calc(16);
 }
 
 .modal__meta-item {
-	color: variables.$dark-gray;
-	font-size: breakpoints.rem-calc(13);
-	margin: 0 0 breakpoints.rem-calc(4);
+	color: v.$dark-gray;
+	font-size: bp.rem-calc(13);
+	margin: 0 0 bp.rem-calc(4);
 }
 
 .modal__actions {
-	border-top: 1px solid variables.$light-gray;
-	margin-top: breakpoints.rem-calc(24);
-	padding-top: breakpoints.rem-calc(20);
+	border-top: 1px solid v.$light-gray;
+	margin-top: bp.rem-calc(24);
+	padding-top: bp.rem-calc(20);
 }
 
 .modal__live-link {
-	background: variables.$primary;
+	background: v.$primary;
 	border-radius: 5px;
-	color: variables.$white;
+	color: v.$white;
 	display: inline-block;
-	font-size: breakpoints.rem-calc(14);
+	font-size: bp.rem-calc(14);
 	font-weight: 700;
-	padding: breakpoints.rem-calc(12) breakpoints.rem-calc(24);
+	padding: bp.rem-calc(12) bp.rem-calc(24);
 	text-decoration: none;
 	transition: background-color 0.2s;
 
 	&:hover,
 	&:focus {
-		background: variables.$blue-end;
-		color: variables.$white;
+		background: v.$blue-end;
+		color: v.$white;
 	}
 }
 

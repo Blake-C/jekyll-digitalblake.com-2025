@@ -1,6 +1,6 @@
-@use '../helpers/breakpoints';
+@use '../helpers/breakpoints' as bp;
 @use '../helpers/helpers';
-@use '../helpers/variables';
+@use '../helpers/variables' as v;
 
 .intro {
 	@extend %cover;
@@ -12,7 +12,7 @@
 	}
 
 	background-position: center;
-	color: variables.$white;
+	color: v.$white;
 	line-height: 26px;
 	padding: clamp(150px, 8vw, 230px) 0;
 	position: relative;
@@ -35,7 +35,7 @@
 			left 0.3s,
 			background-color 0.3s;
 
-		@include breakpoints.breakpoint(large down) {
+		@include bp.breakpoint(large down) {
 			background-color: rgba(255, 255, 255, 0.12);
 			left: calc(-50% + 130px);
 		}
@@ -47,22 +47,22 @@
 	}
 
 	.title {
-		font-size: breakpoints.rem-calc(60);
+		font-size: bp.rem-calc(60);
 		font-weight: 800;
 		line-height: 1;
-		margin-bottom: breakpoints.rem-calc(16);
+		margin-bottom: bp.rem-calc(16);
 		text-transform: capitalize;
 	}
 
 	.line-1 {
 		margin: 0;
-		font-size: breakpoints.rem-calc(32);
+		font-size: bp.rem-calc(32);
 		line-height: 1;
 	}
 
 	.line-2 {
-		font-size: breakpoints.rem-calc(16);
-		margin: breakpoints.rem-calc(16) 0;
+		font-size: bp.rem-calc(16);
+		margin: bp.rem-calc(16) 0;
 	}
 
 	.line-3 {
@@ -71,7 +71,7 @@
 	}
 
 	p {
-		font-size: breakpoints.rem-calc(18);
+		font-size: bp.rem-calc(18);
 		font-weight: 800;
 	}
 
@@ -80,14 +80,14 @@
 		background: rgba(255, 255, 255, 0.12);
 		border: 1px solid rgba(255, 255, 255, 0.25);
 		border-radius: 20px;
-		color: variables.$white;
+		color: v.$white;
 		display: inline-flex;
-		font-size: breakpoints.rem-calc(12);
+		font-size: bp.rem-calc(12);
 		font-weight: 600;
-		gap: breakpoints.rem-calc(7);
+		gap: bp.rem-calc(7);
 		letter-spacing: 0.8px;
-		margin-bottom: breakpoints.rem-calc(16);
-		padding: breakpoints.rem-calc(5) breakpoints.rem-calc(14);
+		margin-bottom: bp.rem-calc(16);
+		padding: bp.rem-calc(5) bp.rem-calc(14);
 		text-transform: uppercase;
 	}
 
@@ -103,20 +103,20 @@
 	&__cta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: breakpoints.rem-calc(12);
-		margin-top: breakpoints.rem-calc(36);
+		gap: bp.rem-calc(12);
+		margin-top: bp.rem-calc(36);
 	}
 
 	&__cta-button {
 		background: rgba(255, 255, 255, 0.9);
 		border: 2px solid rgba(255, 255, 255, 0.9);
 		border-radius: 4px;
-		color: variables.$primary;
+		color: v.$primary;
 		display: inline-block;
-		font-size: breakpoints.rem-calc(15);
+		font-size: bp.rem-calc(15);
 		font-weight: 700;
 		line-height: 1;
-		padding: breakpoints.rem-calc(13) breakpoints.rem-calc(26);
+		padding: bp.rem-calc(13) bp.rem-calc(26);
 		text-decoration: none;
 		transition:
 			background-color 0.25s ease-out,
@@ -125,21 +125,21 @@
 
 		&:hover,
 		&:focus {
-			background: variables.$white;
-			border-color: variables.$white;
-			color: variables.$primary;
+			background: v.$white;
+			border-color: v.$white;
+			color: v.$primary;
 		}
 
 		&--secondary {
 			background: transparent;
 			border: 2px solid rgba(255, 255, 255, 0.6);
-			color: variables.$white;
+			color: v.$white;
 
 			&:hover,
 			&:focus {
 				background: rgba(255, 255, 255, 0.12);
-				border-color: variables.$white;
-				color: variables.$white;
+				border-color: v.$white;
+				color: v.$white;
 			}
 		}
 	}
@@ -147,7 +147,7 @@
 	&__headshot-column {
 		display: none;
 
-		@include breakpoints.breakpoint(large) {
+		@include bp.breakpoint(large) {
 			align-items: center;
 			display: flex;
 			justify-content: end;
@@ -165,42 +165,42 @@
 		border-radius: 50%;
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 		height: auto;
-		max-width: breakpoints.rem-calc(280);
+		max-width: bp.rem-calc(280);
 		width: 100%;
 	}
 
-	@include breakpoints.breakpoint(small only) {
+	@include bp.breakpoint(small only) {
 		padding: clamp(150px, 8vw, 230px) 0 clamp(90px, 8vw, 230px);
 
 		.title {
-			font-size: breakpoints.rem-calc(36);
+			font-size: bp.rem-calc(36);
 		}
 
 		.line-1 {
-			font-size: breakpoints.rem-calc(24);
+			font-size: bp.rem-calc(24);
 		}
 
 		.line-2 {
-			font-size: breakpoints.rem-calc(14);
+			font-size: bp.rem-calc(14);
 		}
 
 		.line-3 {
-			font-size: breakpoints.rem-calc(16);
-			margin-top: breakpoints.rem-calc(36);
+			font-size: bp.rem-calc(16);
+			margin-top: bp.rem-calc(36);
 		}
 
 		.intro__availability {
-			font-size: breakpoints.rem-calc(11);
-			padding: breakpoints.rem-calc(4) breakpoints.rem-calc(12);
+			font-size: bp.rem-calc(11);
+			padding: bp.rem-calc(4) bp.rem-calc(12);
 		}
 
 		.intro__cta {
-			margin-top: breakpoints.rem-calc(28);
+			margin-top: bp.rem-calc(28);
 		}
 
 		.intro__cta-button {
-			font-size: breakpoints.rem-calc(14);
-			padding: breakpoints.rem-calc(11) breakpoints.rem-calc(20);
+			font-size: bp.rem-calc(14);
+			padding: bp.rem-calc(11) bp.rem-calc(20);
 		}
 	}
 }

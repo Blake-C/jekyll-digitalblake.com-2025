@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
-@use 'helpers/variables';
-@use 'helpers/breakpoints';
+@use 'helpers/variables' as v;
+@use 'helpers/breakpoints' as bp;
 @use 'helpers/fonts';
 @use 'helpers/mixins';
 @use 'helpers/functions';

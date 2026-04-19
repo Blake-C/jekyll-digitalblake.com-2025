@@ -1,5 +1,5 @@
-@use '../helpers/breakpoints';
-@use '../helpers/variables';
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
 
 .entry-meta {
 	font-size: 0.8rem;
@@ -18,22 +18,22 @@
 	}
 
 	.post-meta {
-		@include breakpoints.breakpoint(small only) {
+		@include bp.breakpoint(small only) {
 			display: block;
 		}
 	}
 }
 
 .related-posts {
-	border-top: 1px solid variables.$light-gray;
-	margin-top: breakpoints.rem-calc(32);
-	padding-top: breakpoints.rem-calc(24);
+	border-top: 1px solid v.$light-gray;
+	margin-top: bp.rem-calc(32);
+	padding-top: bp.rem-calc(24);
 
 	&__title {
-		font-size: breakpoints.rem-calc(16);
+		font-size: bp.rem-calc(16);
 		font-weight: 700;
 		letter-spacing: 1px;
-		margin-bottom: breakpoints.rem-calc(12);
+		margin-bottom: bp.rem-calc(12);
 		text-transform: uppercase;
 	}
 
@@ -44,21 +44,21 @@
 	}
 
 	&__item {
-		border-bottom: 1px solid variables.$light-gray;
+		border-bottom: 1px solid v.$light-gray;
 		display: flex;
 		flex-direction: column;
-		gap: breakpoints.rem-calc(2);
-		padding: breakpoints.rem-calc(10) 0;
+		gap: bp.rem-calc(2);
+		padding: bp.rem-calc(10) 0;
 
-		@include breakpoints.breakpoint(medium) {
+		@include bp.breakpoint(medium) {
 			align-items: baseline;
 			flex-direction: row;
-			gap: breakpoints.rem-calc(12);
+			gap: bp.rem-calc(12);
 		}
 	}
 
 	&__link {
-		color: variables.$accent-1;
+		color: v.$accent-1;
 		font-weight: 700;
 		text-decoration: none;
 
@@ -69,24 +69,24 @@
 	}
 
 	&__date {
-		color: variables.$dark-gray;
-		font-size: breakpoints.rem-calc(13);
+		color: v.$dark-gray;
+		font-size: bp.rem-calc(13);
 		white-space: nowrap;
 	}
 }
 
 .post-cta {
-	border-top: 1px solid variables.$light-gray;
-	margin-top: breakpoints.rem-calc(24);
-	padding-top: breakpoints.rem-calc(20);
+	border-top: 1px solid v.$light-gray;
+	margin-top: bp.rem-calc(24);
+	padding-top: bp.rem-calc(20);
 
 	p {
-		font-size: breakpoints.rem-calc(15);
+		font-size: bp.rem-calc(15);
 		margin: 0;
 	}
 
 	a {
-		color: variables.$accent-1;
+		color: v.$accent-1;
 		font-weight: 700;
 	}
 }
@@ -96,14 +96,14 @@
 		margin-bottom: 30px;
 		text-transform: none;
 
-		@include breakpoints.breakpoint(medium) {
-			font-size: breakpoints.rem-calc(42);
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(42);
 		}
 	}
 
 	.entry-content {
-		background-color: variables.$gray244;
-		border-top: 3px solid variables.$blue;
+		background-color: v.$gray244;
+		border-top: 3px solid v.$blue;
 		padding: 20px;
 
 		> *:first-child {
@@ -114,7 +114,7 @@
 			margin-bottom: 0;
 		}
 
-		@include breakpoints.breakpoint(large) {
+		@include bp.breakpoint(large) {
 			padding: 30px;
 		}
 
@@ -125,7 +125,7 @@
 				&:not(.alignright):not(.alignleft) {
 					margin-top: -20px;
 
-					@include breakpoints.breakpoint(large) {
+					@include bp.breakpoint(large) {
 						margin-top: -30px;
 					}
 				}
@@ -135,7 +135,7 @@
 				&:not(.alignright):not(.alignleft) {
 					margin-bottom: -20px;
 
-					@include breakpoints.breakpoint(large) {
+					@include bp.breakpoint(large) {
 						margin-bottom: -30px;
 					}
 				}
@@ -147,7 +147,7 @@
 			&:first-child {
 				margin-top: -28px;
 
-				@include breakpoints.breakpoint(large) {
+				@include bp.breakpoint(large) {
 					margin-top: -38px;
 				}
 			}
@@ -155,27 +155,27 @@
 			&:last-child {
 				margin-bottom: -28px;
 
-				@include breakpoints.breakpoint(large) {
+				@include bp.breakpoint(large) {
 					margin-bottom: -38px;
 				}
 			}
 		}
 
 		h2 {
-			font-size: breakpoints.rem-calc(18);
+			font-size: bp.rem-calc(18);
 			line-height: 1.2;
 
-			@include breakpoints.breakpoint(medium) {
-				font-size: breakpoints.rem-calc(20);
+			@include bp.breakpoint(medium) {
+				font-size: bp.rem-calc(20);
 			}
 		}
 
 		p,
 		li {
-			font-size: breakpoints.rem-calc(15);
+			font-size: bp.rem-calc(15);
 
-			@include breakpoints.breakpoint(medium) {
-				font-size: breakpoints.rem-calc(18);
+			@include bp.breakpoint(medium) {
+				font-size: bp.rem-calc(18);
 			}
 		}
 
@@ -184,21 +184,21 @@
 				&::first-letter {
 					float: left;
 					font-family: Georgia, serif;
-					font-size: breakpoints.rem-calc(80);
+					font-size: bp.rem-calc(80);
 					font-weight: 700;
 					line-height: 1;
 					margin: -6px 10px -6px -3px;
 					padding: 0;
 
-					@include breakpoints.breakpoint(medium) {
-						font-size: breakpoints.rem-calc(101);
+					@include bp.breakpoint(medium) {
+						font-size: bp.rem-calc(101);
 					}
 				}
 			}
 		}
 
 		a {
-			color: variables.$accent-2;
+			color: v.$accent-2;
 			font-weight: 800;
 		}
 
@@ -210,7 +210,7 @@
 					margin-left: -20px;
 					max-width: calc(100% + 40px);
 
-					@include breakpoints.breakpoint(large) {
+					@include bp.breakpoint(large) {
 						margin-left: -30px;
 						max-width: calc(100% + 60px);
 					}
@@ -233,7 +233,7 @@
 			margin-left: -20px;
 			margin-right: -20px;
 
-			@include breakpoints.breakpoint(large) {
+			@include bp.breakpoint(large) {
 				margin-left: -30px;
 				margin-right: -30px;
 			}

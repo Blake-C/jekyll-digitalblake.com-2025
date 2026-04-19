@@ -1,10 +1,10 @@
 @charset 'UTF-8';
 
 /* Variables and globals */
-@use 'helpers/variables';
+@use 'helpers/variables' as v;
 
 /* Breakpoints, rem-calc, element-invisible */
-@use 'helpers/breakpoints';
+@use 'helpers/breakpoints' as bp;
 
 /* Helpers */
 @use 'helpers/fonts';

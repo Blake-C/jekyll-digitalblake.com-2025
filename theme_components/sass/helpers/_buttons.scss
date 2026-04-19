@@ -1,4 +1,4 @@
-@use 'variables';
+@use 'variables' as v;
 
 @use 'sass:color';
 
@@ -10,18 +10,18 @@
  * previous compiled CSS.
  */
 
-@mixin button($background: variables.$blue, $color: variables.$white, $font-size: 0.9rem, $padding: 0.85em 1em) {
+@mixin button($background: v.$blue, $color: v.$white, $font-size: 0.9rem, $padding: 0.85em 1em) {
 	-webkit-appearance: none;
 	background-color: $background;
 	border: 1px solid transparent;
-	border-radius: variables.$global-radius;
+	border-radius: v.$global-radius;
 	color: $color;
 	cursor: pointer;
 	display: inline-block;
 	font-family: inherit;
 	font-size: $font-size;
 	line-height: 1;
-	margin: 0 0 variables.$global-margin;
+	margin: 0 0 v.$global-margin;
 	outline: 0;
 	padding: $padding;
 	text-align: center;

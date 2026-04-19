@@ -1,17 +1,17 @@
-@use '../helpers/breakpoints';
-@use '../helpers/variables';
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
 
 body {
 	padding-top: 100px;
 
-	@include breakpoints.breakpoint(medium) {
+	@include bp.breakpoint(medium) {
 		padding-top: 113px;
 	}
 }
 
 .top-header {
-	background-color: variables.$primary;
-	border-bottom: 3px solid variables.$blue;
+	background-color: v.$primary;
+	border-bottom: 3px solid v.$blue;
 	padding: 30px 0;
 	position: fixed;
 	top: 0;
@@ -26,18 +26,18 @@ body {
 			display: flex;
 			text-decoration: none;
 
-			@include breakpoints.breakpoint(small only) {
+			@include bp.breakpoint(small only) {
 				margin: 0 16px;
 			}
 		}
 	}
 
-	@include breakpoints.breakpoint(medium) {
+	@include bp.breakpoint(medium) {
 		&.smaller {
 			padding: 5px 0;
 
 			.name {
-				font-size: breakpoints.rem-calc(20);
+				font-size: bp.rem-calc(20);
 			}
 
 			.main-logo {
@@ -51,7 +51,7 @@ body {
 		}
 	}
 
-	@include breakpoints.breakpoint(small only) {
+	@include bp.breakpoint(small only) {
 		padding: 25px 0;
 		text-align: center;
 
@@ -81,9 +81,9 @@ body {
 }
 
 .name {
-	color: variables.$white;
+	color: v.$white;
 	display: inline-block;
-	font-size: breakpoints.rem-calc(27);
+	font-size: bp.rem-calc(27);
 	font-weight: 700;
 	line-height: 1;
 	margin: 11px 0;
@@ -91,8 +91,8 @@ body {
 	text-transform: uppercase;
 	transition: all 0.3s;
 
-	@include breakpoints.breakpoint(small only) {
-		font-size: breakpoints.rem-calc(25);
+	@include bp.breakpoint(small only) {
+		font-size: bp.rem-calc(25);
 	}
 }
 

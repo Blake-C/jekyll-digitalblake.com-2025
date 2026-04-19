@@ -1,17 +1,17 @@
-@use '../helpers/breakpoints';
-@use '../helpers/variables';
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
 
 .wrapper {
 	margin: 120px 0 40px;
 
-	@include breakpoints.breakpoint(medium) {
+	@include bp.breakpoint(medium) {
 		margin: 80px 0 40px;
 	}
 }
 
 .browserupgrade {
-	background: variables.$gray244;
-	color: variables.$black;
+	background: v.$gray244;
+	color: v.$black;
 	margin: 0.2em 0;
 	padding: 0.2em 0;
 	position: fixed;

@@ -1,5 +1,5 @@
-@use '../helpers/breakpoints';
-@use '../helpers/variables';
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
 
 @use 'sass:color';
 
@@ -59,7 +59,7 @@ textarea {
 	}
 
 	label {
-		font-size: breakpoints.rem-calc(16);
+		font-size: bp.rem-calc(16);
 		margin-top: 20px;
 	}
 }
@@ -67,16 +67,16 @@ textarea {
 .gform_footer {
 	input {
 		&[type='submit'] {
-			background-color: variables.$red;
+			background-color: v.$red;
 			border-radius: 5px;
-			color: variables.$white;
+			color: v.$white;
 			font-weight: 700;
 			margin-top: 20px;
 			padding: 15px 30px;
 			text-transform: uppercase;
 
 			&:hover {
-				background-color: color.adjust(variables.$red, $lightness: -6%);
+				background-color: color.adjust(v.$red, $lightness: -6%);
 			}
 		}
 	}
