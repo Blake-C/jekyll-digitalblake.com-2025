@@ -44,6 +44,8 @@ document.querySelectorAll('.js_sites-gallery__button').forEach(button => {
 		MicroModal.show(modalId, {
 			disableScroll: true,
 			onShow: modal => {
+				const overlay = modal.querySelector('.modal__overlay')
+				if (overlay) overlay.scrollTop = 0
 				modal.querySelectorAll('img[data-src]').forEach(image => {
 					image.setAttribute('src', image.dataset.src)
 					image.removeAttribute('data-src')

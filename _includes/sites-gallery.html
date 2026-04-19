@@ -1,37 +1,43 @@
-<section class="sites-gallery">
-	<h2 class="sites-gallery__title">Websites</h2>
-
+<section class="sites-gallery" id="projects" aria-labelledby="sites-gallery-title">
 	<div class="row">
 		<div class="medium-12 columns">
-			<div class="sites-gallery__glass-background">
-				<div class="row">
-					<div class="medium-10 medium-offset-1 columns">
-						<div class="row">
-							{%- for site_item in site.websites -%}
-								{%- assign modal_id = 'modal-' | append: forloop.index -%}
+			<h2 class="sites-gallery__title" id="sites-gallery-title">Websites</h2>
 
-								<div class="large-4 medium-6 small-12 columns">
-									<button
-										type="button"
-										data-micromodal-trigger="{{ modal_id }}"
-										class="sites-gallery__button js_sites-gallery__button"
-										aria-label="View details for {{ site_item.title | escape }}"
-									>
-										<img
-											loading="lazy"
-											width="600"
-											height="400"
-											class="sites-gallery__image wp-post-image"
-											alt="Screenshot of {{ site_item.title | escape }}"
-											decoding="async"
-											src="{{ site_item.thumbnail | relative_url }}"
-										>
-									</button>
-								</div>
-							{%- endfor -%}
-						</div>
+			<div class="row sites-gallery__grid">
+				{%- for site_item in site.websites -%}
+					{%- assign modal_id = 'modal-' | append: forloop.index -%}
+					<div class="large-4 medium-6 small-12 columns">
+						<button
+							type="button"
+							data-micromodal-trigger="{{ modal_id }}"
+							class="sites-gallery__card js_sites-gallery__button"
+							aria-label="View case study: {{ site_item.title | escape }}"
+						>
+							<div class="sites-gallery__image-wrap">
+								<img
+									loading="lazy"
+									width="600"
+									height="400"
+									class="sites-gallery__image wp-post-image"
+									alt="Screenshot of {{ site_item.title | escape }}"
+									decoding="async"
+									src="{{ site_item.thumbnail | relative_url }}"
+								>
+							</div>
+							<div class="sites-gallery__card-body">
+								<p class="sites-gallery__item-title">{{ site_item.title }}</p>
+								{%- if site_item.tech -%}
+									<ul class="sites-gallery__tags" aria-label="Technologies used">
+										{%- for tag in site_item.tech -%}
+											<li class="sites-gallery__tag">{{ tag }}</li>
+										{%- endfor -%}
+									</ul>
+								{%- endif -%}
+								<span class="sites-gallery__cta-hint" aria-hidden="true">View case study →</span>
+							</div>
+						</button>
 					</div>
-				</div>
+				{%- endfor -%}
 			</div>
 		</div>
 	</div>
@@ -43,52 +49,61 @@
 		<div class="modal micromodal-slide" id="{{ modal_id }}" aria-hidden="true">
 			<div class="modal__overlay" tabindex="-1" data-micromodal-close>
 				<div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title">
-					<div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="{{ modal_id }}-title">
-						<header>
-							<h4 class="modal__title" id="{{ modal_id }}-title">{{ site_item.title }}</h4>
+					<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
 
-							<button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+					<img
+						class="modal__hero-image"
+						alt="Screenshot of {{ site_item.title | escape }}"
+						decoding="async"
+						loading="lazy"
+						width="1200"
+						height="630"
+						src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+						data-src="{{ site_item.image | relative_url }}"
+					>
+
+					<div class="modal__content">
+						<header class="modal__header">
+							<h2 class="modal__title" id="{{ modal_id }}-title">{{ site_item.title }}</h2>
+							{%- if site_item.tech -%}
+								<ul class="modal__tech-tags" aria-label="Technologies used">
+									{%- for tag in site_item.tech -%}
+										<li class="modal__tech-tag">{{ tag }}</li>
+									{%- endfor -%}
+								</ul>
+							{%- endif -%}
 						</header>
 
-						<div id="{{ modal_id }}-content">
+						<div class="modal__case-study">
 							{{ site_item.content }}
+						</div>
 
-							{%- if site_item.agency -%}
-								<p class="has-text-align-center">
-									<strong>Worked on while at<br></strong>{{ site_item.agency }}
-								</p>
-							{%- endif -%}
-
-							{%- if site_item.team -%}
-								<p class="has-text-align-center">
-									<strong>Team</strong><br>
-									{%- for member in site_item.team -%}
-										{{ member.name }} ({{ member.role }})
-										{%- unless forloop.last -%}<br>{%- endunless -%}
-									{%- endfor -%}
-								</p>
-							{%- endif -%}
-
-							<div class="wp-block-buttons is-content-justification-center">
-								<div class="wp-block-button">
-									<a
-										class="button primary"
-										href="{{ site_item.link }}"
-										target="_blank"
-										rel="noreferrer noopener"
-									>
-										{{- site_item.link_text -}}
-									</a>
-								</div>
+						{%- if site_item.agency or site_item.team -%}
+							<div class="modal__meta">
+								{%- if site_item.agency -%}
+									<p class="modal__meta-item"><strong>Built at:</strong> {{ site_item.agency }}</p>
+								{%- endif -%}
+								{%- if site_item.team -%}
+									<p class="modal__meta-item">
+										<strong>Team:</strong>
+										{%- for member in site_item.team -%}
+											{{ member.name }} ({{ member.role }})
+											{%- unless forloop.last %}, {% endunless %}
+										{%- endfor -%}
+									</p>
+								{%- endif -%}
 							</div>
+						{%- endif -%}
 
-							<img
-								loading="lazy"
-								class="attachment-full size-full wp-post-image"
-								alt=""
-								decoding="async"
-								src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-								data-src="{{ site_item.image | relative_url }}"
+						<div class="modal__actions">
+							<a
+								class="modal__live-link"
+								href="{{ site_item.link }}"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								{{- site_item.link_text }}
+								<span aria-hidden="true">↗</span></a
 							>
 						</div>
 					</div>
