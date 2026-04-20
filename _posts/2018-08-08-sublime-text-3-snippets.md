@@ -32,7 +32,7 @@ When creating a Sublime Text snippet you have 4 distinct sections.
 console.log(${1:your_value});
 $0
 ]]></content>
-    <tabtrigger>cl</tabtrigger>
+    <tabTrigger>cl</tabTrigger>
     <scope>source.js,source.jsx</scope>
     <description>console.log statement</description>
 </snippet>
@@ -56,7 +56,7 @@ This marker is the first tab stop in the snippet. It will output your_value high
     <?php endwhile; ?>
 <?php endif; ?>
 ]]></content>
-    <tabtrigger>acf_repeater</tabtrigger>
+    <tabTrigger>acf_repeater</tabTrigger>
     <scope>source.php,embedding.php</scope>
     <description>An ACF repeater filed group</description>
 </snippet>
