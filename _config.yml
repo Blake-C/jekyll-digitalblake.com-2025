@@ -10,6 +10,8 @@ github_username: Blake-C
 author:
     id: digitalblake
     name: Blake Cerecero
+    email: blake@digitalblake.com
+    uri: https://digitalblake.com/author/digitalblake/
 
 permalink: /:year/:month/:day/:title/
 timezone: America/Chicago
