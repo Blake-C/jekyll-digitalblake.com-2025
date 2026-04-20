@@ -23,7 +23,7 @@ team:
     - name: Byron Elliott
       role: Senior Visual Designer
     - name: Blake Cerecero
-      role: Designer/Developer
+      role: Senior Web Developer
     - name: Resources Online
       role: Agency Partner
     - name: and many others.
