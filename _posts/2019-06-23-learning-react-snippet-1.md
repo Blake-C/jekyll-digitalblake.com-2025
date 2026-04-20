@@ -24,7 +24,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Todo from './components/Todo/Todo'
 
-ReactDOM.render(<todo></todo>, document.getElementById('root'))
+ReactDOM.render(<Todo />, document.getElementById('root'))
 ```
 
 App Class Component:
@@ -57,10 +57,10 @@ class Todo extends Component {
 
 	render() {
 		const todoElements = this.state.data.map(data => {
-			return <todoitem data="{data}" handleonchange="{this.handleOnChange}" key="{data.id}"></todoitem>
+			return <TodoItem data={data} key={data.id} handleOnChange={this.handleOnChange} />
 		})
 
-		return <form classname="todo">{todoElements}</form>
+		return <form className="todo">{todoElements}</form>
 	}
 }
 
@@ -74,26 +74,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function TodoItem(props) {
-    const { id, completed, text } = props.data
+	const { id, completed, text } = props.data
 
-    return (
-        <div classname="todo-item">
-            <label htmlfor="{`item_${id}`}">
-                <input =="" checked="{completed}" id="{`item_${id}`}" onchange="{()" type="checkbox"/> {
-                        props.handleOnChange(id)
-                    }}
-                />
-                {text}
-            </label>
-            <br/>
-        </div>
-    )
+	return (
+		<div className="todo-item">
+			<label htmlFor={`item_${id}`}>
+				<input
+					type="checkbox"
+					id={`item_${id}`}
+					checked={completed}
+					onChange={() => {
+						props.handleOnChange(id)
+					}}
+				/>
+				{text}
+			</label>
+			<br />
+		</div>
+	)
 }
 
 // PropTypes
 TodoItem.propTypes = {
-    data: PropTypes.object.isRequired,
-    handleOnChange: PropTypes.func.isRequired,
+	data: PropTypes.object.isRequired,
+	handleOnChange: PropTypes.func.isRequired,
 }
 
 export default TodoItem
