@@ -6,6 +6,7 @@ modified_date: 2020-10-02 21:09:53 -0500
 description: 'Using Node, Pandoc, and Knex to create Word Docs from database table.'
 categories: ['Articles']
 tags: ['javascript', 'joomla', 'knex', 'node', 'pandoc']
+image: '/assets/uploads/2019/02/generating-word-docs-with-node-pandoc-and-knex-1200x630-facebook-share.webp'
 ---
 
 To start, this is not something I wanted to do, it was a client request that lead to this being a thing. Usually, at Gray Digital Group, we use GatherContent to process changes to our clients content before integrating it into their new sites. However, there was this one instance where our client wanted to edit their content from Word Docs.

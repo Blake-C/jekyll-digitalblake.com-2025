@@ -6,6 +6,7 @@ date: 2018-08-05 20:22:58 -0500
 modified_date: 2020-10-02 21:09:55 -0500
 categories: ['Guides']
 tags: ['composer', 'homebrew', 'phpcs', 'wordpress', 'wpcs']
+image: '/assets/uploads/2018/08/setting-up-wordpress-coding-standards-wpcs-1200x630-facebook-share.webp'
 ---
 
 ### Install Homebrew

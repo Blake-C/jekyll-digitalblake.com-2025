@@ -6,6 +6,7 @@ date: 2018-08-12 15:04:46 -0500
 modified_date: 2020-10-02 21:09:54 -0500
 categories: ['Snippets']
 tags: ['docker', 'shell-script']
+image: '/assets/uploads/2018/08/helpful-docker-shell-script-aliases-and-functions-1200x630-facebook-share.webp'
 render_with_liquid: false
 ---
 

@@ -6,6 +6,7 @@ modified_date: 2020-10-02 21:09:53 -0500
 description: 'A few new PHP7 features that would be useful for frontend developers.'
 categories: ['Notes']
 tags: ['php', 'php7', 'phpcs', 'wordpress']
+image: '/assets/uploads/2019/02/features-new-to-php7-1200x630-facebook-share.webp'
 ---
 
 These notes are from a LinkedIn Learning Course that can be found here: [https://www.linkedin.com/learning/php-7-new-features](https://www.linkedin.com/learning/php-7-new-features)

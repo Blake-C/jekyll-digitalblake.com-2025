@@ -6,6 +6,7 @@ date: 2018-08-12 15:10:25 -0500
 modified_date: 2020-10-02 21:09:54 -0500
 categories: ['Snippets']
 tags: ['macos', 'shell-script']
+image: '/assets/uploads/2018/08/adding-empty-spaces-to-macos-dock-1200x630-facebook-share.webp'
 ---
 
 ### Shell Script Function

@@ -6,6 +6,7 @@ date: 2018-08-12 14:53:54 -0500
 modified_date: 2020-10-02 21:09:54 -0500
 categories: ['Notes']
 tags: ['docker']
+image: '/assets/uploads/2018/08/docker-notes-1200x630-facebook-share.webp'
 ---
 
 ### Resources
