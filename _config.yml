@@ -27,6 +27,7 @@ sass:
 plugins:
     - jekyll-feed
     - jekyll-paginate-v2
+    - jekyll-sitemap
 
 # Pagination (jekyll-paginate-v2)
 pagination:
