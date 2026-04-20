@@ -50,6 +50,18 @@ document.querySelectorAll('.js_sites-gallery__button').forEach(button => {
 					image.setAttribute('src', image.dataset.src)
 					image.removeAttribute('data-src')
 				})
+				// Override Micromodal's auto-focus so the modal doesn't scroll
+				// to the first button on open. Focus the container instead so
+				// the tab trap still works when the user starts tabbing.
+				requestAnimationFrame(() => {
+					const container = modal.querySelector('.modal__container')
+					if (container) {
+						if (!container.hasAttribute('tabindex')) {
+							container.setAttribute('tabindex', '-1')
+						}
+						container.focus({ preventScroll: true })
+					}
+				})
 			},
 		})
 	})
