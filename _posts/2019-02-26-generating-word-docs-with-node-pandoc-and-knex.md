@@ -69,7 +69,7 @@ function joomla_articles(table, live_domain = '/', output_dir = './_output/artic
 
                     <html lang="en">
                     <head>
-                        <meta charset="utf-8"/>
+                        <meta charset="UTF-8">
                     </head>
                     <body>
                         <p>Site URL: <a href="${page_url}">${page_url}</a></p>
