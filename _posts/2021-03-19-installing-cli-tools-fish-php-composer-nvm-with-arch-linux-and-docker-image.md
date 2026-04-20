@@ -3,6 +3,7 @@ layout: post
 title: 'Installing CLI Tools (fish, php, composer, nvm) with Arch Linux and Docker Image'
 description: 'Just some notes from what I was experimenting with Arch Linux and setting up fish shell.'
 date: 2021-03-19 01:38:13 -0500
+modified_date: 2021-03-19 20:25:08 -0500
 categories: ['Notes']
 tags: ['arch', 'command-line', 'docker', 'linux']
 ---
@@ -46,7 +47,7 @@ fish
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
 # If you don't want to use tide, don't install it
-fisher install ilancosman/<a class="__cf_email__" data-cfemail="97e3fef3f2d7e1a3b9a6b9a6" href="/cdn-cgi/l/email-protection">[email protected]</a>
+fisher install ilancosman/tide@v4.1.1
 ```
 
 ## Installing nvm and node
