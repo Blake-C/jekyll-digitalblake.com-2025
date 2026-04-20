@@ -88,7 +88,8 @@
 									<p class="modal__meta-item">
 										<strong>Team: </strong>
 										{%- for member in site_item.team -%}
-											{{ member.name }} ({{ member.role }})
+											{{ member.name -}}
+											{%- if member.role %} ({{ member.role }}){% endif %}
 											{%- unless forloop.last %}, {% endunless %}
 										{%- endfor -%}
 									</p>

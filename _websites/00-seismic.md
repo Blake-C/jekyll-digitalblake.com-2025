@@ -2,6 +2,31 @@
 title: Seismic
 thumbnail: /assets/uploads/2025/04/seismic.com-600x400.webp
 image: /assets/uploads/2025/04/seismic.com.webp
+agency: Seismic
+team:
+    - name: Josh Patrice
+      role: Senior Director, Digital Marketing & Web Strategy
+    - name: Vinolia Huxley
+      role: Director, Web Development
+    - name: Lauren Walters
+      role: Website Project Manager
+    - name: Neicole Crepeau
+      role: Senior Director, Web Strategy
+    - name: Rachel Saltsgaver
+      role: Senior SEO Manager
+    - name: Alex Biyevetskiy
+      role: Senior Manager, Growth
+    - name: Cameron Alcorn
+      role: Lead Frontend Developer
+    - name: Simeon Awosan
+      role: Design Team Lead
+    - name: Byron Elliott
+      role: Senior Visual Designer
+    - name: Blake Cerecero
+      role: Designer/Developer
+    - name: Resources Online
+      role: Agency Partner
+    - name: and many others.
 tech:
     - WordPress
     - Gutenberg
