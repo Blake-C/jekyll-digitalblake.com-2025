@@ -4,7 +4,8 @@
 .testimonials {
 	background: v.$primary;
 	color: v.$white;
-	padding: bp.rem-calc(80) 0;
+	padding-bottom: bp.rem-calc(80);
+	padding-top: bp.rem-calc(80);
 
 	&__title {
 		font-size: bp.rem-calc(16);
