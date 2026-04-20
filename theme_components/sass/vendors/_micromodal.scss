@@ -81,6 +81,7 @@
 
 .modal__hero-image {
 	border: 0;
+	box-shadow: 0 -21px 14px 15px v.$black;
 	display: block;
 	height: clamp(#{bp.rem-calc(180)}, 40vh, #{bp.rem-calc(420)});
 	object-fit: cover;
