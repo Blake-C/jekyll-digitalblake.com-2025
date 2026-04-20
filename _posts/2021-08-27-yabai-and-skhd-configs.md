@@ -2,6 +2,7 @@
 layout: post
 title: 'Yabai and SKHD Configs'
 date: 2021-08-27 22:24:57 -0500
+modified_date: 2021-08-27 22:48:19 -0500
 description: 'Snippets from my yabai and skhd configurations and scripts.'
 categories: ['Snippets']
 tags: ['command-line', 'learning', 'shell-script']
