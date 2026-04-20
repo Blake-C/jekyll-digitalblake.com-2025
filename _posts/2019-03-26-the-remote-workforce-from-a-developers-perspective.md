@@ -6,7 +6,7 @@ date: 2019-03-26 07:00:43 -0500
 modified_date: 2020-10-02 21:09:53 -0500
 categories: ['Articles']
 tags: ['goals', 'learning', 'remote', 'thoughts']
-image: '/assets/uploads/2019/03/michael-coury-70410-unsplash-facebook.webp'
+image: '/assets/uploads/2019/03/the-remote-workforce-from-a-developers-perspective.webp'
 ---
 
 Remote work is one of the privileges we have as developers, but it has it’s down sides as well. Where you work is as important as what you are working on because the choices you make can affect your productivity, health, and motivation. For most people I feel that working remote will be a benefit in terms of being able to focus on your work and lessen your distractions. For others it might not be a choice but a necessity because of ones health circumstances.
