@@ -1,0 +1,35 @@
+{%- assign post_author_id = page.author | default: site.author.id -%}
+{%- assign post_author = site.data.authors[post_author_id] -%}
+{%- if page.image -%}
+	{%- assign jsonld_image = page.image | absolute_url -%}
+{%- elsif site.default_og_image -%}
+	{%- assign jsonld_image = site.default_og_image | absolute_url -%}
+{%- endif -%}
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": {{ page.title | escape | jsonify }},
+		"url": "{{ page.url | absolute_url }}",
+		"datePublished": "{{ page.date | date_to_xmlschema }}",
+		{%- if page.modified_date %}
+		"dateModified": "{{ page.modified_date | date_to_xmlschema }}",
+		{%- else %}
+		"dateModified": "{{ page.date | date_to_xmlschema }}",
+		{%- endif %}
+		"description": {{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 160 | escape | jsonify }},
+		{%- if jsonld_image %}
+		"image": "{{ jsonld_image }}",
+		{%- endif %}
+		"author": {
+			"@type": "Person",
+			"name": {{ post_author.name | jsonify }},
+			"url": "{{ '/author/' | append: post_author_id | append: '/' | absolute_url }}"
+		},
+		"publisher": {
+			"@type": "Person",
+			"name": {{ post_author.name | jsonify }},
+			"url": "{{ site.url }}"
+		}
+	}
+</script>

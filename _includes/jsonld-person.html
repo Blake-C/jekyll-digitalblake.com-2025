@@ -1,0 +1,14 @@
+{%- assign default_author = site.data.authors[site.author.id] -%}
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": {{ default_author.name | jsonify }},
+		"url": "{{ site.url }}",
+		"description": {{ default_author.description | jsonify }},
+		"sameAs": [
+			"https://github.com/{{ site.github_username }}",
+			"https://www.linkedin.com/in/blakecerecero/"
+		]
+	}
+</script>

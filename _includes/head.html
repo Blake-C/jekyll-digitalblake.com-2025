@@ -134,4 +134,11 @@
 
 	<!-- Feed -->
 	{%- feed_meta -%}
+
+	<!-- JSON-LD Structured Data -->
+	{%- if page.layout == 'post' -%}
+		{%- include jsonld-article.html -%}
+	{%- elsif page.url == '/' -%}
+		{%- include jsonld-person.html -%}
+	{%- endif -%}
 </head>
