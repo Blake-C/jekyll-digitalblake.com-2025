@@ -94,6 +94,18 @@
 		<meta property="og:image:height" content="630">
 	{%- endif -%}
 
+	<!-- Twitter / X Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	{%- if page.title -%}
+		<meta name="twitter:title" content="{{ page.title | escape }} - {{ site.title | escape }}">
+	{%- else -%}
+		<meta name="twitter:title" content="{{ site.title | escape }}">
+	{%- endif -%}
+	<meta name="twitter:description" content="{{ page_description | escape }}">
+	{%- if og_image -%}
+		<meta name="twitter:image" content="{{ og_image | absolute_url }}">
+	{%- endif -%}
+
 	{%- assign default_author = site.data.authors[site.author.id] -%}
 	<meta name="author" content="{{ default_author.name }}">
 
@@ -141,4 +153,7 @@
 	{%- elsif page.url == '/' -%}
 		{%- include jsonld-person.html -%}
 	{%- endif -%}
+	{%- unless page.url == '/' -%}
+		{%- include jsonld-breadcrumb.html -%}
+	{%- endunless -%}
 </head>

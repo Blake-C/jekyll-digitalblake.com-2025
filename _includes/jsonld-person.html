@@ -12,3 +12,17 @@
 		]
 	}
 </script>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": {{ site.title | jsonify }},
+		"url": "{{ site.url }}",
+		"description": {{ site.description | strip_newlines | strip | jsonify }},
+		"author": {
+			"@type": "Person",
+			"name": {{ default_author.name | jsonify }},
+			"url": "{{ site.url }}"
+		}
+	}
+</script>
