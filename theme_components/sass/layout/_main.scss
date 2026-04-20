@@ -2,10 +2,10 @@
 @use '../helpers/variables' as v;
 
 .wrapper {
-	margin: 120px 0 40px;
+	margin: 120px 0 70px;
 
 	@include bp.breakpoint(medium) {
-		margin: 80px 0 40px;
+		margin: 80px 0 70px;
 	}
 }
 

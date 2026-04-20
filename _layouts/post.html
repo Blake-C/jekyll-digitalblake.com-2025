@@ -61,7 +61,7 @@ layout: base
 							<footer class="entry-footer">
 								{%- if page.categories -%}
 									<p class="cat-links">
-										<strong>View other</strong>
+										View other
 										{%- for cat in page.categories %}
 											{%- capture cat_path -%}/category/{{ cat | slugify }}/{%- endcapture -%}
 											<a href="{{ cat_path | relative_url }}" rel="category tag">{{ cat }}</a>
