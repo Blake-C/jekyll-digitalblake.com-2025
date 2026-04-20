@@ -1,13 +1,9 @@
 ---
-layout: page
-title: About
+layout: content-page
+title: Blake Cerecero
 permalink: /about/
 description: 'Senior web developer with 15 years building fast, accessible sites on WordPress, Drupal, Sitecore, and beyond.'
 ---
-
-<div class="about-content">
-
-<h1>Blake Cerecero</h1>
 
 <p>I got into this through the back door. I was working as a lab tech in the Digital Media department at Northwest Vista College. Students came to me when they were stuck, and it was my job to know the answer or find who did. That pattern has followed me through every job since.</p>
 
@@ -22,5 +18,3 @@ description: 'Senior web developer with 15 years building fast, accessible sites
 <p><strong>What I'm looking for:</strong> Remote-first work with a flexible schedule. In-house, agency, or contract. I'm open to the right problem.</p>
 
 <p><strong>Outside of work:</strong> I spend a lot of time on YouTube and experimenting with AI tools, plus whatever apartment project I've decided I should probably finally finish.</p>
-
-</div>

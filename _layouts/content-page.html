@@ -1,0 +1,40 @@
+---
+layout: base
+---
+<div class="row">
+	<main class="medium-12 small-12 columns" id="content">
+		<div class="wrapper">
+			<article id="page-{{ page.slug }}" class="main-content-block page type-page status-publish hentry">
+				<div class="row">
+					<div class="large-9 medium-12 small-12 columns">
+						<header class="entry-header">
+							<h1 class="entry-title">{{ page.title | escape }}</h1>
+						</header>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="large-9 medium-12 small-12 columns">
+						<div class="entry-content">
+							{{ content }}
+
+							<div class="post-cta">
+								<p>
+									Want to get in touch?
+									<a
+										href="https://www.linkedin.com/in/blakecerecero/"
+										target="_blank"
+										rel="noreferrer noopener"
+										>Connect on LinkedIn</a
+									>.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					{%- include sidebar.html -%}
+				</div>
+			</article>
+		</div>
+	</main>
+</div>
