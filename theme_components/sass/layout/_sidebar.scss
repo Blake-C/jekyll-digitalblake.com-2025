@@ -11,6 +11,12 @@
 		margin: 0;
 	}
 
+	.page-articles-listing & {
+		@include bp.breakpoint(large) {
+			margin: 86px 0 0;
+		}
+	}
+
 	h2 {
 		margin-bottom: 0;
 	}
