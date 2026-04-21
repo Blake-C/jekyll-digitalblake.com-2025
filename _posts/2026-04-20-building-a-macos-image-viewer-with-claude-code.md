@@ -5,7 +5,7 @@ description: "I don't know Swift. I built a native macOS photo gallery with Clau
 date: 2026-04-20 21:23:05 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'claude-code', 'photography']
-image: '/assets/uploads/2025/04/the image viewer application on loadup with photos.jpg'
+image: '/assets/uploads/2025/04/the image viewer application on loadup with photos.webp'
 ---
 
 I have never liked how Apple Photos presents your library. The sidebar, the memories, the albums, the filters, the nudges to do something with your photos. All I want is to point an application at a directory, see what's in it, and click through at my own pace. That is it. That is the whole ask.
