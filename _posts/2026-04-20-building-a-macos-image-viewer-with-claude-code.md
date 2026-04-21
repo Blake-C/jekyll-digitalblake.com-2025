@@ -2,8 +2,7 @@
 layout: post
 title: 'Building a macOS Image Viewer with Claude Code'
 description: "I don't know Swift. I built a native macOS photo gallery with Claude Code anyway, and now I actually enjoy browsing my photo library."
-date: 2026-04-20 09:00:00 -0500
-modified_date: 2026-04-20 09:00:00 -0500
+date: 2026-04-20 21:23:05 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'claude-code', 'photography']
 image: '/assets/uploads/2025/04/the image viewer application on loadup with photos.jpg'
@@ -19,21 +18,21 @@ The source is on [GitHub](https://github.com/Blake-C/macos-image-viewer-applicat
 
 The concept is simple. Open it, point it at a folder, browse photos. No library management. No syncing. No cloud. Just your files in a directory and a grid view of thumbnails.
 
-![Image Viewer gallery on load with photos displayed](/assets/uploads/2025/04/the image viewer application on loadup with photos.jpg)
+![Image Viewer gallery on load with photos displayed](/assets/uploads/2025/04/the image viewer application on loadup with photos.webp)
 
 From the gallery you can sort by name, date modified, or file size. You can filter by file type or date range. There is a search field (Cmd+S to focus it) and a favorites system so you can star photos and filter down to just those. The thumbnail grid supports both square crop mode and aspect-ratio mode depending on whether you want uniformity or want to see the whole frame. Per-folder settings persist across launches, so the app remembers how you had things set up the last time you opened that directory.
 
 Click a thumbnail and you get the full image view.
 
-![Image Viewer single photo full view](/assets/uploads/2025/04/the image viewer application viewing a single photo.jpg)
+![Image Viewer single photo full view](/assets/uploads/2025/04/the image viewer application viewing a single photo.webp)
 
 From there you can zoom with the scroll wheel, Cmd++ and Cmd+-, or Cmd+1 to jump to actual pixels. Pan by clicking and dragging. Arrow keys move between images when you're at the default zoom level, and pan when you're zoomed in.
 
-![Image Viewer zoomed into a single photo](/assets/uploads/2025/04/the image viewer application zoomed into a single photo.jpg)
+![Image Viewer zoomed into a single photo](/assets/uploads/2025/04/the image viewer application zoomed into a single photo.webp)
 
 Press I to toggle an info overlay showing the filename, pixel dimensions, file size, and date modified. You can also star the image from here.
 
-![Image Viewer with image info overlay and star indicator visible](/assets/uploads/2025/04/the image viewr application with the image info and star indicator on.jpg)
+![Image Viewer with image info overlay and star indicator visible](/assets/uploads/2025/04/the image viewr application with the image info and star indicator on.webp)
 
 ## Keyboard Controls
 
