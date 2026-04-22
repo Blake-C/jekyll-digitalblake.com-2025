@@ -4,7 +4,7 @@ title: 'Building a macOS Image Viewer with Claude Code'
 description: "I don't know Swift. I built a native macOS photo gallery with Claude Code anyway, and now I actually enjoy browsing my photo library."
 date: 2026-04-20 21:23:05 -0500
 categories: ['Articles']
-tags: ['swift', 'macos', 'claude-code', 'photography']
+tags: ['swift', 'macos', 'claude-code', 'photography', 'ai']
 image: '/assets/uploads/2025/04/the image viewer application on loadup with photos.webp'
 ---
 

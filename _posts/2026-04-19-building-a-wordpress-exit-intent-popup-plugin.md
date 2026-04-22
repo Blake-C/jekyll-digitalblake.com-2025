@@ -5,7 +5,7 @@ description: 'A proof of concept born from a request at Seismic, and my first re
 date: 2026-04-19 09:00:00 -0500
 modified_date: 2026-04-19 09:00:00 -0500
 categories: ['Articles']
-tags: ['javascript', 'php', 'wordpress', 'learning']
+tags: ['javascript', 'php', 'wordpress', 'claude-code', 'ai']
 image: '/assets/uploads/2025/04/exit intent - front-end dark mode.webp'
 ---
 
