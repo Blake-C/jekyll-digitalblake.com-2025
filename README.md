@@ -79,7 +79,12 @@ The dev server merges both configs automatically via `npm run dev`.
 npm run format   # Format all files
 ```
 
-A pre-commit hook (via [Husky](https://typicode.com/husky)) runs Prettier automatically before every commit.
+A pre-commit hook (via [Husky](https://typicode.com/husky)) runs automatically before every commit via lint-staged:
+
+- **Prettier** — formats all files
+- **ESLint** — lints and auto-fixes JS/MJS files
+- **`stylelint`** — lints and auto-fixes SCSS files
+- **ImageMagick** — optimizes any staged JPG/PNG in `assets/images/` or `assets/uploads/` and creates WebP counterparts where missing
 
 ## Project Structure
 
@@ -92,6 +97,7 @@ _plugins/       # Custom Jekyll plugins (author pages)
 _posts/         # Blog posts (Markdown)
 _websites/      # Website portfolio data for homepage
 assets/         # Compiled/static assets (CSS, JS, images, uploads)
+script/         # Build scripts (image optimization, asset hashing)
 theme_components/
   js/           # JS source files
   sass/         # SCSS source files
