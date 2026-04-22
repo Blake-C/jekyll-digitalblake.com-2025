@@ -1,4 +1,7 @@
-<script src="{{ '/assets/js/main.min.js' | relative_url }}" defer></script>
+{%- assign manifest = site.data.asset_manifest -%}
+{%- assign main_js = manifest['main-js'] | default: '/assets/js/main.min.js' -%}
+{%- assign prism_js = manifest['prism-js'] | default: '/assets/js/prism.min.js' -%}
+<script src="{{ main_js | relative_url }}" defer></script>
 {%- if page.layout == 'post' -%}
-	<script src="{{ '/assets/js/prism.min.js' | relative_url }}" defer></script>
+	<script src="{{ prism_js | relative_url }}" defer></script>
 {%- endif -%}

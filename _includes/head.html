@@ -110,19 +110,22 @@
 	<meta name="author" content="{{ default_author.name }}">
 
 	<!-- Stylesheets -->
+	{%- assign manifest = site.data.asset_manifest -%}
+	{%- assign global_css = manifest['global-styles-css'] | default: '/assets/css/global-styles.min.css' -%}
+	{%- assign prism_css = manifest['prism-css'] | default: '/assets/css/prism.min.css' -%}
 	<style>
 		{%- include critical.min.css -%}
 	</style>
 	<link
 		rel="preload"
 		as="style"
-		href="{{ '/assets/css/global-styles.min.css' | relative_url }}"
+		href="{{ global_css | relative_url }}"
 		onload="this.onload=null;this.rel='stylesheet'"
 	>
 	<noscript>
 		<link
 			rel="stylesheet"
-			href="{{ '/assets/css/global-styles.min.css' | relative_url }}"
+			href="{{ global_css | relative_url }}"
 			type="text/css"
 			media="all"
 		>
@@ -131,13 +134,13 @@
 		<link
 			rel="preload"
 			as="style"
-			href="{{ '/assets/css/prism.min.css' | relative_url }}"
+			href="{{ prism_css | relative_url }}"
 			onload="this.onload=null;this.rel='stylesheet'"
 		>
 		<noscript>
 			<link
 				rel="stylesheet"
-				href="{{ '/assets/css/prism.min.css' | relative_url }}"
+				href="{{ prism_css | relative_url }}"
 				type="text/css"
 				media="all"
 			>

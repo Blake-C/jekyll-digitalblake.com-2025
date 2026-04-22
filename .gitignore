@@ -10,6 +10,9 @@ _build/
 tmp/
 _includes/*.min.css.map
 
+# Generated asset manifest (rebuilt by hash-assets.mjs on every build)
+_data/asset_manifest.json
+
 # Node/NPM cache
 npm-debug.log*
 yarn-debug.log*
