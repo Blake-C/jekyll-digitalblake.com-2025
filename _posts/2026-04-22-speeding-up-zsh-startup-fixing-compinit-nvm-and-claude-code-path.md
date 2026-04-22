@@ -26,7 +26,7 @@ The faster route is to run a timed non-interactive shell directly:
 
 My output was:
 
-```
+```bash
 1.04 real   0.55 user   0.41 sys
 ```
 
@@ -38,7 +38,7 @@ zsh -i -c 'zmodload zsh/zprof; source ~/.zshrc; zprof' 2>/dev/null | head -40
 
 The output told the whole story immediately:
 
-```
+```bash
 num  calls    time                  self            name
 --------------------------------------------------------------
  1)    3       354ms   42.36%    354ms   42.36%   compdump
@@ -232,7 +232,7 @@ After all of these changes, running the timing test again:
 
 Output:
 
-```
+```bash
 0.17 real   0.08 user   0.06 sys
 ```
 
