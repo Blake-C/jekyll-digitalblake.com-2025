@@ -7,6 +7,7 @@ Personal site built with Jekyll 4, deployed to GitHub Pages via GitHub Actions.
 - Ruby 3.4+ (via [rbenv](https://github.com/rbenv/rbenv) or [ruby-install](https://github.com/postmodern/ruby-install))
 - Node.js 24+ (via [nvm](https://github.com/nvm-sh/nvm))
 - Bundler (`gem install bundler`)
+- ImageMagick 7+ (`brew install imagemagick`) — required for image optimization
 
 ## Setup
 
@@ -41,14 +42,19 @@ This builds styles and scripts, then starts Jekyll with live reload on [http://l
 npm run build
 ```
 
-Compiles SCSS, bundles JS via webpack, then runs `bundle exec jekyll build`.
+Optimizes images, compiles SCSS, bundles JS via webpack, hashes compiled assets for cache busting, then runs `bundle exec jekyll build`.
 
 Individual steps:
 
 ```bash
+npm run build:images   # Optimize JPG/PNG in assets/images/ and assets/uploads/
 npm run build:styles   # Compile SCSS → assets/css/global-styles.min.css
 npm run build:scripts  # Bundle JS via webpack → assets/js/
 ```
+
+### Asset manifest
+
+After `build:styles` and `build:scripts`, the production build runs `node script/hash-assets.mjs` which creates content-hashed copies of all compiled CSS and JS files and writes `_data/asset_manifest.json`. Jekyll templates read this manifest for cache-busted asset URLs. The manifest file is excluded via `.gitignore` and always generated at build time.
 
 ## Deployment
 
