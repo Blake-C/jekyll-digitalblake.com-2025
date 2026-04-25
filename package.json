@@ -21,18 +21,18 @@
 		"globals": "17.5.0",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
-		"postcss": "^8.4.6",
+		"postcss": "^8.5.10",
 		"postcss-cli": "^9.1.0",
 		"prettier": "^3.0.0",
 		"sass": "^1.49.7",
-		"stylelint": "17.8.0",
+		"stylelint": "17.9.0",
 		"stylelint-config-standard-scss": "17.0.0",
-		"terser-webpack-plugin": "^5.3.10",
-		"webpack": "^5.68.0",
+		"terser-webpack-plugin": "^5.5.0",
+		"webpack": "^5.106.2",
 		"webpack-cli": "^4.9.2"
 	},
 	"dependencies": {
-		"micromodal": "^0.4.10",
+		"micromodal": "^0.6.1",
 		"prismjs": "^1.26.0"
 	},
 	"scripts": {
