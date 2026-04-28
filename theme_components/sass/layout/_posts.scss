@@ -218,6 +218,28 @@
 			}
 		}
 
+		table {
+			font-size: bp.rem-calc(14);
+
+			@include bp.breakpoint(medium) {
+				font-size: bp.rem-calc(15);
+			}
+		}
+
+		.table-wrapper {
+			margin-left: -20px;
+			margin-right: -20px;
+
+			@include bp.breakpoint(large) {
+				margin-left: -30px;
+				margin-right: -30px;
+			}
+
+			table {
+				min-width: 100%;
+			}
+		}
+
 		pre {
 			&[class*='language-'] {
 				&.line-numbers {

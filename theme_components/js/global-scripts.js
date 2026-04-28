@@ -1,6 +1,7 @@
 import './modules/_skip-link-focus-fix.js'
 import './modules/_animate-header'
 import './modules/_smooth-scroll'
+import './modules/_table-wrapper'
 import MicroModal from 'micromodal'
 
 /*************** Template part region toggle button ***************/
