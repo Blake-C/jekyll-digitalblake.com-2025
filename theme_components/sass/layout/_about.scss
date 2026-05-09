@@ -29,7 +29,7 @@
 			border-right: 1px dashed v.$accent-1;
 			bottom: bp.rem-calc(-28);
 			content: '';
-			left: bp.rem-calc(-25);
+			left: -1.54rem; // Need for precision.
 			position: absolute;
 			top: bp.rem-calc(16);
 		}
@@ -62,6 +62,24 @@
 
 		@include bp.breakpoint(medium) {
 			font-size: bp.rem-calc(16);
+		}
+	}
+}
+
+.js-timeline-animate {
+	.career-timeline__item {
+		opacity: 0;
+		transition:
+			opacity 0.5s ease var(--reveal-delay, 0s),
+			transform 0.5s ease var(--reveal-delay, 0s);
+
+		@media (prefers-reduced-motion: no-preference) {
+			transform: translateX(16px);
+		}
+
+		&.is-visible {
+			opacity: 1;
+			transform: none;
 		}
 	}
 }
