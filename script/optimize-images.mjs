@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIRS = [join(ROOT, 'assets/images'), join(ROOT, 'assets/uploads')]
-const QUALITY = '85'
+const QUALITY = '95'
 const IMAGE_EXTS = ['.jpg', '.jpeg', '.png']
 
 function walkDir(dir) {

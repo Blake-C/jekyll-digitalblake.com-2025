@@ -3,10 +3,10 @@ layout: website-case-study
 permalink: /projects/southwest-national-primate-research-center/
 title: Southwest National Primate Research Center
 description: 'A WordPress rebuild for a leading biomedical research facility, with REST API integration pulling scientist bios from a sibling site so data is entered once and rendered in two places.'
-thumbnail: /assets/uploads/2021/07/snprc.org_-600x400.webp
-image: /assets/uploads/2021/07/snprc.org_.webp
-hero_image: /assets/uploads/2021/07/snprc.org_-hero.webp
-og_image: /assets/uploads/2021/07/snprc.org_-og.webp
+thumbnail: /assets/uploads/2025/05/snprc-thumbnail.webp
+image: /assets/uploads/2025/05/snprc-full-screenshot.webp
+hero_image: /assets/uploads/2025/05/snprc-hero.webp
+og_image: /assets/uploads/2025/05/snprc-og.webp
 agency: Gray Digital Group
 team:
     - name: Richard Baugh
@@ -17,8 +17,8 @@ team:
       role: Account Executive
     - name: Blake Cerecero
       role: Developer
-link: https://snprc.org/
-link_text: View Live Site
+link: https://web.archive.org/web/20180602125735/http://snprc.org/
+link_text: View Archived Site
 tech:
     - WordPress
     - REST API
