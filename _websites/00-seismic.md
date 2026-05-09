@@ -45,4 +45,4 @@ The largest project of my time at Seismic was the transition from WordPress to S
 
 When Seismic transitioned to a new development agency, my job became making sure nothing got lost in the handoff. I documented every process we had: development standards, analytics configurations, production workflows, and media requirements. Then I trained the incoming agency team of six on all of it. A handoff at that scale either has documentation or it has problems. We made sure it had documentation.
 
-**Impact:** Cross-functional team of 20+ across development, design, content, SEO, and brand. Two 1,000-page migrations completed over my tenure — WordPress to WordPress in 2022, WordPress to Sitecore in 2025. Load times improved from ~3s to ~2s post-migration. The 2022 WordPress launch drove a 50% increase in site visitors.
+**Impact:** Cross-functional team of 20+ across development, design, content, SEO, and brand. Two 1,000-page migrations completed over my tenure; WordPress to WordPress in 2022, WordPress to Sitecore in 2025. Load times improved from ~3s to ~2s post-migration. The 2022 WordPress launch drove a 50% increase in site visitors.

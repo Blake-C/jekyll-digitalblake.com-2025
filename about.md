@@ -13,12 +13,12 @@ description: 'Senior web developer with 15 years building fast, accessible sites
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Northwest Vista College &mdash; 1.5 years</p>
 		<p class="career-timeline__role">Lab Tech, Digital Media &amp; Cinematography</p>
-		<p class="career-timeline__description">Assisted students with software and equipment questions, managed lab operations, installed and maintained workstations, and organized the equipment library. First exposure to what it means to be the person who figures things out.</p>
+		<p class="career-timeline__description">Assisted students with software and equipment questions, managed lab operations, installed and maintained workstations, and organized the equipment library. First exposure to what it means to be the person who figures things out. My manager Alan Garner told me I was never allowed to say no. I was supposed to always find the solution, even if it meant finding someone else who knew the answer to them.</p>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">PPDG &mdash; Professional Performance Development Group &mdash; 1 year</p>
 		<p class="career-timeline__role">Web Developer (Webmaster)</p>
-		<p class="career-timeline__description">Built and maintained the company's public-facing site in Joomla, which accepted resumes from medical personnel seeking placement at military facilities. Designed and developed an employee portal that let medical staff log in, view required documents, and submit completed forms directly into the HR system. Rebuilt the Plaza Lecea event center website for easy content management. Trained approximately 20 HR professionals on the portal after launch, running multiple sessions until the team was fully self-sufficient.</p>
+		<p class="career-timeline__description">Built and maintained the company's public-facing site in Joomla, which accepted resumes from medical personnel seeking placement at military facilities. Designed and developed an employee portal that let medical staff log in, view required documents, and submit completed forms directly into the HR system. Rebuilt the Plaza Lecea event center website for easy content management. Trained approximately 30 HR professionals on the portal after launch, running multiple sessions until the team was fully self-sufficient.</p>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Gray Digital Group &mdash; 8 years</p>
@@ -28,7 +28,7 @@ description: 'Senior web developer with 15 years building fast, accessible sites
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic &mdash; 3.5 years</p>
 		<p class="career-timeline__role">Senior Web Developer</p>
-		<p class="career-timeline__description">Joined during a high-stakes rebrand: a six-month project compressed into three, with a cross-functional team of 50+ across development, design, content, SEO, and brand. Built custom Gutenberg blocks, led the migration from TranslatePress to WPML, and trained a team of three content producers and the EMEA regional teams on the new localization workflow. That 2022 launch drove a 50% increase in site visitors. Followed by a second 1,000-page migration in 2025, this time from WordPress to Sitecore, requiring a reverse proxy to keep the site live through cutover and QA triage lead duties across hundreds of pages. When Seismic transitioned to a new agency, I documented every development standard, analytics configuration, and production workflow we had, then trained the incoming team of six on all of it.</p>
+		<p class="career-timeline__description">Joined during a high-stakes rebrand: a six-month project compressed into three, with a cross-functional team of 20+ across development, design, content, SEO, and brand. Built custom Gutenberg blocks, led the migration from TranslatePress to WPML, and trained a team of three content producers and the EMEA regional teams on the new localization workflow. That 2022 launch drove a 50% increase in site visitors. Followed by a second 1,000-page migration in 2025, this time from WordPress to Sitecore, requiring a reverse proxy to keep the site live through cutover and QA triage lead duties across hundreds of pages. When Seismic transitioned to a new agency, I documented every development standard, analytics configuration, and production workflow we had, then trained the incoming team of six on all of it.</p>
 	</div>
 		<div class="career-timeline__item">
 		<p class="career-timeline__employer">How can I assist your organization?</p>

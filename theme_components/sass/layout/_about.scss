@@ -48,7 +48,7 @@
 
 	&__role {
 		color: v.$dark-gray;
-		font-size: bp.rem-calc(13);
+		font-size: bp.rem-calc(13) !important; // !important needed here.
 		font-weight: 700;
 		letter-spacing: 0.5px;
 		margin: 0 0 bp.rem-calc(6);

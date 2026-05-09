@@ -28,4 +28,4 @@ For SEO, I restructured the WordPress URL hierarchy to mirror real geography. A 
 
 On detail pages I used CSS Grid to keep the property description front and center alongside a sticky sidebar of galleries, brochures, maps, and associate contacts. On mobile the sidebar collapses directly beneath the description with jump links, so one tap scrolls to exactly the section the buyer came for, and the main gallery opens a full-screen modal for a quick at-a-glance review of every image.
 
-**Impact:** Reduced the site's image library from 20GB to 8GB. Automated a WebP conversion and compression pipeline (200KB cap) for all uploaded images, so the client can add new listings without worrying about file size. Page load times improved from 3-5s down to 1-2s.
+**Impact:** Reduced the site's image library from 20GB to 8GB. Automated a WebP conversion and compression pipeline (200KB cap) for all uploaded images, so the client can add new listings without worrying about file size. Page load times improved from 3-5s down to 1-2s. Offloaded large media library to Amazon AWS S3 Bucket to prevent server Degradation due to large storage requirements.
