@@ -1,0 +1,15 @@
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "CreativeWork",
+		"name": {{ page.title | escape | jsonify }},
+		"url": "{{ page.url | absolute_url }}",
+		"description": {{ page.description | escape | jsonify }},
+		"image": "{{ page.og_image | default: page.image | absolute_url }}",
+		"creator": {
+			"@type": "Person",
+			"name": "Blake Cerecero",
+			"url": "{{ site.url }}"
+		}
+	}
+</script>

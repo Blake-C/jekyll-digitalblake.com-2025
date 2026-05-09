@@ -102,7 +102,7 @@
 	}
 
 	.entry-content {
-		background-color: v.$gray244;
+		background-color: v.$white;
 		border-top: 3px solid v.$blue;
 		padding: 20px;
 
@@ -176,6 +176,15 @@
 
 			@include bp.breakpoint(medium) {
 				font-size: bp.rem-calc(18);
+			}
+		}
+
+		p.small,
+		li.small {
+			font-size: bp.rem-calc(11);
+
+			@include bp.breakpoint(medium) {
+				font-size: bp.rem-calc(13);
 			}
 		}
 

@@ -84,7 +84,7 @@ collections:
     github_projects:
         output: false
     websites:
-        output: false
+        output: true
 
 # Exclude from processing
 exclude:

@@ -1,0 +1,112 @@
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
+@use 'sass:color';
+
+.case-study {
+	.entry-title {
+		margin-bottom: bp.rem-calc(4);
+	}
+
+	.post-cta {
+		text-align: center;
+	}
+}
+
+// Center the 9-col content column when no sidebar is present
+// Parent .row is display: flex, so margin: auto works without extra grid classes
+.case-study-content-col {
+	@include bp.breakpoint(large) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.case-study__back {
+	font-size: bp.rem-calc(13);
+	font-weight: 600;
+	margin-bottom: bp.rem-calc(24);
+	margin-top: 0;
+
+	a {
+		color: rgba(v.$primary, 0.6);
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: v.$primary;
+		}
+	}
+}
+
+.case-study__tech-tags {
+	margin-top: bp.rem-calc(12);
+}
+
+.case-study__hero-img {
+	border-bottom: 1px solid v.$gray222;
+}
+
+.case-study__meta {
+	border-bottom: 1px solid rgba(v.$primary, 0.15);
+	border-top: 1px solid rgba(v.$primary, 0.15);
+	color: rgba(v.$primary, 0.7);
+	margin: bp.rem-calc(42) 0;
+	padding: bp.rem-calc(16) 0;
+
+	p {
+		margin-bottom: bp.rem-calc(2);
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.case-study__actions {
+	margin-bottom: bp.rem-calc(32);
+	margin-top: bp.rem-calc(32);
+
+	.button {
+		background-color: v.$accent-1;
+		border-color: v.$accent-1;
+		padding: bp.rem-calc(12) bp.rem-calc(24);
+
+		&:hover,
+		&:focus {
+			background-color: color.adjust(v.$accent-1, $lightness: -8%);
+			border-color: color.adjust(v.$accent-1, $lightness: -8%);
+			color: v.$white;
+		}
+
+		@at-root .main-content-block .entry-content & {
+			color: v.$white;
+			font-weight: 600;
+		}
+	}
+}
+
+// "More Projects" section reuses .sites-gallery__card as <a> — needs text-decoration reset
+a.sites-gallery__card {
+	text-decoration: none;
+}
+
+.more-projects {
+	padding: 0 0 bp.rem-calc(80);
+
+	@include bp.breakpoint(small only) {
+		padding: bp.rem-calc(40) 0 bp.rem-calc(60);
+	}
+
+	&__title {
+		font-size: bp.rem-calc(24);
+		font-weight: 900;
+		letter-spacing: 4.8px;
+		margin-bottom: bp.rem-calc(32);
+		text-align: center;
+		text-transform: uppercase;
+	}
+}

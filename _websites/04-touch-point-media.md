@@ -1,7 +1,12 @@
 ---
+layout: website-case-study
+permalink: /projects/touch-point-media/
 title: Touch Point Media
+description: 'A WordPress site for a healthcare podcast network built with Podbean API integration, scaling from one show to 15+ without a single line of per-show custom code.'
 thumbnail: /assets/uploads/2021/07/touchpoint.health_-600x400.webp
 image: /assets/uploads/2021/07/touchpoint.health_-scaled.webp
+hero_image: /assets/uploads/2021/07/touchpoint.health_-scaled-hero.webp
+og_image: /assets/uploads/2021/07/touchpoint.health_-og.webp
 agency: Gray Digital Group
 team:
     - name: Richard Baugh

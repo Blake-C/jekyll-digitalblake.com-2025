@@ -1,7 +1,12 @@
 ---
+layout: website-case-study
+permalink: /projects/seismic/
 title: Seismic
+description: 'A ground-up WordPress rebuild of seismic.com through a major rebrand — forty pages launched, two 1,000-page migrations completed, and a 50% traffic increase within the first year.'
 thumbnail: /assets/uploads/2025/04/seismic.com-600x400.webp
 image: /assets/uploads/2025/04/seismic.com.webp
+hero_image: /assets/uploads/2025/04/seismic.com-hero.webp
+og_image: /assets/uploads/2025/04/seismic.com-og.webp
 agency: Seismic
 team:
     - name: Josh Patrice

@@ -88,7 +88,9 @@
 			<meta property="article:modified_time" content="{{ page.modified_date | date_to_xmlschema }}">
 		{%- endif -%}
 	{%- endif -%}
-	{%- if page.image -%}
+	{%- if page.og_image -%}
+		{%- assign og_image = page.og_image -%}
+	{%- elsif page.image -%}
 		{%- assign og_image = page.image -%}
 	{%- elsif site.default_og_image -%}
 		{%- assign og_image = site.default_og_image -%}
@@ -158,6 +160,8 @@
 	<!-- JSON-LD Structured Data -->
 	{%- if page.layout == 'post' -%}
 		{%- include jsonld-article.html -%}
+	{%- elsif page.layout == 'website-case-study' -%}
+		{%- include jsonld-creative-work.html -%}
 	{%- elsif page.url == '/' -%}
 		{%- include jsonld-person.html -%}
 	{%- endif -%}

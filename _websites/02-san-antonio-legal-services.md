@@ -1,7 +1,12 @@
 ---
+layout: website-case-study
+permalink: /projects/san-antonio-legal-services/
 title: San Antonio Legal Services Association
+description: "A WordPress platform integrating Volunteer Hub and Legal Server APIs to eliminate double data entry for one of San Antonio's largest pro bono legal organizations."
 thumbnail: /assets/uploads/2021/07/www.sa-lsa.org_-600x400.webp
 image: /assets/uploads/2021/07/www.sa-lsa.org_.webp
+hero_image: /assets/uploads/2021/07/www.sa-lsa.org_-hero.webp
+og_image: /assets/uploads/2021/07/www.sa-lsa.org_-og.webp
 agency: Gray Digital Group
 team:
     - name: Jim Aderhold

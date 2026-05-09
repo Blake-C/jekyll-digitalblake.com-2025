@@ -1,7 +1,12 @@
 ---
+layout: website-case-study
+permalink: /projects/be-something-amazing/
 title: Be Something Amazing
+description: 'A Drupal 7 career exploration site with a full visual redesign and an interactive JavaScript filterable grid for discovering skilled-trade career paths — under 1 second on launch.'
 thumbnail: /assets/uploads/2021/07/besomethingamazing.com_-600x400.webp
 image: /assets/uploads/2021/07/besomethingamazing.com_-scaled.webp
+hero_image: /assets/uploads/2021/07/besomethingamazing.com_-scaled-hero.webp
+og_image: /assets/uploads/2021/07/besomethingamazing.com_-og.webp
 agency: Gray Digital Group
 team:
     - name: Richard Baugh

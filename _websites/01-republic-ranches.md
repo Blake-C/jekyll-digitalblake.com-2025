@@ -1,7 +1,12 @@
 ---
+layout: website-case-study
+permalink: /projects/republic-ranches/
 title: Republic Ranches
+description: "A WordPress site for one of Texas's largest land brokerages, built with an interactive Google Maps property search, location-based SEO architecture, and load times cut from 3–5s to 1–2s."
 thumbnail: /assets/uploads/2021/12/republicranches.com_-600x400.webp
 image: /assets/uploads/2021/12/republicranches.com_-scaled.webp
+hero_image: /assets/uploads/2021/12/republicranches.com_-scaled-hero.webp
+og_image: /assets/uploads/2021/12/republicranches.com_-og.webp
 agency: Gray Digital Group
 team:
     - name: Jim Aderhold

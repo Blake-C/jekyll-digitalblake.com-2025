@@ -58,6 +58,11 @@
 			box-shadow: 0 58px 28px -46px rgba(0, 0, 0, 0.18);
 			outline: none;
 			transform: translateY(-4px) scale(1.06);
+			text-decoration: none;
+
+			.sites-gallery__cta-hint {
+				text-decoration: underline;
+			}
 
 			@include bp.breakpoint(small only) {
 				transform: translateY(-4px);
@@ -118,6 +123,10 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
+
+		@at-root .entry-header & {
+			margin-bottom: bp.rem-calc(30);
+		}
 	}
 
 	&__tag {
