@@ -25,3 +25,5 @@ Touch Point Media launched with a single healthcare podcast and a clear intentio
 I modeled shows, episodes, hosts, ads, and social streams as related custom post types in WordPress and wired episode ingestion to Podbean so new episodes appear on the site automatically, with no manual entry. Each new show gets its own landing page and episode archive the moment it's added, and hosts, ads, and social accounts are related in by reference so nothing is duplicated across shows.
 
 The network has since scaled from one show to more than fifteen on the same architecture, with no custom code added per show — exactly the ratio of engineering-to-content effort I was aiming for.
+
+**Impact:** Site loaded in under 1 second at launch. Scaled to 15+ shows without a single line of per-show engineering.

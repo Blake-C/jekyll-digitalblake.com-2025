@@ -1,0 +1,104 @@
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
+
+.career-timeline {
+	margin: bp.rem-calc(32) 0 bp.rem-calc(42);
+	padding-left: bp.rem-calc(28);
+	position: relative;
+
+	&__item {
+		margin-bottom: bp.rem-calc(28);
+		position: relative;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&::before {
+			background: v.$accent-1;
+			border-radius: 50%;
+			content: '';
+			height: bp.rem-calc(12);
+			left: bp.rem-calc(-30);
+			position: absolute;
+			top: bp.rem-calc(4);
+			width: bp.rem-calc(12);
+		}
+
+		&:not(:last-child)::after {
+			border-right: 1px dashed v.$accent-1;
+			bottom: bp.rem-calc(-28);
+			content: '';
+			left: bp.rem-calc(-25);
+			position: absolute;
+			top: bp.rem-calc(16);
+		}
+	}
+
+	&__employer {
+		font-size: bp.rem-calc(16);
+		font-weight: 800;
+		line-height: 1.2;
+		margin: 0 0 bp.rem-calc(2);
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(18);
+		}
+	}
+
+	&__role {
+		color: v.$dark-gray;
+		font-size: bp.rem-calc(13);
+		font-weight: 700;
+		letter-spacing: 0.5px;
+		margin: 0 0 bp.rem-calc(6);
+		text-transform: uppercase;
+	}
+
+	&__description {
+		font-size: bp.rem-calc(15);
+		line-height: 1.7;
+		margin: 0;
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(16);
+		}
+	}
+}
+
+.skills-list {
+	display: grid;
+	gap: bp.rem-calc(8) bp.rem-calc(24);
+	grid-template-columns: 1fr;
+	margin: bp.rem-calc(16) 0 bp.rem-calc(8);
+
+	@include bp.breakpoint(medium) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&__group {
+		display: flex;
+		flex-direction: column;
+		gap: bp.rem-calc(4);
+	}
+
+	&__label {
+		font-size: bp.rem-calc(12);
+		font-weight: 800;
+		letter-spacing: 1.5px;
+		margin: 0;
+		text-transform: uppercase;
+	}
+
+	&__items {
+		color: v.$dark-gray;
+		font-size: bp.rem-calc(14);
+		font-weight: 400;
+		line-height: 1.5;
+		margin: 0;
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(15);
+		}
+	}
+}

@@ -1,0 +1,29 @@
+<section class="recent-articles" aria-labelledby="recent-articles-title">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2 class="recent-articles__title" id="recent-articles-title">Recent Writing</h2>
+			<div class="row">
+				{%- for post in site.posts limit: 3 -%}
+					<div class="large-4 medium-12 small-12 columns">
+						<article class="recent-articles__item">
+							<time class="recent-articles__date" datetime="{{ post.date | date_to_xmlschema }}">
+								{{- post.date | date: '%B %-d, %Y' -}}
+							</time>
+							<h3 class="recent-articles__item-title">
+								<a href="{{ post.url | relative_url }}" class="recent-articles__link">
+									{{- post.title | escape -}}
+								</a>
+							</h3>
+							{%- if post.description -%}
+								<p class="recent-articles__description">{{ post.description }}</p>
+							{%- endif -%}
+						</article>
+					</div>
+				{%- endfor -%}
+			</div>
+			<div class="recent-articles__cta-row">
+				<a href="{{ '/articles/' | relative_url }}" class="recent-articles__all-link">View all articles</a>
+			</div>
+		</div>
+	</div>
+</section>

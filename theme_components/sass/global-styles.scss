@@ -23,6 +23,7 @@
 @use 'vendors/micromodal';
 
 /* Layouts */
+@use 'layout/about';
 @use 'layout/contact';
 @use 'layout/footer';
 @use 'layout/github';
@@ -38,6 +39,7 @@
 @use 'layout/post-pagination';
 @use 'layout/password-form';
 @use 'layout/sites-gallery';
+@use 'layout/recent-articles';
 @use 'layout/portrait';
 @use 'layout/testimonials';
 

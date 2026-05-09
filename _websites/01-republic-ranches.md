@@ -27,3 +27,5 @@ The centerpiece is the interactive property map. I integrated the Google Maps AP
 For SEO, I restructured the WordPress URL hierarchy to mirror real geography. A Bexar County listing's breadcrumbs roll up to all Bexar County properties, then to Texas, then to the global search, which gives Google a clean signal about location intent at every level. I marked up every property with real estate schema so listing name, location, assets, and attributes can surface directly in search results.
 
 On detail pages I used CSS Grid to keep the property description front and center alongside a sticky sidebar of galleries, brochures, maps, and associate contacts. On mobile the sidebar collapses directly beneath the description with jump links, so one tap scrolls to exactly the section the buyer came for, and the main gallery opens a full-screen modal for a quick at-a-glance review of every image.
+
+**Impact:** Reduced the site's image library from 20GB to 8GB. Automated a WebP conversion and compression pipeline (200KB cap) for all uploaded images, so the client can add new listings without worrying about file size. Page load times improved from 3-5s down to 1-2s.

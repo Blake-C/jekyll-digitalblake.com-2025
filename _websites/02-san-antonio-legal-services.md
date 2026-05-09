@@ -24,3 +24,5 @@ San Antonio Legal Services Association (SALSA) organizes pro bono legal voluntee
 I chose WordPress for the content layer so SALSA staff could build training landing pages themselves using familiar blocks, and put the engineering effort into the integration layer underneath. I wrote PHP to authenticate against the Volunteer Hub API and pull the three upcoming pro bono clinics and events onto the site automatically, so the homepage is always current without anyone touching it. On the case side, I used WP All Import to sync the Legal Server API into a custom post type, which turned available cases into filterable listings volunteers can browse and sign up for directly.
 
 The net effect: Legal Server stays the single source of truth for case data, staff never re-enter it, and volunteers find both their training and their next case in one place.
+
+**Impact:** Page load times reduced from 5s to under 2s. Integrated a donation pipeline alongside the volunteer tools, giving SALSA a single platform for case matching, clinic scheduling, and fundraising.

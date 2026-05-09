@@ -19,7 +19,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     <h1 class="title">Blake Cerecero</h1>
                     <p class="line-1">Senior Web Developer</p>
                     <p class="line-2">WordPress · Drupal · Sitecore · JavaScript · PHP · Jekyll</p>
-                    <p class="line-3">Fifteen years of agency and in-house work building CMS architectures, leading migrations, and shipping code that makes the next developer's job easier, not harder. The answer is always "let me look into that," never just "no."</p>
+                    <p class="line-3">30+ CMS projects across agency and in-house roles, with consistent improvements in site speeds going down from 5-3 seconds to 2-1 seconds. I've been involved in multiple 1,000 page migrations across my 15 year career seeing +50% increase in organic traffic after massive site overhauls.</p>
                     <div class="intro__cta">
                         <a
                             href="https://www.linkedin.com/in/blakecerecero/"
@@ -53,6 +53,8 @@ preload_image_mobile: /assets/images/header-background-sm.webp
     {%- include github-projects.html -%}
 
     {%- include sites-gallery.html -%}
+
+    {%- include recent-articles.html -%}
 
     {%- include testimonials.html -%}
 
