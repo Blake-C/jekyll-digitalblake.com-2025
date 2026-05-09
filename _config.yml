@@ -77,7 +77,7 @@ nav_pages:
     - title: About
       url: '/about/'
     - title: Resume
-      url: '/assets/uploads/resume/Blake-Cerecero-Resume.pdf?v=1'
+      use_resume_url: true
       target: '_blank'
 
 collections:
