@@ -16,7 +16,7 @@ This document was written to help a co-worker set up our [wp-foundation-six](htt
 
 Open the windows store and install the Ubuntu application. These instructions are based on Ubuntu 20.04.
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp)
+![Ubuntu 20.04 app listing in the Microsoft Windows Store](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp)
 
 ## 1.1. Install Docker Desktop for Windows
 
@@ -24,7 +24,7 @@ You can download the Docker Desktop application from Docker website:
 
 - [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
-![](/assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp)
+![Docker Desktop download page on the Docker website](/assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp)
 
 ## 2. Install WSL V2
 
@@ -43,7 +43,7 @@ wsl.exe --set-version ubuntu 2
 wsl.exe --set-default-version 2
 ```
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp)
+![Windows Terminal output showing WSL version check and upgrade commands](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp)
 
 ## 3. Update Docker Settings
 
@@ -55,9 +55,9 @@ Then under “Resources > WSL Integration” make sure Ubuntu-20.02 is checked o
 
 Restart docker to make sure these settings have been applied.
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp)
+![Docker Desktop General settings with Use the WSL 2 based engine option checked](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp)
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp)
+![Docker Desktop Resources WSL Integration settings with Ubuntu-20.04 distro enabled](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp)
 
 ## 4. If Docker Has Issues Starting (optional)
 
@@ -78,7 +78,7 @@ memory=1GB   # Make sure you have enough memory
 
 **_Save and restart docker_**
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp)
+![Notepad editor showing .wslconfig file with memory=1GB WSL2 setting](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp)
 
 ## 5. Setting Up Ubuntu
 
@@ -88,7 +88,7 @@ Open the **Ubuntu Terminal** and test that you have access to docker by running:
 docker container list -a
 ```
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp)
+![Ubuntu terminal showing successful output from docker container list -a command](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp)
 
 ### 5.1 Installing ZSH
 
@@ -99,7 +99,7 @@ sudo apt install zsh # installs zsh
 chsh -s $(which zsh) # makes zsh your default shell on startup
 ```
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp)
+![Ubuntu terminal showing ZSH installation and setting it as the default shell](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp)
 
 ### 5.2 Installing OhMyZSH
 
@@ -109,9 +109,9 @@ After OMZ is installed open the `~/.zshrc` file and set the theme to: `af-magic`
 
 - [https://github.com/ohmyzsh/ohmyzsh/wiki/Themes](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp)
+![Ubuntu terminal showing Oh My Zsh installation completing](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp)
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp)
+![Terminal showing the af-magic Oh My Zsh theme configured in .zshrc](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp)
 
 ### 5.3 Add aliases for Docker
 
@@ -130,7 +130,7 @@ dsh() {
 }
 ```
 
-![](/assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp)
+![Text editor showing Docker command aliases added to the .zshrc configuration file](/assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp)
 
 Save your `~/.zshrc` file and update your shell by running:
 
@@ -153,11 +153,11 @@ nvm install v12.20.1
 npm install gulp npm-check -g
 ```
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp)
+![Ubuntu terminal showing NVM installation output](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp)
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp)
+![Ubuntu terminal showing Node.js v12.20.1 installed via NVM](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp)
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp)
+![Ubuntu terminal showing gulp and npm-check installed globally via npm](/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp)
 
 ### 5.5 Install Composer
 
@@ -177,9 +177,9 @@ sudo mv composer.phar /usr/local/bin/composer
 composer -v
 ```
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp)
+![Ubuntu terminal showing Composer installation and version verification](/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp)
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp)
+![Ubuntu terminal showing Composer installed and accessible globally](/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp)
 
 ## 6. Installing dh-autoreconf:
 
@@ -216,4 +216,4 @@ When done run the follow to bring down wp-foundation-six:
 ddown
 ```
 
-![](/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp)
+![Ubuntu terminal showing wp-foundation-six project running successfully with Docker](/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp)

@@ -9,7 +9,7 @@ tags: ['command-line', 'linux', 'ubuntu']
 image: '/assets/uploads/2021/02/random-1-1200x630-facebook-share.webp'
 ---
 
-![](/assets/uploads/2021/02/random-1.webp)
+![Decorative header image for a Linux Ubuntu 20.04 guide](/assets/uploads/2021/02/random-1.webp)
 
 Adding new user, change USERNAME with the name you want to use.
 
