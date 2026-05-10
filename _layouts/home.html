@@ -68,7 +68,7 @@ layout: base
 									{%- capture prev_path -%}/articles/page/{{ paginator.previous_page }}/{%- endcapture -%}
 								{%- endif -%}
 								<li>
-									<a href="{{ prev_path | relative_url }}">Prev</a>
+									<a href="{{ prev_path | relative_url }}" aria-label="Previous page">Prev</a>
 								</li>
 							{%- endif -%}
 							{%- for i in (1..paginator.total_pages) -%}
@@ -82,12 +82,20 @@ layout: base
 										class="active"
 									{% endif %}
 								>
-									<a href="{{ page_path | relative_url }}">{{- i -}}</a>
+									<a
+										href="{{ page_path | relative_url }}"
+										aria-label="Page {{ i }}"
+										{% if i == paginator.page %}
+											aria-current="page"
+										{% endif %}
+									>
+										{{- i -}}
+									</a>
 								</li>
 							{%- endfor -%}
 							{%- if paginator.next_page -%}
 								{%- capture next_path -%}/articles/page/{{ paginator.next_page }}/{%- endcapture -%}
-								<li><a href="{{ next_path | relative_url }}">Next</a></li>
+								<li><a href="{{ next_path | relative_url }}" aria-label="Next page">Next</a></li>
 							{%- endif -%}
 						</ul>
 					</div>

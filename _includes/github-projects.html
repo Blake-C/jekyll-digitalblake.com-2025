@@ -1,5 +1,5 @@
-<section class="github" id="projects">
-	<h2 class="github__title">Coding Projects</h2>
+<section class="github" id="projects" aria-labelledby="github-projects-title">
+	<h2 class="github__title" id="github-projects-title">Coding Projects</h2>
 
 	<div class="row small-up-1 medium-up-2 large-up-3">
 		{%- for project in site.github_projects -%}
@@ -17,7 +17,7 @@
 
 					<a
 						class="git-project__link"
-						aria-label="View {{ project.title }}"
+						aria-label="View {{ project.title }} (opens in a new tab)"
 						href="{{ project.link }}"
 						target="_blank"
 						rel="noreferrer noopener"

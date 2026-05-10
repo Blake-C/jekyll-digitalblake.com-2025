@@ -145,7 +145,8 @@ textarea {
 		background-color: v.$white;
 		border: 1px solid v.$dark-gray;
 		box-shadow: 0 0 5px v.$medium-gray;
-		outline: none;
+		outline: 2px solid v.$dark-gray;
+		outline-offset: 1px;
 	}
 }
 
@@ -183,4 +184,19 @@ fieldset {
 /* Screen reader only. */
 .show-for-sr {
 	@include bp.element-invisible;
+}
+
+.skip-link {
+	background-color: v.$primary;
+	color: v.$white;
+	font-weight: 700;
+	left: 0;
+	padding: 0.75em 1.25em;
+	position: absolute;
+	top: -100%;
+	z-index: 9999;
+
+	&:focus {
+		top: 0;
+	}
 }

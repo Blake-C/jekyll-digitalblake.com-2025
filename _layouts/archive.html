@@ -66,7 +66,7 @@ body_class: page-articles-listing
 							{%- if paginator.previous_page -%}
 								{%- capture prev_path -%}{{ paginator.previous_page_path }}{%- endcapture -%}
 								<li>
-									<a href="{{ prev_path | relative_url }}">Prev</a>
+									<a href="{{ prev_path | relative_url }}" aria-label="Previous page">Prev</a>
 								</li>
 							{%- endif -%}
 							{%- assign base_path = page.url | remove: 'index.html' -%}
@@ -84,12 +84,22 @@ body_class: page-articles-listing
 										class="active"
 									{% endif %}
 								>
-									<a href="{{ link_path | relative_url }}">{{- i -}}</a>
+									<a
+										href="{{ link_path | relative_url }}"
+										aria-label="Page {{ i }}"
+										{% if i == paginator.page %}
+											aria-current="page"
+										{% endif %}
+									>
+										{{- i -}}
+									</a>
 								</li>
 							{%- endfor -%}
 							{%- if paginator.next_page -%}
 								<li>
-									<a href="{{ paginator.next_page_path | relative_url }}">Next</a>
+									<a href="{{ paginator.next_page_path | relative_url }}" aria-label="Next page"
+										>Next</a
+									>
 								</li>
 							{%- endif -%}
 						</ul>

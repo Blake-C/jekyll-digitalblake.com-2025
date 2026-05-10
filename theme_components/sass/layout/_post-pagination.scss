@@ -119,5 +119,14 @@
 			color: v.$black;
 			text-decoration: none;
 		}
+
+		&:focus-visible {
+			outline: 2px solid v.$white;
+			outline-offset: 2px;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: 0;
+		}
 	}
 }

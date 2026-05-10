@@ -41,7 +41,7 @@
 	margin-top: 0;
 
 	a {
-		color: rgba(v.$primary, 0.6);
+		color: color.mix(v.$primary, #fff, 65%);
 		text-decoration: none;
 		transition: color 0.2s ease;
 
@@ -62,7 +62,7 @@
 .case-study__meta {
 	border-bottom: 1px solid rgba(v.$primary, 0.15);
 	border-top: 1px solid rgba(v.$primary, 0.15);
-	color: rgba(v.$primary, 0.7);
+	color: color.mix(v.$primary, #fff, 72%);
 	margin: bp.rem-calc(42) 0;
 	padding: bp.rem-calc(16) 0;
 
