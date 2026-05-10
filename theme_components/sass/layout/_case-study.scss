@@ -10,6 +10,13 @@
 	.post-cta {
 		text-align: center;
 	}
+
+	.entry-content {
+		img {
+			border-top: 1px solid rgba(v.$primary, 0.15);
+			border-bottom: 1px solid rgba(v.$primary, 0.15);
+		}
+	}
 }
 
 // Center the 9-col content column when no sidebar is present
