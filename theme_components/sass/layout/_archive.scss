@@ -1,6 +1,12 @@
 @use '../helpers/breakpoints' as bp;
 @use '../helpers/variables' as v;
 
+.articles-intro {
+	a {
+		font-weight: bold;
+	}
+}
+
 .entry-title {
 	line-height: 1.2;
 	margin: 0;

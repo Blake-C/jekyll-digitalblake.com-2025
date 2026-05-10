@@ -33,6 +33,7 @@ description: 'Senior web developer with 15 years building fast, accessible sites
 		<div class="career-timeline__item">
 		<p class="career-timeline__employer">How can I assist your organization?</p>
 		<p class="career-timeline__role">Senior Web Developer</p>
+		<p class="career-timeline__description">Currently available for full-time or contract roles. Remote-first, flexible schedule.</p>
 	</div>
 </div>
 
@@ -72,3 +73,5 @@ description: 'Senior web developer with 15 years building fast, accessible sites
 <p>Remote-first work with a flexible schedule. In-house, agency, or contract. Open to the right problem.</p>
 
 <p><strong>Outside of work:</strong> I spend a lot of time on YouTube and experimenting with AI tools, plus whatever apartment project I've decided I should probably finally finish.</p>
+
+<p><a href="/assets/uploads/resume/Blake-Cerecero-Resume.pdf" target="_blank" rel="noopener">Download my resume</a></p>
