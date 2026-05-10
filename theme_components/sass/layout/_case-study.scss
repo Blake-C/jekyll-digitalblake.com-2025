@@ -12,9 +12,15 @@
 	}
 
 	.entry-content {
+		border-top: none;
+
 		img {
 			border-top: 1px solid rgba(v.$primary, 0.15);
 			border-bottom: 1px solid rgba(v.$primary, 0.15);
+
+			&.case-study__hero-img {
+				border-top: none;
+			}
 		}
 	}
 }
