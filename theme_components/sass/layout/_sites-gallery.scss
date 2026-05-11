@@ -20,12 +20,16 @@
 	}
 
 	&__title {
-		font-size: bp.rem-calc(30);
+		font-size: bp.rem-calc(16);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		margin-bottom: bp.rem-calc(48);
 		text-align: center;
 		text-transform: uppercase;
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(30);
+		}
 	}
 
 	&__card {

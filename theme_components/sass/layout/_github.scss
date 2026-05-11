@@ -16,12 +16,16 @@
 
 	&__title {
 		color: v.$white;
-		font-size: bp.rem-calc(30px);
+		font-size: bp.rem-calc(16px);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		margin-bottom: 70px;
 		text-align: center;
 		text-transform: uppercase;
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(30);
+		}
 
 		@include bp.breakpoint(large down) {
 			font-size: bp.rem-calc(40px);
