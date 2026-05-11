@@ -61,7 +61,12 @@ layout: base
 
 							{%- if page.link -%}
 								<div class="case-study__actions">
-									<a class="button" href="{{ page.link }}" target="_blank" rel="noreferrer noopener">
+									<a
+										class="button button--primary"
+										href="{{ page.link }}"
+										target="_blank"
+										rel="noreferrer noopener"
+									>
 										{{- page.link_text | default: 'View Live Site' -}}
 										<span class="show-for-sr"> (opens in a new tab)</span>
 									</a>

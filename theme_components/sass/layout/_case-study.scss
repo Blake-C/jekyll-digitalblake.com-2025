@@ -82,24 +82,6 @@
 .case-study__actions {
 	margin-bottom: bp.rem-calc(32);
 	margin-top: bp.rem-calc(32);
-
-	.button {
-		background-color: v.$accent-1;
-		border-color: v.$accent-1;
-		padding: bp.rem-calc(12) bp.rem-calc(24);
-
-		&:hover,
-		&:focus {
-			background-color: color.adjust(v.$accent-1, $lightness: -8%);
-			border-color: color.adjust(v.$accent-1, $lightness: -8%);
-			color: v.$white;
-		}
-
-		@at-root .main-content-block .entry-content & {
-			color: v.$white;
-			font-weight: 600;
-		}
-	}
 }
 
 // "More Projects" section reuses .sites-gallery__card as <a> — needs text-decoration reset

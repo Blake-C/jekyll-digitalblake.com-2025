@@ -212,39 +212,6 @@ button {
 	}
 }
 
-.button {
-	background-color: v.$white;
-	border: 1px solid v.$gray191;
-	border-radius: 5px;
-	color: v.$blue;
-	display: inline-block;
-	font-size: bp.rem-calc(14);
-	line-height: 1;
-	padding: 10px;
-	text-decoration: none;
-	transition: all 0.3s;
-
-	&:hover,
-	&:focus {
-		background-color: color.adjust(v.$white, $lightness: -6%);
-		cursor: pointer;
-		text-decoration: none;
-	}
-
-	&.red {
-		background-color: v.$red;
-		color: v.$white;
-		font-weight: 700;
-		padding: 15px 30px;
-		text-transform: uppercase;
-
-		&:hover,
-		&:focus {
-			background-color: color.adjust(v.$red, $lightness: -6%);
-		}
-	}
-}
-
 input {
 	&[type='submit'] {
 		border-radius: 30px;

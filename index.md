@@ -23,11 +23,11 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     <div class="intro__cta">
                         <a
                             href="https://www.linkedin.com/in/blakecerecero/"
-                            class="intro__cta-button"
+                            class="button button--primary-light"
                             target="_blank"
                             rel="noreferrer noopener"
                         >Get in touch</a>
-                        <a href="#code-samples" class="intro__cta-button intro__cta-button--secondary">Coding Projects</a>
+                        <a href="#code-samples" class="button button--secondary-light">Coding Projects</a>
                     </div>
                 </div>
             </div>
