@@ -4,7 +4,7 @@
 body {
 	padding-top: 100px;
 
-	@include bp.breakpoint(medium) {
+	@media screen and (min-width: 56.3125em) {
 		padding-top: 113px;
 	}
 }
@@ -26,13 +26,14 @@ body {
 			display: flex;
 			text-decoration: none;
 
-			@include bp.breakpoint(small only) {
+			@media screen and (max-width: 56.25em) {
 				margin: 0 16px;
 			}
 		}
 	}
 
-	@include bp.breakpoint(medium) {
+	// Desktop scroll-shrink (>900px)
+	@media screen and (min-width: 56.3125em) {
 		&.smaller {
 			padding: 5px 0;
 
@@ -51,30 +52,41 @@ body {
 		}
 	}
 
-	@include bp.breakpoint(small only) {
+	// Hamburger layout (≤900px)
+	@media screen and (max-width: 56.25em) {
 		padding: 25px 0;
-		text-align: center;
+
+		.row {
+			align-items: center;
+			display: flex;
+			flex-wrap: nowrap;
+		}
 
 		.logo-name {
-			height: 50px;
-			overflow: hidden;
+			flex: 1 1 auto;
+			max-width: none;
 			transition: all 0.3s;
+			width: auto;
 		}
 
 		nav {
-			-webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
-			mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+			align-items: center;
+			display: flex;
+			flex: 0 0 auto;
+			justify-content: flex-end;
+			width: auto;
 		}
 
 		&.smaller {
 			padding: 5px 0;
 
-			.logo-name {
-				height: 0;
+			.main-logo {
+				height: 28px;
+				width: 28px;
 			}
 
-			.main-menu {
-				margin: 0;
+			.name {
+				font-size: bp.rem-calc(18);
 			}
 		}
 	}
@@ -91,7 +103,7 @@ body {
 	text-transform: uppercase;
 	transition: all 0.3s;
 
-	@include bp.breakpoint(small only) {
+	@media screen and (max-width: 56.25em) {
 		font-size: bp.rem-calc(25);
 	}
 }

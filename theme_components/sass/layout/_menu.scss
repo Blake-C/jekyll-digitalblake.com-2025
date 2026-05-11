@@ -45,28 +45,7 @@
 		}
 	}
 
-	@include bp.breakpoint(small only) {
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		margin: 8px 0 0;
-		overflow-x: auto;
-		padding: 8px bp.rem-calc(48) 8px 0;
-		scrollbar-width: none;
-		text-align: left;
-		transition: margin 0.3s;
-
-		&::-webkit-scrollbar {
-			display: none;
-		}
-
-		li {
-			display: block;
-			flex-shrink: 0;
-		}
-
-		a {
-			font-size: bp.rem-calc(13);
-		}
+	@media screen and (max-width: 56.25em) {
+		display: none;
 	}
 }

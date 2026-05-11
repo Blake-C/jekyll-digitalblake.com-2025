@@ -23,6 +23,35 @@
 		</div>
 		<nav class="large-8 medium-7 small-12 columns" aria-label="Main">
 			{% include nav-items.html %}
+			<button
+				class="nav-hamburger"
+				aria-label="Open navigation menu"
+				aria-expanded="false"
+				aria-controls="nav-modal"
+				data-micromodal-trigger="nav-modal"
+			>
+				<span class="nav-hamburger__bar"></span>
+				<span class="nav-hamburger__bar"></span>
+				<span class="nav-hamburger__bar"></span>
+			</button>
 		</nav>
 	</div>
 </header>
+
+<div class="nav-modal micromodal-slide" id="nav-modal" aria-hidden="true">
+	<div class="nav-modal__overlay" tabindex="-1">
+		<div
+			class="nav-modal__container"
+			role="dialog"
+			aria-modal="true"
+			aria-label="Navigation menu"
+		>
+			<button
+				class="nav-modal__close"
+				aria-label="Close navigation menu"
+				data-micromodal-close
+			></button>
+			{% include nav-items.html %}
+		</div>
+	</div>
+</div>

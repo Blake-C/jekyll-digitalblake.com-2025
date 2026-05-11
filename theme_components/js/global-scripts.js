@@ -3,6 +3,7 @@ import './modules/_animate-header'
 import './modules/_animate-timeline'
 import './modules/_smooth-scroll'
 import './modules/_table-wrapper'
+import './modules/_nav-modal'
 
 /*************** Template part region toggle button ***************/
 const regions = document.querySelectorAll('.regions')
