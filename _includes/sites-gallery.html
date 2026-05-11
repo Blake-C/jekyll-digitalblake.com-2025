@@ -5,38 +5,46 @@
 
 			<div class="row sites-gallery__grid">
 				{%- for site_item in site.websites -%}
-					<div class="large-4 medium-6 small-12 columns">
-						<a
-							href="{{ site_item.url | relative_url }}"
-							class="sites-gallery__card"
-							aria-label="View case study: {{ site_item.title | escape }}"
-						>
-							<div class="sites-gallery__image-wrap">
-								<img
-									loading="lazy"
-									width="600"
-									height="400"
-									class="sites-gallery__image wp-post-image"
-									alt="Screenshot of {{ site_item.title | escape }}"
-									decoding="async"
-									src="{{ site_item.thumbnail | relative_url }}"
-								>
-							</div>
-							<div class="sites-gallery__card-body">
-								<p class="sites-gallery__item-title">{{ site_item.title }}</p>
-								{%- if site_item.tech -%}
-									<ul class="sites-gallery__tags" aria-label="Technologies used">
-										{%- for tag in site_item.tech -%}
-											<li class="sites-gallery__tag">{{ tag }}</li>
-										{%- endfor -%}
-									</ul>
-								{%- endif -%}
-								<span class="sites-gallery__cta-hint" aria-hidden="true">View case study →</span>
-							</div>
-						</a>
-					</div>
+					{%- unless include.featured_only and site_item.featured != true -%}
+						<div class="large-4 medium-6 small-12 columns">
+							<a
+								href="{{ site_item.url | relative_url }}"
+								class="sites-gallery__card"
+								aria-label="View case study: {{ site_item.title | escape }}"
+							>
+								<div class="sites-gallery__image-wrap">
+									<img
+										loading="lazy"
+										width="600"
+										height="400"
+										class="sites-gallery__image wp-post-image"
+										alt="Screenshot of {{ site_item.title | escape }}"
+										decoding="async"
+										src="{{ site_item.thumbnail | relative_url }}"
+									>
+								</div>
+								<div class="sites-gallery__card-body">
+									<p class="sites-gallery__item-title">{{ site_item.title }}</p>
+									{%- if site_item.tech -%}
+										<ul class="sites-gallery__tags" aria-label="Technologies used">
+											{%- for tag in site_item.tech -%}
+												<li class="sites-gallery__tag">{{ tag }}</li>
+											{%- endfor -%}
+										</ul>
+									{%- endif -%}
+									<span class="sites-gallery__cta-hint" aria-hidden="true">View case study →</span>
+								</div>
+							</a>
+						</div>
+					{%- endunless -%}
 				{%- endfor -%}
 			</div>
+
+			{%- if include.featured_only -%}
+				<div class="sites-gallery__archive-cta">
+					<a href="{{ '/projects/' | relative_url }}" class="sites-gallery__archive-link">View Archive →</a>
+				</div>
+			{%- endif -%}
 		</div>
 	</div>
 </section>

@@ -27,7 +27,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                             target="_blank"
                             rel="noreferrer noopener"
                         >Get in touch</a>
-                        <a href="#projects" class="intro__cta-button intro__cta-button--secondary">View projects</a>
+                        <a href="#code-samples" class="intro__cta-button intro__cta-button--secondary">Coding Projects</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
 
     {%- include github-projects.html -%}
 
-    {%- include sites-gallery.html -%}
+    {%- include sites-gallery.html featured_only=true -%}
 
     {%- include recent-articles.html -%}
 

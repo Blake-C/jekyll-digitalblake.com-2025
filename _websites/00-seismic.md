@@ -1,5 +1,6 @@
 ---
 layout: website-case-study
+featured: true
 permalink: /projects/seismic/
 title: Seismic
 description: 'A ground-up WordPress rebuild of seismic.com through a major rebrand — forty pages launched, two 1,000-page migrations completed, and a 50% traffic increase within the first year.'

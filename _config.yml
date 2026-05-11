@@ -71,8 +71,10 @@ resume_url: '/assets/uploads/resume/Blake-Cerecero-Resume.pdf?v=1'
 
 # Navigation items (shown in header nav)
 nav_pages:
+    - title: Code
+      url: '/#code-samples'
     - title: Projects
-      url: '/#projects'
+      url: '/projects/'
     - title: Articles
       url: '/articles/'
     - title: About
