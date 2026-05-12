@@ -203,6 +203,10 @@ a {
 	&:focus {
 		text-decoration: underline;
 	}
+
+	@at-root .entry-content a:not(.button) {
+		color: v.$accent-2;
+	}
 }
 
 button {
