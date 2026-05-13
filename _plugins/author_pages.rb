@@ -44,12 +44,20 @@ module Jekyll
       data['description']  = author_data['description'] || ''
       data['author_slug']  = author_slug
       data['author_posts'] = posts
+      trail = []
+      [page_num - 1, page_num, page_num + 1].each do |n|
+        next if n < 1 || n > total_pages
+        path = n == 1 ? "/author/#{author_slug}/" : "/author/#{author_slug}/page/#{n}/"
+        trail << { 'num' => n, 'path' => path }
+      end
+
       data['author_pagination'] = {
         'page'          => page_num,
         'total_pages'   => total_pages,
         'previous_page' => page_num > 1 ? page_num - 1 : nil,
         'next_page'     => page_num < total_pages ? page_num + 1 : nil,
-        'base_path'     => "/author/#{author_slug}/"
+        'base_path'     => "/author/#{author_slug}/",
+        'page_trail'    => trail
       }
     end
   end

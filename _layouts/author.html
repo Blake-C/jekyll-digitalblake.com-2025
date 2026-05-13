@@ -61,48 +61,24 @@ layout: base
 
 						{%- assign ap = page.author_pagination -%}
 						{%- if ap.total_pages > 1 -%}
-							<div class="post-pagination">
-								<ul>
-									{%- if ap.previous_page -%}
-										{%- if ap.previous_page == 1 -%}
-											{%- assign prev_path = ap.base_path -%}
-										{%- else -%}
-											{%- capture prev_path -%}{{ ap.base_path }}page/{{ ap.previous_page }}/{%- endcapture -%}
-										{%- endif -%}
-										<li>
-											<a href="{{ prev_path | relative_url }}" aria-label="Previous page">Prev</a>
-										</li>
-									{%- endif -%}
-									{%- for i in (1..ap.total_pages) -%}
-										{%- if i == 1 -%}
-											{%- assign page_path = ap.base_path -%}
-										{%- else -%}
-											{%- capture page_path -%}{{ ap.base_path }}page/{{ i }}/{%- endcapture -%}
-										{%- endif -%}
-										<li
-											{% if i == ap.page %}
-												class="active"
-											{% endif %}
-										>
-											<a
-												href="{{ page_path | relative_url }}"
-												aria-label="Page {{ i }}"
-												{% if i == ap.page %}
-													aria-current="page"
-												{% endif %}
-											>
-												{{- i -}}
-											</a>
-										</li>
-									{%- endfor -%}
-									{%- if ap.next_page -%}
-										{%- capture next_path -%}{{ ap.base_path }}page/{{ ap.next_page }}/{%- endcapture -%}
-										<li>
-											<a href="{{ next_path | relative_url }}" aria-label="Next page">Next</a>
-										</li>
-									{%- endif -%}
-								</ul>
-							</div>
+							{%- assign pg_cur = ap.page -%}
+							{%- assign pg_total = ap.total_pages -%}
+							{%- assign pg_trail = ap.page_trail -%}
+							{%- assign pg_page1_url = ap.base_path -%}
+							{%- capture pg_last_url -%}{{ ap.base_path }}page/{{ ap.total_pages }}/{%- endcapture -%}
+							{%- if ap.previous_page == 1 -%}
+								{%- assign pg_prev_url = ap.base_path -%}
+							{%- elsif ap.previous_page -%}
+								{%- capture pg_prev_url -%}{{ ap.base_path }}page/{{ ap.previous_page }}/{%- endcapture -%}
+							{%- else -%}
+								{%- assign pg_prev_url = '' -%}
+							{%- endif -%}
+							{%- if ap.next_page -%}
+								{%- capture pg_next_url -%}{{ ap.base_path }}page/{{ ap.next_page }}/{%- endcapture -%}
+							{%- else -%}
+								{%- assign pg_next_url = '' -%}
+							{%- endif -%}
+							{%- include pagination.html -%}
 						{%- endif -%}
 					</section>
 				</div>

@@ -1,0 +1,71 @@
+{%- assign trail_first = pg_trail | first -%}
+{%- assign trail_last = pg_trail | last -%}
+{%- assign pg_total_minus_1 = pg_total | minus: 1 -%}
+<div class="post-pagination">
+	<ul>
+		{%- if pg_prev_url != '' -%}
+			<li>
+				<a href="{{ pg_prev_url | relative_url }}" aria-label="Previous page">Prev</a>
+			</li>
+		{%- endif -%}
+
+		{%- if trail_first.num > 1 -%}
+			<li
+				{% if pg_cur == 1 %}
+					class="active"
+				{% endif %}
+			>
+				<a
+					href="{{ pg_page1_url | relative_url }}"
+					aria-label="Page 1"
+					{%- if pg_cur == 1 %}
+						aria-current="page"
+					{% endif %}
+					>1</a
+				>
+			</li>
+		{%- endif -%}
+
+		{%- for trail_item in pg_trail -%}
+			<li
+				{% if pg_cur == trail_item.num %}
+					class="active"
+				{% endif %}
+			>
+				<a
+					href="{{ trail_item.path | relative_url }}"
+					aria-label="Page {{ trail_item.num }}"
+					{%- if pg_cur == trail_item.num %}
+						aria-current="page"
+					{% endif %}
+				>
+					{{- trail_item.num -}}
+				</a>
+			</li>
+		{%- endfor -%}
+
+		{%- if trail_last.num < pg_total -%}
+			<li
+				{% if pg_cur == pg_total %}
+					class="active"
+				{% endif %}
+			>
+				<a
+					href="{{ pg_last_url | relative_url }}"
+					aria-label="Page {{ pg_total }}"
+					{%- if pg_cur == pg_total %}
+						aria-current="page"
+					{% endif %}
+				>
+					{{- pg_total -}}
+				</a>
+			</li>
+		{%- endif -%}
+
+		{%- if pg_next_url != '' -%}
+			<li>
+				<a href="{{ pg_next_url | relative_url }}" aria-label="Next page">Next</a>
+			</li>
+		{%- endif -%}
+	</ul>
+</div>

@@ -59,46 +59,24 @@ layout: base
 				{%- endfor -%}
 
 				{%- if paginator and paginator.total_pages > 1 -%}
-					<div class="post-pagination">
-						<ul>
-							{%- if paginator.previous_page -%}
-								{%- if paginator.previous_page == 1 -%}
-									{%- assign prev_path = '/articles/' -%}
-								{%- else -%}
-									{%- capture prev_path -%}/articles/page/{{ paginator.previous_page }}/{%- endcapture -%}
-								{%- endif -%}
-								<li>
-									<a href="{{ prev_path | relative_url }}" aria-label="Previous page">Prev</a>
-								</li>
-							{%- endif -%}
-							{%- for i in (1..paginator.total_pages) -%}
-								{%- if i == 1 -%}
-									{%- assign page_path = '/articles/' -%}
-								{%- else -%}
-									{%- capture page_path -%}/articles/page/{{ i }}/{%- endcapture -%}
-								{%- endif -%}
-								<li
-									{% if i == paginator.page %}
-										class="active"
-									{% endif %}
-								>
-									<a
-										href="{{ page_path | relative_url }}"
-										aria-label="Page {{ i }}"
-										{% if i == paginator.page %}
-											aria-current="page"
-										{% endif %}
-									>
-										{{- i -}}
-									</a>
-								</li>
-							{%- endfor -%}
-							{%- if paginator.next_page -%}
-								{%- capture next_path -%}/articles/page/{{ paginator.next_page }}/{%- endcapture -%}
-								<li><a href="{{ next_path | relative_url }}" aria-label="Next page">Next</a></li>
-							{%- endif -%}
-						</ul>
-					</div>
+					{%- assign pg_cur = paginator.page -%}
+					{%- assign pg_total = paginator.total_pages -%}
+					{%- assign pg_trail = paginator.page_trail -%}
+					{%- assign pg_page1_url = '/articles/' -%}
+					{%- capture pg_last_url -%}/articles/page/{{ pg_total }}/{%- endcapture -%}
+					{%- if paginator.previous_page == 1 -%}
+						{%- assign pg_prev_url = '/articles/' -%}
+					{%- elsif paginator.previous_page -%}
+						{%- capture pg_prev_url -%}/articles/page/{{ paginator.previous_page }}/{%- endcapture -%}
+					{%- else -%}
+						{%- assign pg_prev_url = '' -%}
+					{%- endif -%}
+					{%- if paginator.next_page -%}
+						{%- capture pg_next_url -%}/articles/page/{{ paginator.next_page }}/{%- endcapture -%}
+					{%- else -%}
+						{%- assign pg_next_url = '' -%}
+					{%- endif -%}
+					{%- include pagination.html -%}
 				{%- endif -%}
 			</section>
 		</main>

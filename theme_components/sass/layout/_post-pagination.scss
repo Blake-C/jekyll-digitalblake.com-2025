@@ -1,3 +1,4 @@
+@use '../helpers/breakpoints' as bp;
 @use '../helpers/variables' as v;
 
 .page-links {
@@ -51,13 +52,15 @@
 }
 
 .post-pagination {
+	overflow: hidden;
+
 	ul {
 		background-color: v.$blue;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 6px;
 		justify-content: center;
-		margin: 0 40px;
+		margin: 0 24px;
 		padding: 4px;
 		position: relative;
 		text-align: center;
@@ -110,8 +113,12 @@
 		color: v.$white;
 		display: block;
 		font-weight: 700;
-		padding: 6px 15px;
+		padding: 6px 9px;
 		transition: background-color 0.3s;
+
+		@include bp.breakpoint(medium) {
+			padding: 6px 15px;
+		}
 
 		&:hover,
 		&:focus {
