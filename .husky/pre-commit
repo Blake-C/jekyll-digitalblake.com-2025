@@ -1,1 +1,2 @@
+docker run --rm -v "$(pwd):/repo" -w /repo zricethezav/gitleaks:v8.30.1 protect --staged --source .
 docker compose run --rm --no-deps app pnpm exec lint-staged
