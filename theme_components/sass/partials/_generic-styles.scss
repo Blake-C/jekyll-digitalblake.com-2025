@@ -263,3 +263,21 @@ input {
 		margin-bottom: 16px;
 	}
 }
+
+/* External link indicator — applies to any link opening in a new tab */
+a[target='_blank'] {
+	&::after {
+		content: '\2197';
+		font-size: 0.7em;
+		margin-left: 2px;
+		vertical-align: super;
+	}
+}
+
+/* Suppress indicator on styled buttons and on post-cta (which has an SR span already) */
+.button[target='_blank'],
+.post-cta a[target='_blank'] {
+	&::after {
+		content: none;
+	}
+}
