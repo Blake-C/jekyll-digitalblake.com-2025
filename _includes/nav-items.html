@@ -15,6 +15,9 @@
 				{%- if url_prefix == nav.url -%}
 					{%- assign is_active = true -%}
 				{%- endif -%}
+				{%- if page.collection == 'posts' and nav.url == '/articles/' -%}
+					{%- assign is_active = true -%}
+				{%- endif -%}
 			{%- endunless -%}
 		{%- endunless -%}
 		<li class="menu-item{% if is_active %} menu-item--active{% endif %}">
