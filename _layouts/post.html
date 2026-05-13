@@ -97,21 +97,33 @@ layout: base
 						{%- if related_posts.size > 0 -%}
 							<section class="related-posts" aria-labelledby="related-posts-title">
 								<h2 class="related-posts__title" id="related-posts-title">Related Posts</h2>
-								<ul class="related-posts__list">
+								<div class="row">
 									{%- for related in related_posts -%}
-										<li class="related-posts__item">
-											<time
-												class="related-posts__date"
-												datetime="{{ related.date | date_to_xmlschema }}"
-											>
-												{{- related.date | date: '%B %-d, %Y' -}}
-											</time>
-											<a href="{{ related.url | relative_url }}" class="related-posts__link">
-												{{- related.title | escape -}}
-											</a>
-										</li>
+										<div class="large-4 medium-12 small-12 columns">
+											<article class="recent-articles__item">
+												<time
+													class="recent-articles__date"
+													datetime="{{ related.date | date_to_xmlschema }}"
+												>
+													{{- related.date | date: '%B %-d, %Y' -}}
+												</time>
+												<h3 class="recent-articles__item-title">
+													<a
+														href="{{ related.url | relative_url }}"
+														class="recent-articles__link"
+													>
+														{{- related.title | escape -}}
+													</a>
+												</h3>
+												{%- if related.description -%}
+													<p class="recent-articles__description">
+														{{ related.description }}
+													</p>
+												{%- endif -%}
+											</article>
+										</div>
 									{%- endfor -%}
-								</ul>
+								</div>
 							</section>
 						{%- endif -%}
 					</div>

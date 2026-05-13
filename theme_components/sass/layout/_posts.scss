@@ -269,3 +269,46 @@
 		}
 	}
 }
+
+.related-posts {
+	border-top: 1px solid v.$dark-gray;
+	margin-top: bp.rem-calc(32);
+	padding-top: bp.rem-calc(24);
+
+	&__title {
+		font-size: bp.rem-calc(12);
+		font-weight: 900;
+		letter-spacing: 3px;
+		margin-bottom: bp.rem-calc(24);
+		text-transform: uppercase;
+	}
+
+	.recent-articles {
+		&__item {
+			border-top-color: v.$light-gray;
+		}
+
+		&__date {
+			color: v.$dark-gray;
+		}
+
+		&__item-title {
+			font-size: bp.rem-calc(15);
+		}
+
+		&__link {
+			color: v.$black;
+
+			&:hover,
+			&:focus {
+				color: v.$blue;
+			}
+		}
+
+		&__description {
+			color: v.$body-font-color;
+			opacity: 1;
+			font-size: bp.rem-calc(12);
+		}
+	}
+}
