@@ -50,7 +50,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
         </div>
     </section>
 
-    {%- include github-projects.html -%}
+    {%- include github-projects.html featured_only=true -%}
 
     {%- include sites-gallery.html featured_only=true -%}
 

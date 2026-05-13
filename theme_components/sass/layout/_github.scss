@@ -2,6 +2,12 @@
 @use '../helpers/helpers';
 @use '../helpers/variables' as v;
 
+.github-projects-page {
+	.top-header {
+		border-bottom: 2px solid v.$white;
+	}
+}
+
 .github {
 	@extend %cover;
 
