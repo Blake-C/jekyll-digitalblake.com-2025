@@ -3,6 +3,10 @@
 	"version": "1.0.0",
 	"private": true,
 	"packageManager": "pnpm@11.1.1",
+	"engines": {
+		"node": ">=24",
+		"pnpm": ">=11"
+	},
 	"sideEffects": [
 		"*.css",
 		"*.scss",
@@ -17,24 +21,24 @@
 		"@eslint/js": "10.0.1",
 		"@shopify/prettier-plugin-liquid": "^1.5.0",
 		"autoprefixer": "^10.4.2",
-		"eslint": "10.2.1",
+		"eslint": "catalog:",
 		"eslint-config-prettier": "10.1.8",
 		"globals": "17.5.0",
-		"husky": "9.1.7",
-		"lint-staged": "17.0.4",
+		"husky": "catalog:",
+		"lint-staged": "catalog:",
 		"postcss": "^8.4.6",
-		"postcss-cli": "11.0.1",
+		"postcss-cli": "catalog:",
 		"prettier": "^3.0.0",
-		"sass": "^1.49.7",
-		"stylelint": "17.8.0",
+		"sass": "catalog:",
+		"stylelint": "catalog:",
 		"stylelint-config-standard-scss": "17.0.0",
 		"terser-webpack-plugin": "^5.3.10",
-		"webpack": "^5.68.0",
-		"webpack-cli": "7.0.2"
+		"webpack": "catalog:",
+		"webpack-cli": "catalog:"
 	},
 	"dependencies": {
-		"micromodal": "^0.4.10",
-		"prismjs": "^1.26.0"
+		"micromodal": "catalog:",
+		"prismjs": "catalog:"
 	},
 	"scripts": {
 		"format": "prettier --write .",
@@ -63,6 +67,11 @@
 		],
 		"*": [
 			"prettier --write --ignore-unknown"
+		]
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@parcel/watcher"
 		]
 	}
 }

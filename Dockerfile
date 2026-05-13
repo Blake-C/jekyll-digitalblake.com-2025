@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& apt-get update && apt-get install -y --no-install-recommends nodejs \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Store Corepack cache in a global path accessible to all users
+ENV COREPACK_HOME=/usr/local/share/corepack
+
 # Enable Corepack and activate pnpm 11.1.1
 RUN corepack enable && corepack prepare pnpm@11.1.1 --activate
 
@@ -17,3 +20,11 @@ RUN corepack enable && corepack prepare pnpm@11.1.1 --activate
 RUN gem install bundler:2.6.2 --no-document
 
 WORKDIR /app
+
+# Run as non-root to limit blast radius of a compromised dependency
+RUN useradd --uid 1001 --create-home appuser \
+    && mkdir -p /home/appuser/.local/share/pnpm \
+    && chown -R appuser:appuser /app /usr/local/bundle /home/appuser/.local/share/pnpm \
+    && chmod -R 755 /usr/local/share/corepack
+
+USER appuser

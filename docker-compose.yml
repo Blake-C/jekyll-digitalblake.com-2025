@@ -4,7 +4,7 @@ services:
         volumes:
             - .:/app
             - bundle_cache:/usr/local/bundle
-            - pnpm_store:/root/.local/share/pnpm/store
+            - pnpm_store:/home/appuser/.local/share/pnpm/store
         working_dir: /app
         ports:
             - '4005:4005' # Jekyll dev server

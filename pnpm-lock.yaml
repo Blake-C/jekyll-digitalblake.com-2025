@@ -4,14 +4,47 @@ settings:
     autoInstallPeers: true
     excludeLinksFromLockfile: false
 
+catalogs:
+    default:
+        eslint:
+            specifier: 10.2.1
+            version: 10.2.1
+        husky:
+            specifier: 9.1.7
+            version: 9.1.7
+        lint-staged:
+            specifier: 17.0.4
+            version: 17.0.4
+        micromodal:
+            specifier: 0.4.10
+            version: 0.4.10
+        postcss-cli:
+            specifier: 11.0.1
+            version: 11.0.1
+        prismjs:
+            specifier: 1.30.0
+            version: 1.30.0
+        sass:
+            specifier: 1.99.0
+            version: 1.99.0
+        stylelint:
+            specifier: 17.8.0
+            version: 17.8.0
+        webpack:
+            specifier: 5.106.2
+            version: 5.106.2
+        webpack-cli:
+            specifier: 7.0.2
+            version: 7.0.2
+
 importers:
     .:
         dependencies:
             micromodal:
-                specifier: ^0.4.10
+                specifier: 'catalog:'
                 version: 0.4.10
             prismjs:
-                specifier: ^1.26.0
+                specifier: 'catalog:'
                 version: 1.30.0
         devDependencies:
             '@eslint/js':
@@ -24,7 +57,7 @@ importers:
                 specifier: ^10.4.2
                 version: 10.5.0(postcss@8.5.14)
             eslint:
-                specifier: 10.2.1
+                specifier: 'catalog:'
                 version: 10.2.1
             eslint-config-prettier:
                 specifier: 10.1.8
@@ -33,25 +66,25 @@ importers:
                 specifier: 17.5.0
                 version: 17.5.0
             husky:
-                specifier: 9.1.7
+                specifier: 'catalog:'
                 version: 9.1.7
             lint-staged:
-                specifier: 17.0.4
+                specifier: 'catalog:'
                 version: 17.0.4
             postcss:
                 specifier: ^8.4.6
                 version: 8.5.14
             postcss-cli:
-                specifier: 11.0.1
+                specifier: 'catalog:'
                 version: 11.0.1(postcss@8.5.14)
             prettier:
                 specifier: ^3.0.0
                 version: 3.8.3
             sass:
-                specifier: ^1.49.7
+                specifier: 'catalog:'
                 version: 1.99.0
             stylelint:
-                specifier: 17.8.0
+                specifier: 'catalog:'
                 version: 17.8.0
             stylelint-config-standard-scss:
                 specifier: 17.0.0
@@ -60,10 +93,10 @@ importers:
                 specifier: ^5.3.10
                 version: 5.6.0(postcss@8.5.14)(webpack@5.106.2)
             webpack:
-                specifier: ^5.68.0
+                specifier: 'catalog:'
                 version: 5.106.2(postcss@8.5.14)(webpack-cli@7.0.2)
             webpack-cli:
-                specifier: 7.0.2
+                specifier: 'catalog:'
                 version: 7.0.2(webpack@5.106.2)
 
 packages:

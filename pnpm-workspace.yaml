@@ -1,0 +1,46 @@
+packages:
+    - '.'
+
+# pnpm v11 configuration
+# Non-auth/registry settings (moved from .npmrc — pnpm v11 requirement)
+
+# Allow pnpm to purge the modules directory without TTY confirmation (needed in containers/CI)
+confirmModulesPurge: false
+
+# Enforce frozen lockfile in all environments
+frozenLockfile: true
+
+# Pin exact versions by default — prevents silent minor/patch bumps on pnpm add
+saveExact: true
+
+# Audit on install — fail if moderate or higher severity issues are found
+auditLevel: moderate
+
+# Verify content hashes against the store on every install
+verifyStoreIntegrity: true
+
+# Warn about deprecated packages
+strictDeprecatedDependencies: warn
+
+# Network resilience
+fetchTimeout: 60000
+fetchRetryMinTimeout: 1000
+fetchRetryMaxTimeout: 10000
+
+allowBuilds:
+    '@parcel/watcher': true
+
+catalog:
+    # Production dependencies
+    micromodal: 0.4.10
+    prismjs: 1.30.0
+
+    # Dev dependencies — build tools and linters most exposed to supply chain risk
+    eslint: 10.2.1
+    stylelint: 17.8.0
+    webpack: 5.106.2
+    webpack-cli: 7.0.2
+    sass: 1.99.0
+    postcss-cli: 11.0.1
+    husky: 9.1.7
+    lint-staged: 17.0.4
