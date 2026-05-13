@@ -2,6 +2,7 @@
 	"name": "jekyll-digitalblake-com-2025",
 	"version": "1.0.0",
 	"private": true,
+	"packageManager": "pnpm@11.1.1",
 	"sideEffects": [
 		"*.css",
 		"*.scss",
@@ -37,7 +38,7 @@
 	},
 	"scripts": {
 		"format": "prettier --write .",
-		"lint": "npm run lint:js && npm run lint:css",
+		"lint": "pnpm run lint:js && pnpm run lint:css",
 		"lint:js": "eslint .",
 		"lint:css": "stylelint \"theme_components/sass/**/*.scss\"",
 		"lint:fix": "eslint . --fix && stylelint \"theme_components/sass/**/*.scss\" --fix",
@@ -46,8 +47,8 @@
 		"build:images": "node script/optimize-images.mjs",
 		"watch:styles": "sass --load-path=node_modules --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css theme_components/sass/critical-styles.scss:_includes/critical.min.css theme_components/sass/prism-styles.scss:assets/css/prism.min.css --style=compressed --no-error-css --charset",
 		"watch:scripts": "webpack --watch",
-		"build": "npm run build:images && npm run build:styles && npm run build:scripts && node script/hash-assets.mjs && bundle exec jekyll build",
-		"dev": "node script/hash-assets.mjs --dev && npm run build:styles && npm run build:scripts && (trap 'kill 0' INT; npm run watch:styles & npm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005; wait)",
+		"build": "pnpm run build:images && pnpm run build:styles && pnpm run build:scripts && node script/hash-assets.mjs && bundle exec jekyll build",
+		"dev": "node script/hash-assets.mjs --dev && pnpm run build:styles && pnpm run build:scripts && (trap 'kill 0' INT; pnpm run watch:styles & pnpm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005 --host 0.0.0.0; wait)",
 		"prepare": "husky"
 	},
 	"lint-staged": {

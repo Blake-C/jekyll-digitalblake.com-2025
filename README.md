@@ -4,42 +4,35 @@ Personal site built with Jekyll 4, deployed to GitHub Pages via GitHub Actions.
 
 ## Requirements
 
-- Ruby 3.4+ (via [rbenv](https://github.com/rbenv/rbenv) or [ruby-install](https://github.com/postmodern/ruby-install))
-- Node.js 24+ (via [nvm](https://github.com/nvm-sh/nvm))
-- Bundler (`gem install bundler`)
-- ImageMagick 7+ (`brew install imagemagick`) — required for image optimization
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) — all other runtimes (Node, Ruby, pnpm, ImageMagick) run inside the container
 
 ## Setup
 
 ```bash
-# Install Ruby and Node dependencies
-bundle install
-npm install
+# Build the Docker image (first time, or after Dockerfile changes)
+docker compose build
+
+# Install Node and Ruby dependencies
+docker compose run --rm app pnpm install
+docker compose run --rm app bundle install
 ```
 
-`npm install` will automatically run `husky` via the `prepare` script to set up the pre-commit hook.
-
-### nvm users
-
-Husky runs in a limited shell environment and cannot load nvm automatically. Create the following file so husky can find `node` and `npm`:
-
-```bash
-mkdir -p ~/.config/husky
-echo 'export PATH="$HOME/.nvm/versions/node/$(ls -1 $HOME/.nvm/versions/node | sort -V | tail -1)/bin:$PATH"' > ~/.config/husky/init.sh
-```
+`pnpm install` automatically runs `husky` via the `prepare` script to set up the pre-commit hook.
 
 ## Development
 
 ```bash
-npm run dev
+docker compose up
 ```
 
 This builds styles and scripts, then starts Jekyll with live reload on [http://localhost:4005](http://localhost:4005). Styles and scripts are watched for changes.
 
+> **Note:** `docker compose up` is used here instead of `docker compose run` because only `up` publishes the declared ports to the host. `docker compose run` ignores port mappings by default, so the dev server would be unreachable at `http://127.0.0.1:4005`.
+
 ## Build
 
 ```bash
-npm run build
+docker compose run --rm app pnpm run build
 ```
 
 Optimizes images, compiles SCSS, bundles JS via webpack, hashes compiled assets for cache busting, then runs `bundle exec jekyll build`.
@@ -47,9 +40,9 @@ Optimizes images, compiles SCSS, bundles JS via webpack, hashes compiled assets 
 Individual steps:
 
 ```bash
-npm run build:images   # Optimize JPG/PNG in assets/images/ and assets/uploads/
-npm run build:styles   # Compile SCSS → assets/css/global-styles.min.css
-npm run build:scripts  # Bundle JS via webpack → assets/js/
+docker compose run --rm app pnpm run build:images   # Optimize JPG/PNG in assets/images/ and assets/uploads/
+docker compose run --rm app pnpm run build:styles   # Compile SCSS → assets/css/global-styles.min.css
+docker compose run --rm app pnpm run build:scripts  # Bundle JS via webpack → assets/js/
 ```
 
 ### Asset manifest
@@ -69,14 +62,14 @@ Pushing to `main` triggers a GitHub Actions workflow that builds and deploys the
 | `_config.yml`     | Production config (`baseurl: /jekyll-digitalblake.com-2025`)     |
 | `_config.dev.yml` | Local dev override (`baseurl: ""`, `url: http://localhost:4005`) |
 
-The dev server merges both configs automatically via `npm run dev`.
+The dev server merges both configs automatically via `pnpm run dev`.
 
 ## Code Formatting
 
 [Prettier](https://prettier.io/) is used for formatting with the `@shopify/prettier-plugin-liquid` plugin for Liquid templates.
 
 ```bash
-npm run format   # Format all files
+docker compose run --rm app pnpm run format   # Format all files
 ```
 
 A pre-commit hook (via [Husky](https://typicode.com/husky)) runs automatically before every commit via lint-staged:

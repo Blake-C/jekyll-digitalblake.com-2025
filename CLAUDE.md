@@ -2,39 +2,38 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Accessing Node / npm
+## Runtime isolation
 
-Node is managed via **nvm** and is not on `PATH` by default. Source nvm before running any `npm` or `node` command:
-
-```bash
-export NVM_DIR="$HOME/.nvm" && source "$NVM_DIR/nvm.sh" && npm <command>
-```
+All Node and Ruby commands run inside Docker. The container image bundles Node 24, Ruby 3.4, pnpm, ImageMagick, and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
 
 ## Commands
 
 ```bash
+# Build the Docker image (first time, or after Dockerfile changes)
+docker compose build
+
 # Install dependencies (first time / after Gemfile or package.json changes)
-bundle install
-npm install
+docker compose run --rm app pnpm install
+docker compose run --rm app bundle install
 
 # Start dev server with live reload at http://localhost:4005
-npm run dev
+docker compose up
 
 # Production build (images → styles → scripts → hash assets → jekyll build)
-npm run build
+docker compose run --rm app pnpm run build
 
 # Individual build steps
-npm run build:images   # Optimize JPG/PNG and generate WebP variants via ImageMagick
-npm run build:styles   # Compile SCSS to assets/css/ and _includes/ (critical CSS)
-npm run build:scripts  # Bundle JS via webpack to assets/js/
+docker compose run --rm app pnpm run build:images   # Optimize JPG/PNG and generate WebP variants
+docker compose run --rm app pnpm run build:styles   # Compile SCSS to assets/css/ and _includes/ (critical CSS)
+docker compose run --rm app pnpm run build:scripts  # Bundle JS via webpack to assets/js/
 
 # Code quality
-npm run lint           # ESLint + stylelint
-npm run lint:fix       # Auto-fix JS and SCSS issues
-npm run format         # Prettier (all files)
+docker compose run --rm app pnpm run lint           # ESLint + stylelint
+docker compose run --rm app pnpm run lint:fix       # Auto-fix JS and SCSS issues
+docker compose run --rm app pnpm run format         # Prettier (all files)
 
 # HTML validation (run after jekyll build)
-bundle exec htmlproofer ./_site
+docker compose run --rm app bundle exec htmlproofer ./_site
 ```
 
 ## Architecture
