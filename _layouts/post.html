@@ -57,52 +57,20 @@ layout: base
 							{{ content }}
 						</div>
 
-						{%- if page.categories or page.tags -%}
-							<footer class="entry-footer">
-								{%- if page.categories -%}
-									<p class="cat-links">
-										View other
-										{%- for cat in page.categories %}
-											{%- capture cat_path -%}/category/{{ cat | slugify }}/{%- endcapture -%}
-											<a href="{{ cat_path | relative_url }}" rel="category tag">{{ cat }}</a>
-											{%- unless forloop.last %}, {% endunless %}
-										{%- endfor %}
-									</p>
-								{%- endif -%}
-								{%- if page.tags -%}
-									<p class="tags-links">
-										<strong>Tagged in:</strong>
-										{%- for tag in page.tags %}
-											{%- capture tag_path -%}/tag/{{ tag | slugify }}/{%- endcapture -%}
-											<a href="{{ tag_path | relative_url }}" rel="tag">{{ tag }}</a>
-											{%- unless forloop.last %} {% endunless %}
-										{%- endfor %}
-									</p>
-								{%- endif -%}
-							</footer>
-						{%- endif -%}
-
-						{%- if page.previous or page.next -%}
-							<nav class="navigation post-navigation" aria-label="Posts">
-								<h2 class="screen-reader-text">Post navigation</h2>
-								<div class="nav-links">
-									{%- if page.previous -%}
-										<div class="nav-previous">
-											<a href="{{ page.previous.url | relative_url }}" rel="prev"
-												>Prev. Post: <em>{{ page.previous.title | escape }}</em></a
-											>
-										</div>
-									{%- endif -%}
-									{%- if page.next -%}
-										<div class="nav-next">
-											<a href="{{ page.next.url | relative_url }}" rel="next"
-												>Next Post: <em>{{ page.next.title | escape }}</em></a
-											>
-										</div>
-									{%- endif -%}
-								</div>
-							</nav>
-						{%- endif -%}
+						<div class="post-cta">
+							<p>
+								Looking for a senior developer?
+								<a
+									href="https://www.linkedin.com/in/blakecerecero/"
+									target="_blank"
+									rel="noreferrer noopener"
+									>I'm open to new opportunities<span class="show-for-sr">
+										(opens in a new tab)</span
+									></a
+								>
+								or <a href="mailto:blake@digitalblake.com">send an email</a>.
+							</p>
+						</div>
 
 						{%- if page.tags.size > 0 -%}
 							{%- assign all_posts = site.posts | where_exp: 'post', 'post.url != page.url' -%}
@@ -119,24 +87,34 @@ layout: base
 								{%- if related_posts.size >= 3 -%}{%- break -%}{%- endif -%}
 							{%- endfor -%}
 						{%- endif -%}
-
-						<div class="post-cta">
-							<p>
-								Looking for a senior developer?
-								<a
-									href="https://www.linkedin.com/in/blakecerecero/"
-									target="_blank"
-									rel="noreferrer noopener"
-									>I'm open to new opportunities<span class="show-for-sr">
-										(opens in a new tab)</span
-									></a
-								>
-								or <a href="mailto:blake@digitalblake.com">send an email</a>.
-							</p>
-						</div>
 					</div>
 
 					{%- include sidebar.html -%}
+				</div>
+
+				<div class="row">
+					<div class="large-12 columns">
+						{%- if related_posts.size > 0 -%}
+							<section class="related-posts" aria-labelledby="related-posts-title">
+								<h2 class="related-posts__title" id="related-posts-title">Related Posts</h2>
+								<ul class="related-posts__list">
+									{%- for related in related_posts -%}
+										<li class="related-posts__item">
+											<time
+												class="related-posts__date"
+												datetime="{{ related.date | date_to_xmlschema }}"
+											>
+												{{- related.date | date: '%B %-d, %Y' -}}
+											</time>
+											<a href="{{ related.url | relative_url }}" class="related-posts__link">
+												{{- related.title | escape -}}
+											</a>
+										</li>
+									{%- endfor -%}
+								</ul>
+							</section>
+						{%- endif -%}
+					</div>
 				</div>
 			</article>
 		</div>
