@@ -373,6 +373,12 @@
 			color: v.$accent-5;
 		}
 	}
+
+	.menu-item--active a {
+		border-bottom: 2px solid v.$accent-5;
+		color: v.$accent-5;
+		padding-bottom: calc(#{bp.rem-calc(10)} - 2px);
+	}
 }
 
 .nav-modal {

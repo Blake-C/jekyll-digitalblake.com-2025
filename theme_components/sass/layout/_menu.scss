@@ -45,6 +45,12 @@
 		}
 	}
 
+	.menu-item--active a {
+		border-bottom: 2px solid v.$accent-5;
+		color: v.$accent-5;
+		padding-bottom: 1px;
+	}
+
 	@media screen and (max-width: 56.25em) {
 		display: none;
 	}

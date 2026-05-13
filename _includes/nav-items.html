@@ -2,15 +2,33 @@
 	{%- for nav in site.nav_pages -%}
 		{%- if nav.use_resume_url -%}
 			{%- assign nav_href = site.resume_url -%}
+		{%- elsif page.url == '/' and nav.home_href -%}
+			{%- assign nav_href = nav.home_href -%}
 		{%- else -%}
 			{%- assign nav_href = nav.url | relative_url -%}
 		{%- endif -%}
-		<li class="menu-item">
+		{%- assign is_active = false -%}
+		{%- unless nav.use_resume_url -%}
+			{%- unless nav.url contains '#' -%}
+				{%- assign nav_url_len = nav.url | size -%}
+				{%- assign url_prefix = page.url | slice: 0, nav_url_len -%}
+				{%- if url_prefix == nav.url -%}
+					{%- assign is_active = true -%}
+				{%- endif -%}
+			{%- endunless -%}
+		{%- endunless -%}
+		<li class="menu-item{% if is_active %} menu-item--active{% endif %}">
 			<a
 				href="{{ nav_href }}"
-				{% if nav.target %}
-					target="{{ nav.target }}" rel="noreferrer noopener"
+				{%- if is_active %}
+					aria-current="page"
 				{% endif %}
+				{%- if nav.use_resume_url %}
+					aria-label="Resume (opens in new tab)"
+				{% endif %}
+				{%- if nav.target %}
+					target="{{ nav.target }}" rel="noreferrer noopener"
+				{%- endif %}
 			>
 				{{- nav.title -}}
 			</a>

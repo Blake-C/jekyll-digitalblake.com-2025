@@ -70,13 +70,17 @@ autopages:
 resume_url: '/assets/uploads/resume/Blake-Cerecero-Resume.pdf?v=1'
 
 # Navigation items (shown in header nav)
+# home_href: anchor used when the nav item is rendered on the homepage
 nav_pages:
     - title: Code
       url: '/#code-samples'
+      home_href: '#code-samples'
     - title: Projects
       url: '/projects/'
+      home_href: '#website-projects'
     - title: Articles
       url: '/articles/'
+      home_href: '#recent-writing'
     - title: About
       url: '/about/'
     - title: Resume
