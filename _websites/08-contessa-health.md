@@ -12,7 +12,7 @@ agency: Gray Digital Group
 team:
     - name: Tim Smith
       role: Designer
-    - name: Aurora Cantu
+    - name: Aurora Ramirez
       role: Account Executive
     - name: Blake Cerecero
       role: Developer

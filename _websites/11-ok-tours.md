@@ -14,7 +14,7 @@ team:
       role: Team Lead
     - name: Josephine Medel
       role: Designer
-    - name: Aurora Cantu
+    - name: Aurora Ramirez
       role: Account Executive
     - name: Richard Baugh
       role: Production Director
