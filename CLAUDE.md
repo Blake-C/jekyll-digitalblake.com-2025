@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Runtime isolation
 
-All Node and Ruby commands run inside Docker. The container image bundles Node 24, Ruby 3.4, pnpm, ImageMagick, and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
+All Node and Ruby commands run inside Docker. The container image bundles Node 24.15.0, Ruby 3.4.9, pnpm, ImageMagick, and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
 
 ## Commands
 
@@ -45,7 +45,7 @@ This is a **Jekyll 4.4.1** blog/portfolio deployed to GitHub Pages. The asset pi
 Two Jekyll configs are used:
 
 - `_config.yml` — production (baseurl: `/jekyll-digitalblake.com-2025`)
-- `_config.dev.yml` — development override (baseurl: `""`, port 4005); merged automatically by `npm run dev`
+- `_config.dev.yml` — development override (baseurl: `""`, port 4005); merged automatically by `pnpm run dev`
 
 ### Asset pipeline
 
@@ -58,12 +58,12 @@ Two Jekyll configs are used:
 
 ### Content collections
 
-| Directory            | Purpose                                              | Jekyll output |
-| -------------------- | ---------------------------------------------------- | ------------- |
-| `_posts/`            | Blog posts (articles, snippets)                      | Yes           |
-| `_websites/`         | Portfolio entries rendered in homepage gallery modal | No            |
-| `_websites_archive/` | Archived portfolio entries                           | No            |
-| `_github_projects/`  | GitHub project cards on homepage                     | No            |
+| Directory            | Purpose                                                                                             | Jekyll output |
+| -------------------- | --------------------------------------------------------------------------------------------------- | ------------- |
+| `_posts/`            | Blog posts (articles, snippets)                                                                     | Yes           |
+| `_websites/`         | Portfolio entries rendered in homepage gallery modal                                                | No            |
+| `_websites_archive/` | Archived portfolio entries                                                                          | No            |
+| `_github_projects/`  | GitHub project cards on homepage and `/coding-projects/` archive; entries support a `featured` flag | No            |
 
 **`_websites/` body content is rendered as raw HTML** in the homepage modal — treat as trusted first-party content only.
 
@@ -97,6 +97,7 @@ Rouge is disabled. **Prism.js** handles all syntax highlighting via webpack with
 
 Husky runs lint-staged on commit:
 
+- gitleaks v8.30.1 scans staged files for leaked secrets/API keys (runs before lint-staged; blocks the commit if a secret is found)
 - Prettier formats all staged files
 - ESLint auto-fixes staged JS/MJS
 - stylelint auto-fixes staged SCSS

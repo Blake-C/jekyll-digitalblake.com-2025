@@ -74,6 +74,7 @@ docker compose run --rm app pnpm run format   # Format all files
 
 A pre-commit hook (via [Husky](https://typicode.com/husky)) runs automatically before every commit via lint-staged:
 
+- **gitleaks** — scans staged files for leaked secrets/API keys before lint-staged runs; blocks the commit if a secret is found
 - **Prettier** — formats all files
 - **ESLint** — lints and auto-fixes JS/MJS files
 - **`stylelint`** — lints and auto-fixes SCSS files
@@ -83,13 +84,14 @@ A pre-commit hook (via [Husky](https://typicode.com/husky)) runs automatically b
 
 ```
 _data/          # YAML data files (authors, navigation, etc.)
-_github_projects/  # GitHub project data for homepage
+_github_projects/  # GitHub project data for homepage and /coding-projects/ archive
 _includes/      # Reusable HTML/Liquid partials
 _layouts/       # Page layout templates
 _plugins/       # Custom Jekyll plugins (author pages)
 _posts/         # Blog posts (Markdown)
 _websites/      # Website portfolio data for homepage
 assets/         # Compiled/static assets (CSS, JS, images, uploads)
+coding-projects/   # Dedicated archive page for GitHub/coding projects
 script/         # Build scripts (image optimization, asset hashing)
 theme_components/
   js/           # JS source files
