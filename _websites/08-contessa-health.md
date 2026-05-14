@@ -1,5 +1,6 @@
 ---
 layout: website-case-study
+featured: false
 permalink: /projects/contessa-health/
 title: Contessa Health
 description: 'A 2015 WordPress build for a surgical bundled-care company: an asymmetric split layout with a sticky contact CTA, SVG-driven feature sections, an animated multi-step logo carousel, and the first flip-card implementation from Gray Digital Group.'

@@ -1,5 +1,6 @@
 ---
 layout: website-case-study
+featured: false
 permalink: /projects/martin-ventures/
 title: Martin Ventures
 description: "Gray Digital Group's first WordPress build for Martin Ventures in 2015, migrated from a 2014 static site, featuring a rotating logo grid, a section-scoped modal system built on Remodal, and a team page with an inline banner-swap pattern driven by scroll anchors."
