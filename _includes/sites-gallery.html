@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2 class="sites-gallery__title" id="sites-gallery-title">Website Projects</h2>
+			<p class="sites-gallery__subtitle">Selected client case studies</p>
 
 			<div class="row sites-gallery__grid">
 				{%- for site_item in site.websites -%}
@@ -84,7 +85,9 @@
 
 			{%- if include.featured_only -%}
 				<div class="sites-gallery__archive-cta">
-					<a href="{{ '/projects/' | relative_url }}" class="button button--primary-light">View Archive</a>
+					<a href="{{ '/projects/' | relative_url }}" class="button button--primary-light"
+						>View All Projects</a
+					>
 				</div>
 			{%- endif -%}
 		</div>

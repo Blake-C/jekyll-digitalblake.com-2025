@@ -25,7 +25,7 @@
 		font-size: bp.rem-calc(16px);
 		font-weight: 900;
 		letter-spacing: 4.8px;
-		margin-bottom: 70px;
+		margin-bottom: bp.rem-calc(8);
 		text-align: center;
 		text-transform: uppercase;
 
@@ -35,6 +35,19 @@
 
 		@include bp.breakpoint(large down) {
 			font-size: bp.rem-calc(40px);
+		}
+	}
+
+	&__subtitle {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: bp.rem-calc(13);
+		font-weight: 400;
+		letter-spacing: 0.5px;
+		margin-bottom: bp.rem-calc(60);
+		text-align: center;
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(15);
 		}
 	}
 
