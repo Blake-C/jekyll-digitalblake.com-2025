@@ -54,6 +54,11 @@
 	.columns {
 		display: flex;
 	}
+
+	&__archive-cta {
+		margin-top: bp.rem-calc(18);
+		text-align: center;
+	}
 }
 
 .git-project {
