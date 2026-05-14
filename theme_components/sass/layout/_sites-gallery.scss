@@ -154,6 +154,26 @@
 		padding-bottom: bp.rem-calc(2);
 	}
 
+	&__archive-header {
+		margin-top: bp.rem-calc(72);
+		margin-bottom: bp.rem-calc(40);
+		text-align: center;
+	}
+
+	&__archive-title {
+		color: v.$primary;
+		font-size: bp.rem-calc(14);
+		font-weight: 900;
+		letter-spacing: 4px;
+		margin: 0;
+		opacity: 0.6;
+		text-transform: uppercase;
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(18);
+		}
+	}
+
 	&__archive-cta {
 		margin-top: bp.rem-calc(48);
 		text-align: center;
