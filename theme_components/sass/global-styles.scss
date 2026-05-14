@@ -24,7 +24,6 @@
 
 /* Layouts */
 @use 'layout/about';
-@use 'layout/contact';
 @use 'layout/footer';
 @use 'layout/github';
 @use 'layout/header';
@@ -35,9 +34,7 @@
 @use 'layout/archive';
 @use 'layout/posts';
 @use 'layout/tags';
-@use 'layout/forms';
 @use 'layout/post-pagination';
-@use 'layout/password-form';
 @use 'layout/case-study';
 @use 'layout/sites-gallery';
 @use 'layout/recent-articles';

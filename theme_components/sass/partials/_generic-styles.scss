@@ -16,47 +16,8 @@ h1 {
 	}
 }
 
-/* Click button for displaying page template parts */
-.regions {
-	background: rgba(v.$black, 0.1);
-	bottom: 10px;
-	color: v.$white;
-	padding: 10px 20px;
-	position: fixed;
-	right: 10px;
-	z-index: 2000000;
-
-	&:hover,
-	&:focus {
-		color: v.$white;
-	}
-}
-
 .hidden {
 	display: none;
-}
-
-/* Foundation figure was coming out of the layout container */
-figure {
-	background: v.$white;
-	margin: 0;
-	/* stylelint-disable-next-line declaration-no-important */
-	max-width: 100% !important;
-	padding: 1em 20px;
-	/* stylelint-disable-next-line declaration-no-important */
-	width: auto !important;
-
-	figcaption {
-		font-size: 12px;
-		margin: 13px 0 0;
-		text-align: center;
-	}
-}
-
-.wp-block-image {
-	background-color: transparent;
-	margin: 0 0 2px;
-	padding: 0;
 }
 
 /* Elements */
@@ -158,7 +119,6 @@ li {
 	}
 }
 
-/* WordPress styles */
 .alignright {
 	float: right;
 	margin: 0 0 0 25px;
@@ -185,15 +145,6 @@ pre {
 	white-space: pre-wrap;
 }
 
-.screen-reader-text {
-	@include bp.element-invisible;
-}
-
-[type='text'],
-[type='password'] {
-	height: 2.48rem;
-}
-
 a {
 	color: v.$blue;
 	text-decoration: none;
@@ -206,61 +157,6 @@ a {
 
 	@at-root .entry-content a:not(.button) {
 		color: v.$accent-2;
-	}
-}
-
-button {
-	&:hover,
-	&:focus {
-		cursor: pointer;
-		text-decoration: none;
-	}
-}
-
-input {
-	&[type='submit'] {
-		border-radius: 30px;
-		text-decoration: none;
-		transition: background-color 0.3s;
-
-		&.button-search {
-			border-bottom-left-radius: 0;
-			border-top-left-radius: 0;
-		}
-
-		&:hover,
-		&:focus {
-			background-color: color.adjust(v.$blue, $lightness: 50%);
-			cursor: pointer;
-		}
-	}
-}
-
-.button-search {
-	background-color: v.$blue;
-	border: 0;
-	color: v.$white;
-	display: block;
-	height: 40px;
-	line-height: 0.99;
-	margin: 0;
-	padding: 12px 3px;
-	text-align: center;
-	width: 100%;
-}
-
-.search-input {
-	border-bottom-left-radius: 30px;
-	border-color: v.$blue;
-	border-right: 0;
-	border-top-left-radius: 30px;
-	height: 40px;
-	padding-left: 15px;
-}
-
-.wp-block-buttons {
-	> .wp-block-button {
-		margin-bottom: 16px;
 	}
 }
 
