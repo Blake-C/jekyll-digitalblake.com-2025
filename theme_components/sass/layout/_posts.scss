@@ -267,6 +267,17 @@
 				margin-right: -30px;
 			}
 		}
+
+		.video-embed {
+			aspect-ratio: 16 / 9;
+			margin-bottom: bp.rem-calc(24);
+			width: 100%;
+
+			iframe {
+				height: 100%;
+				width: 100%;
+			}
+		}
 	}
 }
 
