@@ -5,6 +5,29 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
+	<!-- Font Preloads -->
+	<link
+		rel="preload"
+		as="font"
+		type="font/woff2"
+		href="{{ '/assets/fonts/montserrat-black-webfont.woff2' | relative_url }}"
+		crossorigin
+	>
+	<link
+		rel="preload"
+		as="font"
+		type="font/woff2"
+		href="{{ '/assets/fonts/montserrat-bold-webfont.woff2' | relative_url }}"
+		crossorigin
+	>
+	<link
+		rel="preload"
+		as="font"
+		type="font/woff2"
+		href="{{ '/assets/fonts/montserrat-regular-webfont.woff2' | relative_url }}"
+		crossorigin
+	>
+
 	{%- if page.preload_image -%}
 		{%- if page.preload_image_mobile -%}
 			<link
