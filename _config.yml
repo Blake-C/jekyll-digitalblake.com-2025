@@ -91,7 +91,7 @@ nav_pages:
       target: '_blank'
 
 collections:
-    github_projects:
+    coding_projects:
         output: false
     case_studies:
         output: true

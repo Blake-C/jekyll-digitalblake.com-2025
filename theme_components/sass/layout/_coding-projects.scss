@@ -2,13 +2,13 @@
 @use '../helpers/helpers';
 @use '../helpers/variables' as v;
 
-.github-projects-page {
+.coding-projects-page {
 	.top-header {
 		border-bottom: 2px solid v.$white;
 	}
 }
 
-.github {
+.coding-projects {
 	@extend %cover;
 
 	background-color: v.$primary;
@@ -57,7 +57,7 @@
 	}
 }
 
-.git-project {
+.coding-project {
 	backdrop-filter: blur(11px);
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 10px;
@@ -110,7 +110,7 @@
 }
 
 .no-cssgradients {
-	.git-project {
+	.coding-project {
 		background: v.$blue;
 	}
 }

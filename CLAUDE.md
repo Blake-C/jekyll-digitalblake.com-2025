@@ -63,7 +63,7 @@ Two Jekyll configs are used:
 | `_posts/`            | Blog posts (articles, snippets)                                                                     | Yes           |
 | `_websites/`         | Portfolio entries rendered in homepage gallery modal                                                | No            |
 | `_websites_archive/` | Archived portfolio entries                                                                          | No            |
-| `_github_projects/`  | GitHub project cards on homepage and `/coding-projects/` archive; entries support a `featured` flag | No            |
+| `_coding_projects/`  | Coding project cards on homepage and `/coding-projects/` archive; entries support a `featured` flag | No            |
 
 **`_websites/` body content is rendered as raw HTML** in the homepage modal — treat as trusted first-party content only.
 

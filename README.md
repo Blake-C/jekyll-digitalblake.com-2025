@@ -84,7 +84,7 @@ A pre-commit hook (via [Husky](https://typicode.com/husky)) runs automatically b
 
 ```
 _data/          # YAML data files (authors, navigation, etc.)
-_github_projects/  # GitHub project data for homepage and /coding-projects/ archive
+_coding_projects/  # Coding project data for homepage and /coding-projects/ archive
 _includes/      # Reusable HTML/Liquid partials
 _layouts/       # Page layout templates
 _plugins/       # Custom Jekyll plugins (author pages)
