@@ -32,10 +32,6 @@
 		@include bp.breakpoint(medium) {
 			font-size: bp.rem-calc(30);
 		}
-
-		@include bp.breakpoint(large down) {
-			font-size: bp.rem-calc(40px);
-		}
 	}
 
 	&__subtitle {
