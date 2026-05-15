@@ -2,10 +2,10 @@
 	"name": "jekyll-digitalblake-com-2025",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "pnpm@11.1.1",
+	"packageManager": "pnpm@11.1.2",
 	"engines": {
 		"node": ">=24",
-		"pnpm": ">=11"
+		"pnpm": "11.1.2"
 	},
 	"sideEffects": [
 		"*.css",

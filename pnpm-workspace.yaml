@@ -19,6 +19,12 @@ auditLevel: moderate
 # Verify content hashes against the store on every install
 verifyStoreIntegrity: true
 
+# Block git repos, tarballs, and other non-registry sources as subdependencies
+blockExoticSubdeps: true
+
+# Require packages to be at least 7 days old — blocks same-day hijacked releases (Shai-Hulud mitigation)
+minimumReleaseAge: 10080
+
 # Warn about deprecated packages
 strictDeprecatedDependencies: warn
 
