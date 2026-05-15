@@ -258,7 +258,8 @@
 
 		/* stylelint-disable-next-line selector-class-pattern */
 		.cp_embed_wrapper,
-		.code-toolbar {
+		.code-toolbar,
+		.video-embed {
 			margin-left: -20px;
 			margin-right: -20px;
 
@@ -271,7 +272,6 @@
 		.video-embed {
 			aspect-ratio: 16 / 9;
 			margin-bottom: bp.rem-calc(24);
-			width: 100%;
 
 			iframe {
 				height: 100%;
