@@ -42,6 +42,24 @@ jobs:
             - name: Audit dependencies
               run: pnpm audit --audit-level=high
 
+            - name: Install Snyk CLI
+              run: npm install -g snyk
+
+            - name: Snyk SCA – Node dependencies
+              run: snyk test --file=package.json --dev --severity-threshold=high
+              env:
+                  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+            - name: Snyk SCA – Ruby dependencies
+              run: snyk test --file=Gemfile --severity-threshold=high
+              env:
+                  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+            - name: Snyk code scan
+              run: snyk code test --severity-threshold=high
+              env:
+                  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
             - name: Build styles
               run: pnpm run build:styles
 
