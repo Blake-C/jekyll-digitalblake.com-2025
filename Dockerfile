@@ -1,14 +1,24 @@
-FROM ruby:3.4.9-slim
+# Node 24 post-dates Alpine 3.23 so we copy the binary from the official Node image
+FROM node:24-alpine3.23 AS node
 
-# Install Node 24, ImageMagick, git, and build essentials
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		curl ca-certificates gnupg build-essential imagemagick git \
-	&& curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
-		| gpg --dearmor -o /usr/share/keyrings/nodesource.gpg \
-	&& echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" \
-		> /etc/apt/sources.list.d/nodesource.list \
-	&& apt-get update && apt-get install -y --no-install-recommends nodejs \
-	&& rm -rf /var/lib/apt/lists/*
+FROM ruby:3.4.9-alpine3.23
+
+# Bring in Node 24 from the node stage
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+    && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
+    && ln -sf /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack
+
+# Install build tools, ImageMagick, and git
+RUN apk add --no-cache \
+    curl \
+    ca-certificates \
+    build-base \
+    imagemagick \
+    imagemagick-jpeg \
+    imagemagick-webp \
+    git
 
 # Store Corepack cache in a global path accessible to all users
 ENV COREPACK_HOME=/usr/local/share/corepack
@@ -22,7 +32,7 @@ RUN gem install bundler:2.6.2 --no-document
 WORKDIR /app
 
 # Run as non-root to limit blast radius of a compromised dependency
-RUN useradd --uid 1001 --create-home appuser \
+RUN adduser -D -u 1001 appuser \
     && mkdir -p /home/appuser/.local/share/pnpm \
     && chown -R appuser:appuser /app /usr/local/bundle /home/appuser/.local/share/pnpm \
     && chmod -R 755 /usr/local/share/corepack
