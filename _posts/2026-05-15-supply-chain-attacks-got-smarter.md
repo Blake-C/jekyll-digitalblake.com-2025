@@ -3,6 +3,7 @@ layout: post
 title: 'Hardening My Repos Against the Shai Hulud npm Attack'
 description: 'The Shai Hulud worm hit TanStack and 170+ other npm packages by poisoning a pnpm store cache in GitHub Actions. Here is how the attack worked and the concrete steps I took to harden my own projects against it.'
 date: 2026-05-15 04:41:03 CDT -0500
+modified_date: 2026-05-15 12:57:46 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
@@ -67,6 +68,8 @@ frozenLockfile: true
 saveExact: true
 auditLevel: moderate
 verifyStoreIntegrity: true
+blockExoticSubdeps: true
+minimumReleaseAge: 10080 # (7 days - configure to your liking)
 strictDeprecatedDependencies: warn
 
 fetchTimeout: 60000
@@ -95,6 +98,8 @@ What each security-relevant setting does:
 - **`saveExact: true`**: When you run `pnpm add`, it records `1.2.3` instead of `^1.2.3`. A caret range means "give me any compatible update automatically," which is exactly the kind of unreviewed code a supply chain attack exploits during the next install.
 - **`auditLevel: moderate`**: Runs a CVE check on every install and fails if anything rates moderate or higher. Catches known vulnerabilities before they make it into a build.
 - **`verifyStoreIntegrity: true`**: Re-hashes every cached package on each install. Detects if something tampered with a package in the local pnpm store between installs.
+- **`blockExoticSubdeps: true`**: Rejects any transitive dependency sourced from outside the npm registry: git URLs, `file:` paths, `https:` tarballs, and similar. Legitimate packages don't pull sub-dependencies from arbitrary URLs; a sub-dependency doing so is a strong signal of tampering.
+- **`minimumReleaseAge: 10080`**: Refuses to install a package version published fewer than 7 days ago. This directly targets the Shai Hulud-style attack pattern: publish a malicious version and get projects to pull it before anyone notices. A freshness gate gives the community time to spot and report it first.
 - **`allowBuilds`**: The most direct mitigation against this attack. Only the packages listed here can run postinstall scripts. Everything else is blocked. In this repo, only `@parcel/watcher` needs a build script. The Shai Hulud payload was a postinstall script. It would not have run.
 - **`catalog:`**: Centralizes version pins for high-risk dependencies in one file. A version bump requires an explicit edit here, making it visible in code review rather than buried in a lockfile diff.
 
@@ -269,3 +274,7 @@ Dev containers extend this further by isolating the entire development environme
 Nobody at TanStack had their password stolen. Nobody's laptop was compromised. The attack surface was a single GitHub Actions event type and a shared cache. That's it.
 
 Most of what's above is one or two lines of configuration. Some of it, like the pnpm workspace settings, pnpm 11 does by default now. The rest just requires being deliberate about it. The next worm is already being written somewhere. Worth making your repos a harder target before it shows up.
+
+---
+
+**Updated May 15, 2026 (Update 1):** Added two settings to the pnpm workspace configuration section: `blockExoticSubdeps` and `minimumReleaseAge`. Both were mentioned by the Syntax.fm hosts but I hadn't included them in the original config. `blockExoticSubdeps` prevents sub-dependencies from resolving to git repos or arbitrary tarballs. `minimumReleaseAge` enforces a 7-day freshness gate before any package version can be installed.
