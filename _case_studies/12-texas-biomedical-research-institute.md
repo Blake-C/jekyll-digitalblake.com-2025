@@ -1,7 +1,7 @@
 ---
-layout: website-case-study
+layout: case-study
 featured: false
-permalink: /projects/texas-biomedical-research-institute/
+permalink: /case-studies/texas-biomedical-research-institute/
 title: Texas Biomedical Research Institute
 description: "A WordPress rebuild for one of the nation's leading biomedical research institutions, migrating off Sitefinity onto a responsive Foundation for Sites base with a CSS-only slanted nav and a static-JSON scientist filtering system."
 thumbnail: /assets/uploads/2025/05/texas-biomedical-research-institute-thumbnail.webp

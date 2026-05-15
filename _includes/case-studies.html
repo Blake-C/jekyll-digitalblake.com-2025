@@ -1,39 +1,39 @@
-<section class="sites-gallery" id="website-projects" aria-labelledby="sites-gallery-title">
+<section class="case-studies" id="case-studies" aria-labelledby="case-studies-title">
 	<div class="row">
 		<div class="medium-12 columns">
-			<h2 class="sites-gallery__title" id="sites-gallery-title">Website Projects</h2>
-			<p class="sites-gallery__subtitle">Selected client case studies</p>
+			<h2 class="case-studies__title" id="case-studies-title">Case Studies</h2>
+			<p class="case-studies__subtitle">Selected client case studies</p>
 
-			<div class="row sites-gallery__grid">
-				{%- for site_item in site.websites -%}
+			<div class="row case-studies__grid">
+				{%- for site_item in site.case_studies -%}
 					{%- if site_item.featured == true -%}
 						<div class="large-4 medium-6 small-12 columns">
 							<a
 								href="{{ site_item.url | relative_url }}"
-								class="sites-gallery__card"
+								class="case-studies__card"
 								aria-label="View case study: {{ site_item.title | escape }}"
 							>
-								<div class="sites-gallery__image-wrap">
+								<div class="case-studies__image-wrap">
 									<img
 										loading="lazy"
 										width="600"
 										height="400"
-										class="sites-gallery__image wp-post-image"
+										class="case-studies__image wp-post-image"
 										alt="Screenshot of {{ site_item.title | escape }}"
 										decoding="async"
 										src="{{ site_item.thumbnail | relative_url }}"
 									>
 								</div>
-								<div class="sites-gallery__card-body">
-									<p class="sites-gallery__item-title">{{ site_item.title }}</p>
+								<div class="case-studies__card-body">
+									<p class="case-studies__item-title">{{ site_item.title }}</p>
 									{%- if site_item.tech -%}
-										<ul class="sites-gallery__tags" aria-label="Technologies used">
+										<ul class="case-studies__tags" aria-label="Technologies used">
 											{%- for tag in site_item.tech -%}
-												<li class="sites-gallery__tag">{{ tag }}</li>
+												<li class="case-studies__tag">{{ tag }}</li>
 											{%- endfor -%}
 										</ul>
 									{%- endif -%}
-									<span class="sites-gallery__cta-hint" aria-hidden="true">View case study</span>
+									<span class="case-studies__cta-hint" aria-hidden="true">View case study</span>
 								</div>
 							</a>
 						</div>
@@ -42,39 +42,39 @@
 			</div>
 
 			{%- unless include.featured_only -%}
-				<div class="sites-gallery__archive-header">
-					<h3 class="sites-gallery__archive-title">Archived Sites</h3>
+				<div class="case-studies__archive-header">
+					<h3 class="case-studies__archive-title">Archived Sites</h3>
 				</div>
-				<div class="row sites-gallery__grid">
-					{%- for site_item in site.websites -%}
+				<div class="row case-studies__grid">
+					{%- for site_item in site.case_studies -%}
 						{%- unless site_item.featured == true -%}
 							<div class="large-4 medium-6 small-12 columns">
 								<a
 									href="{{ site_item.url | relative_url }}"
-									class="sites-gallery__card"
+									class="case-studies__card"
 									aria-label="View case study: {{ site_item.title | escape }}"
 								>
-									<div class="sites-gallery__image-wrap">
+									<div class="case-studies__image-wrap">
 										<img
 											loading="lazy"
 											width="600"
 											height="400"
-											class="sites-gallery__image wp-post-image"
+											class="case-studies__image wp-post-image"
 											alt="Screenshot of {{ site_item.title | escape }}"
 											decoding="async"
 											src="{{ site_item.thumbnail | relative_url }}"
 										>
 									</div>
-									<div class="sites-gallery__card-body">
-										<p class="sites-gallery__item-title">{{ site_item.title }}</p>
+									<div class="case-studies__card-body">
+										<p class="case-studies__item-title">{{ site_item.title }}</p>
 										{%- if site_item.tech -%}
-											<ul class="sites-gallery__tags" aria-label="Technologies used">
+											<ul class="case-studies__tags" aria-label="Technologies used">
 												{%- for tag in site_item.tech -%}
-													<li class="sites-gallery__tag">{{ tag }}</li>
+													<li class="case-studies__tag">{{ tag }}</li>
 												{%- endfor -%}
 											</ul>
 										{%- endif -%}
-										<span class="sites-gallery__cta-hint" aria-hidden="true">View case study</span>
+										<span class="case-studies__cta-hint" aria-hidden="true">View case study</span>
 									</div>
 								</a>
 							</div>
@@ -84,9 +84,9 @@
 			{%- endunless -%}
 
 			{%- if include.featured_only -%}
-				<div class="sites-gallery__archive-cta">
-					<a href="{{ '/projects/' | relative_url }}" class="button button--primary-light"
-						>View All Projects</a
+				<div class="case-studies__archive-cta">
+					<a href="{{ '/case-studies/' | relative_url }}" class="button button--primary-light"
+						>View All Case Studies</a
 					>
 				</div>
 			{%- endif -%}

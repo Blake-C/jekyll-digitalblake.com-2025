@@ -84,12 +84,12 @@
 	margin-top: bp.rem-calc(32);
 }
 
-// "More Projects" section reuses .sites-gallery__card as <a> — needs text-decoration reset
-a.sites-gallery__card {
+// "More Case Studies" section reuses .case-studies__card as <a> — needs text-decoration reset
+a.case-studies__card {
 	text-decoration: none;
 }
 
-.more-projects {
+.more-case-studies {
 	padding: 0 0 bp.rem-calc(80);
 
 	@include bp.breakpoint(small only) {

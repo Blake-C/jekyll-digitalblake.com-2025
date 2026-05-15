@@ -1,7 +1,7 @@
 ---
-layout: website-case-study
+layout: case-study
 featured: false
-permalink: /projects/southwest-national-primate-research-center/
+permalink: /case-studies/southwest-national-primate-research-center/
 title: Southwest National Primate Research Center
 description: 'A WordPress rebuild for the sister site to Texas Biomedical Research Institute, featuring a CSS-only slanted navigation, section-based inner page architecture, and a platform migration that brought page loads to 1-2 seconds.'
 thumbnail: /assets/uploads/2025/05/snprc-thumbnail.webp

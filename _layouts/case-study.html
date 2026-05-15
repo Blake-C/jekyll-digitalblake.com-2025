@@ -7,14 +7,16 @@ layout: base
 			<article id="project-{{ page.slug }}" class="main-content-block case-study type-page status-publish hentry">
 				<div class="row">
 					<div class="large-9 medium-12 small-12 columns case-study-content-col">
-						<p class="case-study__back"><a href="{{ '/projects/' | relative_url }}">← All Projects</a></p>
+						<p class="case-study__back">
+							<a href="{{ '/case-studies/' | relative_url }}">← All Case Studies</a>
+						</p>
 
 						<header class="entry-header">
 							<h1 class="entry-title">{{ page.title | escape }}</h1>
 							{%- if page.tech -%}
-								<ul class="sites-gallery__tags case-study__tech-tags" aria-label="Technologies used">
+								<ul class="case-studies__tags case-study__tech-tags" aria-label="Technologies used">
 									{%- for tag in page.tech -%}
-										<li class="sites-gallery__tag">{{ tag }}</li>
+										<li class="case-studies__tag">{{ tag }}</li>
 									{%- endfor -%}
 								</ul>
 							{%- endif -%}
@@ -92,8 +94,8 @@ layout: base
 				</div>
 			</article>
 
-			<!-- More Projects -->
-			{%- assign all_projects = site.websites -%}
+			<!-- More Case Studies -->
+			{%- assign all_projects = site.case_studies -%}
 			{%- assign total = all_projects | size -%}
 			{%- assign current_index = 0 -%}
 			{%- for item in all_projects -%}
@@ -108,39 +110,39 @@ layout: base
 				{%- assign related_projects = related_projects | push: all_projects[offset] -%}
 			{%- endfor -%}
 
-			<section class="more-projects" aria-labelledby="more-projects-title">
+			<section class="more-case-studies" aria-labelledby="more-case-studies-title">
 				<div class="row">
 					<div class="medium-12 columns">
-						<h2 class="more-projects__title" id="more-projects-title">More Projects</h2>
-						<div class="row sites-gallery__grid">
+						<h2 class="more-case-studies__title" id="more-case-studies-title">More Case Studies</h2>
+						<div class="row case-studies__grid">
 							{%- for project in related_projects -%}
 								<div class="large-4 medium-6 small-12 columns">
 									<a
 										href="{{ project.url | relative_url }}"
-										class="sites-gallery__card"
+										class="case-studies__card"
 										aria-label="View case study: {{ project.title | escape }}"
 									>
-										<div class="sites-gallery__image-wrap">
+										<div class="case-studies__image-wrap">
 											<img
 												loading="lazy"
 												width="600"
 												height="400"
-												class="sites-gallery__image wp-post-image"
+												class="case-studies__image wp-post-image"
 												alt="Screenshot of {{ project.title | escape }}"
 												decoding="async"
 												src="{{ project.thumbnail | relative_url }}"
 											>
 										</div>
-										<div class="sites-gallery__card-body">
-											<p class="sites-gallery__item-title">{{ project.title }}</p>
+										<div class="case-studies__card-body">
+											<p class="case-studies__item-title">{{ project.title }}</p>
 											{%- if project.tech -%}
-												<ul class="sites-gallery__tags" aria-label="Technologies used">
+												<ul class="case-studies__tags" aria-label="Technologies used">
 													{%- for tag in project.tech -%}
-														<li class="sites-gallery__tag">{{ tag }}</li>
+														<li class="case-studies__tag">{{ tag }}</li>
 													{%- endfor -%}
 												</ul>
 											{%- endif -%}
-											<span class="sites-gallery__cta-hint" aria-hidden="true"
+											<span class="case-studies__cta-hint" aria-hidden="true"
 												>View case study</span
 											>
 										</div>

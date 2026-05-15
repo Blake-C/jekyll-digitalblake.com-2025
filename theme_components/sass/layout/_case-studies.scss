@@ -2,7 +2,7 @@
 @use '../helpers/helpers';
 @use '../helpers/variables' as v;
 
-.sites-gallery {
+.case-studies {
 	@extend %cover;
 
 	// background-image: url('../images/websites-background.webp');
@@ -78,7 +78,7 @@
 			transform: translateY(-4px) scale(1.06);
 			text-decoration: none;
 
-			.sites-gallery__cta-hint {
+			.case-studies__cta-hint {
 				text-decoration: underline;
 			}
 
@@ -112,7 +112,7 @@
 		width: 100%;
 		// border-bottom: 2px solid rgba(v.$primary, 0.3);
 
-		// .sites-gallery__card:hover & {
+		// .case-studies__card:hover & {
 		// filter: opacity(1);
 		// transform: scale(1.2);
 		// }

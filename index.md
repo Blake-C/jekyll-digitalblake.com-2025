@@ -52,7 +52,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
 
     {%- include github-projects.html featured_only=true -%}
 
-    {%- include sites-gallery.html featured_only=true -%}
+    {%- include case-studies.html featured_only=true -%}
 
     {%- include recent-articles.html -%}
 

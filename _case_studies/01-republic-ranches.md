@@ -1,7 +1,7 @@
 ---
-layout: website-case-study
+layout: case-study
 featured: true
-permalink: /projects/republic-ranches/
+permalink: /case-studies/republic-ranches/
 title: Republic Ranches
 description: "A WordPress site for one of Texas's largest land brokerages, built with an interactive Google Maps property search, location-based SEO architecture, and load times cut from 3–5s to 1–2s."
 thumbnail: /assets/uploads/2025/05/republic-ranches-thumbnail.webp

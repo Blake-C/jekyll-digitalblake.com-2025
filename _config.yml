@@ -78,9 +78,9 @@ nav_pages:
     - title: Code
       url: '/coding-projects/'
       home_href: '#code-samples'
-    - title: Projects
-      url: '/projects/'
-      home_href: '#website-projects'
+    - title: Case Studies
+      url: '/case-studies/'
+      home_href: '#case-studies'
     - title: Articles
       url: '/articles/'
       home_href: '#recent-writing'
@@ -93,7 +93,7 @@ nav_pages:
 collections:
     github_projects:
         output: false
-    websites:
+    case_studies:
         output: true
 
 # Exclude from processing

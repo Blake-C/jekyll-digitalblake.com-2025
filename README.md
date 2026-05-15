@@ -89,7 +89,7 @@ _includes/      # Reusable HTML/Liquid partials
 _layouts/       # Page layout templates
 _plugins/       # Custom Jekyll plugins (author pages)
 _posts/         # Blog posts (Markdown)
-_websites/      # Website portfolio data for homepage
+_case_studies/  # Case study portfolio data for homepage
 assets/         # Compiled/static assets (CSS, JS, images, uploads)
 coding-projects/   # Dedicated archive page for GitHub/coding projects
 script/         # Build scripts (image optimization, asset hashing)
@@ -100,7 +100,7 @@ theme_components/
 
 ## Security notes
 
-`_websites/*.md` body content is rendered as raw HTML inside the homepage gallery modal (see [`_includes/sites-gallery.html`](_includes/sites-gallery.html)). The collection is treated as trusted, first-party content. Do **not** accept outside contributions to `_websites/` without first sanitizing or escaping the body — a malicious entry would execute as inline HTML/JS on every page that embeds the gallery.
+`_case_studies/*.md` body content is rendered as raw HTML inside the homepage gallery modal (see [`_includes/case-studies.html`](_includes/case-studies.html)). The collection is treated as trusted, first-party content. Do **not** accept outside contributions to `_case_studies/` without first sanitizing or escaping the body — a malicious entry would execute as inline HTML/JS on every page that embeds the gallery.
 
 ## Syntax Highlighting
 
