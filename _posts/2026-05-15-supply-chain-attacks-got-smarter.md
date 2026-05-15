@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Supply Chain Attacks Got Smarter. Here's What I Did About It."
-description: 'The Shai Hulud worm hit TanStack and dozens of other npm packages by poisoning a pnpm store cache in GitHub Actions. Here is how the attack worked and the concrete steps I took to harden my own projects against it.'
+title: 'Hardening My Repos Against the Shai Hulud npm Attack'
+description: 'The Shai Hulud worm hit TanStack and 170+ other npm packages by poisoning a pnpm store cache in GitHub Actions. Here is how the attack worked and the concrete steps I took to harden my own projects against it.'
 date: 2026-05-15 04:41:03 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
 ---
 
-The Shai Hulud worm has now hit the npm ecosystem four times. The latest iteration tore through TanStack, Mistral, UiPath, and dozens of other packages, eventually spreading into PyPI. The Syntax.fm hosts covered it this week and, after watching, I spent an afternoon auditing my own repos.
+The Shai Hulud worm has now hit the npm ecosystem four times. The latest iteration tore through TanStack, Mistral, UiPath, and 170+ other packages, eventually spreading into PyPI. The Syntax.fm hosts covered it this week and, after watching, I spent an afternoon auditing my own repos.
 
 <div class="video-embed">
 <iframe src="https://www.youtube.com/embed/kYqpxJE4DyE" title="Shai Hulud Supply Chain Attack, Syntax.fm" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -34,7 +34,7 @@ A few direct takeaways from the Syntax.fm hosts:
 
 - **Don't use `pull_request_target`** unless you actually need elevated permissions. Most repos don't. [Step Security's GitHub Actions scanner](https://app.stepsecurity.io) will flag it for you.
 - **Use package security tooling.** [Socket.dev](https://socket.dev) and [Snyk](https://snyk.io) both scan the npm registry continuously. Socket detected this attack within six minutes of the compromised packages being published.
-- **Enable a minimum package age.** pnpm 11 defaults to only installing packages at least 24 hours old, which would have blocked most users from installing the compromised versions on day one. Yarn, Bun, and npm have equivalent settings (`npmMinimumAgeGate`, `minReleaseAge`, `min-release-age` in `.npmrc`) but don't enable them by default.
+- **Enable a minimum package age.** pnpm 11 defaults to only installing packages at least 24 hours old, which would have blocked most users from installing the compromised versions on day one. Yarn, Bun, and npm have equivalent settings (`npmMinimalAgeGate`, `minimumReleaseAge`, `min-release-age` in `.npmrc`) but don't enable them by default.
 - **Block postinstall scripts by default.** pnpm 11's `onlyBuiltDependencies` / `allowBuilds` means packages can't run install scripts unless they're on an explicit allowlist. The Shai Hulud payload was a postinstall script. An allowlist would have blocked it.
 - **Block exotic subdependencies.** pnpm 11's `blockExoticSubdeps` prevents any dependency from resolving to a git repo or arbitrary tarball. The attacker linked to a GitHub-hosted tarball rather than publishing malicious code directly to npm. This setting closes that door.
 - **Use Socket's CLI.** Running `socket npm install` wraps your package manager and checks packages against Socket's threat intelligence at install time.
