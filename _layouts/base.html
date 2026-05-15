@@ -20,5 +20,10 @@
 		{%- include footer.html -%}
 
 		{%- include sub-footer.html -%}
+		<script>
+			document.querySelectorAll('.js-mailto').forEach(function (e) {
+				e.href = 'mailto:' + e.dataset.u + '@' + e.dataset.d
+			})
+		</script>
 	</body>
 </html>
