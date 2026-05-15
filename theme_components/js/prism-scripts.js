@@ -13,7 +13,6 @@ import 'prismjs/components/prism-yaml'
 import 'prismjs/components/prism-json'
 
 import 'prismjs/plugins/line-numbers/prism-line-numbers'
-import 'prismjs/plugins/autolinker/prism-autolinker'
 import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace'
 import 'prismjs/plugins/toolbar/prism-toolbar'
 import 'prismjs/plugins/show-language/prism-show-language'
