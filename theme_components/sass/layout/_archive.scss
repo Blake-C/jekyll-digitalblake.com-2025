@@ -47,7 +47,6 @@
 	}
 
 	.date-meta {
-		background-color: v.$accent-2;
 		height: 100%;
 		padding: 20px;
 
@@ -62,15 +61,39 @@
 		}
 	}
 
-	&:nth-child(even) {
+	&:nth-child(6n + 1) {
 		.date-meta {
-			background-color: v.$accent-2;
+			background-color: v.$archive-teal;
 		}
 	}
 
-	&:nth-child(odd) {
+	&:nth-child(6n + 2) {
 		.date-meta {
-			background-color: v.$accent-3;
+			background-color: v.$archive-blue;
+		}
+	}
+
+	&:nth-child(6n + 3) {
+		.date-meta {
+			background-color: v.$archive-indigo;
+		}
+	}
+
+	&:nth-child(6n + 4) {
+		.date-meta {
+			background-color: v.$archive-violet;
+		}
+	}
+
+	&:nth-child(6n + 5) {
+		.date-meta {
+			background-color: v.$archive-magenta;
+		}
+	}
+
+	&:nth-child(6n) {
+		.date-meta {
+			background-color: v.$archive-red;
 		}
 	}
 
