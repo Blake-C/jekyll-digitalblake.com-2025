@@ -10,22 +10,6 @@
 
 	li {
 		display: inline;
-
-		@include bp.breakpoint(medium) {
-			&.callout-button {
-				a {
-					background-color: v.$red;
-					border-radius: 5px;
-					color: v.$white;
-					margin-left: 10px;
-
-					&:hover,
-					&:focus {
-						background-color: color.adjust(v.$red, $lightness: -6%);
-					}
-				}
-			}
-		}
 	}
 
 	a {
@@ -33,10 +17,14 @@
 		display: inline-block;
 		font-size: bp.rem-calc(14);
 		font-weight: 700;
-		padding: 3px 15px;
+		padding: 3px 8px;
 		text-decoration: none;
 		text-transform: uppercase;
 		transition: all 0.3s;
+
+		@include bp.breakpoint(large) {
+			padding: 3px 15px;
+		}
 
 		&:hover,
 		&:focus {
