@@ -62,11 +62,21 @@
 		span {
 			color: v.$white;
 			display: block;
-			font-size: 30px;
-			font-weight: 700;
+			font-size: bp.rem-calc(20);
+			font-weight: 400;
+			letter-spacing: 2px;
 			line-height: 1;
 			text-align: right;
 			text-transform: uppercase;
+
+			@include bp.breakpoint(medium) {
+				font-size: bp.rem-calc(30);
+			}
+		}
+
+		sup {
+			font-size: bp.rem-calc(14);
+			text-transform: lowercase;
 		}
 	}
 
@@ -109,12 +119,15 @@
 	.post-link {
 		background-color: v.$white;
 		display: block;
+		overflow: clip;
 		padding: 0;
-		transition: background-color 0.3s;
+		transition:
+			background-color 0.3s,
+			box-shadow 0.3s;
 
 		&:hover,
 		&:focus {
-			background-color: v.$gray244;
+			box-shadow: 2px 2px 0 1px rgb(0 0 0 / 23%);
 			text-decoration: none;
 		}
 
@@ -141,13 +154,6 @@
 			span {
 				display: inline-block;
 				margin-right: 5px;
-
-				&:nth-child(2) {
-					&::after {
-						content: ', ';
-						display: inline-block;
-					}
-				}
 			}
 		}
 
