@@ -69,14 +69,6 @@ footer {
 		}
 	}
 
-	// @include bp.breakpoint(medium) {
-	// 	&.main {
-	// 		.connect {
-	// 			padding-left: 15%;
-	// 		}
-	// 	}
-	// }
-
 	@include bp.breakpoint(small only) {
 		&.main {
 			padding: 25px 0;
