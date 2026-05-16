@@ -19,6 +19,7 @@ h1 {
 h2 {
 	font-size: bp.rem-calc(18);
 	line-height: 1.2;
+	font-weight: 800;
 
 	@include bp.breakpoint(medium) {
 		font-size: bp.rem-calc(20);

@@ -9,10 +9,19 @@
 	}
 }
 
+.page-title {
+	font-weight: 800;
+
+	@include bp.breakpoint(medium) {
+		font-size: bp.rem-calc(42);
+	}
+}
+
 .entry-title {
+	font-size: bp.rem-calc(22);
+	font-weight: 800;
 	line-height: 1.2;
 	margin: 0;
-	font-size: bp.rem-calc(22);
 
 	a {
 		color: v.$black;
