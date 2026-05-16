@@ -16,11 +16,90 @@ h1 {
 	}
 }
 
-.hidden {
-	display: none;
+h2 {
+	font-size: bp.rem-calc(18);
+	line-height: 1.2;
+
+	@include bp.breakpoint(medium) {
+		font-size: bp.rem-calc(20);
+	}
 }
 
-/* Elements */
+p,
+li {
+	font-size: bp.rem-calc(14);
+
+	@include bp.breakpoint(medium) {
+		font-size: bp.rem-calc(16);
+	}
+
+	code {
+		background-color: v.$white;
+		border: 1px solid v.$gray222;
+		display: inline-block;
+		line-height: 1.4;
+		overflow-wrap: anywhere;
+		padding: 0 10px;
+	}
+}
+
+blockquote {
+	border-left: 2px solid v.$blue;
+	font-style: italic;
+	margin: 15px 25px;
+	padding: 15px 0 10px 30px;
+}
+
+pre {
+	background-color: v.$code-background;
+	border: v.$code-border;
+	color: v.$code-color;
+	font-family: v.$code-font-family;
+	font-weight: v.$code-font-weight;
+	padding: v.$code-padding;
+	white-space: pre-wrap;
+}
+
+a {
+	color: v.$blue;
+	text-decoration: none;
+	text-decoration-skip-ink: auto;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	@at-root .entry-content a:not(.button) {
+		color: v.$accent-2;
+	}
+
+	/* External link indicator — applies to any link opening in a new tab */
+	&[target='_blank'] {
+		&::after {
+			/* stylelint-disable-next-line property-no-vendor-prefix */
+			-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 2h5v5M10 2L2 10' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
+				no-repeat center / contain;
+			background-color: currentColor;
+			content: '';
+			display: inline-block;
+			height: 0.75em;
+			margin-left: 3px;
+			mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 2h5v5M10 2L2 10' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
+				no-repeat center / contain;
+			vertical-align: -0.1em;
+			width: 0.75em;
+		}
+	}
+}
+
+/* Suppress indicator on styled buttons and on post-cta (which has an SR span already) */
+.button[target='_blank'],
+.post-cta a[target='_blank'] {
+	&::after {
+		display: none;
+	}
+}
 
 table {
 	border-collapse: collapse;
@@ -100,23 +179,8 @@ table {
 	}
 }
 
-blockquote {
-	border-left: 2px solid v.$blue;
-	font-style: italic;
-	margin: 15px 25px;
-	padding: 15px 0 10px 30px;
-}
-
-p,
-li {
-	code {
-		background-color: v.$white;
-		border: 1px solid v.$gray222;
-		display: inline-block;
-		line-height: 1.4;
-		overflow-wrap: anywhere;
-		padding: 0 10px;
-	}
+.hidden {
+	display: none;
 }
 
 .alignright {
@@ -133,55 +197,4 @@ li {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-pre {
-	background-color: v.$code-background;
-	border: v.$code-border;
-	color: v.$code-color;
-	font-family: v.$code-font-family;
-	font-weight: v.$code-font-weight;
-	padding: v.$code-padding;
-	white-space: pre-wrap;
-}
-
-a {
-	color: v.$blue;
-	text-decoration: none;
-	text-decoration-skip-ink: auto;
-
-	&:hover,
-	&:focus {
-		text-decoration: underline;
-	}
-
-	@at-root .entry-content a:not(.button) {
-		color: v.$accent-2;
-	}
-}
-
-/* External link indicator — applies to any link opening in a new tab */
-a[target='_blank'] {
-	&::after {
-		/* stylelint-disable-next-line property-no-vendor-prefix */
-		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 2h5v5M10 2L2 10' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
-			no-repeat center / contain;
-		background-color: currentColor;
-		content: '';
-		display: inline-block;
-		height: 0.75em;
-		margin-left: 3px;
-		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 2h5v5M10 2L2 10' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
-			no-repeat center / contain;
-		vertical-align: -0.1em;
-		width: 0.75em;
-	}
-}
-
-/* Suppress indicator on styled buttons and on post-cta (which has an SR span already) */
-.button[target='_blank'],
-.post-cta a[target='_blank'] {
-	&::after {
-		display: none;
-	}
 }

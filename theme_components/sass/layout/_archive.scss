@@ -2,6 +2,8 @@
 @use '../helpers/variables' as v;
 
 .articles-intro {
+	font-size: bp.rem-calc(16);
+
 	a {
 		font-weight: bold;
 	}
@@ -10,6 +12,7 @@
 .entry-title {
 	line-height: 1.2;
 	margin: 0;
+	font-size: bp.rem-calc(22);
 
 	a {
 		color: v.$black;
@@ -37,6 +40,10 @@
 
 	.entry-content {
 		margin: 15px 20px 15px 0;
+
+		p {
+			font-size: bp.rem-calc(15);
+		}
 	}
 
 	.date-meta {

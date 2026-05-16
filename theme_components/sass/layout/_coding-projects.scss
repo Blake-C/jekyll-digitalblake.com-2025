@@ -25,6 +25,7 @@
 		font-size: bp.rem-calc(16px);
 		font-weight: 900;
 		letter-spacing: 4.8px;
+		line-height: 1.8;
 		margin-bottom: bp.rem-calc(8);
 		text-align: center;
 		text-transform: uppercase;
@@ -68,6 +69,10 @@
 	padding: 30px 20px 80px;
 	position: relative;
 	width: 100%;
+
+	p {
+		font-size: bp.rem-calc(16);
+	}
 
 	&__title {
 		font-size: bp.rem-calc(19);

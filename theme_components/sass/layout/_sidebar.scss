@@ -21,6 +21,7 @@
 
 	h2 {
 		margin-bottom: 0;
+		line-height: 1.8;
 	}
 
 	ul {
@@ -29,6 +30,7 @@
 	}
 
 	li {
+		font-size: bp.rem-calc(16);
 		line-height: 1.3;
 	}
 
