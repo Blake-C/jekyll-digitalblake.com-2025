@@ -16,7 +16,10 @@ layout: base
 							</div>
 						{%- endif -%}
 					</header>
-
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-9 medium-12 small-12 columns">
 					<section class="articles-listing">
 						{%- for post in page.author_posts -%}
 							{%- assign month = post.date | date: '%b' -%}

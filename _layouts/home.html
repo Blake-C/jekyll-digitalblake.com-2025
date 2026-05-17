@@ -3,14 +3,14 @@ layout: base
 ---
 <div class="wrapper">
 	<div class="row">
+		<div class="large-9 medium-12 small-12 columns">
+			<h1 class="page-title">Articles</h1>
+			<div class="articles-intro">{{ content }}</div>
+		</div>
+	</div>
+	<div class="row">
 		<main class="large-9 medium-12 small-12 columns" id="content">
-			{{ content }}
-
 			<section class="articles-listing">
-				<header>
-					<h1 class="page-title">Articles</h1>
-				</header>
-
 				{%- if paginator.posts -%}
 					{%- assign posts = paginator.posts -%}
 				{%- else -%}

@@ -4,20 +4,23 @@ body_class: page-articles-listing
 ---
 <div class="wrapper">
 	<div class="row">
+		<div class="large-9 medium-12 small-12 columns">
+			<header>
+				<h1 class="page-title">
+					{%- if page.pagination.category -%}
+						Category: {{ page.pagination.category }}
+					{%- elsif page.pagination.tag -%}
+						Tag: {{ page.pagination.tag }}
+					{%- else -%}
+						{{ page.title }}
+					{%- endif -%}
+				</h1>
+			</header>
+		</div>
+	</div>
+	<div class="row">
 		<main class="large-9 medium-12 small-12 columns" id="content">
 			<section class="articles-listing archive-listing">
-				<header>
-					<h1 class="page-title">
-						{%- if page.pagination.category -%}
-							Category: {{ page.pagination.category }}
-						{%- elsif page.pagination.tag -%}
-							Tag: {{ page.pagination.tag }}
-						{%- else -%}
-							{{ page.title }}
-						{%- endif -%}
-					</h1>
-				</header>
-
 				{%- assign posts = paginator.posts -%}
 				{%- for post in posts -%}
 					{%- assign month = post.date | date: '%b' -%}

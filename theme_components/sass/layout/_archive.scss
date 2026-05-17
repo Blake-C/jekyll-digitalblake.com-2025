@@ -2,10 +2,20 @@
 @use '../helpers/variables' as v;
 
 .articles-intro {
+	background-color: v.$accent-4;
+	border: 1px solid v.$accent-blue;
+	border-radius: 4px;
 	font-size: bp.rem-calc(16);
+	margin-bottom: 30px;
+	padding: 20px 25px;
 
 	a {
 		font-weight: bold;
+	}
+
+	p {
+		margin-bottom: 0;
+		margin-top: 0;
 	}
 }
 
