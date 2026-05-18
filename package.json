@@ -2,10 +2,10 @@
 	"name": "jekyll-digitalblake-com-2025",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "pnpm@11.1.2",
+	"packageManager": "pnpm@11.1.3",
 	"engines": {
 		"node": ">=24",
-		"pnpm": "11.1.2"
+		"pnpm": "11.1.3"
 	},
 	"sideEffects": [
 		"*.css",
@@ -67,11 +67,6 @@
 		],
 		"*": [
 			"prettier --write --ignore-unknown"
-		]
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@parcel/watcher"
 		]
 	}
 }

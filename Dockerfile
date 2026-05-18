@@ -23,8 +23,8 @@ RUN apk add --no-cache \
 # Store Corepack cache in a global path accessible to all users
 ENV COREPACK_HOME=/usr/local/share/corepack
 
-# Enable Corepack and activate pnpm 11.1.2
-RUN corepack enable && corepack prepare pnpm@11.1.2 --activate
+# Enable Corepack and activate pnpm 11.1.3
+RUN corepack enable && corepack prepare pnpm@11.1.3 --activate
 
 # Install Bundler matching Gemfile.lock
 RUN gem install bundler:2.6.2 --no-document

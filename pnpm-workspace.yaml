@@ -41,6 +41,9 @@ fetchRetryMaxTimeout: 10000
 allowBuilds:
     '@parcel/watcher': true
 
+onlyBuiltDependencies:
+    - '@parcel/watcher'
+
 catalog:
     # Production dependencies
     micromodal: 0.6.1
