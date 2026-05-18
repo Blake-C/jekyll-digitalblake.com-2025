@@ -25,6 +25,11 @@ blockExoticSubdeps: true
 # Require packages to be at least 7 days old — blocks same-day hijacked releases (Shai-Hulud mitigation)
 minimumReleaseAge: 10080
 
+# node-releases is a low-risk data package (list of Node.js release dates) — excluded so autoprefixer
+# subdependency resolution isn't blocked when browserslist pulls in a fresh node-releases patch
+minimumReleaseAgeExclude:
+    - node-releases
+
 # Warn about deprecated packages
 strictDeprecatedDependencies: warn
 
@@ -38,12 +43,12 @@ allowBuilds:
 
 catalog:
     # Production dependencies
-    micromodal: 0.4.10
+    micromodal: 0.6.1
     prismjs: 1.30.0
 
     # Dev dependencies — build tools and linters most exposed to supply chain risk
-    eslint: 10.2.1
-    stylelint: 17.8.0
+    eslint: 10.3.0
+    stylelint: 17.11.0
     webpack: 5.106.2
     webpack-cli: 7.0.2
     sass: 1.99.0

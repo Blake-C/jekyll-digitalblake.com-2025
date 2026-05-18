@@ -23,7 +23,7 @@
 		"autoprefixer": "^10.4.2",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "10.1.8",
-		"globals": "17.5.0",
+		"globals": "17.6.0",
 		"husky": "catalog:",
 		"lint-staged": "catalog:",
 		"postcss": "^8.4.6",
