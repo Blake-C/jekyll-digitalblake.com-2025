@@ -2,10 +2,10 @@
 	"name": "jekyll-digitalblake-com-2025",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "pnpm@11.1.2",
+	"packageManager": "pnpm@11.1.3",
 	"engines": {
 		"node": ">=24",
-		"pnpm": "11.1.2"
+		"pnpm": "11.1.3"
 	},
 	"sideEffects": [
 		"*.css",
@@ -23,7 +23,7 @@
 		"autoprefixer": "^10.4.2",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "10.1.8",
-		"globals": "17.5.0",
+		"globals": "17.6.0",
 		"husky": "catalog:",
 		"lint-staged": "catalog:",
 		"postcss": "^8.4.6",
@@ -67,11 +67,6 @@
 		],
 		"*": [
 			"prettier --write --ignore-unknown"
-		]
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@parcel/watcher"
 		]
 	}
 }
