@@ -1,0 +1,48 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	{%- for post in site.posts %}
+	{%- unless post.sitemap == false %}
+	<url>
+		<loc>{{ post.url | absolute_url }}</loc>
+		<lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+	</url>
+	{%- endunless %}
+	{%- endfor %}
+	{%- for doc in site.case_studies %}
+	{%- unless doc.sitemap == false %}
+	<url>
+		<loc>{{ doc.url | absolute_url }}</loc>
+		{%- if doc.date %}
+		<lastmod>{{ doc.date | date_to_xmlschema }}</lastmod>
+		{%- endif %}
+	</url>
+	{%- endunless %}
+	{%- endfor %}
+	{%- assign excluded_urls = '/feed.xml /robots.txt /sitemap.xml /404.html' | split: ' ' %}
+	{%- for page in site.pages %}
+	{%- unless page.sitemap == false
+		or page.layout == 'archive'
+		or page.url contains '/author/'
+		or page.url contains '/category/'
+		or page.url contains '/tag/'
+		or page.url contains '/page/'
+		or page.url contains '/assets/'
+		or page.url contains 'index.html'
+		or excluded_urls contains page.url
+	%}
+	<url>
+		<loc>{{ page.url | absolute_url }}</loc>
+		{%- if page.last_modified_at %}
+		<lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
+		{%- endif %}
+	</url>
+	{%- endunless %}
+	{%- endfor %}
+</urlset>
