@@ -12,6 +12,9 @@
 								href="{{ site_item.url | relative_url }}"
 								class="case-studies__card"
 								aria-label="View case study: {{ site_item.title | escape }}"
+								{%- if site_item.hero_image %}
+									data-prefetch="{{ site_item.hero_image | relative_url }}"
+								{% endif %}
 							>
 								<div class="case-studies__image-wrap">
 									<img
@@ -53,6 +56,9 @@
 									href="{{ site_item.url | relative_url }}"
 									class="case-studies__card"
 									aria-label="View case study: {{ site_item.title | escape }}"
+									{%- if site_item.hero_image %}
+										data-prefetch="{{ site_item.hero_image | relative_url }}"
+									{% endif %}
 								>
 									<div class="case-studies__image-wrap">
 										<img

@@ -4,6 +4,9 @@ import './modules/_animate-timeline'
 import './modules/_smooth-scroll'
 import './modules/_table-wrapper'
 import './modules/_nav-modal'
+import initPrefetchCaseStudy from './modules/_prefetch-case-study'
+
+initPrefetchCaseStudy()
 
 /*************** Template part region toggle button ***************/
 const regions = document.querySelectorAll('.regions')
