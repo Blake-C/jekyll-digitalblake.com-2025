@@ -1,9 +1,9 @@
 import MicroModal from 'micromodal'
 
-const hamburger = document.querySelector('.nav-hamburger')
+let initialized = false
 let pendingScrollTarget = null
 
-MicroModal.init({
+const modalConfig = hamburger => ({
 	openTrigger: 'data-micromodal-trigger',
 	closeTrigger: 'data-micromodal-close',
 	disableScroll: true,
@@ -22,13 +22,28 @@ MicroModal.init({
 	},
 })
 
-const modal = document.getElementById('nav-modal')
-if (modal) {
-	modal.addEventListener('click', e => {
-		const link = e.target.closest('a[href^="#"]')
-		if (!link) return
-		e.preventDefault()
-		pendingScrollTarget = link.getAttribute('href')
-		MicroModal.close('nav-modal')
-	})
+export function initNavModal() {
+	if (initialized) return false
+	initialized = true
+
+	const hamburger = document.querySelector('.nav-hamburger')
+	MicroModal.init(modalConfig(hamburger))
+
+	const modal = document.getElementById('nav-modal')
+	if (modal) {
+		modal.addEventListener('click', e => {
+			const link = e.target.closest('a[href^="#"]')
+			if (!link) return
+			e.preventDefault()
+			pendingScrollTarget = link.getAttribute('href')
+			MicroModal.close('nav-modal')
+		})
+	}
+
+	return true
+}
+
+export function showNavModal() {
+	const hamburger = document.querySelector('.nav-hamburger')
+	MicroModal.show('nav-modal', modalConfig(hamburger))
 }

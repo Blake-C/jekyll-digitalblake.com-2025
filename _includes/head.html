@@ -57,6 +57,10 @@
 		{%- endif -%}
 	{%- endif -%}
 
+	{%- if page.hero_image -%}
+		<link rel="preload" as="image" href="{{ page.hero_image | relative_url }}" fetchpriority="high">
+	{%- endif -%}
+
 	<!-- Favicons & App Icons -->
 	<link rel="apple-touch-icon" href="{{ '/assets/icons/apple-touch-icon-180x180.png' | relative_url }}">
 	<link rel="icon" type="image/png" href="{{ '/assets/icons/favicon-32x32.png' | relative_url }}" sizes="32x32">
@@ -174,7 +178,7 @@
 			media="all"
 		>
 	</noscript>
-	{%- if page.layout == 'post' -%}
+	{%- if page.layout == 'post' and page.content contains '<pre' -%}
 		<link
 			rel="preload"
 			as="style"
