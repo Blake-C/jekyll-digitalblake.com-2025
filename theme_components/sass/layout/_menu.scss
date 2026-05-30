@@ -44,3 +44,11 @@
 		display: none;
 	}
 }
+
+.nav-hamburger {
+	display: none;
+
+	@media screen and (max-width: 56.25em) {
+		display: flex;
+	}
+}
