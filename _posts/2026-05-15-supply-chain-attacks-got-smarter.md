@@ -7,13 +7,12 @@ modified_date: 2026-05-15 12:57:46 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
+youtube_id: 'kYqpxJE4DyE'
 ---
 
 The Shai Hulud worm has now hit the npm ecosystem four times. The latest iteration tore through TanStack, Mistral, UiPath, and 170+ other packages, eventually spreading into PyPI. The Syntax.fm hosts covered it this week and, after watching, I spent an afternoon auditing my own repos.
 
-<div class="video-embed">
-<iframe src="https://www.youtube.com/embed/kYqpxJE4DyE" title="Shai Hulud Supply Chain Attack, Syntax.fm" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+{% include youtube.html id="kYqpxJE4DyE" title="Shai Hulud Supply Chain Attack, Syntax.fm" %}
 
 ## How the attack actually worked
 

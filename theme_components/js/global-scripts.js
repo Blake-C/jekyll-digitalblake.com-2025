@@ -5,6 +5,8 @@ import './modules/_smooth-scroll'
 import './modules/_table-wrapper'
 import { initNavModal, showNavModal } from './modules/_nav-modal'
 import initPrefetchCaseStudy from './modules/_prefetch-case-study'
+import initYoutubeFacade from './modules/_youtube-facade'
+import initPrefetchYoutubeThumbnail from './modules/_prefetch-youtube-thumbnail'
 
 const hamburger = document.querySelector('.nav-hamburger')
 if (hamburger) {
@@ -16,6 +18,8 @@ if (hamburger) {
 }
 
 initPrefetchCaseStudy()
+initYoutubeFacade()
+initPrefetchYoutubeThumbnail()
 
 /*************** Template part region toggle button ***************/
 const regions = document.querySelectorAll('.regions')
