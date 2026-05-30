@@ -6,8 +6,17 @@
 @use 'helpers/mixins';
 @use 'helpers/functions';
 @use 'helpers/helpers';
+@use 'helpers/buttons';
 @use 'partials/base';
+@use 'partials/generic-styles';
 @use 'vendors/grid';
 @use 'layout/header';
+@use 'layout/main';
 @use 'layout/menu';
 @use 'layout/intro';
+@use 'layout/sidebar';
+@use 'layout/posts';
+@use 'layout/about';
+@use 'layout/archive';
+@use 'layout/case-studies';
+@use 'layout/coding-projects';
