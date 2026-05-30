@@ -10,6 +10,12 @@ _build/
 tmp/
 _includes/*.min.css.map
 
+# Compiled CSS/JS — built by CI (pnpm run build:styles / build:scripts / hash-assets)
+assets/css/*.min.css
+assets/css/*.min.css.map
+assets/js/*.min.js
+_includes/critical.min.css
+
 # Generated asset manifest (rebuilt by hash-assets.mjs on every build)
 _data/asset_manifest.json
 
