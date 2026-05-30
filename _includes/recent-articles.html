@@ -10,7 +10,13 @@
 								{{- post.date | date: '%B %-d, %Y' -}}
 							</time>
 							<h3 class="recent-articles__item-title">
-								<a href="{{ post.url | relative_url }}" class="recent-articles__link">
+								<a
+									href="{{ post.url | relative_url }}"
+									class="recent-articles__link"
+									{% if post.youtube_id %}
+										data-youtube-thumbnail="https://i.ytimg.com/vi/{{ post.youtube_id }}/maxresdefault.jpg"
+									{% endif %}
+								>
 									{{- post.title | escape -}}
 								</a>
 							</h3>
