@@ -32,7 +32,7 @@
 		"sass": "catalog:",
 		"stylelint": "catalog:",
 		"stylelint-config-standard-scss": "17.0.0",
-		"terser-webpack-plugin": "^5.6.0",
+		"terser-webpack-plugin": "^5.6.1",
 		"webpack": "catalog:",
 		"webpack-cli": "catalog:"
 	},

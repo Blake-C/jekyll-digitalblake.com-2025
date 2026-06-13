@@ -46,15 +46,15 @@ onlyBuiltDependencies:
 
 catalog:
     # Production dependencies
-    micromodal: 0.6.1
+    micromodal: 0.7.0
     prismjs: 1.30.0
 
     # Dev dependencies — build tools and linters most exposed to supply chain risk
     eslint: 10.3.0
     stylelint: 17.12.0
-    webpack: 5.106.2
-    webpack-cli: 7.0.2
+    webpack: 5.107.2
+    webpack-cli: 7.0.3
     sass: 1.100.0
     postcss-cli: 11.0.1
     husky: 9.1.7
-    lint-staged: 17.0.5
+    lint-staged: 17.0.7
