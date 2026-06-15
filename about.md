@@ -75,4 +75,4 @@ show_testimonials: true
 
 <p><strong>Outside of work:</strong> I spend a lot of time on YouTube and experimenting with AI tools, plus whatever apartment project I've decided I should probably finally finish.</p>
 
-<p><a href="/assets/uploads/resume/Blake-Cerecero-Resume.pdf" target="_blank" rel="noopener">Download my resume</a></p>
+<p><a href="{{ site.resume_url }}" target="_blank" rel="noopener">Download my resume</a></p>

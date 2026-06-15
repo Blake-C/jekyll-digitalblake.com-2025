@@ -69,7 +69,7 @@ autopages:
     collections:
         enabled: false
 
-resume_url: '/assets/uploads/resume/Blake-Cerecero-Resume.pdf?v=1'
+resume_url: '/assets/uploads/resume/Blake-Cerecero-Resume.pdf?v=2'
 
 # Navigation items (shown in header nav)
 # home_href: anchor used when the nav item is rendered on the homepage
