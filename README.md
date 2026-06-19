@@ -73,7 +73,7 @@ It writes `tmp/search-console/report.json` and `report.md` (gitignored — diagn
 2. In Search Console → Settings → Users and permissions, add the service account's `client_email` as a user on the property.
 3. Save the key at `secrets/gsc-service-account.json` (the `secrets/` directory is gitignored), or point `GSC_SERVICE_ACCOUNT_KEY` at it. Copy `.env.example` to `.env` to set `GSC_SITE_URL` / `GSC_SERVICE_ACCOUNT_KEY` (loaded into the container).
 
-The property URL must match exactly, trailing slash included (`https://digitalblake.com/`). This step is local and on-demand; it is not part of the build or CI.
+`GSC_SITE_URL` must match the registered property exactly: a URL-prefix property uses the full URL with trailing slash (`https://digitalblake.com/`); a **Domain property** uses the `sc-domain:` form (`sc-domain:digitalblake.com`). For a Domain property the script derives the https origin (for fetching the sitemap and inspecting URLs) automatically, or set `GSC_BASE_URL` to override. This step is local and on-demand; it is not part of the build or CI.
 
 ## Deployment
 

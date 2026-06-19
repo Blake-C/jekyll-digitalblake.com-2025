@@ -103,7 +103,7 @@ Rouge is disabled. **Prism.js** handles all syntax highlighting via webpack with
 
 This output is **diagnostic data, not site content**: it lives under `tmp/` (gitignored), never `_data/`, so it is not published.
 
-Auth: a Google Cloud service account whose `client_email` is added as a user on the property in Search Console. Provide the JSON key at `secrets/gsc-service-account.json` (gitignored) or set `GSC_SERVICE_ACCOUNT_KEY`; set `GSC_SITE_URL` if the property differs from `https://digitalblake.com/`. Copy `.env.example` → `.env` (loaded into the container) to configure. This is **local and on-demand** — it is not wired into the build or CI.
+Auth: a Google Cloud service account whose `client_email` is added as a user on the property in Search Console. Provide the JSON key at `secrets/gsc-service-account.json` (gitignored) or set `GSC_SERVICE_ACCOUNT_KEY`. Set `GSC_SITE_URL` to match the registered property exactly — a URL-prefix property (`https://digitalblake.com/`) or a Domain property (`sc-domain:digitalblake.com`); for a Domain property the https origin is derived automatically (override with `GSC_BASE_URL`). Copy `.env.example` → `.env` (loaded into the container) to configure. This is **local and on-demand** — it is not wired into the build or CI.
 
 **Workflow for Claude:** run the sync, read `tmp/search-console/report.md` (issues first), then propose edits for the flagged issues and apply them only on the user's approval. Typical fix targets: post front matter (`description`, `image`, canonical), the robots/canonical/meta logic in `_includes/head.html`, titles and internal linking for low-CTR queries, and sitemap/`robots.txt` problems.
 
