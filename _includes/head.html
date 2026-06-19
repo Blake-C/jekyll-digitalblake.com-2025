@@ -5,44 +5,13 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-	<!-- Font Preloads -->
+	<!-- Font Preload — single subset variable WOFF2 covers every weight -->
 	<link
 		rel="preload"
 		as="font"
 		type="font/woff2"
-		href="{{ '/assets/fonts/montserrat-extrabold-webfont.woff2' | relative_url }}"
+		href="{{ '/assets/fonts/montserrat-variable-webfont.woff2' | relative_url }}"
 		crossorigin
-	>
-	<link
-		rel="preload"
-		as="font"
-		type="font/woff2"
-		href="{{ '/assets/fonts/montserrat-bold-webfont.woff2' | relative_url }}"
-		crossorigin
-	>
-	<link
-		rel="preload"
-		as="font"
-		type="font/woff2"
-		href="{{ '/assets/fonts/montserrat-black-webfont.woff2' | relative_url }}"
-		crossorigin
-		fetchpriority="low"
-	>
-	<link
-		rel="preload"
-		as="font"
-		type="font/woff2"
-		href="{{ '/assets/fonts/montserrat-medium-webfont.woff2' | relative_url }}"
-		crossorigin
-		fetchpriority="low"
-	>
-	<link
-		rel="preload"
-		as="font"
-		type="font/woff2"
-		href="{{ '/assets/fonts/montserrat-regular-webfont.woff2' | relative_url }}"
-		crossorigin
-		fetchpriority="low"
 	>
 
 	{%- if page.preload_image -%}

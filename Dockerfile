@@ -10,7 +10,7 @@ RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
     && ln -sf /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack
 
-# Install build tools, ImageMagick, and git
+# Install build tools, ImageMagick, Python, and git
 RUN apk add --no-cache \
     curl \
     ca-certificates \
@@ -18,7 +18,18 @@ RUN apk add --no-cache \
     imagemagick \
     imagemagick-jpeg \
     imagemagick-webp \
+    python3 \
     git
+
+# fonttools (pyftsubset) generates the subset WOFF2 fonts. Alpine's Python is
+# externally managed (PEP 668), so install into a venv rather than the system.
+# The woff extra pulls in brotli + zopfli, required for WOFF2 compression.
+ENV FONTTOOLS_VENV=/opt/fonttools
+RUN python3 -m venv "$FONTTOOLS_VENV" \
+    && "$FONTTOOLS_VENV/bin/pip" install --no-cache-dir \
+        'fonttools[woff]==4.55.3' \
+        'brotli==1.1.0'
+ENV PATH="/opt/fonttools/bin:$PATH"
 
 # Store Corepack cache in a global path accessible to all users
 ENV COREPACK_HOME=/usr/local/share/corepack
