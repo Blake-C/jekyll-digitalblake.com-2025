@@ -16,9 +16,10 @@
  *   tmp/search-console/report.md     human/Claude-scannable summary (issues first)
  *
  * Auth: a Google Cloud service account whose client_email has been added as a user on the
- * Search Console property. The siteUrl must match the registered property exactly (trailing
- * slash included). Provide the key via the GSC_SERVICE_ACCOUNT_KEY path, or drop it at the
- * default path secrets/gsc-service-account.json (both are gitignored).
+ * Search Console property. GSC_SITE_URL must match the registered property exactly — a URL-prefix
+ * property (https://digitalblake.com/, trailing slash included) or a Domain property
+ * (sc-domain:digitalblake.com). Provide the key via the GSC_SERVICE_ACCOUNT_KEY path, or drop it at
+ * the default path secrets/gsc-service-account.json (both are gitignored).
  *
  * Usage:
  *   node script/sync-search-console.mjs              # analytics + sitemaps + inspect up to --max URLs
@@ -26,13 +27,21 @@
  *   node script/sync-search-console.mjs --no-inspect # skip URL Inspection (analytics + sitemaps only)
  *
  * Env:
- *   GSC_SITE_URL              property URL (default https://digitalblake.com/)
+ *   GSC_SITE_URL              property as registered (default https://digitalblake.com/); may be a
+ *                             Domain property such as sc-domain:digitalblake.com
+ *   GSC_BASE_URL              https origin used to fetch the sitemap and inspect URLs; defaults to
+ *                             GSC_SITE_URL, or https://<domain>/ derived from an sc-domain property
  *   GSC_SERVICE_ACCOUNT_KEY   path to the service-account JSON key (default secrets/gsc-service-account.json)
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { createSign } from 'crypto'
+import { setDefaultResultOrder } from 'dns'
 import { join, dirname, isAbsolute } from 'path'
 import { fileURLToPath } from 'url'
+
+// In the container, IPv6 routes to Google's endpoints hang and time out before falling back, so
+// resolve IPv4 first to connect immediately (the fetch retry wrapper covers genuine drops).
+setDefaultResultOrder('ipv4first')
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT_DIR = join(ROOT, 'tmp/search-console')
@@ -50,10 +59,13 @@ const INSPECT_DEFAULT_MAX = 100
 const INSPECT_DELAY_MS = 250
 
 // "High impressions, low CTR" opportunity thresholds for the derived issues list.
-const LOW_CTR_MIN_IMPRESSIONS = 20
+// Pages aggregate more impressions than individual queries, so they use a higher floor.
 const LOW_CTR_MAX_RATE = 0.01
+const LOW_CTR_QUERY_MIN_IMPRESSIONS = 20
+const LOW_CTR_PAGE_MIN_IMPRESSIONS = 50
 
 const SITE_URL = normalizeSiteUrl(process.env.GSC_SITE_URL || 'https://digitalblake.com/')
+const BASE_URL = resolveBaseUrl(process.env.GSC_BASE_URL, SITE_URL)
 const KEY_PATH = resolveKeyPath(process.env.GSC_SERVICE_ACCOUNT_KEY || 'secrets/gsc-service-account.json')
 
 const args = process.argv.slice(2)
@@ -63,7 +75,16 @@ const inspectMax = Math.min(maxArg ? Math.max(0, parseInt(maxArg.slice('--max='.
 
 function normalizeSiteUrl(url) {
 	// URL-prefix properties always carry a trailing slash; the API rejects a mismatch.
+	// Domain properties (sc-domain:example.com) are passed through untouched.
 	return /^https?:\/\//i.test(url) && !url.endsWith('/') ? `${url}/` : url
+}
+
+// The https origin used to fetch the live sitemap and as the inspectionUrl. A Domain property's
+// siteUrl (sc-domain:example.com) is not a fetchable URL, so derive https://example.com/ from it.
+function resolveBaseUrl(explicit, siteUrl) {
+	if (explicit) return explicit.endsWith('/') ? explicit : `${explicit}/`
+	if (siteUrl.startsWith('sc-domain:')) return `https://${siteUrl.slice('sc-domain:'.length)}/`
+	return siteUrl
 }
 
 function resolveKeyPath(p) {
@@ -72,12 +93,15 @@ function resolveKeyPath(p) {
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-// Google's token/API endpoints occasionally drop the connection from inside the container
-// ("fetch failed" / "Premature close"); retry transient network errors and 5xx with backoff.
-const MAX_RETRIES = 4
-async function fetchRetry(url, options, attempt = 1) {
+// Abort a wedged connection after REQUEST_TIMEOUT_MS, then retry transient errors and 5xx with
+// backoff. The timeout is generous: the URL Inspection API runs real-time analysis and legitimately
+// takes several seconds per URL, so a short cap would abort valid calls. Cold-start stalls are
+// handled by ipv4first above, not by a tight timeout here.
+const MAX_RETRIES = 6
+const REQUEST_TIMEOUT_MS = 25000
+async function fetchRetry(url, options = {}, attempt = 1) {
 	try {
-		const res = await fetch(url, options)
+		const res = await fetch(url, { ...options, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) })
 		if (res.status >= 500 && attempt < MAX_RETRIES) {
 			await sleep(attempt * 500)
 			return fetchRetry(url, options, attempt + 1)
@@ -214,9 +238,9 @@ async function fetchSitemaps() {
 // Pull the canonical URL list from the live sitemap so we inspect real, indexable pages.
 async function collectSitemapUrls() {
 	try {
-		const res = await fetchRetry(`${SITE_URL}sitemap.xml`)
+		const res = await fetchRetry(`${BASE_URL}sitemap.xml`)
 		if (!res.ok) {
-			console.warn(`  ! could not fetch ${SITE_URL}sitemap.xml (${res.status}); skipping URL inspection`)
+			console.warn(`  ! could not fetch ${BASE_URL}sitemap.xml (${res.status}); skipping URL inspection`)
 			return []
 		}
 		const xml = await res.text()
@@ -293,7 +317,9 @@ function deriveIssues({ searchAnalytics, sitemaps, urlInspection }) {
 		if (r.robotsTxtState === 'DISALLOWED') {
 			issues.push({ type: 'robots-blocked', target: r.url, detail: 'disallowed by robots.txt' })
 		}
-		if (r.pageFetchState && r.pageFetchState !== 'SUCCESSFUL') {
+		// UNSPECIFIED just means Google hasn't fetched the page yet (already covered by not-indexed);
+		// only flag genuine fetch failures (SOFT_404, BLOCKED_ROBOTS_TXT, NOT_FOUND, SERVER_ERROR, etc.).
+		if (r.pageFetchState && r.pageFetchState !== 'SUCCESSFUL' && r.pageFetchState !== 'PAGE_FETCH_STATE_UNSPECIFIED') {
 			issues.push({ type: 'fetch-problem', target: r.url, detail: r.pageFetchState })
 		}
 		if (r.googleCanonical && r.userCanonical && r.googleCanonical !== r.userCanonical) {
@@ -304,17 +330,28 @@ function deriveIssues({ searchAnalytics, sitemaps, urlInspection }) {
 		}
 	}
 
-	for (const q of searchAnalytics.queries) {
-		if (q.impressions >= LOW_CTR_MIN_IMPRESSIONS && q.ctr < LOW_CTR_MAX_RATE) {
+	// Pages first: a low-CTR page points directly at a title/meta-description to rewrite.
+	for (const p of searchAnalytics.pages) {
+		if (p.impressions >= LOW_CTR_PAGE_MIN_IMPRESSIONS && p.ctr < LOW_CTR_MAX_RATE) {
 			issues.push({
-				type: 'low-ctr',
+				type: 'low-ctr-page',
+				target: p.page,
+				detail: `${p.impressions} impressions, ${(p.ctr * 100).toFixed(1)}% CTR, avg position ${p.position.toFixed(1)}`,
+			})
+		}
+	}
+
+	for (const q of searchAnalytics.queries) {
+		if (q.impressions >= LOW_CTR_QUERY_MIN_IMPRESSIONS && q.ctr < LOW_CTR_MAX_RATE) {
+			issues.push({
+				type: 'low-ctr-query',
 				target: q.query,
 				detail: `${q.impressions} impressions, ${(q.ctr * 100).toFixed(1)}% CTR, avg position ${q.position.toFixed(1)}`,
 			})
 		}
 	}
 
-	const order = ['inspect-error', 'fetch-problem', 'robots-blocked', 'not-indexed', 'canonical-mismatch', 'sitemap-error', 'mobile-usability', 'sitemap-warning', 'low-ctr']
+	const order = ['inspect-error', 'fetch-problem', 'robots-blocked', 'not-indexed', 'canonical-mismatch', 'sitemap-error', 'mobile-usability', 'low-ctr-page', 'sitemap-warning', 'low-ctr-query']
 	issues.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type))
 	return issues
 }
