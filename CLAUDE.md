@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Runtime isolation
 
-All Node and Ruby commands run inside Docker. The container image bundles Node 24.15.0, Ruby 3.4.9, pnpm, ImageMagick, and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
+All Node and Ruby commands run inside Docker. The container image bundles Node 24.15.0, Ruby 3.4.9, pnpm, ImageMagick, fonttools (`pyftsubset`, for font subsetting), and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
 
 ## Commands
 
@@ -19,13 +19,15 @@ docker compose run --rm app bundle install
 # Start dev server with live reload at http://localhost:4005
 docker compose up
 
-# Production build (images → styles → scripts → hash assets → jekyll build)
+# Production build (images → thumbnails → fonts → styles → scripts → hash assets → jekyll build)
 docker compose run --rm app pnpm run build
 
 # Individual build steps
-docker compose run --rm app pnpm run build:images   # Optimize JPG/PNG and generate WebP variants
-docker compose run --rm app pnpm run build:styles   # Compile SCSS to assets/css/ and _includes/ (critical CSS)
-docker compose run --rm app pnpm run build:scripts  # Bundle JS via webpack to assets/js/
+docker compose run --rm app pnpm run build:images      # Optimize JPG/PNG and generate WebP variants
+docker compose run --rm app pnpm run cache:thumbnails  # Cache YouTube thumbnails locally as WebP
+docker compose run --rm app pnpm run build:fonts       # Subset Montserrat variable TTF → WOFF2 (--emit to write)
+docker compose run --rm app pnpm run build:styles      # Compile SCSS to assets/css/ and _includes/ (critical CSS)
+docker compose run --rm app pnpm run build:scripts     # Bundle JS via webpack to assets/js/
 
 # Code quality
 docker compose run --rm app pnpm run lint           # ESLint + stylelint
@@ -44,8 +46,8 @@ This is a **Jekyll 4.4.1** blog/portfolio deployed to GitHub Pages. The asset pi
 
 Two Jekyll configs are used:
 
-- `_config.yml` — production (baseurl: `/jekyll-digitalblake.com-2025`)
-- `_config.dev.yml` — development override (baseurl: `""`, port 4005); merged automatically by `pnpm run dev`
+- `_config.yml` — production (baseurl: `""`, `url: https://digitalblake.com`; served from a custom domain via the `CNAME` file)
+- `_config.dev.yml` — development override (`url: http://localhost:4005`, port 4005); merged automatically by `pnpm run dev`
 
 ### Asset pipeline
 
@@ -58,14 +60,13 @@ Two Jekyll configs are used:
 
 ### Content collections
 
-| Directory            | Purpose                                                                                             | Jekyll output |
-| -------------------- | --------------------------------------------------------------------------------------------------- | ------------- |
-| `_posts/`            | Blog posts (articles, snippets)                                                                     | Yes           |
-| `_websites/`         | Portfolio entries rendered in homepage gallery modal                                                | No            |
-| `_websites_archive/` | Archived portfolio entries                                                                          | No            |
-| `_coding_projects/`  | Coding project cards on homepage and `/coding-projects/` archive; entries support a `featured` flag | No            |
+| Directory           | Purpose                                                                                             | Jekyll output |
+| ------------------- | --------------------------------------------------------------------------------------------------- | ------------- |
+| `_posts/`           | Blog posts (articles, snippets)                                                                     | Yes           |
+| `_case_studies/`    | Portfolio case studies: homepage gallery modal, individual pages, and the `/case-studies/` archive  | Yes           |
+| `_coding_projects/` | Coding project cards on homepage and `/coding-projects/` archive; entries support a `featured` flag | No            |
 
-**`_websites/` body content is rendered as raw HTML** in the homepage modal — treat as trusted first-party content only.
+**`_case_studies/` body content is rendered as raw HTML** in the homepage gallery modal — treat as trusted first-party content only.
 
 ### Post front matter
 
@@ -91,7 +92,7 @@ Defined in `_data/authors.yml`. The custom plugin `_plugins/author_pages.rb` gen
 
 ### Syntax highlighting
 
-Rouge is disabled. **Prism.js** handles all syntax highlighting via webpack with plugins: `line-numbers`, `autolinker`, `show-language`, `normalize-whitespace`, `copy-to-clipboard`.
+Rouge is disabled. **Prism.js** handles all syntax highlighting via webpack with plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
 
 ### Pre-commit hooks
 
@@ -105,4 +106,6 @@ Husky runs lint-staged on commit:
 
 ### CI/CD
 
-GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages.
+GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).
+
+CI does **not** run `build:images`, `cache:thumbnails`, or `build:fonts` — those outputs (optimized images, cached thumbnails, the subset WOFF2) are committed to the repo and used as-is. Regenerate and commit them locally when their inputs change.

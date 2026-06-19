@@ -44,7 +44,7 @@ docker compose run --rm app pnpm run build:images       # Optimize JPG/PNG in as
 docker compose run --rm app pnpm run cache:thumbnails   # Cache YouTube thumbnails locally as WebP (assets/uploads/youtube/)
 docker compose run --rm app pnpm run build:fonts        # Subset Montserrat → assets/fonts/montserrat-variable-webfont.woff2
 docker compose run --rm app pnpm run build:styles       # Compile SCSS → assets/css/global-styles.min.css
-docker compose run --rm app pnpm run build:scripts  # Bundle JS via webpack → assets/js/
+docker compose run --rm app pnpm run build:scripts      # Bundle JS via webpack → assets/js/
 ```
 
 ### Fonts
@@ -57,16 +57,16 @@ After `build:styles` and `build:scripts`, the production build runs `node script
 
 ## Deployment
 
-Pushing to `main` triggers a GitHub Actions workflow that builds and deploys the site to GitHub Pages at:
+Pushing to `main` triggers a GitHub Actions workflow that builds and deploys the site to GitHub Pages, served from the custom domain (set via the `CNAME` file) at:
 
-[https://blake-c.github.io/jekyll-digitalblake.com-2025/](https://blake-c.github.io/jekyll-digitalblake.com-2025/)
+[https://digitalblake.com](https://digitalblake.com)
 
 ## Configs
 
-| File              | Purpose                                                          |
-| ----------------- | ---------------------------------------------------------------- |
-| `_config.yml`     | Production config (`baseurl: /jekyll-digitalblake.com-2025`)     |
-| `_config.dev.yml` | Local dev override (`baseurl: ""`, `url: http://localhost:4005`) |
+| File              | Purpose                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| `_config.yml`     | Production config (`baseurl: ""`, `url: https://digitalblake.com`) |
+| `_config.dev.yml` | Local dev override (`baseurl: ""`, `url: http://localhost:4005`)   |
 
 The dev server merges both configs automatically via `pnpm run dev`.
 
@@ -93,12 +93,13 @@ _data/          # YAML data files (authors, navigation, etc.)
 _coding_projects/  # Coding project data for homepage and /coding-projects/ archive
 _includes/      # Reusable HTML/Liquid partials
 _layouts/       # Page layout templates
-_plugins/       # Custom Jekyll plugins (author pages)
+_plugins/       # Custom Jekyll plugins (author pages, lazy images)
 _posts/         # Blog posts (Markdown)
-_case_studies/  # Case study portfolio data for homepage
-assets/         # Compiled/static assets (CSS, JS, images, uploads)
+_case_studies/  # Case study portfolio data (homepage modal + /case-studies/)
+assets/         # Compiled/static assets (CSS, JS, fonts, images, uploads)
+case-studies/   # Dedicated archive page for portfolio case studies
 coding-projects/   # Dedicated archive page for GitHub/coding projects
-script/         # Build scripts (image optimization, asset hashing)
+script/         # Build scripts (images, thumbnails, fonts, asset hashing)
 theme_components/
   js/           # JS source files
   sass/         # SCSS source files
@@ -110,4 +111,4 @@ theme_components/
 
 ## Syntax Highlighting
 
-Rouge (Jekyll's default) is disabled. [Prism.js](https://prismjs.com/) handles syntax highlighting and line numbers, loaded via webpack with the following plugins: `line-numbers`, `autolinker`, `show-language`, `normalize-whitespace`, `copy-to-clipboard`.
+Rouge (Jekyll's default) is disabled. [Prism.js](https://prismjs.com/) handles syntax highlighting and line numbers, loaded via webpack with the following plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
