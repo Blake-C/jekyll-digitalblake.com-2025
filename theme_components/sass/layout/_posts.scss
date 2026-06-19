@@ -335,7 +335,8 @@
 		}
 
 		&__date {
-			color: v.$dark-gray;
+			color: #595959; // ~5.4:1 on #e4e4e4 (was $dark-gray #8a8a8a)
+			opacity: 1; // reset the 0.6 inherited from the base component
 		}
 
 		&__item-title {

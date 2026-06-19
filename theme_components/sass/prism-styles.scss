@@ -3,3 +3,12 @@
 @use 'prismjs/themes/prism-okaidia.css';
 @use 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 @use 'prismjs/plugins/toolbar/prism-toolbar.css';
+
+/* WCAG AA: okaidia's #f92672 is 3.92:1 on #272822; Monokai Pro pink is ~5.4:1 */
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #ff6188;
+}
