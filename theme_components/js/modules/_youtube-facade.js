@@ -13,18 +13,6 @@ function loadFacade(facade) {
 
 export default function initYoutubeFacade() {
 	document.querySelectorAll('.youtube-facade[data-video-id]').forEach(facade => {
-		// Fall back to hqdefault if maxresdefault is not available (private/older videos)
-		const img = facade.querySelector('img[data-yt-fallback]')
-		if (img) {
-			img.addEventListener(
-				'error',
-				() => {
-					img.src = img.dataset.ytFallback
-				},
-				{ once: true },
-			)
-		}
-
 		facade.addEventListener('click', () => loadFacade(facade))
 		facade.addEventListener('keydown', e => {
 			if (e.key === 'Enter' || e.key === ' ') {

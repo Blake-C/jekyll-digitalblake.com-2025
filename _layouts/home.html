@@ -35,7 +35,7 @@ layout: base
 							class="post-link"
 							href="{{ post.url | relative_url }}"
 							{% if post.youtube_id %}
-								data-youtube-thumbnail="https://i.ytimg.com/vi/{{ post.youtube_id }}/maxresdefault.jpg"
+								data-youtube-thumbnail="{{ '/assets/uploads/youtube/' | append: post.youtube_id | append: '.webp' | relative_url }}"
 							{% endif %}
 						>
 							<div class="row">

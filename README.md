@@ -40,8 +40,9 @@ Optimizes images, compiles SCSS, bundles JS via webpack, hashes compiled assets 
 Individual steps:
 
 ```bash
-docker compose run --rm app pnpm run build:images   # Optimize JPG/PNG in assets/images/ and assets/uploads/
-docker compose run --rm app pnpm run build:styles   # Compile SCSS → assets/css/global-styles.min.css
+docker compose run --rm app pnpm run build:images       # Optimize JPG/PNG in assets/images/ and assets/uploads/
+docker compose run --rm app pnpm run cache:thumbnails   # Cache YouTube thumbnails locally as WebP (assets/uploads/youtube/)
+docker compose run --rm app pnpm run build:styles       # Compile SCSS → assets/css/global-styles.min.css
 docker compose run --rm app pnpm run build:scripts  # Bundle JS via webpack → assets/js/
 ```
 

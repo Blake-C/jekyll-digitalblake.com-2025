@@ -9,9 +9,10 @@
 		aria-label="Play {{ _yt_title | escape }}"
 	>
 		<img
-			src="https://i.ytimg.com/vi/{{ _yt_id }}/maxresdefault.jpg"
-			data-yt-fallback="https://i.ytimg.com/vi/{{ _yt_id }}/hqdefault.jpg"
+			src="{{ '/assets/uploads/youtube/' | append: _yt_id | append: '.webp' | relative_url }}"
 			alt="{{ _yt_title | escape }}"
+			width="830"
+			height="467"
 			loading="lazy"
 			decoding="async"
 		>
