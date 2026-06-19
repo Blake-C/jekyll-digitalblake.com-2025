@@ -19,6 +19,10 @@ _includes/critical.min.css
 # Generated asset manifest (rebuilt by hash-assets.mjs on every build)
 _data/asset_manifest.json
 
+# Secrets and local env (Search Console service-account key, etc.)
+.env
+/secrets/
+
 # Node/package manager cache
 npm-debug.log*
 yarn-debug.log*

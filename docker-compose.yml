@@ -6,6 +6,9 @@ services:
             - bundle_cache:/usr/local/bundle
             - pnpm_store:/home/appuser/.local/share/pnpm/store
         working_dir: /app
+        env_file:
+            - path: .env
+              required: false
         ports:
             - '4005:4005' # Jekyll dev server
             - '35729:35729' # LiveReload
