@@ -36,7 +36,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     <picture>
                         <source srcset="{{ '/assets/images/profile-2022-v3.webp' | relative_url }}" type="image/webp">
                         <img
-                            src="{{ '/assets/images/profile-2022-v3.jpg' | relative_url }}"
+                            src="{{ '/assets/images/profile-2022-v3.webp' | relative_url }}"
                             alt="Blake Cerecero, Senior Web Developer"
                             width="400"
                             height="400"
