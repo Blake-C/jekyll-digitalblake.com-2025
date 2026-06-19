@@ -1,14 +1,4 @@
-const prefetched = new Set()
-
-function prefetch(url) {
-	if (prefetched.has(url)) return
-	prefetched.add(url)
-	const link = document.createElement('link')
-	link.rel = 'prefetch'
-	link.as = 'image'
-	link.href = url
-	document.head.appendChild(link)
-}
+import { prefetch } from './_prefetch'
 
 export default function initPrefetchYoutubeThumbnail() {
 	document.querySelectorAll('[data-youtube-thumbnail]').forEach(link => {
