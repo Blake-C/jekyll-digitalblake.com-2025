@@ -103,3 +103,4 @@ exclude:
     - Gemfile.lock
     - node_modules/
     - vendor/
+    - assets/fonts/*.ttf # source-only inputs for script/build-fonts.mjs; not served
