@@ -29,6 +29,9 @@ docker compose run --rm app pnpm run build:fonts       # Subset Montserrat varia
 docker compose run --rm app pnpm run build:styles      # Compile SCSS to assets/css/ and _includes/ (critical CSS)
 docker compose run --rm app pnpm run build:scripts     # Bundle JS via webpack to assets/js/
 
+# Search Console (on-demand, local only — needs a service-account key, see below)
+docker compose run --rm app pnpm run sync:search-console   # Pull GSC data → tmp/search-console/report.{json,md}
+
 # Code quality
 docker compose run --rm app pnpm run lint           # ESLint + stylelint
 docker compose run --rm app pnpm run lint:fix       # Auto-fix JS and SCSS issues
@@ -93,6 +96,16 @@ Defined in `_data/authors.yml`. The custom plugin `_plugins/author_pages.rb` gen
 ### Syntax highlighting
 
 Rouge is disabled. **Prism.js** handles all syntax highlighting via webpack with plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
+
+### Search Console feedback loop
+
+`script/sync-search-console.mjs` (`pnpm run sync:search-console`) pulls Google Search Console data — Search Analytics (top queries/pages), Sitemaps, and URL Inspection (per-URL index/coverage state) — and writes a private diagnostic report to `tmp/search-console/report.json` and `report.md`. It also derives a flat `issues[]` list (not indexed, robots-blocked, canonical mismatch, sitemap errors, high-impression/low-CTR queries).
+
+This output is **diagnostic data, not site content**: it lives under `tmp/` (gitignored), never `_data/`, so it is not published.
+
+Auth: a Google Cloud service account whose `client_email` is added as a user on the property in Search Console. Provide the JSON key at `secrets/gsc-service-account.json` (gitignored) or set `GSC_SERVICE_ACCOUNT_KEY`; set `GSC_SITE_URL` if the property differs from `https://digitalblake.com/`. Copy `.env.example` → `.env` (loaded into the container) to configure. This is **local and on-demand** — it is not wired into the build or CI.
+
+**Workflow for Claude:** run the sync, read `tmp/search-console/report.md` (issues first), then propose edits for the flagged issues and apply them only on the user's approval. Typical fix targets: post front matter (`description`, `image`, canonical), the robots/canonical/meta logic in `_includes/head.html`, titles and internal linking for low-CTR queries, and sitemap/`robots.txt` problems.
 
 ### Pre-commit hooks
 

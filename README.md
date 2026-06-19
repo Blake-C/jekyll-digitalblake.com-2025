@@ -55,6 +55,26 @@ The site ships a single subset Montserrat variable WOFF2 (weight axis 400–900)
 
 After `build:styles` and `build:scripts`, the production build runs `node script/hash-assets.mjs` which creates content-hashed copies of all compiled CSS and JS files and writes `_data/asset_manifest.json`. Jekyll templates read this manifest for cache-busted asset URLs. The manifest file is excluded via `.gitignore` and always generated at build time.
 
+## Search Console sync
+
+`script/sync-search-console.mjs` pulls Google Search Console data (Search Analytics, Sitemaps, and per-URL Inspection results) into a private diagnostic report used to find and fix SEO and indexability issues:
+
+```bash
+docker compose run --rm app pnpm run sync:search-console            # inspect up to 100 URLs
+docker compose run --rm app pnpm run sync:search-console -- --max=300   # inspect more (cap 1000)
+docker compose run --rm app pnpm run sync:search-console -- --no-inspect  # analytics + sitemaps only
+```
+
+It writes `tmp/search-console/report.json` and `report.md` (gitignored — diagnostic data, never published) with an issues-first summary. URL Inspection is capped by Google at 2,000/day per property; the script throttles and limits well under that.
+
+**Setup (one time):**
+
+1. In Google Cloud, create a project, enable the **Search Console API**, create a **service account**, and download its JSON key.
+2. In Search Console → Settings → Users and permissions, add the service account's `client_email` as a user on the property.
+3. Save the key at `secrets/gsc-service-account.json` (the `secrets/` directory is gitignored), or point `GSC_SERVICE_ACCOUNT_KEY` at it. Copy `.env.example` to `.env` to set `GSC_SITE_URL` / `GSC_SERVICE_ACCOUNT_KEY` (loaded into the container).
+
+The property URL must match exactly, trailing slash included (`https://digitalblake.com/`). This step is local and on-demand; it is not part of the build or CI.
+
 ## Deployment
 
 Pushing to `main` triggers a GitHub Actions workflow that builds and deploys the site to GitHub Pages, served from the custom domain (set via the `CNAME` file) at:
