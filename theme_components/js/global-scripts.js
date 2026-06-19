@@ -20,22 +20,3 @@ if (hamburger) {
 initPrefetchCaseStudy()
 initYoutubeFacade()
 initPrefetchYoutubeThumbnail()
-
-/*************** Template part region toggle button ***************/
-const regions = document.querySelectorAll('.regions')
-
-Array.from(regions).map(regions => {
-	regions.addEventListener('click', function (event) {
-		event.preventDefault()
-
-		const placeholder = document.querySelectorAll('.placeHolderPosition')
-
-		Array.from(placeholder).map(placeholder => {
-			if (placeholder.style.display === 'none') {
-				placeholder.style.display = 'block'
-			} else {
-				placeholder.style.display = 'none'
-			}
-		})
-	})
-})
