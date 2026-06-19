@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'Yabai and SKHD Configs'
+title: 'My yabai and skhd Config for macOS Tiling Window Management'
 date: 2021-08-27 22:24:57 -0500
-modified_date: 2021-08-27 22:48:19 -0500
-description: 'Snippets from my yabai and skhd configurations and scripts.'
+modified_date: 2026-06-19 10:13:06 -0500
+description: 'My complete yabai and skhd config files for tiling window management on macOS: keybindings, rules, and scripts you can copy and adapt.'
 categories: ['Snippets']
 tags: ['command-line', 'learning', 'shell-script']
 image: '/assets/uploads/2021/08/random-1-1200x630-facebook-share-1.webp'

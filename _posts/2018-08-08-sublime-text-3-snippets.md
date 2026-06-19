@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'Sublime Text 3 Snippets'
-description: 'Sublime Text Snippets can help you speed up your development time by reducing the need to manually typing out repetitive code. Learn how to create these snippets for different file types.'
+title: 'How to Create Sublime Text 3 Snippets (with Examples)'
+description: 'Speed up your workflow with Sublime Text 3 snippets. Learn to create custom snippets per file type, with examples for JavaScript, PHP, and more.'
 date: 2018-08-08 22:12:35 -0500
-modified_date: 2020-10-02 21:09:55 -0500
+modified_date: 2026-06-19 10:13:06 -0500
 categories: ['Guides']
 tags: ['javascript', 'php', 'sublime-text', 'wordpress']
 image: '/assets/uploads/2018/08/sublime-text-snippet.webp'

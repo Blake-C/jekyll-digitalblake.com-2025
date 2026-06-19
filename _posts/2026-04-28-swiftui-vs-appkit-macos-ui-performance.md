@@ -1,8 +1,9 @@
 ---
 layout: post
-title: 'SwiftUI vs AppKit on macOS: Layout Models, Performance, and Trade-offs'
+title: 'AppKit vs SwiftUI on macOS: Layout, Performance, and Trade-offs'
 description: 'A comparison of SwiftUI and AppKit as UI frameworks for macOS, covering how each handles layout and rendering, where each performs well, and what the choice means at scale.'
 date: 2026-04-28 06:53:39 CDT -0500
+modified_date: 2026-06-19 10:13:06 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'swiftui', 'appkit', 'performance']
 image: 'assets/uploads/2025/04/swiftui-vs-appkit-on-macos-layout-models-performance-and-trade-offs-social-share-image.webp'

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'Installing CLI Tools (fish, php, composer, nvm) with Arch Linux and Docker Image'
-description: 'Just some notes from what I was experimenting with Arch Linux and setting up fish shell.'
+title: 'Installing fish, PHP, Composer, and nvm on Arch Linux (with Docker)'
+description: 'How to install the fish shell, PHP, Composer, and nvm on Arch Linux, with a Docker image setup. Step-by-step commands and config notes.'
 date: 2021-03-19 01:38:13 -0500
-modified_date: 2021-03-19 20:25:08 -0500
+modified_date: 2026-06-19 10:13:06 -0500
 categories: ['Notes']
 tags: ['arch', 'command-line', 'docker', 'linux']
 image: '/assets/uploads/2021/03/Installing-CLI-Tools-fish-php-composer-nvm-with-Arch-Linux-and-Docker-Image-1200x630-facebook-share.webp'
