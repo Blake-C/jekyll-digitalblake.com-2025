@@ -22,8 +22,8 @@
  * the default path secrets/gsc-service-account.json (both are gitignored).
  *
  * Usage:
- *   node script/sync-search-console.mjs              # analytics + sitemaps + inspect up to --max URLs
- *   node script/sync-search-console.mjs --max=200    # inspect more URLs (hard cap 1000, < daily quota)
+ *   node script/sync-search-console.mjs              # analytics + sitemaps + inspect every sitemap URL
+ *   node script/sync-search-console.mjs --max=50     # cap URL Inspection to the first 50 URLs
  *   node script/sync-search-console.mjs --no-inspect # skip URL Inspection (analytics + sitemaps only)
  *
  * Env:
@@ -52,10 +52,9 @@ const ANALYTICS_LOOKBACK_DAYS = 28
 const ANALYTICS_LAG_DAYS = 2
 const ANALYTICS_ROW_LIMIT = 100
 
-// URL Inspection is capped at 2,000/day per property. Stay well under it and throttle
-// to respect the 600/min ceiling (~100ms each; 250ms is comfortably safe).
+// URL Inspection is capped at 2,000/day per property. By default inspect every sitemap URL (up to
+// the hard cap); --max=N narrows it. Throttle to respect the 600/min ceiling (250ms is safe).
 const INSPECT_HARD_CAP = 1000
-const INSPECT_DEFAULT_MAX = 100
 const INSPECT_DELAY_MS = 250
 
 // "High impressions, low CTR" opportunity thresholds for the derived issues list.
@@ -71,7 +70,7 @@ const KEY_PATH = resolveKeyPath(process.env.GSC_SERVICE_ACCOUNT_KEY || 'secrets/
 const args = process.argv.slice(2)
 const noInspect = args.includes('--no-inspect')
 const maxArg = args.find(a => a.startsWith('--max='))
-const inspectMax = Math.min(maxArg ? Math.max(0, parseInt(maxArg.slice('--max='.length), 10) || 0) : INSPECT_DEFAULT_MAX, INSPECT_HARD_CAP)
+const inspectMax = Math.min(maxArg ? Math.max(0, parseInt(maxArg.slice('--max='.length), 10) || 0) : INSPECT_HARD_CAP, INSPECT_HARD_CAP)
 
 function normalizeSiteUrl(url) {
 	// URL-prefix properties always carry a trailing slash; the API rejects a mismatch.
@@ -356,8 +355,41 @@ function deriveIssues({ searchAnalytics, sitemaps, urlInspection }) {
 	return issues
 }
 
+// Whole-number days since an ISO timestamp, or null if absent/unparseable.
+function ageInDays(isoTime) {
+	if (!isoTime) return null
+	const then = Date.parse(isoTime)
+	if (Number.isNaN(then)) return null
+	return Math.floor((Date.now() - then) / 86400000)
+}
+
+// Roll the per-URL inspection results up into an at-a-glance indexing picture.
+function summarizeIndexing(urlInspection) {
+	const byCoverage = {}
+	let errors = 0
+	let canonicalConflicts = 0
+	for (const r of urlInspection) {
+		if (r.error) {
+			errors++
+			continue
+		}
+		const state = r.coverageState || 'unknown'
+		byCoverage[state] = (byCoverage[state] || 0) + 1
+		if (r.googleCanonical && r.userCanonical && r.googleCanonical !== r.userCanonical) canonicalConflicts++
+	}
+	const indexed = byCoverage['Submitted and indexed'] || 0
+	return {
+		inspected: urlInspection.length,
+		indexed,
+		notIndexed: urlInspection.length - indexed - errors,
+		errors,
+		canonicalConflicts,
+		byCoverage,
+	}
+}
+
 function renderMarkdown(report) {
-	const { generatedAt, siteUrl, issues, searchAnalytics, sitemaps, urlInspection } = report
+	const { generatedAt, siteUrl, issues, summary, searchAnalytics, sitemaps, urlInspection } = report
 	const lines = []
 	lines.push(`# Search Console report — ${siteUrl}`)
 	lines.push('')
@@ -372,6 +404,21 @@ function renderMarkdown(report) {
 		lines.push('| Type | Target | Detail |')
 		lines.push('| --- | --- | --- |')
 		for (const i of issues) lines.push(`| ${i.type} | ${i.target} | ${i.detail} |`)
+	}
+	lines.push('')
+
+	lines.push('## Indexing summary')
+	lines.push('')
+	if (summary.inspected === 0) {
+		lines.push('No URLs inspected.')
+	} else {
+		lines.push(`${summary.indexed} indexed, ${summary.notIndexed} not indexed, ${summary.errors} errored — of ${summary.inspected} inspected. ${summary.canonicalConflicts} canonical conflict(s).`)
+		lines.push('')
+		lines.push('| Coverage state | Count |')
+		lines.push('| --- | --: |')
+		for (const [state, count] of Object.entries(summary.byCoverage).sort((a, b) => b[1] - a[1])) {
+			lines.push(`| ${state} | ${count} |`)
+		}
 	}
 	lines.push('')
 
@@ -409,10 +456,14 @@ function renderMarkdown(report) {
 	if (urlInspection.length === 0) {
 		lines.push('Skipped or no URLs inspected.')
 	} else {
-		lines.push('| URL | Coverage | Robots | Last crawl |')
-		lines.push('| --- | --- | --- | --- |')
+		lines.push('| URL | Coverage | Robots | Crawl age | Google canonical |')
+		lines.push('| --- | --- | --- | --: | --- |')
 		for (const r of urlInspection) {
-			lines.push(`| ${r.url} | ${r.coverageState || r.error || '?'} | ${r.robotsTxtState || '?'} | ${r.lastCrawlTime || 'never'} |`)
+			const age = ageInDays(r.lastCrawlTime)
+			const crawl = age === null ? 'never' : `${age}d`
+			// Only call out the canonical when Google disagrees with the page's declared one.
+			const canonical = r.googleCanonical && r.userCanonical && r.googleCanonical !== r.userCanonical ? r.googleCanonical : ''
+			lines.push(`| ${r.url} | ${r.coverageState || r.error || '?'} | ${r.robotsTxtState || '?'} | ${crawl} | ${canonical} |`)
 		}
 	}
 	lines.push('')
@@ -438,6 +489,7 @@ async function main() {
 	const report = {
 		generatedAt: new Date().toISOString(),
 		siteUrl: SITE_URL,
+		summary: summarizeIndexing(urlInspection),
 		searchAnalytics,
 		sitemaps,
 		urlInspection,
