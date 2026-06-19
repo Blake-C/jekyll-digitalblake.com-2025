@@ -107,9 +107,25 @@
 		{%- assign og_image = site.default_og_image -%}
 	{%- endif -%}
 	{%- if og_image -%}
+		{%- assign og_image_ext = og_image | split: '.' | last | downcase -%}
+		{%- if og_image_ext == 'jpg' or og_image_ext == 'jpeg' -%}
+			{%- assign og_image_type = 'image/jpeg' -%}
+		{%- elsif og_image_ext == 'png' -%}
+			{%- assign og_image_type = 'image/png' -%}
+		{%- elsif og_image_ext == 'webp' -%}
+			{%- assign og_image_type = 'image/webp' -%}
+		{%- elsif og_image_ext == 'gif' -%}
+			{%- assign og_image_type = 'image/gif' -%}
+		{%- else -%}
+			{%- assign og_image_type = null -%}
+		{%- endif -%}
 		<meta property="og:image" content="{{ og_image | absolute_url }}">
+		{%- if og_image_type %}
+			<meta property="og:image:type" content="{{ og_image_type }}">
+		{%- endif %}
 		<meta property="og:image:width" content="1200">
 		<meta property="og:image:height" content="630">
+		<meta property="og:image:alt" content="{{ page.title | default: site.title | escape }}">
 	{%- endif -%}
 
 	<!-- Twitter / X Card -->
