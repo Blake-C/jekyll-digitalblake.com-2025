@@ -1,6 +1,10 @@
 @use '../helpers/breakpoints' as bp;
 @use '../helpers/variables' as v;
 
+// Category-widget folder icon, inlined as a data URI (extracted from the former icons.svg sprite).
+// The SVG keeps a 40x30 viewBox so it renders 1:1 in the `::before` box below.
+$icon-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='450 112 40 30'%3E%3Cpath d='m464.77 118 3.076 3.077h10.77V138H454v-20z'/%3E%3C/svg%3E");
+
 .sidebar {
 	background-color: v.$white;
 	border-left: 3px solid v.$blue;
@@ -56,8 +60,7 @@
 		position: relative;
 
 		&::before {
-			background-image: url('../images/icons.svg');
-			background-position: -450px -112px;
+			background-image: $icon-folder;
 			background-repeat: no-repeat;
 			bottom: 50%;
 			content: '';
@@ -68,34 +71,6 @@
 			position: absolute;
 			top: 50%;
 			width: 40px;
-
-			.no-svg & {
-				background-image: url('../images/icons.png');
-			}
-		}
-
-		&[href*='css'] {
-			&::before {
-				background-position: -28px -198px;
-			}
-		}
-
-		&[href*='docker'] {
-			&::before {
-				background-position: -108px -198px;
-			}
-		}
-
-		&[href*='javascript'] {
-			&::before {
-				background-position: -198px -198px;
-			}
-		}
-
-		&[href*='webpack'] {
-			&::before {
-				background-position: -280px -198px;
-			}
 		}
 	}
 }
