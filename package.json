@@ -51,6 +51,7 @@
 		"build:fonts": "node script/build-fonts.mjs --emit",
 		"build:images": "node script/optimize-images.mjs",
 		"cache:thumbnails": "node script/cache-youtube-thumbnails.mjs",
+		"sync:search-console": "node script/sync-search-console.mjs",
 		"watch:styles": "sass --load-path=node_modules --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css theme_components/sass/critical-styles.scss:_includes/critical.min.css theme_components/sass/prism-styles.scss:assets/css/prism.min.css --style=compressed --no-error-css --charset",
 		"watch:scripts": "webpack --watch",
 		"build": "pnpm run build:images && pnpm run cache:thumbnails && pnpm run build:fonts && pnpm run build:styles && pnpm run build:scripts && node script/hash-assets.mjs && bundle exec jekyll build",
