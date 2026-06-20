@@ -3,6 +3,7 @@ layout: post
 title: 'Optimizing Self-Hosted Fonts with fonttools and brotli'
 description: 'Self-hosted Lato and Inter were dragging down a Next.js build. Subsetting the glyphs with pyftsubset and re-compressing with brotli cut the font payload by roughly 89%. Here are the commands, the real before and after numbers, the localization tradeoffs, and the risks.'
 date: 2026-06-11 18:32:33 CDT -0500
+modified_date: 2026-06-19 20:30:44 CDT -0500
 categories: ['Articles']
 tags: ['fonts', 'performance', 'web-performance', 'fonttools', 'brotli', 'python', 'nextjs', 'self-hosting']
 image: '/assets/uploads/2026/06/optimizing-self-hosted-fonts-with-fonttools-and-brotli.webp'
@@ -85,6 +86,47 @@ CJK is the outlier. Chinese, Japanese, and Korean fonts carry tens of thousands 
 
 The practical rule: decide which languages you support before you subset. Subsetting without that list is how you ship broken text to a region you forgot about.
 
+## Variable fonts as an alternative
+
+Everything above ships a separate file per weight. Four Lato weights are four requests and four subsets to maintain. A variable font collapses the weight range into one file with a `wght` axis, so those four become one request that still gives you Regular through Black and everything in between.
+
+You subset a variable font the same way, with one extra step in front. Pin the axis to the range you actually use before subsetting, so you are not carrying interpolation data for weights you never render:
+
+```bash
+fonttools varLib.instancer Lato-Variable.ttf wght=400:900 \
+	-o Lato-axis.ttf
+
+pyftsubset Lato-axis.ttf \
+	--output-file=lato-variable.subset.woff2 \
+	--flavor=woff2 \
+	--layout-features='kern,liga,clig' \
+	--unicodes=U+0000-00FF,U+2013-2014,U+2018-2019,U+201C-201D,U+2022,U+2026,U+2122
+```
+
+The `@font-face` then declares the range instead of a single weight, and the browser interpolates:
+
+```css
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/lato-variable.subset.woff2') format('woff2');
+	font-weight: 400 900;
+}
+```
+
+The tradeoff is in the math. A variable font carries the interpolation data for the whole axis, so one variable file is larger than one static weight. The win shows up once you ship three or more weights: the single variable file usually beats the sum of the static subsets, and it is one request instead of several. If you only ship Regular and Bold, two static subsets can still come out smaller. Count the weights you actually use before you decide.
+
+## Cache busting when the subset changes
+
+A subset is a build artifact, and you will rebuild it. You add a language, catch a glyph you missed, or drop a weight, and out comes a new file. The problem is that the file name usually does not change. `lato-latin.woff2` is `lato-latin.woff2` whether it holds the old bytes or the new ones.
+
+Fonts are exactly the kind of asset browsers and CDNs cache hard, because they normally never change. So a visitor who already has the old file keeps it. You ship new bytes under an old name and nobody downloads them. It gets worse when you self-host, because the `@font-face` is often inlined into the critical CSS in the document head, so even a fresh HTML response still points at the same stale URL.
+
+The fix is to fingerprint the file name with a hash of its contents. `lato-latin.woff2` becomes `lato-latin.9f3c2a1b.woff2`. Change the bytes and the hash changes, so the URL changes, so the cache misses and the browser pulls the new file. Leave the bytes alone and the URL is stable, so the cache hit stands.
+
+Plenty of build setups already do this for CSS and JavaScript. If yours does, point the font at the same manifest and you get it for free. If it does not, you can hash the font on its own: rename the file to include a content hash at build time, then reference that name in both the `preload` and the `@font-face src`. Either way, once the URL changes on every content change, you can set a long `immutable` cache header on the font path and let the hash do the invalidation.
+
+Skip this and the failure is quiet. You rebuild a subset, deploy, and the old font keeps rendering for everyone who has it cached. Disabling the cache in devtools makes it look fixed, which is exactly how you end up debugging the wrong thing for an hour.
+
 ## The risks
 
 Subsetting is lossy by design. The things it can break:
@@ -97,3 +139,7 @@ Subsetting is lossy by design. The things it can break:
 - **No double-compression payoff.** WOFF2 is already brotli-compressed. Adding brotli `Content-Encoding` at the HTTP layer on top of a WOFF2 buys almost nothing and wastes server CPU. Compress your other assets that way, not your fonts.
 
 When you self-host, the file is yours to trim, and subsetting is the highest-leverage move available. Just do it after you know exactly which characters you need to render, not before.
+
+---
+
+**Updated June 19, 2026 (Update 1):** Added two sections that were missing from the original. "Variable fonts as an alternative" covers how a single variable file with a `wght` axis can stand in for several static weight files, and when the byte math favors it. "Cache busting when the subset changes" covers why a rebuilt subset keeps serving stale bytes under a stable file name, and how content-hashing the font URL fixes it.
