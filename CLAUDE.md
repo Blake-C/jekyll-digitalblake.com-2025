@@ -89,6 +89,29 @@ author: 'author_slug' # optional, defaults to site.author.id
 
 New post filenames follow the pattern `YYYY-MM-DD-slug.md`. Use the current date/time in America/Chicago (CT) for both the filename and `date` field.
 
+### Pillar pages (topic clusters)
+
+Pillar pages are hand-written, **indexable** topic hubs under `/guides/` that link out to every article in a cluster, with each article linking back (bidirectional hub-and-spoke for topical authority). They are distinct from the `noindex` `/category/` and `/tag/` archives and sit alongside them. The system is registry-driven, so adding articles is front-matter only.
+
+**Registry — `_data/pillars.yml`:** each pillar is keyed by id with `title`, `url` (always `/guides/<slug>/`), and `description`. This is the single source of truth, read by the hub page, the per-post backlink, the `/guides/` index, and the `CollectionPage` JSON-LD.
+
+**To add an existing post to a pillar** (the common case): add two keys to its front matter — nothing else needs editing.
+
+```yaml
+pillar: claude-code-ai # must match a key in _data/pillars.yml
+pillar_section: apps # optional grouping: which section's card grid it appears in
+```
+
+Membership is explicit via `pillar` (not the broad tag), so tangential posts are not swept in. On the next build the post automatically: gets a "Part of the guide" backlink (`_layouts/post.html`, via the registry); appears as a card in the hub's matching section; and is added to the hub's `CollectionPage`/`ItemList` JSON-LD.
+
+**To create a new pillar:**
+
+1. Add an entry to `_data/pillars.yml` (its `url` must be `/guides/<slug>/`).
+2. Create `<slug>.md` at the repo root with `layout: content-page`, `permalink: /guides/<slug>/`, `pillar: <id>`, and a `toc:` list (each item has `label` + `anchor`; include a `Brief` item linking to `#top`). Write intro prose, then per section an `<h2 id="...">`, short prose, and `{% include article-card-grid.html pillar='<id>' section='<section>' %}`.
+3. Tag the cluster posts as above.
+
+The `/guides/` index (`guides.md`) lists every registry entry automatically — no edit needed. The sticky TOC sidebar renders whenever a `content-page` defines `toc:` (`_layouts/content-page.html`); `wide: true` instead yields a full-width page with no sidebar. The `CollectionPage` JSON-LD and the `Guides` breadcrumb level for `/guides/*` pages are wired in `_includes/head.html` and `_includes/jsonld-breadcrumb.html`.
+
 ### Authors
 
 Defined in `_data/authors.yml`. The custom plugin `_plugins/author_pages.rb` generates paginated author archive pages at build time.
