@@ -47,7 +47,7 @@
 	}
 
 	&__role {
-		color: v.$dark-gray;
+		color: v.$text-muted;
 		font-size: bp.rem-calc(13);
 		font-weight: 700;
 		letter-spacing: 0.5px;
@@ -66,7 +66,7 @@
 	}
 
 	&__dates {
-		color: v.$dark-gray;
+		color: v.$text-muted;
 		display: block;
 		font-size: bp.rem-calc(13);
 		font-weight: 400;
@@ -137,7 +137,7 @@
 	}
 
 	&__items {
-		color: v.$dark-gray;
+		color: v.$text-muted;
 		font-size: bp.rem-calc(14);
 		font-weight: 400;
 		line-height: 1.5;

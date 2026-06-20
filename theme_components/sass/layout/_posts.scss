@@ -72,7 +72,7 @@
 	}
 
 	&__date {
-		color: v.$dark-gray;
+		color: v.$text-muted;
 		font-size: bp.rem-calc(13);
 		white-space: nowrap;
 	}
@@ -335,7 +335,7 @@
 		}
 
 		&__date {
-			color: #595959; // ~5.4:1 on #e4e4e4 (was $dark-gray #8a8a8a)
+			color: v.$text-muted; // ~5.4:1 on #e4e4e4 (was $dark-gray #8a8a8a)
 			opacity: 1; // reset the 0.6 inherited from the base component
 		}
 
