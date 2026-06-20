@@ -68,6 +68,7 @@
 	flex-direction: column;
 	gap: bp.rem-calc(8);
 	padding: bp.rem-calc(20);
+	position: relative;
 	transition:
 		border-color 0.2s ease,
 		box-shadow 0.2s ease;
@@ -76,6 +77,10 @@
 	&:focus-within {
 		border-color: v.$accent-1;
 		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+		.pillar-card__link {
+			text-decoration: underline;
+		}
 	}
 
 	&__date {
@@ -91,6 +96,13 @@
 		font-weight: 700;
 		line-height: 1.35;
 		margin: 0;
+	}
+
+	/* Stretch the title link over the whole card so any click navigates */
+	&__link::after {
+		content: '';
+		inset: 0;
+		position: absolute;
 	}
 
 	&__desc {
