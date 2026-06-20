@@ -7,6 +7,27 @@ body {
 	word-wrap: break-word;
 }
 
+// Generic "back to listing" link used at the top of single post and case-study
+// pages. Lives in generic styles (shipped in the critical CSS) so it renders at
+// its final size on first paint instead of inheriting a larger size and visibly
+// shrinking once the global stylesheet loads.
+.back-link {
+	font-size: bp.rem-calc(13);
+	font-weight: 600;
+	margin-bottom: bp.rem-calc(24);
+	margin-top: 0;
+
+	a {
+		color: color.mix(v.$primary, #fff, 75%);
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: v.$primary;
+		}
+	}
+}
+
 h1 {
 	font-size: bp.rem-calc(28);
 	text-transform: uppercase;

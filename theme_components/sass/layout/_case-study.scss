@@ -34,23 +34,6 @@
 	}
 }
 
-.case-study__back {
-	font-size: bp.rem-calc(13);
-	font-weight: 600;
-	margin-bottom: bp.rem-calc(24);
-	margin-top: 0;
-
-	a {
-		color: color.mix(v.$primary, #fff, 75%);
-		text-decoration: none;
-		transition: color 0.2s ease;
-
-		&:hover {
-			color: v.$primary;
-		}
-	}
-}
-
 .case-study__tech-tags {
 	margin-top: bp.rem-calc(12);
 }
