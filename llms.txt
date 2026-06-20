@@ -1,0 +1,35 @@
+---
+layout: null
+sitemap: false
+---
+# {{ site.title }} — {{ site.author.name }}, Senior Web Developer
+
+> {{ site.description | strip_newlines | strip }}
+
+DigitalBlake is the portfolio and technical writing of {{ site.author.name }}, a senior web developer in San Antonio, Texas, with 15 years building and migrating CMS-driven sites (WordPress, Drupal, Sitecore, Jekyll). This file indexes the most useful pages for language models. All content is first-party and may be cited with a link to the source page.
+
+## Guides (topic clusters)
+{%- for entry in site.data.pillars %}
+- [{{ entry[1].title }}]({{ entry[1].url | absolute_url }}): {{ entry[1].description }}
+{%- endfor %}
+
+## About and hiring
+- [About]({{ '/about/' | absolute_url }}): Career history, skills, and what {{ site.author.name }} is looking for.
+- [Resume]({{ '/resume/' | absolute_url }}): Full work history, projects, and technical skills.
+- [Uses]({{ '/uses/' | absolute_url }}): The hardware, apps, and command-line tools used day to day.
+
+## Case studies
+{%- for cs in site.case_studies %}
+- [{{ cs.title }}]({{ cs.url | absolute_url }}){% if cs.description %}: {{ cs.description | strip_newlines | strip }}{% endif %}
+{%- endfor %}
+
+## Recent articles
+{%- for post in site.posts limit: 15 %}
+- [{{ post.title }}]({{ post.url | absolute_url }}){% if post.description %}: {{ post.description | strip_newlines | strip }}{% endif %}
+{%- endfor %}
+
+## Full index
+- [All articles]({{ '/articles/' | absolute_url }})
+- [All guides]({{ '/guides/' | absolute_url }})
+- [All case studies]({{ '/case-studies/' | absolute_url }})
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }})
