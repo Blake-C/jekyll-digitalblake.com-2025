@@ -1,10 +1,6 @@
-const timeline = document.querySelector('.career-timeline')
+const timelines = document.querySelectorAll('.career-timeline')
 
-if (timeline && 'IntersectionObserver' in window) {
-	timeline.classList.add('js-timeline-animate')
-
-	const items = timeline.querySelectorAll('.career-timeline__item')
-
+if (timelines.length && 'IntersectionObserver' in window) {
 	const observer = new IntersectionObserver(
 		entries => {
 			entries.forEach(entry => {
@@ -17,8 +13,13 @@ if (timeline && 'IntersectionObserver' in window) {
 		{ threshold: 0.15 },
 	)
 
-	items.forEach((item, i) => {
-		item.style.setProperty('--reveal-delay', `${i * 0.08}s`)
-		observer.observe(item)
+	timelines.forEach(timeline => {
+		timeline.classList.add('js-timeline-animate')
+
+		// Stagger resets per timeline so each section reveals on its own cadence.
+		timeline.querySelectorAll('.career-timeline__item').forEach((item, i) => {
+			item.style.setProperty('--reveal-delay', `${i * 0.08}s`)
+			observer.observe(item)
+		})
 	})
 }
