@@ -1,4 +1,5 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/cards' as cards;
 @use '../helpers/variables' as v;
 
 .recent-articles {
@@ -27,6 +28,8 @@
 	}
 
 	&__item {
+		@include cards.clickable('.recent-articles__link');
+
 		border-top: 1px solid rgba(255, 255, 255, 0.2);
 		margin-bottom: bp.rem-calc(32);
 		padding-top: bp.rem-calc(20);

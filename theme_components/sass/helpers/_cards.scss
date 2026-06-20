@@ -1,0 +1,53 @@
+// Shared "clickable card" behavior.
+// A card is made fully clickable by a single primary link whose ::after is
+// stretched over the whole card, so a click (or tap) anywhere on the card
+// navigates while the link's accessible name stays just its own text.
+// Call inside the card root, passing the primary link selector. Optionally
+// pass a different selector to underline on hover/focus (defaults to the link).
+// The card becomes the positioning context; the primary link must be in normal
+// flow (not absolutely positioned) or the ::after sizes to the link, not the card.
+@mixin clickable($link, $underline: null) {
+	position: relative;
+
+	// ::before (not ::after) so it never collides with the external-link arrow,
+	// which is rendered via ::after on target="_blank" links. z-index keeps the
+	// hit area above the card's own (non-positioned) content.
+	#{$link}::before {
+		content: '';
+		inset: 0;
+		position: absolute;
+		z-index: 1;
+	}
+
+	&:hover,
+	&:focus-within {
+		@if $underline {
+			#{$underline} {
+				text-decoration: underline;
+			}
+
+			// The stretched link is technically :hover, which would trigger the
+			// global a:hover underline; suppress it so only the target underlines.
+			#{$link} {
+				text-decoration: none;
+			}
+		} @else {
+			#{$link} {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// Keyboard-only focus ring around the whole card (not shown on mouse click).
+	// Where :has is unsupported, the link keeps its native focus outline instead.
+	@supports selector(:has(*)) {
+		#{$link}:focus-visible {
+			outline: none;
+		}
+
+		&:has(#{$link}:focus-visible) {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	}
+}

@@ -1,4 +1,5 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/cards' as cards;
 @use '../helpers/variables' as v;
 
 .articles-intro {
@@ -47,14 +48,16 @@
 }
 
 .post-item {
-	margin-bottom: 50px;
-	position: relative;
+	@include cards.clickable('.post-link', '.entry-title');
 
-	&:hover {
-		.entry-title {
-			text-decoration: underline;
-			text-decoration-skip-ink: auto;
-		}
+	background-color: v.$white;
+	margin-bottom: 50px;
+	overflow: clip;
+	transition: box-shadow 0.3s;
+
+	&:hover,
+	&:focus-within {
+		box-shadow: 2px 2px 0 1px rgb(0 0 0 / 23%);
 	}
 
 	.entry-content {
@@ -62,6 +65,7 @@
 
 		p {
 			font-size: bp.rem-calc(15);
+			margin-bottom: 0;
 		}
 	}
 
@@ -126,33 +130,10 @@
 		}
 	}
 
-	.post-link {
-		background-color: v.$white;
-		display: block;
-		overflow: clip;
-		padding: 0;
-		transition:
-			background-color 0.3s,
-			box-shadow 0.3s;
-
-		&:hover,
-		&:focus {
-			box-shadow: 2px 2px 0 1px rgb(0 0 0 / 23%);
-			text-decoration: none;
-		}
-
-		&:focus-visible {
-			outline: 2px solid v.$primary;
-			outline-offset: -2px;
-		}
-
-		&:focus:not(:focus-visible) {
-			outline: 0;
-		}
-
-		p {
-			margin-bottom: 0;
-		}
+	// Title link sits inside .entry-content, so override the article-body link
+	// color ($accent-2) back to the listing's dark title color.
+	.entry-title .post-link {
+		color: v.$black;
 	}
 
 	@include bp.breakpoint(small only) {

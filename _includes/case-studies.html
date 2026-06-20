@@ -8,10 +8,8 @@
 				{%- for site_item in site.case_studies -%}
 					{%- if site_item.featured == true -%}
 						<div class="large-4 medium-6 small-12 columns">
-							<a
-								href="{{ site_item.url | relative_url }}"
+							<div
 								class="case-studies__card"
-								aria-label="View case study: {{ site_item.title | escape }}"
 								{%- if site_item.hero_image %}
 									data-prefetch="{{ site_item.hero_image | relative_url }}"
 								{% endif %}
@@ -28,7 +26,11 @@
 									>
 								</div>
 								<div class="case-studies__card-body">
-									<p class="case-studies__item-title">{{ site_item.title }}</p>
+									<p class="case-studies__item-title">
+										<a class="case-studies__title-link" href="{{ site_item.url | relative_url }}">
+											{{- site_item.title -}}
+										</a>
+									</p>
 									{%- if site_item.tech -%}
 										<ul class="case-studies__tags" aria-label="Technologies used">
 											{%- for tag in site_item.tech -%}
@@ -38,7 +40,7 @@
 									{%- endif -%}
 									<span class="case-studies__cta-hint" aria-hidden="true">View case study</span>
 								</div>
-							</a>
+							</div>
 						</div>
 					{%- endif -%}
 				{%- endfor -%}
@@ -52,10 +54,8 @@
 					{%- for site_item in site.case_studies -%}
 						{%- unless site_item.featured == true -%}
 							<div class="large-4 medium-6 small-12 columns">
-								<a
-									href="{{ site_item.url | relative_url }}"
+								<div
 									class="case-studies__card"
-									aria-label="View case study: {{ site_item.title | escape }}"
 									{%- if site_item.hero_image %}
 										data-prefetch="{{ site_item.hero_image | relative_url }}"
 									{% endif %}
@@ -72,7 +72,14 @@
 										>
 									</div>
 									<div class="case-studies__card-body">
-										<p class="case-studies__item-title">{{ site_item.title }}</p>
+										<p class="case-studies__item-title">
+											<a
+												class="case-studies__title-link"
+												href="{{ site_item.url | relative_url }}"
+											>
+												{{- site_item.title -}}
+											</a>
+										</p>
 										{%- if site_item.tech -%}
 											<ul class="case-studies__tags" aria-label="Technologies used">
 												{%- for tag in site_item.tech -%}
@@ -82,7 +89,7 @@
 										{%- endif -%}
 										<span class="case-studies__cta-hint" aria-hidden="true">View case study</span>
 									</div>
-								</a>
+								</div>
 							</div>
 						{%- endunless -%}
 					{%- endfor -%}

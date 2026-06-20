@@ -1,4 +1,5 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/cards' as cards;
 @use '../helpers/helpers';
 @use '../helpers/variables' as v;
 
@@ -59,15 +60,18 @@
 }
 
 .coding-project {
+	@include cards.clickable('.coding-project__link');
+
 	backdrop-filter: blur(11px);
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	box-shadow: 0 48px 18px -36px rgba(0, 0, 0, 0.18);
 	color: v.$white;
+	display: flex;
+	flex-direction: column;
 	margin-bottom: 30px;
-	padding: 30px 20px 80px;
-	position: relative;
+	padding: 30px 20px;
 	width: 100%;
 
 	p {
@@ -96,13 +100,10 @@
 	}
 
 	&__link {
-		bottom: 30px;
-		margin-top: 20px;
-		position: absolute;
 		color: v.$white;
 		font-size: bp.rem-calc(19);
-		// font-family: Montserrat;
 		font-weight: 900;
+		margin-top: auto;
 	}
 
 	@include bp.breakpoint(small only) {
