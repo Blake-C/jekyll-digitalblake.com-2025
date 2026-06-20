@@ -1,0 +1,7 @@
+# Topic-cluster pillar pages. Keyed by pillar id.
+# A post joins a pillar via `pillar: <id>` (and optional `pillar_section:`) in its
+# front matter; the hub page and the per-post backlink both read from this registry.
+claude-code-ai:
+    title: Building with Claude Code
+    url: /guides/building-with-claude-code/
+    description: 'How I build, debug, and customize real software with Claude Code, including native macOS apps in a language I do not know.'

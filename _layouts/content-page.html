@@ -5,16 +5,20 @@ layout: base
 	<div class="row">
 		<main class="medium-12 small-12 columns" id="content">
 			<article id="page-{{ page.slug }}" class="main-content-block page type-page status-publish hentry">
+				{%- assign content_columns = 'large-9 medium-12 small-12 columns' -%}
+				{%- if page.wide -%}
+					{%- assign content_columns = 'large-12 medium-12 small-12 columns' -%}
+				{%- endif -%}
 				<div class="row">
-					<div class="large-9 medium-12 small-12 columns">
-						<header class="entry-header">
+					<div class="{{ content_columns }}">
+						<header class="entry-header" id="top">
 							<h1 class="entry-title">{{ page.title | escape }}</h1>
 						</header>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="large-9 medium-12 small-12 columns">
+					<div class="{{ content_columns }}">
 						<div class="entry-content">
 							{{ content }}
 
@@ -33,7 +37,22 @@ layout: base
 						</div>
 					</div>
 
-					{%- include sidebar.html -%}
+					{%- if page.toc -%}
+						<div class="large-3 medium-12 small-12 columns pillar-toc-col">
+							<nav class="pillar-toc" aria-label="On this page">
+								<h2 class="pillar-toc__label">On this page</h2>
+								<ul class="pillar-toc__list">
+									{%- for item in page.toc -%}
+										<li>
+											<a href="{{ item.anchor }}">{{ item.label | escape }}</a>
+										</li>
+									{%- endfor -%}
+								</ul>
+							</nav>
+						</div>
+					{%- elsif page.wide != true -%}
+						{%- include sidebar.html -%}
+					{%- endif -%}
 				</div>
 			</article>
 		</main>

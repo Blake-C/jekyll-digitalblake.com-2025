@@ -21,8 +21,15 @@
 	{%- capture arc_item -%}{"@type":"ListItem","position":2,"name":{{ page.pagination.tag | jsonify }},"item":"{{ page.url | absolute_url }}"}{%- endcapture -%}
 	{%- assign crumbs = crumbs | push: arc_item -%}
 {%- elsif page.title -%}
-	{%- capture page_item -%}{"@type":"ListItem","position":2,"name":{{ page.title | escape | jsonify }},"item":"{{ page.url | absolute_url }}"}{%- endcapture -%}
-	{%- assign crumbs = crumbs | push: page_item -%}
+	{%- if page.url contains '/guides/' and page.url != '/guides/' -%}
+		{%- capture guides_item -%}{"@type":"ListItem","position":2,"name":"Guides","item":"{{ '/guides/' | absolute_url }}"}{%- endcapture -%}
+		{%- assign crumbs = crumbs | push: guides_item -%}
+		{%- capture page_item -%}{"@type":"ListItem","position":3,"name":{{ page.title | escape | jsonify }},"item":"{{ page.url | absolute_url }}"}{%- endcapture -%}
+		{%- assign crumbs = crumbs | push: page_item -%}
+	{%- else -%}
+		{%- capture page_item -%}{"@type":"ListItem","position":2,"name":{{ page.title | escape | jsonify }},"item":"{{ page.url | absolute_url }}"}{%- endcapture -%}
+		{%- assign crumbs = crumbs | push: page_item -%}
+	{%- endif -%}
 {%- endif -%}
 
 {%- if crumbs.size > 1 -%}

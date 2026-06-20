@@ -5,6 +5,8 @@ description: 'What happens when you let an LLM refactor your dotfiles without ch
 date: 2026-04-23 06:14:09 CDT -0500
 categories: ['Articles']
 tags: ['macos', 'dotfiles', 'shell', 'karabiner-elements', 'claude-code', 'macos-recovery', 'automation']
+pillar: claude-code-ai
+pillar_section: lessons
 image: 'assets/uploads/2025/04/my-very-fun-super-duper-evening-social-share-image.webp'
 ---
 

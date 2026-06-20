@@ -5,6 +5,8 @@ description: "The macOS News app gave me anxiety. So I built my own RSS reader i
 date: 2026-04-21 21:45:48 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'claude-code', 'rss', 'ollama', 'ai']
+pillar: claude-code-ai
+pillar_section: apps
 image: '/assets/uploads/2025/04/the-daily-feed-source-feed-view.webp'
 ---
 

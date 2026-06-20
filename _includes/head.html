@@ -194,6 +194,8 @@
 		{%- include jsonld-creative-work.html -%}
 	{%- elsif page.profile_schema -%}
 		{%- include jsonld-profilepage.html -%}
+	{%- elsif page.pillar -%}
+		{%- include jsonld-collectionpage.html -%}
 	{%- elsif page.url == '/' -%}
 		{%- include jsonld-person.html -%}
 	{%- endif -%}

@@ -5,6 +5,8 @@ description: 'My terminal was taking over a second to show a prompt. One profili
 date: 2026-04-22 03:07:47 -0500
 categories: ['Articles']
 tags: ['macos', 'command-line', 'shell-script', 'zsh', 'claude-code', 'node', 'performance']
+pillar: claude-code-ai
+pillar_section: tooling
 image: 'assets/uploads/2025/04/speeding-up-zsh-startup-fixing-compinit-nvm-and-claude-code-path-issues.webp'
 ---
 

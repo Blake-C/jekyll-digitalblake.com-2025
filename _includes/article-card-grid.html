@@ -1,0 +1,28 @@
+{%- comment -%}
+	Renders a responsive grid of article cards for a pillar topic cluster.
+	Params:
+	  include.pillar  (required) pillar id, matched against each post's `pillar` front matter
+	  include.section (optional) limits to posts whose `pillar_section` matches
+{%- endcomment -%}
+{%- assign cards = site.posts | where: 'pillar', include.pillar -%}
+{%- if include.section -%}
+	{%- assign cards = cards | where: 'pillar_section', include.section -%}
+{%- endif -%}
+{%- assign cards = cards | sort: 'date' | reverse -%}
+{%- if cards.size > 0 -%}
+	<ul class="pillar-cards">
+		{%- for post in cards -%}
+			<li class="pillar-card">
+				<time class="pillar-card__date" datetime="{{ post.date | date_to_xmlschema }}">
+					{{- post.date | date: '%B %-d, %Y' -}}
+				</time>
+				<h3 class="pillar-card__title">
+					<a class="pillar-card__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+				</h3>
+				{%- if post.description -%}
+					<p class="pillar-card__desc">{{ post.description | escape }}</p>
+				{%- endif -%}
+			</li>
+		{%- endfor -%}
+	</ul>
+{%- endif -%}

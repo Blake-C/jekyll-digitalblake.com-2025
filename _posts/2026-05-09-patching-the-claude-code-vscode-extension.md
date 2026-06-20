@@ -5,6 +5,8 @@ description: 'The official Claude Code extension had five behaviors that added f
 date: 2026-05-09 00:19:51 -0500
 categories: ['Articles']
 tags: ['claude-code', 'vscode', 'extension', 'developer-tools', 'typescript']
+pillar: claude-code-ai
+pillar_section: tooling
 image: assets/uploads/2025/05/patching-the-claude-code-vs-code-extension-social-share-image.webp
 ---
 

@@ -6,6 +6,8 @@ date: 2026-04-19 09:00:00 -0500
 modified_date: 2026-04-19 09:00:00 -0500
 categories: ['Articles']
 tags: ['javascript', 'php', 'wordpress', 'claude-code', 'ai']
+pillar: claude-code-ai
+pillar_section: apps
 image: '/assets/uploads/2025/04/exit intent - front-end dark mode.webp'
 ---
 
