@@ -64,6 +64,34 @@
 			font-size: bp.rem-calc(16);
 		}
 	}
+
+	&__dates {
+		color: v.$dark-gray;
+		display: block;
+		font-size: bp.rem-calc(13);
+		font-weight: 400;
+		line-height: 1.4;
+		margin-top: bp.rem-calc(2);
+	}
+
+	&__bullets {
+		font-size: bp.rem-calc(14);
+		line-height: 1.7;
+		margin: bp.rem-calc(6) 0 0;
+		padding-left: bp.rem-calc(18);
+
+		@include bp.breakpoint(medium) {
+			font-size: bp.rem-calc(16);
+		}
+
+		li {
+			margin-bottom: bp.rem-calc(4);
+		}
+	}
+}
+
+.resume-actions {
+	margin: bp.rem-calc(20) 0 bp.rem-calc(32);
 }
 
 .js-timeline-animate {

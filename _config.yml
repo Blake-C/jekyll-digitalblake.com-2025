@@ -86,8 +86,7 @@ nav_pages:
     - title: About
       url: '/about/'
     - title: Resume
-      use_resume_url: true
-      target: '_blank'
+      url: '/resume/'
 
 collections:
     coding_projects:

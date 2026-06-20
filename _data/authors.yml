@@ -2,4 +2,21 @@ digitalblake:
     name: Blake Cerecero
     email: blake@digitalblake.com
     uri: https://digitalblake.com/author/digitalblake/
+    jobTitle: Senior Web Developer
+    location:
+        locality: San Antonio
+        region: TX
+        country: US
+    knowsAbout:
+        - WordPress
+        - Drupal
+        - Sitecore
+        - Joomla
+        - Jekyll
+        - JavaScript
+        - PHP
+        - CMS migrations
+        - Gutenberg block development
+        - Web accessibility
+        - API integrations
     description: 'Senior web developer with 15 years building CMS architectures, leading migrations, and shipping front-ends that hold up long after the original build. WordPress, Drupal, Sitecore, Jekyll, and the JavaScript in between.'

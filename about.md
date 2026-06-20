@@ -4,6 +4,7 @@ title: Blake Cerecero
 permalink: /about/
 description: 'Senior web developer with 15 years building fast, accessible sites on WordPress, Drupal, Sitecore, and beyond.'
 show_testimonials: true
+profile_schema: true
 ---
 
 <p>I got into this through the back door. I was working as a lab tech in the Digital Media department at Northwest Vista College. Students came to me when they were stuck, and it was my job to know the answer or find who did. That pattern has followed me through every job since.</p>
