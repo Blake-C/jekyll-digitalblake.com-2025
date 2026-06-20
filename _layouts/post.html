@@ -11,15 +11,6 @@ layout: base
 				<div class="row">
 					<div class="large-9 medium-12 small-12 columns">
 						<p class="back-link"><a href="{{ '/articles/' | relative_url }}">← All Articles</a></p>
-						{%- if page.pillar -%}
-							{%- assign pillar = site.data.pillars[page.pillar] -%}
-							{%- if pillar -%}
-								<p class="pillar-banner">
-									Part of the guide:
-									<a href="{{ pillar.url | relative_url }}">{{ pillar.title | escape }}</a>
-								</p>
-							{%- endif -%}
-						{%- endif -%}
 						<header class="entry-header">
 							<h1 class="entry-title">{{ page.title | escape }}</h1>
 							<div class="entry-meta">
@@ -66,6 +57,16 @@ layout: base
 						<div class="entry-content">
 							{{ content }}
 						</div>
+
+						{%- if page.pillar -%}
+							{%- assign pillar = site.data.pillars[page.pillar] -%}
+							{%- if pillar -%}
+								<p class="pillar-banner">
+									Part of the guide:
+									<a href="{{ pillar.url | relative_url }}">{{ pillar.title | escape }}</a>
+								</p>
+							{%- endif -%}
+						{%- endif -%}
 
 						<div class="post-cta">
 							<p>
