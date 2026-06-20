@@ -118,11 +118,7 @@ layout: base
 						<div class="row case-studies__grid">
 							{%- for project in related_projects -%}
 								<div class="large-4 medium-6 small-12 columns">
-									<a
-										href="{{ project.url | relative_url }}"
-										class="case-studies__card"
-										aria-label="View case study: {{ project.title | escape }}"
-									>
+									<div class="case-studies__card">
 										<div class="case-studies__image-wrap">
 											<img
 												loading="lazy"
@@ -135,7 +131,14 @@ layout: base
 											>
 										</div>
 										<div class="case-studies__card-body">
-											<p class="case-studies__item-title">{{ project.title }}</p>
+											<p class="case-studies__item-title">
+												<a
+													class="case-studies__title-link"
+													href="{{ project.url | relative_url }}"
+												>
+													{{- project.title -}}
+												</a>
+											</p>
 											{%- if project.tech -%}
 												<ul class="case-studies__tags" aria-label="Technologies used">
 													{%- for tag in project.tech -%}
@@ -147,7 +150,7 @@ layout: base
 												>View case study</span
 											>
 										</div>
-									</a>
+									</div>
 								</div>
 							{%- endfor -%}
 						</div>
