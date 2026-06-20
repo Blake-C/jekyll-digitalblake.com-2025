@@ -53,7 +53,7 @@ The site ships a single subset Montserrat variable WOFF2 (weight axis 400–900)
 
 ### Asset manifest
 
-After `build:styles` and `build:scripts`, the production build runs `node script/hash-assets.mjs` which creates content-hashed copies of all compiled CSS and JS files and writes `_data/asset_manifest.json`. Jekyll templates read this manifest for cache-busted asset URLs. The manifest file is excluded via `.gitignore` and always generated at build time.
+After `build:styles` and `build:scripts`, the production build runs `node script/hash-assets.mjs` which creates content-hashed copies of all compiled CSS and JS files plus the shipped WOFF2 fonts, and writes `_data/asset_manifest.json`. Jekyll templates read this manifest for cache-busted asset URLs (the inlined `@font-face` resolves its font URL through the manifest too, via `script/rewrite-critical-urls.mjs`). Fingerprinting the font matters because its URL is otherwise stable across subset rebuilds, so a stale copy would keep being served. The manifest file and the hashed copies are excluded via `.gitignore` and always generated at build time.
 
 ## Search Console sync
 

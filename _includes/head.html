@@ -6,11 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 	<!-- Font Preload — single subset variable WOFF2 covers every weight -->
+	{%- assign font_woff2 = site.data.asset_manifest['montserrat-variable-webfont-woff2']
+		| default: '/assets/fonts/montserrat-variable-webfont.woff2'
+	-%}
 	<link
 		rel="preload"
 		as="font"
 		type="font/woff2"
-		href="{{ '/assets/fonts/montserrat-variable-webfont.woff2' | relative_url }}"
+		href="{{ font_woff2 | relative_url }}"
 		crossorigin
 	>
 

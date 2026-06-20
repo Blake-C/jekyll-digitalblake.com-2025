@@ -59,7 +59,7 @@ Two Jekyll configs are used:
     - `critical-styles.scss` → `_includes/critical.min.css` (inlined in `<head>`)
     - `prism-styles.scss` → `assets/css/prism.min.css`
 2. **Webpack** (`theme_components/js/`) bundles two entry points → `assets/js/`
-3. **`script/hash-assets.mjs`** fingerprints compiled CSS/JS with SHA256 hashes and writes `_data/asset_manifest.json` (gitignored); templates reference hashed filenames via this manifest
+3. **`script/hash-assets.mjs`** fingerprints compiled CSS/JS and the shipped WOFF2 fonts with SHA256 hashes and writes `_data/asset_manifest.json` (gitignored); templates reference hashed filenames via this manifest. The inlined `@font-face` src is rewritten to a manifest lookup by `script/rewrite-critical-urls.mjs`, so a rebuilt font subset always gets a new (cache-busting) URL
 
 ### Content collections
 
