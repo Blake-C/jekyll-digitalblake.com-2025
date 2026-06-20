@@ -4,7 +4,7 @@ title: 'How to Create Sublime Text 3 Snippets (with Examples)'
 description: 'Speed up your workflow with Sublime Text 3 snippets. Learn to create custom snippets per file type, with examples for JavaScript, PHP, and more.'
 date: 2018-08-08 22:12:35 -0500
 modified_date: 2026-06-19 10:13:06 -0500
-categories: ['Guides']
+categories: ['Tutorials']
 tags: ['javascript', 'php', 'sublime-text', 'wordpress']
 pillar: wordpress-php
 pillar_section: editor
