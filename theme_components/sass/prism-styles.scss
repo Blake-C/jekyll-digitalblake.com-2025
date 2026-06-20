@@ -4,6 +4,20 @@
 @use 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 @use 'prismjs/plugins/toolbar/prism-toolbar.css';
 
+/*
+ * Pin the code and line-number gutter to one explicit line-height. The
+ * line-numbers plugin positions each gutter row from line-height alone, so any
+ * desync between the code lines and the empty counter spans (font metrics, a
+ * stray cascade override) accumulates down the block until the numbers drift off
+ * the code and the block overflows into a vertical scroll. Locking both sides to
+ * the okaidia value keeps the gutter glued to the code regardless of font.
+ */
+code[class*='language-'],
+pre[class*='language-'],
+.line-numbers-rows > span {
+	line-height: 1.5;
+}
+
 /* WCAG AA: okaidia's #f92672 is 3.92:1 on #272822; Monokai Pro pink is ~5.4:1 */
 .token.property,
 .token.tag,
