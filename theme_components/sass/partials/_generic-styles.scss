@@ -82,6 +82,20 @@ pre {
 	white-space: pre-wrap;
 }
 
+// Prism code blocks must resolve their final white-space and line-height here, in
+// the inlined critical CSS, before the deferred prism stylesheet and the
+// line-numbers script run. The generic `pre` rule above is white-space: pre-wrap;
+// a language block that briefly inherits it makes the line-numbers plugin measure
+// line heights against the body line-height (1.8) and freeze those wrong heights
+// as inline styles on the gutter, so the numbers drift below their lines and a
+// .line-numbers-sizer is left behind. white-space: pre makes the plugin skip that
+// measurement regardless of when the deferred stylesheet loads.
+pre[class*='language-'],
+code[class*='language-'] {
+	line-height: 1.5;
+	white-space: pre;
+}
+
 a {
 	color: v.$blue;
 	text-decoration: none;
