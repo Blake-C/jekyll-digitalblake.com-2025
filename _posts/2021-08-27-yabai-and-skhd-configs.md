@@ -6,6 +6,8 @@ modified_date: 2026-06-19 10:13:06 -0500
 description: 'My complete yabai and skhd config files for tiling window management on macOS: keybindings, rules, and scripts you can copy and adapt.'
 categories: ['Snippets']
 tags: ['command-line', 'learning', 'shell-script']
+pillar: shell-macos
+pillar_section: macos
 image: '/assets/uploads/2021/08/random-1-1200x630-facebook-share-1.webp'
 ---
 

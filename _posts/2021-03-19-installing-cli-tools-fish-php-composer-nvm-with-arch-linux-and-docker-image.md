@@ -6,6 +6,8 @@ date: 2021-03-19 01:38:13 -0500
 modified_date: 2026-06-19 10:13:06 -0500
 categories: ['Notes']
 tags: ['arch', 'command-line', 'docker', 'linux']
+pillar: docker-linux
+pillar_section: linux
 image: '/assets/uploads/2021/03/Installing-CLI-Tools-fish-php-composer-nvm-with-Arch-Linux-and-Docker-Image-1200x630-facebook-share.webp'
 ---
 

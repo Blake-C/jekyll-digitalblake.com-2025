@@ -6,6 +6,8 @@ date: 2018-08-05 04:36:21 -0500
 modified_date: 2020-10-02 21:09:55 -0500
 categories: ['Guides']
 tags: ['php', 'phpcs', 'sublime-text']
+pillar: wordpress-php
+pillar_section: standards
 image: '/assets/uploads/2018/08/output-sublimelinter.webp'
 ---
 

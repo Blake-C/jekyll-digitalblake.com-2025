@@ -6,6 +6,8 @@ date: 2021-01-29 01:04:59 -0600
 modified_date: 2021-02-03 22:04:18 -0600
 categories: ['Guides']
 tags: ['command-line', 'docker', 'ubuntu', 'windows']
+pillar: docker-linux
+pillar_section: linux
 image: '/assets/uploads/2021/01/random-1-1200x630-facebook-share.webp'
 render_with_liquid: false
 ---

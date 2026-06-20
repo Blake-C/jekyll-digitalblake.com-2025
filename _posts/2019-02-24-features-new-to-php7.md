@@ -6,6 +6,8 @@ modified_date: 2020-10-02 21:09:53 -0500
 description: 'A few new PHP7 features that would be useful for frontend developers.'
 categories: ['Notes']
 tags: ['php', 'php7', 'phpcs', 'wordpress']
+pillar: wordpress-php
+pillar_section: language
 image: '/assets/uploads/2019/02/features-new-to-php7-1200x630-facebook-share.webp'
 ---
 

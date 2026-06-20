@@ -6,6 +6,8 @@ date: 2020-07-25 09:46:00 -0500
 modified_date: 2020-10-02 21:09:51 -0500
 categories: ['Notes']
 tags: ['build-systems', 'command-line', 'composer', 'learning', 'macos', 'php', 'php7', 'phpcs', 'wpcs']
+pillar: wordpress-php
+pillar_section: language
 image: '/assets/uploads/2020/07/common-composer-commands.webp'
 ---
 

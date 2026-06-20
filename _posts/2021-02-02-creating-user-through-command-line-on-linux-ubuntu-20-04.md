@@ -6,6 +6,8 @@ date: 2021-02-02 23:37:13 -0600
 modified_date: 2021-02-03 01:43:14 -0600
 categories: ['Notes']
 tags: ['command-line', 'linux', 'ubuntu']
+pillar: docker-linux
+pillar_section: linux
 image: '/assets/uploads/2021/02/random-1-1200x630-facebook-share.webp'
 ---
 

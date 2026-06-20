@@ -6,6 +6,8 @@ date: 2020-02-22 14:20:02 -0600
 modified_date: 2020-10-02 21:09:52 -0500
 categories: ['Snippets']
 tags: ['command-line', 'macos', 'shell-script']
+pillar: shell-macos
+pillar_section: macos
 image: '/assets/uploads/2020/02/facebook-hide-desktop-icons-in-macos.webp'
 ---
 

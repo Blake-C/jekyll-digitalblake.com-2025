@@ -5,6 +5,8 @@ description: 'Setting up a new Mac used to mean an afternoon of clicking through
 date: 2026-04-22 17:44:08 CDT -0500
 categories: ['Articles']
 tags: ['macos', 'shell-script', 'command-line', 'homebrew', 'dot-files', 'yabai', 'automation']
+pillar: shell-macos
+pillar_section: macos
 image: 'assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-keeping-it-all-in-sync.webp'
 ---
 

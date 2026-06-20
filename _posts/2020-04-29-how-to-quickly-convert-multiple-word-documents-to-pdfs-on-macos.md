@@ -6,6 +6,8 @@ date: 2020-04-29 05:05:39 -0500
 modified_date: 2020-10-02 21:09:51 -0500
 categories: ['Articles']
 tags: ['command-line', 'learning', 'macos', 'shell-script']
+pillar: shell-macos
+pillar_section: scripting
 image: '/assets/uploads/2020/04/facebook-1.webp'
 ---
 

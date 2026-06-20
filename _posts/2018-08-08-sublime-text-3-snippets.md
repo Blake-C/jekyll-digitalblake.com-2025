@@ -6,6 +6,8 @@ date: 2018-08-08 22:12:35 -0500
 modified_date: 2026-06-19 10:13:06 -0500
 categories: ['Guides']
 tags: ['javascript', 'php', 'sublime-text', 'wordpress']
+pillar: wordpress-php
+pillar_section: editor
 image: '/assets/uploads/2018/08/sublime-text-snippet.webp'
 ---
 

@@ -5,3 +5,15 @@ claude-code-ai:
     title: Building with Claude Code
     url: /guides/building-with-claude-code/
     description: 'How I build, debug, and customize real software with Claude Code, including native macOS apps in a language I do not know.'
+wordpress-php:
+    title: WordPress and PHP Development
+    url: /guides/wordpress-and-php/
+    description: 'The standards, language features, and tooling behind fifteen years of WordPress and PHP work, from PHPCS and WPCS to Composer and editor setup.'
+docker-linux:
+    title: Docker and Linux
+    url: /guides/docker-and-linux/
+    description: 'Reproducible dev environments with Docker, plus standing up Ubuntu and Arch Linux from the command line.'
+shell-macos:
+    title: Shell Scripting and macOS
+    url: /guides/shell-and-macos/
+    description: 'Shell scripts and macOS automation: reusable functions, command-line tricks, yabai tiling, and a one-command Mac setup.'
