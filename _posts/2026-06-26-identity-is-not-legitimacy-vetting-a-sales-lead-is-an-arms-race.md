@@ -19,6 +19,11 @@ tags:
 image: '/assets/uploads/2026/06/identity-is-not-legitimacy.webp'
 ---
 
+<aside class="post-tldr">
+	<h2 class="post-tldr__title">TL;DR</h2>
+	<p>Identity checks confirm that a lead's data belongs to a real person at a real organization. They do not establish that the submission is genuine. Every capture-time countermeasure, including honeypots, timing checks, CAPTCHA, and email or SMS verification, can be completed by an AI agent, so each one raises the attacker's cost without stopping them. The strongest available signal is gating a verification step on a passing identity score. The signals that hold up are the slow ones: domain history and post-submission engagement. Cryptographically signed agent identity is the likely long-term exit.</p>
+</aside>
+
 In a companion piece I laid out [an idea for rating sales leads by identity]({% post_url 2026-06-26-an-idea-for-better-rating-sales-leads-in-the-age-of-ai %}): check the domain, the website, and the person behind the email, score each, and rank the real leads above the junk. However, that's not the whole story. To zoom out further, you really need to do a comparison of identity against the legitimacy of the submission.
 
 A lead can show up with a real name and a real email, even one lifted straight off a company's team page, and pass every identity check while only meaning to bog your sales team down. The checks confirm the data is real. They say nothing about whether the submission is genuine. Once I started pulling that thread, every clever fix I came up with did the same frustrating thing. It made the attack more expensive without ever shutting it down. What follows is my attempt to track the current state of lead legitimacy.

@@ -9,6 +9,11 @@ tags: ['sales', 'lead-scoring', 'ai', 'marketo', 'salesforce', 'marketing-automa
 image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
 ---
 
+<aside class="post-tldr">
+	<h2 class="post-tldr__title">TL;DR</h2>
+	<p>AI-written spam gets past capture-side lead filters. This article outlines sales-side scoring: automated checks grade the domain behind a lead's email, the content of the website on that domain, and the person's public footprint, each from 0 to 10. The three scores are averaged into one Lead Quality field in Salesforce, and the sales team works leads in descending order. Existing capture-side filtering stays in place for comparison.</p>
+</aside>
+
 At the previous organization that I worked with, our sales team had an ongoing problem: we could never really keep spam and bots off our lead forms. The sales team would get flooded with junk submissions, and digging the real leads out of that pile ate up time we did not have. It has only gotten harder in the age of AI. The web marketing team can still catch some of it at the form, but capture-side filters can no longer tell you with any confidence whether a lead is spam. So I started thinking about what we could do further down, on the sales side. The rest of this article is a handful of ideas for marking lead quality with automated tools and a bit of AI.
 
 This is an idea I have been chewing on for handling that: gather as many data points on a lead as possible, as fast as possible, and as automatically as possible, then collapse them into a single quality score the sales team can sort by. None of this magically produces quality leads. But more signals, graded and averaged, beat a sales rep guessing which submission to open first.
