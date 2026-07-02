@@ -55,6 +55,16 @@ The site ships a single subset Montserrat variable WOFF2 (weight axis 400–900)
 
 After `build:styles` and `build:scripts`, the production build runs `node script/hash-assets.mjs` which creates content-hashed copies of all compiled CSS and JS files plus the shipped WOFF2 fonts, and writes `_data/asset_manifest.json`. Jekyll templates read this manifest for cache-busted asset URLs (the inlined `@font-face` resolves its font URL through the manifest too, via `script/rewrite-critical-urls.mjs`). Fingerprinting the font matters because its URL is otherwise stable across subset rebuilds, so a stale copy would keep being served. The manifest file and the hashed copies are excluded via `.gitignore` and always generated at build time.
 
+### Diagram social renders
+
+Hand-authored SVG flow diagrams live in `_includes/diagrams/` and are embedded inline in posts via `{% include diagrams/<name>.svg %}` inside a `<figure class="post-diagram">`. Inline embedding keeps the text selectable and accessible (each SVG carries a `title` and `desc`) and picks up the site's Montserrat webfont. `script/render-social-diagrams.mjs` rasterizes each diagram into a shareable WebP (article title above, site credit below) using `@resvg/resvg-js` with the static Montserrat TTFs in `assets/fonts/`, then encodes WebP with ImageMagick:
+
+```bash
+docker compose run --rm app node script/render-social-diagrams.mjs
+```
+
+The rendered WebPs are committed under `assets/uploads/` like other post images. This is on-demand, not part of the build; re-run it and commit the output when a diagram changes.
+
 ## Search Console sync
 
 `script/sync-search-console.mjs` pulls Google Search Console data (Search Analytics, Sitemaps, and per-URL Inspection results) into a private diagnostic report used to find and fix SEO and indexability issues:
