@@ -7,7 +7,7 @@ show_testimonials: true
 profile_schema: true
 ---
 
-<p>I got into this through the back door. I was working as a lab tech in the Digital Media department at Northwest Vista College. Students came to me when they were stuck, and it was my job to know the answer or find who did. That pattern has followed me through every job since.</p>
+<p>When I started college, the plan was to major in astronomy. Then the 2008 financial crisis hit, and I decided I was done taking out student loans, so I went back to my community college, Northwest Vista College, and focused on digital media. That program is what eventually led me into web development. While I was there, I worked as a lab tech in the Digital Media department. Students came to me when they were stuck, and it was my job to know the answer or find who did. That pattern has followed me through every job since.</p>
 
 ## Career
 
