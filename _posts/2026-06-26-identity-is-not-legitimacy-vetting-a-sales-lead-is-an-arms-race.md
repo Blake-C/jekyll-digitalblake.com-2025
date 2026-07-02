@@ -3,6 +3,7 @@ layout: post
 title: 'Identity Is Not Legitimacy: Vetting a Sales Lead Is an Arms Race'
 description: 'Identity checks can tell you a sales lead is a real person at a real company. They cannot tell you the lead is genuine. Here is why every layer that tries to prove legitimacy, from bot detection and honeypots to email and SMS verification, only raises the cost against an AI-equipped adversary instead of stopping them.'
 date: 2026-06-26 10:32:00 CDT -0500
+modified_date: 2026-07-02 11:28:52 CDT -0500
 categories: ['Articles']
 tags:
     [
@@ -78,46 +79,9 @@ I will be honest about the limit. This is mostly draft and preview in mid-2026, 
 
 No single layer blocks a determined adversary, and that is the point. Stack them and each one contributes a signal, and those signals roll up into one number the sales team can sort by, the same way the identity checks did in the companion piece. Nothing here hard-rejects except the obvious traditional bots. A determined human or AI still gets a number, just a low one, while a real buyer floats to the top.
 
-```text
-   Form submission  (name, email, maybe phone)
-        |
-        v
-   Layer 1 - Capture-side bot checks                -> traditional-bot score
-   honeypot, fill timing, reCAPTCHA v3, IP velocity
-        |
-        v
-   Layer 2 - Prompt-injection honeypot + timing     -> AI-bot signal
-   a hidden question only a page parser would answer
-        |
-        v
-   Layer 3 - Identity checks (companion article)    -> identity score 0 to 10
-   domain age, website match, person footprint
-        |
-        v
-   Gate - is the identity score above threshold?
-        |                         |
-       no                        yes
-        |                         |
-        v                         v
-   skip verification         Layer 4 - Verification   -> control signal
-   no SMS-pump exposure      gated email / SMS,
-        |                    line-type + region filter
-        |                         |
-        |                         v
-        |                 identity x control = keystone
-        |                         |
-        +------------+------------+
-                     |
-                     v
-   + durable signals over time
-     (post-submission engagement, domain history)
-                     |
-                     v
-   Legitimacy score 0 to 10   ->   a dial sales sorts by
-                     |
-                     v
-   Sales team works the highest scores first
-```
+<figure class="post-diagram">
+{% include diagrams/lead-legitimacy-pipeline.svg %}
+</figure>
 
 The gate matters: spending the verification step only on leads that already clear the identity threshold is what keeps the SMS-pumping attack surface closed and keeps friction off real buyers. Everything else just nudges the score up or down.
 

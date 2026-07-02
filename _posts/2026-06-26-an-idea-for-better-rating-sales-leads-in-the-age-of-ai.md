@@ -3,6 +3,7 @@ layout: post
 title: 'An Idea for Better Rating of Sales Leads in the Age of AI'
 description: 'LLMs made spam and bot leads hard to spot with traditional filters. Here is an idea: score every sales lead on the sales side with AI checks on domain age, the website behind the email, and the person submitting it, then rank by quality so the sales team spends time where it pays off.'
 date: 2026-06-26 08:44:40 CDT -0500
+modified_date: 2026-07-02 11:28:52 CDT -0500
 categories: ['Articles']
 tags: ['sales', 'lead-scoring', 'ai', 'marketo', 'salesforce', 'marketing-automation', 'spam-prevention']
 image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
@@ -46,31 +47,9 @@ Salesforce's [Einstein Lead Scoring](https://help.salesforce.com/s/articleView?i
 
 The whole idea hinges on a short form and an automated back end. Roughly, it looks like this:
 
-```text
-        Visitor lands on the website
-                    |
-                    v
-        Short lead form  (name + email + phone)
-                    |
-                    | submit
-        +-----------+-----------+
-        v                       v
-   Marketo                 AI scoring service
-   (capture / MAP)         -----------------------
-                           1. Domain age + registry    -> score
-                           2. Website content          -> score
-                           3. Person / LinkedIn        -> score
-                                      |
-                                      | average the 3 scores
-                                      v
-                           Lead Quality: 0 to 10
-                                      |
-                                      | write to field
-                                      v
-                           Salesforce
-                           Lead Quality column
-                           (sales sorts by this)
-```
+<figure class="post-diagram">
+{% include diagrams/lead-scoring-flow.svg %}
+</figure>
 
 Keep the form as short as possible, ideally just a name and an email, so the velocity of someone filling it out and submitting stays high. On submit, the data goes two places at once: into Marketo for normal capture, and into an AI scoring service that runs the three checks, averages them, and writes the result into a Lead Quality field in Salesforce. From there the sales team can order their queue by quality and decide what to pursue hard now versus what can wait.
 

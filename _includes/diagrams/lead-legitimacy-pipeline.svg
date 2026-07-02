@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 1080" role="img" aria-labelledby="llp-title llp-desc" font-family="Montserrat, sans-serif">
+	<title id="llp-title">The lead legitimacy arms race as a scoring pipeline</title>
+	<desc id="llp-desc">Flow diagram. A form submission with name, email, and maybe phone passes through stacked layers. Layer 1, capture-side bot checks (honeypot, fill timing, reCAPTCHA v3, IP velocity), produces a traditional-bot score. Layer 2, a prompt-injection honeypot with a hidden question only a page parser would answer, produces an AI-bot signal. Layer 3, identity checks (domain age, website match, person footprint), produces an identity score from 0 to 10. A gate then asks whether the identity score is above the threshold. If no, verification is skipped and there is no SMS-pump exposure. If yes, Layer 4 runs verification (gated email or SMS with line-type and region filtering) and produces a control signal, and identity times control forms the keystone. Both branches merge, durable signals over time (post-submission engagement, domain history) are added, and everything rolls up into a Legitimacy score from 0 to 10, a dial the sales team sorts by, working the highest scores first.</desc>
+	<defs>
+		<marker id="llp-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+			<path d="M0 0L10 5L0 10z" fill="#191936"/>
+		</marker>
+	</defs>
+
+	<!-- Form submission -->
+	<rect x="160" y="16" width="360" height="68" rx="10" fill="#fefefe" stroke="#191936" stroke-width="1.5"/>
+	<text x="340" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="#191936">Form submission</text>
+	<text x="340" y="66" text-anchor="middle" font-size="13" fill="#595959">name, email, maybe phone</text>
+
+	<line x1="340" y1="84" x2="340" y2="114" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+
+	<!-- Layer 1 -->
+	<rect x="70" y="120" width="540" height="76" rx="8" fill="#fefefe" stroke="#d3d4ff" stroke-width="1.5"/>
+	<rect x="94" y="134" width="68" height="24" rx="12" fill="#191936"/>
+	<text x="128" y="150" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">Layer 1</text>
+	<text x="178" y="150" font-size="15" font-weight="700" fill="#191936">Capture-side bot checks</text>
+	<rect x="426" y="134" width="160" height="24" rx="12" fill="#0072bc"/>
+	<text x="506" y="150" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">traditional-bot score</text>
+	<text x="94" y="178" font-size="13" fill="#595959">honeypot, fill timing, reCAPTCHA v3, IP velocity</text>
+
+	<line x1="340" y1="196" x2="340" y2="222" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+
+	<!-- Layer 2 -->
+	<rect x="70" y="228" width="540" height="76" rx="8" fill="#fefefe" stroke="#d3d4ff" stroke-width="1.5"/>
+	<rect x="94" y="242" width="68" height="24" rx="12" fill="#191936"/>
+	<text x="128" y="258" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">Layer 2</text>
+	<text x="178" y="258" font-size="15" font-weight="700" fill="#191936">Prompt-injection honeypot</text>
+	<rect x="482" y="242" width="104" height="24" rx="12" fill="#0072bc"/>
+	<text x="534" y="258" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">AI-bot signal</text>
+	<text x="94" y="286" font-size="13" fill="#595959">a hidden question only a page parser would answer</text>
+
+	<line x1="340" y1="304" x2="340" y2="330" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+
+	<!-- Layer 3 -->
+	<rect x="70" y="336" width="540" height="76" rx="8" fill="#fefefe" stroke="#d3d4ff" stroke-width="1.5"/>
+	<rect x="94" y="350" width="68" height="24" rx="12" fill="#191936"/>
+	<text x="128" y="366" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">Layer 3</text>
+	<text x="178" y="366" font-size="15" font-weight="700" fill="#191936">Identity checks</text>
+	<rect x="418" y="350" width="168" height="24" rx="12" fill="#0072bc"/>
+	<text x="502" y="366" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">identity score 0 to 10</text>
+	<text x="94" y="394" font-size="13" fill="#595959">domain age, website match, person footprint</text>
+
+	<line x1="340" y1="412" x2="340" y2="438" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+
+	<!-- Gate -->
+	<rect x="120" y="444" width="440" height="52" rx="26" fill="#fefefe" stroke="#0072bc" stroke-width="2"/>
+	<text x="340" y="476" text-anchor="middle" font-size="15" font-weight="700" fill="#191936">Is the identity score above the threshold?</text>
+
+	<!-- Branches -->
+	<path d="M340 496V516M180 516H500M180 516V546M500 516V546" fill="none" stroke="#191936" stroke-width="2"/>
+	<line x1="180" y1="546" x2="180" y2="554" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+	<line x1="500" y1="546" x2="500" y2="554" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+	<text x="168" y="544" text-anchor="end" font-size="13" font-weight="700" fill="#595959">no</text>
+	<text x="512" y="544" font-size="13" font-weight="700" fill="#595959">yes</text>
+
+	<!-- No branch: skip verification -->
+	<rect x="70" y="560" width="220" height="68" rx="10" fill="#fefefe" stroke="#191936" stroke-width="1.5"/>
+	<text x="180" y="588" text-anchor="middle" font-size="15" font-weight="700" fill="#191936">Skip verification</text>
+	<text x="180" y="610" text-anchor="middle" font-size="12" fill="#595959">no SMS-pump exposure</text>
+
+	<!-- Yes branch: Layer 4 -->
+	<rect x="360" y="560" width="280" height="96" rx="8" fill="#fefefe" stroke="#d3d4ff" stroke-width="1.5"/>
+	<rect x="384" y="574" width="68" height="24" rx="12" fill="#191936"/>
+	<text x="418" y="590" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">Layer 4</text>
+	<text x="466" y="590" font-size="15" font-weight="700" fill="#191936">Verification</text>
+	<text x="384" y="618" font-size="13" fill="#595959">gated email / SMS</text>
+	<text x="384" y="638" font-size="13" fill="#595959">line-type + region filter</text>
+
+	<line x1="500" y1="656" x2="500" y2="690" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+	<rect x="514" y="662" width="118" height="24" rx="12" fill="#0072bc"/>
+	<text x="573" y="678" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fefefe">control signal</text>
+
+	<!-- Keystone -->
+	<rect x="360" y="696" width="280" height="48" rx="10" fill="#191936"/>
+	<text x="500" y="725" text-anchor="middle" font-size="14" font-weight="700" fill="#fefefe">identity × control = keystone</text>
+
+	<!-- Merge -->
+	<path d="M180 628V780M500 744V780M180 780H500" fill="none" stroke="#191936" stroke-width="2"/>
+	<line x1="340" y1="780" x2="340" y2="814" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+
+	<!-- Durable signals -->
+	<rect x="150" y="820" width="380" height="68" rx="10" fill="#fefefe" stroke="#191936" stroke-width="1.5"/>
+	<text x="340" y="848" text-anchor="middle" font-size="15" font-weight="700" fill="#191936">+ durable signals over time</text>
+	<text x="340" y="870" text-anchor="middle" font-size="12" fill="#595959">post-submission engagement, domain history</text>
+
+	<line x1="340" y1="888" x2="340" y2="918" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+
+	<!-- Legitimacy score -->
+	<rect x="190" y="924" width="300" height="52" rx="10" fill="#0072bc"/>
+	<text x="340" y="956" text-anchor="middle" font-size="17" font-weight="700" fill="#fefefe">Legitimacy score: 0 to 10</text>
+
+	<line x1="340" y1="976" x2="340" y2="1006" stroke="#191936" stroke-width="2" marker-end="url(#llp-arrow)"/>
+	<text x="352" y="998" font-size="13" fill="#595959">a dial sales sorts by</text>
+
+	<!-- Sales -->
+	<rect x="140" y="1012" width="400" height="52" rx="10" fill="#191936"/>
+	<text x="340" y="1044" text-anchor="middle" font-size="14" font-weight="700" fill="#fefefe">Sales team works the highest scores first</text>
+</svg>
