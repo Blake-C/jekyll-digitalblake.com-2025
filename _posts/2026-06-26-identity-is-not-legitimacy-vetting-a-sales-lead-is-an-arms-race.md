@@ -3,7 +3,7 @@ layout: post
 title: 'Identity Is Not Legitimacy: Vetting a Sales Lead Is an Arms Race'
 description: 'Identity checks can tell you a sales lead is a real person at a real company. They cannot tell you the lead is genuine. Here is why every layer that tries to prove legitimacy, from bot detection and honeypots to email and SMS verification, only raises the cost against an AI-equipped adversary instead of stopping them.'
 date: 2026-06-26 10:32:00 CDT -0500
-modified_date: 2026-07-02 11:28:52 CDT -0500
+modified_date: 2026-07-04 12:50:32 CDT -0500
 categories: ['Articles']
 tags:
     [
@@ -21,7 +21,7 @@ image: '/assets/uploads/2026/06/identity-is-not-legitimacy.webp'
 
 <aside class="post-tldr">
 	<h2 class="post-tldr__title">TL;DR</h2>
-	<p>Identity checks confirm that a lead's data belongs to a real person at a real organization. They do not establish that the submission is genuine. Every capture-time countermeasure, including honeypots, timing checks, CAPTCHA, and email or SMS verification, can be completed by an AI agent, so each one raises the attacker's cost without stopping them. The strongest available signal is gating a verification step on a passing identity score. The signals that hold up are the slow ones: domain history and post-submission engagement. Cryptographically signed agent identity is the likely long-term exit.</p>
+	<p>This article is the conclusion to my earlier research on verifying the identity of a user who submits a lead form. In it, I lay out the bigger picture and show that the identity stage is just one section of it. As we broaden out, we find our keystone: the combination of identity and verification. Several more methods act as signals that feed into the lead quality score, so the sales team has a better picture of who they need to focus on.</p>
 </aside>
 
 In a companion piece I laid out [an idea for rating sales leads by identity]({% post_url 2026-06-26-an-idea-for-better-rating-sales-leads-in-the-age-of-ai %}): check the domain, the website, and the person behind the email, score each, and rank the real leads above the junk. However, that's not the whole story. To zoom out further, you really need to do a comparison of identity against the legitimacy of the submission.
