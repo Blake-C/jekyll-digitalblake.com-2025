@@ -7,13 +7,13 @@
  * General Punctuation (smart quotes, em/en dashes), and Arrows, plus the
  * extended characters found in content. Keep in sync with UNICODE_RANGE there.
  *
- * font-display: optional — a cached font shows immediately on repeat visits, and
- * on a cold load the browser keeps the fallback rather than swapping mid-view, so
- * the font never triggers a layout shift (which otherwise drifts the Prism
- * line-number gutter out of alignment).
+ * font-display: swap — the fallback renders immediately and the browser swaps to
+ * Montserrat as soon as it loads, even on a slow connection. The font is preloaded
+ * in _includes/head.html, so on most connections it arrives before first paint and
+ * the swap is imperceptible.
  */
 @font-face {
-	font-display: optional;
+	font-display: swap;
 	font-family: Montserrat;
 	font-style: normal;
 	font-weight: 400 900;
