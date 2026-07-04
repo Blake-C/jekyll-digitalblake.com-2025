@@ -3,7 +3,7 @@ layout: post
 title: 'An Idea for Better Rating of Sales Leads in the Age of AI'
 description: 'LLMs made spam and bot leads hard to spot with traditional filters. Here is an idea: score every sales lead on the sales side with AI checks on domain age, the website behind the email, and the person submitting it, then rank by quality so the sales team spends time where it pays off.'
 date: 2026-06-26 08:44:40 CDT -0500
-modified_date: 2026-07-02 11:28:52 CDT -0500
+modified_date: 2026-07-04 12:46:08 CDT -0500
 categories: ['Articles']
 tags: ['sales', 'lead-scoring', 'ai', 'marketo', 'salesforce', 'marketing-automation', 'spam-prevention']
 image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
@@ -11,7 +11,7 @@ image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
 
 <aside class="post-tldr">
 	<h2 class="post-tldr__title">TL;DR</h2>
-	<p>AI-written spam gets past capture-side lead filters. This article outlines sales-side scoring: automated checks grade the domain behind a lead's email, the content of the website on that domain, and the person's public footprint, each from 0 to 10. The three scores are averaged into one Lead Quality field in Salesforce, and the sales team works leads in descending order. Existing capture-side filtering stays in place for comparison.</p>
+	<p>I wrote this article to explain three ideas for getting better quality leads in front of the sales team. Check the domain behind the email address, check the content of the website on that domain, and check whether the person who submitted the form exists elsewhere on the internet, like LinkedIn or other social media. Together, these checks help verify the submitter's identity and keep bots and AI tools from spamming the lead form. Each check gets a score from 0 to 10, and the average lands in Salesforce for the sales team to sort by.</p>
 </aside>
 
 At the previous organization that I worked with, our sales team had an ongoing problem: we could never really keep spam and bots off our lead forms. The sales team would get flooded with junk submissions, and digging the real leads out of that pile ate up time we did not have. It has only gotten harder in the age of AI. The web marketing team can still catch some of it at the form, but capture-side filters can no longer tell you with any confidence whether a lead is spam. So I started thinking about what we could do further down, on the sales side. The rest of this article is a handful of ideas for marking lead quality with automated tools and a bit of AI.
