@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'Optimizing Self-Hosted Fonts with fonttools and brotli'
-description: 'Self-hosted Lato and Inter were dragging down a Next.js build. Subsetting the glyphs with pyftsubset and re-compressing with brotli cut the font payload by roughly 89%. Here are the commands, the real before and after numbers, the localization tradeoffs, and the risks.'
+title: 'How I Cut Self-Hosted Font Payload by 89% with fonttools + brotli'
+description: 'Subsetting Lato and Inter with pyftsubset and re-compressing with brotli cut my Next.js font payload ~89%. The commands, real numbers, and tradeoffs.'
 date: 2026-06-11 18:32:33 CDT -0500
-modified_date: 2026-06-19 20:30:44 CDT -0500
+modified_date: 2026-07-05 09:54:38 CDT -0500
 categories: ['Articles']
 tags: ['fonts', 'performance', 'web-performance', 'fonttools', 'brotli', 'python', 'nextjs', 'self-hosting']
 image: '/assets/uploads/2026/06/optimizing-self-hosted-fonts-with-fonttools-and-brotli.webp'
