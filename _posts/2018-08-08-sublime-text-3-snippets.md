@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'How to Create Sublime Text 3 Snippets (with Examples)'
-description: 'Speed up your workflow with Sublime Text 3 snippets. Learn to create custom snippets per file type, with examples for JavaScript, PHP, and more.'
+title: 'How to Create Sublime Text Snippets (with Examples)'
+description: 'Create custom Sublime Text snippets scoped per file type, with copy-paste examples for JavaScript, PHP, and more.'
 date: 2018-08-08 22:12:35 -0500
-modified_date: 2026-06-19 10:13:06 -0500
+modified_date: 2026-07-05 09:54:38 CDT -0500
 categories: ['Tutorials']
 tags: ['javascript', 'php', 'sublime-text', 'wordpress']
 pillar: wordpress-php
