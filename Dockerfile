@@ -34,8 +34,8 @@ ENV PATH="/opt/fonttools/bin:$PATH"
 # Store Corepack cache in a global path accessible to all users
 ENV COREPACK_HOME=/usr/local/share/corepack
 
-# Enable Corepack and activate pnpm 11.5.0
-RUN corepack enable && corepack prepare pnpm@11.5.0 --activate
+# Enable Corepack and activate pnpm 11.10.0
+RUN corepack enable && corepack prepare pnpm@11.10.0 --activate
 
 # Install Bundler matching Gemfile.lock
 RUN gem install bundler:2.6.2 --no-document
