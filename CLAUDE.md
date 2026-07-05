@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Runtime isolation
 
-All Node and Ruby commands run inside Docker. The container image bundles Node 24.15.0, Ruby 3.4.9, pnpm, ImageMagick, fonttools (`pyftsubset`, for font subsetting), and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
+All Node and Ruby commands run inside Docker. The container image bundles Node 24.18.0, Ruby 3.4.10, pnpm, ImageMagick, fonttools (`pyftsubset`, for font subsetting), and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
 
 ## Commands
 

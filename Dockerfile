@@ -1,7 +1,7 @@
 # Node 24 post-dates Alpine 3.23 so we copy the binary from the official Node image
-FROM node:24-alpine3.23 AS node
+FROM node:24.18.0-alpine3.23 AS node
 
-FROM ruby:3.4.9-alpine3.23
+FROM ruby:3.4.10-alpine3.23
 
 # Bring in Node 24 from the node stage
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
@@ -38,7 +38,7 @@ ENV COREPACK_HOME=/usr/local/share/corepack
 RUN corepack enable && corepack prepare pnpm@11.10.0 --activate
 
 # Install Bundler matching Gemfile.lock
-RUN gem install bundler:2.6.2 --no-document
+RUN gem install bundler:4.0.15 --no-document
 
 WORKDIR /app
 
