@@ -26,9 +26,13 @@ blockExoticSubdeps: true
 minimumReleaseAge: 10080
 
 # node-releases is a low-risk data package (list of Node.js release dates) — excluded so autoprefixer
-# subdependency resolution isn't blocked when browserslist pulls in a fresh node-releases patch
+# subdependency resolution isn't blocked when browserslist pulls in a fresh node-releases patch.
+# brace-expansion and fast-uri are excluded so the high-severity security fixes below (both
+# published 2026-06-29) resolve despite being newer than the 7-day window; drop them once aged out.
 minimumReleaseAgeExclude:
     - node-releases
+    - brace-expansion
+    - fast-uri
 
 # Warn about deprecated packages
 strictDeprecatedDependencies: warn
@@ -44,10 +48,17 @@ allowBuilds:
 onlyBuiltDependencies:
     - '@parcel/watcher'
 
-# Force a patched js-yaml across the tree (stylelint/webpack-cli pull 4.1.1, which has a
-# quadratic-complexity DoS in merge-key handling — GHSA-h67p-54hq-rp68, fixed in 4.2.0)
+# Force patched transitive dependencies across the tree (each has a single version in the tree,
+# so a blanket override is safe). Snyk-flagged; not caught by the npm/GitHub advisory DB.
+#   js-yaml 4.1.1              — quadratic-complexity DoS in merge keys (GHSA-h67p-54hq-rp68)
+#   brace-expansion 5.0.6      — inefficient algorithmic complexity, high (CVE-2026-13149)
+#   fast-uri 3.1.2             — interpretation conflict, high (CVE-2026-13676)
+#   postcss-selector-parser    — uncontrolled recursion (CVE-2026-9358), consolidates 7.1.1 onto the patch
 overrides:
     js-yaml: '^4.3.0'
+    brace-expansion: '^5.0.7'
+    fast-uri: '^3.1.3'
+    postcss-selector-parser: '^7.1.2'
 
 catalog:
     # Production dependencies
