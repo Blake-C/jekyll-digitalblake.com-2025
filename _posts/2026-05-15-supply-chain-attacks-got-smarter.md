@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'Hardening My Repos Against the Shai Hulud npm Attack'
-description: 'The Shai Hulud worm hit TanStack and 170+ other npm packages by poisoning a pnpm store cache in GitHub Actions. Here is how the attack worked and the concrete steps I took to harden my own projects against it.'
+title: 'Shai Hulud npm Attack: How It Worked and How I Hardened My Repos'
+description: 'The Shai Hulud worm poisoned a pnpm cache in GitHub Actions to hit TanStack and 170+ npm packages. How it worked and the steps I took to harden my repos.'
 date: 2026-05-15 04:41:03 CDT -0500
-modified_date: 2026-05-15 12:57:46 CDT -0500
+modified_date: 2026-07-05 09:54:38 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
