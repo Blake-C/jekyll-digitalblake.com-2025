@@ -1,6 +1,7 @@
 ---
 layout: case-study
 featured: true
+order: 110
 permalink: /case-studies/touch-point-media/
 title: Touch Point Media
 description: 'A WordPress podcast network for healthcare shows, built with Seriously Simple Podcasting and a custom post type architecture that scaled from four shows to fifteen without per-show engineering.'

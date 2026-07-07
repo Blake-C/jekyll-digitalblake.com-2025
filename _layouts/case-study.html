@@ -96,7 +96,7 @@ layout: base
 			</article>
 
 			<!-- More Case Studies -->
-			{%- assign all_projects = site.case_studies -%}
+			{%- assign all_projects = site.case_studies | sort: 'order' | reverse -%}
 			{%- assign total = all_projects | size -%}
 			{%- assign current_index = 0 -%}
 			{%- for item in all_projects -%}

@@ -1,6 +1,7 @@
 ---
 layout: case-study
 featured: false
+order: 50
 permalink: /case-studies/covenant-physician-partners/
 title: Covenant Physician Partners
 description: 'A WordPress site for a national physician network, featuring an interactive SVG state map with static-JSON-backed filtering, a custom heart-letter carousel, and a live position/location directory powered by MixItUp.'

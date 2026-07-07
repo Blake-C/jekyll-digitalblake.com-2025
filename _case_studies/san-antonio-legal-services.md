@@ -1,6 +1,7 @@
 ---
 layout: case-study
 featured: false
+order: 90
 permalink: /case-studies/san-antonio-legal-services/
 title: San Antonio Legal Services Association
 description: "A WordPress platform built for one of San Antonio's largest pro bono legal organizations, with dual API integration, an authenticated resource library, and a public events calendar."

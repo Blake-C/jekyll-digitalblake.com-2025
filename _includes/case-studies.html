@@ -1,3 +1,10 @@
+{%- comment -%}
+	Case studies render in `order` descending (higher order = higher on the page).
+	Featured and archived are separate grids below but share this single sort.
+	To add a new case study at the top of its grid, give it an `order` higher
+	than the current maximum (values step by 10, so the next top is max + 10).
+{%- endcomment -%}
+{%- assign ordered_case_studies = site.case_studies | sort: 'order' | reverse -%}
 <section class="case-studies" id="case-studies" aria-labelledby="case-studies-title">
 	<div class="row">
 		<div class="medium-12 columns">
@@ -5,7 +12,7 @@
 			<p class="case-studies__subtitle">Selected client case studies</p>
 
 			<div class="row case-studies__grid">
-				{%- for site_item in site.case_studies -%}
+				{%- for site_item in ordered_case_studies -%}
 					{%- if site_item.featured == true -%}
 						<div class="large-4 medium-6 small-12 columns">
 							<div
@@ -51,7 +58,7 @@
 					<h3 class="case-studies__archive-title">Archived Sites</h3>
 				</div>
 				<div class="row case-studies__grid">
-					{%- for site_item in site.case_studies -%}
+					{%- for site_item in ordered_case_studies -%}
 						{%- unless site_item.featured == true -%}
 							<div class="large-4 medium-6 small-12 columns">
 								<div

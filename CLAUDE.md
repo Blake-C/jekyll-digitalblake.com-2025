@@ -71,6 +71,8 @@ Two Jekyll configs are used:
 
 **`_case_studies/` body content is rendered as raw HTML** in the homepage gallery modal — treat as trusted first-party content only.
 
+**Case study ordering** is controlled by an `order:` integer in each case study's front matter, not the filename prefix. `_includes/case-studies.html` (and the "More Case Studies" block in `_layouts/case-study.html`) sort by `order` descending, so a higher number sits higher on the page. Featured and archived (`featured: false`) render as separate grids but share this one sort. Existing values step by 10 (`130` down to `10`). To add a new case study at the top of its grid, give it an `order` higher than the current maximum (the next top slot is max + 10); nothing else needs editing. To reorder two entries, swap their `order` values. Case study filenames are just the slug (e.g. `teleport-atlas.md`), with no numeric prefix — ordering is entirely `order`-driven.
+
 ### Post front matter
 
 ```yaml
