@@ -9,6 +9,9 @@ thumbnail: /assets/uploads/2026/07/teleport-atlas-thumbnail.webp
 image: /assets/uploads/2026/07/teleport-atlas-demo-product-for-sale-full-page-screenshot.webp
 hero_image: /assets/uploads/2026/07/teleport-atlas-hero.webp
 og_image: /assets/uploads/2026/07/teleport-atlas-og.webp
+team:
+    - name: Julia Dugger
+      role: Designer
 tech:
     - Next.js
     - React
