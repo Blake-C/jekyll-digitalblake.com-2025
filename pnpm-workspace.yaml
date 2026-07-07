@@ -27,12 +27,8 @@ minimumReleaseAge: 10080
 
 # node-releases is a low-risk data package (list of Node.js release dates) — excluded so autoprefixer
 # subdependency resolution isn't blocked when browserslist pulls in a fresh node-releases patch.
-# brace-expansion and fast-uri are excluded so the high-severity security fixes below (both
-# published 2026-06-29) resolve despite being newer than the 7-day window; drop them once aged out.
 minimumReleaseAgeExclude:
     - node-releases
-    - brace-expansion
-    - fast-uri
 
 # Warn about deprecated packages
 strictDeprecatedDependencies: warn
