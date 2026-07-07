@@ -64,7 +64,7 @@ catalog:
     # Dev dependencies — build tools and linters most exposed to supply chain risk
     eslint: 10.6.0
     stylelint: 17.14.0
-    webpack: 5.108.1
+    webpack: 5.108.3
     webpack-cli: 7.1.0
     sass: 1.101.0
     postcss-cli: 11.0.1
