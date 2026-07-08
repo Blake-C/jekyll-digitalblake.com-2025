@@ -24,7 +24,7 @@ link_text: View Live Demo
 <aside class="callout">
 	<h2 class="callout__title">Key Takeaways</h2>
 	<ul>
-		<li>Rebuilt Teleport's Atlas landing page from a Figma spec in Next.js (App Router), from nothing to a working page with canvas product animations in about twelve hours.</li>
+		<li>Built Teleport's Atlas landing page from a Figma spec in Next.js (App Router), from nothing to a working page with canvas product animations in about twelve hours.</li>
 		<li>A perfect axe score with zero WCAG 2.1 AA issues, plus a 100 Lighthouse mobile run across performance, accessibility, best practices, and SEO.</li>
 		<li>Page weight cut from about 2.5MB to roughly 950KB, including an ~89% drop in the font payload from subsetting with fonttools and brotli.</li>
 		<li>Interactive Canvas access-graph and hero animations layered over responsive WebP, with full prefers-reduced-motion support.</li>
@@ -35,21 +35,21 @@ link_text: View Live Demo
 
 ## The challenge
 
-This project was a coding challenge from Teleport during an interview process and I wanted to add this to my portfolio as it is the most recent site build I've done in the past six months since I've retooled myself for AI coding versus my previous manual process. Most of what I have built recently has been Swift applications or one-off WordPress plugins, single pieces of functionality rather than a whole page. This is the first full page I have built with AI tools like Claude. Teleport gave me a Figma of their Atlas product landing page and told me to build it in whatever front-end technology I wanted, then present it to the hiring panel. Because it was a challenge, I was given permission to publish the code, so the full source is public on [GitHub](https://github.com/Blake-C/teleport-web-eng-coding-challenge) and the build is live at [teleport-atlas.vercel.app](https://teleport-atlas.vercel.app/).
+This project was a coding challenge from Teleport during an interview process. Most of what I've built recently has been Swift applications, one-off WordPress plugins, and this portfolio site. This is the first third-party project I have built with AI tools like Claude. Teleport gave me a Figma of their Atlas product landing page and told me to build it in whatever front-end technology I wanted, then present it to the hiring panel. Because it was a challenge, I was given permission to publish the code, so the full source is public on [GitHub](https://github.com/Blake-C/teleport-web-eng-coding-challenge) and the build is live at [teleport-atlas.vercel.app](https://teleport-atlas.vercel.app/).
 
-## Starting with the raw Figma data
+## Experimentation phase before buildout
 
 I generated a Figma personal access token and pulled the design down as JSON through the Figma API, then handed that JSON to Claude Code to see whether it could build the page from the raw design data alone. It could not do it well. The fonts, layouts, and spacing all came back inconsistent, and I dropped that approach the same day. What worked was a hybrid of my usual manual build and a row-by-row collaboration with Claude, going section by section down the page. That got me from nothing to a built page with working product animations in about twelve hours.
 
 ## Foundation and architecture
 
-To get the base of the site set up, I used the Figma JSON to pull every design token I needed into variables for the colors, the spacing, and the type. The two typefaces, Lato and Inter, are open source, so I grabbed them from their sites and self-hosted them, loading the WOFF2 files locally instead of pulling them from a third-party CDN. For the framework I used the Next.js App Router. Server components are the default, so JavaScript only ships for the pieces that opt into it with 'use client', the canvas layers, the navigation, and the request-access dialog and form. I split the site into route groups, a marketing group that owns the sticky navigation and footer, and a chrome-free group that holds the standalone request-access page. Styling is CSS Modules with BEM, which scopes at build time and costs nothing at runtime. I stayed off Tailwind on purpose for a site this simple.
+To get the base of the site set up, I used the Figma JSON to pull every design token I needed into variables for the colors, the spacing, and the type. The two typefaces, Lato and Inter, are open fonts, so I grabbed them from their sites and self-hosted them, loading the WOFF2 files locally instead of pulling them from a third-party CDN. For the framework I used the Next.js App Router. Server components are the default, so JavaScript only ships for the pieces that opt into it with 'use client', the canvas layers, the navigation, and the request-access dialog and form. I split the site into route groups, a marketing group that owns the sticky navigation and footer, and a chrome-free group that holds the standalone request-access page. Styling is CSS Modules with BEM, which scopes at build time and costs nothing at runtime. I stayed off Tailwind on purpose for a site this simple.
 
 ## Header and hero
 
 The first row is the header, with an SVG logo, the menu, a Sign In link, and a Request Access button. I built it static at first and came back days later to make it shrink its height once it became sticky. Tall sticky bars that follow you down the page are a pet peeve of mine, and reducing that padding gives the user back some vertical space. The menu started out without a list. I went back and added list semantics so a screen reader announces how many items are in the menu before reading them.
 
-Claude stubbed out the hero layout, but it has a habit of missing details, line height, letter spacing, the small things. My QA pass caught those and I fixed them against the Figma. One of those fixes was a contrast problem. The small line under the buttons, Trusted by security teams at Nasdaq, DoorDash, GitLab, and 500+ more, used a gray that did not pass WCAG AA, so I nudged its color from #707783 to #818794. The product visual in the hero started as a static SVG. In the last few hours of that first build I replaced it with a canvas layered over a responsive WebP that serves a 1x and a 2x image, so high-resolution screens get the sharper version and smaller screens get a lighter file. The canvas stays proportional to the image as the layout shrinks down to tablet, animating the nodes and dots that stand in for the product. Later I added one element that was not in the Figma, a subtle node background where the points near your cursor light up and reveal the connections between them. It is a design touch with no real function, and I capped its resolution so it would not hurt performance.
+I used Claude to stub out the hero layout, but it has a habit of missing details, line height, letter spacing, small things. My QA pass caught those and I fixed them against the Figma. One of those fixes was a contrast problem. The small line under the buttons, Trusted by security teams at Nasdaq, DoorDash, GitLab, and 500+ more, used a gray that did not pass WCAG AA, so I nudged its color from #707783 to #818794. The product visual in the hero started as a static SVG. In the last few hours of that first build I replaced it with a canvas layered over a responsive WebP that serves a 1x and a 2x image, so high-resolution screens get the sharper version and smaller screens get a lighter file. The canvas stays proportional to the image as the layout shrinks down to tablet, animating the nodes and dots that stand in for the product. Later I added one element that was not in the Figma, a subtle node background where the points near your cursor light up and reveal the connections between them. It is a design touch with no real function, and I capped its resolution so it would not hurt performance.
 
 ## Working down the page
 
@@ -79,7 +79,7 @@ The testimonial section, What Our Users Say, is an eyebrow, a title, and three c
 
 The Get Started section has an eyebrow, a title, a paragraph, and two CTAs, one to request access and one to contact sales. In the Figma file, there is a section for the CTAs, but the CTAs in that section did not match what was actually being used in the primary file section. So I used the hover state from the component section with the CTAs, and then the static state colors from the primary Figma file. Typically, I would want to discuss this with the designer, but in alignment with the challenge, I decided to use my best judgment and then just discuss it during the panel call.
 
-The footer has the logo, a short blurb, and three social links on the left, with four columns of site links on the right. In the Figma those columns were different widths; I standardized them with a CSS grid gap, which makes the footer a little wider but far more consistent. Claude first built the whole set of footer links as one giant list. I broke it into separate, labeled columns so a screen reader user can jump to the column they want, say the docs instead of the products, hear that column's heading and item count, and skip the rest. Below that is a horizontal rule, the copyright, and the legal links.
+The footer has the logo, a short blurb, and three social links on the left, with four columns of site links on the right. In the Figma those columns were different widths; I standardized them with a CSS grid gap, which makes the footer a little wider but far more consistent. The footer menu was initially built out as a whole set of links within one navigation element. I broke it into separate, labeled columns so a screen reader user can jump to the column they want, say the docs instead of the products, hear that column's heading and item count, and skip the rest. Below that is a horizontal rule, the copyright, and the legal links.
 
 ![The site footer, its four link columns standardized to a shared width with a CSS grid gap.](/assets/uploads/2026/07/footer-section.webp)
 
@@ -95,9 +95,9 @@ Once the page was built I looked at what it was shipping, and it was close to tw
 
 The challenge had an optional second page as a stretch goal, and I built a request-access page as a demo of what Teleport's real request-access landing could be. Their live version has a lot going on, with outbound links, a logo bar that hides and shows and blends white on white against the background, and accordions that drive the scrolling. All of that pulls focus off the form. On my version the only job of the page is to get the user to fill out the form, so I embedded the logo into the content, dropped the top bars, and turned the FAQ topics on the left into modals that only cover the left half of the page. The form on the right stays visible the whole time. The only ways off the page are the logo and the privacy policy. There are G2 and Gartner stars, but they show the rating without linking anywhere. The modal is a full dialog with a focus trap, escape to close, and focus returned where it came from, and the form validates on the client and requires a work email. It has no backend on purpose. The chrome-free page is what the second route group exists for.
 
-![The request-access page with the form fixed on the right and FAQ topic tokens down the left side.](/assets/uploads/2026/07/request-access-form-with-token-models.webp)
+![The request-access page with the form fixed on the right and FAQ topic tokens down the left side.](/assets/uploads/2026/07/request-access-form-with-token-modal.webp)
 
-![A FAQ topic opened as a modal that covers only the left half of the page, leaving the request-access form visible.](/assets/uploads/2026/07/wordcast-access-form-plus-open-mode.webp)
+![A FAQ topic opened as a modal that covers only the left half of the page, leaving the request-access form visible.](/assets/uploads/2026/07/request-access-form-plus-open-modal.webp)
 
 ## Infrastructure and hardening
 
@@ -105,9 +105,39 @@ On the infrastructure side I deployed through the Vercel CLI, since Next.js and 
 
 ## The panel discussion
 
-A few things came up in the panel discussion. One panelist asked how the JavaScript behind the hero node background worked and picked a function I could not fully explain. Claude built that piece, and I had focused on the visual result and its cost to the page rather than reading every function. It probably counted against me. My take is that for a small, decorative element on a short-lived marketing page, as long as it does what I want and does not hurt the page, that's enough for me. To me it's not about understanding every line and every function for something that's purely a design element. It's primarily a matter of one, is this only what I need? And two, is this optimized and working the way I want. Without Claude, my path for something like that would have been CodePen anyway, where I would find something close, take the part I need, and drop it in.
+### An opportunity to dig deeper
 
-They also asked about testing. My answer was no unit testing for a page like this. Marketing sites are short-lived, five years on average in my experience, and a redesign throws the tests out with the old build. I would do visual regression testing, the snapshot-and-compare kind that flags what looks broken, but test-driven development on a marketing site is overkill. When it was suggested that AI could write the tests, the way that I would push back on that is that using AI to write the tests isn't covering the full picture of what you would need to be testing. You need to understand what the AI is writing and testing so that you can cover any blind spots that it did not think about. It might also not be catching all the interactions that are happening on the front end of the website when you don't know truly what other components might be interacting with this. You still have to have a full QA process. Time spent doing QA work on testing could be better spent building out features, functionality, and content on the site to better sell the product. The same thinking applies to the stack. Next.js and Vercel are arguably heavier than a marketing site needs. A flatter, simpler static build is easier to secure and faster to serve, and since marketing teams rarely edit the site themselves, a static site fed by change requests through a project tool and an AI branch-and-review flow can replace a heavy CMS. The exception is real personalization, which is where things get complex.
+Generally when I'm reviewing AI code, I'm more concerned about items that have security risks or high-impact implications to the project as a whole. When it comes to items that are more frivolous, such as a purely design-driven item, I'm not likely to look into it as deeply. So for instance, the supply-chain implications of using pnpm over npm and the supply-chain hardening that we did on the project are things I'm diligent on, as opposed to the hero background, which is purely decorative. So long as it didn't hurt the page performance and did what I wanted, that was my driving goal.
+
+One of the panelists picked up on the functions used in the hero background graphic, specifically the mulberry32 function, and asked me if I could explain what it does, why it's there, if it's important, if it's needed, that sort of thing. In the moment I couldn't do that; I kind of froze. What I should have done was simply read the comment above it, which reads "identical output on server and client." This function is a pseudo random number generator with a predictable output. It allows you to have the same generated output with the same input on the server and on the client side so that you don't have hydration errors. It also allows you to have art direction by having a predictable output that you can drive versus something that's truly random. I primarily work in the world of HTML, CSS, JavaScript, PHP; that sort of thing, front-end technologies. I wouldn't be able to explain the innards of this function, the bit shifting that's happening and all that. But I should have known the basics of what the function did. And that was kind of a blind spot for me in the discussion.
+
+Here's the function in question, if you're curious.
+
+```ts
+// Seeded PRNG (mulberry32) — identical output on server and client
+function mulberry32(seed: number): () => number {
+	let s = seed
+	return () => {
+		s += 0x6d2b79f5
+		let t = s
+		t = Math.imul(t ^ (t >>> 15), t | 1)
+		t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+		return ((t ^ (t >>> 14)) >>> 0) / 0xffffffff
+	}
+}
+```
+
+<small>There is a video from the [Chrome for Developers](https://youtu.be/ALKqavp9Fg0?t=531) team explaining what this function does in a design context.</small>
+
+The Teleport Atlas site was a static export, so we didn't have any chances of the server-side rendering causing hydration issues. So that wasn't critical, but having the art direction was. The innards of the function aren't something I typically would concern myself with in this particular instance. Similar to how, if I'm using a library that has a lot of complex functions and I only need a few specific ones, I wouldn't be diving deep into the library to understand those innards. The part I'm concerned about is whether it's going to do what I need it to do, and understanding the why and how. In this instance I should have read the comment that was just above the code. And in the future, I think that's an easy thing to fix.
+
+### Testing
+
+If you're building an application that has business logic and it's going to be long-lived and you need to make sure that it's doing exactly what it needs to do and nothing more, unit testing is needed there. That's where you need to do it. On a marketing website, I feel it's added complexity for something that's going to be short-lived. Visual regression testing is what I would add to a marketing website. It's easy to automate and gives you a visual indication when something breaks.
+
+In our discussion, it was brought up that you can just have AI write the testing for you. However, the AI tool might not be testing the right thing, and you still need to understand what's being tested in the first place. Testing isn't always about whether it's doing what I need it to do; it's about the edge cases, and the AI tool might not pick up on those. The process of adding tests to your marketing website would be adding extra weight on top of it, and it needs to be maintained over time. That, I feel, takes away from what you should be doing, which is making sure that the marketing website is selling the product.
+
+### CMS modeling
 
 There was also a question about content modeling. My written answer favored composable, reusable components over rigid per-section schemas or one monolithic type, modeling a page as an ordered list of section blocks with a single card type that uses a variant field instead of three near-identical ones. I had watched a cards component at Seismic grow unmaintainable by trying to be everything, so this was the concrete version of the same argument, that you do not need a heavy CMS for most of this.
 
@@ -118,5 +148,9 @@ One accessibility item that I wanted to point out here is how I did the titles, 
 ![axe DevTools reporting zero accessibility issues for the page against WCAG 2.1 AA.](/assets/uploads/2026/07/axe-free-browser-extension-test.webp)
 
 ![A Lighthouse mobile run scoring 100 for performance, accessibility, best practices, and SEO.](/assets/uploads/2026/07/mobile-lighthouse-score.webp)
+
+## Wrapping up
+
+I thoroughly enjoyed building this site, even though it started as a coding challenge. It let me flex some muscles I hadn't used in a while, and explore ideas I hadn't had the chance to try in this new AI-assisted way of working. I took a few lessons from the interview process, and came away with a piece I'm proud of, and one where I can actually share the source, unlike my other case studies.
 
 **Impact:** Built the full Atlas landing page and its interactive product and hero canvases in about twelve hours, from nothing, that first Friday. I spent roughly four hours on Saturday on optimization and another four on Sunday on accessibility testing. On Monday I sent off some questions, they came back with answers, and the next day I built the hero background animation. Most of the work landed in that first handful of days; the rest was adjustments and the request-access page, and the panel discussion itself came about three weeks after I started, once most of the build was done. Page weight came down from about 2.5MB to roughly 950KB and the font payload dropped about 89%. The result is a perfect axe score, zero issues against WCAG 2.1 AA, and a Lighthouse mobile run of 100 across performance, accessibility, best practices, and SEO, both wired into an automated check on every pull request.
