@@ -2,6 +2,6 @@
 {%- assign main_js = manifest['main-js'] | default: '/assets/js/main.min.js' -%}
 {%- assign prism_js = manifest['prism-js'] | default: '/assets/js/prism.min.js' -%}
 <script src="{{ main_js | relative_url }}" defer></script>
-{%- if page.layout == 'post' and page.content contains '<pre' -%}
+{%- if page.content contains '<pre' -%}
 	<script src="{{ prism_js | relative_url }}" defer></script>
 {%- endif -%}
