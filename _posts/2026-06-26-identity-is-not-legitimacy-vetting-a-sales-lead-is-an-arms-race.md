@@ -19,8 +19,8 @@ tags:
 image: '/assets/uploads/2026/06/identity-is-not-legitimacy.webp'
 ---
 
-<aside class="post-tldr">
-	<h2 class="post-tldr__title">TL;DR</h2>
+<aside class="callout">
+	<h2 class="callout__title">TL;DR</h2>
 	<p>This article is the conclusion to my earlier research on verifying the identity of a user who submits a lead form. In it, I lay out the bigger picture and show that the identity stage is just one section of it. As we broaden out, we find our keystone: the combination of identity and verification. Several more methods act as signals that feed into the lead quality score, so the sales team has a better picture of who they need to focus on.</p>
 </aside>
 

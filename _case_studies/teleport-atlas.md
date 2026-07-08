@@ -21,6 +21,18 @@ link: https://teleport-atlas.vercel.app/
 link_text: View Live Demo
 ---
 
+<aside class="callout">
+	<h2 class="callout__title">Key Takeaways</h2>
+	<ul>
+		<li>Rebuilt Teleport's Atlas landing page from a Figma spec in Next.js (App Router), from nothing to a working page with canvas product animations in about twelve hours.</li>
+		<li>A perfect axe score with zero WCAG 2.1 AA issues, plus a 100 Lighthouse mobile run across performance, accessibility, best practices, and SEO.</li>
+		<li>Page weight cut from about 2.5MB to roughly 950KB, including an ~89% drop in the font payload from subsetting with fonttools and brotli.</li>
+		<li>Interactive Canvas access-graph and hero animations layered over responsive WebP, with full prefers-reduced-motion support.</li>
+		<li>Hardened build and supply chain: static export to shrink the attack surface, SHA-pinned GitHub Actions, a pnpm cooldown and allowlist with a frozen lockfile, and escaped JSON-LD.</li>
+		<li>See it <a href="https://teleport-atlas.vercel.app/">live at teleport-atlas.vercel.app</a>, with full source on <a href="https://github.com/Blake-C/teleport-web-eng-coding-challenge">GitHub</a>.</li>
+	</ul>
+</aside>
+
 ## The challenge
 
 This project was a coding challenge from Teleport during an interview process and I wanted to add this to my portfolio as it is the most recent site build I've done in the past six months since I've retooled myself for AI coding versus my previous manual process. Most of what I have built recently has been Swift applications or one-off WordPress plugins, single pieces of functionality rather than a whole page. This is the first full page I have built with AI tools like Claude. Teleport gave me a Figma of their Atlas product landing page and told me to build it in whatever front-end technology I wanted, then present it to the hiring panel. Because it was a challenge, I was given permission to publish the code, so the full source is public on [GitHub](https://github.com/Blake-C/teleport-web-eng-coding-challenge) and the build is live at [teleport-atlas.vercel.app](https://teleport-atlas.vercel.app/).

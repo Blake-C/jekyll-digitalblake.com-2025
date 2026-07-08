@@ -78,26 +78,6 @@
 	}
 }
 
-.post-tldr {
-	background-color: v.$gray244;
-	border-left: 3px solid v.$accent-blue;
-	margin: 0 0 bp.rem-calc(28);
-	padding: bp.rem-calc(16) bp.rem-calc(20);
-
-	&__title {
-		font-size: bp.rem-calc(16);
-		font-weight: 700;
-		letter-spacing: 1px;
-		margin: 0 0 bp.rem-calc(8);
-		text-transform: uppercase;
-	}
-
-	p {
-		font-size: bp.rem-calc(15);
-		margin: 0;
-	}
-}
-
 .post-cta {
 	border-top: 1px solid v.$light-gray;
 	margin-top: bp.rem-calc(24);
@@ -195,7 +175,7 @@
 
 		// The intro paragraph keeps its drop cap when a TL;DR box precedes it.
 		> p:first-child::first-letter,
-		> .post-tldr + p::first-letter {
+		> .callout + p::first-letter {
 			float: left;
 			font-family: Georgia, serif;
 			font-size: bp.rem-calc(75);

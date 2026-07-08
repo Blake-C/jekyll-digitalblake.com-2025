@@ -9,8 +9,8 @@ tags: ['sales', 'lead-scoring', 'ai', 'marketo', 'salesforce', 'marketing-automa
 image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
 ---
 
-<aside class="post-tldr">
-	<h2 class="post-tldr__title">TL;DR</h2>
+<aside class="callout">
+	<h2 class="callout__title">TL;DR</h2>
 	<p>I wrote this article to explain three ideas for getting better quality leads in front of the sales team. Check the domain behind the email address, check the content of the website on that domain, and check whether the person who submitted the form exists elsewhere on the internet, like LinkedIn or other social media. Together, these checks help verify the submitter's identity and keep bots and AI tools from spamming the lead form. Each check gets a score from 0 to 10, and the average lands in Salesforce for the sales team to sort by.</p>
 </aside>
 
