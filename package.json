@@ -29,7 +29,7 @@
 		"lint-staged": "catalog:",
 		"postcss": "^8.5.16",
 		"postcss-cli": "catalog:",
-		"prettier": "^3.9.4",
+		"prettier": "^3.9.5",
 		"sass": "catalog:",
 		"stylelint": "catalog:",
 		"stylelint-config-standard-scss": "17.0.0",
