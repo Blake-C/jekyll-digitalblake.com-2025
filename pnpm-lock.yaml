@@ -40,8 +40,9 @@ catalogs:
 overrides:
     js-yaml: ^4.3.0
     brace-expansion: ^5.0.7
-    fast-uri: ^3.1.3
+    fast-uri: ^3.1.4
     postcss-selector-parser: ^7.1.2
+    immutable: ^5.1.8
 
 importers:
     .:
@@ -1333,10 +1334,10 @@ packages:
                 integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==,
             }
 
-    fast-uri@3.1.3:
+    fast-uri@3.1.4:
         resolution:
             {
-                integrity: sha512-i70LwGWUduXqzicKXWshooq+sWL1K3WUU5rKZNG/0i3a1OSoX3HqhH5WbWwTmqWfor4urUakGPiRQcleRZTwOg==,
+                integrity: sha512-8JnbkQ4juDyvYs4mgFGQqg4yCYtFDtUtmp2QIQq11ZZe5CFQ5wcqm1rqDgAh/QdMySuBnPzMUiJUNZG5N/AiQw==,
             }
 
     fastest-levenshtein@1.0.16:
@@ -1594,10 +1595,10 @@ packages:
             }
         engines: { node: '>= 4' }
 
-    immutable@5.1.5:
+    immutable@5.1.9:
         resolution:
             {
-                integrity: sha512-t7xcm2siw+hlUM68I+UEOK+z84RzmN59as9DZ7P1l0994DKUWV7UXBMQZVxaoMSRQ+PBZbHCOoBt7a2wxOMt+A==,
+                integrity: sha512-m8nVez3rwrgmWxtLMt1ZYXB2Lv7OKYn/disyxAlSDYAlKSlFoPPfIAmAM/M5xqL4m4C/wAPw7S2/CNaUii1Hxg==,
             }
 
     import-fresh@3.3.1:
@@ -3325,7 +3326,7 @@ snapshots:
     ajv@8.20.0:
         dependencies:
             fast-deep-equal: 3.1.3
-            fast-uri: 3.1.3
+            fast-uri: 3.1.4
             json-schema-traverse: 1.0.0
             require-from-string: 2.0.2
 
@@ -3603,7 +3604,7 @@ snapshots:
 
     fast-levenshtein@2.0.6: {}
 
-    fast-uri@3.1.3: {}
+    fast-uri@3.1.4: {}
 
     fastest-levenshtein@1.0.16: {}
 
@@ -3728,7 +3729,7 @@ snapshots:
 
     ignore@7.0.5: {}
 
-    immutable@5.1.5: {}
+    immutable@5.1.9: {}
 
     import-fresh@3.3.1:
         dependencies:
@@ -4114,7 +4115,7 @@ snapshots:
     sass@1.101.0:
         dependencies:
             chokidar: 5.0.0
-            immutable: 5.1.5
+            immutable: 5.1.9
             source-map-js: 1.2.1
         optionalDependencies:
             '@parcel/watcher': 2.5.6
