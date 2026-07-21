@@ -3,7 +3,7 @@ layout: post
 title: 'An Idea for Better Rating of Sales Leads in the Age of AI'
 description: 'LLMs made spam and bot leads hard to spot with traditional filters. Here is an idea: score every sales lead on the sales side with AI checks on domain age, the website behind the email, and the person submitting it, then rank by quality so the sales team spends time where it pays off.'
 date: 2026-06-26 08:44:40 CDT -0500
-modified_date: 2026-07-04 12:46:08 CDT -0500
+modified_date: 2026-07-21 18:47:14 CDT -0500
 categories: ['Articles']
 tags: ['sales', 'lead-scoring', 'ai', 'marketo', 'salesforce', 'marketing-automation', 'spam-prevention']
 image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
@@ -71,3 +71,5 @@ I think these tools belong on the sales side rather than the web marketing side.
 It cannot be one-directional. If the sales team notices patterns of spam or botting that are slowing them down, that has to flow back to the web marketing team: which addresses to block, which patterns to watch, what to add on the capture side to cut down on junk before it ever becomes a lead. Web marketing tightens the front door, sales scores what gets through, and sales reports back what it learns.
 
 Good leads that are worth the time take effort from both sides. The scoring just makes sure that effort lands on the leads most likely to pay off.
+
+If you are on the sales side and wondering how this would actually work in practice, I answered a batch of those questions in a follow-up: [answering questions asked by a salesperson on lead scoring]({% post_url 2026-07-21-answering-questions-asked-by-a-salesperson-on-lead-scoring %}).

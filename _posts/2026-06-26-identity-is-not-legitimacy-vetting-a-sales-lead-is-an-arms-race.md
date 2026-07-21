@@ -3,7 +3,7 @@ layout: post
 title: 'Identity Is Not Legitimacy: Vetting a Sales Lead Is an Arms Race'
 description: 'Identity checks can tell you a sales lead is a real person at a real company. They cannot tell you the lead is genuine. Here is why every layer that tries to prove legitimacy, from bot detection and honeypots to email and SMS verification, only raises the cost against an AI-equipped adversary instead of stopping them.'
 date: 2026-06-26 10:32:00 CDT -0500
-modified_date: 2026-07-04 12:50:32 CDT -0500
+modified_date: 2026-07-21 18:47:14 CDT -0500
 categories: ['Articles']
 tags:
     [
@@ -24,7 +24,7 @@ image: '/assets/uploads/2026/06/identity-is-not-legitimacy.webp'
 	<p>This article is the conclusion to my earlier research on verifying the identity of a user who submits a lead form. Identity is only one piece. The keystone is identity combined with verification, and several more methods act as signals that feed into the lead quality score, so the sales team gets a clearer picture of who to focus on.</p>
 </aside>
 
-In a companion piece I laid out [an idea for rating sales leads by identity]({% post_url 2026-06-26-an-idea-for-better-rating-sales-leads-in-the-age-of-ai %}): check the domain, the website, and the person behind the email, score each, and rank the real leads above the junk. However, that's not the whole story. To zoom out further, you really need to do a comparison of identity against the legitimacy of the submission.
+In a companion piece I laid out [an idea for rating sales leads by identity]({% post_url 2026-06-26-an-idea-for-better-rating-sales-leads-in-the-age-of-ai %}): check the domain, the website, and the person behind the email, score each, and rank the real leads above the bots. However, that's not the whole story. To zoom out further, you really need to do a comparison of identity against the legitimacy of the submission.
 
 A lead can show up with a real name and a real email, even one lifted straight off a company's team page, and pass every identity check while only meaning to bog your sales team down. The checks confirm the data is real. They say nothing about whether the submission is genuine. After digging into each issue to come up with a fix I came away with the same results; every fix would increase the cost of an attack but never fully shut it down. What follows is my attempt to track the current state of lead legitimacy.
 
@@ -103,6 +103,8 @@ The signals that hold up are the ones that are expensive to fake at scale and th
 Tune those signals to who you actually sell to. Domain age and a corporate email work in your favor when your buyers are mature companies. Point them at startups and they backfire, because a real early-stage buyer has a young domain and often a personal email, the same profile most spam wears. If startups are your market, ease off the age penalty and pull in a different check instead: look the company up in funding databases to see whether it exists, what round it is in, and whether it has the budget to buy what you sell. That last point cuts both ways, since a company that new may not be ready to invest in your product yet. There is no single right setting here, only the one that matches your target market.
 
 So rank your real leads with the identity checks, keep the traditional-bot defenses on for what they do catch, and accept that proving good-faith intent is something you manage over time. The form is the wrong place to expect a final answer. If you want the upstream half of this, scoring and ranking the leads that are real, that is the [companion article]({% post_url 2026-06-26-an-idea-for-better-rating-sales-leads-in-the-age-of-ai %}).
+
+If you are on the sales side and have questions about how any of this would actually work for you, I answered a batch of them in a follow-up: [answering questions asked by a salesperson on lead scoring]({% post_url 2026-07-21-answering-questions-asked-by-a-salesperson-on-lead-scoring %}).
 
 ## References
 
