@@ -1,6 +1,7 @@
 ---
 permalink: /404.html
 layout: page
+noindex: true
 ---
 <style type="text/css" media="screen">
 	.container {
@@ -14,11 +15,26 @@ layout: page
 		line-height: 1;
 		letter-spacing: -1px;
 	}
+	.fof-links {
+		list-style: none;
+		margin: 1.5em 0 0;
+		padding: 0;
+	}
+	.fof-links li {
+		display: inline-block;
+		margin: 0 0.5em;
+	}
 </style>
 
 <div class="container">
 	<h1>404</h1>
 
 	<p><strong>Page not found :(</strong></p>
-	<p>The requested page could not be found.</p>
+	<p>The requested page could not be found. Try one of these instead:</p>
+	<ul class="fof-links">
+		<li><a href="{{ '/' | relative_url }}">Home</a></li>
+		<li><a href="{{ '/case-studies/' | relative_url }}">Case studies</a></li>
+		<li><a href="{{ '/articles/' | relative_url }}">Articles</a></li>
+		<li><a href="{{ '/about/' | relative_url }}">About</a></li>
+	</ul>
 </div>
