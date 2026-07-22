@@ -3,7 +3,7 @@ layout: post
 title: 'Shai Hulud npm Attack: How It Worked and How I Hardened My Repos'
 description: 'The Shai Hulud worm poisoned a pnpm cache in GitHub Actions to hit TanStack and 170+ npm packages. How it worked and the steps I took to harden my repos.'
 date: 2026-05-15 04:41:03 CDT -0500
-modified_date: 2026-07-05 09:54:38 CDT -0500
+modified_date: 2026-07-21 20:04:04 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
@@ -101,6 +101,14 @@ What each security-relevant setting does:
 - **`minimumReleaseAge: 10080`**: Refuses to install a package version published fewer than 7 days ago. This directly targets the Shai Hulud-style attack pattern: publish a malicious version and get projects to pull it before anyone notices. A freshness gate gives the community time to spot and report it first.
 - **`allowBuilds`**: The most direct mitigation against this attack. Only the packages listed here can run postinstall scripts. Everything else is blocked. In this repo, only `@parcel/watcher` needs a build script. The Shai Hulud payload was a postinstall script. It would not have run.
 - **`catalog:`**: Centralizes version pins for high-risk dependencies in one file. A version bump requires an explicit edit here, making it visible in code review rather than buried in a lockfile diff.
+
+One setting in that config is operational rather than security-related, but it's worth calling out because it trips people up in CI: `confirmModulesPurge: false`. pnpm asks for confirmation before it purges `node_modules` (for example when the store or hoisting config changes), and a non-interactive CI run has no way to answer that prompt. So the build fails with:
+
+```
+If you are running pnpm in CI, set the CI environment variable to true, or set the confirmModulesPurge setting to false.
+```
+
+Setting `confirmModulesPurge: false` in `pnpm-workspace.yaml` (or exporting `CI=true` in the pipeline) silences the prompt so installs run unattended. With `frozenLockfile: true` already forcing a clean, lockfile-exact install, skipping the purge confirmation in CI is safe.
 
 The Next.js app has an additional setting worth noting: `hoist: false` combined with an explicit `publicHoistPattern`. This prevents phantom dependency exploitation, where a package that isn't in your direct dependencies can be imported because it was hoisted into `node_modules` by something else.
 
