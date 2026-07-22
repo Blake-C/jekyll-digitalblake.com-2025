@@ -11,7 +11,7 @@ sitemap: false
 	{%- unless post.sitemap == false %}
 	<url>
 		<loc>{{ post.url | absolute_url }}</loc>
-		<lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+		<lastmod>{{ post.modified_date | default: post.date | date_to_xmlschema }}</lastmod>
 	</url>
 	{%- endunless %}
 	{%- endfor %}
@@ -19,8 +19,9 @@ sitemap: false
 	{%- unless doc.sitemap == false %}
 	<url>
 		<loc>{{ doc.url | absolute_url }}</loc>
-		{%- if doc.date %}
-		<lastmod>{{ doc.date | date_to_xmlschema }}</lastmod>
+		{%- assign cs_lastmod = doc.modified_date | default: doc.date %}
+		{%- if cs_lastmod %}
+		<lastmod>{{ cs_lastmod | date_to_xmlschema }}</lastmod>
 		{%- endif %}
 	</url>
 	{%- endunless %}
@@ -39,8 +40,9 @@ sitemap: false
 	%}
 	<url>
 		<loc>{{ page.url | absolute_url }}</loc>
-		{%- if page.last_modified_at %}
-		<lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
+		{%- assign pg_lastmod = page.modified_date | default: page.last_modified_at %}
+		{%- if pg_lastmod %}
+		<lastmod>{{ pg_lastmod | date_to_xmlschema }}</lastmod>
 		{%- endif %}
 	</url>
 	{%- endunless %}

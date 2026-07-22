@@ -2,6 +2,7 @@
 layout: content-page
 title: Front-End Performance
 permalink: /guides/front-end-performance/
+modified_date: 2026-07-21 20:04:04 -0500
 description: 'Making the browser side fast: subsetting and compressing web fonts, and keeping critical CSS small and correct, with the real fixes behind a quick-loading site.'
 pillar: front-end-performance
 toc:
