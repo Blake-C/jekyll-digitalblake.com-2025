@@ -17,3 +17,7 @@ shell-macos:
     title: Shell Scripting and macOS
     url: /guides/shell-and-macos/
     description: 'Shell scripts and macOS automation: reusable functions, command-line tricks, yabai tiling, and a one-command Mac setup.'
+front-end-performance:
+    title: Front-End Performance
+    url: /guides/front-end-performance/
+    description: 'Making the browser side fast: subsetting and compressing web fonts, and keeping critical CSS small and correct, with the real fixes behind a quick-loading site.'

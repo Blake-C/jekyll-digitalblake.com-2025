@@ -5,6 +5,8 @@ description: "Prism's line-numbers plugin froze the wrong line heights onto the 
 date: 2026-06-19 20:52:32
 categories: ['Notes']
 tags: ['prismjs', 'css', 'critical-css', 'jekyll', 'web-performance', 'debugging']
+pillar: front-end-performance
+pillar_section: rendering
 image: '/assets/uploads/2026/06/fixing-prism-line-number-misalignment.webp'
 ---
 
