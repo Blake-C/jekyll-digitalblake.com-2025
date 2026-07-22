@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 'AppKit vs SwiftUI on macOS: Layout, Performance, and Trade-offs'
-description: 'A comparison of SwiftUI and AppKit as UI frameworks for macOS, covering how each handles layout and rendering, where each performs well, and what the choice means at scale.'
+description: 'A comparison of AppKit and SwiftUI as macOS UI frameworks, covering layout, rendering, and performance at scale, plus where UIKit and Mac Catalyst fit in.'
 date: 2026-04-28 06:53:39 CDT -0500
-modified_date: 2026-06-19 10:13:06 -0500
+modified_date: 2026-07-21 20:04:04 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'swiftui', 'appkit', 'performance']
 image: 'assets/uploads/2025/04/swiftui-vs-appkit-on-macos-layout-models-performance-and-trade-offs-social-share-image.webp'
@@ -32,6 +32,10 @@ SwiftUI was introduced in 2019. It is declarative: you describe what the UI shou
 When state changes, SwiftUI re-evaluates the view hierarchy and diffs it against the previous state to produce a minimal set of updates. The underlying UIKit (on iOS) or AppKit (on macOS) objects are managed by SwiftUI internally. You do not interact with them directly in most cases.
 
 `LazyVGrid` and `LazyHGrid` provide lazy loading for grid layouts -- they only create views for items near the visible area. `List` on macOS is backed by `NSTableView` internally, which is why it tends to perform better than a `ScrollView` + `LazyVStack` for long lists.
+
+### Where UIKit Fits
+
+UIKit is the iOS counterpart to AppKit: the imperative, `UIView`-based framework for iOS and iPadOS interfaces. It is not a macOS UI framework. On the Mac, UIKit only enters the picture through Mac Catalyst, which compiles a UIKit iOS app to run on macOS (covered below in Other Options). So a three-way "AppKit vs UIKit vs SwiftUI" question is really two separate choices on two platforms: AppKit vs SwiftUI is the decision for a Mac-native app, and UIKit vs SwiftUI is the same decision on iOS. SwiftUI is the only one of the three that targets both platforms from a single description, rendering down to AppKit on macOS and UIKit on iOS underneath.
 
 ---
 
@@ -113,6 +117,8 @@ This is the practical reality of SwiftUI on macOS: you build most things in Swif
 ### Catalyst
 
 Mac Catalyst lets you compile a UIKit-based iOS app for macOS. The result runs on macOS but is not a native Mac application in the sense that AppKit applications are. The UI conventions, scrolling behavior, and window management all reflect iOS origins. It is useful for bringing an existing iOS app to the Mac without rewriting it. It is not a good starting point for a Mac-first application.
+
+I have not shipped a Catalyst app myself yet. Most of my hands-on work building apps with AI tools like Claude Code has been in UIKit on iOS, and for the Mac work behind this post SwiftUI has been good enough for what I needed. Catalyst is on my list to experiment with, to see where a shared UIKit codebase is worth the compromises it makes on the Mac. Treat that as a direction I want to explore, not a recommendation.
 
 ### Flutter
 
