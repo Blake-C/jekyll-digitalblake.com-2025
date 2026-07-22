@@ -224,6 +224,8 @@ fi
 
 With this in place, `claude` is in `PATH` from the moment the shell finishes loading, the lazy NVM aliases still work exactly as before, and the full NVM source only happens when you actually need version management.
 
+Bending Claude Code to fit my workflow has turned into a recurring project. On the editor side I went a step further and [built a companion extension that patches the Claude Code VS Code extension]({% post_url 2026-05-09-patching-the-claude-code-vscode-extension %}) to change five defaults that kept getting in my way.
+
 ## The Result
 
 After all of these changes, running the timing test again:
