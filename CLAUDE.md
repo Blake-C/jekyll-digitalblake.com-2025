@@ -24,6 +24,7 @@ docker compose run --rm app pnpm run build
 
 # Individual build steps
 docker compose run --rm app pnpm run build:images      # Optimize JPG/PNG and generate WebP variants
+docker compose run --rm app pnpm run build:image-dimensions  # Measure image sizes → _data/image_dimensions.json (for width/height injection)
 docker compose run --rm app pnpm run cache:thumbnails  # Cache YouTube thumbnails locally as WebP
 docker compose run --rm app pnpm run build:fonts       # Subset Montserrat variable TTF → WOFF2 (--emit to write)
 docker compose run --rm app pnpm run build:styles      # Compile SCSS to assets/css/ and _includes/ (critical CSS)
@@ -146,4 +147,4 @@ Husky runs lint-staged on commit:
 
 GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).
 
-CI does **not** run `build:images`, `cache:thumbnails`, or `build:fonts` — those outputs (optimized images, cached thumbnails, the subset WOFF2) are committed to the repo and used as-is. Regenerate and commit them locally when their inputs change.
+CI does **not** run `build:images`, `build:image-dimensions`, `cache:thumbnails`, or `build:fonts` — those outputs (optimized images, the `_data/image_dimensions.json` size manifest, cached thumbnails, the subset WOFF2) are committed to the repo and used as-is. Regenerate and commit them locally when their inputs change. After adding or replacing images, run `build:images` then `build:image-dimensions` and commit the updated manifest so content-image `width`/`height` stay correct.

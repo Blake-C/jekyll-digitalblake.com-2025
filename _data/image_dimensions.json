@@ -1,0 +1,870 @@
+{
+	"/assets/images/header-background-sm.webp": {
+		"width": 768,
+		"height": 427
+	},
+	"/assets/images/header-background.webp": {
+		"width": 1440,
+		"height": 800
+	},
+	"/assets/images/og-fallback.jpg": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/images/og-fallback.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/images/profile-2022-v3.webp": {
+		"width": 490,
+		"height": 490
+	},
+	"/assets/images/projects-background-sm.webp": {
+		"width": 768,
+		"height": 427
+	},
+	"/assets/images/projects-background.webp": {
+		"width": 1440,
+		"height": 800
+	},
+	"/assets/images/websites-background-sm.webp": {
+		"width": 768,
+		"height": 472
+	},
+	"/assets/images/websites-background.webp": {
+		"width": 1440,
+		"height": 885
+	},
+	"/assets/uploads/2018/08/adding-empty-spaces-to-macos-dock-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2018/08/docker-notes-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2018/08/helpful-docker-shell-script-aliases-and-functions-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2018/08/output-sublimelinter.webp": {
+		"width": 800,
+		"height": 748
+	},
+	"/assets/uploads/2018/08/prettier-sublime-facebook.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2018/08/setting-up-wordpress-coding-standards-wpcs-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2018/08/sublime-text-jsprettier-settings.webp": {
+		"width": 1648,
+		"height": 1416
+	},
+	"/assets/uploads/2018/08/sublime-text-snippet.webp": {
+		"width": 800,
+		"height": 386
+	},
+	"/assets/uploads/2019/02/features-new-to-php7-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2019/02/generating-word-docs-with-node-pandoc-and-knex-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2019/03/Annual-Plan-2019-fb.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2019/03/moon-fb.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2019/03/the-remote-workforce-from-a-developers-perspective.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2019/06/react-screen-facebook.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.05.27-AM.webp": {
+		"width": 1557,
+		"height": 1030
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.08.49-AM.webp": {
+		"width": 1130,
+		"height": 1032
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.09.19-AM.webp": {
+		"width": 1130,
+		"height": 1032
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.10.29-AM.webp": {
+		"width": 1130,
+		"height": 1032
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.10.48-AM.webp": {
+		"width": 1130,
+		"height": 1032
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.11.14-AM.webp": {
+		"width": 1318,
+		"height": 1087
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.52-AM.webp": {
+		"width": 1130,
+		"height": 870
+	},
+	"/assets/uploads/2019/10/Screen-Shot-2019-10-10-at-1.12.57-AM.webp": {
+		"width": 1209,
+		"height": 866
+	},
+	"/assets/uploads/2019/10/facebook.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2020/02/facebook-hide-desktop-icons-in-macos.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2020/04/facebook-1.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2020/04/facebook.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2020/05/facebook.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2020/07/common-composer-commands.webp": {
+		"width": 1080,
+		"height": 608
+	},
+	"/assets/uploads/2021/01/Screen-Shot-2021-01-30-at-3.30.55-AM.webp": {
+		"width": 1000,
+		"height": 593
+	},
+	"/assets/uploads/2021/01/random-1-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-30-54-pm.webp": {
+		"width": 1000,
+		"height": 589
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-40-18-pm.webp": {
+		"width": 1000,
+		"height": 585
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-41-28-pm.webp": {
+		"width": 1000,
+		"height": 593
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-42-02-pm.webp": {
+		"width": 1000,
+		"height": 588
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-43-32-pm.webp": {
+		"width": 1000,
+		"height": 595
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-44-40-pm.webp": {
+		"width": 1000,
+		"height": 588
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-46-01-pm.webp": {
+		"width": 1000,
+		"height": 588
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-49-54-pm.webp": {
+		"width": 1000,
+		"height": 588
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-51-30-pm.webp": {
+		"width": 1000,
+		"height": 590
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-53-12-pm.webp": {
+		"width": 1000,
+		"height": 589
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-55-19-pm.webp": {
+		"width": 1000,
+		"height": 593
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-10-59-48-pm.webp": {
+		"width": 1000,
+		"height": 585
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-19-31-pm.webp": {
+		"width": 1000,
+		"height": 587
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-21-35-pm.webp": {
+		"width": 1000,
+		"height": 621
+	},
+	"/assets/uploads/2021/01/screen-shot-2021-01-28-at-11-46-35-pm.webp": {
+		"width": 1000,
+		"height": 590
+	},
+	"/assets/uploads/2021/02/Screen-Shot-2021-02-03-at-9.58.23-PM.webp": {
+		"width": 1000,
+		"height": 464
+	},
+	"/assets/uploads/2021/02/random-1-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2021/02/random-1.webp": {
+		"width": 900,
+		"height": 300
+	},
+	"/assets/uploads/2021/03/Installing-CLI-Tools-fish-php-composer-nvm-with-Arch-Linux-and-Docker-Image-1200x630-facebook-share.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2021/08/random-1-1200x630-facebook-share-1.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/04/Jiles-Rodriguez.webp": {
+		"width": 100,
+		"height": 100
+	},
+	"/assets/uploads/2025/04/Josh-Patrice.webp": {
+		"width": 100,
+		"height": 100
+	},
+	"/assets/uploads/2025/04/Neicole-Crepeau.webp": {
+		"width": 100,
+		"height": 100
+	},
+	"/assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-keeping-it-all-in-sync.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/04/exit intent - front-end dark mode.webp": {
+		"width": 900,
+		"height": 509
+	},
+	"/assets/uploads/2025/04/exit intent - popup backend listing ui.webp": {
+		"width": 900,
+		"height": 509
+	},
+	"/assets/uploads/2025/04/exit intent - popup editing ui.webp": {
+		"width": 900,
+		"height": 510
+	},
+	"/assets/uploads/2025/04/exit intent - popup front-end light mode.webp": {
+		"width": 900,
+		"height": 509
+	},
+	"/assets/uploads/2025/04/my-very-fun-super-duper-evening-social-share-image.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/04/my-very-fun-super-duper-evening.webp": {
+		"width": 3300,
+		"height": 2098
+	},
+	"/assets/uploads/2025/04/speeding-up-zsh-startup-fixing-compinit-nvm-and-claude-code-path-issues.webp": {
+		"width": 1600,
+		"height": 900
+	},
+	"/assets/uploads/2025/04/swiftui-vs-appkit-on-macos-layout-models-performance-and-trade-offs-social-share-image.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/04/the image viewer application on loadup with photos.webp": {
+		"width": 1600,
+		"height": 1124
+	},
+	"/assets/uploads/2025/04/the image viewer application viewing a single photo.webp": {
+		"width": 1600,
+		"height": 1124
+	},
+	"/assets/uploads/2025/04/the image viewer application zoomed into a single photo.webp": {
+		"width": 1600,
+		"height": 1124
+	},
+	"/assets/uploads/2025/04/the image viewr application with the image info and star indicator on.webp": {
+		"width": 1600,
+		"height": 1124
+	},
+	"/assets/uploads/2025/04/the-daily-feed-ai-features-setting-screen.webp": {
+		"width": 1080,
+		"height": 840
+	},
+	"/assets/uploads/2025/04/the-daily-feed-bookmarks-screen.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-daily-summary-view.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-quiz-results-screen-with-scores-for-day-month-and-year.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-quiz-screen-question-generation-from-ollama.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-quiz-screen-where-answer-is-correct.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-quiz-screen-where-answer-was-incorrect.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-quiz-screen-where-question-is-voided.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-quiz-screen-where-question-was-disputed-and-confirmed-correct.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-source-feed-view.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/04/the-daily-feed-suggested-sources-view.webp": {
+		"width": 1600,
+		"height": 1017
+	},
+	"/assets/uploads/2025/05/be-something-amazing-find-your-path-career-quiz.webp": {
+		"width": 1562,
+		"height": 1760
+	},
+	"/assets/uploads/2025/05/be-something-amazing-find-your-path-homepage-widget-takes-you-to-the-quiz.webp": {
+		"width": 1778,
+		"height": 620
+	},
+	"/assets/uploads/2025/05/be-something-amazing-professional-testimonials-on-homepage.webp": {
+		"width": 1660,
+		"height": 1054
+	},
+	"/assets/uploads/2025/05/be-something-amazing-why-healthcare-page.webp": {
+		"width": 1360,
+		"height": 1166
+	},
+	"/assets/uploads/2025/05/besomethingamazing-full-screenshot.webp": {
+		"width": 2000,
+		"height": 7419
+	},
+	"/assets/uploads/2025/05/besomethingamazing-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/besomethingamazing-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/besomethingamazing-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/contessa-health-complexities-carousel.webp": {
+		"width": 1592,
+		"height": 678
+	},
+	"/assets/uploads/2025/05/contessa-health-full-screenshot.webp": {
+		"width": 2000,
+		"height": 1412
+	},
+	"/assets/uploads/2025/05/contessa-health-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/contessa-health-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/contessa-health-our-roll-carouse.webp": {
+		"width": 1598,
+		"height": 682
+	},
+	"/assets/uploads/2025/05/contessa-health-our-services.webp": {
+		"width": 1418,
+		"height": 716
+	},
+	"/assets/uploads/2025/05/contessa-health-partner-with-us-flip-cards.webp": {
+		"width": 1598,
+		"height": 1600
+	},
+	"/assets/uploads/2025/05/contessa-health-surgical-program-works.webp": {
+		"width": 1418,
+		"height": 1372
+	},
+	"/assets/uploads/2025/05/contessa-health-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-gravity-forms-contact-form.webp": {
+		"width": 2000,
+		"height": 1298
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-heart-carousel.webp": {
+		"width": 2000,
+		"height": 952
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-homepage.webp": {
+		"width": 2000,
+		"height": 3405
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-icons-and-services.webp": {
+		"width": 2000,
+		"height": 1000
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-location-map-and-filtering-with-mix-it-up.webp": {
+		"width": 1560,
+		"height": 1764
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-newspage.webp": {
+		"width": 1472,
+		"height": 1570
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-our-model-and-carousel.webp": {
+		"width": 2000,
+		"height": 1572
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-our-team-page.webp": {
+		"width": 2000,
+		"height": 1401
+	},
+	"/assets/uploads/2025/05/covenant-physician-partners-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-saint-david-s-healthcare-article-page.webp": {
+		"width": 2000,
+		"height": 1757
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-saint-david-s-healthcare-authors-page.webp": {
+		"width": 2000,
+		"height": 1663
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-saint-david-s-healthcare-categories-drop-down.webp": {
+		"width": 2000,
+		"height": 793
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-saint-david-s-healthcare-home-page.webp": {
+		"width": 2000,
+		"height": 2152
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-saint-david-s-healthcare-news-archive.webp": {
+		"width": 2000,
+		"height": 2365
+	},
+	"/assets/uploads/2025/05/live-healthy-austin-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/martin-ventures-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/martin-ventures-homepage.webp": {
+		"width": 2000,
+		"height": 2322
+	},
+	"/assets/uploads/2025/05/martin-ventures-investment-portfolio-page.webp": {
+		"width": 2000,
+		"height": 705
+	},
+	"/assets/uploads/2025/05/martin-ventures-news-page.webp": {
+		"width": 2000,
+		"height": 1490
+	},
+	"/assets/uploads/2025/05/martin-ventures-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/martin-ventures-our-team-page.webp": {
+		"width": 2000,
+		"height": 2035
+	},
+	"/assets/uploads/2025/05/martin-ventures-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/ok-tours-bus-tours-page.webp": {
+		"width": 2000,
+		"height": 3668
+	},
+	"/assets/uploads/2025/05/ok-tours-calendar-page.webp": {
+		"width": 2000,
+		"height": 1477
+	},
+	"/assets/uploads/2025/05/ok-tours-casino-bus-trip-page.webp": {
+		"width": 2000,
+		"height": 1355
+	},
+	"/assets/uploads/2025/05/ok-tours-contact-page.webp": {
+		"width": 2000,
+		"height": 1247
+	},
+	"/assets/uploads/2025/05/ok-tours-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/ok-tours-home-page.webp": {
+		"width": 2000,
+		"height": 3030
+	},
+	"/assets/uploads/2025/05/ok-tours-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/ok-tours-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/patching-the-claude-code-vs-code-extension-social-share-image.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/republic-ranches-associate-detail-page-has-contact-information-photo-and-form.webp": {
+		"width": 2000,
+		"height": 1564
+	},
+	"/assets/uploads/2025/05/republic-ranches-associates-listing-page-with-filters-to-view-by-state-city-or-state-license.webp": {
+		"width": 2000,
+		"height": 1571
+	},
+	"/assets/uploads/2025/05/republic-ranches-full-screenshot.webp": {
+		"width": 2000,
+		"height": 5284
+	},
+	"/assets/uploads/2025/05/republic-ranches-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/republic-ranches-interactive-map-on-page-load.webp": {
+		"width": 2000,
+		"height": 1138
+	},
+	"/assets/uploads/2025/05/republic-ranches-interactive-map-zoomed-in-with-pin-marker-visible.webp": {
+		"width": 2000,
+		"height": 1130
+	},
+	"/assets/uploads/2025/05/republic-ranches-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/republic-ranches-property-detail-page-gallery-breadcrumbs-sidebar-associates.webp": {
+		"width": 2000,
+		"height": 1537
+	},
+	"/assets/uploads/2025/05/republic-ranches-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/republic-ranches-what-we-do-homepage-segment.webp": {
+		"width": 1616,
+		"height": 1198
+	},
+	"/assets/uploads/2025/05/salsa-events-footer-with-events-detail-and-add-to-calendar-button.webp": {
+		"width": 2000,
+		"height": 1469
+	},
+	"/assets/uploads/2025/05/salsa-full-screenshot.webp": {
+		"width": 2000,
+		"height": 5722
+	},
+	"/assets/uploads/2025/05/salsa-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/salsa-home-page-mission-statement-section.webp": {
+		"width": 2000,
+		"height": 1310
+	},
+	"/assets/uploads/2025/05/salsa-homepage-news-and-announcements-section.webp": {
+		"width": 2000,
+		"height": 1467
+	},
+	"/assets/uploads/2025/05/salsa-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/salsa-public-events-calendar-interface.webp": {
+		"width": 2000,
+		"height": 1462
+	},
+	"/assets/uploads/2025/05/salsa-status-reports-form-section-with-gravity-forms-example.webp": {
+		"width": 2000,
+		"height": 1449
+	},
+	"/assets/uploads/2025/05/salsa-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/seismic-2022-blog-home-page-complex-layout.webp": {
+		"width": 2000,
+		"height": 1202
+	},
+	"/assets/uploads/2025/05/seismic-2022-home-page-cards-and-carousel-blocks.webp": {
+		"width": 1866,
+		"height": 1308
+	},
+	"/assets/uploads/2025/05/seismic-2022-midline-cta-block.webp": {
+		"width": 2000,
+		"height": 806
+	},
+	"/assets/uploads/2025/05/seismic-2022-roi-calculator-screen.webp": {
+		"width": 2000,
+		"height": 1465
+	},
+	"/assets/uploads/2025/05/seismic-2025-home-page-redesign.webp": {
+		"width": 2000,
+		"height": 1155
+	},
+	"/assets/uploads/2025/05/seismic-full-screenshot.webp": {
+		"width": 2000,
+		"height": 7165
+	},
+	"/assets/uploads/2025/05/seismic-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/seismic-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/seismic-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/snprc-contact-us-page-with-gravity-form.webp": {
+		"width": 1938,
+		"height": 1754
+	},
+	"/assets/uploads/2025/05/snprc-full-screenshot.webp": {
+		"width": 2000,
+		"height": 2458
+	},
+	"/assets/uploads/2025/05/snprc-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/snprc-interpage-about-with-side-navigation-and-custom-sidebar-elements.webp": {
+		"width": 1940,
+		"height": 1758
+	},
+	"/assets/uploads/2025/05/snprc-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/snprc-pilot-research-grants-page-with-contact-sidebar.webp": {
+		"width": 1934,
+		"height": 1166
+	},
+	"/assets/uploads/2025/05/snprc-primates-and-primate-services-enterpage.webp": {
+		"width": 1930,
+		"height": 1752
+	},
+	"/assets/uploads/2025/05/snprc-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-about-page.webp": {
+		"width": 1884,
+		"height": 1400
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-contact-form-gravity-forms.webp": {
+		"width": 1760,
+		"height": 1454
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-full-screenshot.webp": {
+		"width": 2000,
+		"height": 4060
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-homepage-reports.webp": {
+		"width": 1186,
+		"height": 608
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-scientist-filters.webp": {
+		"width": 1730,
+		"height": 788
+	},
+	"/assets/uploads/2025/05/texas-biomedical-research-institute-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/the-texas-biomedical-research-institute-scientist-page-with-custom-filtering.webp": {
+		"width": 1970,
+		"height": 1565
+	},
+	"/assets/uploads/2025/05/touch-point-media-full-screenshot.webp": {
+		"width": 2000,
+		"height": 5725
+	},
+	"/assets/uploads/2025/05/touch-point-media-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2025/05/touch-point-media-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2025/05/touch-point-media-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2025/05/touchpoint-media-episode-footer-section-with-tags-postcards-and-ad.webp": {
+		"width": 2000,
+		"height": 1415
+	},
+	"/assets/uploads/2025/05/touchpoint-media-episode-page-with-banner-platforms-and-podcast-player.webp": {
+		"width": 2000,
+		"height": 1443
+	},
+	"/assets/uploads/2025/05/touchpoint-media-podcast-show-detail-page.webp": {
+		"width": 2000,
+		"height": 1445
+	},
+	"/assets/uploads/2025/05/touchpoint-media-podcast-shows-page.webp": {
+		"width": 2000,
+		"height": 1439
+	},
+	"/assets/uploads/2025/05/touchpoint-media-show-footer-with-host-platforms-and-ad.webp": {
+		"width": 2000,
+		"height": 1431
+	},
+	"/assets/uploads/2026/06/fixing-prism-line-number-misalignment.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/06/identity-is-not-legitimacy.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/06/lead-legitimacy-pipeline-social.webp": {
+		"width": 1600,
+		"height": 2808
+	},
+	"/assets/uploads/2026/06/lead-scoring-flow-social.webp": {
+		"width": 1600,
+		"height": 1899
+	},
+	"/assets/uploads/2026/06/optimizing-self-hosted-fonts-with-fonttools-and-brotli.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/07/after-optimization.webp": {
+		"width": 1660,
+		"height": 787
+	},
+	"/assets/uploads/2026/07/axe-free-browser-extension-test.webp": {
+		"width": 1660,
+		"height": 948
+	},
+	"/assets/uploads/2026/07/before-optimization.webp": {
+		"width": 1660,
+		"height": 791
+	},
+	"/assets/uploads/2026/07/footer-section.webp": {
+		"width": 1660,
+		"height": 521
+	},
+	"/assets/uploads/2026/07/how-it-works-section-in-cards.webp": {
+		"width": 1660,
+		"height": 1193
+	},
+	"/assets/uploads/2026/07/mobile-lighthouse-score.webp": {
+		"width": 1660,
+		"height": 1014
+	},
+	"/assets/uploads/2026/07/request-access-form-plus-open-modal.webp": {
+		"width": 1660,
+		"height": 847
+	},
+	"/assets/uploads/2026/07/request-access-form-with-token-modal.webp": {
+		"width": 1660,
+		"height": 836
+	},
+	"/assets/uploads/2026/07/salesperson-questions-ai-lead-scoring.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/07/teleport-atlas-demo-product-for-sale-full-page-screenshot.webp": {
+		"width": 1660,
+		"height": 5685
+	},
+	"/assets/uploads/2026/07/teleport-atlas-hero.webp": {
+		"width": 1200,
+		"height": 800
+	},
+	"/assets/uploads/2026/07/teleport-atlas-og.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/07/teleport-atlas-thumbnail.webp": {
+		"width": 600,
+		"height": 400
+	},
+	"/assets/uploads/2026/07/the-problem-section.webp": {
+		"width": 1660,
+		"height": 938
+	},
+	"/assets/uploads/2026/07/the-product-section-with-product-interactive-graphic.webp": {
+		"width": 1660,
+		"height": 1113
+	},
+	"/assets/uploads/2026/07/trusted-teams-logo-section.webp": {
+		"width": 1660,
+		"height": 442
+	},
+	"/assets/uploads/2026/07/what-are-users-say-testimonial-section.webp": {
+		"width": 1660,
+		"height": 938
+	},
+	"/assets/uploads/youtube/kYqpxJE4DyE.webp": {
+		"width": 830,
+		"height": 467
+	}
+}
