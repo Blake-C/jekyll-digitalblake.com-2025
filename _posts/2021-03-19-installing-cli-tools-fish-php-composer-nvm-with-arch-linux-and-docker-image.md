@@ -3,13 +3,17 @@ layout: post
 title: 'Installing fish, PHP, Composer, and nvm on Arch Linux (with Docker)'
 description: 'How to install the fish shell, PHP, Composer, and nvm on Arch Linux, with a Docker image setup. Step-by-step commands and config notes.'
 date: 2021-03-19 01:38:13 -0500
-modified_date: 2026-06-19 10:13:06 -0500
+modified_date: 2026-07-21 20:04:04 -0500
 categories: ['Notes']
 tags: ['arch', 'command-line', 'docker', 'linux']
 pillar: docker-linux
 pillar_section: linux
 image: '/assets/uploads/2021/03/Installing-CLI-Tools-fish-php-composer-nvm-with-Arch-Linux-and-Docker-Image-1200x630-facebook-share.webp'
 ---
+
+I wanted to try [fish](https://fishshell.com/) because I kept reading how fast it was, and eventually the curiosity got the better of me. What I did not want was to tear up the shell setup on my main machine to find out. So I set the whole thing up inside a Docker container instead: something I could spin up, break, and throw away, pre-configure once, and re-run on another machine later if I needed to. That is why everything below runs in a container rather than on the host.
+
+Walking through the install and getting it configured was enough to tell me the pitch holds up. Fish is fast, and I liked using it. The one thing that kept me from switching to it full-time is that it is not POSIX-compatible, so none of my existing bash scripts run as-is. Moving over for real would mean rewriting all of them in fish's own syntax, and that was more than I wanted to take on. The walkthrough was still worth doing, and the rest of this post is the setup I landed on: fish alongside PHP, Composer, and nvm on Arch Linux.
 
 ## Start the container
 
@@ -37,7 +41,9 @@ sudo whoami
 sudo userdel --remove digitalblake
 ```
 
-## Installing fish and set it as your default shell:
+## Installing fish and setting it as your default shell
+
+Install fish along with a few tools the rest of this setup leans on, point your login shell at it with `chsh`, then bootstrap the [fisher](https://github.com/jorgebucaran/fisher) plugin manager and the [tide](https://github.com/IlanCosman/tide) prompt.
 
 ```bash
 sudo pacman -Fy # Sync the files database
@@ -52,6 +58,8 @@ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 # If you don't want to use tide, don't install it
 fisher install ilancosman/tide@v4.1.1
 ```
+
+A couple of notes on that block. `which fish` prints the absolute path to the binary; if it comes back as something other than `/usr/bin/fish`, use whatever it reports in the `chsh` line. `chsh -s` sets the login shell in `/etc/passwd`, so the switch takes effect on your next login rather than right away. Open a fresh session and run `echo $SHELL` to confirm it stuck. fisher is the plugin manager, and tide is an optional prompt: skip that last line if you would rather keep the default prompt or reach for a different one.
 
 ## Installing nvm and node
 
