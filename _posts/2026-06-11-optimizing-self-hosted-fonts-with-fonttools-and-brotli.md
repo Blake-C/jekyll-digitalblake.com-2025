@@ -1,13 +1,17 @@
 ---
 layout: post
-title: 'How I Cut Self-Hosted Font Payload by 89% with fonttools + brotli'
-description: 'Subsetting Lato and Inter with pyftsubset and re-compressing with brotli cut my Next.js font payload ~89%. The commands, real numbers, and tradeoffs.'
+title: 'How to Compress WOFF2 Fonts with fonttools and Brotli'
+description: 'Subset and re-compress self-hosted WOFF2 web fonts with pyftsubset and Brotli to cut font payload by ~89%. The exact commands, real byte numbers, and the tradeoffs.'
 date: 2026-06-11 18:32:33 CDT -0500
-modified_date: 2026-07-05 09:54:38 CDT -0500
+modified_date: 2026-07-21 20:04:04 CDT -0500
 categories: ['Articles']
 tags: ['fonts', 'performance', 'web-performance', 'fonttools', 'brotli', 'python', 'nextjs', 'self-hosting']
 image: '/assets/uploads/2026/06/optimizing-self-hosted-fonts-with-fonttools-and-brotli.webp'
+pillar: front-end-performance
+pillar_section: fonts
 ---
+
+If you self-host web fonts, the fastest way to shrink them is to subset the glyphs you actually use with `fonttools` and compress the result to WOFF2 with Brotli. This works on any stack; the numbers below are from a Next.js site, but nothing here is Next-specific.
 
 Self-hosting fonts removes the request to a third-party CDN and the render-blocking stylesheet that comes with it. The tradeoff is that you now ship the whole font file, including thousands of glyphs you will never render. On a recent Next.js build using `next/font/local` with Lato and Inter, those files were the single largest drag on the page. Subsetting them fixed it.
 
