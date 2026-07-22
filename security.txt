@@ -1,0 +1,11 @@
+---
+permalink: /.well-known/security.txt
+layout: null
+sitemap: false
+---
+# Security contact for digitalblake.com
+# Expires must be renewed ~yearly (RFC 9116); update the date below before it lapses.
+Contact: mailto:blake@digitalblake.com
+Expires: 2027-07-21T00:00:00.000Z
+Canonical: {{ '/.well-known/security.txt' | absolute_url }}
+Preferred-Languages: en
