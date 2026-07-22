@@ -14,7 +14,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                 <div>
                     <p class="intro__availability">
                         <span class="intro__availability-dot" aria-hidden="true"></span>
-                        Open to new opportunities · Senior-level roles
+                        Open to new opportunities
                     </p>
                     <h1 class="title">Blake Cerecero</h1>
                     <p class="line-1">Senior Web Developer</p>
