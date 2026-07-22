@@ -1,5 +1,9 @@
 {%- assign post_author_id = page.author | default: site.author.id -%}
 {%- assign post_author = site.data.authors[post_author_id] -%}
+{%- assign is_site_author = false -%}
+{%- if post_author_id == site.author.id -%}
+	{%- assign is_site_author = true -%}
+{%- endif -%}
 {%- if page.image -%}
 	{%- assign jsonld_image = page.image | absolute_url -%}
 {%- elsif site.default_og_image -%}
@@ -23,13 +27,17 @@
 		{%- endif %}
 		"author": {
 			"@type": "Person",
-			"name": {{ post_author.name | jsonify }},
-			"url": "{{ '/author/' | append: post_author_id | append: '/' | absolute_url }}"
-		},
-		"publisher": {
-			"@type": "Person",
+			{%- if is_site_author %}
+			"@id": "{{ site.url }}/#person",
 			"name": {{ post_author.name | jsonify }},
 			"url": "{{ site.url }}"
+			{%- else %}
+			"name": {{ post_author.name | jsonify }},
+			"url": "{{ '/author/' | append: post_author_id | append: '/' | absolute_url }}"
+			{%- endif %}
+		},
+		"publisher": {
+			"@id": "{{ site.url }}/#person"
 		}
 	}
 </script>
