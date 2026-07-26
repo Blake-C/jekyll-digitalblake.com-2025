@@ -27,7 +27,7 @@
 		"globals": "17.7.0",
 		"husky": "catalog:",
 		"lint-staged": "catalog:",
-		"postcss": "^8.5.16",
+		"postcss": "^8.5.19",
 		"postcss-cli": "catalog:",
 		"prettier": "^3.9.4",
 		"sass": "catalog:",
