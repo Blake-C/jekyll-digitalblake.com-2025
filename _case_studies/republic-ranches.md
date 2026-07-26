@@ -17,8 +17,8 @@ team:
       role: Account Executive
     - name: Blake Cerecero
       role: Designer/Developer
-link: https://republicranches.com/
-link_text: View Live Site
+link: https://web.archive.org/web/20220219134814/https://republicranches.com/
+link_text: View Archived Site
 tech:
     - WordPress
     - Google Maps API
