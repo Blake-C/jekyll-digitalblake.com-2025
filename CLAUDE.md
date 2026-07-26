@@ -143,6 +143,14 @@ Husky runs lint-staged on commit:
 - stylelint auto-fixes staged SCSS
 - ImageMagick optimizes staged images and auto-generates WebP variants
 
+### Dependency updates
+
+`pnpm-workspace.yaml` sets `minimumReleaseAge: 10080` (7 days) as a supply-chain gate, so **any version published in the last week will not install**: `pnpm install` fails with `ERR_PNPM_NO_MATURE_MATCHING_VERSION` rather than falling back to the newest mature version. `pnpm outdated` reports gate-eligible versions, so treat its "Latest" column as the real upgrade target. A fresh security patch that must land inside the window needs a temporary entry in `minimumReleaseAgeExclude` with a dated comment, removed once it ages out.
+
+`.github/dependabot.yml` sets `cooldown.default-days: 7` on the npm ecosystem to match. Without it, Dependabot proposes the absolute latest version and its update job fails against the gate. Cooldown covers version updates only; security updates still arrive immediately and can hit the gate.
+
+Lockfile-changing installs need `pnpm install --no-frozen-lockfile`, since `frozenLockfile: true` is set repo-wide.
+
 ### CI/CD
 
 GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).

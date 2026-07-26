@@ -5,6 +5,12 @@ updates:
       schedule:
           interval: 'weekly'
       open-pull-requests-limit: 5
+      # Mirrors minimumReleaseAge (10080 minutes) in pnpm-workspace.yaml. Without this, Dependabot
+      # proposes the absolute latest version, its `pnpm update --lockfile-only` trips the age gate
+      # with ERR_PNPM_NO_MATURE_MATCHING_VERSION, and the whole update job fails. Cooldown applies
+      # to version updates only; security updates still come through immediately.
+      cooldown:
+          default-days: 7
       groups:
           npm-minor-and-patch:
               update-types:
