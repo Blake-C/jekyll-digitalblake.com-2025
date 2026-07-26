@@ -25,7 +25,7 @@ tech:
     - Cloudflare
     - DISQUS
 link: https://web.archive.org/web/20170606123544/http://www.livehealthyaustin.com/
-link_text: View Web Archive
+link_text: View Archived Site
 ---
 
 Live Healthy Austin was a healthcare blog built for St. David's HealthCare at Gray Digital Group in 2015. The site gave the health system a dedicated space to publish wellness content, authored by a rotating set of contributors, separate from the main stdavids.com property. Tim Smith designed the site with a mobile-first approach, and the finished product was responsive across desktop, tablet, and mobile.
