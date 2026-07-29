@@ -49,9 +49,6 @@ fetchRetryMaxTimeout: 10000
 allowBuilds:
     '@parcel/watcher': true
 
-onlyBuiltDependencies:
-    - '@parcel/watcher'
-
 # Force patched transitive dependencies across the tree (each has a single version in the tree,
 # so a blanket override is safe). Snyk-flagged; not caught by the npm/GitHub advisory DB.
 #   js-yaml 4.1.1              — quadratic-complexity DoS in merge keys (GHSA-h67p-54hq-rp68)
