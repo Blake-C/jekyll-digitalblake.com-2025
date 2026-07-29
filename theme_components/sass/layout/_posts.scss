@@ -174,8 +174,10 @@
 		}
 
 		// The intro paragraph keeps its drop cap when a TL;DR box precedes it.
+		// Scoped to :first-child so a mid-article callout, such as a cross-link
+		// aside, does not hand a drop cap to whatever paragraph follows it.
 		> p:first-child::first-letter,
-		> .callout + p::first-letter {
+		> .callout:first-child + p::first-letter {
 			float: left;
 			font-family: Georgia, serif;
 			font-size: bp.rem-calc(75);

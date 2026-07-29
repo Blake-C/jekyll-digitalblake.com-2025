@@ -15,6 +15,13 @@
 		text-transform: uppercase;
 	}
 
+	// Cross-link aside: a pointer to another article, set apart from the body so
+	// it does not read as part of the argument it interrupts. Carries no title
+	// element, so it adds nothing to the heading outline.
+	&--related {
+		border-left-color: v.$archive-indigo;
+	}
+
 	p {
 		font-size: bp.rem-calc(15);
 		margin: 0;
