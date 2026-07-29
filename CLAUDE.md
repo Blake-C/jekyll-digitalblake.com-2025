@@ -2,6 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Writing
+
+Load the `plain-prose` skill before drafting or editing any post, case study, or page copy. It holds the rules and the correction examples.
+
+No published post is a style model. Do not read an existing article to match its voice. The two 2026-07-27 Sanity articles were corrected by hand and come close, but tells survived in both, and everything published before them predates those corrections. Use `~/.claude/skills/plain-prose/references/examples.md` instead.
+
+The `prose-lint` hook runs on every markdown write and blocks on the mechanical tells. It cannot see metaphor or clever closers, so it is a backstop and not the check.
+
 ## Runtime isolation
 
 All Node and Ruby commands run inside Docker. The container image bundles Node 24.18.0, Ruby 3.4.10, pnpm, ImageMagick, fonttools (`pyftsubset`, for font subsetting), and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
