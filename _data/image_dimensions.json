@@ -799,6 +799,10 @@
 		"width": 1660,
 		"height": 787
 	},
+	"/assets/uploads/2026/07/axe-devtools-result.webp": {
+		"width": 1660,
+		"height": 933
+	},
 	"/assets/uploads/2026/07/axe-free-browser-extension-test.webp": {
 		"width": 1660,
 		"height": 948
@@ -807,9 +811,17 @@
 		"width": 1660,
 		"height": 791
 	},
+	"/assets/uploads/2026/07/challenges-building-the-teleport-atlas-landing-page.webp": {
+		"width": 1200,
+		"height": 630
+	},
 	"/assets/uploads/2026/07/footer-section.webp": {
 		"width": 1660,
 		"height": 521
+	},
+	"/assets/uploads/2026/07/from-figma-to-sanity-designing-a-content-model.webp": {
+		"width": 1200,
+		"height": 630
 	},
 	"/assets/uploads/2026/07/how-it-works-section-in-cards.webp": {
 		"width": 1660,
@@ -828,6 +840,46 @@
 		"height": 836
 	},
 	"/assets/uploads/2026/07/salesperson-questions-ai-lead-scoring.webp": {
+		"width": 1200,
+		"height": 630
+	},
+	"/assets/uploads/2026/07/sanity-card-fields.webp": {
+		"width": 1660,
+		"height": 937
+	},
+	"/assets/uploads/2026/07/sanity-cors-origins.webp": {
+		"width": 1660,
+		"height": 1239
+	},
+	"/assets/uploads/2026/07/sanity-insert-menu.webp": {
+		"width": 1660,
+		"height": 1566
+	},
+	"/assets/uploads/2026/07/sanity-page-builder-order.webp": {
+		"width": 1660,
+		"height": 939
+	},
+	"/assets/uploads/2026/07/sanity-presentation-click-to-edit.webp": {
+		"width": 1660,
+		"height": 912
+	},
+	"/assets/uploads/2026/07/sanity-presentation-document-location.webp": {
+		"width": 1660,
+		"height": 838
+	},
+	"/assets/uploads/2026/07/sanity-rich-text-styles.webp": {
+		"width": 1660,
+		"height": 920
+	},
+	"/assets/uploads/2026/07/sanity-site-settings-singleton.webp": {
+		"width": 1660,
+		"height": 933
+	},
+	"/assets/uploads/2026/07/sanity-webhook-configuration.webp": {
+		"width": 1660,
+		"height": 825
+	},
+	"/assets/uploads/2026/07/taking-a-nextjs-app-from-static-export-to-sanity-cms.webp": {
 		"width": 1200,
 		"height": 630
 	},
@@ -862,6 +914,10 @@
 	"/assets/uploads/2026/07/trusted-teams-logo-section.webp": {
 		"width": 1660,
 		"height": 442
+	},
+	"/assets/uploads/2026/07/vercel-environment-variables.webp": {
+		"width": 1660,
+		"height": 825
 	},
 	"/assets/uploads/2026/07/web-accessibility-standards-and-law-wcag-eaa-us.webp": {
 		"width": 1200,
