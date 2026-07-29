@@ -288,7 +288,7 @@ Dev containers extend this further by isolating the entire development environme
 
 No TanStack maintainer had a password stolen and no maintainer laptop was compromised. The attack used one GitHub Actions event type and a shared cache.
 
-Most of what's above is one or two lines of configuration. Some of it, like `minimumReleaseAge` and `blockExoticSubdeps`, pnpm 11 sets by default now. The rest has to be written into the config by hand.
+Most of what's above is one or two lines of configuration. Some of it, like `minimumReleaseAge` and `blockExoticSubdeps`, pnpm 11 sets by default now.
 
 ---
 
