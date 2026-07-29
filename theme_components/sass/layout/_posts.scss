@@ -191,6 +191,17 @@
 			}
 		}
 
+		// The drop cap is a float and is taller than the two or three lines of
+		// text that wrap beside it. A list placed directly after the intro
+		// paragraph would otherwise wrap against that float and sit indented
+		// from its own bullets. Clearing returns the list to the left margin.
+		> p:first-child + ul,
+		> p:first-child + ol,
+		> .callout:first-child + p + ul,
+		> .callout:first-child + p + ol {
+			clear: left;
+		}
+
 		a {
 			font-weight: 700;
 		}
