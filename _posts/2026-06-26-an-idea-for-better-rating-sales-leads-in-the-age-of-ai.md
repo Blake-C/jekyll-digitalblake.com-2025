@@ -11,16 +11,22 @@ image: '/assets/uploads/2026/06/rating-sales-leads-in-the-age-of-ai.webp'
 
 <aside class="callout">
 	<h2 class="callout__title">TL;DR</h2>
-	<p>I wrote this article to explain three ideas for getting better quality leads in front of the sales team. Check the domain behind the email address, check the content of the website on that domain, and check whether the person who submitted the form exists elsewhere on the internet, like LinkedIn or other social media. Together, these checks help verify the submitter's identity and keep bots and AI tools from spamming the lead form. Each check gets a score from 0 to 10, and the average lands in Salesforce for the sales team to sort by.</p>
+	<p>There are three checks that can put better quality leads in front of the sales team. Check the domain behind the email address, check the content of the website on that domain, and check whether the person who submitted the form exists elsewhere on the internet, like LinkedIn or other social media. Together, these checks give the sales team signals about who submitted the form. Each check gets a score from 0 to 10, and the average lands in Salesforce for the sales team to sort by.</p>
 </aside>
 
-At the previous organization that I worked with, our sales team had an ongoing problem: we could never really keep spam and bots off our lead forms. The sales team would get flooded with junk submissions, and digging the real leads out of that pile ate up time we did not have. It has only gotten harder in the age of AI. The web marketing team can still catch some of it at the form, but capture-side filters can no longer tell you with any confidence whether a lead is spam. So I started thinking about what we could do further down, on the sales side. The rest of this article is a handful of ideas for marking lead quality with automated tools and a bit of AI.
+At the previous organization that I worked with, we could never keep spam and bots off our lead forms. The sales team got a lot of junk submissions, and finding the real leads among them took time we did not have. It has only gotten harder in the age of AI. The web marketing team can still catch some of it at the form, but capture-side filters can no longer tell you with any confidence whether a lead is spam. So I started thinking about what we could do further down, on the sales side.
 
-This is an idea I have been chewing on for handling that: gather as many data points on a lead as possible, as fast as possible, and as automatically as possible, then collapse them into a single quality score the sales team can sort by. None of this magically produces quality leads. But more signals, graded and averaged, beat a sales rep guessing which submission to open first.
+The idea I have been chewing on is to gather data points on a lead:
+
+- as many as possible
+- as fast as possible
+- as automatically as possible
+
+Those data points then get collapsed into a single quality score the sales team can sort by. None of this magically produces quality leads. But more signals, graded and averaged, beat a sales rep guessing which submission to open first.
 
 ## Three signals worth automating
 
-Every time a lead comes through the form, an AI tool can go look up a few things before a human ever sees it. Three checks do most of the work. [Enrichment tools like Clearbit, ZoomInfo, and Clay](https://pipeline.zoominfo.com/sales/lead-enrichment-tools) already pull a lot of this at form fill, but they mostly do it to fill in firmographic blanks. The twist here is using the same signals to ask a different question: is this lead even real?
+Every time a lead comes through the form, an AI tool can go look up a few things before a human sees it. [Enrichment tools like Clearbit, ZoomInfo, and Clay](https://pipeline.zoominfo.com/sales/lead-enrichment-tools) already pull data like this, and they use it to pre-fill known fields so the form can be shorter. The three checks below use the same data to grade whether a real person at a real company submitted the lead.
 
 ### The domain behind the email
 
@@ -30,46 +36,61 @@ Take the email address the lead submitted and check its domain against the regis
 
 From that same domain, find the organization's primary website and analyze its content. What does the company actually do, and does it line up with what you sell? Paired with the domain-age check above, the content of the site helps grade whether this is a real prospect or a tire kicker.
 
-There is a bonus here beyond the legitimacy check. The same content analysis tells you what the lead actually does, so you can have the AI tool summarize it and write that summary straight into a field in Marketo. The sales rep opens the lead already knowing the company's business, without you ever having to ask for it on the form. It keeps the form short and still hands the rep context they would otherwise have to dig up themselves.
+The same content analysis tells you what the lead actually does, so you can have the AI tool summarize it and write that summary straight into a field in Marketo. The sales rep opens the lead already knowing the company's business, without you having to ask for it on the form. The form stays short, and the rep still gets information they would otherwise have to look up.
 
 ### The person behind the email
 
-Use the name and email to look up the individual. Do they show up in articles, on a company leadership page, on LinkedIn? A person with a findable professional footprint is a stronger lead than a name that returns nothing.
+Use the name and email to look up the individual. Do they show up in articles, on a company leadership page, on LinkedIn? A person you can find in those places is a stronger lead than a name that returns nothing.
 
-You can also cross-check the submitted email against any address publicly listed for that person, though treat this as a soft signal at best. Plenty of genuine buyers use a personal email on purpose: they are still researching and not ready to be identified, they are wary of handing their work inbox to a vendor, or they are an executive routing around an assistant who screens it. A mismatch should nudge your confidence down a little and nothing more. Requiring a work address is a good way to [throw away real opportunities](https://marketingsherpa.com/article/chart/lead-gen-business-vs-personal-email), since conversion drops sharply the moment you force it.
+You can also cross-check the submitted email against any address publicly listed for that person, though treat this as a soft signal at best. Plenty of genuine buyers use a personal email on purpose:
 
-And keep in mind what all three of these checks actually establish: that this is a real person at a real organization. Knowing that is still a long way from knowing the lead is genuine. Someone can submit a real name and a real email, even one lifted from a company's team page, and pass every check while only meaning to bog your sales team down. Closing that gap, the bot detection, honeypots, and verification steps, and why each only raises the cost against an AI-equipped adversary, turned into its own rabbit hole, so I wrote it up separately: [Bot Detection, Honeypots, and SMS Checks on Sales Leads]({% post_url 2026-06-26-identity-is-not-legitimacy-vetting-a-sales-lead-is-an-arms-race %}).
+- they are still researching and not ready to be identified
+- they do not want to give their work inbox to a vendor
+- they are an executive routing around an assistant who screens their mail
+
+A mismatch should nudge your confidence down a little and nothing more. Requiring a work address throws away real opportunities. MarketingSherpa reports that, on average, [55% of professionals use their personal email address to download long-form content](https://marketingsherpa.com/article/chart/lead-gen-business-vs-personal-email).
+
+All three of these checks point to the same thing, that a real person at a real organization is behind the form. Knowing that is still a long way from knowing the lead is genuine. Someone can submit a real name and a real email, even one lifted from a company's team page, and pass every check while only meaning to bog your sales team down. Bot detection, honeypots, and verification steps, and why each one only raises the cost against an AI-equipped adversary, turned into its own rabbit hole, so I wrote it up separately in [Bot Detection, Honeypots, and SMS Checks on Sales Leads]({% post_url 2026-06-26-identity-is-not-legitimacy-vetting-a-sales-lead-is-an-arms-race %}).
 
 ## Turning signals into a score
 
 Each of these checks gets graded, and an AI tool can do the grading. Score each one from 0 to 10, where 10 is a high-quality lead and 0 is low, then average them into a single number for the lead.
 
-The sales team sorts their submissions by it and starts at the top, working the highest-quality leads first instead of taking them in the order they happened to arrive.
+The sales team sorts their submissions by that score and works the highest-quality leads first, rather than in the order the leads arrived.
 
-Salesforce's [Einstein Lead Scoring](https://help.salesforce.com/s/articleView?id=sf.einstein_sales_els_how_it_works.htm) and [Marketo](https://www.default.com/post/marketo-lead-scoring) already grade leads this way, but they mostly learn from your own historical conversion data to predict which leads look like past customers. This leans the other direction: outbound checks on whether the lead is genuine in the first place. Averaging a handful of plain 0 to 10 checks is also easier to reason about than a model that hands you a number without showing its work.
+Salesforce and Marketo already grade leads, but on different data. [Einstein Lead Scoring](https://help.salesforce.com/s/articleView?id=ai.einstein_sales_els_how_it_works.htm&language=en_US&type=5) analyzes your past converted leads to find your conversion patterns, then scores each current lead on how much it has in common with the leads that converted before. Marketo adds up point values you assign to demographic traits, like industry and company size, and to tracked behavior, like a demo request or a white paper download. That description comes from a [scoring model walkthrough](https://experienceleague.adobe.com/en/docs/experiences-by-you/implementing-new-instance/building-person-scoring-model) on Adobe's documentation site, written by Marketo Engage Champions rather than by Adobe, so treat it as community documentation and not a product spec. The scoring described here runs outbound checks on whether the lead is genuine. Averaging a handful of plain 0 to 10 checks is also easier to reason about than a single model score.
 
 ## What the flow looks like
 
-The whole idea hinges on a short form and an automated back end. Roughly, it looks like this:
+The idea needs a short form and an automated back end.
 
 <figure class="post-diagram">
 {% include diagrams/lead-scoring-flow.svg %}
 </figure>
 
-Keep the form as short as possible, ideally just a name and an email, so the velocity of someone filling it out and submitting stays high. On submit, the data goes two places at once: into Marketo for normal capture, and into an AI scoring service that runs the three checks, averages them, and writes the result into a Lead Quality field in Salesforce. From there the sales team can order their queue by quality and decide what to pursue hard now versus what can wait.
+Keep the form as short as possible, ideally just a name and an email, so it stays quick to fill out and submit. On submit, the data goes two places at once:
+
+- into Marketo for normal capture
+- into an AI scoring service that runs the three checks, averages them, and writes the result into a Lead Quality field in Salesforce, which is a custom field your engineering team creates so the score has somewhere to go
+
+From there the sales team can order their queue by quality and decide what to pursue hard now versus what can wait.
 
 ## Keep the old scoring around
 
-Do not rip out whatever spam and quality tooling you already run. Keep it in place, side by side with the new scoring, for a long enough stretch to actually compare them. The question you are answering is whether the AI scoring produces clearly better leads than the old approach, or whether the difference is small enough that the investment is not worth it. You need a baseline to compare against, and you only get one by leaving the old system running.
+Do not rip out whatever spam and quality tooling you already run. Keep it in place, side by side with the new scoring, for a long enough stretch to actually compare them. The question you are answering is whether the AI scoring produces clearly better leads than the old approach, or whether the difference is small enough that the investment is not worth it. You only get a baseline to compare against by leaving the old system running.
 
 ## This belongs on the sales side
 
-I think these tools belong on the sales side rather than the web marketing side. The web team should still block traditional spam and bots at the form, but the scoring lives where it gets used and seen: after the lead lands in Salesforce, where the sales team has the visibility to act on it. Grading lead quality is a sales problem, so put the score where the sales team works.
+I think these tools belong on the sales side rather than the web marketing side. The web team should still block traditional spam and bots at the form. The scoring belongs after the lead reaches Salesforce, where the sales team can see it and act on it.
 
-## Close the loop
+## Send what sales learns back to web marketing
 
-It cannot be one-directional. If the sales team notices patterns of spam or botting that are slowing them down, that has to flow back to the web marketing team: which addresses to block, which patterns to watch, what to add on the capture side to cut down on junk before it ever becomes a lead. Web marketing tightens the front door, sales scores what gets through, and sales reports back what it learns.
+The scoring cannot run in one direction only. If the sales team notices patterns of spam or botting that are slowing them down, they have to report it back to the web marketing team:
 
-Good leads that are worth the time take effort from both sides. The scoring just makes sure that effort lands on the leads most likely to pay off.
+- which addresses to block
+- which patterns to watch
+- what to add on the capture side to cut down on junk before it becomes a lead
 
-If you are on the sales side and wondering how this would actually work in practice, I answered a batch of those questions in a follow-up: [answering questions asked by a salesperson on lead scoring]({% post_url 2026-07-21-answering-questions-asked-by-a-salesperson-on-lead-scoring %}).
+Getting leads that are worth the time takes work from both teams. The scoring puts that work on the leads most likely to pay off.
+
+I answered questions from a salesperson about how this would work in practice in [answering questions asked by a salesperson on lead scoring]({% post_url 2026-07-21-answering-questions-asked-by-a-salesperson-on-lead-scoring %}).
