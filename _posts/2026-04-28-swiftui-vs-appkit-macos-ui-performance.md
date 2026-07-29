@@ -3,7 +3,7 @@ layout: post
 title: 'AppKit vs SwiftUI on macOS: Layout, Performance, and Trade-offs'
 description: 'A comparison of AppKit and SwiftUI as macOS UI frameworks, covering layout, rendering, and performance at scale, plus where UIKit and Mac Catalyst fit in.'
 date: 2026-04-28 06:53:39 CDT -0500
-modified_date: 2026-07-21 20:04:04 -0500
+modified_date: 2026-07-29 20:04:04 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'swiftui', 'appkit', 'performance']
 image: 'assets/uploads/2025/04/swiftui-vs-appkit-on-macos-layout-models-performance-and-trade-offs-social-share-image.webp'
@@ -51,6 +51,16 @@ When a value held in [`@State`](https://developer.apple.com/documentation/swiftu
 | Rendering control | Full                        | Limited                                                |
 | Interoperability  | Via `NSViewRepresentable`   | Via `NSHostingView`                                    |
 | Introduced        | 1989 (NeXT)                 | 2019                                                   |
+
+### Value Types and Reference Types
+
+The table above says an AppKit view is a class and a SwiftUI view is a struct. A struct groups related data together with the functions that operate on it. Swift structs can hold stored properties and computed properties and can define methods, so they cover most of what a class does.
+
+They differ in what happens when you pass one to a function. [A value type is a type whose value is copied when it's assigned to a variable or constant, or when it's passed to a function](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures), and every Swift struct is a value type. The function gets its own copy, so anything it changes there is invisible to the caller. A class is a reference type, so the function gets a pointer to the same instance, and a change it makes shows up everywhere else that holds a reference to it.
+
+Apple's guidance is to [use structures by default](https://developer.apple.com/documentation/swift/choosing-between-structures-and-classes), and to use a class when you need Objective-C interoperability or when two parts of your code have to share one instance and see each other's changes to it. Swift's own basic types follow that rule, since integers, strings, arrays, and dictionaries are all implemented as structures.
+
+This is why a SwiftUI view is cheap to create and why an AppKit view is not. Creating a SwiftUI view copies a small value that describes an interface. Creating an AppKit view allocates an object that lives until something stops referencing it.
 
 ### How Layout Works in AppKit
 
@@ -159,6 +169,6 @@ AppKit gives you direct control over the rendering pipeline, explicit cell reuse
 
 SwiftUI is faster to write, easier to maintain, and handles state synchronization automatically. It works well for moderate-scale UIs. It has real performance limits for very large collections and requires explicit threading discipline to avoid blocking the main thread.
 
-For a new macOS application that is not displaying a library of 100,000 items, SwiftUI is the reasonable default. At that scale, `NSCollectionView` with cell reuse and async prefetching is what keeps memory flat and scrolling smooth.
+For a new macOS application that is NOT displaying a library of 100,000 items, SwiftUI is the reasonable default. At that scale, `NSCollectionView` with cell reuse and async prefetching is what keeps memory flat and scrolling smooth.
 
 The two frameworks can be used in the same application. Using SwiftUI for the majority of an application and AppKit for the pieces where performance or platform integration requires it is a normal and supported approach.
