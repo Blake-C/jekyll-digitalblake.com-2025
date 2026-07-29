@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Identity Is Not Legitimacy: Vetting a Sales Lead Is an Arms Race'
+title: 'Bot Detection, Honeypots, and SMS Checks on Sales Leads'
 description: 'Identity checks prove a lead is a real person at a real company. What bot detection, honeypots, and SMS verification cost an AI-equipped attacker.'
 date: 2026-06-26 10:32:00 CDT -0500
 modified_date: 2026-07-21 18:47:14 CDT -0500

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'An Idea for Better Rating of Sales Leads in the Age of AI'
+title: 'Rating Sales Leads with AI Checks on Domain and Identity'
 description: 'An idea for scoring sales leads with AI checks on the email domain, the site behind it, and the person who submitted it, averaged into one score.'
 date: 2026-06-26 08:44:40 CDT -0500
 modified_date: 2026-07-21 18:47:14 CDT -0500
@@ -38,7 +38,7 @@ Use the name and email to look up the individual. Do they show up in articles, o
 
 You can also cross-check the submitted email against any address publicly listed for that person, though treat this as a soft signal at best. Plenty of genuine buyers use a personal email on purpose: they are still researching and not ready to be identified, they are wary of handing their work inbox to a vendor, or they are an executive routing around an assistant who screens it. A mismatch should nudge your confidence down a little and nothing more. Requiring a work address is a good way to [throw away real opportunities](https://marketingsherpa.com/article/chart/lead-gen-business-vs-personal-email), since conversion drops sharply the moment you force it.
 
-And keep in mind what all three of these checks actually establish: that this is a real person at a real organization. Knowing that is still a long way from knowing the lead is genuine. Someone can submit a real name and a real email, even one lifted from a company's team page, and pass every check while only meaning to bog your sales team down. Closing that gap, the bot detection, honeypots, and verification steps, and why each only raises the cost against an AI-equipped adversary, turned into its own rabbit hole, so I wrote it up separately: [Identity Is Not Legitimacy: Vetting a Sales Lead Is an Arms Race]({% post_url 2026-06-26-identity-is-not-legitimacy-vetting-a-sales-lead-is-an-arms-race %}).
+And keep in mind what all three of these checks actually establish: that this is a real person at a real organization. Knowing that is still a long way from knowing the lead is genuine. Someone can submit a real name and a real email, even one lifted from a company's team page, and pass every check while only meaning to bog your sales team down. Closing that gap, the bot detection, honeypots, and verification steps, and why each only raises the cost against an AI-equipped adversary, turned into its own rabbit hole, so I wrote it up separately: [Bot Detection, Honeypots, and SMS Checks on Sales Leads]({% post_url 2026-06-26-identity-is-not-legitimacy-vetting-a-sales-lead-is-an-arms-race %}).
 
 ## Turning signals into a score
 
