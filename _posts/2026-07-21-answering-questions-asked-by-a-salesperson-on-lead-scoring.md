@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Answering Questions Asked by a Salesperson on Lead Scoring'
-description: 'The two earlier articles on scoring sales leads with AI were written for engineers. This one answers the practical questions a salesperson would have: what the score looks like in your CRM, whether you still see the low leads, how personal emails and startups get handled, and who owns the threshold.'
+description: "Answers to a salesperson's questions on AI lead scoring. What the score looks like in your CRM, whether you see low leads, and who sets the cutoff."
 date: 2026-07-21 18:47:14 CDT -0500
 categories: ['Articles']
 tags: ['sales', 'lead-scoring', 'ai', 'salesforce', 'hubspot', 'spam-prevention']

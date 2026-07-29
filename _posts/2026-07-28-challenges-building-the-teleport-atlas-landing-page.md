@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Challenges Building the Teleport Atlas Landing Page'
-description: 'Six checks that reported a pass on broken code while I built a Next.js landing page. axe found zero violations with three accessibility defects present, a DOM diff compared a build against itself, and a scripted browser test approved a policy that broke visual editing in production.'
+description: 'Six checks that passed on broken code in a Next.js landing page build, including axe reporting zero violations with three accessibility defects.'
 date: 2026-07-28 15:24:31 CDT -0500
 categories: ['Articles']
 tags: ['accessibility', 'wcag', 'testing', 'axe-core', 'nextjs', 'vercel', 'claude-code']

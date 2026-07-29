@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Taking a Next.js App from Static Export to Sanity CMS'
-description: 'How I converted a Next.js 16 landing page from a static export to a Sanity-backed site. Removing output: export, configuring Presentation and CORS origins, wiring up the draft mode a running server needs, and four failures that produced no error message.'
+description: 'How I converted a Next.js 16 landing page from static export to Sanity, covering Presentation, CORS origins, draft mode, and four silent failures.'
 date: 2026-07-27 17:10:36 CDT -0500
 categories: ['Articles']
 tags: ['sanity', 'headless-cms', 'nextjs', 'react', 'visual-editing', 'webhooks', 'groq', 'claude-code']

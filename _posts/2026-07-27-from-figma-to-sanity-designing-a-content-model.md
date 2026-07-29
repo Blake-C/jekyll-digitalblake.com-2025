@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'From Figma to Sanity: Designing a Content Model to Match a Design'
-description: 'How I designed a Sanity content model for a page built to a Figma spec. Seven typed blocks and no free-form page builder, with heading levels, card numbers, and accent colors worked out from where a section sits on the page.'
+description: 'How I designed a Sanity content model from a Figma spec, using seven typed blocks with no page builder and heading levels set by section order.'
 date: 2026-07-27 17:20:00 CDT -0500
 categories: ['Articles']
 tags: ['sanity', 'headless-cms', 'content-modeling', 'nextjs', 'groq', 'typescript', 'accessibility', 'claude-code']

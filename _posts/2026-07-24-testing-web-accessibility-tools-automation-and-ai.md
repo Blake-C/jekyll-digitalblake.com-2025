@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'Testing for WCAG Conformance: Automated Tools, Manual Review, and AI'
-description: 'How to test a website against WCAG with axe-core, Lighthouse, WAVE, and Pa11y, what those tools miss, pass and fail markup for common criteria, and where AI fits.'
+title: 'Testing for WCAG Conformance: Tools, Manual Review, and AI'
+description: 'How to test a website against WCAG with axe-core, Lighthouse, WAVE, and Pa11y, what those tools miss, and where AI fits in manual review.'
 date: 2026-07-24 17:25:33 CDT -0500
 modified_date: 2026-07-28 02:11:06 CDT -0500
 categories: ['Articles']

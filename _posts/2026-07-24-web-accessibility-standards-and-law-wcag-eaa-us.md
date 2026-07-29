@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'Web Accessibility Standards and Law: WCAG 2.1 and 2.2, the European Accessibility Act, and US Requirements'
-description: 'Which WCAG version each accessibility law names and who has to meet it, covering the European Accessibility Act, ADA Title II and III, Section 508, and California.'
+title: 'Web Accessibility Law and WCAG: EAA, ADA, and Section 508'
+description: 'Which WCAG version each accessibility law names and who must meet it, covering the European Accessibility Act, ADA Title II and III, and Section 508.'
 date: 2026-07-24 15:14:41 CDT -0500
 modified_date: 2026-07-28 02:11:06 CDT -0500
 categories: ['Articles']
