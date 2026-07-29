@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Building a WordPress Exit Intent Popup Plugin with Claude'
-description: 'A proof of concept born from a request at Seismic, and my first real attempt at building a plugin with Claude as a collaborator.'
+description: 'A WordPress exit intent popup plugin built with Claude Code. A custom post type, per-popup settings, A/B testing, and GA4 event tracking.'
 date: 2026-04-19 09:00:00 -0500
 modified_date: 2026-04-19 09:00:00 -0500
 categories: ['Articles']

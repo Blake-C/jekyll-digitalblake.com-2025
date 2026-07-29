@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Fixing Prism Line-Number Misalignment'
-description: "Prism's line-numbers plugin froze the wrong line heights onto the gutter, leaving the numbers drifting below the code. The cause was a white-space race with a deferred stylesheet, and the fix was one rule in the critical CSS."
+description: "Prism's line-numbers plugin measured the gutter against the wrong line-height when the stylesheet loaded late. One rule in the critical CSS fixed it."
 date: 2026-06-19 20:52:32
 categories: ['Notes']
 tags: ['prismjs', 'css', 'critical-css', 'jekyll', 'web-performance', 'debugging']

@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'Speeding Up Zsh Startup: Fixing compinit, NVM, and Claude Code PATH Issues'
-description: 'My terminal was taking over a second to show a prompt. One profiling command later, the culprit was obvious: compinit running three times. Here is what I found, how I fixed it, and how I made Claude Code stop losing track of Node.'
+title: 'Faster Zsh Startup: compinit, NVM, and Claude Code PATH'
+description: 'My zsh prompt took a second to appear, with compinit running three times. Profiling with zprof, fixing NVM, and stopping Claude Code losing Node.'
 date: 2026-04-22 03:07:47 -0500
 categories: ['Articles']
 tags: ['macos', 'command-line', 'shell-script', 'zsh', 'claude-code', 'node', 'performance']

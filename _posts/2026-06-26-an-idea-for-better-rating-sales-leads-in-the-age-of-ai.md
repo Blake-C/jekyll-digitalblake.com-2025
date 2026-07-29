@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'An Idea for Better Rating of Sales Leads in the Age of AI'
-description: 'LLMs made spam and bot leads hard to spot with traditional filters. Here is an idea: score every sales lead on the sales side with AI checks on domain age, the website behind the email, and the person submitting it, then rank by quality so the sales team spends time where it pays off.'
+description: 'An idea for scoring sales leads with AI checks on the email domain, the site behind it, and the person who submitted it, averaged into one score.'
 date: 2026-06-26 08:44:40 CDT -0500
 modified_date: 2026-07-21 18:47:14 CDT -0500
 categories: ['Articles']

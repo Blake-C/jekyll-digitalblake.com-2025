@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Building a macOS Image Viewer with Claude Code'
-description: "I don't know Swift. I built a native macOS photo gallery with Claude Code anyway, and now I actually enjoy browsing my photo library."
+description: 'A native macOS photo gallery built in Swift with Claude Code. Point it at a folder and get a thumbnail grid with sorting, filtering, and favorites.'
 date: 2026-04-20 21:23:05 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'claude-code', 'photography', 'ai']

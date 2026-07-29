@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Building The Daily Feed News Reader with Claude Code'
-description: "The macOS News app gave me anxiety. So I built my own RSS reader in Swift, a language I don't know, using Claude Code. Here's how that went."
+description: 'How I built The Daily Feed, a native macOS RSS reader, in Swift with Claude Code, with SQLite full-text search and Ollama-generated reading quizzes.'
 date: 2026-04-21 21:45:48 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'claude-code', 'rss', 'ollama', 'ai']

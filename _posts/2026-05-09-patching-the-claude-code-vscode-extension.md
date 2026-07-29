@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Patching the Claude Code VS Code Extension'
-description: 'The official Claude Code extension had five behaviors that added friction to my workflow. Rather than waiting, I built a companion extension that patches it in-place.'
+description: 'Five defaults in the Claude Code VS Code extension I changed with a companion extension that patches its files and re-applies after every update.'
 date: 2026-05-09 00:19:51 -0500
 categories: ['Articles']
 tags: ['claude-code', 'vscode', 'extension', 'developer-tools', 'typescript']

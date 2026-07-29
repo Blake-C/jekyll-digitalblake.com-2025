@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'My Very Fun, Super Duper Evening'
-description: 'What happens when you let an LLM refactor your dotfiles without checking the output closely enough. Spoiler: you boot into Recovery Mode.'
+description: 'An LLM refactor of my dotfiles sourced my workspace files, so every new shell launched more shells. I fixed it from macOS Recovery Mode with diskutil.'
 date: 2026-04-23 06:14:09 CDT -0500
 categories: ['Articles']
 tags: ['macos', 'dotfiles', 'shell', 'karabiner-elements', 'claude-code', 'macos-recovery', 'automation']

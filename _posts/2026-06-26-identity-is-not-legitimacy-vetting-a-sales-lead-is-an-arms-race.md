@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Identity Is Not Legitimacy: Vetting a Sales Lead Is an Arms Race'
-description: 'Identity checks can tell you a sales lead is a real person at a real company. They cannot tell you the lead is genuine. Here is why every layer that tries to prove legitimacy, from bot detection and honeypots to email and SMS verification, only raises the cost against an AI-equipped adversary instead of stopping them.'
+description: 'Identity checks prove a lead is a real person at a real company. What bot detection, honeypots, and SMS verification cost an AI-equipped attacker.'
 date: 2026-06-26 10:32:00 CDT -0500
 modified_date: 2026-07-21 18:47:14 CDT -0500
 categories: ['Articles']

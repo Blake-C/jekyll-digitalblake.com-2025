@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'Automating macOS Setup: Bootstrap, Teardown, and Keeping It All in Sync'
-description: 'Setting up a new Mac used to mean an afternoon of clicking through installers and trying to remember what I had last time. I fixed that with a single bash script — and learned a few things the hard way.'
+title: 'Automating macOS Setup with Bootstrap and Teardown Scripts'
+description: 'How I replaced an afternoon of new-Mac setup with bootstrap.sh, and why the teardown script has to be written at the same time.'
 date: 2026-04-22 17:44:08 CDT -0500
 categories: ['Articles']
 tags: ['macos', 'shell-script', 'command-line', 'homebrew', 'dot-files', 'yabai', 'automation']

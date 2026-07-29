@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to Compress WOFF2 Fonts with fonttools and Brotli'
-description: 'Subset and re-compress self-hosted WOFF2 web fonts with pyftsubset and Brotli to cut font payload by ~89%. The exact commands, real byte numbers, and the tradeoffs.'
+description: 'Subset and re-compress self-hosted WOFF2 fonts with pyftsubset and Brotli to cut the font payload by 89%, with the exact commands and byte numbers.'
 date: 2026-06-11 18:32:33 CDT -0500
 modified_date: 2026-07-21 20:04:04 CDT -0500
 categories: ['Articles']
