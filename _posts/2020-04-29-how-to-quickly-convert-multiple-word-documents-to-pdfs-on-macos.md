@@ -25,7 +25,7 @@ It’s easy enough to download and install LibreOffice, it’s free and open sou
 /Applications/LibreOffice.app/Contents/MacOS/soffice
 ```
 
-It’s called soffice. A manual page for this tool can be found here: [https://www.systutorials.com/docs/linux/man/1-soffice/](https://www.systutorials.com/docs/linux/man/1-soffice/)
+It’s called soffice, and the [soffice(1) manual page](https://www.systutorials.com/linux-manual-page-1-soffice/) documents its options.
 
 The way we can go about this is to specify an output file format then the input file to be converted. Here is what this looks like on a single file:
 

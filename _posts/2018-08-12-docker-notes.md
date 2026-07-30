@@ -13,12 +13,10 @@ image: '/assets/uploads/2018/08/docker-notes-1200x630-facebook-share.webp'
 
 ### Resources
 
-- Getting started with Docker:
-  [https://docs.docker.com/mac/](https://docs.docker.com/mac/)
-- Docker Toolbox:
-  [https://docs.docker.com/toolbox/overview/](https://docs.docker.com/toolbox/overview/)
-- [https://visible.vc/engineering/docker-environment-for-wordpress/](https://visible.vc/engineering/docker-environment-for-wordpress/)
-- [https://visible.vc/engineering/optimize-wordpress-theme-assets-and-deploy-to-s3-cloudfront/](https://visible.vc/engineering/optimize-wordpress-theme-assets-and-deploy-to-s3-cloudfront/)
+- [Installing Docker Desktop on macOS](https://docs.docker.com/desktop/setup/install/mac-install/)
+- [Docker Toolbox overview](https://web.archive.org/web/20211110121754/https://docs.docker.com/toolbox/overview/), archived. Docker retired Toolbox, and the original page now redirects to the retired docs index.
+- [Setup a Wordpress development environment with Docker](https://web.archive.org/web/20210615191828/https://visible.vc/engineering/docker-environment-for-wordpress/), archived
+- [Optimize your WordPress theme assets and deploy to S3 and CloudFront](https://web.archive.org/web/20191114190216/https://visible.vc/engineering/optimize-wordpress-theme-assets-and-deploy-to-s3-cloudfront/), archived
 
 ### Commands
 

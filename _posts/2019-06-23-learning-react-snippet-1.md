@@ -11,11 +11,11 @@ image: '/assets/uploads/2019/06/react-screen-facebook.webp'
 
 ## Notes for myself
 
-Course: [https://scrimba.com/p/p7P5Hd](https://scrimba.com/p/p7P5Hd)
+Course: Scrimba's [Learn React](https://scrimba.com/learn-react-c0e) by Bob Ziroll. The version I took is no longer online, and the notes below use class components.
 
-Private Repo: [https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019](https://github.com/Blake-C/freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019)
+Private Repo: freecodecamp-learn-react-js-full-course-for-beginners-tutorial-2019
 
-React Docs: [https://reactjs.org/](https://reactjs.org/)
+React Docs: [react.dev](https://react.dev/)
 
 App Start:
 

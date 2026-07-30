@@ -20,7 +20,7 @@ Walking through the install and getting it configured was enough to tell me the 
 ```bash
 docker run --rm -it --privileged=true archlinux:latest bash
 
-# https://endeavouros.com/docs/pacman/pacman-basic-commands/
+# https://wiki.archlinux.org/title/Pacman
 pacman -Syu # Update
 pacman -Syu sudo vim # Install vim
 
@@ -134,7 +134,7 @@ end
 - [https://serverfault.com/questions/1052963/pacman-doesnt-work-in-docker-image](https://serverfault.com/questions/1052963/pacman-doesnt-work-in-docker-image)
 - [https://www.howtogeek.com/656549/how-to-delete-a-user-on-linux-and-remove-every-trace/](https://www.howtogeek.com/656549/how-to-delete-a-user-on-linux-and-remove-every-trace/)
 - [https://linoxide.com/add-user-to-sudoers-or-sudo-group-arch-linux/](https://linoxide.com/add-user-to-sudoers-or-sudo-group-arch-linux/)
-- [https://www.2daygeek.com/linux-fish-shell-friendly-interactive-shell/](https://www.2daygeek.com/linux-fish-shell-friendly-interactive-shell/)
+- [How to install, configure and use Fish Shell in Linux](https://web.archive.org/web/20201223185908/https://www.2daygeek.com/linux-fish-shell-friendly-interactive-shell/), archived. 2daygeek.com no longer responds.
 - [https://linuxhint.com/list_installed_packages_pacman_arch_linux/](https://linuxhint.com/list_installed_packages_pacman_arch_linux/)
 - [https://community.chakralinux.org/t/how-to-use-pacman-to-search-for-install-upgrade-and-uninstall-packages/7205](https://community.chakralinux.org/t/how-to-use-pacman-to-search-for-install-upgrade-and-uninstall-packages/7205)
 - [https://itsfoss.com/pacman-command/](https://itsfoss.com/pacman-command/)

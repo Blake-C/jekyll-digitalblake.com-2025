@@ -74,4 +74,4 @@ There is an easy way to quickly generate a snippet template under Tools > Develo
 
 ![Sublime Text Snippet Location](/assets/uploads/2018/08/sublime-text-snippet.webp)
 
-More information can be found on Sublime Text snippets on the snippets documentation page: [https://sublimetext.info/docs/en/extensibility/snippets.html](https://sublimetext.info/docs/en/extensibility/snippets.html)
+More information can be found on the [Sublime Text snippets documentation page](https://docs.sublimetext.io/guide/extensibility/snippets.html).

@@ -11,7 +11,7 @@ pillar_section: language
 image: '/assets/uploads/2019/02/features-new-to-php7-1200x630-facebook-share.webp'
 ---
 
-These notes are from a LinkedIn Learning Course that can be found here: [https://www.linkedin.com/learning/php-7-new-features](https://www.linkedin.com/learning/php-7-new-features)
+These notes are from [PHP 7 New Features](https://www.linkedin.com/learning/php-7-new-features), a LinkedIn Learning course by Kevin Skoglund.
 
 ## Scalar Type Declarations
 
