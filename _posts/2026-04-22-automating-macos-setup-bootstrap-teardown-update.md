@@ -10,17 +10,17 @@ pillar_section: macos
 image: 'assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-keeping-it-all-in-sync.webp'
 ---
 
-Every time I had to set up a new Mac I would spend an hour or two clicking through installers, reconfiguring dot files, and trying to remember which global npm packages I actually cared about. It got old. So I spent some time putting together `bootstrap.sh`, a script that handles most of the setup so I don't have to think about it next time.
+Every time I had to set up a new Mac I would spend an hour or two clicking through installers, reconfiguring dot files, and trying to remember which global npm packages I actually cared about, so I wrote `bootstrap.sh` to handle most of the setup.
 
-It is not a perfect system. There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet. But it is a lot better than starting from scratch every time, and writing it down forced me to actually think about what is on my machine and why.
+There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet. Writing it down forced me to think about what is on my machine and why.
 
 ## Write the Teardown at the Same Time
 
-If you build a bootstrap, write the teardown alongside it. Not later, at the same time, section by section.
+If you build a bootstrap, write the teardown alongside it, section by section.
 
-I didn't do this at first and paid for it. By the time I got around to writing the teardown, the two scripts had already drifted. Casks, macOS settings, and a handful of other changes had gone into bootstrap without a matching removal in teardown. I had to go back and reconcile them by hand.
+I didn't do this at first, so by the time I got around to writing the teardown, the two scripts had already drifted. Casks, macOS settings, and a handful of other changes had gone into bootstrap without a matching removal in teardown. I used Claude Code to walk both scripts and reconcile them section by section.
 
-The teardown mirrors bootstrap in reverse, with a `confirm()` prompt before each phase so you can bail out of sections you want to keep:
+The teardown mirrors bootstrap in reverse, with a `confirm()` prompt before each phase so you can skip the sections you want to keep:
 
 ```bash
 confirm() {
@@ -38,11 +38,11 @@ confirm() {
 
 A `--yes` flag skips all prompts for VM testing. `--include-ssh` opts into removing SSH keys, which are skipped by default.
 
-## `set -euo pipefail` Has a Few Sharp Edges
+## `set -euo pipefail` and Commands That Return Non-Zero When They Succeed
 
-`set -euo pipefail` is worth using. It exits the script on errors, undefined variables, and pipeline failures, which catches a lot of mistakes early. What it doesn't tell you is that some commands return a non-zero exit code even when they work fine.
+[`set -euo pipefail`](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html) exits the script when a command returns non-zero, treats an unset variable as an error, and makes a pipeline return non-zero if any command in it fails. Some commands return a non-zero exit code even when they work fine, and the script exits on those too.
 
-The one that caught me: `ssh -T git@github.com` exits `1` on a successful auth handshake, because GitHub doesn't give you shell access. If you pipe that straight into `grep`, the script dies before it can check the output.
+`ssh -T git@github.com` [exits `1` after a successful authentication](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection), because GitHub doesn't give you shell access. If you pipe that straight into `grep`, the script exits before it can check the output.
 
 The workaround is to capture the output first:
 
@@ -55,13 +55,13 @@ else
 fi
 ```
 
-The `|| true` keeps the exit code from killing the script.
+The `|| true` makes the assignment return zero, so `set -e` doesn't exit the script.
 
 ## Homebrew Won't Be on PATH Right After You Install It
 
-This one is obvious in hindsight, but if Homebrew isn't installed yet, it's also not on PATH yet. Any `brew` command immediately after the install will fail.
+If Homebrew isn't installed yet, it's also not on PATH, so any `brew` command immediately after the install fails.
 
-Source the environment right after installing:
+Homebrew's [installation docs](https://docs.brew.sh/Installation) say to add `eval "$(brew shellenv)"` to your shell config, and the script runs the same line right after installing so `brew` works in the current session:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -70,30 +70,38 @@ eval "$(/opt/homebrew/bin/brew shellenv)"  # Apple Silicon
 
 ## Stop Your Window Manager (Yabai) Before Running `brew upgrade`
 
-This one took me longer to figure out than I'd like to admit. Any time `brew upgrade` updated yabai, my system would lock up, a security popup would appear that I couldn't interact with because the window manager was in a broken state.
+Any time `brew upgrade` updated yabai, my system would lock up and a security popup would appear that I couldn't interact with, because the window manager was in a broken state.
 
-The cause was a race condition with launchd. yabai runs as a launchd service with `KeepAlive` enabled. When brew replaces the binary, yabai can exit mid-run and launchd immediately tries to restart it, before the old process has let go of its lock file at `/tmp/yabai_$USER.lock`. The new instance can't get the lock, aborts, and you're left with a dead window manager.
+The cause was a race condition with launchd. yabai runs as a launchd service whose `KeepAlive` is a dictionary rather than a plain `true`, setting `SuccessfulExit` to `false` and `Crashed` to `true`. That means launchd restarts yabai when it exits with a non-zero status or crashes, which is exactly what happens when brew replaces the binary underneath a running process. launchd starts the new instance before the old one has released its lock file at `/tmp/yabai_$USER.lock`, so the new instance can't get the lock and aborts, which leaves the window manager stopped.
 
-Stopping yabai before the upgrade prevents launchd from trying to respawn it during the process:
+Stopping yabai before the upgrade prevents launchd from restarting it during the upgrade.
+
+This does not go in `bootstrap.sh`. Bootstrap runs once on a new machine, where it installs yabai rather than upgrading it, so there is no running service to stop. Updating an existing machine is a separate job, and it runs through a shell function called `update_cli` that walks through Homebrew, Composer, and the rest. Stopping yabai is the first thing that function does:
 
 ```bash
 yabai --stop-service
-skhd --stop-service
 
-brew update && brew upgrade && brew cleanup
+brew update && brew upgrade && brew cleanup && brew autoremove
 
 rm -f "/tmp/yabai_${USER}.lock"
 yabai --start-service
-skhd --start-service
 ```
 
-`--stop-service` calls `launchctl bootout`, which fully unloads the service. The `rm -f` on the lock file is just extra insurance.
+`--stop-service` [calls `launchctl bootout`](https://github.com/koekeishiya/yabai/blob/master/src/misc/service.h), which unloads the service. The `rm -f` on the lock file is there in case the old process left it behind.
 
-While I was digging through the logs I also noticed yabai was throwing errors on every startup for config commands that were removed in v7 — `window_topmost`, `window_border`, `window_border_width`. They had been in my config for a while without me noticing. Worth checking your own `yabairc` if you've upgraded without revisiting the config.
+The logs also showed an error on every yabai startup for three config commands that [v7.0.0 removed](https://github.com/koekeishiya/yabai/blob/master/CHANGELOG.md):
+
+- `window_topmost`
+- `window_border`
+- `window_border_width`
+
+All three had been sitting in my `yabairc` since before the upgrade. Check your own `yabairc` if you've upgraded yabai without revisiting the config.
 
 ## NVM Doesn't Move Your Global Packages Automatically
 
-When you install a new LTS version of Node, your globally installed packages don't carry over on their own. Worth knowing before you upgrade and wonder where everything went.
+**Note, July 2026:** `bootstrap.sh` no longer uses nvm. It now installs [fnm](https://github.com/Schniz/fnm) with `brew install fnm`, runs `eval "$(fnm env --shell bash)"`, then `fnm install --lts`, `fnm use lts-latest`, and `fnm default lts-latest`, and installs pnpm globally with npm. The nvm commands below are what the script used to do.
+
+When you install a new LTS version of Node under nvm, your globally installed packages are not installed into it.
 
 ```bash
 PREV_NODE="$(nvm version default)"
@@ -102,15 +110,15 @@ nvm alias default lts/*
 nvm reinstall-packages "$PREV_NODE"
 ```
 
-`nvm reinstall-packages` takes the previous version as an argument and reinstalls everything from it. Simple enough once you know it exists.
+[`nvm reinstall-packages`](https://github.com/nvm-sh/nvm) takes the version you want to copy from as an argument and installs those global packages into the version you are using.
 
-## Having a Script at All Is the Point
+## Using the Bootstrap as the Record of What Is Installed
 
-The main thing I got out of this is just having a record. The bootstrap is now the canonical list of what's on my machine. If I want to add something, I add it to the script. If I'm wondering why something is installed, I look there first.
+The bootstrap is now the canonical list of what's on my machine. If I want to add something, I add it to the script. If I'm wondering why something is installed, I look there first.
 
-The scripts themselves aren't complicated — a few hundred lines of bash, a list of packages, and some `defaults write` calls. The value is just in having something written down rather than relying on memory.
+Each script is a few hundred lines of bash, a list of packages, and some `defaults write` calls. Having it written down means I'm not relying on memory for any of it.
 
-To give you a starting point, here's a stripped-down version of both scripts. Swap in your own packages and you're most of the way there.
+Below is a stripped-down version of both scripts. Swap in your own packages.
 
 **bootstrap.sh**
 
@@ -174,4 +182,4 @@ fi
 success "Done"
 ```
 
-Every section you add to one should go into the other. That's really the whole trick. The pattern is the same as above, just with more packages. Build yours around what you actually use. Start small and add to it as you go.
+Every section you add to one should go into the other. My own scripts follow the same pattern with more packages in them. Start with what you actually use and add to it as you go.
