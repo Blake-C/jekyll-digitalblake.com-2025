@@ -10,15 +10,15 @@ pillar_section: tooling
 image: 'assets/uploads/2025/04/speeding-up-zsh-startup-fixing-compinit-nvm-and-claude-code-path-issues.webp'
 ---
 
-There is a specific kind of developer frustration that does not announce itself loudly. It just slowly grinds you down. You open a new terminal tab, and there is a pause. Not a long pause. Maybe 800ms. Maybe a full second. Nothing worth filing a bug report over. But you open tabs constantly, and over the course of a day that lag adds up into something you notice, something that breaks your flow in that quiet, hard-to-articulate way.
+Opening a new terminal tab paused before the prompt appeared, maybe 800ms, maybe a full second. It was not the kind of pause you file a bug report over, but I open tabs constantly, so it came up all day long, and it was long enough to feel every time.
 
-That was my situation. My prompt was slow. Not broken, just slow. And I had been tolerating it long enough.
+The prompt worked, it was just slow, and I had been putting up with it for a long time.
 
-I asked Claude Code to go through my dotfiles, profile what was happening, and help me fix it. What followed was a good reminder that performance problems rarely look dramatic in code — they hide in duplication, in patterns that made sense when you added them and then accumulated over years into something expensive.
+I asked Claude Code to go through my dotfiles, profile what was happening, and help me fix it.
 
 ## Diagnosing the Problem
 
-The first step is always measurement. Guessing at what is slow is a waste of time. Zsh ships with a built-in profiler called `zprof`. You do not need to install anything. You just add `zmodload zsh/zprof` at the top of your `.zshrc`, then call `zprof` at the end of the file, open a new shell, and read the output.
+Zsh ships with a profiler in the [`zsh/zprof`](https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002fzprof-Module) module, so there is nothing to install. Add `zmodload zsh/zprof` at the top of your `.zshrc`, call `zprof` at the end of the file, then open a new shell and read the output.
 
 The faster route is to run a timed non-interactive shell directly:
 
@@ -32,13 +32,13 @@ My output was:
 1.04 real   0.55 user   0.41 sys
 ```
 
-A full second. For a shell prompt. That is not acceptable when you know what a well-configured shell feels like. To get the breakdown by function, I ran the profiler properly:
+That is a full second to open a shell. To get the breakdown by function, I ran the profiler:
 
 ```bash
 zsh -i -c 'zmodload zsh/zprof; source ~/.zshrc; zprof' 2>/dev/null | head -40
 ```
 
-The output told the whole story immediately:
+The output:
 
 ```bash
 num  calls    time                  self            name
@@ -51,15 +51,15 @@ num  calls    time                  self            name
  6)    1        26ms    3.12%     26ms    3.12%   _awscli-homebrew-installed
 ```
 
-Two things jumped out immediately. First, `compinit` was being called **three times**. Second, it was consuming over 91% of total startup time. Everything else was noise by comparison.
+`compinit` was being called **three times**, and those three calls accounted for over 91% of total startup time.
 
 ## Why compinit Is Expensive
 
-`compinit` is the function that initializes Zsh's completion system. The first time it runs in a session it scans every directory in `$fpath`, collects all the completion function files it finds, generates a dump file (`.zcompdump`), and then loads everything. It is doing real work. The problem is that I had told it to do that work three separate times every single time I opened a shell.
+[`compinit`](https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Use-of-compinit) is the function that initializes Zsh's completion system. The first time it runs in a session it scans every directory in [`$fpath`](https://zsh.sourceforge.io/Doc/Release/Parameters.html#index-fpath), collects all the completion function files it finds, generates a dump file (`.zcompdump`), and then loads everything. My config had it doing that work three separate times on every shell open.
 
 Here is how three calls ended up in my config:
 
-**Call one** — in the Homebrew completion block:
+**Call one**, in the Homebrew completion block:
 
 ```zsh
 if type brew &>/dev/null; then
@@ -69,13 +69,13 @@ if type brew &>/dev/null; then
 fi
 ```
 
-**Call two** — in my `completion.zsh` file:
+**Call two**, in my `completion.zsh` file:
 
 ```zsh
 autoload -Uz compinit && compinit
 ```
 
-**Call three** — added by Docker Desktop at the bottom of my `.zshrc`:
+**Call three**, added by Docker Desktop at the bottom of my `.zshrc`:
 
 ```zsh
 fpath=(/Users/me/.docker/completions $fpath)
@@ -83,11 +83,11 @@ autoload -Uz compinit
 compinit
 ```
 
-Each tool added its own block following its own documentation. None of those docs told me that I already had two other `compinit` calls. The fix is to understand that `compinit` is a one-time-per-session operation, not something each tool gets to call independently. All `fpath` additions must happen before a single `compinit`, and that one call should use a daily cache so the fpath scan only happens once every 24 hours instead of every shell open.
+Each tool added its own block following its own documentation. None of those docs told me that I already had two other `compinit` calls. `compinit` only needs to run once per session, so all `fpath` additions have to happen before that single call, and the call should use a daily cache so the fpath scan only happens once every 24 hours instead of on every shell open.
 
 ## The Fix: One compinit, Once Per Day
 
-The pattern is straightforward. At the top of your `.zshrc`, collect all your `fpath` additions before sourcing anything else:
+At the top of your `.zshrc`, collect all your `fpath` additions before sourcing anything else:
 
 ```zsh
 ##################################
@@ -115,9 +115,15 @@ else
 fi
 ```
 
-The `(#qN.mh+24)` is a Zsh glob qualifier. It evaluates to the dump file if it is older than 24 hours, and to nothing if it is fresh. On a fresh dump, `compinit` runs fully and writes an updated dump. On a cached dump, `compinit -C` loads from that file without re-scanning `$fpath`. The `-C` flag is the thing doing the heavy lifting here — it tells Zsh to trust the cache completely.
+The `(#qN.mh+24)` is a Zsh [glob qualifier](https://zsh.sourceforge.io/Doc/Release/Expansion.html#Glob-Qualifiers), where `.` matches plain files, `mh+24` matches a modification time more than 24 hours old, and `N` makes the pattern expand to nothing when it does not match. It evaluates to the dump file if it is older than 24 hours, and to nothing if it is fresh. So when the dump is more than 24 hours old, `compinit` runs fully and writes an updated dump. Otherwise `compinit -C` loads from the existing file without re-scanning `$fpath`. The `-C` flag is what saves the time, because it tells `compinit` to skip the check for new completion functions and use the dump file as it is.
 
-Then remove every other `compinit` call in your config. Delete the one from the Homebrew block, delete the one Docker added, delete any others. There is only one now, and it lives in one place you control.
+Then remove every other `compinit` call in your config.
+
+- the one in the Homebrew block
+- the one Docker Desktop added
+- any others you find
+
+That leaves one `compinit` call in the config.
 
 ## The brew --prefix Subprocess
 
@@ -127,7 +133,7 @@ While I was in the Homebrew block, I noticed another small cost. The original co
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 ```
 
-The `$(brew --prefix)` is a command substitution. It forks a subprocess, runs Homebrew, waits for the output, and then continues. On my machine that path is always `/opt/homebrew`. It never changes. So this fork was pure overhead on every single shell open. Replace it with a direct path check:
+The `$(brew --prefix)` is a command substitution. It forks a subprocess, runs Homebrew, waits for the output, and then continues. On my machine [`brew --prefix`](https://docs.brew.sh/Manpage) always returns `/opt/homebrew`, so that fork was overhead on every shell open. Replace it with a direct path check:
 
 ```zsh
 [[ -d /opt/homebrew/share/zsh/site-functions ]] && FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
@@ -145,9 +151,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 ```
 
-The `eval "$(pyenv init -)"` call forks a subprocess and injects a block of shell function code into your session. It is not as expensive as the compinit situation, but it is measurable overhead that runs even in shells where you will never touch Python.
+The [`eval "$(pyenv init -)"`](https://github.com/pyenv/pyenv#advanced-configuration) call forks a subprocess and injects a block of shell function code into your session. It runs even in shells where you never run Python.
 
-The fix has two parts. First, add the pyenv shims directly to your `PATH`. Shims are thin pre-generated wrapper scripts that pyenv puts in `~/.pyenv/shims/`. They let `python`, `python3`, and `pip` work without needing the full shell integration running:
+The fix has two parts. First, add the pyenv shims directly to your `PATH`. [Shims](https://github.com/pyenv/pyenv#understanding-shims) are thin pre-generated wrapper scripts that pyenv puts in `~/.pyenv/shims/` and that pass each command along to pyenv. They let `python`, `python3`, and `pip` work without needing the full shell integration running:
 
 ```zsh
 export PYENV_ROOT="$HOME/.pyenv"
@@ -155,7 +161,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 ```
 
-Second, wrap the `pyenv` function so the full init only fires when you actually call `pyenv` for real:
+Second, wrap the `pyenv` function so the full init only runs the first time you call `pyenv` yourself:
 
 ```zsh
 function pyenv() {
@@ -167,11 +173,11 @@ function pyenv() {
 
 The `unfunction pyenv` removes the wrapper, `pyenv init -` sets everything up, and then `pyenv "$@"` forwards your original arguments to the real command. After that first call, pyenv works normally for the rest of the session.
 
-The tradeoff is that `pyenv shell`, `pyenv local`, and other version-switching commands will not take effect until you call `pyenv` for the first time in a given terminal session. If your Python work always starts with running `pyenv` explicitly that is a non-issue. If you rely on `.python-version` files being respected automatically when you `cd`, you will want to keep the full `pyenv init -` and accept the startup cost.
+The tradeoff is narrower than it looks. The shims read the version themselves, [in the order `PYENV_VERSION`, then a `.python-version` file in the current directory, then the first one found in a parent directory, then the global version file](https://github.com/pyenv/pyenv#understanding-python-version-selection), so `.python-version` files are honored with no shell integration at all. What needs the function is `pyenv shell`, which sets `PYENV_VERSION` in the current shell and so will not take effect until you have called `pyenv` once in that session. Calling `pyenv local` works either way, because typing `pyenv` is what loads the full init.
 
-## Claude Code and Lazy NVM: A Specific Conflict
+## Claude Code and Lazy NVM: Node Missing From PATH
 
-This one took a bit more thought. I have had lazy NVM loading in my config for years. The idea is simple: NVM is slow to source, but you only need it when you are actually using Node. So you define stub aliases for every Node-adjacent command, and the first time you run one of them the real NVM loads:
+I have had lazy NVM loading in my config for years. NVM is slow to source and you only need it when you are running Node, so you define stub aliases for every Node-adjacent command, and the first time you run one of them the real NVM loads:
 
 ```zsh
 if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -w __init_nvm)" = function ]; then
@@ -189,11 +195,11 @@ if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -w __init_nvm)" = function ]; then
 fi
 ```
 
-This works perfectly for interactive use. The problem is Claude Code.
+The stub aliases work for interactive use, where you type a Node command yourself.
 
-Claude Code is a Node application. When you install it globally with `npm install -g @anthropic-ai/claude-code`, the `claude` binary lands somewhere inside your NVM versions directory — something like `~/.nvm/versions/node/v22.0.0/bin/claude`. When your shell is fully initialized and NVM is loaded, that directory is in your `PATH`, and `claude` works fine.
+In April 2026 Claude Code was distributed as a Node application, which is what this section describes. Anthropic has since changed that, and the npm package now installs the same native binary as the standalone installer, so the `claude` binary no longer invokes Node itself. Back then, installing it globally with `npm install -g @anthropic-ai/claude-code` put the `claude` binary inside your NVM versions directory, at a path like `~/.nvm/versions/node/v22.0.0/bin/claude`. When your shell is fully initialized and NVM is loaded, that directory is in your `PATH`, and `claude` works fine.
 
-But the lazy loading setup means NVM does not load until you type `node` or `npm` or something on that alias list. If Claude Code ever needs to spawn a Node process in a context where the aliases have not yet been triggered — like when it is doing something behind the scenes, or when it is invoked from a tool like an IDE or another process — it hits a `PATH` that has no `node` in it.
+But the lazy loading setup means NVM does not load until you type `node` or `npm` or something on that alias list. If Claude Code ever needs to spawn a Node process in a context where the aliases have not yet been triggered, such as when it is invoked from an IDE or another process, it gets a `PATH` that has no `node` in it.
 
 The fix is to make the actual Node binary available in `PATH` at shell startup, without loading all of NVM. You read the default version from NVM's alias file and prepend that version's bin directory:
 
@@ -206,9 +212,9 @@ if [[ -s "$NVM_DIR/alias/default" ]]; then
 fi
 ```
 
-NVM stores its default alias at `$NVM_DIR/alias/default`. That file contains just the version string — something like `v22.0.0` or a reference like `lts/*` which NVM resolves at load time.
+NVM stores its default alias at `$NVM_DIR/alias/default`. That file contains just the version string, such as `v22.0.0`, or a reference like [`lts/*`](https://github.com/nvm-sh/nvm#long-term-support) which NVM resolves at load time.
 
-A note: if your default alias is something like `lts/*` rather than a pinned version, `cat $NVM_DIR/alias/default` will return the alias name, not the resolved version, and the path will not exist. In that case you either pin your default to a specific version (`nvm alias default 22`) or resolve it at startup:
+If your default alias is an alias name such as `lts/*`, `cat $NVM_DIR/alias/default` returns that name, so the path built from it will not exist. In that case you either pin your default to a specific version (`nvm alias default 22`) or resolve it at startup:
 
 ```zsh
 if [[ -s "$NVM_DIR/alias/default" ]]; then
@@ -224,9 +230,11 @@ fi
 
 With this in place, `claude` is in `PATH` from the moment the shell finishes loading, the lazy NVM aliases still work exactly as before, and the full NVM source only happens when you actually need version management.
 
-Bending Claude Code to fit my workflow has turned into a recurring project. On the editor side I went a step further and [built a companion extension that patches the Claude Code VS Code extension]({% post_url 2026-05-09-patching-the-claude-code-vscode-extension %}) to change five defaults that kept getting in my way.
+As of July 2026, my `.zshrc` no longer uses NVM. It runs `eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"` instead, and that output puts an [fnm](https://github.com/Schniz/fnm#shell-setup)-managed bin directory on `PATH` when the shell starts and registers a `chpwd` hook that switches versions on `cd`. `node` is therefore on `PATH` with no lazy-load step, and the conflict above does not come up. The `compinit` cache, the consolidated `fpath` block, and the lazy `pyenv` function are all still what my config does today.
 
-## The Result
+I also [built a companion extension that patches the Claude Code VS Code extension]({% post_url 2026-05-09-patching-the-claude-code-vscode-extension %}) to change five defaults that kept getting in my way.
+
+## Startup Time After the Changes
 
 After all of these changes, running the timing test again:
 
@@ -240,22 +248,22 @@ Output:
 0.17 real   0.08 user   0.06 sys
 ```
 
-From just over a second down to 170ms. An 84% reduction, and it felt immediately different when opening tabs.
+Startup went from just over a second down to 170ms, an 84% reduction, and the difference was noticeable when opening tabs.
 
-## Summary of What to Check in Your Own Config
+## What to Check in Your Own Config
 
-If you are dealing with a slow Zsh prompt, here is the order I would work through it:
+If you are dealing with a slow Zsh prompt, work through it in this order.
 
-**Profile first.** Do not guess. Add `zmodload zsh/zprof` at the top of your `.zshrc` and `zprof` at the bottom, open a new shell, and read the numbers. Or just run `/usr/bin/time zsh -i -c exit` to get the wall clock time.
+**Profile first.** Add `zmodload zsh/zprof` at the top of your `.zshrc` and `zprof` at the bottom, open a new shell, and read the numbers. Or just run `/usr/bin/time zsh -i -c exit` to get the wall clock time.
 
-**Count your `compinit` calls.** Search your entire config for `compinit` and `compdef`. Every call beyond the first is waste. Consolidate all `fpath` additions before a single `compinit`, and use the 24-hour cache pattern.
+**Count your `compinit` calls.** Search your entire config for `compinit` and `compdef`. Every call after the first repeats the same fpath scan and dump. Consolidate all `fpath` additions before a single `compinit`, and use the 24-hour cache pattern.
 
-**Look for command substitutions at startup.** Any `$(some-command)` that runs during shell init is forking a subprocess. `$(brew --prefix)`, `$(git rev-parse HEAD)`, `$(rbenv version-name)` — all of these have startup cost. If the value never changes, hardcode it. If it changes rarely, consider caching it.
+**Look for command substitutions at startup.** Any `$(some-command)` that runs during shell init is forking a subprocess. `$(brew --prefix)`, `$(git rev-parse HEAD)`, and `$(rbenv version-name)` all have a startup cost. If the value never changes, hardcode it. If it changes rarely, consider caching it.
 
-**Lazy-load version managers.** NVM, RVM, pyenv, and friends all have non-trivial startup overhead. If you do not need the full shell integration active in every terminal session, add the relevant shims or bin directories to `PATH` directly and defer the full init.
+**Lazy-load version managers.** NVM, RVM, pyenv, and similar tools all add to startup time. If you do not need the full shell integration active in every terminal session, add the relevant shims or bin directories to `PATH` directly and defer the full init.
 
-**Check what your tools added without telling you.** Docker Desktop, Homebrew, AWS CLI, and others often inject lines into your `.zshrc` during installation. They tend to follow their own documentation without regard for what is already there. A periodic audit of your config for duplicate patterns is worth doing.
+**Check what your tools added to your config.** Docker Desktop, Homebrew, AWS CLI, and others often inject lines into your `.zshrc` during installation. Each installer follows its own documentation and does not check what is already there, so read through your config for duplicate blocks from time to time.
 
-**Delete commented-out code.** This does not affect performance, but it reduces the cognitive load of reading your config, which makes it easier to catch the actual problems.
+**Delete commented-out code.** This does not affect performance, but it makes the config easier to read and the real problems easier to spot.
 
-The shell config is one of those things that grows over years without any single change ever feeling significant. The result is a file that works fine but carries a lot of weight from previous decisions, previous jobs, previous projects. Taking an hour to profile it and clean it up is consistently worth the time.
+My `.zshrc` grew over years, one tool's install block at a time, until it held three `compinit` calls, a `brew --prefix` subprocess, and a full `pyenv init` that ran in every shell. Profiling it and cleaning it up brought startup from just over a second down to 170ms.
