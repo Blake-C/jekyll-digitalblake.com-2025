@@ -57,8 +57,15 @@ docker compose run --rm app pnpm run lint:fix       # Auto-fix JS and SCSS issue
 docker compose run --rm app pnpm run format         # Prettier (all files)
 
 # HTML validation (run after jekyll build)
-docker compose run --rm app bundle exec htmlproofer ./_site
+docker compose run --rm app pnpm run check:html    # what CI runs: internal links only
+docker compose run --rm app pnpm run check:links   # adds external links, minus known bot-blockers
 ```
+
+`check:html` matches `.github/workflows/deploy.yml` exactly, so a pass here means CI passes. `check:links` also hits the network. Its `--ignore-urls` list covers hosts that refuse automated requests (LinkedIn answers 999, CodePen/npm/claude.ai/linoxide/Businesswire answer 403) plus `youtube-nocookie.com`, which appears only as a `preconnect` resource hint in `_includes/head.html` and is not a navigable URL. Those links are fine in a browser; without the list they bury real failures under several hundred false ones.
+
+The list also skips `https://digitalblake.com` itself. Those URLs only ever appear in generated `canonical`/`og:url` tags, never in post bodies, so fetching them tests whether a page is deployed yet rather than whether the build is correct: every unmerged post 404s by definition. Internal links are already covered by `check:html`, which walks them as relative paths.
+
+Both checks should report zero. Anything either one reports is worth reading.
 
 ## Architecture
 
@@ -70,6 +77,8 @@ Two Jekyll configs are used:
 
 - `_config.yml` — production (baseurl: `""`, `url: https://digitalblake.com`; served from a custom domain via the `CNAME` file)
 - `_config.dev.yml` — development override (`url: http://localhost:4005`, port 4005); merged automatically by `pnpm run dev`
+
+The dev server builds to `_site_dev`, not `_site`. It rebuilds on every file change, and `jekyll serve --host 0.0.0.0` overrides `url`, so when the two shared a directory a running dev server would overwrite a production build seconds after it finished and leave `http://0.0.0.0:4005` in the canonical, `og:url`, and feed tags. Keeping the destinations separate means `htmlproofer ./_site` always reads production output. `_site_dev/` is listed in both `.gitignore` and the `exclude:` list in `_config.yml`; the exclude is required, since Jekyll only auto-excludes its own destination and would otherwise copy the whole dev site into `_site`.
 
 ### Asset pipeline
 
@@ -174,3 +183,5 @@ Lockfile-changing installs need `pnpm install --no-frozen-lockfile`, since `froz
 GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).
 
 CI does **not** run `build:images`, `build:image-dimensions`, `cache:thumbnails`, or `build:fonts` — those outputs (optimized images, the `_data/image_dimensions.json` size manifest, cached thumbnails, the subset WOFF2) are committed to the repo and used as-is. Regenerate and commit them locally when their inputs change. After adding or replacing images, run `build:images` then `build:image-dimensions` and commit the updated manifest so content-image `width`/`height` stay correct.
+
+`build:images` and `build:fonts` are both idempotent: re-running them on unchanged inputs leaves the working tree clean. If either one reports a change you did not expect, that is a real signal, not noise. `build:images` skips any image it cannot make at least 1% smaller (JPEG re-encoding is lossy, so an in-place re-encode never converges), but always strips embedded EXIF/IPTC/XMP/ICC profiles regardless of size. `build:fonts` pins `SOURCE_DATE_EPOCH`, because fonttools otherwise stamps the current time into `head.modified` and every build emits different bytes. Do not change that epoch constant; it would rewrite the shipped WOFF2 for no reason.
