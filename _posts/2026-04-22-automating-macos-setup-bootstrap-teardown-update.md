@@ -15,7 +15,11 @@ Every time I had to set up a new Mac I would spend an hour or two clicking throu
 
 `bootstrap.sh` provisions a new machine, `teardown.sh` removes what bootstrap installed, and a shell function called `update_cli` keeps an existing machine current in between. There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet.
 
-## Using the Bootstrap as the Record of What Is Installed
+## What Bootstrap, update_cli, and Teardown Each Do, and What the Bootstrap Records
+
+Bootstrap runs once, on a machine that has nothing on it. Teardown runs once, when I am done with the machine. Everything in between is maintenance, and that runs through `update_cli`, a shell function that prompts once and then updates Homebrew, Composer, and the rest of the package managers in order.
+
+Bootstrap installs a package that is not there yet, and `update_cli` replaces a package that is running.
 
 The bootstrap is now the canonical list of what's on my machine. If I want to add something, I add it to the script. If I'm wondering why something is installed, I look there first.
 
@@ -145,29 +149,21 @@ update_cli() {
 
 Every section you add to one of these should go into the other two. My own versions follow the same pattern with more packages in them.
 
-## Write the Teardown at the Same Time
+## You Need an SSH Key Before the Bootstrap Can Run
 
-If you build a bootstrap, write the teardown alongside it, section by section.
+Both scripts live in a git repo alongside the dot files they symlink, so the repo has to be on the machine before `bootstrap.sh` can run. My repo also has seventeen submodules, which hold the zsh plugins and the Powerlevel10k theme among other things, and those have to be initialized or the directories the symlinks point at are empty.
 
-I didn't do this at first, so by the time I got around to writing the teardown, the two scripts had already drifted. Casks, macOS settings, and a handful of other changes had gone into bootstrap without a matching removal in teardown. I used Claude Code to walk both scripts and reconcile them section by section.
+Downloading the repo as a zip does not work, because a zip has no `.git` directory and `git submodule update --init` needs one. So the repo has to be cloned over SSH, which means an SSH key has to exist on the machine before any of the automation runs. I create that first key by hand.
 
-The teardown mirrors bootstrap in reverse, with a `confirm()` prompt before each phase so you can skip the sections you want to keep:
+Bootstrap generates a second key for GitHub once it is running:
 
 ```bash
-confirm() {
-    local message="$1"
-    if [ "$SKIP_PROMPTS" = true ]; then
-        info "$message — auto-confirmed (--yes)"
-        return 0
-    fi
-    printf "\n${_yellow}%s${_reset} (y/n): " "$message"
-    local answer
-    read -r answer
-    [[ "$answer" == "y" ]]
-}
+ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)" -f "$SSH_KEY" -N ""
+eval "$(ssh-agent -s)"
+ssh-add "$SSH_KEY"
 ```
 
-A `--yes` flag skips all prompts for VM testing. `--include-ssh` opts into removing SSH keys, which are skipped by default.
+It prints the public key with a link to GitHub's key settings page, and the `ssh -T` check below confirms the key was added before the script clones the submodules.
 
 ## `set -euo pipefail` and Commands That Return Non-Zero When They Succeed
 
@@ -187,22 +183,6 @@ fi
 ```
 
 The `|| true` makes the assignment return zero, so `set -e` doesn't exit the script.
-
-## You Need an SSH Key Before the Bootstrap Can Run
-
-Both scripts live in a git repo alongside the dot files they symlink, so the repo has to be on the machine before `bootstrap.sh` can run. My repo also has seventeen submodules, which hold the zsh plugins and the Powerlevel10k theme among other things, and those have to be initialized or the directories the symlinks point at are empty.
-
-Downloading the repo as a zip does not work, because a zip has no `.git` directory and `git submodule update --init` needs one. So the repo has to be cloned over SSH, which means an SSH key has to exist on the machine before any of the automation runs. I create that first key by hand.
-
-Bootstrap generates a second key for GitHub once it is running:
-
-```bash
-ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)" -f "$SSH_KEY" -N ""
-eval "$(ssh-agent -s)"
-ssh-add "$SSH_KEY"
-```
-
-It prints the public key with a link to GitHub's key settings page, and the `ssh -T` check above confirms the key was added before the script clones the submodules.
 
 ## Homebrew Won't Be on PATH Right After You Install It
 
@@ -235,12 +215,6 @@ if ! npm list -g pnpm --depth=0 >/dev/null 2>&1; then
 fi
 ```
 
-## Bootstrap Sets Up, update_cli Maintains, Teardown Removes
-
-Bootstrap runs once, on a machine that has nothing on it. Teardown runs once, when I am done with the machine. Everything in between is maintenance, and that runs through `update_cli`, a shell function that prompts once and then updates Homebrew, Composer, and the rest of the package managers in order.
-
-Bootstrap installs a package that is not there yet, and `update_cli` replaces a package that is running.
-
 ## Stop Your Window Manager Before update_cli Touches It
 
 Any time `brew upgrade` updated yabai, my system would lock up and a security popup would appear that I couldn't interact with, because the window manager was in a broken state.
@@ -251,6 +225,8 @@ The fix is to stop yabai first, which is what the `yabai --stop-service` and `ya
 
 `--stop-service` [calls `launchctl bootout`](https://github.com/koekeishiya/yabai/blob/master/src/misc/service.h), which unloads the service. The `rm -f` on the lock file is there in case the old process left it behind.
 
+## Three yabairc Commands That yabai v7.0.0 Removed
+
 The logs also showed an error on every yabai startup for three config commands that [v7.0.0 removed](https://github.com/koekeishiya/yabai/blob/master/CHANGELOG.md):
 
 - `window_topmost`
@@ -258,6 +234,30 @@ The logs also showed an error on every yabai startup for three config commands t
 - `window_border_width`
 
 All three had been sitting in my `yabairc` since before the upgrade. Check your own `yabairc` if you've upgraded yabai without revisiting the config.
+
+## Write the Teardown at the Same Time
+
+If you build a bootstrap, write the teardown alongside it, section by section.
+
+I didn't do this at first, so by the time I got around to writing the teardown, the two scripts had already drifted. Casks, macOS settings, and a handful of other changes had gone into bootstrap without a matching removal in teardown. I used Claude Code to walk both scripts and reconcile them section by section.
+
+The teardown mirrors bootstrap in reverse, with a `confirm()` prompt before each phase so you can skip the sections you want to keep:
+
+```bash
+confirm() {
+    local message="$1"
+    if [ "$SKIP_PROMPTS" = true ]; then
+        info "$message — auto-confirmed (--yes)"
+        return 0
+    fi
+    printf "\n${_yellow}%s${_reset} (y/n): " "$message"
+    local answer
+    read -r answer
+    [[ "$answer" == "y" ]]
+}
+```
+
+A `--yes` flag skips all prompts for VM testing. `--include-ssh` opts into removing SSH keys, which are skipped by default.
 
 ## Where That Leaves the Setup
 
