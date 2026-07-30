@@ -6,7 +6,7 @@ date: 2026-04-28 06:53:39 CDT -0500
 modified_date: 2026-07-29 20:04:04 -0500
 categories: ['Articles']
 tags: ['swift', 'macos', 'swiftui', 'appkit', 'performance']
-image: 'assets/uploads/2025/04/swiftui-vs-appkit-on-macos-layout-models-performance-and-trade-offs-social-share-image.webp'
+image: '/assets/uploads/2025/04/swiftui-vs-appkit-on-macos-layout-models-performance-and-trade-offs-social-share-image.webp'
 ---
 
 AppKit and SwiftUI are the two frameworks for building native macOS user interfaces. AppKit builds an interface out of `NSView` objects that you configure and update yourself, and SwiftUI takes a description of the interface for a given state and works out the updates. Below is how each one works, what the trade-offs are, how they interoperate, and what the alternatives are when neither fits. The performance sections use a macOS image viewer application I built as the example.

@@ -7,7 +7,7 @@ categories: ['Articles']
 tags: ['macos', 'dotfiles', 'shell', 'karabiner-elements', 'claude-code', 'macos-recovery', 'automation']
 pillar: claude-code-ai
 pillar_section: lessons
-image: 'assets/uploads/2025/04/my-very-fun-super-duper-evening-social-share-image.webp'
+image: '/assets/uploads/2025/04/my-very-fun-super-duper-evening-social-share-image.webp'
 ---
 
 So I had a fun evening. I accidentally shell-bombed myself. Word to the wise: when you're having an LLM refactor code in your own shell or dotfiles, be absolutely sure it doesn't accidentally cause a situation where every time a shell opens, applications automatically launch, including more shells.

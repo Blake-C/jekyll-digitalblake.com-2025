@@ -7,7 +7,7 @@ categories: ['Articles']
 tags: ['macos', 'command-line', 'shell-script', 'zsh', 'claude-code', 'node', 'performance']
 pillar: claude-code-ai
 pillar_section: tooling
-image: 'assets/uploads/2025/04/speeding-up-zsh-startup-fixing-compinit-nvm-and-claude-code-path-issues.webp'
+image: '/assets/uploads/2025/04/speeding-up-zsh-startup-fixing-compinit-nvm-and-claude-code-path-issues.webp'
 ---
 
 Opening a new terminal tab paused before the prompt appeared, maybe 800ms, maybe a full second. It was not the kind of pause you file a bug report over, but I open tabs constantly, so it came up all day long, and it was long enough to feel every time.

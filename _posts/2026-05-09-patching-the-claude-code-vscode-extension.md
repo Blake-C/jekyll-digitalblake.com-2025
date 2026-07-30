@@ -8,7 +8,7 @@ categories: ['Articles']
 tags: ['claude-code', 'vscode', 'extension', 'developer-tools', 'typescript']
 pillar: claude-code-ai
 pillar_section: tooling
-image: assets/uploads/2025/05/patching-the-claude-code-vs-code-extension-social-share-image.webp
+image: '/assets/uploads/2025/05/patching-the-claude-code-vs-code-extension-social-share-image.webp'
 ---
 
 I use the official [Claude Code extension for VS Code](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code) very regularly, and in order to fix five issues that I had with it and to make it match more with how I work, I created a companion extension to patch them.
