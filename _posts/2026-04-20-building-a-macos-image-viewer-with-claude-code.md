@@ -10,15 +10,15 @@ pillar_section: apps
 image: '/assets/uploads/2025/04/the image viewer application on loadup with photos.webp'
 ---
 
-I have never liked how Apple Photos presents your library. The sidebar, the memories, the albums, the filters, the nudges to do something with your photos. All I want is to point an application at a directory, see what's in it, and click through at my own pace. That is it. That is the whole ask.
+Apple Photos puts a library between me and my files. There is a sidebar, there are memories and albums and filters, and there are prompts to do something with the photos. What I wanted was to point an application at a directory, see what is in it, and click through at my own pace.
 
-Because that application did not exist in exactly the way I wanted, I built it. The catch: I do not know Swift. What I do have is [Claude Code](https://claude.ai/code) and a clear enough picture in my head of what the app should do. That turned out to be enough.
+So I built Image Viewer, a native macOS photo gallery, using [Claude Code](https://claude.ai/code) to write the Swift, which is a language I had not used before starting this.
 
 The source is on [GitHub](https://github.com/Blake-C/macos-image-viewer-application) if you want to take a look or build it yourself.
 
 ## The App
 
-The concept is simple. Open it, point it at a folder, browse photos. No library management. No syncing. No cloud. Just your files in a directory and a grid view of thumbnails.
+You open it, point it at a folder, and browse the photos in that folder. There is no library to manage, nothing syncs, and nothing goes to a cloud service. The app reads the files in a directory and shows them in a grid of thumbnails.
 
 ![Image Viewer gallery on load with photos displayed](/assets/uploads/2025/04/the image viewer application on loadup with photos.webp)
 
@@ -38,18 +38,18 @@ Press I to toggle an info overlay showing the filename, pixel dimensions, file s
 
 ## Keyboard Controls
 
-The shortcuts are the part I use most. Once you have opened a folder you can navigate, zoom, delete, and manage photos without touching a mouse.
+Once you have opened a folder you can navigate, zoom, delete, and manage photos without touching a mouse.
 
-- **Arrow keys** — move between images or pan when zoomed
-- **Cmd++ / Cmd+-** — zoom in and out
-- **Cmd+0** — fit to window
-- **Cmd+1** — actual pixels
-- **Cmd+Delete** — move current image to Trash
-- **Cmd+T** — toggle square vs. aspect-ratio thumbnails
-- **Cmd+R** — refresh the folder
-- **Cmd+N** — open a new independent window
-- **Cmd+F** — full screen
-- **Cmd+P** — start or stop the slideshow
+- **Arrow keys**: move between images or pan when zoomed
+- **Cmd++ / Cmd+-**: zoom in and out
+- **Cmd+0**: fit to window
+- **Cmd+1**: actual pixels
+- **Cmd+Delete**: move current image to Trash
+- **Cmd+T**: toggle square vs. aspect-ratio thumbnails
+- **Cmd+R**: refresh the folder
+- **Cmd+N**: open a new independent window
+- **Cmd+F**: full screen
+- **Cmd+P**: start or stop the slideshow
 
 The folder also auto-refreshes when files are added or removed. If you're pulling photos off a camera into a directory you already have open, they appear without you doing anything.
 
@@ -57,27 +57,27 @@ The folder also auto-refreshes when files are added or removed. If you're pullin
 
 Cmd+P starts a Ken Burns slideshow. Portrait images pan top to bottom, landscape images pan left to right. There's a crossfade transition on auto-advance and an instant cut on manual navigation. The interval is adjustable down to 0.5 seconds, and the effect can be toggled on or off.
 
-Full-screen mode plus the slideshow is what I use when I want photos running on a display for an event or a party. It's a better use case for this than anything Apple TV's screensaver offers when you want control over exactly what folder is being shown.
+Full-screen mode plus the slideshow is what I use when I want photos running on a display for an event or a party. I use it instead of the Apple TV screensaver because it plays exactly the folder I point it at.
 
-One thing I plan to add: randomized playback order. Right now the slideshow steps through images in their current sort order, which is fine but predictable. Randomize would make it significantly more useful for ambient display.
+The slideshow steps through images in whatever sort order the gallery is using, so the sequence is the same every time. Randomized playback order is on my list.
 
 ## Working with Claude Code
 
-I wrote a `project.md` file before touching any code. Not a full spec, just a plain-language description of what the app should do and why. As the project moved forward I kept updating it. Claude could read that file at the start of each session and maintain coherent context on what we were building and what decisions had already been made.
+I wrote a `project.md` file before touching any code. It is a plain-language description of what the app should do and why, and I kept updating it as the project moved forward. Claude could read that file at the start of each session and maintain coherent context on what we were building and what decisions had already been made.
 
-Claude handled the Swift boilerplate fast. The SwiftUI view scaffolding, the file system watcher, the thumbnail cache, the settings persistence model. Anything structural came quickly. What it does not do is make product decisions. When I wanted to add the Ken Burns effect, I had to decide what that meant for this app before Claude could build it. The direction stays with you.
+Claude wrote the structural Swift quickly, including the SwiftUI view scaffolding, the file system watcher, the thumbnail cache, and the settings persistence model. It did not make the product decisions. When I wanted the Ken Burns effect, I had to work out what panning and timing meant for this app before Claude could build any of it.
 
-Debugging took multiple rounds on some things. The pattern that worked: describe exactly what you're seeing, point to the relevant part of the code, and if Claude's first pass doesn't find it, push it to look further out in the surrounding code. It will find the issue eventually. The trick is not accepting "I can't reproduce that" as an answer and instead walking through the symptoms more specifically.
+Debugging took multiple rounds on some things. Describing what I was seeing on screen and pointing at the part of the code I thought was responsible got most of them. When the first pass came back with nothing, widening the search to the surrounding code usually turned it up. Answering "I can't reproduce that" with a more specific account of the symptoms worked better than accepting it.
 
-The key takeaway is that I spent a couple of hours building something I would have spent days learning to build from scratch. I can still reason about the Swift code and follow what it's doing. I just don't have to write it from scratch.
+I spent a couple of hours on this instead of the days it would have taken me to learn enough Swift to write it myself. I can read the Swift in the repo and follow what it does, and I did not have to write it.
 
 ## Performance and Security
 
-Two things I wanted to be deliberate about from the start: performance and security.
+I wanted to get two things right from the start, performance and security.
 
-On performance, the main concern was the thumbnail cache. If the app tries to load full-resolution images just to display a 150px thumbnail, scrolling a folder with a few hundred photos gets slow fast. Claude suggested aggressive caching early on, and the approach it landed on keeps the gallery responsive even with large folders.
+The performance concern was the thumbnail cache. Loading a full-resolution image to display a 150px thumbnail means scrolling a folder of a few hundred photos does a few hundred full decodes. Claude proposed caching the generated thumbnails early on, and the gallery scrolls without stalling on the folders I use it with.
 
-On security, I had Claude review the code specifically for how it was handling file system access and user data. No network calls, no telemetry, no external dependencies. What you open stays on your machine. A feature I want to add in the future is per-directory authentication, something like Touch ID before loading a specific folder.
+For security I had Claude review how the code handles file system access and user data. The app makes no network calls, sends no telemetry, and has no external dependencies, which `Package.swift` shows by having no dependency list at all. The files you open are read from disk and go nowhere else. Per-directory authentication is something I want to add, something like Touch ID before a specific folder will load.
 
 ## What's Next
 
