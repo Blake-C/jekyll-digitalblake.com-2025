@@ -3,6 +3,7 @@ layout: post
 title: 'Automating macOS Setup with Bootstrap and Teardown Scripts'
 description: 'How I replaced an afternoon of new-Mac setup with bootstrap.sh, and why the teardown script has to be written at the same time.'
 date: 2026-04-22 17:44:08 CDT -0500
+modified_date: 2026-07-29 20:04:04 -0500
 categories: ['Articles']
 tags: ['macos', 'shell-script', 'command-line', 'homebrew', 'dot-files', 'yabai', 'automation']
 pillar: shell-macos
@@ -12,7 +13,7 @@ image: 'assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-kee
 
 Every time I had to set up a new Mac I would spend an hour or two clicking through installers, reconfiguring dot files, and trying to remember which global npm packages I actually cared about, so I wrote `bootstrap.sh` to handle most of the setup.
 
-Three pieces cover the whole life of a machine. `bootstrap.sh` provisions a new one, `teardown.sh` removes what bootstrap installed, and a shell function called `update_cli` keeps an existing machine current in between. There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet.
+`bootstrap.sh` provisions a new machine, `teardown.sh` removes what bootstrap installed, and a shell function called `update_cli` keeps an existing machine current in between. There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet.
 
 ## Using the Bootstrap as the Record of What Is Installed
 
@@ -20,9 +21,9 @@ The bootstrap is now the canonical list of what's on my machine. If I want to ad
 
 Each script is a few hundred lines of bash, a list of packages, and some `defaults write` calls. Having it written down means I'm not relying on memory for any of it.
 
-## What the Two Scripts Look Like
+## What the Three Pieces Look Like
 
-Below is a stripped-down version of both. Swap in your own packages.
+Below is a stripped-down version of all three. Swap in your own packages.
 
 **bootstrap.sh**
 
@@ -103,7 +104,46 @@ fi
 success "Done"
 ```
 
-Every section you add to one should go into the other. My own scripts follow the same pattern with more packages in them. Start with what you actually use and add to it as you go.
+**update_cli**
+
+```bash
+update_cli() {
+    local RUNUPDATE
+    vared -p "Run Updates? (y/n): " -c RUNUPDATE
+    [[ "$RUNUPDATE" != "y" ]] && { warn "No updates ran"; return; }
+
+    # Homebrew, with yabai stopped so launchd can't restart it mid-upgrade
+    command -v yabai >/dev/null 2>&1 && yabai --stop-service || true
+
+    brew update && brew upgrade && brew cleanup && brew autoremove
+
+    rm -f "/tmp/yabai_${USER}.lock"
+    command -v yabai >/dev/null 2>&1 && yabai --start-service || true
+
+    # Composer globals
+    composer global self-update
+    composer global upgrade
+
+    # Node, then reactivate the package manager shims in the new version
+    if command -v fnm >/dev/null 2>&1; then
+        fnm install --lts
+        fnm default lts-latest
+        fnm use lts-latest
+        corepack enable && corepack prepare pnpm@latest --activate
+    fi
+
+    # Python
+    pip3 install --upgrade pip
+    pip3 list --outdated --format=freeze | cut -d= -f1 | xargs -r pip3 install --upgrade || true
+
+    # Submodules in the setup repo itself
+    git -C "$REPO_ROOT" submodule update --remote --merge
+
+    success "Done"
+}
+```
+
+Every section you add to one of these should go into the other two. My own versions follow the same pattern with more packages in them.
 
 ## Write the Teardown at the Same Time
 
@@ -150,9 +190,9 @@ The `|| true` makes the assignment return zero, so `set -e` doesn't exit the scr
 
 ## You Need an SSH Key Before the Bootstrap Can Run
 
-Both scripts live in a git repo alongside the dot files they symlink, so the repo has to be on the machine before `bootstrap.sh` can run. That repo has to be cloned over SSH rather than downloaded as a zip, because a zip has no `.git` directory and the seventeen submodules cannot be initialized without one.
+Both scripts live in a git repo alongside the dot files they symlink, so the repo has to be on the machine before `bootstrap.sh` can run. My repo also has seventeen submodules, which hold the zsh plugins and the Powerlevel10k theme among other things, and those have to be initialized or the directories the symlinks point at are empty.
 
-So the first SSH key has to exist before any of the automation runs, and you create it by hand. That is the one manual step I have not been able to remove.
+Downloading the repo as a zip does not work, because a zip has no `.git` directory and `git submodule update --init` needs one. So the repo has to be cloned over SSH, which means an SSH key has to exist on the machine before any of the automation runs. I create that first key by hand.
 
 Bootstrap generates a second key for GitHub once it is running:
 
@@ -162,11 +202,11 @@ eval "$(ssh-agent -s)"
 ssh-add "$SSH_KEY"
 ```
 
-It prints the public key with a link to GitHub's key settings page, and the `ssh -T` check above is what confirms the key was added before the script goes on to clone anything else.
+It prints the public key with a link to GitHub's key settings page, and the `ssh -T` check above confirms the key was added before the script clones the submodules.
 
 ## Homebrew Won't Be on PATH Right After You Install It
 
-Bootstrap installs Homebrew and then installs packages with it, and those two steps happen in the same shell. If Homebrew isn't installed yet, it's also not on PATH, so any `brew` command immediately after the install fails.
+Bootstrap installs Homebrew and then installs packages with it, and those two steps happen in the same shell. The installer does not add `brew` to PATH in the shell that ran it, so any `brew` command immediately after the install fails.
 
 Homebrew's [installation docs](https://docs.brew.sh/Installation) say to add `eval "$(brew shellenv)"` to your shell config, and the script runs the same line right after installing so `brew` works in the current session:
 
@@ -177,7 +217,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"  # Apple Silicon
 
 ## Node Through fnm Needs the Same Treatment
 
-Installing a Node version manager has the same shape as installing Homebrew. Bootstrap installs [fnm](https://github.com/Schniz/fnm) with `brew install fnm`, and then `node` still does not exist in that shell until fnm's environment is evaluated:
+Bootstrap installs the Node version manager [fnm](https://github.com/Schniz/fnm) with `brew install fnm`, and then `node` still does not exist in that shell until fnm's environment is evaluated:
 
 ```bash
 brew install fnm
@@ -187,7 +227,7 @@ fnm use lts-latest
 fnm default lts-latest
 ```
 
-Global npm packages are installed per Node version, so they go in after a version is selected and made the default. The script installs pnpm and checks first so a re-run does not reinstall it:
+npm's [`prefix` defaults to the location where node is installed](https://docs.npmjs.com/cli/v11/configuring-npm/folders), and global installs go into `{prefix}/lib/node_modules`, so under fnm each Node version gets its own set of global packages. That is why they go in after a version is selected and made the default. The script installs pnpm and checks first so a re-run does not reinstall it:
 
 ```bash
 if ! npm list -g pnpm --depth=0 >/dev/null 2>&1; then
@@ -197,9 +237,9 @@ fi
 
 ## Bootstrap Sets Up, update_cli Maintains, Teardown Removes
 
-Bootstrap runs once, on a machine that has nothing on it. Teardown runs once, when I am done with the machine. Everything in between is maintenance, and that runs through `update_cli`, a shell function that prompts once and then walks Homebrew, Composer, and the rest of the package managers in order.
+Bootstrap runs once, on a machine that has nothing on it. Teardown runs once, when I am done with the machine. Everything in between is maintenance, and that runs through `update_cli`, a shell function that prompts once and then updates Homebrew, Composer, and the rest of the package managers in order.
 
-Keeping those separate matters because the two jobs are not the same. Bootstrap installs a package that is not there yet. `update_cli` replaces a package that is running.
+Bootstrap installs a package that is not there yet, and `update_cli` replaces a package that is running.
 
 ## Stop Your Window Manager Before update_cli Touches It
 
@@ -207,16 +247,7 @@ Any time `brew upgrade` updated yabai, my system would lock up and a security po
 
 The cause was a race condition with launchd. yabai runs as a launchd service whose `KeepAlive` is a dictionary rather than a plain `true`, setting `SuccessfulExit` to `false` and `Crashed` to `true`. That means launchd restarts yabai when it exits with a non-zero status or crashes, which is exactly what happens when brew replaces the binary underneath a running process. launchd starts the new instance before the old one has released its lock file at `/tmp/yabai_$USER.lock`, so the new instance can't get the lock and aborts, which leaves the window manager stopped.
 
-Stopping yabai first is the fix, and it is the first thing `update_cli` does:
-
-```bash
-yabai --stop-service
-
-brew update && brew upgrade && brew cleanup && brew autoremove
-
-rm -f "/tmp/yabai_${USER}.lock"
-yabai --start-service
-```
+The fix is to stop yabai first, which is what the `yabai --stop-service` and `yabai --start-service` calls around the brew commands in the `update_cli` example above do.
 
 `--stop-service` [calls `launchctl bootout`](https://github.com/koekeishiya/yabai/blob/master/src/misc/service.h), which unloads the service. The `rm -f` on the lock file is there in case the old process left it behind.
 
@@ -232,6 +263,6 @@ All three had been sitting in my `yabairc` since before the upgrade. Check your 
 
 Setting up a new Mac now takes one SSH key made by hand, one clone, and one script.
 
-The parts that took longest to get right were the ones where an exit code or a `PATH` did not behave the way the script assumed. `ssh -T` returns `1` on success. `brew` is not callable in the shell that just installed it. `node` does not exist until fnm's environment is evaluated. Each of those needed a line of its own rather than a comment explaining the surprise later.
+Three of the fixes came from a command not behaving the way the script assumed. `ssh -T` returns `1` after a successful authentication. `brew` is not callable in the shell that just installed it. `node` does not exist until fnm's environment is evaluated. Each one needed a line in the script.
 
-Teardown gets edited in the same commit as bootstrap, so the two do not drift again. And upgrades go through `update_cli` rather than a bare `brew upgrade`, which is what keeps a running window manager from being replaced underneath itself.
+Teardown gets edited alongside bootstrap, so the two do not drift again. Upgrades go through `update_cli`, which stops yabai before Homebrew replaces it.
