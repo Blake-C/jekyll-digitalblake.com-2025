@@ -13,7 +13,7 @@ image: '/assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-ke
 
 Every time I had to set up a new Mac I would spend an hour or two clicking through installers, reconfiguring dot files, and trying to remember which global npm packages I actually cared about, so I wrote `bootstrap.sh` to handle most of the setup.
 
-`bootstrap.sh` provisions a new machine, `teardown.sh` removes what bootstrap installed, and a shell function called `update_cli` keeps an existing machine current in between. There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet.
+`bootstrap.sh` provisions a new machine, `teardown.sh` removes what bootstrap installed, and a shell function called `update_cli` keeps an existing machine current in between.
 
 ## What Bootstrap, update_cli, and Teardown Each Do
 
@@ -21,9 +21,7 @@ Bootstrap runs once, on a machine that has nothing on it. Teardown runs once, wh
 
 Bootstrap installs a package that is not there yet, and `update_cli` replaces a package that is running.
 
-The bootstrap is now the canonical list of what's on my machine. If I want to add something, I add it to the script. If I'm wondering why something is installed, I look there first.
-
-Each script is a few hundred lines of bash, a list of packages, and some `defaults write` calls. Having it written down means I'm not relying on memory for any of it.
+The bootstrap is now the canonical list of what's on my machine. If I want to add something, I add it to the script. If I'm wondering why something is installed, I look there first. Each script is a few hundred lines of bash, a list of packages, and some `defaults write` calls.
 
 ## What the Three Pieces Look Like
 
@@ -149,7 +147,7 @@ update_cli() {
 }
 ```
 
-Every section you add to one of these should go into the other two. My own versions follow the same pattern with more packages in them.
+Every section you add to one of these should go into the other two.
 
 ## You Need an SSH Key Before the Bootstrap Can Run
 
@@ -239,9 +237,7 @@ All three had been sitting in my `yabairc` since before the upgrade. Check your 
 
 ## Write the Teardown at the Same Time
 
-If you build a bootstrap, write the teardown alongside it, section by section.
-
-I didn't do this at first, so by the time I got around to writing the teardown, the two scripts had already drifted. Casks, macOS settings, and a handful of other changes had gone into bootstrap without a matching removal in teardown. I used Claude Code to walk both scripts and reconcile them section by section.
+I didn't write the two scripts together at first, so by the time I got around to the teardown, they had already drifted. Casks, macOS settings, and a handful of other changes had gone into bootstrap without a matching removal in teardown. I used Claude Code to walk both scripts and reconcile them section by section.
 
 The teardown mirrors bootstrap in reverse, with a `confirm()` prompt before each phase so you can skip the sections you want to keep:
 
@@ -265,6 +261,6 @@ A `--yes` flag skips all prompts for VM testing. `--include-ssh` opts into remov
 
 Setting up a new Mac now takes one SSH key made by hand, one clone, and one script.
 
-Three of the fixes came from a command not behaving the way the script assumed. `ssh -T` returns `1` after a successful authentication. `brew` is not callable in the shell that just installed it. `node` does not exist until fnm's environment is evaluated. Each one needed a line in the script.
+Three of the fixes came from a command not behaving the way the script assumed. `ssh -T` returns `1` after a successful authentication. `brew` is not callable in the shell that just installed it. `node` does not exist until fnm's environment is evaluated.
 
 Teardown gets edited alongside bootstrap, so the two do not drift again. Upgrades go through `update_cli`, which stops yabai before Homebrew replaces it.
