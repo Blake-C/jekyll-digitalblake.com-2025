@@ -11,16 +11,23 @@ pillar_section: apps
 image: '/assets/uploads/2025/04/exit intent - front-end dark mode.webp'
 ---
 
-While working at Seismic, our Analytics specialist came to me asking for exit intent popup functionality on one of our WordPress properties. The requirements were specific: A/B testing, conversion tracking, GA4 integration, and enough customizability that the team could manage it without touching code. I built a version of that for Seismic, but the code lived there. What I wanted was to revisit the concept on my own terms and see how far Claude Code could take me as a development collaborator.
+While working at Seismic, our Analytics specialist came to me asking for exit intent popup functionality on one of our WordPress properties. The requirements were:
 
-This is a proof of concept, not a production-ready release. It does not recreate the Seismic version one for one. But it covers the core of what made that project interesting.
+- A/B testing
+- conversion tracking
+- GA4 integration
+- enough customizability that the team could manage it without touching code
+
+I built a version of that for Seismic, and the code stayed there. What I wanted was to revisit the concept on my own terms and see how far Claude Code could take me as a development collaborator.
+
+This is a proof of concept. It does not recreate the Seismic version one for one, and it covers the core of what made that project interesting.
 
 ## The Spec
 
 Before writing any code I put together a `project.md` outlining what the plugin needed:
 
 - A custom post type with the Gutenberg editor so popup content could be written as blocks
-- Per-popup settings: delay, auto-appear timer, frequency, position, size, theme, and date scheduling
+- Per-popup settings for delay, auto-appear timer, frequency, position, size, theme, and date scheduling
 - A multi-select on pages and posts for assigning popups
 - Multiple popups per page for A/B testing
 - A results dashboard with impressions, conversions, and close rates
@@ -31,13 +38,23 @@ The `project.md` file helped me keep Claude on track in terms of what features w
 
 ## Working with Claude
 
-Claude handled boilerplate well. Class scaffolding, hook registration, meta box markup, REST endpoint structure, all of that came fast and clean. Where it was most useful was in iteration. When something was not working correctly I could describe the problem in plain terms, point to the relevant code, and Claude would find it. Across multiple sessions it stayed coherent on the architecture of the plugin and made suggestions that fit the existing patterns rather than reinventing them.
+Claude wrote the class scaffolding, the hook registration, the meta box markup, and the REST endpoint structure quickly. It was more useful during iteration. When something was not working I could describe the problem in plain terms, point to the relevant code, and Claude would find it. Across multiple sessions it stayed coherent on the plugin's architecture and made suggestions that fit the patterns already in the code.
 
-Where I had to stay involved was in deciding where to go. Claude is good at executing well on a clear direction. It will not tell you what the plugin should do next or push back on a design decision. That judgment stayed with me. Think of it less as a co-developer and more as a very capable pair programmer who writes the boilerplate you describe and catches problems you miss on the way through.
+Deciding what to build next stayed with me. Claude executes on a clear direction, and it did not tell me what the plugin should do next or argue with a design decision I had made. It writes the boilerplate you describe and catches problems you miss along the way.
 
 ## Architecture
 
-Seven classes, one per concern: post type, popup settings, page assignment, global settings, frontend rendering, A/B tracking, and the results dashboard. No build pipeline. Vanilla JavaScript in an IIFE. All theming through CSS custom properties.
+There are seven classes, one per concern:
+
+- the custom post type
+- per-popup settings
+- page assignment
+- global settings
+- frontend rendering
+- A/B tracking
+- the results dashboard
+
+There is no build pipeline. The JavaScript is vanilla, wrapped in an IIFE, and all theming goes through CSS custom properties.
 
 ![Exit intent popup admin listing UI](/assets/uploads/2025/04/exit intent - popup backend listing ui.webp)
 
@@ -53,7 +70,7 @@ The popup itself supports light and dark themes, both of which can be further cu
 
 ## Challenges
 
-A few things came up during the build that were worth working through.
+Four things came up during the build.
 
 **Exit intent on mobile.** The `mouseleave` event does not fire on touch devices. The solution was a scroll-reversal heuristic: once a visitor has scrolled down at least 100 pixels, watch for a fast upward scroll and treat that as exit intent. It is not precise, but it fires in the right situations often enough to be useful.
 
@@ -83,15 +100,15 @@ if ('ontouchstart' in window) {
 }
 ```
 
-**Threshold tuning.** The initial desktop threshold was `clientY <= 5`. That turned out to be too aggressive. Scrolling to the top of a page or moving the cursor quickly to a navigation link was triggering the popup. Dropping it to `clientY <= 0` fixed it.
+**Threshold tuning.** The initial desktop threshold was `clientY <= 5`, which fired when someone scrolled to the top of a page or moved the cursor quickly to a navigation link. Dropping it to `clientY <= 0` fixed that, and that is the value the plugin ships with.
 
-**A/B result color-coding on low data.** The results dashboard highlights conversion rates green or orange. The problem was that a popup with one impression and one conversion would show 100% in green, which is misleading. Color-coding is now only applied at 30 or more impressions.
+**A/B result color-coding on low data.** The results dashboard highlights conversion rates green or orange. A popup with one impression and one conversion would show 100% in green, which tells you nothing about how it performs. Color-coding is now applied only at 30 or more impressions, and rows below that get a warning marker instead.
 
-**CSV injection.** The data export was one of the later additions. Spreadsheet applications treat cells starting with `=`, `+`, `-`, or `@` as formulas. Any popup title with those characters could execute arbitrary formulas when the CSV was opened in Excel. The fix is to prefix those cells with a tab character. Easy to miss, easy to fix.
+**CSV injection.** The data export was one of the later additions. Spreadsheet applications treat a cell starting with `=`, `+`, `-`, or `@` as a formula, so a popup title beginning with one of those characters could run a formula when someone opened the export in Excel. Every text cell now goes through a function that prefixes the value with a tab character when it starts with one of those, which stops the spreadsheet from parsing it as a formula.
 
-## Final Thoughts
+## Where the Plugin Stands
 
-The plugin is sitting in a git repo, somewhere between a proof of concept and a feature-complete draft. I do not plan to release it as a polished plugin. What I wanted out of this was to build the thing again on my own, see how the architecture held up when I had full control over the decisions, and get a real read on how useful Claude is as a collaborator on something like this.
+The plugin is sitting in a git repo, somewhere between a proof of concept and a feature-complete draft, and I do not plan to release it as a polished plugin. I wanted to build the thing again on my own, see how the architecture held up when I had full control over the decisions, and get a read on how useful Claude is as a collaborator on something like this.
 
 I'll likely continue to use Claude going into the future, however I'll be very cautious in terms of how often I use it and for what purposes. I don't want this thing to take full control over development itself, but it is a very very very good tool in terms of what it is able to do and accomplish in a quick buildout.
 
