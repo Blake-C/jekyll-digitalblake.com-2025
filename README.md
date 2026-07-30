@@ -98,7 +98,7 @@ Pushing to `main` triggers a GitHub Actions workflow that builds and deploys the
 | `_config.yml`     | Production config (`baseurl: ""`, `url: https://digitalblake.com`) |
 | `_config.dev.yml` | Local dev override (`baseurl: ""`, `url: http://localhost:4005`)   |
 
-The dev server merges both configs automatically via `pnpm run dev`.
+The dev server merges both configs automatically via `pnpm run dev`. It builds to `_site_dev`; production builds to `_site`. They are kept separate so a running dev server cannot overwrite a production build.
 
 ## Code Formatting
 

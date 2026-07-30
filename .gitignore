@@ -4,6 +4,7 @@
 
 # Jekyll build output
 _site/
+_site_dev/
 _build/
 
 # Compiled assets and temporary files

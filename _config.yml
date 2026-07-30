@@ -98,6 +98,7 @@ collections:
 exclude:
     - .sass-cache/
     - .jekyll-cache/
+    - _site_dev/ # dev-server destination (_config.dev.yml); Jekyll only auto-excludes its own
     - Gemfile
     - Gemfile.lock
     - node_modules/

@@ -1,2 +1,9 @@
 baseurl: ''
 url: 'http://localhost:4005'
+
+# Build to a separate directory from production. The dev server watches and
+# rebuilds continuously, and `jekyll serve --host 0.0.0.0` overrides `url`, so
+# sharing _site meant a running dev server would overwrite a production build
+# seconds after it finished and leave dev URLs in the canonical, og:url, and
+# feed tags. Keep _site_dev listed under `exclude:` in _config.yml.
+destination: _site_dev
