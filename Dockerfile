@@ -10,7 +10,12 @@ RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
     && ln -sf /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack
 
-# Install build tools, ImageMagick, Python, and git
+# Install build tools, ImageMagick, Python, git, and tzdata.
+# tzdata is required for the `timezone: America/Chicago` setting in _config.yml.
+# Without the zoneinfo database Ruby falls back to UTC, which shifts any post
+# timestamped after 19:00 CDT into the next day and builds it at the wrong
+# permalink. GitHub Actions has tzdata, so production was unaffected, but local
+# builds produced URLs that did not match the live site.
 RUN apk add --no-cache \
     curl \
     ca-certificates \
@@ -19,7 +24,8 @@ RUN apk add --no-cache \
     imagemagick-jpeg \
     imagemagick-webp \
     python3 \
-    git
+    git \
+    tzdata
 
 # fonttools (pyftsubset) generates the subset WOFF2 fonts. Alpine's Python is
 # externally managed (PEP 668), so install into a venv rather than the system.
