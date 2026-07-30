@@ -10,6 +10,16 @@ No published post is a style model. Do not read an existing article to match its
 
 The `prose-lint` hook runs on every markdown write and blocks on the mechanical tells. It cannot see metaphor or clever closers, so it is a backstop and not the check.
 
+### Corrections to published articles
+
+A substantive factual error in a published article gets a dated correction note listing what was wrong. Bump `modified_date` so the update surfaces in the visible label, in `article:modified_time`, and in the JSON-LD `dateModified`.
+
+A prose-only cleanup gets no note and no date bump.
+
+The dividing line is whether a reader who saw the earlier version would act differently.
+
+Tooling that has changed since publication is not an error. Keep the dated account, add a short dated note saying what changed, and do not rewrite the section to match current behavior. See rule 29 in the `plain-prose` skill.
+
 ## Runtime isolation
 
 All Node and Ruby commands run inside Docker. The container image bundles Node 24.18.0, Ruby 3.4.10, pnpm, ImageMagick, fonttools (`pyftsubset`, for font subsetting), and git. The project directory is bind-mounted into the container so your editor and git remain on the host.
