@@ -44,6 +44,14 @@ const VARIABLE_TTF = 'Montserrat-Variable.ttf'
 const VARIABLE_OUT = 'montserrat-variable-webfont.woff2'
 const WGHT_RANGE = '400:900'
 
+// fonttools stamps the current time into the OpenType `head.modified` field,
+// which makes every build produce different bytes and dirties the working tree
+// on every run. It honors SOURCE_DATE_EPOCH (the reproducible-builds standard),
+// so pinning it to a fixed instant makes the output byte-identical everywhere.
+// 1735689600 = 2025-01-01T00:00:00Z. The value is arbitrary but must not change,
+// or every font rebuild produces a new file.
+const SOURCE_DATE_EPOCH = '1735689600'
+
 // Robust core unicode-range, always included: Basic Latin, Latin-1 Supplement,
 // General Punctuation (smart quotes, em/en dashes), and Arrows (-> <-). This
 // covers ordinary English and Western typography. The full Latin Extended block
@@ -111,13 +119,22 @@ function subset({ src, out, glyphs, instanceWght }) {
 	const inputTtf = join(FONTS_DIR, src)
 	const cmd = []
 	let actualInput = inputTtf
+	let scratch = null
 
-	// Limit the variable weight axis to the used range before subsetting.
+	// Both fonttools steps get the pinned epoch: the instancer writes the
+	// intermediate that pyftsubset then reads, so either one left unpinned
+	// reintroduces a live timestamp.
+	const env = { ...process.env, SOURCE_DATE_EPOCH }
+
+	// Limit the variable weight axis to the used range before subsetting. The
+	// intermediate goes to a temp dir, not assets/fonts, so a crash cannot
+	// strand an untracked TTF next to the shipped fonts.
 	if (instanceWght) {
-		const limited = `${out}.axis.ttf`
+		scratch = mkdtempSync(join(tmpdir(), 'fontbuild-axis-'))
+		const limited = join(scratch, 'axis-limited.ttf')
 		execFileSync('fonttools', ['varLib.instancer', inputTtf, `wght=${instanceWght}`, '-o', limited], {
-			cwd: dirname(out),
 			stdio: 'pipe',
+			env,
 		})
 		actualInput = limited
 	}
@@ -126,10 +143,12 @@ function subset({ src, out, glyphs, instanceWght }) {
 	if (glyphs.core) cmd.push(`--unicodes=${UNICODE_RANGE}`)
 	if (glyphs.scanFile) cmd.push(`--text-file=${glyphs.scanFile}`)
 
-	execFileSync('pyftsubset', cmd, { stdio: 'pipe' })
-
-	// Drop the axis-limited intermediate; only the WOFF2 is a deliverable.
-	if (actualInput !== inputTtf) rmSync(actualInput, { force: true })
+	try {
+		execFileSync('pyftsubset', cmd, { stdio: 'pipe', env })
+	} finally {
+		// Drop the axis-limited intermediate; only the WOFF2 is a deliverable.
+		if (scratch) rmSync(scratch, { recursive: true, force: true })
+	}
 }
 
 // --- Build candidates -------------------------------------------------------
