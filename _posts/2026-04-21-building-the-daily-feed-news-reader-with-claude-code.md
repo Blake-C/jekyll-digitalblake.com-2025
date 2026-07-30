@@ -10,13 +10,13 @@ pillar_section: apps
 image: '/assets/uploads/2025/04/the-daily-feed-source-feed-view.webp'
 ---
 
-I stopped using the macOS News app because it gave me no way to control what appeared in it. I still wanted to read news, with three things I could not get there:
+I want to keep up with what's happening in the world, and keeping up with the news is a core part of that. However, the macOS News app doesn't deliver what I want from the news, and it often leaves me with a sense of dread at the end of it. If I had to select the key features I wanted out of my news application, it would be the following:
 
 - only the sources I picked
 - a volume I could keep up with
 - control over what shows up and what stays hidden
 
-I built something to replace it. The application is called The Daily Feed, and it's a native macOS RSS reader with a handful of features I could not find anywhere else in quite the combination I wanted. The catch, same as the last app I built this way, is that I do not know Swift. What I have is [Claude Code](https://claude.ai/code) and a clear enough idea of what the app should do.
+To find a solution to the points above, I built The Daily Feed, a native macOS RSS reader, using [Claude Code](https://claude.ai/code) to help me build a Swift application, Swift being something I have not used before and don't have deep knowledge in.
 
 The project GitHub repo can be found here: [https://github.com/Blake-C/the-daily-feed](https://github.com/Blake-C/the-daily-feed)
 
@@ -75,7 +75,7 @@ The paragraph the question came from gets highlighted in amber in the article te
 
 ### Disputing Answers
 
-LLMs hallucinate. Ollama is not immune to this. Sometimes it generates a question that is wrong, or marks a correct answer as incorrect. I built in a dispute system to handle this.
+Ollama hallucinates like any other LLM, so it sometimes generates a question that is wrong or marks a correct answer as incorrect, and I built a dispute system to handle that.
 
 When you get an answer marked wrong, a button appears to dispute the question. The app sends the question, all answer options, the correct answer as marked, your answer, and the relevant article excerpt back to Ollama for a second look. Ollama re-examines the question against the source material and either rules in your favor or confirms the original answer. If it voids the question entirely because it recognizes the question was a hallucination, the question does not count against your score.
 
@@ -150,14 +150,14 @@ The initial commit landed on April 14 with the core MVVM architecture, SQLite pe
 
 I wrote a `CLAUDE.md` file early in the project. It is a plain-language description of what the app was supposed to do and why, along with constraints and decisions as they accumulated. Claude reads it at the start of each session and does not lose track of what we already decided.
 
-Four architecture decisions came in early and did not change afterward:
+The architecture came down to four decisions:
 
 - MVVM
 - a repository per data type
 - `async/await` concurrency
 - `@MainActor` on views
 
-Claude suggested those patterns on its own.
+All four came out of describing what I wanted the app to do. Claude proposed the patterns from that description, and we went with them.
 
 What Claude does not do is tell you what to build. Every feature in this app started with me deciding I wanted it. The quiz, the dispute mechanism, the dim button, the daily summary. I had to know what I wanted before Claude could build it.
 
@@ -177,6 +177,6 @@ A few things on my list:
 - Weather widget improvements, since the current one needs an OpenWeatherMap key and shows very little
 - Better source discovery that doesn't rely entirely on an LLM
 - Read-later improvements
-- Adding additional LLM options such as Claude or ChatGPT.
+- Adding additional LLM options such as Claude or ChatGPT (added June 25, 2026: Anthropic and OpenAI are now selectable providers alongside Ollama)
 
 The app is open source. If you want to run it, clone the repo, run `./build_app.sh`, and copy the `.app` bundle to `/Applications`. Ollama is required for the AI features. OpenWeatherMap is optional and only needed for the weather widget.
