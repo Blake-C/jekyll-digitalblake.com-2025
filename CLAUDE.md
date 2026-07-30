@@ -10,6 +10,12 @@ No published post is a style model. Do not read an existing article to match its
 
 The `prose-lint` hook runs on every markdown write and blocks on the mechanical tells. It cannot see metaphor or clever closers, so it is a backstop and not the check.
 
+### Starting a new post
+
+A new post starts from the `article-interview` skill, which interviews Blake with a question file he dictates into and then builds the article from that transcript, so the claims and the structure are his. Do not draft a post straight from a repo's git log and docs.
+
+Its working files go in `_drafts/<slug>/`: `sources.md` for the facts read out of the repo, `interview.md` for the questions and his dictated answers, and `draft.md` for the article before it moves to `_posts/`. That directory is gitignored, and it is excluded in `_config.yml` so a `--drafts` run does not read the files as posts. `prose-lint` skips `_drafts/` too, since raw dictation is source material and not prose being edited.
+
 ### Corrections to published articles
 
 A substantive factual error in a published article gets a dated correction note listing what was wrong. Bump `modified_date` so the update surfaces in the visible label, in `article:modified_time`, and in the JSON-LD `dateModified`.

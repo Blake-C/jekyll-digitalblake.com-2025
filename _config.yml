@@ -99,6 +99,7 @@ exclude:
     - .sass-cache/
     - .jekyll-cache/
     - _site_dev/ # dev-server destination (_config.dev.yml); Jekyll only auto-excludes its own
+    - _drafts/ # article-interview working files; also stops a --drafts run reading them as posts
     - CLAUDE.md # repo docs, not site content; both were being served publicly
     - README.md
     - Gemfile
