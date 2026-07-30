@@ -8,14 +8,14 @@ categories: ['Articles']
 tags: ['macos', 'shell-script', 'command-line', 'homebrew', 'dot-files', 'yabai', 'automation']
 pillar: shell-macos
 pillar_section: macos
-image: 'assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-keeping-it-all-in-sync.webp'
+image: '/assets/uploads/2025/04/automating-macos-setup-bootstrap-teardown-and-keeping-it-all-in-sync.webp'
 ---
 
 Every time I had to set up a new Mac I would spend an hour or two clicking through installers, reconfiguring dot files, and trying to remember which global npm packages I actually cared about, so I wrote `bootstrap.sh` to handle most of the setup.
 
 `bootstrap.sh` provisions a new machine, `teardown.sh` removes what bootstrap installed, and a shell function called `update_cli` keeps an existing machine current in between. There were things I had to fix along the way, and I am sure there are still edge cases I haven't hit yet.
 
-## What Bootstrap, update_cli, and Teardown Each Do, and What the Bootstrap Records
+## What Bootstrap, update_cli, and Teardown Each Do
 
 Bootstrap runs once, on a machine that has nothing on it. Teardown runs once, when I am done with the machine. Everything in between is maintenance, and that runs through `update_cli`, a shell function that prompts once and then updates Homebrew, Composer, and the rest of the package managers in order.
 
@@ -27,7 +27,7 @@ Each script is a few hundred lines of bash, a list of packages, and some `defaul
 
 ## What the Three Pieces Look Like
 
-Below is a stripped-down version of all three. Swap in your own packages.
+Below is a stripped-down version of all three, so where a block here is shorter than the same code further down the article, the longer one is what actually runs. Swap in your own packages.
 
 **bootstrap.sh**
 
@@ -109,6 +109,8 @@ success "Done"
 ```
 
 **update_cli**
+
+`update_cli` is a shell function in my `.zshrc` rather than a script, so it uses the `warn` and `success` helpers defined at the top of both scripts above, and it expects `REPO_ROOT` to be set to the path of the setup repo.
 
 ```bash
 update_cli() {
