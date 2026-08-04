@@ -29,13 +29,13 @@ minimumReleaseAge: 10080
 # subdependency resolution isn't blocked when browserslist pulls in a fresh node-releases patch.
 minimumReleaseAgeExclude:
     - node-releases
-    # Temporary: fast-uri 3.1.4 (published 2026-07-19) patches the high-severity host-confusion
-    # advisory GHSA-v2hh-gcrm-f6hx but is younger than the 7-day gate. Excluded so the pinned CVE
-    # fix can land now. Remove this entry once 3.1.4 clears the gate (after ~2026-07-26).
+    # Temporary: fast-uri 3.1.5 (published 2026-07-31) patches the high-severity host-confusion
+    # advisory GHSA-7p8r-x3mc-p8w7 but is younger than the 7-day gate. Excluded so the pinned CVE
+    # fix can land now. Remove this entry once 3.1.5 clears the gate (after ~2026-08-07).
     - fast-uri
-    # Temporary: brace-expansion 5.0.8 (published 2026-07-23) patches the high-severity OOM DoS
-    # advisory GHSA-mh99-v99m-4gvg but is younger than the 7-day gate. Excluded so the pinned fix
-    # can land now. Remove this entry once 5.0.8 clears the gate (after ~2026-07-30).
+    # Temporary: brace-expansion 5.0.9 (published 2026-07-30) patches the high-severity OOM DoS
+    # advisory GHSA-rgw5-rvv9-x895 but is younger than the 7-day gate. Excluded so the pinned fix
+    # can land now. Remove this entry once 5.0.9 clears the gate (after ~2026-08-06).
     - brace-expansion
 
 # Warn about deprecated packages
@@ -52,14 +52,16 @@ allowBuilds:
 # Force patched transitive dependencies across the tree (each has a single version in the tree,
 # so a blanket override is safe). Snyk-flagged; not caught by the npm/GitHub advisory DB.
 #   js-yaml 4.1.1              — quadratic-complexity DoS in merge keys (GHSA-h67p-54hq-rp68)
-#   brace-expansion <=5.0.7    — OOM DoS via unbounded expansion length, high (GHSA-mh99-v99m-4gvg)
-#   fast-uri <=3.1.3           — host confusion via backslash authority delimiter, high (GHSA-v2hh-gcrm-f6hx)
+#   brace-expansion <=5.0.8    — OOM DoS via unbounded intermediate arrays, high (GHSA-rgw5-rvv9-x895),
+#                                which bypasses the earlier GHSA-mh99-v99m-4gvg fix
+#   fast-uri <=3.1.4           — host confusion via backslash authority introducer, high
+#                                (GHSA-7p8r-x3mc-p8w7), which bypasses the earlier GHSA-v2hh-gcrm-f6hx fix
 #   postcss-selector-parser    — uncontrolled recursion (CVE-2026-9358), consolidates 7.1.1 onto the patch
 #   immutable <5.1.8 (via sass) — 32-bit trie overflow + hash-collision DoS, high (GHSA-v56q-mh7h-f735, GHSA-xvcm-6775-5m9r)
 overrides:
     js-yaml: '^4.3.0'
-    brace-expansion: '^5.0.8'
-    fast-uri: '^3.1.4'
+    brace-expansion: '^5.0.9'
+    fast-uri: '^3.1.5'
     postcss-selector-parser: '^7.1.2'
     immutable: '^5.1.8'
 
@@ -69,11 +71,11 @@ catalog:
     prismjs: 1.30.0
 
     # Dev dependencies — build tools and linters most exposed to supply chain risk
-    eslint: 10.7.0
-    stylelint: 17.14.0
-    webpack: 5.108.4
+    eslint: 10.8.0
+    stylelint: 17.14.1
+    webpack: 5.109.1
     webpack-cli: 7.2.1
-    sass: 1.101.0
+    sass: 1.102.0
     postcss-cli: 11.0.1
     husky: 9.1.7
-    lint-staged: 17.1.0
+    lint-staged: 17.2.0
