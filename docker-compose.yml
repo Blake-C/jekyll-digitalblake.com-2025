@@ -6,6 +6,12 @@ services:
             - bundle_cache:/usr/local/bundle
             - pnpm_store:/home/appuser/.local/share/pnpm/store
         working_dir: /app
+        # DNS hands back both A and AAAA records, but IPv6 egress from the container goes
+        # nowhere. curl and Ruby fall back to IPv4; pnpm (undici) stalls until it times out,
+        # so every registry request fails with ETIMEDOUT. Turning IPv6 off inside the
+        # container leaves only the route that works.
+        sysctls:
+            net.ipv6.conf.all.disable_ipv6: 1
         env_file:
             - path: .env
               required: false
