@@ -100,6 +100,9 @@ exclude:
     - .jekyll-cache/
     - _site_dev/ # dev-server destination (_config.dev.yml); Jekyll only auto-excludes its own
     - _drafts/ # article-interview working files; also stops a --drafts run reading them as posts
+    - tmp/ # local scratch output, never site content
+    - secrets/
+    - TODO.todo
     - CLAUDE.md # repo docs, not site content; both were being served publicly
     - README.md
     - Gemfile
@@ -107,3 +110,15 @@ exclude:
     - node_modules/
     - vendor/
     - assets/fonts/*.ttf # source-only inputs for script/build-fonts.mjs; not served
+    # Build tooling and asset sources. The pipeline runs before jekyll build and
+    # writes its output to assets/, so none of this needs to ship.
+    - script/
+    - theme_components/
+    - Dockerfile
+    - docker-compose.yml
+    - package.json
+    - pnpm-lock.yaml
+    - pnpm-workspace.yaml
+    - webpack.config.js
+    - eslint.config.js
+    - postcss.config.js
