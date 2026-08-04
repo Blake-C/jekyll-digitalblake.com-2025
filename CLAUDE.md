@@ -67,7 +67,7 @@ docker compose run --rm app pnpm run check:html    # what CI runs: internal link
 docker compose run --rm app pnpm run check:links   # adds external links, minus known bot-blockers
 ```
 
-`check:html` matches `.github/workflows/deploy.yml` exactly, so a pass here means CI passes. `check:links` also hits the network. Its `--ignore-urls` list covers hosts that refuse automated requests (LinkedIn answers 999, CodePen/npm/claude.ai/linoxide/Businesswire answer 403) plus `youtube-nocookie.com`, which appears only as a `preconnect` resource hint in `_includes/head.html` and is not a navigable URL. Those links are fine in a browser; without the list they bury real failures under several hundred false ones.
+`check:html` matches `.github/workflows/deploy.yml` exactly, so a pass here means CI passes. `check:links` also hits the network. Its `--ignore-urls` list covers hosts that refuse automated requests (LinkedIn answers 999, CodePen/npm/claude.ai/linoxide/Businesswire/Server Fault answer 403) plus `youtube-nocookie.com`, which appears only as a `preconnect` resource hint in `_includes/head.html` and is not a navigable URL. Those links are fine in a browser; without the list they bury real failures under several hundred false ones.
 
 The list also skips `https://digitalblake.com` itself. Those URLs only ever appear in generated `canonical`/`og:url` tags, never in post bodies, so fetching them tests whether a page is deployed yet rather than whether the build is correct: every unmerged post 404s by definition. Internal links are already covered by `check:html`, which walks them as relative paths.
 
@@ -105,7 +105,7 @@ The dev server builds to `_site_dev`, not `_site`. It rebuilds on every file cha
 
 **`_case_studies/` body content is rendered as raw HTML** in the homepage gallery modal — treat as trusted first-party content only.
 
-**Case study ordering** is controlled by an `order:` integer in each case study's front matter, not the filename prefix. `_includes/case-studies.html` (and the "More Case Studies" block in `_layouts/case-study.html`) sort by `order` descending, so a higher number sits higher on the page. Featured and archived (`featured: false`) render as separate grids but share this one sort. Existing values step by 10 (`130` down to `10`). To add a new case study at the top of its grid, give it an `order` higher than the current maximum (the next top slot is max + 10); nothing else needs editing. To reorder two entries, swap their `order` values. Case study filenames are just the slug (e.g. `teleport-atlas.md`), with no numeric prefix — ordering is entirely `order`-driven.
+**Case study ordering** is controlled by an `order:` integer in each case study's front matter, not the filename prefix. `_includes/case-studies.html` (and the "More Case Studies" block in `_layouts/case-study.html`) sort by `order` descending, so a higher number sits higher on the page. Featured entries and the rest (`featured: false`, shown under the "Additional Case Studies" heading) render as separate grids but share this one sort. Existing values step by 10 (`130` down to `10`). To add a new case study at the top of its grid, give it an `order` higher than the current maximum (the next top slot is max + 10); nothing else needs editing. To reorder two entries, swap their `order` values. Case study filenames are just the slug (e.g. `teleport-atlas.md`), with no numeric prefix — ordering is entirely `order`-driven.
 
 ### Post front matter
 
