@@ -20,11 +20,11 @@ Number three is where I feel like I've landed in using the LLM as a critic and r
 
 ## How each scenario works
 
-If you want the worst possible output, it's to have the LLM just generate all the text for you, after giving it very minimal information. When you don't provide enough information, enough details, the LLM is left up to its own devices to come up with the entire article. At that point, it's just guessing, and you gotta remember: an LLM is not deterministic and uses probability to output its text. You can put in the same input and get very different outputs.
+If you want the worst possible output, it's to have the LLM just generate all the text for you, after giving it very minimal information. When you don't provide enough information, enough details, the LLM is left up to its own devices to come up with the entire article. At that point, it's just guessing, and you gotta remember: an LLM picks each succeeding word by sampling from a list of probabilities, so the same input can give you very different outputs.
 
 The second option, which is slightly better, is to dictate a good chunk of the article and then ask it to fill in any missing parts. Depending on how much you give it, the LLM can flesh out your thoughts, but it's once again predicting what should be in those spots rather than you telling it what it should be doing. That's where a lot of those AI tells listed below will slip their way into your article.
 
-The third option, which is what the rest of this article is about, will probably get you the best output. And when I say output, I mean the article itself, while still being able to use an LLM as your editor, as your critic, as your proofreader. That's what I think is the correct way to be using these tools versus scenarios one and two.
+The third option, which is what the rest of this article is about, gets you the best output. And when I say output, I mean the article itself, while still being able to use an LLM as your editor, as your critic, as your proofreader. That's what I think is the correct way to be using these tools versus scenarios one and two.
 
 So let's get this part out of the way. Here are the patterns as of this writing that are most common in AI-generated text:
 
@@ -34,21 +34,47 @@ So let's get this part out of the way. Here are the patterns as of this writing 
 - **The rule of three.** Three items in a row for rhythm, where the third one is the punchline. "The build succeeds, the page looks right, and nothing was tested."
 - **Not this, but that.** A contrast used as a rhythm device. "It's not just faster, it's a different way of working." "This is a survey, not a build guide."
 
-I see these all over the place on LinkedIn, dev websites, documentation, commit messages, pull requests. It is pervasive and it's never-ending. It's easy to tell, easy to see, and very annoying. And it's one of the things I've been, in my experimentation, trying to fight against the most. There are several others I've identified, and in general, there's nothing wrong with these. The problem is that they just repeat constantly. _Like the lists I've added to this paragraph._
+I see these all over the place on LinkedIn, dev websites, documentation, commit messages, pull requests. It is pervasive and it's never-ending. It's easy to tell, easy to see, and very annoying. And it's one of the things I've been, in my experimentation, trying to fight against the most. I have 25 identified patterns, and in general, there's nothing wrong with these. The problem is that they just repeat constantly. _Like the lists I've added to this paragraph._
 
 And you can always start up a session and say, hey, write in this manner. Don't do X, Y, and Z. However, that's only going to get you so far. If you want to build upon that and still use the LLM for some writing and some experimentation, you can create skills for yourself that can pivot the LLM to write in a particular manner, but it's still going to work in those mannerisms that are tells for when AI is being used in the text. It's not something you can get rid of completely, depending on the way in which you use the tool.
 
 ## The use of skills in writing with AI
 
-For example, on my own end, I've created two skills. One is a plain prose skill, and the other is an article interview skill. The plain prose skill is where I've gone through and created examples of, hey, this is what you've written, and this is how I would say it instead. And I have many examples of this in an examples.md file that instructs the LLM on how I like to write my own text so that if I have it go through and edit something, it does it in the way that I would typically do it. But even then, I still see constant patterns that the LLM likes to use.
+For example, on my own end, I've created two skills. One is a plain-prose skill and the other is an article interview skill. The plain-prose skill is where I've gone through and created statements for how the LLM has written something and given examples of how I would state it instead or cut it entirely. And I have 22 sets of these in an examples.md file, a growing list, each one a sentence the LLM wrote sitting next to the way I would have said it. But even then, I still see constant patterns that the LLM likes to use.
+
+## LLMs and the path of least resistance
 
 A good example of this is when I was trying to use my plain-prose skill to articulate my thoughts into an article about modifications to a code base integrating Sanity CMS. And it constantly tried to shoehorn in the phrase "hand-written" or "by hand." Even though I've told it not to use particular patterns, it'll find ways around it to still get to what it wants to do versus how you want it phrased. This is a clear indication of the weights in the models pushing towards a particular direction and finding loopholes versus just saying something straight out the way a human would.
 
-The interview skill, however, is, I think, the better approach to take. When I invoke it I can type up or dictate an article and then have the LLM look over my article and come up with additional questions. I do this to come up with more thoughts, more ideas, alongside asking it to be critical of the thing that I just wrote to make sure there are no flaws in whatever it is that I'm saying. And I think combining this with a speech-to-text application makes it an incredibly powerful tool to write out an article more quickly.
+## The interview skill
+
+The interview skill is the better approach to take. When I invoke it I can type up or dictate an article and then have the LLM look over my article and come up with additional questions. I do this to come up with more thoughts and ideas, alongside asking it to be critical of the thing that I just wrote to make sure there are no flaws in whatever it is that I'm saying. And I think combining this with a speech-to-text application makes it an incredibly powerful tool to write out an article more quickly.
 
 An example of the interview skill use case is if I hand over a code base that I want to write up an article about, the LLM can go through, read my challenges.md file and the other parts of the code base, and then ask me stuff like what was the initial idea behind this project and why did you want to do it? And there are easy questions like that you can ask, but then it can also get more deep into how you've built something and what that had in terms of impact for the rest of the application. I can then go through those questions, either type them up or dictate them into the answers, so I can get the thoughts out of my head. I can then structure those answers into an article with the assistance of an LLM.
 
-When the vast majority of the article is dictated in my own text, you can avoid those AI tells that are patterns working their way into your articles. You still have to keep a watchful eye out for them because if you're using the LLM to edit your text, to correct grammar, punctuation, and to be an editor to help you stitch different ideas together, you have to review it. But I think that's a much better scenario versus someone just telling the LLM to outright write something wholesale.
+The questions themselves ought to be tailored for whatever project or topic you're discussing. The more important part is the rules you give the LLM to start interviewing you on the topic. An example of a few of the rules that I would use are:
+
+- Only ask what I am the only source for. If the repo answers it, cut it. If the git log answers it, cut it.
+- One thing per question. A question with two halves gets one answer covering the first half, so split it and use both numbers.
+- Never yes or no, and never multiple choice. I'm dictating, and a question that can be answered in a word will be.
+- Ask for the reason next to the decision, so the question carries the thing I did and asks why I did it.
+- Ask about the sequence rather than the summary. What broke first, and what I did about it, in the order it happened.
+- Ask about the failures, because what I tried that didn't work is the part no repo records. The approach I abandoned was never committed.
+- Name the file or the commit in the question. An abstract question gets an abstract answer.
+
+The last two make the difference between getting a question that is something more like: "Where does the settings profile live?" and a question that digs deeper like: "You moved the settings profile into `.config/docker/` instead of leaving it at the repo root, what made you move it?" This teases out more of the reasons for _why_ something happened versus a purely factual statement on _what_ happened.
+
+Coming at it from the opposite direction, there's a set of questions I never want asked, because the answer will be shallow. The ones I told it not to ask:
+
+- Anything asking for a story or a journey. I'll answer in narrative arc with scene setting and a build to a reveal, because that's what the question asked for.
+- Anything asking what mattered most, or for the biggest lesson. That's significance ranking, and it comes back out in editing.
+- Anything asking how I felt about it. The answer is a judgment with no fact under it, and it's harder to cut than the LLM's own filler because it's genuinely my own.
+- Anything asking me to characterize the project. "What's the big idea here?" produces framing sentences.
+- Anything that leads. "Was the settings profile the hard part?" plants the answer. Ask which part took the longest instead.
+
+You can use these example rules to create your own interview skill tailored for your own process. My plain-prose skill isn't worth sharing as that's personal, whereas the interview skill isn't about the questions themselves, it's about how the questions are asked and how they're designed to get quality answers.
+
+When the vast majority of the article is dictated in your own text, you can avoid those AI tells that are patterns working their way into your articles. You still have to keep a watchful eye out for them because if you're using the LLM to edit your text, to correct grammar, punctuation, and to be an editor to help you stitch different ideas together, you have to review it.
 
 On the point of using an LLM to stitch your ideas together, I also find it useful to come back around and just restate those stitching points in your own words to bring them together more concisely in a way that you would say it, not just letting that stitching stay in place.
 
@@ -58,14 +84,14 @@ In fact, I'm using this very process for this article.
 
 Now what I can do is start up a draft file and start dictating my text either line by line or paragraph by paragraph. I wouldn't try to do it all at one time. It'll garble all the paragraphs into one giant piece of text, and then you have to go through and break it apart. Just do it paragraph by paragraph, think about your thoughts, think about how you would say it, and then dictate it onto the screen. The important thing here to remember also is that when you're dictating the text, it's not going to be like when you're writing it by hand. You're going to have a habit of wanting to be verbose, which is what we always do when we talk. So try to think about how you would type it instead.
 
-Then once you have your text dictated onto the screen, you can then turn to the LLM to review it. Some of what's in this list I have built into what I call my interview skill, where the LLM will tease out additional questions based on what I've already written or a code base I've pointed the LLM at. But in general, this is what I go through:
+Then once you have your text dictated onto the screen, you can then turn to the LLM to review it. Some of what's in this list I have built into my interview skill, where the LLM will tease out additional questions based on what I've already written or a code base I've pointed the LLM at. But in general, this is what I go through:
 
 - Check the ordering of the paragraphs and the ideas behind them to make sure that they are clear and concise.
 - Be critical of the content and come up with other thoughts that you might have missed. Not just that, "oh, the LLM likes my writing," but truly have it be critical about the thing you just wrote, even if it has to be mean about it.
 - Use it to clean up any garbled instances that you didn't catch in the text from your speech process.
 - And then lastly, if you're saying anything that requires some sort of proof, you can also have the LLM reference any of those instances in your article and find first-party sources.
 
-LLMs have gotten pretty good at the ability to search the web to find the information that you're looking for. You can tell it to only find first-party sources on the things that you want to reference in your article and then make sure those things get linked appropriately so that you have proof behind the thing that you said, and that people can go and look at those first-party resources to verify it themselves.
+LLMs have gotten pretty good at searching the web to find the information that you're looking for. You can tell it to only find first-party sources on the things that you want to reference in your article and then make sure those things get linked appropriately so that you have proof behind the thing that you said, and that people can go and look at those first-party resources to verify it themselves.
 
 In my own projects as I work through them and add to my challenges.md file, along with the way in which I plan to build a project using what I call the project.md file, I can use dictation to quickly stub my thoughts and then come back around later to clean it up. This gives me a lot of resources at the end of the project to then hand over to my interview skill and Claude to list out questions to help tease out the story of building out the application or whatever it is in my article I'm wanting to say about it.
 
