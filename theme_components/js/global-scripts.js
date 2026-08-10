@@ -10,10 +10,14 @@ import initPrefetchYoutubeThumbnail from './modules/_prefetch-youtube-thumbnail'
 
 const hamburger = document.querySelector('.nav-hamburger')
 if (hamburger) {
+	// mouseenter and focusin only warm the listeners up. The click handler has to
+	// call both, because focusin fires before click on a button press, so by the
+	// time click arrives initNavModal has already run and reports nothing to do.
 	hamburger.addEventListener('mouseenter', initNavModal, { once: true })
 	hamburger.addEventListener('focusin', initNavModal, { once: true })
 	hamburger.addEventListener('click', () => {
-		if (initNavModal()) showNavModal()
+		initNavModal()
+		showNavModal()
 	})
 }
 
