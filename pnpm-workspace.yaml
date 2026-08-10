@@ -34,7 +34,7 @@ minimumReleaseAgeExclude:
     # can land now. The override below is an exact pin rather than a caret range, because this
     # exclude turns the gate off for the whole package and a caret would pull in 3.3.18 (published
     # 2026-08-07), which the gate is meant to hold back. Remove this entry once 3.3.17 clears the
-    # gate (after 2026-08-10 10:39 UTC) and loosen the override back to '^3.3.17'.
+    # gate (after 2026-08-10 10:25 UTC) and loosen the override back to '^3.3.17'.
     - nanoid
 
 # Warn about deprecated packages
