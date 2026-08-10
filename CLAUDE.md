@@ -107,10 +107,10 @@ esbuild does not read `browserslist`, so the `target` is set by hand in that scr
 | Directory           | Purpose                                                                                             | Jekyll output |
 | ------------------- | --------------------------------------------------------------------------------------------------- | ------------- |
 | `_posts/`           | Blog posts (articles, snippets)                                                                     | Yes           |
-| `_case_studies/`    | Portfolio case studies: homepage gallery modal, individual pages, and the `/case-studies/` archive  | Yes           |
+| `_case_studies/`    | Portfolio case studies: homepage cards, individual pages, and the `/case-studies/` archive          | Yes           |
 | `_coding_projects/` | Coding project cards on homepage and `/coding-projects/` archive; entries support a `featured` flag | No            |
 
-**`_case_studies/` body content is rendered as raw HTML** in the homepage gallery modal — treat as trusted first-party content only.
+**`_case_studies/` body content is rendered as raw HTML** on each case study page — treat as trusted first-party content only. (There was once a homepage gallery modal; `_includes/case-studies.html` now renders cards that link to the individual pages, and the modal's styles were deleted in August 2026.)
 
 **Case study ordering** is controlled by an `order:` integer in each case study's front matter, not the filename prefix. `_includes/case-studies.html` (and the "More Case Studies" block in `_layouts/case-study.html`) sort by `order` descending, so a higher number sits higher on the page. Featured entries and the rest (`featured: false`, shown under the "Additional Case Studies" heading) render as separate grids but share this one sort. Existing values step by 10 (`130` down to `10`). To add a new case study at the top of its grid, give it an `order` higher than the current maximum (the next top slot is max + 10); nothing else needs editing. To reorder two entries, swap their `order` values. Case study filenames are just the slug (e.g. `teleport-atlas.md`), with no numeric prefix — ordering is entirely `order`-driven.
 
@@ -195,7 +195,7 @@ Lockfile-changing installs need `pnpm install --no-frozen-lockfile`, since `froz
 
 GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).
 
-**Dependency advisories are split by whether the package ships.** `pnpm audit --prod` and `snyk test` without `--dev` block the deploy. The matching `--dev` runs are `continue-on-error: true`, so they report but do not gate. The only production dependencies are `micromodal` and `prismjs`; everything else runs in CI or on a laptop against this repo's own source and then exits, and the advisories there have been almost entirely parser denial-of-service. Before this split, a quadratic-complexity bug in a linter's YAML parser could stop a static site from deploying, and roughly half a dozen commits went to nothing but chasing those.
+**Dependency advisories are split by whether the package ships.** `pnpm audit --prod` and `snyk test` without `--dev` block the deploy. The matching `--dev` runs are `continue-on-error: true`, so they report but do not gate. The only production dependency is `prismjs`; everything else runs in CI or on a laptop against this repo's own source and then exits, and the advisories there have been almost entirely parser denial-of-service. Before this split, a quadratic-complexity bug in a linter's YAML parser could stop a static site from deploying, and roughly half a dozen commits went to nothing but chasing those.
 
 This is **not** the supply-chain control, and the split does not weaken it. A hijacked dev package running a postinstall script is a real threat; it is handled by `minimumReleaseAge`, `blockExoticSubdeps`, and `verifyStoreIntegrity` in `pnpm-workspace.yaml`. `snyk code test` scans first-party source and stays blocking.
 

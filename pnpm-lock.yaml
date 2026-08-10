@@ -18,9 +18,6 @@ catalogs:
         lint-staged:
             specifier: 17.3.0
             version: 17.3.0
-        micromodal:
-            specifier: 0.7.0
-            version: 0.7.0
         prismjs:
             specifier: 1.30.0
             version: 1.30.0
@@ -42,9 +39,6 @@ overrides:
 importers:
     .:
         dependencies:
-            micromodal:
-                specifier: 'catalog:'
-                version: 0.7.0
             prismjs:
                 specifier: 'catalog:'
                 version: 1.30.0
@@ -1640,13 +1634,6 @@ packages:
             }
         engines: { node: '>=8.6' }
 
-    micromodal@0.7.0:
-        resolution:
-            {
-                integrity: sha512-DOU0eE7tByNFTrU9KgPIywt2imA2+ttMMoE89BU/w/r92tNemGFwCg5QTZLLv04N53ZGTizg10zeT7dUv8V/ug==,
-            }
-        engines: { node: '>=10' }
-
     minimatch@10.2.5:
         resolution:
             {
@@ -2919,8 +2906,6 @@ snapshots:
         dependencies:
             braces: 3.0.3
             picomatch: 2.3.2
-
-    micromodal@0.7.0: {}
 
     minimatch@10.2.5:
         dependencies:

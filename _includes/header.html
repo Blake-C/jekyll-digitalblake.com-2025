@@ -35,7 +35,6 @@
 				aria-label="Open navigation menu"
 				aria-expanded="false"
 				aria-controls="nav-modal"
-				data-micromodal-trigger="nav-modal"
 			>
 				<span class="nav-hamburger__bar"></span>
 				<span class="nav-hamburger__bar"></span>
@@ -45,11 +44,13 @@
 	</div>
 </header>
 
-<div class="nav-modal micromodal-slide" id="nav-modal" aria-hidden="true">
-	<div class="nav-modal__overlay" tabindex="-1">
-		<div class="nav-modal__container" role="dialog" aria-modal="true" aria-label="Navigation menu">
-			<button class="nav-modal__close" aria-label="Close navigation menu" data-micromodal-close></button>
-			{% include nav-items.html %}
-		</div>
+{%- comment -%}
+	A native <dialog>. showModal() provides role, aria-modal, the focus trap, Esc
+	handling, and the inert background, so none of those are set by hand here.
+{%- endcomment -%}
+<dialog class="nav-modal" id="nav-modal" aria-label="Navigation menu">
+	<div class="nav-modal__container">
+		<button class="nav-modal__close" type="button" aria-label="Close navigation menu"></button>
+		{% include nav-items.html %}
 	</div>
-</div>
+</dialog>

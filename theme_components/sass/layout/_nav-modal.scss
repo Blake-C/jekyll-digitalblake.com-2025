@@ -1,0 +1,204 @@
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/variables' as v;
+
+/**************************\
+  Nav hamburger button
+\**************************/
+
+.nav-hamburger {
+	align-items: center;
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: none;
+	flex-direction: column;
+	gap: 5px;
+	justify-content: center;
+	padding: 8px;
+
+	@media screen and (max-width: 56.25em) {
+		display: flex;
+	}
+
+	&:focus-visible {
+		outline: 2px solid v.$accent-2;
+		outline-offset: 2px;
+	}
+}
+
+.nav-hamburger__bar {
+	background: v.$white;
+	border-radius: 2px;
+	display: block;
+	height: 3px;
+	transition: background 0.2s;
+	width: 24px;
+}
+
+/**************************\
+  Nav modal
+
+  A native <dialog>. showModal() supplies the focus trap, Esc handling, inert
+  background, and the display toggle, so there is no [aria-hidden] or .is-open
+  state to drive from script. Do not add a `display` rule here: a `display: none`
+  on .nav-modal outranks the UA's dialog[open] rule and the dialog opens invisibly.
+
+  The exit animation is driven by .is-closing rather than transition-behavior
+  and @starting-style, which need chrome 117 and sit above this project's
+  browserslist floor of chrome 109.
+\**************************/
+
+.nav-modal {
+	background: rgba(25, 25, 54, 0.97);
+	border: none;
+	color: inherit;
+	height: 100%;
+	inset: 0;
+	margin: 0;
+	max-height: 100%;
+	max-width: 100%;
+	overflow-y: auto;
+	padding: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 2000;
+
+	&::backdrop {
+		background: rgba(25, 25, 54, 0.6);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		&[open]:not(.is-closing) {
+			animation: nav-modal-fade-in 0.25s cubic-bezier(0, 0, 0.2, 1);
+
+			.nav-modal__container {
+				animation: nav-modal-slide-in 0.25s cubic-bezier(0, 0, 0.2, 1);
+			}
+		}
+
+		&.is-closing {
+			animation: nav-modal-fade-out 0.25s cubic-bezier(0, 0, 0.2, 1);
+
+			.nav-modal__container {
+				animation: nav-modal-slide-out 0.25s cubic-bezier(0, 0, 0.2, 1);
+			}
+		}
+	}
+}
+
+.nav-modal__container {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 100%;
+	padding: bp.rem-calc(64) bp.rem-calc(24) bp.rem-calc(40);
+	position: relative;
+}
+
+.nav-modal__close {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.12);
+	border: 2px solid rgba(255, 255, 255, 0.35);
+	border-radius: 50%;
+	color: v.$white;
+	cursor: pointer;
+	display: flex;
+	height: bp.rem-calc(44);
+	justify-content: center;
+	position: absolute;
+	right: bp.rem-calc(20);
+	top: bp.rem-calc(20);
+	transition: background 0.2s;
+	width: bp.rem-calc(44);
+
+	&::before {
+		content: '\2715';
+		font-size: bp.rem-calc(18);
+		line-height: 1;
+	}
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.25);
+	}
+
+	&:focus-visible {
+		outline: 2px solid v.$accent-2;
+		outline-offset: 2px;
+	}
+}
+
+.nav-modal__container .main-menu {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: bp.rem-calc(8);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+
+	li {
+		display: block;
+	}
+
+	a {
+		color: v.$white;
+		display: block;
+		font-size: bp.rem-calc(22);
+		font-weight: 700;
+		padding: bp.rem-calc(10) bp.rem-calc(24);
+		text-transform: uppercase;
+
+		&:hover,
+		&:focus {
+			color: v.$accent-5;
+		}
+	}
+
+	.menu-item--active a {
+		border-bottom: 2px solid v.$accent-5;
+		color: v.$accent-5;
+		padding-bottom: calc(#{bp.rem-calc(10)} - 2px);
+	}
+}
+
+/**************************\
+  Animations
+\**************************/
+
+@keyframes nav-modal-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes nav-modal-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes nav-modal-slide-in {
+	from {
+		transform: translateY(15%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes nav-modal-slide-out {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-10%);
+	}
+}

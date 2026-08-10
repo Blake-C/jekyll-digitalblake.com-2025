@@ -137,7 +137,7 @@ theme_components/
 
 ## Security notes
 
-`_case_studies/*.md` body content is rendered as raw HTML inside the homepage gallery modal (see [`_includes/case-studies.html`](_includes/case-studies.html)). The collection is treated as trusted, first-party content. Do **not** accept outside contributions to `_case_studies/` without first sanitizing or escaping the body — a malicious entry would execute as inline HTML/JS on every page that embeds the gallery.
+`_case_studies/*.md` body content is rendered as raw HTML on each case study page. The collection is treated as trusted, first-party content. Do **not** accept outside contributions to `_case_studies/` without first sanitizing or escaping the body — a malicious entry would execute as inline HTML/JS. ([`_includes/case-studies.html`](_includes/case-studies.html) renders cards linking to those pages; it used to be a gallery modal, which no longer exists.)
 
 ## Syntax Highlighting
 
