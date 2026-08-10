@@ -39,14 +39,34 @@ jobs:
             - name: Install Node dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Audit dependencies
-              run: pnpm audit --audit-level=high
+            # Dependency advisories are split by whether the package ships. The only production
+            # dependencies are micromodal and prismjs, the two things bundled into assets/js/, and
+            # those gate the deploy. Everything else (sass, eslint, stylelint, esbuild, postcss and
+            # their trees) runs here and on a laptop, then exits, on input that is this repo's own
+            # source. Advisories there are almost all parser denial-of-service, so they are reported
+            # and reviewed rather than allowed to block a static site.
+            #
+            # This is not the supply-chain control. A hijacked dev package running a postinstall
+            # script is a real threat, and it is covered by minimumReleaseAge, blockExoticSubdeps,
+            # and verifyStoreIntegrity in pnpm-workspace.yaml. Those are unaffected by this split.
+            - name: Audit dependencies (production)
+              run: pnpm audit --prod --audit-level=high
+
+            - name: Audit dependencies (dev, informational)
+              run: pnpm audit --dev --audit-level=high
+              continue-on-error: true
 
             - name: Install Snyk CLI
               run: npm install -g snyk
 
-            - name: Snyk SCA – Node dependencies
+            - name: Snyk SCA – Node production dependencies
+              run: snyk test --file=package.json --severity-threshold=high
+              env:
+                  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+            - name: Snyk SCA – Node dev dependencies (informational)
               run: snyk test --file=package.json --dev --severity-threshold=high
+              continue-on-error: true
               env:
                   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
