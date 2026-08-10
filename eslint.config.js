@@ -38,7 +38,7 @@ module.exports = [
 		},
 	},
 	{
-		files: ['webpack.config.js', 'postcss.config.js', 'eslint.config.js'],
+		files: ['postcss.config.js', 'eslint.config.js'],
 		languageOptions: {
 			ecmaVersion: 2022,
 			sourceType: 'commonjs',

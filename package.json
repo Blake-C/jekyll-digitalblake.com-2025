@@ -7,11 +7,6 @@
 		"node": ">=24",
 		"pnpm": "11.10.0"
 	},
-	"sideEffects": [
-		"*.css",
-		"*.scss",
-		"./theme_components/js/modules/*.js"
-	],
 	"browserslist": [
 		"defaults and supports es6-module",
 		"not dead",
@@ -22,6 +17,7 @@
 		"@resvg/resvg-js": "2.6.2",
 		"@shopify/prettier-plugin-liquid": "^1.11.0",
 		"autoprefixer": "^10.5.4",
+		"esbuild": "catalog:",
 		"eslint": "catalog:",
 		"eslint-config-prettier": "10.1.8",
 		"globals": "17.9.0",
@@ -32,10 +28,7 @@
 		"prettier": "^3.9.6",
 		"sass": "catalog:",
 		"stylelint": "catalog:",
-		"stylelint-config-standard-scss": "17.0.0",
-		"terser-webpack-plugin": "^5.6.1",
-		"webpack": "catalog:",
-		"webpack-cli": "catalog:"
+		"stylelint-config-standard-scss": "17.0.0"
 	},
 	"dependencies": {
 		"micromodal": "catalog:",
@@ -48,7 +41,7 @@
 		"lint:css": "stylelint \"theme_components/sass/**/*.scss\"",
 		"lint:fix": "eslint . --fix && stylelint \"theme_components/sass/**/*.scss\" --fix",
 		"build:styles": "sass --load-path=node_modules theme_components/sass/global-styles.scss:assets/css/global-styles.min.css theme_components/sass/critical-styles.scss:_includes/critical.min.css theme_components/sass/prism-styles.scss:assets/css/prism.min.css --style=compressed --no-error-css --charset && postcss assets/css/global-styles.min.css assets/css/prism.min.css _includes/critical.min.css --replace && node script/rewrite-critical-urls.mjs",
-		"build:scripts": "webpack",
+		"build:scripts": "node script/build-scripts.mjs",
 		"build:fonts": "node script/build-fonts.mjs --emit",
 		"build:images": "node script/optimize-images.mjs",
 		"build:image-dimensions": "node script/image-dimensions.mjs",
@@ -57,7 +50,7 @@
 		"check:html": "bundle exec htmlproofer ./_site --disable-external --ignore-empty-mailto",
 		"check:links": "bundle exec htmlproofer ./_site --ignore-empty-mailto --ignore-urls '/linkedin\\.com/,/codepen\\.io/,/npmjs\\.com/,/claude\\.ai/,/linoxide\\.com/,/businesswire\\.com/,/serverfault\\.com/,/youtube-nocookie\\.com/,/^https://digitalblake\\.com/'",
 		"watch:styles": "sass --load-path=node_modules --watch theme_components/sass/global-styles.scss:assets/css/global-styles.min.css theme_components/sass/critical-styles.scss:_includes/critical.min.css theme_components/sass/prism-styles.scss:assets/css/prism.min.css --style=compressed --no-error-css --charset",
-		"watch:scripts": "webpack --watch",
+		"watch:scripts": "node script/build-scripts.mjs --watch",
 		"build": "pnpm run build:images && pnpm run build:image-dimensions && pnpm run cache:thumbnails && pnpm run build:fonts && pnpm run build:styles && pnpm run build:scripts && node script/hash-assets.mjs && bundle exec jekyll build",
 		"dev": "pnpm run cache:thumbnails && pnpm run build:styles && pnpm run build:scripts && node script/hash-assets.mjs --dev && (trap 'kill 0' INT; pnpm run watch:styles & pnpm run watch:scripts & bundle exec jekyll serve --config _config.yml,_config.dev.yml --livereload --port 4005 --host 0.0.0.0; wait)",
 		"prepare": "husky"

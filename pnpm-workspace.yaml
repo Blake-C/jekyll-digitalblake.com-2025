@@ -47,6 +47,9 @@ fetchRetryMaxTimeout: 10000
 
 allowBuilds:
     '@parcel/watcher': true
+    # esbuild's postinstall links the platform binary from its optional dependency.
+    # Without it the bundler cannot run at all.
+    esbuild: true
 
 # Force patched transitive dependencies across the tree (each has a single version in the tree,
 # so a blanket override is safe). Snyk-flagged; not caught by the npm/GitHub advisory DB.
@@ -76,8 +79,7 @@ catalog:
     # Dev dependencies — build tools and linters most exposed to supply chain risk
     eslint: 10.8.0
     stylelint: 17.14.1
-    webpack: 5.109.2
-    webpack-cli: 7.2.2
+    esbuild: 0.28.1
     sass: 1.102.0
     postcss-cli: 11.0.1
     husky: 9.1.7

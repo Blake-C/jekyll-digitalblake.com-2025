@@ -52,7 +52,7 @@ docker compose run --rm app pnpm run build:image-dimensions  # Measure image siz
 docker compose run --rm app pnpm run cache:thumbnails  # Cache YouTube thumbnails locally as WebP
 docker compose run --rm app pnpm run build:fonts       # Subset Montserrat variable TTF → WOFF2 (--emit to write)
 docker compose run --rm app pnpm run build:styles      # Compile SCSS to assets/css/ and _includes/ (critical CSS)
-docker compose run --rm app pnpm run build:scripts     # Bundle JS via webpack to assets/js/
+docker compose run --rm app pnpm run build:scripts     # Bundle JS via esbuild to assets/js/
 
 # Search Console (on-demand, local only — needs a service-account key, see below)
 docker compose run --rm app pnpm run sync:search-console   # Pull GSC data → tmp/search-console/report.{json,md}
@@ -75,7 +75,7 @@ Both checks should report zero. Anything either one reports is worth reading.
 
 ## Architecture
 
-This is a **Jekyll 4.4.1** blog/portfolio deployed to GitHub Pages. The asset pipeline runs outside Jekyll: SCSS → webpack → hash-assets → then Jekyll builds.
+This is a **Jekyll 4.4.1** blog/portfolio deployed to GitHub Pages. The asset pipeline runs outside Jekyll: SCSS → esbuild → hash-assets → then Jekyll builds.
 
 ### Config files
 
@@ -92,8 +92,12 @@ The dev server builds to `_site_dev`, not `_site`. It rebuilds on every file cha
     - `global-styles.scss` → `assets/css/global-styles.min.css`
     - `critical-styles.scss` → `_includes/critical.min.css` (inlined in `<head>`)
     - `prism-styles.scss` → `assets/css/prism.min.css`
-2. **Webpack** (`theme_components/js/`) bundles two entry points → `assets/js/`
+2. **esbuild** (`script/build-scripts.mjs`) bundles two entry points from `theme_components/js/` → `assets/js/`
 3. **`script/hash-assets.mjs`** fingerprints compiled CSS/JS and the shipped WOFF2 fonts with SHA256 hashes and writes `_data/asset_manifest.json` (gitignored); templates reference hashed filenames via this manifest. The inlined `@font-face` src is rewritten to a manifest lookup by `script/rewrite-critical-urls.mjs`, so a rebuilt font subset always gets a new (cache-busting) URL
+
+esbuild replaced webpack in August 2026. The webpack cluster (`webpack`, `webpack-cli`, `terser-webpack-plugin`) accounted for 79 lockfile entries that nothing else needed, and it was the main source of the high-severity audit failures that kept blocking the deploy. The job it was doing is two entry points, no loaders, no code splitting, no dev server. `build-scripts.mjs` reproduces the old output contract exactly: same two filenames, IIFE, minified, `console` calls dropped, no source maps or legal comments.
+
+esbuild does not read `browserslist`, so the `target` is set by hand in that script. If the query in `package.json` changes, re-check the oldest browser it resolves to before moving it.
 
 ### Content collections
 
@@ -154,7 +158,7 @@ Defined in `_data/authors.yml`. The custom plugin `_plugins/author_pages.rb` gen
 
 ### Syntax highlighting
 
-Rouge is disabled. **Prism.js** handles all syntax highlighting via webpack with plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
+Rouge is disabled. **Prism.js** handles all syntax highlighting, bundled by esbuild with plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
 
 ### Search Console feedback loop
 
@@ -187,6 +191,10 @@ Lockfile-changing installs need `pnpm install --no-frozen-lockfile`, since `froz
 ### CI/CD
 
 GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).
+
+**Dependency advisories are split by whether the package ships.** `pnpm audit --prod` and `snyk test` without `--dev` block the deploy. The matching `--dev` runs are `continue-on-error: true`, so they report but do not gate. The only production dependencies are `micromodal` and `prismjs`; everything else runs in CI or on a laptop against this repo's own source and then exits, and the advisories there have been almost entirely parser denial-of-service. Before this split, a quadratic-complexity bug in a linter's YAML parser could stop a static site from deploying, and roughly half a dozen commits went to nothing but chasing those.
+
+This is **not** the supply-chain control, and the split does not weaken it. A hijacked dev package running a postinstall script is a real threat; it is handled by `minimumReleaseAge`, `blockExoticSubdeps`, and `verifyStoreIntegrity` in `pnpm-workspace.yaml`. `snyk code test` scans first-party source and stays blocking.
 
 CI does **not** run `build:images`, `build:image-dimensions`, `cache:thumbnails`, or `build:fonts` — those outputs (optimized images, the `_data/image_dimensions.json` size manifest, cached thumbnails, the subset WOFF2) are committed to the repo and used as-is. Regenerate and commit them locally when their inputs change. After adding or replacing images, run `build:images` then `build:image-dimensions` and commit the updated manifest so content-image `width`/`height` stay correct.
 

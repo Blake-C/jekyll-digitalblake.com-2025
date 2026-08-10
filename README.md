@@ -35,7 +35,7 @@ This builds styles and scripts, then starts Jekyll with live reload on [http://l
 docker compose run --rm app pnpm run build
 ```
 
-Optimizes images, generates the subset web font, compiles SCSS, bundles JS via webpack, hashes compiled assets for cache busting, then runs `bundle exec jekyll build`.
+Optimizes images, generates the subset web font, compiles SCSS, bundles JS via esbuild, hashes compiled assets for cache busting, then runs `bundle exec jekyll build`.
 
 Individual steps:
 
@@ -44,7 +44,7 @@ docker compose run --rm app pnpm run build:images       # Optimize JPG/PNG in as
 docker compose run --rm app pnpm run cache:thumbnails   # Cache YouTube thumbnails locally as WebP (assets/uploads/youtube/)
 docker compose run --rm app pnpm run build:fonts        # Subset Montserrat → assets/fonts/montserrat-variable-webfont.woff2
 docker compose run --rm app pnpm run build:styles       # Compile SCSS → assets/css/global-styles.min.css
-docker compose run --rm app pnpm run build:scripts      # Bundle JS via webpack → assets/js/
+docker compose run --rm app pnpm run build:scripts      # Bundle JS via esbuild → assets/js/
 ```
 
 ### Fonts
@@ -141,4 +141,4 @@ theme_components/
 
 ## Syntax Highlighting
 
-Rouge (Jekyll's default) is disabled. [Prism.js](https://prismjs.com/) handles syntax highlighting and line numbers, loaded via webpack with the following plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
+Rouge (Jekyll's default) is disabled. [Prism.js](https://prismjs.com/) handles syntax highlighting and line numbers, loaded via esbuild with the following plugins: `line-numbers`, `normalize-whitespace`, `toolbar`, `show-language`, `copy-to-clipboard`.
