@@ -92,6 +92,9 @@ The dev server builds to `_site_dev`, not `_site`. It rebuilds on every file cha
     - `global-styles.scss` → `assets/css/global-styles.min.css`
     - `critical-styles.scss` → `_includes/critical.min.css` (inlined in `<head>`)
     - `prism-styles.scss` → `assets/css/prism.min.css`
+
+    `build:styles` then runs `script/build-css.mjs`, which applies autoprefixer to all three in place, and `script/rewrite-critical-urls.mjs`. This replaced `postcss-cli` in August 2026: that package brought 28 dependencies nothing else needed, for config discovery, globbing, and watching that this project never used. `postcss` and `autoprefixer` are direct dependencies, so the script adds nothing. It processes with `map: { inline: false }` so the external `.map` files sass writes are chained rather than dropped — a mistake there fails silently, since the CSS still builds and only the maps stop resolving.
+
 2. **esbuild** (`script/build-scripts.mjs`) bundles two entry points from `theme_components/js/` → `assets/js/`
 3. **`script/hash-assets.mjs`** fingerprints compiled CSS/JS and the shipped WOFF2 fonts with SHA256 hashes and writes `_data/asset_manifest.json` (gitignored); templates reference hashed filenames via this manifest. The inlined `@font-face` src is rewritten to a manifest lookup by `script/rewrite-critical-urls.mjs`, so a rebuilt font subset always gets a new (cache-busting) URL
 
