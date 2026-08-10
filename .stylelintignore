@@ -1,5 +1,6 @@
 assets/css/**/*.min.css
 _includes/critical.min.css
 _site/**
+_site_dev/**
 node_modules/**
 vendor/**

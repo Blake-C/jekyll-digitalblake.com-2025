@@ -1,5 +1,6 @@
 # Generated output
 _site/
+_site_dev/
 
 # Minified assets
 assets/js/

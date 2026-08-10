@@ -4,7 +4,14 @@ const prettier = require('eslint-config-prettier')
 
 module.exports = [
 	{
-		ignores: ['assets/js/*.min.js', '_site/**', 'node_modules/**', 'vendor/**', '_includes/critical.min.css'],
+		ignores: [
+			'assets/js/*.min.js',
+			'_site/**',
+			'_site_dev/**',
+			'node_modules/**',
+			'vendor/**',
+			'_includes/critical.min.css',
+		],
 	},
 	js.configs.recommended,
 	{
