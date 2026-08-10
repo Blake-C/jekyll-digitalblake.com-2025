@@ -29,13 +29,6 @@ minimumReleaseAge: 10080
 # subdependency resolution isn't blocked when browserslist pulls in a fresh node-releases patch.
 minimumReleaseAgeExclude:
     - node-releases
-    # Temporary: nanoid 3.3.17 (published 2026-08-03) patches the high-severity infinite-loop
-    # advisory GHSA-2v37-7h3g-55p8 but is younger than the 7-day gate. Excluded so the pinned fix
-    # can land now. The override below is an exact pin rather than a caret range, because this
-    # exclude turns the gate off for the whole package and a caret would pull in 3.3.18 (published
-    # 2026-08-07), which the gate is meant to hold back. Remove this entry once 3.3.17 clears the
-    # gate (after 2026-08-10 10:25 UTC) and loosen the override back to '^3.3.17'.
-    - nanoid
 
 # Warn about deprecated packages
 strictDeprecatedDependencies: warn
@@ -65,7 +58,7 @@ allowBuilds:
 #   immutable <5.1.8 (via sass) — 32-bit trie overflow + hash-collision DoS, high (GHSA-v56q-mh7h-f735, GHSA-xvcm-6775-5m9r)
 overrides:
     js-yaml: '^4.3.1'
-    nanoid: '3.3.17'
+    nanoid: '^3.3.17'
     brace-expansion: '^5.0.9'
     fast-uri: '^3.1.5'
     postcss-selector-parser: '^7.1.2'
