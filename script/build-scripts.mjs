@@ -17,6 +17,7 @@
  *   node script/build-scripts.mjs --watch   # rebuild on change (pnpm run dev)
  */
 import { context, build } from 'esbuild'
+import { spawnSync } from 'child_process'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -51,8 +52,28 @@ const options = {
 	logLevel: 'info',
 }
 
+/**
+ * After each watch rebuild, reset _data/asset_manifest.json to unhashed
+ * filenames. A `pnpm run build` in another terminal writes hashed names there,
+ * and Jekyll then serves pages pointing at the hashed copy while this watcher
+ * only ever writes the unhashed one. See script/watch-styles.mjs for the same
+ * problem on the CSS side.
+ */
+const devManifestPlugin = {
+	name: 'dev-manifest',
+	setup(pluginBuild) {
+		pluginBuild.onEnd(result => {
+			if (result.errors.length > 0) return
+			spawnSync(process.execPath, [join(ROOT, 'script/hash-assets.mjs'), '--dev'], {
+				cwd: ROOT,
+				stdio: ['ignore', 'ignore', 'inherit'],
+			})
+		})
+	},
+}
+
 if (isWatch) {
-	const ctx = await context(options)
+	const ctx = await context({ ...options, plugins: [devManifestPlugin] })
 	await ctx.watch()
 	console.log('Watching theme_components/js for changes...')
 } else {
