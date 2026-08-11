@@ -37,7 +37,7 @@ profile_schema: true
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Tooling</p>
-		<p class="skills-list__items">Git, NPM, pnpm, Composer, Webpack, esbuild, WP-CLI, Docker, ZSH, PHPCS</p>
+		<p class="skills-list__items">Git, NPM, pnpm, Composer, Webpack, WP-CLI, Docker, ZSH, PHPCS</p>
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Build and CI</p>
@@ -114,11 +114,10 @@ profile_schema: true
 
 <div class="career-timeline">
 	<div class="career-timeline__item">
-		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">August 2025 to Present</span></p>
+		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">July 2025 to Present</span></p>
 		<p class="career-timeline__role">Self-Directed Engineering</p>
 		<ul class="career-timeline__bullets">
-			<li>Spent the past six months building fluency in AI-assisted development workflows and applying them across a Next.js and Sanity project, native macOS tooling, and digitalblake.com.</li>
-			<li>Built Teleport's Atlas landing page in Next.js from a Figma spec as an interview coding challenge, then moved it onto Sanity as a headless CMS with visual editing and a publish webhook.</li>
+			<li>Applied AI-assisted development workflows across a Next.js and Sanity project, native macOS tooling, and digitalblake.com.</li>
 			<li>Built native macOS tools to solve problems on my own machine, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a SwiftUI and AppKit UI performance comparison.</li>
 			<li>Built and maintain digitalblake.com on Jekyll with a Docker-isolated toolchain, esbuild, inlined critical CSS, and subset WOFF2 fonts, deployed by GitHub Actions running HTMLProofer and Snyk, with a gitleaks pre-commit scan and a pnpm release-age gate guarding the supply chain.</li>
 			<li>Researched and published on WCAG 2.1 AA conformance testing and on which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 each require.</li>
@@ -145,7 +144,7 @@ profile_schema: true
 		</ul>
 	</div>
 	<div class="career-timeline__item">
-		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">January 2013 to February 2022</span></p>
+		<p class="career-timeline__employer">DigitalBlake.com (Freelance) <span class="career-timeline__dates">January 2013 to February 2022</span></p>
 		<p class="career-timeline__role">Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Built a WP Foundation 6 coding library to keep code consistent across teams.</li>
