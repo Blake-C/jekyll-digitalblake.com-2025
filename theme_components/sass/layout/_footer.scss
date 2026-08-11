@@ -11,12 +11,14 @@ footer {
 		width: 100%;
 
 		h2 {
+			border-bottom: 2px solid rgba(v.$accent-4, 0.4);
 			color: v.$accent-4;
 			font-size: bp.rem-calc(15);
 			font-weight: 700;
-			margin-bottom: 5px;
-			text-transform: uppercase;
 			line-height: 1.8;
+			margin-bottom: 10px;
+			padding-bottom: 3px;
+			text-transform: uppercase;
 		}
 
 		p {
@@ -103,4 +105,16 @@ footer {
 			}
 		}
 	}
+}
+
+.probe-c {
+	color: green;
+}
+
+.probe-d {
+	color: teal;
+}
+
+.probe-f {
+	color: gray;
 }
