@@ -17,11 +17,19 @@ profile_schema: true
 <div class="skills-list">
 	<div class="skills-list__group">
 		<p class="skills-list__label">Content Management</p>
-		<p class="skills-list__items">WordPress, Joomla, Drupal, Sitefinity, Sitecore</p>
+		<p class="skills-list__items">WordPress, Joomla, Drupal, Sitefinity, Sitecore, Sanity</p>
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Languages</p>
 		<p class="skills-list__items">HTML5, CSS3, SCSS, JavaScript (ES6+), PHP 8, JSON</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Static Sites</p>
+		<p class="skills-list__items">Jekyll, Liquid, GitHub Pages, static site generators</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Accessibility</p>
+		<p class="skills-list__items">WCAG 2.1 AA, axe, Lighthouse, HTML validation</p>
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Design</p>
@@ -29,13 +37,35 @@ profile_schema: true
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Tooling</p>
-		<p class="skills-list__items">Git, NPM, Composer, Gulp, Webpack, WP-CLI, Docker, ZSH, PHPCS</p>
+		<p class="skills-list__items">Git, NPM, pnpm, Composer, Webpack, esbuild, WP-CLI, Docker, ZSH, PHPCS</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Build and CI</p>
+		<p class="skills-list__items">GitHub Actions, HTMLProofer, Snyk, gitleaks, Dependabot</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">AI-Assisted Development</p>
+		<p class="skills-list__items">Claude Code, AI-assisted build and review workflows</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Currently Building With</p>
+		<p class="skills-list__items">React, Next.js, TypeScript, Sanity</p>
 	</div>
 </div>
 
 ## Selected projects
 
 <div class="career-timeline">
+	<div class="career-timeline__item">
+		<p class="career-timeline__employer">Teleport Atlas (coding challenge) <span class="career-timeline__dates"><a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">teleport-atlas.vercel.app</a></span></p>
+		<ul class="career-timeline__bullets">
+			<li>Built Teleport's Atlas product landing page from a Figma spec in Next.js (App Router), going from nothing to a working page with Canvas product animations in about twelve hours.</li>
+			<li>Scored a perfect axe run with zero WCAG 2.1 AA issues and a 100 Lighthouse mobile result across performance, accessibility, best practices, and SEO.</li>
+			<li>Cut page weight from about 2.5MB to roughly 950KB, including roughly an 89% drop in the font payload from subsetting with fonttools and Brotli.</li>
+			<li>Hardened the build and supply chain with SHA-pinned GitHub Actions, a pnpm cooldown and allowlist against a frozen lockfile, and escaped JSON-LD.</li>
+			<li>Moved the page onto Sanity as a headless CMS afterward, with visual editing and a publish webhook. Source is public on <a href="https://github.com/Blake-C/teleport-web-eng-coding-challenge" target="_blank" rel="noopener">GitHub</a>.</li>
+		</ul>
+	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates"><a href="https://seismic.com" target="_blank" rel="noopener">seismic.com</a></span></p>
 		<ul class="career-timeline__bullets">
@@ -75,7 +105,7 @@ profile_schema: true
 			<li>Built a WordPress plugin for exit-intent and timed popups with A/B testing, impression tracking, and a per-popup conversion dashboard with CSV export.</li>
 			<li>Implemented exit-intent detection for desktop (cursor exit) and mobile (scroll-reversal heuristic) with six configurable position modes.</li>
 			<li>Added GA4 event tracking for impressions, CTA clicks, and dismissals.</li>
-			<li>Built the front end in vanilla JavaScript to WCAG 2.1 AA: ARIA dialog attributes, a keyboard focus trap, ESC support, and a reduced-motion fallback.</li>
+			<li>Built the front end in vanilla JavaScript to WCAG 2.1 AA, with ARIA dialog attributes, a keyboard focus trap, ESC support, and a reduced-motion fallback.</li>
 		</ul>
 	</div>
 </div>
@@ -83,6 +113,17 @@ profile_schema: true
 ## Professional experience
 
 <div class="career-timeline">
+	<div class="career-timeline__item">
+		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">August 2025 to Present</span></p>
+		<p class="career-timeline__role">Self-Directed Engineering</p>
+		<ul class="career-timeline__bullets">
+			<li>Spent the past six months building fluency in AI-assisted development workflows and applying them across a Next.js and Sanity project, native macOS tooling, and this portfolio.</li>
+			<li>Built Teleport's Atlas landing page in Next.js from a Figma spec as an interview coding challenge, then moved it onto Sanity as a headless CMS with visual editing and a publish webhook.</li>
+			<li>Built native macOS tools to solve problems on my own machine, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a SwiftUI and AppKit UI performance comparison.</li>
+			<li>Built and maintain digitalblake.com on Jekyll with a Docker-isolated toolchain, esbuild, inlined critical CSS, and subset WOFF2 fonts, deployed by GitHub Actions running HTMLProofer and Snyk, with a gitleaks pre-commit scan and a pnpm release-age gate guarding the supply chain.</li>
+			<li>Researched and published on WCAG 2.1 AA conformance testing and on which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 each require.</li>
+		</ul>
+	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates">February 2022 to July 2025</span></p>
 		<p class="career-timeline__role">Senior Web Developer</p>
