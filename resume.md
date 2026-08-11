@@ -145,7 +145,7 @@ profile_schema: true
 		</ul>
 	</div>
 	<div class="career-timeline__item">
-		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">January 2013 to Present</span></p>
+		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">January 2013 to February 2022</span></p>
 		<p class="career-timeline__role">Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Built a WP Foundation 6 coding library to keep code consistent across teams.</li>
