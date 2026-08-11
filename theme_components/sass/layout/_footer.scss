@@ -46,6 +46,22 @@ footer {
 			margin-bottom: 10px;
 		}
 
+		// The services list runs to 11 items. Two CSS columns keep it from
+		// making the footer taller than the other two widgets. It stays a
+		// single <ul>, so screen readers still announce one list of 11.
+		// Column-fill defaults to balance, which puts the extra item in the
+		// first column. Below medium the widget is too narrow to split.
+		.footer-services {
+			@include bp.breakpoint(medium) {
+				column-gap: bp.rem-calc(24);
+				columns: 2;
+			}
+
+			li {
+				break-inside: avoid;
+			}
+		}
+
 		strong {
 			font-family: v.$montserrat;
 		}
