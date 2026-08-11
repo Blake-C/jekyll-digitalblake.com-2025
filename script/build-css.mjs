@@ -13,20 +13,21 @@
  * their external maps, so every file is processed with map.inline false and
  * postcss picks up the map sass just wrote as the previous source.
  *
+ * The dev watcher does not shell out to this script. It calls the same
+ * transform from script/lib/styles.mjs in process, because three Node startups
+ * per save cost more than the compile itself.
+ *
  * Usage:
  *   node script/build-css.mjs
  */
-import autoprefixer from 'autoprefixer'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { basename, join, dirname } from 'path'
-import postcss from 'postcss'
 import { fileURLToPath } from 'url'
+import { prefix } from './lib/styles.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 const TARGETS = ['assets/css/global-styles.min.css', 'assets/css/prism.min.css', '_includes/critical.min.css']
-
-const processor = postcss([autoprefixer])
 
 for (const target of TARGETS) {
 	const file = join(ROOT, target)
@@ -36,20 +37,10 @@ for (const target of TARGETS) {
 		continue
 	}
 
-	const css = readFileSync(file, 'utf8')
-	const result = await processor.process(css, {
-		from: file,
-		to: file,
-		// inline: false keeps the external .map sass produced. prev is left to
-		// postcss, which reads the annotation and chains onto that map so the
-		// sources still point at the .scss files rather than the compiled CSS.
-		map: { inline: false },
-	})
+	const { css, map } = await prefix(readFileSync(file, 'utf8'), { from: file, to: file })
 
-	for (const warning of result.warnings()) console.warn(`build-css: ${warning.toString()}`)
+	writeFileSync(file, css)
+	if (map) writeFileSync(`${file}.map`, map)
 
-	writeFileSync(file, result.css)
-	if (result.map) writeFileSync(`${file}.map`, result.map.toString())
-
-	console.log(`  ${target}${result.map ? ` (+ ${basename(file)}.map)` : ''}`)
+	console.log(`  ${target}${map ? ` (+ ${basename(file)}.map)` : ''}`)
 }

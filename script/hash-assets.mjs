@@ -13,7 +13,7 @@
  *   node script/hash-assets.mjs         # production — creates hashed files
  *   node script/hash-assets.mjs --dev   # dev — writes static filenames to manifest
  */
-import { readFileSync, writeFileSync, copyFileSync, readdirSync, unlinkSync } from 'fs'
+import { readFileSync, writeFileSync, copyFileSync, readdirSync, unlinkSync, existsSync } from 'fs'
 import { createHash } from 'crypto'
 import { join, basename, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -110,5 +110,16 @@ if (isDev) {
 	}
 }
 
-writeFileSync(join(ROOT, '_data/asset_manifest.json'), JSON.stringify(manifest, null, '\t') + '\n')
-console.log(`\nWritten: _data/asset_manifest.json`)
+// Written only when the contents differ. Jekyll watches _data/, and any write
+// there invalidates every page, so rewriting an identical manifest on each dev
+// rebuild cost a second full site regeneration per save.
+const manifestPath = join(ROOT, '_data/asset_manifest.json')
+const next = JSON.stringify(manifest, null, '\t') + '\n'
+const current = existsSync(manifestPath) ? readFileSync(manifestPath, 'utf8') : null
+
+if (current === next) {
+	console.log(`\nUnchanged: _data/asset_manifest.json`)
+} else {
+	writeFileSync(manifestPath, next)
+	console.log(`\nWritten: _data/asset_manifest.json`)
+}

@@ -100,7 +100,17 @@ The dev server builds to `_site_dev`, not `_site`. It rebuilds on every file cha
 
 `hash-assets.mjs --dev` writes unhashed filenames to the same manifest, and `pnpm run dev` runs it at startup. Running `pnpm run build` in a second terminal while the dev server is up overwrites that manifest with hashed names. Jekyll watches `_data/`, so it rebuilds every page pointing at the hashed copy, while the watchers only ever write the unhashed file. The served stylesheet then freezes at whatever that build produced, which reads as "live reload is broken" because the reload fires and nothing changes.
 
-Both watchers now re-run `hash-assets.mjs --dev` after each rebuild (`script/watch-styles.mjs`, and an `onEnd` plugin in `script/build-scripts.mjs`), so one edit undoes the damage. `watch:styles` shells out to `build:styles` rather than running `sass --watch` directly, which also means autoprefixer and the critical-CSS URL rewrite run in development. They did not before, so dev CSS shipped unprefixed and the inlined critical CSS lost its font lookup on the first rebuild.
+Both watchers now re-run `hash-assets.mjs --dev` after each rebuild (`script/watch-styles.mjs`, and an `onEnd` plugin in `script/build-scripts.mjs`), so one edit undoes the damage. `watch:styles` runs the same autoprefixer and critical-CSS URL rewrite that production does. It did not before, so dev CSS shipped unprefixed and the inlined critical CSS lost its font lookup on the first rebuild.
+
+`script/watch-styles.mjs` replaces `sass --watch` and is written for save-to-reload latency, which was about 2.5s and is now about 1.6s:
+
+- **It writes nothing that has not changed.** Sass recompiles all three entry points every run, so editing a partial only `global-styles.scss` uses still rewrote `_includes/critical.min.css` and `_data/asset_manifest.json` with identical bytes. Jekyll invalidates every page on a write to `_includes/` or `_data/`, and the writes arrived in two bursts, so one save cost two full site regenerations.
+- **It runs in one process against a warm sass compiler** (`initAsyncCompiler`) with autoprefixer applied in memory via `script/lib/styles.mjs`. Shelling out cost more in Node startup and postcss import than the compile.
+- **Its output is byte-identical to `build:styles`**, maps included. The sass CLI appends the `sourceMappingURL` annotation to the file it writes and the JS API does not, so the watcher adds it before postcss runs. Changing that will silently desync dev from production.
+
+Do not stage build output inside the repo. Listing a directory under `exclude:` stops Jekyll building it but the watcher still fires on writes there, which is the regeneration this script exists to avoid.
+
+What remains is Jekyll's own full-site regeneration, roughly 1.1s for 194 files, on any change. `--incremental` would cut it and is left off deliberately, since its known staleness would look exactly like the frozen-stylesheet bug above.
 
 esbuild replaced webpack in August 2026. The webpack cluster (`webpack`, `webpack-cli`, `terser-webpack-plugin`) accounted for 79 lockfile entries that nothing else needed, and it was the main source of the high-severity audit failures that kept blocking the deploy. The job it was doing is two entry points, no loaders, no code splitting, no dev server. `build-scripts.mjs` reproduces the old output contract exactly: same two filenames, IIFE, minified, `console` calls dropped, no source maps or legal comments.
 
