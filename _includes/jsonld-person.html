@@ -10,6 +10,17 @@
 		"jobTitle": {{ default_author.jobTitle | jsonify }},
 		"image": "{{ site.url }}/assets/icons/apple-touch-icon-180x180.png",
 		"description": {{ default_author.description | jsonify }},
+		{%- if default_author.location %}
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": {{ default_author.location.locality | jsonify }},
+			"addressRegion": {{ default_author.location.region | jsonify }},
+			"addressCountry": {{ default_author.location.country | jsonify }}
+		},
+		{%- endif %}
+		{%- if default_author.knowsAbout %}
+		"knowsAbout": {{ default_author.knowsAbout | jsonify }},
+		{%- endif %}
 		"sameAs": [
 			"https://github.com/{{ site.github_username }}",
 			"https://www.linkedin.com/in/blakecerecero/",

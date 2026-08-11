@@ -13,10 +13,19 @@ digitalblake:
         - Sitecore
         - Joomla
         - Jekyll
+        - Sanity
+        - Headless CMS
+        - Static site generators
         - JavaScript
+        - TypeScript
+        - React
+        - Next.js
         - PHP
         - CMS migrations
         - Gutenberg block development
         - Web accessibility
+        - WCAG 2.1 AA
         - API integrations
+        - CI/CD
+        - AI-assisted development
     description: 'Senior web developer with 15 years building CMS architectures, leading migrations, and shipping front-ends that hold up long after the original build. WordPress, Drupal, Sitecore, Jekyll, and the JavaScript in between.'
