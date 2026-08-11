@@ -7,7 +7,7 @@ show_testimonials: true
 profile_schema: true
 ---
 
-<p>When I started college, the plan was to major in astronomy. Then the 2008 financial crisis hit, and I decided I was done taking out student loans, so I went back to my community college, Northwest Vista College, and focused on digital media. That program is what eventually led me into web development. While I was there, I worked as a lab tech in the Digital Media department. Students came to me when they were stuck, and it was my job to know the answer or find who did. That pattern has followed me through every job since.</p>
+<p>When I started college, the plan was to major in astronomy. Then the 2008 financial crisis hit, and I decided I was done taking out student loans, so I went back to my community college, Northwest Vista College, and focused on digital media. The digital media program is what eventually led me into web development. While I was there, I worked as a lab tech in the Digital Media department, where students came to me when they were stuck and it was my job to know the answer or find who did. Being the person who figures it out has followed me through every job since.</p>
 
 ## Career
 
@@ -25,7 +25,7 @@ profile_schema: true
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Gray Digital Group &mdash; 8 years</p>
 		<p class="career-timeline__role">Web Developer</p>
-		<p class="career-timeline__description">Worked across 30+ client sites spanning WordPress, Drupal, Joomla, Sitefinity, and dotCMS. Led the full project lifecycle on many engagements: initial client meetings, wireframes, design iterations, development, and post-launch training. Clients ranged from small businesses to hospitals, law firms, podcast networks, medical research centers, and land companies. Regularly consulted with account executives, senior developers, and partners to solve problems no one else wanted to touch. Trained clients on their CMS after every launch.</p>
+		<p class="career-timeline__description">Worked across 30+ client sites spanning WordPress, Drupal, Joomla, Sitefinity, and dotCMS. Led the full project lifecycle on many engagements, from initial client meetings through wireframes, design iterations, development, and post-launch training. Clients ranged from small businesses to hospitals, law firms, podcast networks, medical research centers, and land companies. Regularly consulted with account executives, senior developers, and partners to solve problems no one else wanted to touch. Trained clients on their CMS after every launch.</p>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic &mdash; 3.5 years</p>
@@ -44,7 +44,7 @@ profile_schema: true
 <div class="skills-list">
 	<div class="skills-list__group">
 		<p class="skills-list__label">CMS</p>
-		<p class="skills-list__items">WordPress, Drupal, Sitecore, Joomla</p>
+		<p class="skills-list__items">WordPress, Drupal, Sitecore, Joomla, Sanity</p>
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Languages</p>
@@ -55,12 +55,32 @@ profile_schema: true
 		<p class="skills-list__items">HTML, CSS/SCSS</p>
 	</div>
 	<div class="skills-list__group">
+		<p class="skills-list__label">Static sites</p>
+		<p class="skills-list__items">Jekyll, Liquid, GitHub Pages, static site generators</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Accessibility</p>
+		<p class="skills-list__items">WCAG 2.1 AA, axe, Lighthouse, HTML validation</p>
+	</div>
+	<div class="skills-list__group">
 		<p class="skills-list__label">Tools</p>
-		<p class="skills-list__items">Git, Gutenberg blocks, Docker, GitHub Actions, Webpack, Jekyll</p>
+		<p class="skills-list__items">Git, Gutenberg blocks, Docker, Webpack, esbuild, pnpm</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Build and CI</p>
+		<p class="skills-list__items">GitHub Actions, HTMLProofer, Snyk, gitleaks, Dependabot</p>
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Integrations</p>
 		<p class="skills-list__items">Google Maps API, GA4, REST APIs, WPML</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">AI-assisted development</p>
+		<p class="skills-list__items">Claude Code, AI-assisted build and review workflows</p>
+	</div>
+	<div class="skills-list__group">
+		<p class="skills-list__label">Currently building with</p>
+		<p class="skills-list__items">React, Next.js, TypeScript, Sanity</p>
 	</div>
 </div>
 
@@ -68,7 +88,13 @@ profile_schema: true
 
 <p>CMS architectures that give non-technical teams real independence. Custom Gutenberg blocks, complex migrations that don't cost you your search rankings, API integrations that eliminate double data entry, and front-ends built to survive the next developer who touches them. I'm also comfortable in front of clients and stakeholders, which isn't universally true of developers.</p>
 
-<p><strong>The one constant:</strong> "No" has never been an answer I can give outright. If a client needs something and the first path doesn't work, that's a research problem, not a dead end. I find the alternative route, or I find the person who knows it.</p>
+<p><strong>The one constant:</strong> "No" has never been an answer I can give outright. If a client needs something and the first path doesn't work, that's a research problem. I find the alternative route, or I find the person who knows it.</p>
+
+## How I work
+
+<p>Every project I've run started with client or stakeholder meetings to work out what the site has to do, followed by wireframes and design iterations before any code got written. On the build I read the design spec first and flag anything that will cause a development problem, then implement the component, build a full page with it, and send it back for stakeholder review before it ships. QA is its own step covering browser support, HTML validation, script errors, and usability, and on the seismic.com rebrand I moved from component development into QA triage lead across a cross-functional team of 20+.</p>
+
+<p>After launch I document the development standards, the analytics configuration, and the production workflows, then train the people who will be running the site. That has meant about 30 HR professionals at PPDG, client groups of 1 to 6 at Gray Digital Group, three content producers and the EMEA regional teams at Seismic, and the six-person agency team that took over seismic.com.</p>
 
 ## What I'm looking for
 
