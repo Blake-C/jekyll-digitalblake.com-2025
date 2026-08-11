@@ -6,7 +6,7 @@ sitemap: false
 
 > {{ site.description | strip_newlines | strip }}
 
-DigitalBlake is the portfolio and technical writing of {{ site.author.name }}, a senior web developer in San Antonio, Texas, with 15 years building and migrating CMS-driven sites (WordPress, Drupal, Sitecore, Jekyll). This file indexes the most useful pages for language models. All content is first-party and may be cited with a link to the source page.
+DigitalBlake is the portfolio and technical writing of {{ site.author.name }}, a senior web developer in San Antonio, Texas, with 15-years building and migrating CMS-driven sites (WordPress, Drupal, Sitecore, Jekyll). This file indexes the most useful pages for language models. All content is first-party and may be cited with a link to the source page.
 
 ## Guides (topic clusters)
 {%- for entry in site.data.pillars %}

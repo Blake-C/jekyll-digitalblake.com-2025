@@ -2,11 +2,11 @@
 layout: content-page
 title: Resume
 permalink: /resume/
-description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Texas: 15 years across WordPress, Drupal, Sitecore, Joomla, and Jekyll, with a focus on large CMS migrations.'
+description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Texas: 15-years across WordPress, Drupal, Sitecore, Joomla, and Jekyll, with a focus on large CMS migrations.'
 profile_schema: true
 ---
 
-<p>Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams run on their own after launch.</p>
+<p>Senior Web Developer based in San Antonio, Texas, with 15-years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch.</p>
 
 <p class="resume-actions">
 	<a class="button button--primary" href="{{ site.resume_url }}" target="_blank" rel="noopener">Download PDF resume</a>
@@ -117,7 +117,7 @@ profile_schema: true
 		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">August 2025 to Present</span></p>
 		<p class="career-timeline__role">Self-Directed Engineering</p>
 		<ul class="career-timeline__bullets">
-			<li>Spent the past six months building fluency in AI-assisted development workflows and applying them across a Next.js and Sanity project, native macOS tooling, and this portfolio.</li>
+			<li>Spent the past six months building fluency in AI-assisted development workflows and applying them across a Next.js and Sanity project, native macOS tooling, and digitalblake.com.</li>
 			<li>Built Teleport's Atlas landing page in Next.js from a Figma spec as an interview coding challenge, then moved it onto Sanity as a headless CMS with visual editing and a publish webhook.</li>
 			<li>Built native macOS tools to solve problems on my own machine, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a SwiftUI and AppKit UI performance comparison.</li>
 			<li>Built and maintain digitalblake.com on Jekyll with a Docker-isolated toolchain, esbuild, inlined critical CSS, and subset WOFF2 fonts, deployed by GitHub Actions running HTMLProofer and Snyk, with a gitleaks pre-commit scan and a pnpm release-age gate guarding the supply chain.</li>
@@ -161,6 +161,7 @@ profile_schema: true
 			<li>Coordinated the migration of all sites to a new server running the latest PHP, MySQL, and Apache.</li>
 			<li>Designed and built an employee portal on Joomla 2.5 for 600+ field employees.</li>
 			<li>Trained a corporate office of 30+ employees on the operation and business rules of the portal.</li>
+			<li>Designed and built Plaza Lecea Event Center website on Joomla 2.5.</li>
 		</ul>
 	</div>
 </div>
