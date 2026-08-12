@@ -125,7 +125,7 @@ profile_schema: true
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates">February 2022 to July 2025</span></p>
-		<p class="career-timeline__role">Senior Web Developer</p>
+		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Served as development lead for the WordPress-to-Sitecore migration, collaborating with design, brand, content, and SEO specialists and joining leadership meetings to resolve technical conflicts.</li>
 			<li>Acted as the technical point of escalation to align stakeholders across teams during high-stress, timeline-constrained delivery sprints.</li>
