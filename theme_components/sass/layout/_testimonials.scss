@@ -146,11 +146,4 @@
 		display: flex;
 		gap: bp.rem-calc(12);
 	}
-
-	// The band renders these on navy and inherits its link colour; here they sit on
-	// white, so the name needs the usual link treatment to be identifiable.
-	.testimonials__name a {
-		color: v.$accent-blue;
-		text-decoration: underline;
-	}
 }
