@@ -1,0 +1,168 @@
+# LinkedIn recommendations, reproduced verbatim.
+# quote:   the full text exactly as written. Never edit for meaning.
+# excerpt: optional pull quote for the three-card band. Use … where passages are joined.
+# role:    title held when they worked with Blake, not their current LinkedIn headline.
+#          Required. Use 'Colleague' if no title is known.
+# avatar:  omit to render initials. Add a path only with that person's permission.
+
+- name: Neicole Crepeau
+  role: Senior Director, Web Strategy
+  company: Seismic
+  date: 2025-08-12
+  linkedin: https://www.linkedin.com/in/neicolecrepeau
+  featured: true
+  featured_order: 2
+  excerpt: >-
+      Blake is one of the nicest, most patient, and dependable developers I’ve ever worked with. … You will very
+      rarely hear a simple “no” from him. He’s the kind of guy that looks for solutions and ways to get to yes.
+  quote: >-
+      I worked with Blake for over three years at Seismic, where Blake was our lead developer. On top of being
+      highly capable and reliable, Blake is one of the nicest, most patient, and dependable developers I’ve ever
+      worked with. We went through two challenging site migrations and redesigns together. Anybody who has been
+      through that knows the kinds of ups and downs, unexpected speed bumps, and difficult challenges that
+      inevitably happen. Blake was a cool, calm, solid partner as we worked through them all. One of the things I
+      love about Blake is his determination to find a way. You will very rarely hear a simple “no” from him. He’s
+      the kind of guy that looks for solutions and ways to get to yes. He’ll do the research, so if he says
+      something isn’t technically feasible, you can count on that. But you can also count on him suggesting an
+      alternative. “We can’t do it this way, but if we can make this adjustment, we could do it.” Blake is a
+      problem solver. Blake is also absolutely dedicated. We literally had to tell the guy to get offline and get
+      some sleep. He takes on a tremendous amount and he delivers. Blake is not going to let you down. Whether
+      it’s as a consultant or a permanent employee, you’ll be lucky to have Blake working for you.
+
+- name: Josh Patrice
+  role: Senior Director, Digital Marketing & Web Strategy
+  company: Seismic
+  date: 2025-07-15
+  linkedin: https://www.linkedin.com/in/joshpatrice
+  featured: true
+  featured_order: 1
+  excerpt: >-
+      Blake is, without exaggeration, the most capable web developer I’ve worked with. He combines deep technical
+      expertise with calm, focused execution, even under the most intense deadlines.
+  quote: >-
+      Blake is, without exaggeration, the most capable web developer I’ve worked with. He combines deep technical
+      expertise with calm, focused execution, even under the most intense deadlines. When he joined Seismic, we
+      were in the middle of a massive rebrand with over 40 pages to launch, and Blake jumped in immediately,
+      delivering high-quality work while still onboarding and navigating a complex tech stack. He was instrumental
+      in our transition from WordPress to Sitecore, helping move nearly 1000 pages, setting up a reverse proxy to
+      ensure uptime and continuity, and leading on many of the web architecture decisions that made the new
+      experience stable and scalable. Beyond that, Blake took on the time-consuming task of QA triage with grace
+      and consistency, keeping us on track and calmly solving every problem that came his way. Blake is humble,
+      collaborative, and incredibly sharp. He works effortlessly across teams, communicates technical concepts
+      clearly, and brings a solutions-first mindset to everything he touches. Any organization would be lucky to
+      have him on their team.
+
+- name: Josie Medel
+  role: Web Developer and Designer
+  company: Gray Digital Group
+  date: 2019-03-01
+  linkedin: https://www.linkedin.com/in/josiemedel
+  quote: >-
+      Blake is one of the most knowledgeable developers I've ever met. He constantly goes above and beyond on
+      every project he gets his hands on. He is a great thinker, an amazing problem solver, a superb communicator
+      and anyone would be lucky to have him as part of their team or project. Blake has helped shape Gray Digital
+      Groups development process with tools such as Gulp, Docker, and Webpack. His efforts have helped the team
+      develop sites that are both efficient, optimized, and user-friendly. I’d highly recommend Blake for any
+      project or job, you won’t be disappointed. One of Blake’s greatest skills is pushing the envelope; he is
+      constantly on the forefront of new and exciting technology. He lives and breathes development which is
+      evident in his day-to-day pursuit of solving problems for clients both big and small. He has amazing
+      attention to detail and can tell you a thousand ways to solve problems all while keeping within time-frame
+      and budget.
+
+- name: Jiles Rodriguez
+  role: Web Developer
+  company: Gray Digital Group
+  date: 2017-08-14
+  linkedin: https://www.linkedin.com/in/jiles-rodriguez
+  featured: true
+  featured_order: 3
+  excerpt: >-
+      Blake is relentless in his pursuit to create solutions to technical problems and yet knows when to offer up
+      variable solutions if a path would extend beyond the budget/timeframe available.
+  quote: >-
+      There are few developers that I've worked with that have the aptitude for writing and thinking about code,
+      the way Blake does. I had the pleasure of working with Blake at Gray Digital Group as I directed web
+      application projects. His insight and recommendations for handling key issues on a project always trended
+      towards planning early, in order to properly manage the work going forward, as well as offering up solutions
+      to issues, and not just pointing out roadblocks. Any lead/director knows the value of having someone on your
+      team that is able to do this, as it creates value in meetings versus extending a talk with no solutions.
+      Blake is relentless in his pursuit to create solutions to technical problems and yet knows when to offer up
+      variable solutions if a path would extend beyond the budget/timeframe available. For myself as a team
+      leader, it was absolutely invaluable having someone that not only had amazing attention to detail but was
+      also able to step back and look at the bigger scope, in order to reassess and preemptively change course if
+      needed. Blake always had a great disposition, regardless of the weather, crunch times at work, having a
+      cold, you name it! That "soft skill", is something very rare among developers, and is highly valued. While
+      he may get focused in the work he's doing, he's not the stereotypical uncommunicative developer, by far! As
+      a developer, Blake has my highest recommendation for any code based projects.
+
+- name: Nicole Sellers
+  role: Project Manager
+  company: Gray Digital Group
+  date: 2017-08-14
+  linkedin: https://www.linkedin.com/in/nicoleosburnsellers
+  quote: >-
+      I had the opportunity to work with Blake at Gray Digital Group. He is the type of developer every Project
+      Manager hopes they will have on their team. Blake was a team player, who happily took on everything from
+      smaller maintenance tasks to large-scale website redesign and development projects. What stood out to me
+      while working with Blake were his communication skills. The majority of our interactions were day-to-day
+      project tasking and progress updates. He always clearly communicated with myself and the rest of the team.
+      He excelled at risk management and being proactive. It wasn't until we had an on-site client meeting that I
+      realized that Blake was not only an effective communicator internally, but he also got the job done in front
+      of the client. Client meetings can be challenging as you never quite know the topic they will ask about or
+      where the conversation may go. Blake handled this meeting with professionalism and was able to think on his
+      feet to provide clear answers to the client. I highly recommend Blake!
+
+- name: Kai Armstrong
+  role: Project Manager
+  company: Gray Digital Group
+  date: 2016-03-08
+  linkedin: https://www.linkedin.com/in/kaiarmstrong
+  quote: >-
+      Blake is _THE_ developer everyone wants on their team. He's able to take the most technically complicated
+      problems the team has and solve those with ease. However, Blake's most valuable quality is his continued
+      pursuit of new skills and technologies. He would spend his personal time learning new techniques and then
+      bring those back to the office to share with the team. Blake was consistently pushing the bounds of his
+      skills to deliver for customers and in the process making the team around him that much better.
+
+- name: Tim Smith
+  role: Web Developer and Designer
+  company: Gray Digital Group
+  date: 2016-01-09
+  linkedin: https://www.linkedin.com/in/pathlesstraveled
+  quote: >-
+      I can't say enough about Blake. While we worked together, Blake received numerous projects that seemed
+      nearly impossible, and he tore through them like nothing, without ever sacrificing code standards or
+      communication. Not only did Blake accomplish his primary tasks, but he found time to identify code &
+      development opportunities and share these with the team on nearly every project he was handed. The team
+      would have been at a complete loss without Blake's initiative to uphold multiple roles, from Front-End
+      Development to Content Architecture, and even client discovery meetings and trainings.
+
+- name: Melissa Zapata, MAA
+  role: Account Executive
+  company: Gray Digital Group
+  date: 2015-01-07
+  linkedin: https://www.linkedin.com/in/melissamireles
+  quote: >-
+      I had the opportunity to work with Blake at Gray Digital Group for about a year. He is an amazing person
+      that would go above and beyond to ensure all deadlines were met and would present a multitude of solutions
+      for all my clients. He's a true professional with amazing attention to detail, extensive technical knowledge
+      and a wonderful positive attitude. When the pressure's on, Blake is able to focus on the task at hand and
+      get things done. From design to coding and testing, he has a great skillset that will take him far.
+
+- name: Viviane Marioneaux-Maguire
+  role: Department Coordinator, Digital Media
+  company: Northwest Vista College
+  date: 2014-10-08
+  linkedin: https://www.linkedin.com/in/viviane-marioneaux
+  quote: >-
+      Blake was the first true Digital Media lab assistant that the Digital Media department at Northwest Vista
+      had the pleasure of employing. In this position Blake wore many hats which included being our equipment
+      specialist and lead tutor for front end web development in our labs. Blake was timely and was always a
+      person who you could count on to get any task done. His natural ability to go above and beyond the
+      requirements of any task is what made Blake an asset to our team. Blake shaped the expectations and job
+      requirements for lab assistants that succeeded him. Blake was also a former student of mine and much like in
+      his job excelled and exceeded in all assignments and expectations. He was quick to think outside of the box
+      and incorporate teachings along the way. His ability to not only retain the information but also help others
+      grasp concepts made him a respected classmate among his peers. There is not a day that goes by that I do not
+      miss Blake as a student and as a lab assistant, but I am very glad that he has found his place in the
+      workforce as I knew he would.
