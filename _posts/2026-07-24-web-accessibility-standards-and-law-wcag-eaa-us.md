@@ -6,7 +6,7 @@ date: 2026-07-24 15:14:41 CDT -0500
 modified_date: 2026-07-28 02:11:06 CDT -0500
 categories: ['Articles']
 tags: ['accessibility', 'wcag', 'web-standards', 'ada', 'european-accessibility-act', 'section-508', 'compliance']
-image: '/assets/uploads/2026/07/web-accessibility-standards-and-law-wcag-eaa-us.webp'
+image: '/assets/uploads/2026/07/web-accessibility-standards-and-law-wcag-eaa-us-og.webp'
 ---
 
 <aside class="callout">

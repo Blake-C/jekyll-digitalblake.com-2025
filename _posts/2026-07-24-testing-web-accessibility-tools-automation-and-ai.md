@@ -6,7 +6,7 @@ date: 2026-07-24 17:25:33 CDT -0500
 modified_date: 2026-07-28 02:11:06 CDT -0500
 categories: ['Articles']
 tags: ['accessibility', 'wcag', 'testing', 'axe-core', 'automation', 'ai', 'web-development']
-image: '/assets/uploads/2026/07/testing-web-accessibility-tools-automation-and-ai.webp'
+image: '/assets/uploads/2026/07/testing-web-accessibility-tools-automation-and-ai-og.webp'
 ---
 
 <aside class="callout">
