@@ -118,9 +118,9 @@ profile_schema: true
 		<p class="career-timeline__role">Self-Directed Engineering</p>
 		<ul class="career-timeline__bullets">
 			<li>Applied AI-assisted development workflows across a Next.js and Sanity project, native macOS tooling, and digitalblake.com.</li>
-			<li>Built native macOS tools to solve problems on my own machine, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a SwiftUI and AppKit UI performance comparison.</li>
+			<li>Built native macOS applications, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a <a href="{% post_url 2026-04-28-swiftui-vs-appkit-macos-ui-performance %}">SwiftUI and AppKit UI performance comparison</a>.</li>
 			<li>Built and maintain digitalblake.com on Jekyll with a Docker-isolated toolchain, esbuild, inlined critical CSS, and subset WOFF2 fonts, deployed by GitHub Actions running HTMLProofer and Snyk, with a gitleaks pre-commit scan and a pnpm release-age gate guarding the supply chain.</li>
-			<li>Researched and published on WCAG 2.1 AA conformance testing and on which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 each require.</li>
+			<li>Researched and published on <a href="{% post_url 2026-07-24-testing-web-accessibility-tools-automation-and-ai %}">WCAG 2.1 AA conformance testing</a> and on <a href="{% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}">which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 each require</a>.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
