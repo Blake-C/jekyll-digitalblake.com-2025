@@ -1,7 +1,7 @@
 ---
 layout: content-page
-title: Testimonials
-permalink: /testimonials/
+title: Recommendations
+permalink: /recommendations/
 description: 'LinkedIn recommendations for Blake Cerecero from colleagues and managers at Seismic, Gray Digital Group, and Northwest Vista College, reproduced in full.'
 ---
 
