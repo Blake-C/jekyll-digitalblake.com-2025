@@ -114,8 +114,8 @@ profile_schema: true
 
 <div class="career-timeline">
 	<div class="career-timeline__item">
-		<p class="career-timeline__employer">DigitalBlake.com <span class="career-timeline__dates">July 2025 to Present</span></p>
-		<p class="career-timeline__role">Self-Directed Engineering</p>
+		<p class="career-timeline__employer">DigitalBlake.com (Self-Employed) <span class="career-timeline__dates">July 2025 to Present</span></p>
+		<p class="career-timeline__role">Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Applied AI-assisted development workflows across a Next.js and Sanity project, native macOS tooling, and digitalblake.com.</li>
 			<li>Built native macOS applications, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a <a href="{% post_url 2026-04-28-swiftui-vs-appkit-macos-ui-performance %}">SwiftUI and AppKit UI performance comparison</a>.</li>
