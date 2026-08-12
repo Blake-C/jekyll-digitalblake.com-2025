@@ -206,17 +206,24 @@
 			font-weight: 700;
 		}
 
+		// Content images bleed past the text column on both sides. `.no-bleed` opts
+		// an image out, for anything sized to sit inline with text rather than
+		// break out of it: avatars, inline icons, badges. Without it the `margin:
+		// 0 auto` here leaves `margin-right: auto` in place, which inside a flex
+		// row pushes the next sibling to the far edge.
 		img {
 			&:not(.alignright) {
 				&:not(.alignleft) {
-					display: block;
-					margin: 0 auto;
-					margin-left: -20px;
-					max-width: calc(100% + 40px);
+					&:not(.no-bleed) {
+						display: block;
+						margin: 0 auto;
+						margin-left: -20px;
+						max-width: calc(100% + 40px);
 
-					@include bp.breakpoint(large) {
-						margin-left: -30px;
-						max-width: calc(100% + 60px);
+						@include bp.breakpoint(large) {
+							margin-left: -30px;
+							max-width: calc(100% + 60px);
+						}
 					}
 				}
 			}
