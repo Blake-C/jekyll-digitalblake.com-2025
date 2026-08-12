@@ -1,0 +1,27 @@
+{%- comment -%}
+	Avatar for a recommendation. Renders the photo when `avatar` is set on the entry in
+	_data/recommendations.yml, and initials otherwise. Decorative either way: the name is
+	adjacent text, so alt is empty and the initials are hidden from assistive tech to
+	keep a screen reader from reading the person twice.
+{%- endcomment -%}
+{%- assign name_parts = include.recommendation.name | split: ' ' -%}
+{%- assign initials = name_parts[0] | slice: 0 -%}
+{%- if name_parts.size > 1 -%}
+	{%- assign second_initial = name_parts[1] | slice: 0 -%}
+	{%- assign initials = initials | append: second_initial -%}
+{%- endif -%}
+{%- if include.recommendation.avatar -%}
+	<img
+		class="recommendations__avatar"
+		src="{{ include.recommendation.avatar | relative_url }}"
+		alt=""
+		width="42"
+		height="42"
+		loading="lazy"
+		decoding="async"
+	>
+{%- else -%}
+	<span class="recommendations__avatar recommendations__avatar--initials" aria-hidden="true">
+		{{- initials | upcase -}}
+	</span>
+{%- endif -%}

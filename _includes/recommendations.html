@@ -1,0 +1,35 @@
+{%- assign featured_recommendations = site.data.recommendations | where: 'featured', true | sort: 'featured_order' -%}
+<section class="recommendations" aria-labelledby="recommendations-title">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2 class="recommendations__title" id="recommendations-title">What colleagues say</h2>
+			<div class="row">
+				{%- for recommendation in featured_recommendations limit: 3 -%}
+					<div class="large-4 medium-12 small-12 columns">
+						<blockquote class="recommendations__card">
+							<p class="recommendations__quote">&ldquo;{{ recommendation.excerpt }}&rdquo;</p>
+							<footer class="recommendations__attribution">
+								{%- include recommendation-avatar.html recommendation=recommendation -%}
+								<div class="recommendations__meta">
+									<cite class="recommendations__name"
+										><a href="{{ recommendation.linkedin }}" target="_blank" rel="noopener">
+											{{- recommendation.name -}}
+										</a></cite
+									>
+									<span class="recommendations__role">
+										{{- recommendation.role }} &middot; {{ recommendation.company -}}
+									</span>
+								</div>
+							</footer>
+						</blockquote>
+					</div>
+				{%- endfor -%}
+			</div>
+			<p class="recommendations__more">
+				<a href="{{ '/recommendations/' | relative_url }}"
+					>Read all {{ site.data.recommendations | size }} recommendations</a
+				>
+			</p>
+		</div>
+	</div>
+</section>

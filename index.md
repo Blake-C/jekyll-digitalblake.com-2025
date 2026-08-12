@@ -56,6 +56,6 @@ preload_image_mobile: /assets/images/header-background-sm.webp
 
     {%- include recent-articles.html -%}
 
-    {%- include testimonials.html -%}
+    {%- include recommendations.html -%}
 
 </main>

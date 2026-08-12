@@ -1,7 +1,7 @@
 @use '../helpers/breakpoints' as bp;
 @use '../helpers/variables' as v;
 
-.testimonials {
+.recommendations {
 	background: v.$primary;
 	color: v.$white;
 	padding-bottom: bp.rem-calc(80);
@@ -62,7 +62,7 @@
 	}
 
 	// Stands in for a headshot. Solid fill so it reads on both the dark band and the
-	// white /testimonials/ page, which is why it is not nested under either context.
+	// white /recommendations/ page, which is why it is not nested under either context.
 	&__avatar--initials {
 		align-items: center;
 		background: v.$accent-blue;
@@ -116,9 +116,9 @@
 	}
 }
 
-// Full recommendations on /testimonials/. Shares the attribution classes with the
+// Full recommendations on /recommendations/. Shares the attribution classes with the
 // card band above, on a light background instead of the dark one.
-.testimonial-list {
+.recommendation-list {
 	&__item {
 		border-bottom: 1px solid v.$light-gray;
 		margin: 0 0 bp.rem-calc(40);

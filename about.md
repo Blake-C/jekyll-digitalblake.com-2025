@@ -3,7 +3,7 @@ layout: content-page
 title: Blake Cerecero
 permalink: /about/
 description: 'Senior web developer with 15-years building fast, accessible sites on WordPress, Drupal, Sitecore, and beyond.'
-show_testimonials: true
+show_recommendations: true
 profile_schema: true
 ---
 
