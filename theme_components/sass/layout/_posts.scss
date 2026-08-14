@@ -168,33 +168,31 @@ $flush-block: '#{$image-block}, .code-toolbar';
 			}
 		}
 
-		// The intro paragraph keeps its drop cap when a TL;DR box precedes it.
-		// Scoped to :first-child so a mid-article callout, such as a cross-link
-		// aside, does not hand a drop cap to whatever paragraph follows it.
-		> p:first-child::first-letter,
-		> .callout:first-child + p::first-letter {
-			float: left;
-			font-family: Georgia, serif;
-			font-size: bp.rem-calc(75);
-			font-weight: 700;
-			line-height: 1;
-			margin: -6px 10px -6px -3px;
-			padding: 0;
+		// Drop cap on the first paragraph, skipping a leading image and callout in
+		// either order. Anchored to :first-child so a mid-article one is ignored.
+		> p:first-child:not(:has(> img:only-child)),
+		> .callout:first-child + p,
+		> :is(#{$image-block}):first-child + p,
+		> :is(#{$image-block}):first-child + .callout + p {
+			&::first-letter {
+				float: left;
+				font-family: Georgia, serif;
+				font-size: bp.rem-calc(75);
+				font-weight: 700;
+				line-height: 1;
+				margin: -6px 10px -6px -3px;
+				padding: 0;
 
-			@include bp.breakpoint(medium) {
-				font-size: bp.rem-calc(90);
+				@include bp.breakpoint(medium) {
+					font-size: bp.rem-calc(90);
+				}
 			}
-		}
 
-		// The drop cap is a float and is taller than the two or three lines of
-		// text that wrap beside it. A list placed directly after the intro
-		// paragraph would otherwise wrap against that float and sit indented
-		// from its own bullets. Clearing returns the list to the left margin.
-		> p:first-child + ul,
-		> p:first-child + ol,
-		> .callout:first-child + p + ul,
-		> .callout:first-child + p + ol {
-			clear: left;
+			// A short intro paragraph leaves the drop cap float overhanging what
+			// follows. Paragraphs are meant to wrap beside it; nothing else is.
+			+ *:not(p) {
+				clear: left;
+			}
 		}
 
 		a {
