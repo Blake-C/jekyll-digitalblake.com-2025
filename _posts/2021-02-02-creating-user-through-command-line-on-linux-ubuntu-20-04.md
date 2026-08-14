@@ -13,6 +13,8 @@ image: '/assets/uploads/2021/02/random-1-1200x630-facebook-share.webp'
 
 ![Decorative header image for a Linux Ubuntu 20.04 guide](/assets/uploads/2021/02/random-1.webp)
 
+I am constantly forgetting how to create new users through the command line on Linux. This article is more for myself, than anyone else, so that I have something to refer to in the future rather than having to go and search down the page again elsewhere on the internet.
+
 Adding new user, change USERNAME with the name you want to use.
 
 ```bash
