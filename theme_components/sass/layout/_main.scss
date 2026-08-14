@@ -2,21 +2,10 @@
 @use '../helpers/variables' as v;
 
 .wrapper {
-	background-color: #e4e4e4;
+	background-color: v.$page-background;
 	padding: 40px 0 70px;
 
 	@include bp.breakpoint(medium) {
 		padding: 80px 0 90px;
 	}
-}
-
-.browserupgrade {
-	background: v.$gray244;
-	color: v.$black;
-	margin: 0.2em 0;
-	padding: 0.2em 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 2000;
 }

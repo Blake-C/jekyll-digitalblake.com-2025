@@ -1,10 +1,12 @@
-@use 'variables' as v;
-
 @use 'sass:color';
 
-// ─── Base mixin ──────────────────────────────────────────────────────────────
+@use 'variables' as v;
 
-@mixin button-base($padding: 0.75em 1.25em) {
+// How far a solid button darkens on hover. One value so every solid variant
+// moves by the same amount.
+$button-hover-shift: -8%;
+
+.button {
 	-webkit-appearance: none;
 	border: 2px solid transparent;
 	border-radius: 4px;
@@ -14,7 +16,7 @@
 	font-size: 0.9375rem;
 	font-weight: 700;
 	line-height: 1;
-	padding: $padding;
+	padding: 0.75em 1.25em;
 	text-align: center;
 	text-decoration: none;
 	transition:
@@ -43,118 +45,86 @@
 		cursor: not-allowed;
 		opacity: 0.5;
 	}
-}
 
-// ─── Variant mixins ──────────────────────────────────────────────────────────
-
-// Solid navy — for light/neutral backgrounds
-@mixin button-primary {
-	background-color: v.$accent-1;
-	border-color: v.$accent-1;
-	color: v.$white;
-
-	&:hover,
-	&:focus {
-		background-color: color.adjust(v.$accent-1, $lightness: -8%);
-		border-color: color.adjust(v.$accent-1, $lightness: -8%);
+	// Solid navy, for light and neutral backgrounds.
+	&--primary {
+		background-color: v.$accent-1;
+		border-color: v.$accent-1;
 		color: v.$white;
+
+		&:hover,
+		&:focus {
+			background-color: color.adjust(v.$accent-1, $lightness: $button-hover-shift);
+			border-color: color.adjust(v.$accent-1, $lightness: $button-hover-shift);
+			color: v.$white;
+		}
 	}
-}
 
-// White-filled — for dark/hero backgrounds
-@mixin button-primary-light {
-	background: rgba(255, 255, 255, 0.9);
-	border-color: rgba(255, 255, 255, 0.9);
-	color: v.$primary;
-
-	&:hover,
-	&:focus {
-		background: v.$white;
-		border-color: v.$white;
+	// White-filled, for dark and hero backgrounds.
+	&--primary-light {
+		background: rgba(v.$pure-white, 0.9);
+		border-color: rgba(v.$pure-white, 0.9);
 		color: v.$primary;
+
+		&:hover,
+		&:focus {
+			background: v.$white;
+			border-color: v.$white;
+			color: v.$primary;
+		}
 	}
-}
 
-// Deep navy — stronger contrast on light backgrounds
-@mixin button-primary-dark {
-	background-color: v.$primary;
-	border-color: v.$primary;
-	color: v.$white;
-
-	&:hover,
-	&:focus {
-		background-color: color.adjust(v.$primary, $lightness: -8%);
-		border-color: color.adjust(v.$primary, $lightness: -8%);
+	// Deep navy, stronger contrast on light backgrounds.
+	&--primary-dark {
+		background-color: v.$primary;
+		border-color: v.$primary;
 		color: v.$white;
+
+		&:hover,
+		&:focus {
+			background-color: color.adjust(v.$primary, $lightness: $button-hover-shift);
+			border-color: color.adjust(v.$primary, $lightness: $button-hover-shift);
+			color: v.$white;
+		}
 	}
-}
 
-// Outline/ghost navy — for light/neutral backgrounds
-@mixin button-secondary {
-	background: transparent;
-	border-color: v.$accent-1;
-	color: v.$accent-1;
-
-	&:hover,
-	&:focus {
-		background: rgba(v.$accent-1, 0.08);
+	// Outline navy, for light and neutral backgrounds.
+	&--secondary {
+		background: transparent;
+		border-color: v.$accent-1;
 		color: v.$accent-1;
+
+		&:hover,
+		&:focus {
+			background: rgba(v.$accent-1, 0.08);
+			color: v.$accent-1;
+		}
 	}
-}
 
-// Ghost white outline — for dark/colored backgrounds
-@mixin button-secondary-light {
-	background: transparent;
-	border-color: rgba(255, 255, 255, 0.5);
-	color: v.$white;
-
-	&:hover,
-	&:focus {
-		background: rgba(255, 255, 255, 0.12);
-		border-color: v.$white;
+	// Ghost white outline, for dark and colored backgrounds.
+	&--secondary-light {
+		background: transparent;
+		border-color: rgba(v.$pure-white, 0.5);
 		color: v.$white;
+
+		&:hover,
+		&:focus {
+			background: rgba(v.$pure-white, 0.12);
+			border-color: v.$white;
+			color: v.$white;
+		}
 	}
-}
 
-// Ghost dark outline — for light backgrounds
-@mixin button-secondary-dark {
-	background: transparent;
-	border-color: v.$primary;
-	color: v.$primary;
-
-	&:hover,
-	&:focus {
-		background: rgba(v.$primary, 0.06);
+	// Ghost dark outline, for light backgrounds.
+	&--secondary-dark {
+		background: transparent;
+		border-color: v.$primary;
 		color: v.$primary;
+
+		&:hover,
+		&:focus {
+			background: rgba(v.$primary, 0.06);
+			color: v.$primary;
+		}
 	}
-}
-
-// ─── Generated classes ───────────────────────────────────────────────────────
-
-.button {
-	@include button-base;
-}
-
-.button--primary {
-	@include button-primary;
-}
-
-.button--primary-light {
-	@include button-primary-light;
-}
-
-.button--primary-dark {
-	@include button-primary-dark;
-}
-
-.button--secondary {
-	@include button-secondary;
-}
-
-.button--secondary-light {
-	@include button-secondary-light;
-}
-
-.button--secondary-dark {
-	@include button-secondary-dark;
 }

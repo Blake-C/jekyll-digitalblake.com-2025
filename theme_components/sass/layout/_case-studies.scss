@@ -1,49 +1,47 @@
 @use '../helpers/breakpoints' as bp;
-@use '../helpers/cards' as cards;
+@use '../helpers/cards';
+@use '../helpers/functions' as fn;
 @use '../helpers/helpers';
 @use '../helpers/variables' as v;
 
 .case-studies {
 	@extend %cover;
 
-	// background-image: url('../images/websites-background.webp');
-	// background-position: center;
 	background: linear-gradient(to bottom, #e8f5f6, #74a2bf);
-	padding: bp.rem-calc(80) 0 bp.rem-calc(100);
+	padding: fn.rem-calc(80) 0 fn.rem-calc(100);
 
 	@include bp.breakpoint(small only) {
-		// background-image: url('../images/websites-background-sm.webp');
-		padding: bp.rem-calc(60) 0 bp.rem-calc(80);
+		padding: fn.rem-calc(60) 0 fn.rem-calc(80);
 	}
 
 	&__grid {
-		row-gap: bp.rem-calc(50);
+		row-gap: fn.rem-calc(50);
 	}
 
 	&__title {
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		line-height: 1.8;
-		margin-bottom: bp.rem-calc(8);
+		margin-bottom: fn.rem-calc(8);
 		text-align: center;
 		text-transform: uppercase;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(30);
+			font-size: fn.rem-calc(30);
 		}
 	}
 
 	&__subtitle {
-		color: rgba(25, 25, 54, 0.6);
-		font-size: bp.rem-calc(13);
+		color: rgba(v.$primary, 0.6);
+		font-size: fn.rem-calc(13);
 		font-weight: 400;
 		letter-spacing: 0.5px;
-		margin-bottom: bp.rem-calc(40);
+		margin-bottom: fn.rem-calc(40);
 		text-align: center;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(15);
+			font-size: fn.rem-calc(15);
 		}
 	}
 
@@ -51,9 +49,8 @@
 		@include cards.clickable('.case-studies__title-link', '.case-studies__cta-hint');
 
 		backdrop-filter: blur(11px);
-		// background: rgba(255, 255, 255, 0.72);
-		background: rgba(255, 255, 255, 0.88);
-		border: 1px solid rgba(255, 255, 255, 0.25);
+		background: rgba(v.$pure-white, 0.88);
+		border: 1px solid rgba(v.$pure-white, 0.25);
 		border-radius: 10px;
 		box-shadow: 0 48px 18px -36px rgba(0, 0, 0, 0.18);
 		color: v.$primary;
@@ -91,30 +88,23 @@
 	&__image {
 		border: 0;
 		display: block;
-		// filter: opacity(0.7);
 		transition:
 			transform 0.4s ease,
 			filter 0.2s ease;
 		width: 100%;
-		// border-bottom: 2px solid rgba(v.$primary, 0.3);
-
-		// .case-studies__card:hover & {
-		// filter: opacity(1);
-		// transform: scale(1.2);
-		// }
 	}
 
 	&__card-body {
 		display: flex;
-		flex-direction: column;
 		flex: 1;
-		gap: bp.rem-calc(10);
-		padding: bp.rem-calc(14) bp.rem-calc(16);
+		flex-direction: column;
+		gap: fn.rem-calc(10);
+		padding: fn.rem-calc(14) fn.rem-calc(16);
 	}
 
 	&__item-title {
 		color: v.$primary;
-		font-size: bp.rem-calc(15);
+		font-size: fn.rem-calc(15);
 		font-weight: 700;
 		line-height: 1.3;
 		margin: 0;
@@ -128,13 +118,13 @@
 	&__tags {
 		display: flex;
 		flex-wrap: wrap;
-		gap: bp.rem-calc(5);
+		gap: fn.rem-calc(5);
 		list-style: none;
 		margin: 0;
 		padding: 0;
 
 		@at-root .entry-header & {
-			margin-bottom: bp.rem-calc(30);
+			margin-bottom: fn.rem-calc(30);
 		}
 	}
 
@@ -143,30 +133,30 @@
 		border: 1px solid rgba(122, 106, 247, 0.35);
 		border-radius: 4px;
 		color: v.$primary;
-		font-size: bp.rem-calc(9);
+		font-size: fn.rem-calc(9);
 		font-weight: 600;
 		line-height: 1;
-		padding: bp.rem-calc(4) bp.rem-calc(8);
+		padding: fn.rem-calc(4) fn.rem-calc(8);
 		white-space: nowrap;
 	}
 
 	&__cta-hint {
-		color: rgba(25, 25, 54, 0.65);
-		font-size: bp.rem-calc(12);
+		color: rgba(v.$primary, 0.65);
+		font-size: fn.rem-calc(12);
 		font-weight: 700;
 		margin-top: auto;
-		padding-bottom: bp.rem-calc(2);
+		padding-bottom: fn.rem-calc(2);
 	}
 
 	&__archive-header {
-		margin-top: bp.rem-calc(72);
-		margin-bottom: bp.rem-calc(40);
+		margin-bottom: fn.rem-calc(40);
+		margin-top: fn.rem-calc(72);
 		text-align: center;
 	}
 
 	&__archive-title {
 		color: v.$primary;
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		font-weight: 900;
 		letter-spacing: 4px;
 		margin: 0;
@@ -174,12 +164,12 @@
 		text-transform: uppercase;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(18);
+			font-size: fn.rem-calc(18);
 		}
 	}
 
 	&__archive-cta {
-		margin-top: bp.rem-calc(48);
+		margin-top: fn.rem-calc(48);
 		text-align: center;
 	}
 }

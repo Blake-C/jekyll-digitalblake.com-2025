@@ -1,38 +1,39 @@
 @use '../helpers/breakpoints' as bp;
-@use '../helpers/cards' as cards;
+@use '../helpers/cards';
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 .recent-articles {
 	background: v.$accent-1;
 	color: v.$white;
-	padding-bottom: bp.rem-calc(80);
-	padding-top: bp.rem-calc(80);
+	padding-bottom: fn.rem-calc(80);
+	padding-top: fn.rem-calc(80);
 
 	@include bp.breakpoint(small only) {
-		padding-bottom: bp.rem-calc(60);
-		padding-top: bp.rem-calc(60);
+		padding-bottom: fn.rem-calc(60);
+		padding-top: fn.rem-calc(60);
 	}
 
 	&__title {
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		line-height: 1.8;
-		margin-bottom: bp.rem-calc(48);
+		margin-bottom: fn.rem-calc(48);
 		text-align: center;
 		text-transform: uppercase;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(30);
+			font-size: fn.rem-calc(30);
 		}
 	}
 
 	&__item {
 		@include cards.clickable('.recent-articles__link');
 
-		border-top: 1px solid rgba(255, 255, 255, 0.2);
-		margin-bottom: bp.rem-calc(32);
-		padding-top: bp.rem-calc(20);
+		border-top: 1px solid rgba(v.$pure-white, 0.2);
+		margin-bottom: fn.rem-calc(32);
+		padding-top: fn.rem-calc(20);
 
 		@include bp.breakpoint(large) {
 			margin-bottom: 0;
@@ -41,19 +42,19 @@
 
 	&__date {
 		display: block;
-		font-size: bp.rem-calc(12);
+		font-size: fn.rem-calc(12);
 		font-weight: 700;
 		letter-spacing: 1.5px;
-		margin-bottom: bp.rem-calc(8);
+		margin-bottom: fn.rem-calc(8);
 		opacity: 0.6;
 		text-transform: uppercase;
 	}
 
 	&__item-title {
-		font-size: bp.rem-calc(17);
+		font-size: fn.rem-calc(17);
 		font-weight: 700;
 		line-height: 1.3;
-		margin-bottom: bp.rem-calc(10);
+		margin-bottom: fn.rem-calc(10);
 	}
 
 	&__link {
@@ -67,14 +68,14 @@
 	}
 
 	&__description {
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		line-height: 1.7;
 		margin: 0;
 		opacity: 0.8;
 	}
 
 	&__cta-row {
-		margin-top: bp.rem-calc(40);
+		margin-top: fn.rem-calc(40);
 		text-align: center;
 	}
 }

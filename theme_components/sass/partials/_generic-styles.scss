@@ -1,7 +1,8 @@
-@use '../helpers/breakpoints' as bp;
-@use '../helpers/variables' as v;
-
 @use 'sass:color';
+
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
+@use '../helpers/variables' as v;
 
 body {
 	word-wrap: break-word;
@@ -12,9 +13,9 @@ body {
 // its final size on first paint instead of inheriting a larger size and visibly
 // shrinking once the global stylesheet loads.
 .back-link {
-	font-size: bp.rem-calc(13);
+	font-size: fn.rem-calc(13);
 	font-weight: 600;
-	margin-bottom: bp.rem-calc(24);
+	margin-bottom: fn.rem-calc(24);
 	margin-top: 0;
 
 	a {
@@ -29,35 +30,35 @@ body {
 }
 
 h1 {
-	font-size: bp.rem-calc(28);
+	font-size: fn.rem-calc(28);
 	text-transform: uppercase;
 
 	@include bp.breakpoint(small only) {
-		font-size: bp.rem-calc(20);
+		font-size: fn.rem-calc(20);
 	}
 }
 
 h2 {
-	font-size: bp.rem-calc(18);
-	line-height: 1.2;
+	font-size: fn.rem-calc(18);
 	font-weight: 800;
+	line-height: 1.2;
 
 	@include bp.breakpoint(medium) {
-		font-size: bp.rem-calc(20);
+		font-size: fn.rem-calc(20);
 	}
 }
 
 p,
 li {
-	font-size: bp.rem-calc(14);
+	font-size: fn.rem-calc(14);
 
 	@include bp.breakpoint(medium) {
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 	}
 
 	code {
 		background-color: v.$white;
-		border: 1px solid v.$gray222;
+		border: 1px solid v.$border-gray;
 		display: inline-block;
 		line-height: 1.4;
 		overflow-wrap: anywhere;
@@ -106,14 +107,15 @@ a {
 	/* External link indicator — applies to any link opening in a new tab */
 	&[target='_blank'] {
 		&::after {
-			/* stylelint-disable-next-line property-no-vendor-prefix */
-			-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 2h5v5M10 2L2 10' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
-				no-repeat center / contain;
 			background-color: currentColor;
 			content: '';
 			display: inline-block;
 			height: 0.75em;
 			margin-left: 3px;
+			// autoprefixer emits the -webkit-mask copy from this declaration, so
+			// there is no hand-written prefix here. A hand-written one is also
+			// what the alphabetical order rule fights with, since the prefix has
+			// to stay immediately above the property it prefixes.
 			mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 2h5v5M10 2L2 10' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")
 				no-repeat center / contain;
 			vertical-align: -0.1em;
@@ -140,15 +142,15 @@ table {
 	caption {
 		caption-side: bottom;
 		color: v.$text-muted;
-		font-size: bp.rem-calc(13);
-		padding: bp.rem-calc(8) 0;
+		font-size: fn.rem-calc(13);
+		padding: fn.rem-calc(8) 0;
 		text-align: left;
 	}
 
 	th,
 	td {
-		border-bottom: 1px solid v.$gray222;
-		padding: bp.rem-calc(10) bp.rem-calc(14);
+		border-bottom: 1px solid v.$border-gray;
+		padding: fn.rem-calc(10) fn.rem-calc(14);
 		text-align: left;
 		vertical-align: top;
 	}
@@ -158,7 +160,7 @@ table {
 			background-color: v.$blue;
 			border-bottom: 2px solid v.$blue-end;
 			color: v.$white;
-			font-size: bp.rem-calc(13);
+			font-size: fn.rem-calc(13);
 			font-weight: 700;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
@@ -172,7 +174,7 @@ table {
 			transition: background-color 0.15s ease;
 
 			&:nth-child(even) {
-				background-color: v.$gray244;
+				background-color: v.$surface-tint;
 			}
 
 			&:hover,
@@ -192,19 +194,19 @@ table {
 	tfoot {
 		td,
 		th {
-			border-top: 2px solid v.$gray222;
-			font-size: bp.rem-calc(13);
+			border-top: 2px solid v.$border-gray;
+			font-size: fn.rem-calc(13);
 			font-weight: 700;
 		}
 	}
 }
 
 .table-wrapper {
-	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
+	overflow-x: auto;
 
 	table {
-		min-width: bp.rem-calc(480);
+		min-width: fn.rem-calc(480);
 	}
 }
 

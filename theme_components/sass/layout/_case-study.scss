@@ -1,29 +1,31 @@
-@use '../helpers/breakpoints' as bp;
-@use '../helpers/variables' as v;
 @use 'sass:color';
+
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
+@use '../helpers/variables' as v;
 
 .case-study {
 	&__hero-img {
-		border-bottom: 1px solid v.$gray222;
+		border-bottom: 1px solid v.$border-gray;
 
 		+ .callout {
-			margin-top: bp.rem-calc(28);
+			margin-top: fn.rem-calc(28);
 		}
 	}
 
 	&__tech-tags {
-		margin-top: bp.rem-calc(12);
+		margin-top: fn.rem-calc(12);
 	}
 
 	&__meta {
 		border-bottom: 1px solid rgba(v.$primary, 0.15);
 		border-top: 1px solid rgba(v.$primary, 0.15);
 		color: color.mix(v.$primary, #fff, 72%);
-		margin: bp.rem-calc(42) 0;
-		padding: bp.rem-calc(16) 0;
+		margin: fn.rem-calc(42) 0;
+		padding: fn.rem-calc(16) 0;
 
 		p {
-			margin-bottom: bp.rem-calc(2);
+			margin-bottom: fn.rem-calc(2);
 
 			&:first-child {
 				margin-top: 0;
@@ -36,12 +38,12 @@
 	}
 
 	&__actions {
-		margin-bottom: bp.rem-calc(32);
-		margin-top: bp.rem-calc(32);
+		margin-bottom: fn.rem-calc(32);
+		margin-top: fn.rem-calc(32);
 	}
 
 	.entry-title {
-		margin-bottom: bp.rem-calc(4);
+		margin-bottom: fn.rem-calc(4);
 	}
 
 	.post-cta {
@@ -52,8 +54,8 @@
 		border-top: none;
 
 		img {
-			border-top: 1px solid rgba(v.$primary, 0.15);
 			border-bottom: 1px solid rgba(v.$primary, 0.15);
+			border-top: 1px solid rgba(v.$primary, 0.15);
 
 			&.case-study__hero-img {
 				border-top: none;
@@ -77,18 +79,18 @@ a.case-studies__card {
 }
 
 .more-case-studies {
-	padding: 0 0 bp.rem-calc(80);
+	padding: 0 0 fn.rem-calc(80);
 
 	@include bp.breakpoint(small only) {
-		padding: bp.rem-calc(40) 0 bp.rem-calc(60);
+		padding: fn.rem-calc(40) 0 fn.rem-calc(60);
 	}
 
 	&__title {
-		font-size: bp.rem-calc(24);
+		font-size: fn.rem-calc(24);
 		font-weight: 900;
 		letter-spacing: 4.8px;
 		line-height: 1.8;
-		margin-bottom: bp.rem-calc(32);
+		margin-bottom: fn.rem-calc(32);
 		text-align: center;
 		text-transform: uppercase;
 	}

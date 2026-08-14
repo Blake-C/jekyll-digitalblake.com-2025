@@ -1,5 +1,6 @@
 @use '../helpers/breakpoints' as bp;
-@use '../helpers/cards' as cards;
+@use '../helpers/cards';
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 /* TOC column: above the content on mobile, right rail on large screens */
@@ -15,13 +16,13 @@
 .pillar-toc {
 	background: v.$white;
 	border-left: 3px solid v.$blue;
-	margin: 0 0 bp.rem-calc(24);
-	padding: bp.rem-calc(16) bp.rem-calc(20);
+	margin: 0 0 fn.rem-calc(24);
+	padding: fn.rem-calc(16) fn.rem-calc(20);
 
 	@include bp.breakpoint(large) {
-		position: sticky;
-		top: bp.rem-calc(72);
 		margin: 0;
+		position: sticky;
+		top: fn.rem-calc(72);
 	}
 
 	&__label {
@@ -34,9 +35,9 @@
 		padding: 0;
 
 		li {
-			font-size: bp.rem-calc(14);
-			line-height: bp.rem-calc(18);
-			margin-bottom: bp.rem-calc(14);
+			font-size: fn.rem-calc(14);
+			line-height: fn.rem-calc(18);
+			margin-bottom: fn.rem-calc(14);
 
 			&:last-child {
 				margin-bottom: 0;
@@ -52,10 +53,10 @@
 /* Responsive grid of article cards within a pillar section */
 .pillar-cards {
 	display: grid;
-	gap: bp.rem-calc(20);
+	gap: fn.rem-calc(20);
 	grid-template-columns: 1fr;
 	list-style: none;
-	margin: bp.rem-calc(20) 0 bp.rem-calc(40);
+	margin: fn.rem-calc(20) 0 fn.rem-calc(40);
 	padding: 0;
 
 	@include bp.breakpoint(medium) {
@@ -69,8 +70,8 @@
 	border: 1px solid v.$light-gray;
 	display: flex;
 	flex-direction: column;
-	gap: bp.rem-calc(8);
-	padding: bp.rem-calc(20);
+	gap: fn.rem-calc(8);
+	padding: fn.rem-calc(20);
 	transition:
 		border-color 0.2s ease,
 		box-shadow 0.2s ease;
@@ -83,14 +84,14 @@
 
 	&__date {
 		color: v.$text-muted;
-		font-size: bp.rem-calc(12);
+		font-size: fn.rem-calc(12);
 		font-weight: 700;
 		letter-spacing: 1px;
 		text-transform: uppercase;
 	}
 
 	&__title {
-		font-size: bp.rem-calc(17);
+		font-size: fn.rem-calc(17);
 		font-weight: 700;
 		line-height: 1.35;
 		margin: 0;
@@ -98,7 +99,7 @@
 
 	&__desc {
 		color: v.$text-muted;
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		line-height: 1.6;
 		margin: 0;
 	}
@@ -106,11 +107,11 @@
 
 /* Backlink banner shown on member posts, pointing to the pillar hub */
 .pillar-banner {
-	background: v.$gray244;
+	background: v.$surface-tint;
 	border-left: 3px solid v.$accent-1;
-	font-size: bp.rem-calc(14);
-	margin: bp.rem-calc(28) 0;
-	padding: bp.rem-calc(8) bp.rem-calc(14);
+	font-size: fn.rem-calc(14);
+	margin: fn.rem-calc(28) 0;
+	padding: fn.rem-calc(8) fn.rem-calc(14);
 
 	a {
 		font-weight: 700;

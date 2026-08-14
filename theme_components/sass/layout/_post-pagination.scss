@@ -1,55 +1,12 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
-.page-links {
-	background-color: v.$blue;
-	clear: both;
-	color: v.$white;
-	font-weight: 700;
-	margin: 25px 20px 0;
-	padding: 5px 15px;
-	position: relative;
-
-	a {
-		border-radius: 5px;
-		color: v.$white;
-
-		&:hover,
-		&:focus {
-			background-color: v.$white;
-			color: v.$blue;
-		}
-	}
-
-	span {
-		display: inline-block;
-		padding: 0 10px;
-	}
-
-	&::after,
-	&::before {
-		border: 19px solid v.$blue;
-		border-bottom-color: transparent;
-		border-top-color: transparent;
-		bottom: 0;
-		content: '';
-		display: block;
-		height: 0;
-		position: absolute;
-		top: 0;
-		width: 0;
-	}
-
-	&::before {
-		border-left-color: transparent;
-		left: -38px;
-	}
-
-	&::after {
-		border-right-color: transparent;
-		right: -38px;
-	}
-}
+// The arrow tabs on each end of the pager are CSS triangles: a square border
+// box with two sides made transparent. The half-width of that border box sets
+// how far the triangle sticks out, so the offset has to stay double the border
+// or the tabs detach from the bar.
+$pager-arrow-size: 24px;
 
 .post-pagination {
 	overflow: hidden;
@@ -67,7 +24,7 @@
 
 		&::after,
 		&::before {
-			border: 24px solid v.$blue;
+			border: $pager-arrow-size solid v.$blue;
 			border-bottom-color: transparent;
 			border-top-color: transparent;
 			bottom: 0;
@@ -81,12 +38,12 @@
 
 		&::before {
 			border-left-color: transparent;
-			left: -48px;
+			left: -$pager-arrow-size * 2;
 		}
 
 		&::after {
 			border-right-color: transparent;
-			right: -48px;
+			right: -$pager-arrow-size * 2;
 		}
 	}
 
@@ -112,7 +69,7 @@
 		border-radius: 5px;
 		color: v.$white;
 		display: block;
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		font-weight: 700;
 		padding: 6px 9px;
 		transition: background-color 0.3s;

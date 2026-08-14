@@ -1,4 +1,4 @@
-@use '../helpers/breakpoints' as bp;
+@use '../helpers/mixins' as mx;
 @use '../helpers/variables' as v;
 
 /*
@@ -25,12 +25,12 @@ body {
 	background: v.$body-background;
 	color: v.$body-font-color;
 	font-family: v.$body-font-family;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
 	font-weight: v.$global-weight-normal;
 	line-height: v.$global-lineheight;
 	margin: 0;
 	padding: 0;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -183,7 +183,7 @@ fieldset {
 
 /* Screen reader only. */
 .show-for-sr {
-	@include bp.element-invisible;
+	@include mx.element-invisible;
 }
 
 .skip-link {

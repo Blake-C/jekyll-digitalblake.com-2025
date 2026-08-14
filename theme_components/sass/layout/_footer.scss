@@ -1,4 +1,5 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 footer {
@@ -13,7 +14,7 @@ footer {
 		h2 {
 			border-bottom: 2px solid rgba(v.$accent-4, 0.4);
 			color: v.$accent-4;
-			font-size: bp.rem-calc(15);
+			font-size: fn.rem-calc(15);
 			font-weight: 700;
 			line-height: 1.8;
 			margin-bottom: 10px;
@@ -22,7 +23,7 @@ footer {
 		}
 
 		p {
-			font-size: bp.rem-calc(13);
+			font-size: fn.rem-calc(13);
 			font-weight: 700;
 			line-height: 24px;
 			margin: 0;
@@ -33,7 +34,7 @@ footer {
 		}
 
 		ul {
-			font-size: bp.rem-calc(13);
+			font-size: fn.rem-calc(13);
 			font-weight: 700;
 			line-height: 24px;
 			margin: 0;
@@ -41,7 +42,7 @@ footer {
 		}
 
 		li {
-			font-size: bp.rem-calc(13);
+			font-size: fn.rem-calc(13);
 			font-weight: 700;
 			line-height: 24px;
 			list-style-type: none;
@@ -55,7 +56,7 @@ footer {
 		// first column. Below medium the widget is too narrow to split.
 		.footer-services {
 			@include bp.breakpoint(medium) {
-				column-gap: bp.rem-calc(24);
+				column-gap: fn.rem-calc(24);
 				columns: 2;
 			}
 
@@ -80,10 +81,12 @@ footer {
 
 	.sub-footer {
 		color: v.$accent-4;
-		padding-top: bp.rem-calc(65);
+		padding-top: fn.rem-calc(65);
 	}
 
-	@include bp.breakpoint(large down) {
+	// Centered once the footer is wide enough for the artwork to read as a
+	// backdrop rather than crowd the last column. Below large it stays right.
+	@include bp.breakpoint(large) {
 		&.main {
 			background:
 				url('../images/footer-background.svg') bottom center no-repeat,
@@ -95,26 +98,10 @@ footer {
 		&.main {
 			padding: 25px 0;
 
-			.freelance {
-				margin: 30px 0;
-			}
-
 			.sub-footer,
 			.copyright {
 				text-align: center;
 			}
 		}
 	}
-}
-
-.probe-c {
-	color: green;
-}
-
-.probe-d {
-	color: teal;
-}
-
-.probe-f {
-	color: gray;
 }

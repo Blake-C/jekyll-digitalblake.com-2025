@@ -1,17 +1,17 @@
-@use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 
 .post-diagram {
-	margin: bp.rem-calc(24) 0;
+	margin: fn.rem-calc(24) 0;
 	overflow-x: auto;
 
 	svg {
 		display: block;
 		height: auto;
 		margin: 0 auto;
-		max-width: bp.rem-calc(680);
+		max-width: fn.rem-calc(680);
 		// Below this the labels become illegible; scroll sideways instead,
 		// same as the code blocks these diagrams replaced.
-		min-width: bp.rem-calc(540);
+		min-width: fn.rem-calc(540);
 		width: 100%;
 	}
 }

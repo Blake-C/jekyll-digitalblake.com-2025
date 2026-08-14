@@ -1,7 +1,8 @@
-@use '../helpers/breakpoints' as bp;
-@use '../helpers/variables' as v;
-
 @use 'sass:color';
+
+@use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
+@use '../helpers/variables' as v;
 
 .main-menu {
 	margin: 0;
@@ -10,13 +11,13 @@
 
 	li {
 		display: inline;
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 	}
 
 	a {
 		color: v.$white;
 		display: inline-block;
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		font-weight: 700;
 		padding: 3px 8px;
 		text-decoration: none;
@@ -40,15 +41,41 @@
 		padding-bottom: 1px;
 	}
 
-	@media screen and (max-width: 56.25em) {
+	@include bp.nav-collapsed {
 		display: none;
 	}
 }
 
+// The button that opens the nav modal. It lives here rather than in
+// layout/_nav-modal.scss because only this file is in critical-styles.scss:
+// styled from the modal's partial, the button paints as a bare <button> with
+// unstyled bars until the deferred stylesheet lands.
 .nav-hamburger {
+	align-items: center;
+	background: none;
+	border: none;
+	cursor: pointer;
 	display: none;
+	flex-direction: column;
+	gap: 5px;
+	justify-content: center;
+	padding: 8px;
 
-	@media screen and (max-width: 56.25em) {
+	@include bp.nav-collapsed {
 		display: flex;
+	}
+
+	&:focus-visible {
+		outline: 2px solid v.$accent-2;
+		outline-offset: 2px;
+	}
+
+	&__bar {
+		background: v.$white;
+		border-radius: 2px;
+		display: block;
+		height: 3px;
+		transition: background 0.2s;
+		width: 24px;
 	}
 }

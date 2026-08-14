@@ -1,39 +1,6 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
-
-/**************************\
-  Nav hamburger button
-\**************************/
-
-.nav-hamburger {
-	align-items: center;
-	background: none;
-	border: none;
-	cursor: pointer;
-	display: none;
-	flex-direction: column;
-	gap: 5px;
-	justify-content: center;
-	padding: 8px;
-
-	@media screen and (max-width: 56.25em) {
-		display: flex;
-	}
-
-	&:focus-visible {
-		outline: 2px solid v.$accent-2;
-		outline-offset: 2px;
-	}
-}
-
-.nav-hamburger__bar {
-	background: v.$white;
-	border-radius: 2px;
-	display: block;
-	height: 3px;
-	transition: background 0.2s;
-	width: 24px;
-}
 
 /**************************\
   Nav modal
@@ -58,7 +25,7 @@
 }
 
 .nav-modal {
-	background: rgba(25, 25, 54, 0.97);
+	background: rgba(v.$primary, 0.97);
 	border: none;
 	color: inherit;
 	height: 100%;
@@ -73,7 +40,7 @@
 	z-index: 2000;
 
 	&::backdrop {
-		background: rgba(25, 25, 54, 0.6);
+		background: rgba(v.$primary, 0.6);
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -93,82 +60,82 @@
 			}
 		}
 	}
-}
 
-.nav-modal__container {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	min-height: 100%;
-	padding: bp.rem-calc(64) bp.rem-calc(24) bp.rem-calc(40);
-	position: relative;
-}
+	&__container {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 100%;
+		padding: fn.rem-calc(64) fn.rem-calc(24) fn.rem-calc(40);
+		position: relative;
 
-.nav-modal__close {
-	align-items: center;
-	background: rgba(255, 255, 255, 0.12);
-	border: 2px solid rgba(255, 255, 255, 0.35);
-	border-radius: 50%;
-	color: v.$white;
-	cursor: pointer;
-	display: flex;
-	height: bp.rem-calc(44);
-	justify-content: center;
-	position: absolute;
-	right: bp.rem-calc(20);
-	top: bp.rem-calc(20);
-	transition: background 0.2s;
-	width: bp.rem-calc(44);
+		.main-menu {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+			gap: fn.rem-calc(8);
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			text-align: center;
 
-	&::before {
-		content: '\2715';
-		font-size: bp.rem-calc(18);
-		line-height: 1;
-	}
+			li {
+				display: block;
+			}
 
-	&:hover {
-		background: rgba(255, 255, 255, 0.25);
-	}
+			a {
+				color: v.$white;
+				display: block;
+				font-size: fn.rem-calc(22);
+				font-weight: 700;
+				padding: fn.rem-calc(10) fn.rem-calc(24);
+				text-transform: uppercase;
 
-	&:focus-visible {
-		outline: 2px solid v.$accent-2;
-		outline-offset: 2px;
-	}
-}
+				&:hover,
+				&:focus {
+					color: v.$accent-5;
+				}
+			}
 
-.nav-modal__container .main-menu {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	gap: bp.rem-calc(8);
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-
-	li {
-		display: block;
-	}
-
-	a {
-		color: v.$white;
-		display: block;
-		font-size: bp.rem-calc(22);
-		font-weight: 700;
-		padding: bp.rem-calc(10) bp.rem-calc(24);
-		text-transform: uppercase;
-
-		&:hover,
-		&:focus {
-			color: v.$accent-5;
+			.menu-item--active a {
+				border-bottom: 2px solid v.$accent-5;
+				color: v.$accent-5;
+				padding-bottom: calc(#{fn.rem-calc(10)} - 2px);
+			}
 		}
 	}
 
-	.menu-item--active a {
-		border-bottom: 2px solid v.$accent-5;
-		color: v.$accent-5;
-		padding-bottom: calc(#{bp.rem-calc(10)} - 2px);
+	&__close {
+		align-items: center;
+		background: rgba(v.$pure-white, 0.12);
+		border: 2px solid rgba(v.$pure-white, 0.35);
+		border-radius: 50%;
+		color: v.$white;
+		cursor: pointer;
+		display: flex;
+		height: fn.rem-calc(44);
+		justify-content: center;
+		position: absolute;
+		right: fn.rem-calc(20);
+		top: fn.rem-calc(20);
+		transition: background 0.2s;
+		width: fn.rem-calc(44);
+
+		&::before {
+			content: '\2715';
+			font-size: fn.rem-calc(18);
+			line-height: 1;
+		}
+
+		&:hover {
+			background: rgba(v.$pure-white, 0.25);
+		}
+
+		&:focus-visible {
+			outline: 2px solid v.$accent-2;
+			outline-offset: 2px;
+		}
 	}
 }
 

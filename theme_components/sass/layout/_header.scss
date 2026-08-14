@@ -1,10 +1,11 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 body {
 	padding-top: 100px;
 
-	@media screen and (min-width: 56.3125em) {
+	@include bp.nav-expanded {
 		padding-top: 113px;
 	}
 }
@@ -26,19 +27,19 @@ body {
 			display: flex;
 			text-decoration: none;
 
-			@media screen and (max-width: 56.25em) {
+			@include bp.nav-collapsed {
 				margin: 0 16px;
 			}
 		}
 	}
 
-	// Desktop scroll-shrink (>900px)
-	@media screen and (min-width: 56.3125em) {
+	// Desktop scroll-shrink
+	@include bp.nav-expanded {
 		&.smaller {
 			padding: 5px 0;
 
 			.name {
-				font-size: bp.rem-calc(20);
+				font-size: fn.rem-calc(20);
 			}
 
 			.main-logo {
@@ -52,8 +53,8 @@ body {
 		}
 	}
 
-	// Hamburger layout (≤900px)
-	@media screen and (max-width: 56.25em) {
+	// Hamburger layout
+	@include bp.nav-collapsed {
 		padding: 25px 0;
 
 		.row {
@@ -86,7 +87,7 @@ body {
 			}
 
 			.name {
-				font-size: bp.rem-calc(18);
+				font-size: fn.rem-calc(18);
 			}
 		}
 	}
@@ -95,7 +96,7 @@ body {
 .name {
 	color: v.$white;
 	display: inline-block;
-	font-size: bp.rem-calc(25);
+	font-size: fn.rem-calc(25);
 	font-weight: 700;
 	line-height: 1;
 	margin: 11px 0;
@@ -103,8 +104,8 @@ body {
 	text-transform: uppercase;
 	transition: all 0.3s;
 
-	@media screen and (max-width: 56.25em) {
-		font-size: bp.rem-calc(20);
+	@include bp.nav-collapsed {
+		font-size: fn.rem-calc(20);
 	}
 }
 

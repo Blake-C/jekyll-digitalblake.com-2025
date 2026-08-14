@@ -1,3 +1,49 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+
 /*
-	http://thesassway.com/advanced/pure-sass-functions
+ * Unit helpers.
+ *
+ * strip-unit() returns the number with its unit removed.
+ * rem-calc() converts px (with or without the unit) to rem against a 16px base.
+ * It accepts a list, so shorthand values convert in one call:
+ * rem-calc(2 5 1) => 0.125rem 0.3125rem 0.0625rem.
  */
+
+// The browser default the site does not override: $global-font-size is 100%.
+$root-font-size: 16px;
+
+@function strip-unit($number) {
+	@if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+		@return math.div($number, $number * 0 + 1);
+	}
+
+	@return $number;
+}
+
+@function rem-calc($values, $base: $root-font-size) {
+	$result: ();
+
+	@each $value in $values {
+		@if $value == 0 {
+			$result: list.append($result, 0);
+		} @else if meta.type-of($value) == 'number' {
+			$px: $value * 1px;
+
+			@if not math.is-unitless($value) {
+				$px: strip-unit($value) * 1px;
+			}
+
+			$result: list.append($result, math.div($px, $base) * 1rem);
+		} @else {
+			$result: list.append($result, $value);
+		}
+	}
+
+	@if list.length($result) == 1 {
+		@return list.nth($result, 1);
+	}
+
+	@return $result;
+}

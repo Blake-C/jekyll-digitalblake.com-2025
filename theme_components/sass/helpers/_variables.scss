@@ -1,50 +1,59 @@
 /* Colors */
+
 $white: #fefefe;
 $black: #0a0a0a;
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
-$text-muted: #595959; // Accessible muted text (>= AA on $white); use instead of $dark-gray for body text
+
+// Literal white, distinct from the slightly-off $white used for page surfaces
+// and text. Only for translucent glass fills and hairline borders over a dark
+// background, where an off-white tints the thing behind it.
+$pure-white: #fff;
+
+$light-gray: rgb(230 230 230);
+$medium-gray: rgb(202 202 202);
+$dark-gray: rgb(138 138 138);
+$text-muted: rgb(89 89 89); // Accessible muted text (>= AA on $white); use instead of $dark-gray for body text
+
+// Neutral surfaces and rules, named for the job rather than the value.
+$page-background: rgb(228 228 228); // The gray behind every .wrapper content column
+$surface-tint: rgb(244 244 244); // Callouts, pillar banners, zebra-striped table rows
+$border-gray: rgb(222 222 222); // Hairline rules: table cells, inline code, hero image edges
 
 $accent-blue: rgb(0 114 188);
-$gray244: rgb(244 244 244);
 $primary: rgb(25 25 54);
 $blue: rgb(27 22 43);
 $red: rgb(211 6 0);
 $blue-end: rgb(46 42 105);
 $accent-1: rgb(11 60 103);
-$accent-2: rgb(56, 45, 142);
-$accent-3: rgb(179, 30, 30);
-$accent-4: rgb(211, 212, 255);
-$accent-5: rgb(255, 247, 0);
-$archive-teal: rgb(0, 128, 142);
-$archive-blue: rgb(30, 88, 210);
-$archive-indigo: rgb(90, 40, 200);
-$archive-violet: rgb(150, 20, 175);
-$archive-magenta: rgb(195, 20, 110);
-$archive-red: rgb(210, 45, 20);
-$gray191: rgb(191 191 191);
-$gray222: rgb(222 222 222);
-$gray202: rgb(202 202 202);
+$accent-2: rgb(56 45 142);
+$accent-4: rgb(211 212 255);
+$accent-5: rgb(255 247 0);
+
+// Cycled across the date blocks in the post archive, six deep before repeating.
+$archive-teal: rgb(0 128 142);
+$archive-blue: rgb(30 88 210);
+$archive-indigo: rgb(90 40 200);
+$archive-violet: rgb(150 20 175);
+$archive-magenta: rgb(195 20 110);
+$archive-red: rgb(210 45 20);
 
 /* Fonts */
+
 $montserrat: 'Montserrat', sans-serif;
 $body-font-family: $montserrat;
 $font-family-monospace: 'Consolas', 'Liberation Mono', 'Courier', monospace;
 
 /* Globals */
+
 $body-background: $primary;
 $body-font-color: $black;
 $global-font-size: 100%;
 $global-lineheight: 1.8;
 $global-weight-normal: normal;
-$global-weight-bold: bold;
 $global-margin: 1rem;
-$global-padding: 1rem;
-$global-radius: 0;
 $global-width: 72.5rem; /* 1160px at 16px base */
 
 /* Code */
+
 $code-color: $black;
 $code-font-family: $font-family-monospace;
 $code-font-weight: $global-weight-normal;

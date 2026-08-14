@@ -1,33 +1,10 @@
 /*
-	http://thesassway.com/intermediate/understanding-placeholder-selectors
-	http://www.sitepoint.com/sass-mixin-placeholder/
+ * Placeholder selectors. Unlike a mixin, every @extend of one of these collapses
+ * into a single rule in the output rather than duplicating the declarations.
  */
 
-%clearfix {
-	&::before,
-	&::after {
-		content: '\0020';
-		display: block;
-		height: 0;
-		overflow: hidden;
-	}
-
-	&::after {
-		clear: both;
-	}
-} // to use: @extend %clearfix;
-
-%hidden-text {
-	display: block;
-	font-size: 0;
-	overflow: hidden;
-	text-align: start;
-	text-decoration: none;
-	text-indent: -9999px;
-} // to use: @extend %hidden-text;
-
+// http://css-tricks.com/perfect-full-page-background-image/
 %cover {
-	// http://css-tricks.com/perfect-full-page-background-image/
 	background-position: top center;
 	background-repeat: no-repeat;
 	background-size: cover;

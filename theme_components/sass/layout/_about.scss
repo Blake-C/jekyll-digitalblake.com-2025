@@ -1,13 +1,14 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 .career-timeline {
-	margin: bp.rem-calc(32) 0 bp.rem-calc(42);
-	padding-left: bp.rem-calc(28);
+	margin: fn.rem-calc(32) 0 fn.rem-calc(42);
+	padding-left: fn.rem-calc(28);
 	position: relative;
 
 	&__item {
-		margin-bottom: bp.rem-calc(28);
+		margin-bottom: fn.rem-calc(28);
 		position: relative;
 
 		&:last-child {
@@ -18,80 +19,80 @@
 			background: v.$accent-1;
 			border-radius: 50%;
 			content: '';
-			height: bp.rem-calc(12);
-			left: bp.rem-calc(-30);
+			height: fn.rem-calc(12);
+			left: fn.rem-calc(-30);
 			position: absolute;
-			top: bp.rem-calc(4);
-			width: bp.rem-calc(12);
+			top: fn.rem-calc(4);
+			width: fn.rem-calc(12);
 		}
 
 		&:not(:last-child)::after {
 			border-right: 1px dashed v.$accent-1;
-			bottom: bp.rem-calc(-28);
+			bottom: fn.rem-calc(-28);
 			content: '';
 			left: -1.54rem; // Need for precision.
 			position: absolute;
-			top: bp.rem-calc(16);
+			top: fn.rem-calc(16);
 		}
 	}
 
 	&__employer {
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 		font-weight: 800;
 		line-height: 1.2;
-		margin: 0 0 bp.rem-calc(2);
+		margin: 0 0 fn.rem-calc(2);
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(18);
+			font-size: fn.rem-calc(18);
 		}
 	}
 
 	&__role {
 		color: v.$text-muted;
-		font-size: bp.rem-calc(13);
+		font-size: fn.rem-calc(13);
 		font-weight: 700;
 		letter-spacing: 0.5px;
-		margin: 0 0 bp.rem-calc(6);
+		margin: 0 0 fn.rem-calc(6);
 		text-transform: uppercase;
 	}
 
 	&__description {
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		line-height: 1.7;
 		margin: 0;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(16);
+			font-size: fn.rem-calc(16);
 		}
 	}
 
 	&__dates {
 		color: v.$text-muted;
 		display: block;
-		font-size: bp.rem-calc(13);
+		font-size: fn.rem-calc(13);
 		font-weight: 400;
 		line-height: 1.4;
-		margin-top: bp.rem-calc(2);
+		margin-top: fn.rem-calc(2);
 	}
 
 	&__bullets {
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		line-height: 1.7;
-		margin: bp.rem-calc(6) 0 0;
-		padding-left: bp.rem-calc(18);
+		margin: fn.rem-calc(6) 0 0;
+		padding-left: fn.rem-calc(18);
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(16);
+			font-size: fn.rem-calc(16);
 		}
 
 		li {
-			margin-bottom: bp.rem-calc(4);
+			margin-bottom: fn.rem-calc(4);
 		}
 	}
 }
 
 .resume-actions {
-	margin: bp.rem-calc(20) 0 bp.rem-calc(32);
+	margin: fn.rem-calc(20) 0 fn.rem-calc(32);
 }
 
 .js-timeline-animate {
@@ -114,9 +115,9 @@
 
 .skills-list {
 	display: grid;
-	gap: bp.rem-calc(8) bp.rem-calc(24);
+	gap: fn.rem-calc(8) fn.rem-calc(24);
 	grid-template-columns: 1fr;
-	margin: bp.rem-calc(16) 0 bp.rem-calc(8);
+	margin: fn.rem-calc(16) 0 fn.rem-calc(8);
 
 	@include bp.breakpoint(medium) {
 		grid-template-columns: 1fr 1fr;
@@ -125,11 +126,11 @@
 	&__group {
 		display: flex;
 		flex-direction: column;
-		gap: bp.rem-calc(4);
+		gap: fn.rem-calc(4);
 	}
 
 	&__label {
-		font-size: bp.rem-calc(12);
+		font-size: fn.rem-calc(12);
 		font-weight: 800;
 		letter-spacing: 1.5px;
 		margin: 0;
@@ -138,13 +139,13 @@
 
 	&__items {
 		color: v.$text-muted;
-		font-size: bp.rem-calc(14);
+		font-size: fn.rem-calc(14);
 		font-weight: 400;
 		line-height: 1.5;
 		margin: 0;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(15);
+			font-size: fn.rem-calc(15);
 		}
 	}
 }

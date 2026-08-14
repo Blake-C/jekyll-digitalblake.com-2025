@@ -1,4 +1,5 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 $bleeds: ':not(.alignright):not(.alignleft):not(.no-bleed)';
@@ -9,12 +10,18 @@ $image-block: 'img#{$bleeds}, figure#{$bleeds}, p:has(> img#{$bleeds}:only-child
 
 $flush-block: '#{$image-block}, .code-toolbar';
 
+// The article column's inner padding. Every full-bleed rule below cancels it
+// with an equal negative margin, so the two must move together: a block that
+// bleeds is pulled out by exactly the padding it sits inside.
+$content-padding: 20px;
+$content-padding-large: 30px;
+
 .entry-meta {
 	font-weight: 700;
 	line-height: 1.5;
 
 	p {
-		font-size: bp.rem-calc(13);
+		font-size: fn.rem-calc(13);
 	}
 
 	time,
@@ -35,64 +42,13 @@ $flush-block: '#{$image-block}, .code-toolbar';
 	}
 }
 
-.related-posts {
-	border-top: 1px solid v.$light-gray;
-	margin-top: bp.rem-calc(32);
-	padding-top: bp.rem-calc(24);
-
-	&__title {
-		font-size: bp.rem-calc(16);
-		font-weight: 700;
-		letter-spacing: 1px;
-		margin-bottom: bp.rem-calc(12);
-		text-transform: uppercase;
-	}
-
-	&__list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	&__item {
-		border-bottom: 1px solid v.$light-gray;
-		display: flex;
-		flex-direction: column;
-		gap: bp.rem-calc(2);
-		padding: bp.rem-calc(10) 0;
-
-		@include bp.breakpoint(medium) {
-			align-items: baseline;
-			flex-direction: row;
-			gap: bp.rem-calc(12);
-		}
-	}
-
-	&__link {
-		color: v.$accent-1;
-		font-weight: 700;
-		text-decoration: none;
-
-		&:hover,
-		&:focus {
-			text-decoration: underline;
-		}
-	}
-
-	&__date {
-		color: v.$text-muted;
-		font-size: bp.rem-calc(13);
-		white-space: nowrap;
-	}
-}
-
 .post-cta {
 	border-top: 1px solid v.$light-gray;
-	margin-top: bp.rem-calc(24);
-	padding-top: bp.rem-calc(20);
+	margin-top: fn.rem-calc(24);
+	padding-top: fn.rem-calc(20);
 
 	p {
-		font-size: bp.rem-calc(15);
+		font-size: fn.rem-calc(15);
 		margin: 0;
 	}
 
@@ -108,14 +64,14 @@ $flush-block: '#{$image-block}, .code-toolbar';
 		text-transform: none;
 
 		@include bp.breakpoint(medium) {
-			font-size: bp.rem-calc(42);
+			font-size: fn.rem-calc(42);
 		}
 	}
 
 	.entry-content {
 		background-color: v.$white;
 		border-top: 3px solid v.$blue;
-		padding: 20px;
+		padding: $content-padding;
 
 		> *:first-child {
 			margin-top: 0;
@@ -126,32 +82,32 @@ $flush-block: '#{$image-block}, .code-toolbar';
 		}
 
 		@include bp.breakpoint(large) {
-			padding: 30px;
+			padding: $content-padding-large;
 		}
 
 		// Cancels the padding above and below so the block sits flush. Matches
 		// the padding exactly, so every $flush-block must own no vertical margin.
 		> :is(#{$flush-block}):first-child {
-			margin-top: -20px;
+			margin-top: -$content-padding;
 
 			@include bp.breakpoint(large) {
-				margin-top: -30px;
+				margin-top: -$content-padding-large;
 			}
 		}
 
 		> :is(#{$flush-block}):last-child {
-			margin-bottom: -20px;
+			margin-bottom: -$content-padding;
 
 			@include bp.breakpoint(large) {
-				margin-bottom: -30px;
+				margin-bottom: -$content-padding-large;
 			}
 		}
 
 		// Prism sets `margin: .5em 0` on the pre, which collapses through this
 		// wrapper. Same 8px, moved out, so the wrapper has no margin to cancel.
 		.code-toolbar {
-			margin-bottom: bp.rem-calc(8);
-			margin-top: bp.rem-calc(8);
+			margin-bottom: fn.rem-calc(8);
+			margin-top: fn.rem-calc(8);
 
 			> pre {
 				margin-bottom: 0;
@@ -161,10 +117,10 @@ $flush-block: '#{$image-block}, .code-toolbar';
 
 		p.small,
 		li.small {
-			font-size: bp.rem-calc(11);
+			font-size: fn.rem-calc(11);
 
 			@include bp.breakpoint(medium) {
-				font-size: bp.rem-calc(13);
+				font-size: fn.rem-calc(13);
 			}
 		}
 
@@ -177,14 +133,14 @@ $flush-block: '#{$image-block}, .code-toolbar';
 			&::first-letter {
 				float: left;
 				font-family: Georgia, serif;
-				font-size: bp.rem-calc(75);
+				font-size: fn.rem-calc(75);
 				font-weight: 700;
 				line-height: 1;
 				margin: -6px 10px -6px -3px;
 				padding: 0;
 
 				@include bp.breakpoint(medium) {
-					font-size: bp.rem-calc(90);
+					font-size: fn.rem-calc(90);
 				}
 			}
 
@@ -204,8 +160,8 @@ $flush-block: '#{$image-block}, .code-toolbar';
 		blockquote {
 			border-left: 3px solid v.$accent-blue;
 			font-style: italic;
-			margin: 0 0 bp.rem-calc(20);
-			padding-left: bp.rem-calc(20);
+			margin: 0 0 fn.rem-calc(20);
+			padding-left: fn.rem-calc(20);
 
 			> :first-child {
 				margin-top: 0;
@@ -220,21 +176,21 @@ $flush-block: '#{$image-block}, .code-toolbar';
 		// not flatten vertical margins set elsewhere.
 		img#{$bleeds} {
 			display: block;
-			margin-left: -20px;
+			margin-left: -$content-padding;
 			margin-right: auto;
-			max-width: calc(100% + 40px);
+			max-width: calc(100% + #{$content-padding * 2});
 
 			@include bp.breakpoint(large) {
-				margin-left: -30px;
-				max-width: calc(100% + 60px);
+				margin-left: -$content-padding-large;
+				max-width: calc(100% + #{$content-padding-large * 2});
 			}
 		}
 
 		table {
-			font-size: bp.rem-calc(14);
+			font-size: fn.rem-calc(14);
 
 			@include bp.breakpoint(medium) {
-				font-size: bp.rem-calc(15);
+				font-size: fn.rem-calc(15);
 			}
 		}
 
@@ -258,19 +214,19 @@ $flush-block: '#{$image-block}, .code-toolbar';
 		.code-toolbar,
 		.video-embed,
 		.table-wrapper {
-			margin-left: -20px;
-			margin-right: -20px;
+			margin-left: -$content-padding;
+			margin-right: -$content-padding;
 
 			@include bp.breakpoint(large) {
-				margin-left: -30px;
-				margin-right: -30px;
+				margin-left: -$content-padding-large;
+				margin-right: -$content-padding-large;
 			}
 		}
 
 		.video-embed {
 			aspect-ratio: 16 / 9;
-			margin-bottom: bp.rem-calc(24);
-			margin-top: bp.rem-calc(24);
+			margin-bottom: fn.rem-calc(24);
+			margin-top: fn.rem-calc(24);
 
 			iframe {
 				border: none;
@@ -299,7 +255,7 @@ $flush-block: '#{$image-block}, .code-toolbar';
 					position: absolute;
 					top: 50%;
 					transform: translate(-50%, -50%);
-					width: bp.rem-calc(68);
+					width: fn.rem-calc(68);
 
 					svg {
 						display: block;
@@ -337,14 +293,14 @@ $flush-block: '#{$image-block}, .code-toolbar';
 
 .related-posts {
 	border-top: 1px solid v.$dark-gray;
-	margin-top: bp.rem-calc(32);
-	padding-top: bp.rem-calc(24);
+	margin-top: fn.rem-calc(32);
+	padding-top: fn.rem-calc(24);
 
 	&__title {
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 		font-weight: 900;
 		letter-spacing: 3px;
-		margin-bottom: bp.rem-calc(24);
+		margin-bottom: fn.rem-calc(24);
 		text-transform: uppercase;
 	}
 
@@ -354,12 +310,12 @@ $flush-block: '#{$image-block}, .code-toolbar';
 		}
 
 		&__date {
-			color: v.$text-muted; // ~5.4:1 on #e4e4e4 (was $dark-gray #8a8a8a)
+			color: v.$text-muted; // ~5.4:1 on $page-background (was $dark-gray)
 			opacity: 1; // reset the 0.6 inherited from the base component
 		}
 
 		&__item-title {
-			font-size: bp.rem-calc(15);
+			font-size: fn.rem-calc(15);
 		}
 
 		&__link {
@@ -373,8 +329,8 @@ $flush-block: '#{$image-block}, .code-toolbar';
 
 		&__description {
 			color: v.$body-font-color;
+			font-size: fn.rem-calc(12);
 			opacity: 1;
-			font-size: bp.rem-calc(12);
 		}
 	}
 }

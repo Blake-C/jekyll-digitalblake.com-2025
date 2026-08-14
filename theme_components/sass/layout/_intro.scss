@@ -1,4 +1,5 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/helpers';
 @use '../helpers/variables' as v;
 
@@ -6,21 +7,17 @@
 	@extend %cover;
 
 	background-image: url('../images/header-background.webp');
-
-	@media (max-width: 768px) {
-		background-image: url('../images/header-background-sm.webp');
-	}
-
 	background-position: center;
 	color: v.$white;
 	line-height: 26px;
 	padding: clamp(150px, 8vw, 230px) 0;
 	position: relative;
 
-	&:before {
-		background-color: rgba(0, 0, 0, 0.12);
+	&::before {
 		backdrop-filter: blur(10px);
+		background-color: rgba(0, 0, 0, 0.12);
 		bottom: 0;
+		box-shadow: 1px 0 1px rgba(195, 227, 254, 0.37);
 		content: '';
 		display: block;
 		height: 100%;
@@ -28,15 +25,18 @@
 		position: absolute;
 		right: 0;
 		top: 0;
-		width: 100%;
-		z-index: 0;
-		box-shadow: 1px 0 1px rgba(195, 227, 254, 0.37);
 		transition:
 			left 0.3s,
 			background-color 0.3s;
+		width: 100%;
+		z-index: 0;
 
-		@include bp.breakpoint(large down) {
-			background-color: rgba(255, 255, 255, 0.12);
+		// Desktop pulls the scrim's left edge off-canvas so it covers roughly the
+		// right half and the photograph shows through beside it. Narrower than
+		// large there is no room to split, so the base rule above keeps the
+		// scrim across the full width.
+		@include bp.breakpoint(large) {
+			background-color: rgba(v.$pure-white, 0.12);
 			left: calc(-50% + 130px);
 		}
 	}
@@ -47,22 +47,22 @@
 	}
 
 	.title {
-		font-size: bp.rem-calc(60);
+		font-size: fn.rem-calc(60);
 		font-weight: 800;
 		line-height: 1;
-		margin-bottom: bp.rem-calc(16);
+		margin-bottom: fn.rem-calc(16);
 		text-transform: capitalize;
 	}
 
 	.line-1 {
-		margin: 0;
-		font-size: bp.rem-calc(32);
+		font-size: fn.rem-calc(32);
 		line-height: 1;
+		margin: 0;
 	}
 
 	.line-2 {
-		font-size: bp.rem-calc(16);
-		margin: bp.rem-calc(16) 0;
+		font-size: fn.rem-calc(16);
+		margin: fn.rem-calc(16) 0;
 	}
 
 	.line-3 {
@@ -73,23 +73,23 @@
 	}
 
 	p {
-		font-size: bp.rem-calc(18);
+		font-size: fn.rem-calc(18);
 		font-weight: 800;
 	}
 
 	&__availability {
 		align-items: center;
-		background: rgba(255, 255, 255, 0.12);
-		border: 1px solid rgba(255, 255, 255, 0.25);
+		background: rgba(v.$pure-white, 0.12);
+		border: 1px solid rgba(v.$pure-white, 0.25);
 		border-radius: 20px;
 		color: v.$white;
 		display: inline-flex;
-		font-size: bp.rem-calc(12);
+		font-size: fn.rem-calc(12);
 		font-weight: 600;
-		gap: bp.rem-calc(7);
+		gap: fn.rem-calc(7);
 		letter-spacing: 0.8px;
-		margin-bottom: bp.rem-calc(16);
-		padding: bp.rem-calc(5) bp.rem-calc(14);
+		margin-bottom: fn.rem-calc(16);
+		padding: fn.rem-calc(5) fn.rem-calc(14);
 		text-transform: uppercase;
 	}
 
@@ -105,8 +105,8 @@
 	&__cta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: bp.rem-calc(12);
-		margin-top: bp.rem-calc(36);
+		gap: fn.rem-calc(12);
+		margin-top: fn.rem-calc(36);
 	}
 
 	&__headshot-column {
@@ -126,41 +126,42 @@
 	}
 
 	&__headshot-img {
-		border: 4px solid rgba(255, 255, 255, 0.35);
+		border: 4px solid rgba(v.$pure-white, 0.35);
 		border-radius: 50%;
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 		height: auto;
-		max-width: bp.rem-calc(280);
+		max-width: fn.rem-calc(280);
 		width: 100%;
 	}
 
 	@include bp.breakpoint(small only) {
+		background-image: url('../images/header-background-sm.webp');
 		padding: clamp(150px, 8vw, 230px) 0 clamp(90px, 8vw, 230px);
 
 		.title {
-			font-size: bp.rem-calc(36);
+			font-size: fn.rem-calc(36);
 		}
 
 		.line-1 {
-			font-size: bp.rem-calc(24);
+			font-size: fn.rem-calc(24);
 		}
 
 		.line-2 {
-			font-size: bp.rem-calc(14);
+			font-size: fn.rem-calc(14);
 		}
 
 		.line-3 {
-			font-size: bp.rem-calc(16);
-			margin-top: bp.rem-calc(36);
+			font-size: fn.rem-calc(16);
+			margin-top: fn.rem-calc(36);
 		}
 
 		.intro__availability {
-			font-size: bp.rem-calc(11);
-			padding: bp.rem-calc(4) bp.rem-calc(12);
+			font-size: fn.rem-calc(11);
+			padding: fn.rem-calc(4) fn.rem-calc(12);
 		}
 
 		.intro__cta {
-			margin-top: bp.rem-calc(28);
+			margin-top: fn.rem-calc(28);
 		}
 	}
 }

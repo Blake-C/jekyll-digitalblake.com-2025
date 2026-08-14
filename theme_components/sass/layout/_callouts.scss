@@ -1,17 +1,17 @@
-@use '../helpers/breakpoints' as bp;
+@use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
 .callout {
-	background-color: v.$gray244;
+	background-color: v.$surface-tint;
 	border-left: 3px solid v.$accent-blue;
-	margin: 0 0 bp.rem-calc(28);
-	padding: bp.rem-calc(16) bp.rem-calc(20);
+	margin: 0 0 fn.rem-calc(28);
+	padding: fn.rem-calc(16) fn.rem-calc(20);
 
 	&__title {
-		font-size: bp.rem-calc(16);
+		font-size: fn.rem-calc(16);
 		font-weight: 700;
 		letter-spacing: 1px;
-		margin: 0 0 bp.rem-calc(8);
+		margin: 0 0 fn.rem-calc(8);
 		text-transform: uppercase;
 	}
 
@@ -23,18 +23,18 @@
 	}
 
 	p {
-		font-size: bp.rem-calc(15);
+		font-size: fn.rem-calc(15);
 		margin: 0;
 	}
 
 	ul {
 		margin: 0;
-		padding-left: bp.rem-calc(20);
+		padding-left: fn.rem-calc(20);
 	}
 
 	li {
-		font-size: bp.rem-calc(15);
-		margin-bottom: bp.rem-calc(6);
+		font-size: fn.rem-calc(15);
+		margin-bottom: fn.rem-calc(6);
 
 		&:last-child {
 			margin-bottom: 0;
