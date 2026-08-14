@@ -112,6 +112,19 @@ Do not stage build output inside the repo. Listing a directory under `exclude:` 
 
 What remains is Jekyll's own full-site regeneration, roughly 1.1s for 194 files, on any change. `--incremental` would cut it and is left off deliberately, since its known staleness would look exactly like the frozen-stylesheet bug above.
 
+### LiveReload message coalescing
+
+`_plugins/livereload_coalesce.rb` exists because leaving `--incremental` off makes Jekyll's `--livereload` unusable. `Regenerator#regenerate?` returns true for every file when incremental is off, so the `post_render` hook in `jekyll/commands/serve.rb` collects all 457 site files and `LiveReloadReactor#reload` sends a separate WebSocket message for each one. The server sets `liveCSS` and not `liveImg`, so only the four `.css` paths take the stylesheet branch in `livereload.js` and the other 453 fall through to `document.location.reload()`. Neither side debounces. Measured against the running server, one save produced 457 messages and froze the browser tab for several seconds.
+
+The plugin records each file's rendered output on every build and replaces `reload` with one that sends only what changed since the last build. A changed stylesheet swaps in place with no page reload, anything else collapses to a single reload of `/`, and a build that changes no output sends nothing. Measured after the change: 1, 1, and 0 messages for those three cases.
+
+Two things about it are easy to trip over.
+
+- It ignores `.xml`, `.json`, `.txt`, and `.map` URLs. `feed.xml` renders `{{ site.time }}`, which is the build time, so without that filter the feed always looks changed, every save forces a full reload, and the stylesheet never swaps in place.
+- Jekyll requires `_plugins/*.rb` from `Site#setup`, which runs once in `Site#initialize`, and `serve --watch` reuses that one Site across rebuilds. Editing the plugin does nothing until the dev server is restarted.
+
+The patch is applied from a hook rather than at load time, because `jekyll serve` runs `Build.process` before `Serve.process` and the reactor class does not exist yet when Jekyll requires the file. Recording is gated on the same check, so a production build and CI walk none of it. The cost is that the first rebuild after the server starts has no baseline and sends five messages that one time.
+
 esbuild replaced webpack in August 2026. The webpack cluster (`webpack`, `webpack-cli`, `terser-webpack-plugin`) accounted for 79 lockfile entries that nothing else needed, and it was the main source of the high-severity audit failures that kept blocking the deploy. The job it was doing is two entry points, no loaders, no code splitting, no dev server. `build-scripts.mjs` reproduces the old output contract exactly: same two filenames, IIFE, minified, `console` calls dropped, no source maps or legal comments.
 
 esbuild does not read `browserslist`, so the `target` is set by hand in that script. If the query in `package.json` changes, re-check the oldest browser it resolves to before moving it.

@@ -123,7 +123,7 @@ _data/          # YAML data files (authors, navigation, etc.)
 _coding_projects/  # Coding project data for homepage and /coding-projects/ archive
 _includes/      # Reusable HTML/Liquid partials
 _layouts/       # Page layout templates
-_plugins/       # Custom Jekyll plugins (author pages, lazy images)
+_plugins/       # Custom Jekyll plugins (author pages, lazy images, LiveReload coalescing)
 _posts/         # Blog posts (Markdown)
 _case_studies/  # Case study portfolio data (homepage modal + /case-studies/)
 assets/         # Compiled/static assets (CSS, JS, fonts, images, uploads)
