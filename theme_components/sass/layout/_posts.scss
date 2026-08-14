@@ -206,6 +206,23 @@
 			font-weight: 700;
 		}
 
+		// Scoped, not global: the recommendations band above the footer is also a
+		// blockquote and keeps its own card style.
+		blockquote {
+			border-left: 3px solid v.$accent-blue;
+			font-style: italic;
+			margin: 0 0 bp.rem-calc(20);
+			padding-left: bp.rem-calc(20);
+
+			> :first-child {
+				margin-top: 0;
+			}
+
+			> :last-child {
+				margin-bottom: 0;
+			}
+		}
+
 		// Content images bleed past the text column on both sides. `.no-bleed` opts
 		// an image out, for anything sized to sit inline with text rather than
 		// break out of it: avatars, inline icons, badges. Without it the `margin:
