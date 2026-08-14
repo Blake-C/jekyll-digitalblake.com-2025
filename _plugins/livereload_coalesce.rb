@@ -1,48 +1,32 @@
-# Collapses Jekyll's LiveReload burst into at most a handful of messages.
+# Collapses Jekyll's LiveReload burst, which is one WebSocket message per site
+# file (about 457 here) because --incremental is off and neither Jekyll nor
+# livereload.js debounces.
 #
-# Jekyll sends one WebSocket reload message per site file. With --incremental
-# off, Regenerator#regenerate? returns true for everything, so the post_render
-# hook in jekyll/commands/serve.rb collects every page, document and static
-# file, and LiveReloadReactor#reload loops over all of them. That is about 457
-# messages here. The server sets liveCSS and not liveImg, so only the four .css
-# paths take the stylesheet branch in livereload.js and the rest fall through to
-# document.location.reload(). Neither side debounces, so every save fired
-# hundreds of page reloads at the browser and froze the tab for several seconds.
-#
-# This file records each file's output on every build while the dev server is
-# running, and replaces reload(pages) with one that sends only what changed
-# since the last build:
+# Records each file's output every build and replaces reload(pages) with one
+# that sends only what changed since the last:
 #
 #   - a changed stylesheet swaps in place, with no page reload
 #   - anything else collapses to a single reload of "/"
 #   - a build that changes no output sends nothing
 #
-# The patch is applied from a hook rather than at load time. `jekyll serve` runs
+# The patch is applied from a hook, not at load time: `jekyll serve` runs
 # Build.process before Serve.process, so the reactor class does not exist yet
-# when Jekyll requires this file, and it never exists at all under a plain
-# `jekyll build`. The hook checks on every build and patches the first time it
-# finds the class, which is the first rebuild after the server starts. Recording
-# is gated on the same check, so a production build and CI walk none of this.
+# when Jekyll requires this file, and never exists under a plain `jekyll build`.
+# Recording is gated on the same check, so production builds and CI skip it.
+# The first rebuild after the server starts has no baseline and sends five
+# messages that one time.
 #
-# That gate means the first rebuild after the server starts has no baseline to
-# compare against and reads every file as changed. It sends five messages that
-# one time, four stylesheets and one "/", and every build after it sends only
-# what changed.
-#
-# Note that Jekyll requires _plugins/*.rb from Site#setup, which runs once in
-# Site#initialize, and `serve --watch` reuses that one Site across rebuilds.
-# Editing this file has no effect until the dev server is restarted.
+# Jekyll requires _plugins/*.rb from Site#setup, which `serve --watch` runs once
+# and reuses, so editing this file needs a dev-server restart to take effect.
 module LiveReloadCoalesce
-	# feed.xml renders {{ site.time }}, which is the build time, so its output
-	# differs on every build. Left in, every save would look like a content
-	# change and the stylesheet would never swap in place. The rest are of no use
-	# to a browser.
+	# feed.xml renders {{ site.time }}, so it differs on every build. Left in,
+	# every save looks like a content change and the stylesheet never swaps in
+	# place. The rest are of no use to a browser.
 	IGNORED_EXTS = %w[.xml .json .txt .map].freeze
 
 	class << self
-		# Jekyll loads _plugins/*.rb with `require`, so this module is evaluated
-		# once per process and the map survives across builds. That is what makes
-		# change detection possible with --incremental off.
+		# `require` evaluates this module once per process, so the map survives
+		# across builds. That is what makes change detection possible at all.
 		def signatures
 			@signatures ||= {}
 		end
@@ -52,9 +36,8 @@ module LiveReloadCoalesce
 		end
 
 		# Rendered output for a page or document, source mtime for a static file.
-		# String#hash is randomized per process, which is fine because these are
-		# only ever compared within one process, and it costs far less than
-		# hashing 11MB of HTML on every build.
+		# String#hash is randomized per process, which is fine since signatures
+		# are only ever compared within one, and it beats hashing 11MB per build.
 		def signature(item)
 			return item.output.hash if item.respond_to?(:output) && item.output
 			return item.mtime if item.respond_to?(:mtime)
@@ -77,10 +60,9 @@ module LiveReloadCoalesce
 			end
 		end
 
-		# Sends every changed stylesheet, and adds one "/" if anything else
-		# changed. LiveReload matches paths loosely, so "/" is a prefix of every
-		# page URL and always reloads the open page, and it does not end in .css
-		# so livereload.js takes its reloadPage() branch.
+		# LiveReload matches paths loosely, so "/" prefixes every page URL and
+		# always reloads the open page, and it does not end in .css so
+		# livereload.js takes its reloadPage() branch.
 		def reload_paths
 			stylesheets, others = changed.partition { |url| url.end_with?('.css') }
 			others.empty? ? stylesheets : stylesheets + ['/']

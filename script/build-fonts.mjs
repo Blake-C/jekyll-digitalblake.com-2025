@@ -1,23 +1,18 @@
 #!/usr/bin/env node
 /**
- * Generates the production Montserrat WOFF2 web fonts by subsetting the full
- * TTF sources in assets/fonts/ with pyftsubset (fonttools, installed in the
- * Docker image). WOFF2 is the only shipped format — WOFF/TTF are sources only.
+ * Subsets the Montserrat TTF sources in assets/fonts/ into the shipped WOFF2
+ * with pyftsubset.
  *
- * Two modes:
- *   node script/build-fonts.mjs            # measure — build every candidate in
- *                                          # a temp dir and print a size table,
- *                                          # touching nothing committed
- *   node script/build-fonts.mjs --emit     # emit — write the chosen production
- *                                          # set into assets/fonts/
+ * Two modes: no flags builds every candidate in a temp dir and prints a size
+ * table, touching nothing committed. `--emit` writes the production set into
+ * assets/fonts/. Emit takes two overrides:
  *
- * The chosen strategy is the default below; override with flags:
- *   --strategy=static|variable   font layout to emit (default: static)
- *   --glyphs=range|scan          glyph set (default: range)
+ *   --strategy=static|variable   font layout (default: variable)
+ *   --glyphs=core|core+scan|scan glyph set  (default: core+scan)
  *
- * "range" keeps a fixed unicode-range robust to future content; "scan" keeps
- * only glyphs found in the current source content (smaller, but a new post with
- * an unseen character would fall back until the next build).
+ * "core" is a fixed unicode-range robust to future content; "scan" keeps only
+ * glyphs found in the current content, so a new post with an unseen character
+ * would fall back until the next build.
  */
 import { execFileSync } from 'child_process'
 import { mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'fs'
@@ -44,21 +39,16 @@ const VARIABLE_TTF = 'Montserrat-Variable.ttf'
 const VARIABLE_OUT = 'montserrat-variable-webfont.woff2'
 const WGHT_RANGE = '400:900'
 
-// fonttools stamps the current time into the OpenType `head.modified` field,
-// which makes every build produce different bytes and dirties the working tree
-// on every run. It honors SOURCE_DATE_EPOCH (the reproducible-builds standard),
-// so pinning it to a fixed instant makes the output byte-identical everywhere.
-// 1735689600 = 2025-01-01T00:00:00Z. The value is arbitrary but must not change,
-// or every font rebuild produces a new file.
+// fonttools stamps the current time into OpenType `head.modified` unless
+// SOURCE_DATE_EPOCH is set, so every build would emit different bytes. The
+// value (2025-01-01T00:00:00Z) is arbitrary but must not change, or every font
+// rebuild produces a new file.
 const SOURCE_DATE_EPOCH = '1735689600'
 
-// Robust core unicode-range, always included: Basic Latin, Latin-1 Supplement,
-// General Punctuation (smart quotes, em/en dashes), and Arrows (-> <-). This
-// covers ordinary English and Western typography. The full Latin Extended block
-// is deliberately excluded — it is ~600 mostly-unused glyphs that nearly double
-// the file. Specific extended letters the content actually uses (e.g. ș/ł/č)
-// are added by the content scan instead. Keep in sync with the unicode-range
-// comment in theme_components/sass/helpers/_fonts.scss.
+// Basic Latin, Latin-1 Supplement, General Punctuation, and Arrows. Latin
+// Extended is excluded on purpose: ~600 mostly-unused glyphs that nearly double
+// the file, where the few letters the content uses come from the scan instead.
+// Keep in sync with the unicode-range in theme_components/sass/helpers/_fonts.scss.
 const UNICODE_RANGE = 'U+0020-007E,U+00A0-00FF,U+2000-206F,U+2190-21FF'
 
 // Source trees scanned to derive the "used glyphs" set for --glyphs=scan.
@@ -89,7 +79,6 @@ function walk(dir, exts, acc) {
 	return acc
 }
 
-// Collect every distinct character used across source content + templates.
 function collectUsedChars() {
 	const files = []
 	for (const d of SCAN_DIRS) walk(join(ROOT, d), SCAN_EXTS, files)
@@ -113,22 +102,20 @@ function fileSize(path) {
 	return statSync(path).size
 }
 
-// Build one WOFF2. `glyphs` is { core: bool, scanFile: '<path>'|null }; pyftsubset
-// unions every glyph spec, so passing both keeps the core range AND scanned chars.
+// pyftsubset unions every glyph spec, so passing both `core` and `scanFile`
+// keeps the core range and the scanned characters.
 function subset({ src, out, glyphs, instanceWght }) {
 	const inputTtf = join(FONTS_DIR, src)
 	const cmd = []
 	let actualInput = inputTtf
 	let scratch = null
 
-	// Both fonttools steps get the pinned epoch: the instancer writes the
-	// intermediate that pyftsubset then reads, so either one left unpinned
-	// reintroduces a live timestamp.
+	// Both steps get the pinned epoch: the instancer writes the intermediate
+	// pyftsubset reads, so either one left unpinned reintroduces a live stamp.
 	const env = { ...process.env, SOURCE_DATE_EPOCH }
 
-	// Limit the variable weight axis to the used range before subsetting. The
-	// intermediate goes to a temp dir, not assets/fonts, so a crash cannot
-	// strand an untracked TTF next to the shipped fonts.
+	// Limit the variable weight axis before subsetting. The intermediate goes to
+	// a temp dir so a crash cannot strand an untracked TTF in assets/fonts.
 	if (instanceWght) {
 		scratch = mkdtempSync(join(tmpdir(), 'fontbuild-axis-'))
 		const limited = join(scratch, 'axis-limited.ttf')
@@ -146,7 +133,6 @@ function subset({ src, out, glyphs, instanceWght }) {
 	try {
 		execFileSync('pyftsubset', cmd, { stdio: 'pipe', env })
 	} finally {
-		// Drop the axis-limited intermediate; only the WOFF2 is a deliverable.
 		if (scratch) rmSync(scratch, { recursive: true, force: true })
 	}
 }
@@ -242,8 +228,6 @@ function measure() {
 
 function emit() {
 	const strategy = flag('strategy') || 'variable'
-	// Glyph set: "core" = fixed range only; "core+scan" (default) also unions the
-	// extended characters the content actually uses; "scan" = scanned chars only.
 	const glyphsMode = flag('glyphs') || 'core+scan'
 	const glyphs = { core: glyphsMode !== 'scan' }
 	if (glyphsMode !== 'core') {

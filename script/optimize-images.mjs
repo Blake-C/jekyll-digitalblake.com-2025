@@ -17,11 +17,9 @@ const DIRS = [join(ROOT, 'assets/images'), join(ROOT, 'assets/uploads')]
 const QUALITY = '95'
 const IMAGE_EXTS = ['.jpg', '.jpeg', '.png']
 
-// Minimum size saving required to accept a re-encode of a file that carries no
-// metadata. JPEG encoding is lossy, so re-encoding an already-optimized JPEG
-// produces different bytes every run without making the file meaningfully
-// smaller. Without this gate the script never reaches a fixed point: it dirties
-// the working tree on every run and degrades the image a little each time.
+// JPEG encoding is lossy, so re-encoding an already-optimized file produces new
+// bytes every run without getting smaller. Without this gate the script never
+// reaches a fixed point and degrades the image a little each time.
 const MIN_SAVING = 0.01
 
 function walkDir(dir) {
@@ -43,9 +41,8 @@ function walkDir(dir) {
 }
 
 // True when the image still carries an embedded profile (EXIF, IPTC, XMP, ICC).
-// `-strip` removes these, so a stripped file reports none and the size gate
-// below takes over. Note %[profiles] is not a valid ImageMagick 7 format
-// property, so this reads the verbose dump instead.
+// %[profiles] is not a valid ImageMagick 7 format property, hence the verbose
+// dump.
 function hasMetadata(filePath) {
 	const out = execFileSync('magick', ['identify', '-verbose', filePath], { encoding: 'utf8', stdio: 'pipe' })
 	return /^\s*Profiles:/m.test(out) || /^\s*Profile-/m.test(out)
@@ -56,7 +53,7 @@ function processFile(filePath) {
 	const webpPath = filePath.replace(/\.(jpe?g|png)$/i, '.webp')
 
 	// Encode to a temp file rather than in place, so an already-optimized image
-	// can be left byte-identical. Args as array avoids shell injection.
+	// can be left byte-identical.
 	const work = mkdtempSync(join(tmpdir(), 'imgopt-'))
 	const candidate = join(work, basename(filePath))
 	let replaced = false
@@ -67,9 +64,9 @@ function processFile(filePath) {
 		execFileSync('magick', [filePath, '-strip', '-quality', QUALITY, candidate], { stdio: 'pipe' })
 		const after = statSync(candidate).size
 
-		// Metadata removal always wins, since a large photo's EXIF (including GPS)
-		// can be well under MIN_SAVING of the total file size. Otherwise the
-		// re-encode has to earn its place.
+		// Stripping always wins, since a large photo's EXIF (including GPS) can
+		// be well under MIN_SAVING of the file size. Otherwise the re-encode has
+		// to earn its place.
 		if (stripping || after < before * (1 - MIN_SAVING)) {
 			copyFileSync(candidate, filePath)
 			replaced = true

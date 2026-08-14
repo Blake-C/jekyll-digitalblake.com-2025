@@ -1,17 +1,12 @@
 #!/usr/bin/env node
 /**
- * Renders Open Graph cards for articles whose source image is a stock photo
- * carrying no information: the photo is blurred, covered with a navy scrim, and
- * the article title is set over it in the same palette as og-fallback.jpg.
+ * Renders Open Graph cards for articles whose source image is an uninformative
+ * stock photo: blurred, covered with a navy scrim, title set over it in the
+ * og-fallback.jpg palette. Writes a new `-og.webp` rather than overwriting the
+ * source, so it stays idempotent.
  *
- * Writes to a new `-og.webp` file rather than overwriting the source, so the
- * script is idempotent and the original photo stays available.
- *
- * On-demand, not part of the build:
- *   docker compose run --rm app node script/render-article-og.mjs
- *
- * Reports the worst-case contrast ratio between the title and the pixels behind
- * it. Anything under MIN_CONTRAST is a failure, not a warning.
+ * Exits non-zero if the title's worst-case contrast against the pixels behind
+ * it falls under MIN_CONTRAST. Run on demand, not part of the build.
  */
 import { execFileSync } from 'child_process'
 import { unlinkSync } from 'fs'

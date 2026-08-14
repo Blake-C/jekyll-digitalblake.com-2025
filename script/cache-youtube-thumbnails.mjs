@@ -1,15 +1,10 @@
 #!/usr/bin/env node
 /**
- * Caches YouTube thumbnails locally as optimized WebP files.
+ * Caches YouTube thumbnails locally as WebP. Scans _posts for `youtube_id`,
+ * downloads each thumbnail (maxresdefault, falling back to hqdefault), resizes
+ * it to the content max width, and prunes any whose video is no longer used.
  *
- * Scans _posts for `youtube_id` front matter, downloads each video's thumbnail
- * (maxresdefault, falling back to hqdefault), resizes it to the post content
- * max width and converts it to WebP via ImageMagick. Prunes thumbnails whose
- * video is no longer referenced by any post.
- *
- * Usage:
- *   node script/cache-youtube-thumbnails.mjs            # cache missing thumbnails, prune orphans
- *   node script/cache-youtube-thumbnails.mjs --force    # re-download and regenerate every thumbnail
+ * `--force` re-downloads and regenerates everything.
  */
 import { execFileSync } from 'child_process'
 import { readdirSync, readFileSync, existsSync, mkdirSync, rmSync } from 'fs'
@@ -24,7 +19,6 @@ const MAX_WIDTH = '830' // post content max width in px
 const ID_RE = /^[A-Za-z0-9_-]{11}$/
 const force = process.argv.includes('--force')
 
-// Collect the set of YouTube video ids referenced by posts.
 function collectIds() {
 	const ids = new Set()
 	let entries
@@ -76,8 +70,8 @@ async function cacheThumbnail(id) {
 		return { created: 0, skipped: 0, errored: existsSync(outPath) ? 0 : 1 }
 	}
 
-	// Resize (only shrink) and convert to WebP. Args as array, no shell, and
-	// outPath is built from an id already validated by ID_RE.
+	// Only shrinks, never upscales. outPath is safe to interpolate because the
+	// id was validated against ID_RE upstream.
 	execFileSync(
 		'magick',
 		['jpg:-', '-strip', '-resize', `${MAX_WIDTH}x>`, '-quality', QUALITY, `webp:${outPath}`],

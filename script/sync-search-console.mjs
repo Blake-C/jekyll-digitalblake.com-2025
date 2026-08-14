@@ -1,37 +1,14 @@
 #!/usr/bin/env node
 /**
- * Syncs Google Search Console data for the site into a local diagnostic report
- * that Claude (or a human) reads to propose SEO and indexability fixes.
+ * Pulls Search Analytics, Sitemaps, and URL Inspection from Google Search
+ * Console, derives a flat `issues[]` list from them, and writes both to
+ * tmp/search-console/report.{json,md}.
  *
- * Pulls three things via the Search Console API:
- *   - Search Analytics  — top queries and pages (clicks, impressions, CTR, position)
- *   - Sitemaps          — submitted sitemaps with their error/warning counts
- *   - URL Inspection    — per-URL index status, coverage, robots, canonical, mobile usability
+ * That output is private diagnostic data, so it lives under tmp/ (gitignored)
+ * and never under _data/, where Jekyll would publish it.
  *
- * It derives a flat `issues[]` list (not indexed, noindex, canonical mismatch, low CTR, etc.)
- * so the report is actionable without re-deriving problems.
- *
- * Output (gitignored, NOT under _data/ — this is private diagnostic data, not site content):
- *   tmp/search-console/report.json   full structured data
- *   tmp/search-console/report.md     human/Claude-scannable summary (issues first)
- *
- * Auth: a Google Cloud service account whose client_email has been added as a user on the
- * Search Console property. GSC_SITE_URL must match the registered property exactly — a URL-prefix
- * property (https://digitalblake.com/, trailing slash included) or a Domain property
- * (sc-domain:digitalblake.com). Provide the key via the GSC_SERVICE_ACCOUNT_KEY path, or drop it at
- * the default path secrets/gsc-service-account.json (both are gitignored).
- *
- * Usage:
- *   node script/sync-search-console.mjs              # analytics + sitemaps + inspect every sitemap URL
- *   node script/sync-search-console.mjs --max=50     # cap URL Inspection to the first 50 URLs
- *   node script/sync-search-console.mjs --no-inspect # skip URL Inspection (analytics + sitemaps only)
- *
- * Env:
- *   GSC_SITE_URL              property as registered (default https://digitalblake.com/); may be a
- *                             Domain property such as sc-domain:digitalblake.com
- *   GSC_BASE_URL              https origin used to fetch the sitemap and inspect URLs; defaults to
- *                             GSC_SITE_URL, or https://<domain>/ derived from an sc-domain property
- *   GSC_SERVICE_ACCOUNT_KEY   path to the service-account JSON key (default secrets/gsc-service-account.json)
+ * Flags: --max=N caps URL Inspection; --no-inspect skips it entirely.
+ * Auth and the GSC_* env vars are documented in CLAUDE.md.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { createSign } from 'crypto'
@@ -92,10 +69,9 @@ function resolveKeyPath(p) {
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-// Abort a wedged connection after REQUEST_TIMEOUT_MS, then retry transient errors and 5xx with
-// backoff. The timeout is generous: the URL Inspection API runs real-time analysis and legitimately
-// takes several seconds per URL, so a short cap would abort valid calls. Cold-start stalls are
-// handled by ipv4first above, not by a tight timeout here.
+// The timeout is deliberately generous: URL Inspection runs real-time analysis
+// and legitimately takes several seconds per URL, so a short cap would abort
+// valid calls. Cold-start stalls are handled by ipv4first above instead.
 const MAX_RETRIES = 6
 const REQUEST_TIMEOUT_MS = 25000
 async function fetchRetry(url, options = {}, attempt = 1) {
@@ -113,7 +89,7 @@ async function fetchRetry(url, options = {}, attempt = 1) {
 	}
 }
 
-// YYYY-MM-DD for a date `daysAgo` before today (UTC, matching GSC's reporting).
+// UTC, matching GSC's own reporting.
 function isoDaysAgo(daysAgo) {
 	const d = new Date()
 	d.setUTCDate(d.getUTCDate() - daysAgo)
@@ -171,7 +147,6 @@ async function authorize() {
 	accessToken = data.access_token
 }
 
-// Authenticated JSON request against a Search Console endpoint.
 async function gscFetch(url, { method = 'GET', body } = {}) {
 	const res = await fetchRetry(url, {
 		method,
@@ -295,7 +270,7 @@ async function inspectUrls(urls) {
 	return results
 }
 
-// Flatten everything into a single actionable list, most-actionable first.
+// Ordered most-actionable first.
 function deriveIssues({ searchAnalytics, sitemaps, urlInspection }) {
 	const issues = []
 
@@ -355,7 +330,6 @@ function deriveIssues({ searchAnalytics, sitemaps, urlInspection }) {
 	return issues
 }
 
-// Whole-number days since an ISO timestamp, or null if absent/unparseable.
 function ageInDays(isoTime) {
 	if (!isoTime) return null
 	const then = Date.parse(isoTime)
@@ -363,7 +337,6 @@ function ageInDays(isoTime) {
 	return Math.floor((Date.now() - then) / 86400000)
 }
 
-// Roll the per-URL inspection results up into an at-a-glance indexing picture.
 function summarizeIndexing(urlInspection) {
 	const byCoverage = {}
 	let errors = 0

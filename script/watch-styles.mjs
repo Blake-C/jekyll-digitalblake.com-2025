@@ -1,38 +1,14 @@
 #!/usr/bin/env node
 /**
- * Watches theme_components/sass and rebuilds styles on change, writing only the
- * output files whose bytes actually changed.
+ * Watches theme_components/sass and rebuilds on change, running the same
+ * transforms as `build:styles` (autoprefixer, critical-CSS URL rewrite,
+ * hash-assets --dev) in one process against a warm sass compiler.
  *
- * Replaces the bare `sass --watch` that `pnpm run dev` used to run. Sass alone
- * left three problems in development:
+ * It writes only the files whose bytes changed. Sass recompiles all three entry
+ * points every run, and any write to _includes/ or _data/ invalidates every
+ * page in Jekyll, so writing identical bytes costs a full site regeneration.
  *
- *   1. script/build-css.mjs (autoprefixer) never ran, so dev CSS carried no
- *      vendor prefixes and did not match what production ships.
- *   2. script/rewrite-critical-urls.mjs never ran, so the inlined critical CSS
- *      lost its @font-face manifest lookup on the first rebuild.
- *   3. script/hash-assets.mjs never re-ran. A `pnpm run build` in another
- *      terminal overwrites _data/asset_manifest.json with hashed filenames,
- *      Jekyll watches _data and rebuilds every page pointing at the hashed
- *      copy, and the watchers only ever write the unhashed file. The served
- *      stylesheet then froze at whatever that build produced, which reads as
- *      "live reload is broken" because the reload fires and changes nothing.
- *
- * Two things make this faster than chaining the one-off scripts:
- *
- *   Nothing unchanged is written. Sass recompiles all three entry points on
- *   every run, so editing a partial that only global-styles.scss uses still
- *   rewrote _includes/critical.min.css and _data/asset_manifest.json with
- *   identical bytes. Both invalidate every page in Jekyll, and the writes
- *   landed in two bursts, so one save cost two full site regenerations.
- *
- *   Everything runs in this process against a warm sass compiler. Shelling out
- *   to sass, build-css.mjs and rewrite-critical-urls.mjs cost more in Node
- *   startup and postcss import than the compile itself.
- *
- * Production still runs `pnpm run build:styles`, which writes in place.
- *
- * Usage:
- *   node script/watch-styles.mjs
+ * Output must stay byte-identical to `build:styles`, maps included.
  */
 import { spawnSync } from 'child_process'
 import { existsSync, mkdirSync, readFileSync, watch, writeFileSync } from 'fs'
@@ -45,9 +21,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SASS_DIR = join(ROOT, 'theme_components/sass')
 const DEBOUNCE_MS = 150
 
-// Mirrors the entry points in the build:styles script. `critical` marks the
-// stylesheet that gets inlined into <head>, which takes the URL rewrite and
-// ships without a map.
+// `critical` marks the stylesheet inlined into <head>: it takes the URL rewrite
+// and ships without a map.
 const ENTRIES = [
 	{ src: 'theme_components/sass/global-styles.scss', out: 'assets/css/global-styles.min.css' },
 	{ src: 'theme_components/sass/critical-styles.scss', out: '_includes/critical.min.css', critical: true },
@@ -80,18 +55,16 @@ async function buildEntry(entry) {
 		charset: true,
 	})
 
-	// The sass JS API returns sources as absolute file:// URLs. Jekyll serves
-	// the map next to the CSS, so they have to be relative to that directory.
+	// Sass returns sources as absolute file:// URLs, but Jekyll serves the map
+	// next to the CSS, so they have to be relative to that directory.
 	if (result.sourceMap) {
 		result.sourceMap.sources = result.sourceMap.sources.map(source =>
 			relative(dirname(outPath), fileURLToPath(source))
 		)
 	}
 
-	// The sass CLI appends this annotation to the file it writes, and production
-	// runs postcss over that file. The JS API returns the map separately and
-	// leaves the CSS unannotated, so it is added here to keep the dev and
-	// production bytes identical.
+	// The sass CLI appends this annotation and the JS API does not, so it is
+	// added here to keep the dev and production bytes identical.
 	const annotated = result.sourceMap
 		? `${result.css}/*# sourceMappingURL=${basename(outPath)}.map */\n`
 		: result.css
@@ -109,8 +82,8 @@ async function buildEntry(entry) {
 		return written
 	}
 
-	// postcss already appended the sourceMappingURL annotation, because `to` is
-	// set and the map is external.
+	// postcss already appended the annotation, since `to` is set and the map is
+	// external.
 	if (writeIfChanged(outPath, css)) written.push(entry.out)
 	if (map && writeIfChanged(`${outPath}.map`, map)) written.push(`${entry.out}.map`)
 
@@ -130,7 +103,7 @@ async function rebuild() {
 		const written = (await Promise.all(ENTRIES.map(buildEntry))).flat()
 
 		// Resets the manifest to unhashed filenames, undoing a production build
-		// that ran while the dev server was up. Writes only when it differs.
+		// that ran while the dev server was up.
 		spawnSync(process.execPath, [join(ROOT, 'script/hash-assets.mjs'), '--dev'], {
 			cwd: ROOT,
 			stdio: ['ignore', 'ignore', 'inherit'],

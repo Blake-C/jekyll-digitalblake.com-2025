@@ -1,17 +1,10 @@
 #!/usr/bin/env node
 /**
- * Builds a manifest of intrinsic pixel dimensions for every raster image under
- * assets/, so `_plugins/lazy_images.rb` can inject width/height onto markdown
- * content images at Jekyll build time (prevents layout shift / CLS).
+ * Writes _data/image_dimensions.json, the intrinsic pixel size of every raster
+ * image under assets/, keyed by site-absolute path. _plugins/lazy_images.rb
+ * reads it to inject width/height onto markdown content images and avoid CLS.
  *
- * Reads dimensions with the ImageMagick already used by the build (no new dep),
- * and writes `_data/image_dimensions.json` keyed by site-absolute path:
- *   { "/assets/uploads/2021/01/foo.webp": { "width": 1200, "height": 800 }, ... }
- *
- * This output is committed and consumed as-is by CI (which does not run image
- * build steps), matching how optimized images and cached thumbnails are handled.
- *
- * Usage: node script/image-dimensions.mjs
+ * The manifest is committed, because CI runs no image build steps.
  */
 import { execFileSync } from 'child_process'
 import { readdirSync, statSync, writeFileSync } from 'fs'
@@ -35,7 +28,7 @@ function walkDir(dir) {
 			}
 		}
 	} catch {
-		// Skip unreadable/missing dirs
+		// Unreadable or missing dir
 	}
 	return results
 }

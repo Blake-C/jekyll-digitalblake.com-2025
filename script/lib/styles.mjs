@@ -1,21 +1,13 @@
-/**
- * Shared style-pipeline steps, so the one-off production scripts and the dev
- * watcher apply the same transforms rather than two copies that drift.
- *
- * Used by script/build-css.mjs, script/rewrite-critical-urls.mjs, and
- * script/watch-styles.mjs.
- */
+/** Style-pipeline steps shared by the production scripts and the dev watcher. */
 import autoprefixer from 'autoprefixer'
 import postcss from 'postcss'
 
 const processor = postcss([autoprefixer])
 
 /**
- * Runs autoprefixer over a stylesheet.
- *
- * `map.inline` is false so the external .map sass wrote is chained rather than
- * dropped. postcss reads the annotation and picks that map up as the previous
- * source, which keeps the sources pointing at the .scss files.
+ * Runs autoprefixer over a stylesheet. `map.inline` is false so postcss chains
+ * the external .map sass wrote instead of dropping it, which is what keeps the
+ * map sources pointing at the .scss files.
  */
 export async function prefix(css, { from, to, prev } = {}) {
 	const result = await processor.process(css, {
@@ -31,12 +23,8 @@ export async function prefix(css, { from, to, prev } = {}) {
 
 /**
  * Points the inlined critical CSS at the asset manifest and strips its
- * sourceMappingURL.
- *
- * The file is inlined into <head>, so a map annotation there resolves to
- * nothing, and the @font-face src has to become a manifest lookup to pick up
- * the content-hashed filename written by hash-assets.mjs (with the static path
- * as a fallback). The manifest key mirrors that script: "<basename>-woff2".
+ * sourceMappingURL, which resolves to nothing once the file is inlined into
+ * <head>. The manifest key mirrors hash-assets.mjs: "<basename>-woff2".
  */
 export function rewriteCriticalUrls(css) {
 	const fontUrl = (_match, _quote, file) => {

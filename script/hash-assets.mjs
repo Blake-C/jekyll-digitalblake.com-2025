@@ -1,17 +1,10 @@
 #!/usr/bin/env node
 /**
- * Generates content-hashed copies of compiled CSS and JS assets plus the
- * shipped WOFF2 fonts, then writes _data/asset_manifest.json so Jekyll
- * templates can reference the correct (cache-busting) filenames.
+ * Content-hashes the compiled CSS and JS and the shipped WOFF2 fonts, then
+ * writes _data/asset_manifest.json for the templates to read. Entry points and
+ * fonts are auto-discovered, so adding one needs no edit here.
  *
- * Auto-discovers all *.min.css in assets/css/, *.min.js in assets/js/, and
- * *.woff2 in assets/fonts/ — no manual updates needed when new entry points or
- * fonts are added. Fingerprinting fonts matters because their URL is otherwise
- * stable across subset rebuilds, so browsers/CDNs keep serving a stale file.
- *
- * Usage:
- *   node script/hash-assets.mjs         # production — creates hashed files
- *   node script/hash-assets.mjs --dev   # dev — writes static filenames to manifest
+ * `--dev` writes static filenames to the manifest and creates no hashed copies.
  */
 import { readFileSync, writeFileSync, copyFileSync, readdirSync, unlinkSync, existsSync } from 'fs'
 import { createHash } from 'crypto'
@@ -32,7 +25,9 @@ const DIRS = [
 	{ dir: 'assets/js', ext: '.js', suffix: '-js' },
 ]
 
-// Fonts have no `.min.` infix, so they get their own discovery rule.
+// Fonts have no `.min.` infix, so they get their own discovery rule. They are
+// fingerprinted because a rebuilt subset otherwise keeps the same URL and
+// browsers go on serving the stale file.
 const FONT_DIR = { dir: 'assets/fonts', ext: '.woff2', suffix: '-woff2' }
 
 const manifest = {}
@@ -46,7 +41,6 @@ if (isDev) {
 			manifest[key] = `/${dir}/${file}`
 		}
 	}
-	// Fonts: static filenames in dev, same as CSS/JS.
 	const { dir, ext, suffix } = FONT_DIR
 	const absFontDir = join(ROOT, dir)
 	for (const file of readdirSync(absFontDir)) {
@@ -83,8 +77,7 @@ if (isDev) {
 		}
 	}
 
-	// Fonts: hash on the bare name (no `.min.` infix) so the URL changes whenever
-	// the subset is rebuilt.
+	// Fonts hash on the bare name, having no `.min.` infix to insert into.
 	const { dir, ext, suffix } = FONT_DIR
 	const absFontDir = join(ROOT, dir)
 	const fonts = readdirSync(absFontDir).filter(f => f.endsWith(ext) && !HASHED_FONT.test(f))
@@ -110,9 +103,8 @@ if (isDev) {
 	}
 }
 
-// Written only when the contents differ. Jekyll watches _data/, and any write
-// there invalidates every page, so rewriting an identical manifest on each dev
-// rebuild cost a second full site regeneration per save.
+// Written only when the contents differ: Jekyll watches _data/, and any write
+// there invalidates every page.
 const manifestPath = join(ROOT, '_data/asset_manifest.json')
 const next = JSON.stringify(manifest, null, '\t') + '\n'
 const current = existsSync(manifestPath) ? readFileSync(manifestPath, 'utf8') : null

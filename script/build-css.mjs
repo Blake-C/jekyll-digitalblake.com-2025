@@ -2,23 +2,9 @@
 /**
  * Runs autoprefixer over the three compiled stylesheets, in place.
  *
- * Replaced postcss-cli in August 2026. That package pulled in 28 dependencies
- * nothing else needed (yargs, chokidar, fs-extra, dependency-graph, tinyglobby
- * and their tails) to provide config discovery, globbing, watching, and
- * dependency graphs, none of which this project used. postcss and autoprefixer
- * are direct dependencies, so the work moves here and nothing is added.
- *
- * Runs after sass and before script/rewrite-critical-urls.mjs, which strips the
- * sourceMappingURL from critical.min.css and deletes its map. The other two keep
- * their external maps, so every file is processed with map.inline false and
- * postcss picks up the map sass just wrote as the previous source.
- *
- * The dev watcher does not shell out to this script. It calls the same
- * transform from script/lib/styles.mjs in process, because three Node startups
- * per save cost more than the compile itself.
- *
- * Usage:
- *   node script/build-css.mjs
+ * Sits between sass and script/rewrite-critical-urls.mjs in `build:styles`. The
+ * dev watcher calls the same transform from script/lib/styles.mjs in process
+ * rather than shelling out here.
  */
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { basename, join, dirname } from 'path'
