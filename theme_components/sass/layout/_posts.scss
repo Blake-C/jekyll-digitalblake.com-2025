@@ -1,6 +1,14 @@
 @use '../helpers/breakpoints' as bp;
 @use '../helpers/variables' as v;
 
+$bleeds: ':not(.alignright):not(.alignleft):not(.no-bleed)';
+
+// Markdown wraps an image on its own line in a paragraph, so that wrapper is an
+// image block too.
+$image-block: 'img#{$bleeds}, figure#{$bleeds}, p:has(> img#{$bleeds}:only-child)';
+
+$flush-block: '#{$image-block}, .code-toolbar';
+
 .entry-meta {
 	font-weight: 700;
 	line-height: 1.5;
@@ -121,46 +129,33 @@
 			padding: 30px;
 		}
 
-		// Remove gap in articles for first and last element if figure or img.
-		> figure,
-		> img {
-			&:first-child {
-				&:not(.alignright):not(.alignleft) {
-					margin-top: -20px;
+		// Cancels the padding above and below so the block sits flush. Matches
+		// the padding exactly, so every $flush-block must own no vertical margin.
+		> :is(#{$flush-block}):first-child {
+			margin-top: -20px;
 
-					@include bp.breakpoint(large) {
-						margin-top: -30px;
-					}
-				}
-			}
-
-			&:last-child {
-				&:not(.alignright):not(.alignleft) {
-					margin-bottom: -20px;
-
-					@include bp.breakpoint(large) {
-						margin-bottom: -30px;
-					}
-				}
+			@include bp.breakpoint(large) {
+				margin-top: -30px;
 			}
 		}
 
-		// Remove gap in articles for first and last element if .code-toolbar.
-		> .code-toolbar {
-			&:first-child {
-				margin-top: -28px;
+		> :is(#{$flush-block}):last-child {
+			margin-bottom: -20px;
 
-				@include bp.breakpoint(large) {
-					margin-top: -38px;
-				}
+			@include bp.breakpoint(large) {
+				margin-bottom: -30px;
 			}
+		}
 
-			&:last-child {
-				margin-bottom: -28px;
+		// Prism sets `margin: .5em 0` on the pre, which collapses through this
+		// wrapper. Same 8px, moved out, so the wrapper has no margin to cancel.
+		.code-toolbar {
+			margin-bottom: bp.rem-calc(8);
+			margin-top: bp.rem-calc(8);
 
-				@include bp.breakpoint(large) {
-					margin-bottom: -38px;
-				}
+			> pre {
+				margin-bottom: 0;
+				margin-top: 0;
 			}
 		}
 
@@ -223,26 +218,17 @@
 			}
 		}
 
-		// Content images bleed past the text column on both sides. `.no-bleed` opts
-		// an image out, for anything sized to sit inline with text rather than
-		// break out of it: avatars, inline icons, badges. Without it the `margin:
-		// 0 auto` here leaves `margin-right: auto` in place, which inside a flex
-		// row pushes the next sibling to the far edge.
-		img {
-			&:not(.alignright) {
-				&:not(.alignleft) {
-					&:not(.no-bleed) {
-						display: block;
-						margin: 0 auto;
-						margin-left: -20px;
-						max-width: calc(100% + 40px);
+		// Bleed past the text column on both sides. Longhands only, so this does
+		// not flatten vertical margins set elsewhere.
+		img#{$bleeds} {
+			display: block;
+			margin-left: -20px;
+			margin-right: auto;
+			max-width: calc(100% + 40px);
 
-						@include bp.breakpoint(large) {
-							margin-left: -30px;
-							max-width: calc(100% + 60px);
-						}
-					}
-				}
+			@include bp.breakpoint(large) {
+				margin-left: -30px;
+				max-width: calc(100% + 60px);
 			}
 		}
 
