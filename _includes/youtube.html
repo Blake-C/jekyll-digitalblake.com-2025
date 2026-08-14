@@ -8,7 +8,9 @@
 		tabindex="0"
 		aria-label="Play {{ _yt_title | escape }}"
 	>
+		{%- comment -%}`.video-embed` already bleeds; `no-bleed` stops it doubling.{%- endcomment -%}
 		<img
+			class="no-bleed"
 			src="{{ '/assets/uploads/youtube/' | append: _yt_id | append: '.webp' | relative_url }}"
 			alt="{{ _yt_title | escape }}"
 			width="830"
