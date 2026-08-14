@@ -1,9 +1,4 @@
-/**
- * Animated header
- *
- * @link http://callmenick.com/post/animated-resizing-header-on-scroll
- */
-
+// Shrinks the header once the page is scrolled past `shrinkOn`.
 window.addEventListener('scroll', () => {
 	let distanceY = window.pageYOffset || document.documentElement.scrollTop
 	let shrinkOn = 50

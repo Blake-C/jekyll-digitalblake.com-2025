@@ -1,9 +1,8 @@
 /**
- * skip-link-focus-fix.js
+ * Moves focus to the fragment target on hashchange, which some browsers scroll
+ * to without focusing, leaving a keyboard user's focus back at the skip link.
  *
- * Helps with accessibility for keyboard only users.
- *
- * Learn more: https://git.io/vWdr2
+ * From Automattic/_s: https://github.com/Automattic/_s/pull/136
  */
 
 let is_webkit = navigator.userAgent.toLowerCase().indexOf('webkit') > -1
