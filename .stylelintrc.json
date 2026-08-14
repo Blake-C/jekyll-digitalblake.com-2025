@@ -1,6 +1,8 @@
 {
 	"extends": ["stylelint-config-standard-scss"],
+	"plugins": ["stylelint-order"],
 	"rules": {
+		"order/properties-alphabetical-order": true,
 		"selector-class-pattern": null,
 		"no-descending-specificity": null,
 		"alpha-value-notation": null,
@@ -15,7 +17,7 @@
 		"declaration-empty-line-before": null,
 		"at-rule-empty-line-before": null,
 		"rule-empty-line-before": null,
-		"selector-pseudo-element-colon-notation": null,
+		"selector-pseudo-element-colon-notation": "double",
 		"selector-not-notation": null,
 		"media-feature-range-notation": null,
 		"property-no-vendor-prefix": null,

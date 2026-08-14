@@ -88,6 +88,9 @@ importers:
             stylelint-config-standard-scss:
                 specifier: 17.0.0
                 version: 17.0.0(postcss@8.5.25)(stylelint@17.14.1)
+            stylelint-order:
+                specifier: 8.1.1
+                version: 8.1.1(stylelint@17.14.1)
 
 packages:
     '@babel/code-frame@7.29.0':
@@ -1787,6 +1790,14 @@ packages:
             }
         engines: { node: '>=4' }
 
+    postcss-sorting@10.0.0:
+        resolution:
+            {
+                integrity: sha512-TXbU+h6vVRW+86c/+ewhWq9k7pr7ijASTnepVhCQiC87zAOTkvB1v2dHyWP+ggstSTX/PNvjzS+IOqzejndz9w==,
+            }
+        peerDependencies:
+            postcss: ^8.4.20
+
     postcss-value-parser@4.2.0:
         resolution:
             {
@@ -2004,6 +2015,15 @@ packages:
         engines: { node: '>=20.19.0' }
         peerDependencies:
             stylelint: ^17.0.0
+
+    stylelint-order@8.1.1:
+        resolution:
+            {
+                integrity: sha512-LqsEB6VggJuu5v10RtkrQsBObcdwBE7GuAOlwfc/LR3VL/w8UqKX2BOLIjhyGt0Gne/njo7gRNGiJAKhfmPMNw==,
+            }
+        engines: { node: '>=20.19.0' }
+        peerDependencies:
+            stylelint: ^16.18.0 || ^17.0.0
 
     stylelint-scss@7.1.1:
         resolution:
@@ -2979,6 +2999,10 @@ snapshots:
             cssesc: 3.0.0
             util-deprecate: 1.0.2
 
+    postcss-sorting@10.0.0(postcss@8.5.25):
+        dependencies:
+            postcss: 8.5.25
+
     postcss-value-parser@4.2.0: {}
 
     postcss@8.5.25:
@@ -3085,6 +3109,12 @@ snapshots:
         dependencies:
             stylelint: 17.14.1
             stylelint-config-recommended: 18.0.0(stylelint@17.14.1)
+
+    stylelint-order@8.1.1(stylelint@17.14.1):
+        dependencies:
+            postcss: 8.5.25
+            postcss-sorting: 10.0.0(postcss@8.5.25)
+            stylelint: 17.14.1
 
     stylelint-scss@7.1.1(stylelint@17.14.1):
         dependencies:
