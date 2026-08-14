@@ -95,6 +95,23 @@ The dev server builds to `_site_dev`, not `_site`. It rebuilds on every file cha
 
     `build:styles` then runs `script/build-css.mjs`, which applies autoprefixer to all three in place, and `script/rewrite-critical-urls.mjs`. This replaced `postcss-cli` in August 2026: that package brought 28 dependencies nothing else needed, for config discovery, globbing, and watching that this project never used. `postcss` and `autoprefixer` are direct dependencies, so the script adds nothing. It processes with `map: { inline: false }` so the external `.map` files sass writes are chained rather than dropped — a mistake there fails silently, since the CSS still builds and only the maps stop resolving.
 
+    **SCSS conventions.** Components are BEM, nested: a block opens one rule and its elements and modifiers hang off it as `&__element` / `&--modifier`, so a selector is never spelled out twice. Declarations are alphabetical, enforced by `order/properties-alphabetical-order` in `.stylelintrc.json` and auto-fixed by `lint:fix`. Do not hand-write a vendor prefix. autoprefixer emits them, and it removes a hand-written one that sits directly above the property it prefixes, because it reads that as its own output.
+
+    The helper partials are split by what they hold, and each file imports only the ones it uses:
+
+    | Partial                     | Holds                                                                | Alias   |
+    | --------------------------- | -------------------------------------------------------------------- | ------- |
+    | `helpers/_variables.scss`   | colors, fonts, globals                                               | `v`     |
+    | `helpers/_functions.scss`   | `rem-calc()`, `strip-unit()`, `$root-font-size`                      | `fn`    |
+    | `helpers/_breakpoints.scss` | `$breakpoints`, `breakpoint()`, `$nav-breakpoint` and its mixin pair | `bp`    |
+    | `helpers/_mixins.scss`      | `element-invisible`                                                  | `mx`    |
+    | `helpers/_helpers.scss`     | `%cover` placeholder                                                 | (none)  |
+    | `helpers/_cards.scss`       | `clickable()`                                                        | `cards` |
+
+    `breakpoint()` takes `medium`, `medium only`, or `large down`, and **errors on any other modifier**. It used to fall through to the min-width branch instead, so `large down` compiled to `min-width: 64em` and applied to the exact widths it excludes. Two rules shipped that way for a long time and the min-width behavior turned out to be the one that looks right, so `_intro.scss` and `_footer.scss` now say `breakpoint(large)` and render as before.
+
+    The ≤900px hamburger cutoff is `$nav-breakpoint`, used through `bp.nav-collapsed` / `bp.nav-expanded`. It is deliberately not a key in `$breakpoints`: a key between `medium` and `large` would change what `medium only` resolves to. `.nav-hamburger` lives in `layout/_menu.scss`, not `layout/_nav-modal.scss`, because only `_menu.scss` is in `critical-styles.scss`. Styled from the modal's partial, the button paints unstyled until the deferred stylesheet lands.
+
 2. **esbuild** (`script/build-scripts.mjs`) bundles two entry points from `theme_components/js/` → `assets/js/`
 3. **`script/hash-assets.mjs`** fingerprints compiled CSS/JS and the shipped WOFF2 fonts with SHA256 hashes and writes `_data/asset_manifest.json` (gitignored); templates reference hashed filenames via this manifest. The inlined `@font-face` src is rewritten to a manifest lookup by `script/rewrite-critical-urls.mjs`, so a rebuilt font subset always gets a new (cache-busting) URL
 
