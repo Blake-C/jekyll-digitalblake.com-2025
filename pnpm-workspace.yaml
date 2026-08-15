@@ -69,7 +69,7 @@ catalog:
     prismjs: 1.30.0
 
     # Dev dependencies — build tools and linters most exposed to supply chain risk
-    eslint: 10.8.0
+    eslint: 10.8.1
     stylelint: 17.14.1
     esbuild: 0.28.1
     sass: 1.102.0
