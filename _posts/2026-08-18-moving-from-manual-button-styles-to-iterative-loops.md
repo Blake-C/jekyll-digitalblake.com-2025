@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Moving From Manual Button Styles to Iterative Loops and the Issues That Followed'
-description: 'How 500 lines of hand-written CTA styles became four nested SCSS loops, what the generated test page caught, and the three problems that only showed up in the compiled CSS.'
+description: 'How about 500 lines of hand-written CTA styles became four nested SCSS loops, what the generated test page caught, and the three problems found later in the compiled CSS.'
 date: 2026-08-18 04:37:00 CDT -0500
 categories: ['Articles']
 tags: ['scss', 'css', 'sass', 'design-systems', 'refactoring', 'javascript']
@@ -11,17 +11,17 @@ image: '/assets/uploads/2026/08/moving-from-manual-button-styles-to-iterative-lo
 <aside class="callout">
 	<h2 class="callout__title">TL;DR</h2>
 	<ul>
-		<li><strong>A 500 line stylesheet of hand-written button variations became four nested loops.</strong> The loops emit 54 class names and 1,458 rules, and every value builds a segment of the class name and is handed to the mixin that holds the styling logic.</li>
-		<li><strong>A JavaScript version of the same four lists rendered every button onto one page.</strong> 54 classes across three themes and three states is 486 buttons, which the dev team checked whenever a button style changed.</li>
-		<li><strong>The test page could not show what the loop failed to generate.</strong> The SCSS and the JavaScript were separate iterators with nothing keeping them in sync, so a skipped block of styles left no trace on the page.</li>
-		<li><strong>Three problems were only visible in the compiled CSS.</strong> Six of the 54 classes were duplicates, every class on the dark theme had a disabled label the same color as its background, and the purple theme kept all six icons it was meant to exclude.</li>
-		<li><strong>A color needed on one page belongs in a page-scoped override.</strong> Three rules at 189 bytes compressed did the job that a fourth theme through the loop would have cost 17.6 KB.</li>
+		<li><strong>A stylesheet of about 500 lines of hand-written button variations became four nested loops.</strong> The loops iterate over style, size, variant, and theme to emit 54 class names and 1,458 rules, and each value both builds a segment of the class name and is passed to a shared mixin that holds the styling logic.</li>
+		<li><strong>A JavaScript version of those same four lists rendered every button onto one page.</strong> With 54 classes across three themes and three states, that page held 486 buttons, and the dev team checked it whenever a button style changed.</li>
+		<li><strong>Two kinds of failure never showed up on the test page.</strong> The SCSS and the JavaScript were separate iterators with nothing keeping them in sync, so a variation added to the stylesheet and not to the four arrays in the script never appeared on the page, and an early return that was meant to skip a block of styles left no sign on the page when it did not fire.</li>
+		<li><strong>Three problems turned up in the compiled CSS.</strong> Six of the 54 classes compile to output identical to a class the loop already generated, every class on the dark theme set its disabled text color and its background color to the same value, and the purple theme generated the icon variations it was meant to exclude.</li>
+		<li><strong>A color needed on one page went into a page-scoped override instead of the loop.</strong> The three rules it took are 189 bytes compressed, against 487 rules and 17.6 KB compressed for a fourth theme through the loop.</li>
 	</ul>
 </aside>
 
 The Seismic marketing site had a stylesheet partial called `_ctas-and-buttons.scss` that ran ~500 lines, including the blank lines between blocks. It was organized by size then variation, so the small buttons sat together, followed by the large buttons, then the primary and secondary, and inside those were the different icon variations.
 
-Every one of those variations was written out manually. Each block passed properties into a shared mixin that held the logic, the mixin decided what to generate from the values it was handed. It had numerous `@if` statements in it, so a small button resized its icon differently than a large one, and the light and dark themes branched there as well. The mixin lived in a different file and was also used by things that were not part of this grid, like the text links and the back buttons, but it never iterated over the variations, so that part was done by hand.
+Every one of those variations was written out manually. Each block passed properties into a shared mixin that held the logic, the mixin decided what to generate from the values it was handed. It had numerous `@if` statements in it, so a small button resized its icon differently than a large one, and the light and dark themes branched there as well. The mixin lived in a different file and was also used by things that were not part of this grid, like the text links and the back buttons, but it never iterated over the variations.
 
 ## Why the file was hard to work in
 
