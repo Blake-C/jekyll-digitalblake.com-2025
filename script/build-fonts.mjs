@@ -52,9 +52,13 @@ const SOURCE_DATE_EPOCH = '1735689600'
 const UNICODE_RANGE = 'U+0020-007E,U+00A0-00FF,U+2000-206F,U+2190-21FF'
 
 // Source trees scanned to derive the "used glyphs" set for --glyphs=scan.
-const SCAN_DIRS = ['_posts', '_websites', '_websites_archive', '_coding_projects', '_includes', '_layouts', '_data']
+const SCAN_DIRS = ['_posts', '_case_studies', '_coding_projects', '_includes', '_layouts', '_data']
 const SCAN_ROOT_EXTS = new Set(['.md', '.markdown', '.html'])
 const SCAN_EXTS = new Set(['.md', '.markdown', '.html', '.yml', '.yaml'])
+
+// Repo docs, not site content. Mirrors the root-level .md entries in the
+// `exclude:` list in _config.yml; a doc-only character must not reach the subset.
+const SCAN_ROOT_SKIP = new Set(['CLAUDE.md', 'README.md'])
 
 // --- Helpers ---------------------------------------------------------------
 
@@ -83,6 +87,7 @@ function collectUsedChars() {
 	const files = []
 	for (const d of SCAN_DIRS) walk(join(ROOT, d), SCAN_EXTS, files)
 	for (const name of readdirSync(ROOT)) {
+		if (SCAN_ROOT_SKIP.has(name)) continue
 		if (SCAN_ROOT_EXTS.has(extname(name).toLowerCase())) files.push(join(ROOT, name))
 	}
 	const chars = new Set()
