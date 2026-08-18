@@ -1,0 +1,22 @@
+@use '../helpers/variables' as v;
+
+.reading-progress {
+	bottom: 0;
+	height: 10px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	// `bottom: 0` lands on the inside of the header's bottom border, so the bar
+	// has to clear its own height and the border to sit flush underneath.
+	transform: translateY(calc(100% + #{v.$header-border-width}));
+	width: 100%;
+
+	&__bar {
+		background-color: v.$sky-blue;
+		display: block;
+		height: 100%;
+		transform: scaleX(var(--reading-progress, 0));
+		transform-origin: 0 50%;
+		width: 100%;
+	}
+}

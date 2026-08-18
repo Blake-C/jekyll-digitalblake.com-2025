@@ -28,6 +28,10 @@ $accent-2: rgb(56 45 142);
 $accent-4: rgb(211 212 255);
 $accent-5: rgb(255 247 0);
 
+// Reading progress fill. It sits on the seam between the dark header and the
+// light page, so it has to hold up against both.
+$sky-blue: rgb(56 189 248);
+
 // Cycled across the date blocks in the post archive, six deep before repeating.
 $archive-teal: rgb(0 128 142);
 $archive-blue: rgb(30 88 210);
@@ -51,6 +55,10 @@ $global-lineheight: 1.8;
 $global-weight-normal: normal;
 $global-margin: 1rem;
 $global-width: 72.5rem; /* 1160px at 16px base */
+
+// The header's bottom rule. Shared so the reading progress bar can clear it and
+// sit flush underneath.
+$header-border-width: 3px;
 
 /* Code */
 

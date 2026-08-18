@@ -12,7 +12,7 @@ body {
 
 .top-header {
 	background-color: v.$primary;
-	border-bottom: 3px solid v.$blue;
+	border-bottom: v.$header-border-width solid v.$blue;
 	padding: 30px 0;
 	position: fixed;
 	top: 0;
