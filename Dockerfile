@@ -55,3 +55,9 @@ RUN adduser -D -u 1001 appuser \
     && chmod -R 755 /usr/local/share/corepack
 
 USER appuser
+
+# The repo is bind-mounted from the host and keeps the host user's ownership,
+# which is not appuser's uid 1001. Git refuses to operate on a repo owned by
+# another user, so without this the lint-staged step of the pre-commit hook
+# fails with "failed to back up original state" or "not a git directory".
+RUN git config --global --add safe.directory /app
