@@ -14,7 +14,7 @@ image: '/assets/uploads/2026/08/moving-from-manual-button-styles-to-iterative-lo
 		<li><strong>About 500 lines of hand-written button variations became four nested loops</strong> over style, size, variant, and theme, emitting 54 class names and 1,548 rules.</li>
 		<li><strong>The site ran on WordPress and the content team applied the button classes themselves,</strong> so every combination the design system spec'd had to ship whether a page used it or not.</li>
 		<li><strong>A JavaScript version of the same four lists rendered all 486 buttons onto one page.</strong> It could not show an unused combination or an <code>@if</code> that failed to fire.</li>
-		<li><strong>Four problems turned up in the compiled CSS.</strong> Six of the 54 classes are duplicates, the dark theme sets disabled text and background to the same value, the purple theme generated icons it was meant to exclude, and 42 of the 54 appear on none of the 3,547 pages I archived.</li>
+		<li><strong>Four problems turned up in the compiled CSS.</strong> Six of the 54 classes are duplicates, the dark theme sets disabled text and background to the same value, the purple theme generated icons it was meant to exclude, and 40 of the 54 are on none of the 3,547 pages I archived.</li>
 		<li><strong>The button rules are 43.7 KB compressed, a third of the stylesheet every visitor downloaded.</strong> A yellow submit button took a 214-byte override on the form instead of a 17.5 KB theme.</li>
 	</ul>
 </aside>
@@ -48,13 +48,15 @@ Before that version of seismic.com was replaced, I pulled down a static copy of 
 
 In that build, `seismic-core.css` is 1.78 MB raw and 138 KB compressed. The button rules are 850 KB raw and 43.7 KB compressed, which is 48% of the raw stylesheet and 32% of what a visitor downloaded.
 
-The archive also holds 3,547 rendered pages. Twelve of the 54 classes appear in a `class` attribute on at least one of them, and 42 appear on none. Three classes account for 9,589 of the 9,935 total uses:
+The archive also holds 3,547 rendered pages. Twelve of the 54 classes appear in a `class` attribute on at least one of them, and three of those account for 9,589 of the 9,935 occurrences in the markup:
 
-- `cta-primary-large-arrow`, 5,059 uses
-- `cta-secondary-large`, 2,702 uses
-- `cta-primary-large`, 1,828 uses
+- `cta-primary-large-arrow`, 5,059
+- `cta-secondary-large`, 2,702
+- `cta-primary-large`, 1,828
 
-The archive is a crawl of the public pages only, because pages behind logins and access levels were internal to Seismic and were never pulled into it, so those counts are a floor and 42 is the most that could have gone unused.
+Counting the markup alone undercounts, because some of these classes are applied by script after the page loads. `pill-marketo-form.js` puts a button class on the Marketo submit button once the form renders, and `seismic.js` toggles `cta-primary-large-plus` and `cta-primary-large-minus` on an expand and collapse control. Those two classes are in no `class` attribute anywhere in the archive, so a scan of the markup calls them unused when they are not. Adding the classes the scripts apply brings the total to 14 in use and 40 that nothing references.
+
+The archive is a crawl of the public pages only, because pages behind logins and access levels were internal to Seismic and were never pulled into it, so those counts are a floor and 40 is the most that could have gone unused.
 
 ## Each value goes into the class name and into the mixin
 
@@ -148,7 +150,7 @@ The SCSS and the JavaScript are two separate loops with nothing keeping them in 
 
 A guard does not show up on the page at all. If you add an `@if` that skips a chunk of styles and it does not fire, the page renders every button it was told to render and gives no sign that the styles you meant to exclude are still being generated.
 
-The page also renders exactly what the four arrays contain, so it cannot show you that a combination is unused. The 42 classes that do not appear on an archived page rendered on it the same as the 12 that carried the site.
+The page also renders exactly what the four arrays contain, so it cannot show you that a combination is unused. The 40 classes that nothing on the site references rendered on it the same as the 14 that were in use.
 
 ## A new color added to the loop, and reverted to the form that needed it
 
@@ -168,7 +170,9 @@ I reverted it and scoped the color to the form instead, so it never touched the 
 }
 ```
 
-Marketo renders its own submit button rather than one of our CTA classes, so these two rules style `[type=submit]` and the `.next-button` on a multi-step form, and they add nothing to the loop. The color is switched on by a `bright-buttons` class on the form container, which means a page opts in by adding one class to the form rather than by getting a new theme compiled into every button on the site. Compressed, the two rules are 214 bytes. A fourth theme through the loop is 487 rules and 17.5 KB compressed.
+Marketo renders its own button markup, so `pill-marketo-form.js` waits for the form to render, strips the `mktoButton` class off the submit button, and adds our button classes in its place. The class list it adds is an argument with a default of `cta-primary-large`, and both of these pages call the function without passing one, so their submit buttons end up carrying a class the loop generated and picking up its styles.
+
+The two rules above then win on specificity. Every selector the loop emits for `cta-primary-large` is built out of classes, and these lead with the form container's ID, so the ID alone settles it. The color is switched on by a `bright-buttons` class on that container, which means a page opts in by adding one class to the form instead of getting a new theme compiled into every button on the site. Compressed, the two rules are 214 bytes. A fourth theme through the loop is 487 rules and 17.5 KB compressed.
 
 Eleven of the archived pages carry `bright-buttons`, so the color that started on one landing page ended up on the contact pages for enablement consulting in four locales. Adding it to those pages cost nothing, because the rules were already there.
 
@@ -192,9 +196,9 @@ There was a purple theme that we added where our intention was to disable the ic
 
 That theme is 487 rules and 17.5 KB compressed on every page load, and `theme-dark-rich` appears 316 times across the 3,547 archived pages, against 6,447 for `theme-dark` and 3,642 for `theme-light`.
 
-The fourth problem is the usage count. 42 of the 54 classes do not appear on any archived page, so most of what the loop generated was never applied to public content.
+The fourth problem is the usage count. 40 of the 54 classes are referenced by no page and no script in the archive, so most of what the loop generated was never applied to public content.
 
-Finding three of these four does not require a person to read 1,548 rules. Hashing each generated block finds the duplicates, comparing `color` against `background-color` in a rule finds the dark disabled state, and diffing the generated class names against the `class` attributes in the built HTML finds the ones nothing uses. Each check is a few lines against the compiled CSS.
+Finding three of these four does not require a person to read 1,548 rules. Hashing each generated block finds the duplicates, comparing `color` against `background-color` in a rule finds the dark disabled state, and diffing the generated class names against the `class` attributes in the built HTML finds the ones nothing uses. The last of those has to search the scripts as well as the markup, since a class added by `classList.add` after the page loads is in no `class` attribute, and leaving the scripts out of it is what put `cta-primary-large-plus` and `cta-primary-large-minus` in the unused column when both are in use.
 
 ## The maintenance costs for the iterative approach
 
@@ -210,14 +214,14 @@ Reading the existing 500 lines and getting them into my head took longer than wr
 - one copy of each icon, recolored per theme and per state
 - a test page rendering 486 buttons, used on any button change and at deployment
 - a form-scoped override for a one-page color, at 214 bytes against 17.5 KB for a fourth theme
-- 43.7 KB compressed on every page load, with 12 of the 54 classes appearing on the archived pages
+- 43.7 KB compressed on every page load, with 14 of the 54 classes in use on the archived site
 
 ## What to check when generating styles with an iterator
 
 When using an iterator to generate multiple styled components, you'll want to take the following into account.
 
 - Check the compiled output with a script rather than by reading it. All four of the problems in this build were in the compiled CSS, and a generated preview page only renders the combinations its own lists contain.
-- Count how many of the generated classes your pages use. Twelve of these 54 appeared on the archived pages, and the other 42 downloaded on every page load without being applied to anything.
+- Count how many of the generated classes your pages use, and count the ones your scripts apply after load as well. Fourteen of these 54 were in use, and the other 40 downloaded on every page load without being applied to anything. Checking the markup on its own put two of them in the wrong column.
 - Check whether a value appears in two of the lists. `small` was in the size list and in the variant list, so `.cta-primary-large-small` came out byte-for-byte identical to `.cta-primary-large`, and six of the 54 classes were duplicates of their initial output.
 - Confirm that any exclusion you add to your iterator is missing from the compiled output. The purple theme was supposed to exclude the icon variations, and it generated all of them.
 - There's a maintenance cost to having a test page that generates your output via JavaScript. There are two iterators that need to be kept in sync, one in SCSS and one in JavaScript, and that should be documented so the team knows to keep them in sync.
