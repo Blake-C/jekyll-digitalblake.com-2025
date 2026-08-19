@@ -53,7 +53,7 @@ profile_schema: true
 	</div>
 </div>
 
-## Selected projects
+## Projects
 
 <div class="career-timeline">
 	<div class="career-timeline__item">
