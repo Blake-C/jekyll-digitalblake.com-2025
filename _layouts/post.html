@@ -15,6 +15,20 @@ layout: base
 							<h1 class="entry-title">{{ page.title | escape }}</h1>
 							<div class="entry-meta">
 								<p>
+									{%- assign post_author_id = page.author | default: site.author.id -%}
+									{%- assign post_author = site.data.authors[post_author_id] -%}
+									{%- assign post_author_name = post_author.name -%}
+									<span class="byline post-meta"
+										>By:
+										<span class="author vcard"
+											><a
+												class="url fn n"
+												href="{{ '/author/' | append: post_author_id | append: '/' | relative_url }}"
+											>
+												{{- post_author_name -}}
+											</a></span
+										></span
+									>
 									{%- assign date_format = '%B %-d, %Y' -%}
 									{%- assign pdate = page.date | date_to_xmlschema -%}
 									<span class="posted-on post-meta"
@@ -32,20 +46,10 @@ layout: base
 											</time></span
 										>
 									{%- endif -%}
-									{%- assign post_author_id = page.author | default: site.author.id -%}
-									{%- assign post_author = site.data.authors[post_author_id] -%}
-									{%- assign post_author_name = post_author.name -%}
-									<span class="byline post-meta"
-										>By
-										<span class="author vcard"
-											><a
-												class="url fn n"
-												href="{{ '/author/' | append: post_author_id | append: '/' | relative_url }}"
-											>
-												{{- post_author_name -}}
-											</a></span
-										></span
-									>
+									{%- assign words = content | strip_html | number_of_words -%}
+									{%- assign read_minutes = words | divided_by: 200.0 | ceil -%}
+									{%- if read_minutes < 1 -%}{%- assign read_minutes = 1 -%}{%- endif -%}
+									<span class="read-time post-meta">{{ read_minutes }} min read</span>
 								</p>
 							</div>
 						</header>
