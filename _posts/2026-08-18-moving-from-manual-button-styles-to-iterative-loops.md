@@ -14,18 +14,20 @@ image: '/assets/uploads/2026/08/moving-from-manual-button-styles-to-iterative-lo
 		<li><strong>About 500 lines of hand-written button variations became four nested loops</strong> over style, size, variant, and theme, emitting 54 class names and 1,548 rules.</li>
 		<li><strong>The site ran on WordPress and the content team applied the button classes themselves,</strong> so every combination the design system spec'd had to ship whether a page used it or not.</li>
 		<li><strong>A JavaScript version of the same four lists rendered all 486 buttons onto one page.</strong> It could not show an unused combination or an <code>@if</code> that failed to fire.</li>
-		<li><strong>Four problems turned up in the compiled CSS.</strong> Six of the 54 classes are duplicates, the dark theme sets disabled text and background to the same value, the purple theme generated icons it was meant to exclude, and 40 of the 54 are on none of the 3,547 pages I archived.</li>
-		<li><strong>The button rules are 43.7 KB compressed, a third of the stylesheet every visitor downloaded.</strong> A yellow submit button took a 214-byte override on the form instead of a 17.5 KB theme.</li>
+		<li><strong>Four problems turned up in the compiled CSS.</strong> Six of the 54 classes are duplicates, the dark theme sets disabled text and background to the same value, the purple theme generated icons it was meant to exclude, and 40 of the 54 are referenced by nothing in the archive I searched.</li>
+		<li><strong>The button rules are 43.7 KB compressed, a third of the stylesheet every visitor downloaded.</strong> The loop generated more than we wanted, with the purple theme being the obvious example, it was supposed to exclude the icon variations but included all of them for a reason I can no longer verify due to a redesign.</li>
 	</ul>
 </aside>
 
 The Seismic marketing site had a stylesheet partial called `_ctas-and-buttons.scss` that ran ~500 lines, including the blank lines between blocks. It was organized by size then variation, so the small buttons sat together, followed by the large buttons, then the primary and secondary, and inside those were the different icon variations. Everything in that partial compiled into `seismic-core.css`, one file that every page on the site loaded, so every button style in it was downloaded whether the page had a button on it or not.
 
-Every one of those variations was written out manually. Each block passed properties into a shared mixin that held the logic, the mixin decided what to generate from the values it was handed. It had numerous `@if` statements in it, so a small button resized its icon differently than a large one, and the light and dark themes branched there as well. The mixin lived in a different file and was also used by things that were not part of this grid, like the text links and the back buttons, but it never iterated over the variations.
+Every variation was written out manually. Each block passed properties into a shared mixin that held the logic, the mixin decided what to generate from the values it was handed. It had numerous `@if` statements in it, so a small button resized its icon differently than a large one, and the light and dark themes branched as well. The mixin lived in a different file and was also used by things that were not part of the button system, like the text links and the back buttons, but it never iterated over the variations.
+
+![Seismic Learning Heroes section showcasing two CTAs, one primary, the other secondary.](/assets/uploads/2026/08/hero-section-with-primary-and-secondary-ctas.webp)
 
 ## What changing one button style required
 
-Changing one button style meant holding every variation in the file in your head at once. The blocks were ordered by size and then by variation, so the rules for a single button were spread through the file instead of sitting together, and before editing one you had to work out which other blocks passed the same values into the mixin. Getting that wrong changed buttons on pages you were not working on.
+Changing one button style meant holding every variation in the file in your head at one time. The blocks were ordered by size and then by variation, so the rules for a single button were spread through the file instead of sitting together, and before editing one you had to work out which other blocks passed the same values into the mixin. Getting that wrong changed buttons on pages you were not working on.
 
 ## What the loop generates
 
@@ -48,7 +50,7 @@ Before that version of seismic.com was replaced, I pulled down a static copy of 
 
 In that build, `seismic-core.css` is 1.78 MB raw and 138 KB compressed. The button rules are 850 KB raw and 43.7 KB compressed, which is 48% of the raw stylesheet and 32% of what a visitor downloaded.
 
-The archive also holds 3,547 rendered pages. Twelve of the 54 classes appear in a `class` attribute on at least one of them, and three of those account for 9,589 of the 9,935 occurrences in the markup:
+The archive also holds 3,544 rendered HTML files, some of which are repeat captures of the same URL. Twelve of the 54 classes appear in a `class` attribute in at least one of them, and three of those account for 9,589 of the 9,935 occurrences in the markup:
 
 - `cta-primary-large-arrow`, 5,059
 - `cta-secondary-large`, 2,702
@@ -114,6 +116,8 @@ Three of the six icons take one color and three take two. The arrow, download, a
 
 Keeping one copy of each icon meant that updating an icon was a change in one place. Optionally, we could have loaded a single sprite onto the site, but that would also mean loading in sprites on pages that might not have needed an icon in the first place.
 
+![Callout section for the messaging of "Why Seismic?" showcasing CTA with button primary style.](/assets/uploads/2026/08/callout-section-with-cta-button.webp)
+
 ## Buttons inside a section set to a different theme
 
 Each theme is emitted three ways:
@@ -152,7 +156,7 @@ A guard does not show up on the page at all. If you add an `@if` that skips a ch
 
 The page also renders exactly what the four arrays contain, so it cannot show you that a combination is unused. The 40 classes that nothing on the site references rendered on it the same as the 14 that were in use.
 
-## A new color added to the loop, and reverted to the form that needed it
+## The unintended consequences of adding a new color to the loop
 
 Later on, a colleague needed a yellow submit button on a Marketo form for a specific landing page and added the color to the loop. That generated a large number of variations that did not need to exist, and the way the change was made caused icons to go missing on some of the other color variations. It went in over a weekend under a tight deadline and I found it the next week when I came back to make more changes to the same form.
 
@@ -174,7 +178,7 @@ Marketo renders its own button markup, so `pill-marketo-form.js` waits for the f
 
 The two rules above then win on specificity. Every selector the loop emits for `cta-primary-large` is built out of classes, and these lead with the form container's ID, so the ID alone settles it. The color is switched on by a `bright-buttons` class on that container, which means a page opts in by adding one class to the form instead of getting a new theme compiled into every button on the site. Compressed, the two rules are 214 bytes. A fourth theme through the loop is 487 rules and 17.5 KB compressed.
 
-Eleven of the archived pages carry `bright-buttons`, so the color that started on one landing page ended up on the contact pages for enablement consulting in four locales. Adding it to those pages cost nothing, because the rules were already there.
+Seven URLs in the archive carry `bright-buttons`, so the color that started on one landing page ended up on the interactive content pages and on the contact pages for enablement consulting in four locales.
 
 ## Communicating with the design team on consequences of over customizing buttons
 
@@ -190,11 +194,13 @@ Narrowing a request got easier, and a request that was global got harder, becaus
 
 The `small` variant produces no declarations. `.cta-primary-large-small` compiles to output byte-for-byte identical to `.cta-primary-large`, and `small` sits in both the size list and the variant list. Large and small should never be placed within each other, and six of the 54 classes are duplicates of their initial output.
 
-On the dark theme, a disabled button sets `color`, `background-color`, and `border-color` to the same value, `#7a6b80`, so the button renders as a solid block and the label cannot be read. That is true for every one of the 54 classes on that theme. [WCAG success criterion 1.4.3](https://www.w3.org/TR/WCAG21/#contrast-minimum) says that text which is part of an inactive user interface component has no contrast requirement, and a disabled control is inactive, so an unreadable label there is not a conformance failure. The output was still not what we intended. Our test page generated the disabled states that we cared about, so it's likely that there are additional disabled states we didn't take into account, and since a dark disabled button was never used on a page, none of our usual QA passes would have put one in front of anyone.
+On the dark theme, a disabled button sets `color`, `background-color`, and `border-color` to the same value, `#7a6b80`, so the button renders as a solid block and the label cannot be read. That is true for every one of the 54 classes on that theme. [WCAG success criterion 1.4.3](https://www.w3.org/TR/WCAG21/#contrast-minimum) says that text which is part of an inactive user interface component has no contrast requirement, and a disabled control is inactive, so an unreadable label there is not a conformance failure. The output was still not what we intended. Our test page generated the disabled states that we cared about, so it's likely that there are additional disabled states we didn't take into account, and since a dark disabled button was never used on a page, none of our usual QA passes would have put one in front of a developer.
 
 There was a purple theme that we added where our intention was to disable the icons. We had believed this to be true, but upon further inspection the icon variations were in our compiled styles. In the archived build, 360 rules carrying `theme-dark-rich` target an icon variant and 72 of those set an icon data URI, so the icons were generated in full. I no longer have the original assets and cannot confirm why the exclusion did not apply, though my guess is the loop order, since the theme loop is outermost and the variant loop innermost, and a check written at the theme level does not skip the variants underneath it unless it wraps the inner loop.
 
-That theme is 487 rules and 17.5 KB compressed on every page load, and `theme-dark-rich` appears 316 times across the 3,547 archived pages, against 6,447 for `theme-dark` and 3,642 for `theme-light`.
+![Ebook resource landing page with Marketo form on right side.](/assets/uploads/2026/08/resource-section-form-with-marketo-submit-button.webp)
+
+Dark rich is 487 rules and 17.5 KB compressed on every page load, and `theme-dark-rich` appears 316 times across the archived files, against 6,447 for `theme-dark` and 3,642 for `theme-light`.
 
 The fourth problem is the usage count. 40 of the 54 classes are referenced by no page and no script in the archive, so most of what the loop generated was never applied to public content.
 
@@ -205,6 +211,8 @@ Finding three of these four does not require a person to read 1,548 rules. Hashi
 Other developers could work in the loop, and when a new form variation came to the dev team I was usually the one assigned to it, because I understood the bigger picture of what was happening with the buttons. That is not a good position for a team to be in, because if I had been out or had left, nobody else would have had what they needed unless I spent time documenting it first, and documentation is the thing we did least well at Seismic during that period.
 
 The loop is self-documenting in a way that 500 lines of hand-written variations were not. All the variations are in arrays at the top, the loops are nested underneath them with their guards, and you can see what is happening without scrolling through the whole file. It does not show the compiled output, which is where all four of the problems were.
+
+![Midline CTA with an email field that opens a modal window containing the full request a demo form.](/assets/uploads/2026/08/midline-rad-form-with-popup.webp)
 
 ## What the work required and what came out of it
 
@@ -225,7 +233,9 @@ When using an iterator to generate multiple styled components, you'll want to ta
 - Check whether a value appears in two of the lists. `small` was in the size list and in the variant list, so `.cta-primary-large-small` came out byte-for-byte identical to `.cta-primary-large`, and six of the 54 classes were duplicates of their initial output.
 - Confirm that any exclusion you add to your iterator is missing from the compiled output. The purple theme was supposed to exclude the icon variations, and it generated all of them.
 - There's a maintenance cost to having a test page that generates your output via JavaScript. There are two iterators that need to be kept in sync, one in SCSS and one in JavaScript, and that should be documented so the team knows to keep them in sync.
-- Fully understand the true outputted bytes of an iterated inclusion when accepting new values. One new icon is six more classes, and one new theme is 17.5 KB compressed against 214 bytes for the same color scoped to the one component that needed it.
+- Fully understand the true outputted bytes of an iterated inclusion when accepting new values. One new icon is six more classes, and one new theme is 17.5 KB compressed against 214 bytes for the same color scoped to the one component where it was needed.
 - Double check your combinations to ensure you don't include items that were never designed. Every combination of the lists gets generated, which is how all 54 classes ended up with a disabled state that sets the text and the background to `#7a6b80`.
 
 The core problem of me being the only dev on the team who fully understood the scope of the button variations was never truly solved. The true fix for this is well documenting your process so that the next dev team can use the pattern.
+
+At the end of the day, I think the approach of looping over our variations made it easier to maintain, but also had unintended consequences. If I could go back and change what we did, it would have been to be more strict on what iterations we included. Not looping over everything at the same time, and be more dynamic with our generated output.
