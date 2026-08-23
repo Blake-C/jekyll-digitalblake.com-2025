@@ -44,6 +44,8 @@ module Jekyll
       data['description']  = author_data['description'] || ''
       data['author_slug']  = author_slug
       data['author_posts'] = posts
+      # page.layout resolves to 'base' here, so head.html's layout check cannot catch these
+      data['noindex']      = true
       trail = []
       [page_num - 1, page_num, page_num + 1].each do |n|
         next if n < 1 || n > total_pages

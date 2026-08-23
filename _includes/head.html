@@ -46,7 +46,7 @@
 	<meta name="application-name" content="DigitalBlake">
 
 	{%- assign _noindex_layouts = 'archive,author' | split: ',' -%}
-	{%- if page.noindex or _noindex_layouts contains page.layout -%}
+	{%- if page.noindex or _noindex_layouts contains page.layout or page.url contains '/page/' -%}
 		<meta name="robots" content="noindex, follow">
 	{%- else -%}
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
