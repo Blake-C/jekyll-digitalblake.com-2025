@@ -30,7 +30,7 @@ tech:
     - Cloudflare
 ---
 
-San Antonio Legal Services Association (SALSA) connects pro bono legal volunteers with individuals across San Antonio who cannot afford representation. I handled the full engagement at Gray Digital Group: wire-framing, design, and development, with direct client communication throughout. The core challenge was building a single platform that could surface both internal clinic events and third-party case listings without asking SALSA staff to maintain the same data in two places.
+San Antonio Legal Services Association (SALSA) connects pro bono legal volunteers with individuals across San Antonio who cannot afford representation. I handled the implementation engagement at Gray Digital Group: wire-framing, design, and development, with direct client communication as needed. The core challenge was building a single platform that could surface both internal clinic events and third-party case listings without asking SALSA staff to maintain the same data in two places.
 
 The homepage opens with an announcement bar that SALSA can pin below the navigation for time-sensitive community notices, a way to push something important to the top of the screen without touching the carousel. Below that, a staff-managed announcements carousel handles routine updates. The Volunteer Opportunities section below it was a specific client requirement: Upcoming Clinical Opportunities and Available Cases had to sit side by side as parallel columns at equal visual weight on the page. The client was clear that neither section should read as subordinate to the other. Upcoming Clinical Opportunities pulls from an internal API call against events added to the site; Available Cases pulls from Legal Server, the external third-party service SALSA uses for managing pro bono cases. Legal Server stays the single source of truth for case data, staff never re-enter it, and volunteers find both their training and their next assignment in one place.
 
@@ -52,6 +52,6 @@ The resource library required an access-gating layer. A custom Gravity Forms for
 
 The layout system is built on custom Gutenberg blocks that give SALSA staff full-bleed background sections and columned layouts without writing any code for each variation. WP Rocket combined with Cloudflare handles page caching and CDN delivery. A donation page routes visitors to the appropriate support lines depending on how they want to contribute.
 
-This was a rewarding project from wireframes through launch. Designing and building a platform for a cause this direct, getting legal help to people who cannot afford it, made every decision feel worth getting right.
+This was a rewarding project from wireframes through launch. Designing and building a platform for a cause this direct, getting legal help to people who cannot afford it.
 
 **Impact:** Page load times reduced from 5s to under 2s. Unified case matching, clinic scheduling, authenticated resource access, and fundraising into a single WordPress platform. Legal Server remains the authoritative source for case data with no duplicate staff entry required.
