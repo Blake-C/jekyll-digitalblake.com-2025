@@ -88,7 +88,7 @@ profile_schema: true
 
 <p>Architect CMS projects that allowed non-technical users to work independently. Custom Gutenberg blocks, complex migrations that don't drop search rankings, API integrations eliminating double data entry tasks, and front-ends built to allow the next developer to move the work forward. Having conducted interviews, trainings and team meetings I've become comfortable speaking truthfully in front of my teams in order to get the best results for our stakeholders.</p>
 
-<p>Even before my time at Northwest Vista College as a lab tech, "No" was never the answer I could give to a question or request being made of me. It has always my job to find the answer or the person who did.</p>
+<p>Even before my time at Northwest Vista College as a lab tech, "No" was never the answer I could give to a question or request being made of me. It has always been my job to find the answer or the person who did.</p>
 
 ## How I work
 
