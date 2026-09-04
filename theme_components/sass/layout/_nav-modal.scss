@@ -15,15 +15,6 @@
   browserslist floor of chrome 109.
 \**************************/
 
-// Set on <html> by SCROLL_LOCK_CLASS in theme_components/js/modules/_nav-modal.js.
-// showModal() makes the background inert but does not stop it scrolling, and the
-// dialog is slightly transparent, so the page visibly moves behind the menu.
-// Applied to body as well, since which element scrolls varies by browser.
-.has-nav-modal-open,
-.has-nav-modal-open body {
-	overflow: hidden;
-}
-
 .nav-modal {
 	background: rgba(v.$primary, 0.97);
 	border: none;

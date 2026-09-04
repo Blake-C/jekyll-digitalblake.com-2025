@@ -1,0 +1,8 @@
+// Set on <html> by theme_components/js/modules/_scroll-lock.js. showModal()
+// makes the background inert but does not stop it scrolling, and both dialogs
+// are slightly transparent, so the page visibly moves behind them. Applied to
+// body as well, since which element scrolls varies by browser.
+.has-modal-open,
+.has-modal-open body {
+	overflow: hidden;
+}
