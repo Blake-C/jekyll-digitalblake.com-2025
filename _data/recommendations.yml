@@ -5,6 +5,33 @@
 #          Required. Use 'Colleague' if no title is known.
 # avatar:  omit to render initials. Add a path only with that person's permission.
 
+- name: Rachel Saltsgaver
+  role: Senior SEO Manager
+  company: Seismic
+  date: 2026-09-04
+  linkedin: https://www.linkedin.com/in/rachel-saltsgaver
+  avatar: /assets/uploads/2026/09/rachel-saltsgaver.webp # permission given 2026-09-04
+  quote: >-
+      I had the opportunity to work closely with Blake at Seismic on a number of high-visibility web projects.
+      From my perspective on the content and web strategy side, Blake was one of those technical partners who made
+      even complicated projects feel manageable. What stands out most to me is how calm and dependable Blake is
+      when things get complicated—which, in web development, they inevitably do. He has a rare ability to take a
+      complex situation, break it down, and focus on finding a path forward. When we had a technical question, an
+      unexpected issue, or an idea that seemed difficult to execute, Blake would dig in, explore the options, and
+      come back with a thoughtful solution. He took the time to understand what we were trying to accomplish and
+      figure out what was possible. I also really valued Blake’s ability to balance competing priorities and busy
+      sprint cycles. He understood that a successful web experience isn’t just about writing good code—it has to
+      work technically, meet the needs of the team, and ultimately create a good experience for the people using
+      the site. He consistently brought that broader perspective to our projects while maintaining a high standard
+      for the final product. I saw this especially when we redesigned our blog and Enablement Explainers
+      experiences, where there were plenty of moving pieces and stakeholders to balance. Blake was an incredibly
+      reliable partner throughout those projects and during the transition to Sitecore. I always felt confident
+      that if something landed on his plate, he would see it through and find a way to get us where we needed to
+      go. Beyond his technical skills, Blake is simply a great person to work with. He’s thoughtful, patient,
+      responsive, and easy to collaborate with. I would happily work with Blake again and would recommend him to
+      any team looking for a developer who combines strong technical ability with sound judgment, curiosity, and a
+      genuine commitment to getting the right outcome.
+
 - name: Vinolia Huxley
   role: Director, Web Development
   company: Seismic
