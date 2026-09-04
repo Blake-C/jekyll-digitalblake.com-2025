@@ -11,7 +11,9 @@ description: 'LinkedIn recommendations for Blake Cerecero from colleagues and ma
 	{%- for recommendation in site.data.recommendations -%}
 		<figure class="recommendation-list__item">
 			<blockquote class="recommendation-list__quote">
-				<p>{{ recommendation.quote }}</p>
+				{%- for paragraph in recommendation.quote -%}
+					<p>{{ paragraph }}</p>
+				{%- endfor -%}
 			</blockquote>
 			<figcaption class="recommendation-list__attribution">
 				{%- include recommendation-avatar.html recommendation=recommendation -%}
