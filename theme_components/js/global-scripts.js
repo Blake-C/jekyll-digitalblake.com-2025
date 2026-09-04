@@ -8,6 +8,7 @@ import initPrefetchCaseStudy from './modules/_prefetch-case-study'
 import initYoutubeFacade from './modules/_youtube-facade'
 import initPrefetchYoutubeThumbnail from './modules/_prefetch-youtube-thumbnail'
 import initReadingProgress from './modules/_reading-progress'
+import initRecommendationModal from './modules/_recommendation-modal'
 
 const hamburger = document.querySelector('.nav-hamburger')
 if (hamburger) {
@@ -26,3 +27,4 @@ initPrefetchCaseStudy()
 initYoutubeFacade()
 initPrefetchYoutubeThumbnail()
 initReadingProgress()
+initRecommendationModal()

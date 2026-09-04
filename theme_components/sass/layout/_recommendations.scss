@@ -1,5 +1,7 @@
 @use '../helpers/breakpoints' as bp;
+@use '../helpers/cards';
 @use '../helpers/functions' as fn;
+@use '../helpers/mixins' as mx;
 @use '../helpers/variables' as v;
 
 .recommendations {
@@ -120,24 +122,296 @@
 	}
 }
 
+// The page is `wide: true`, so without a cap the intro runs the full 1160px.
+// 770px is what a paragraph measures on an article, where the sidebar narrows it.
+.recommendation-intro {
+	max-width: fn.rem-calc(770);
+}
+
 // Full recommendations on /recommendations/. Shares the attribution classes with the
 // card band above, on a light background instead of the dark one.
-.recommendation-list {
-	&__item {
-		border-bottom: 1px solid v.$light-gray;
-		margin: 0 0 fn.rem-calc(40);
-		padding: 0 0 fn.rem-calc(40);
+// A grid rather than CSS multi-column, because multi-column fills each column top
+// to bottom, putting the oldest recommendations at the top of columns two and three.
+.recommendation-wall {
+	display: grid;
+	gap: fn.rem-calc(24);
+	grid-template-columns: 1fr;
 
-		&:last-child {
-			border-bottom: 0;
-			margin-bottom: 0;
-			padding-bottom: 0;
-		}
+	@include bp.breakpoint(medium) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include bp.breakpoint(large) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&__card {
+		@include cards.clickable('.recommendation-wall__expand');
+
+		background: v.$surface-tint;
+		border: 1px solid v.$border-gray;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		padding: fn.rem-calc(24);
 	}
 
 	&__attribution {
 		align-items: center;
 		display: flex;
 		gap: fn.rem-calc(12);
+		margin-bottom: fn.rem-calc(16);
+	}
+
+	// Lifted above the expand button's stretched ::before so the LinkedIn link
+	// still takes the click instead of opening the modal.
+	.recommendations__name a {
+		position: relative;
+		z-index: 2;
+	}
+
+	&__quote {
+		font-size: fn.rem-calc(16);
+		line-height: 1.7;
+		margin: 0;
+
+		p {
+			margin: 0 0 fn.rem-calc(16);
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Clipping the quote only makes sense once the script that opens the modal is
+	// running, otherwise the text is unreachable. Scoped to __card because the
+	// modal clones the blockquote with its class and this would clip the copy too.
+	.has-js &__card &__quote {
+		max-height: 17em;
+		overflow: hidden;
+	}
+
+	// is-clamped is set in theme_components/js/modules/_recommendation-modal.js.
+	&__card.is-clamped &__quote {
+		mask-image: linear-gradient(to bottom, rgb(0 0 0 / 100%) 70%, rgb(0 0 0 / 0%) 100%);
+	}
+
+	// margin-top holds the button at the bottom, so it lines up across a row of
+	// cards the grid has stretched to a common height.
+	&__expand {
+		align-self: flex-start;
+		background: none;
+		border: 0;
+		color: v.$accent-1;
+		cursor: pointer;
+		display: none;
+		font-family: inherit;
+		font-size: fn.rem-calc(14);
+		font-weight: 700;
+		margin-top: auto;
+		padding: fn.rem-calc(16) 0 0;
+		text-align: left;
+
+		.has-js & {
+			display: block;
+		}
+	}
+}
+
+// A native <dialog>, same contract as .nav-modal: showModal() supplies the focus
+// trap, Esc handling, inert background, and the display toggle.
+.recommendation-modal {
+	background: none;
+	border: none;
+	color: inherit;
+	height: 100%;
+	inset: 0;
+	margin: 0;
+	max-height: 100%;
+	max-width: 100%;
+	padding: fn.rem-calc(20);
+	position: fixed;
+	width: 100%;
+	z-index: 2000;
+
+	// Scoped to [open], because an unscoped display would outrank the UA's
+	// dialog:not([open]) rule and show the modal on every page load.
+	&[open] {
+		display: grid;
+		place-items: center;
+	}
+
+	&::backdrop {
+		background: rgba(v.$primary, 0.7);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		&[open]:not(.is-closing) {
+			animation: recommendation-modal-fade-in 0.2s cubic-bezier(0, 0, 0.2, 1);
+
+			.recommendation-modal__panel {
+				animation: recommendation-modal-rise-in 0.2s cubic-bezier(0, 0, 0.2, 1);
+			}
+		}
+
+		&.is-closing {
+			animation: recommendation-modal-fade-out 0.2s cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	&__panel {
+		background: v.$white;
+		border-radius: 10px;
+		border-top: 3px solid v.$blue;
+		display: flex;
+		flex-direction: column;
+		max-height: 100%;
+		max-width: fn.rem-calc(680);
+		overflow: hidden;
+		// The body carries the bottom padding instead, so the scrolling area runs
+		// to the panel edge and the ::after below lands on the edge the text
+		// disappears under.
+		padding: fn.rem-calc(28) fn.rem-calc(24) 0;
+		position: relative;
+		width: 100%;
+
+		@include bp.breakpoint(medium) {
+			padding: fn.rem-calc(40) fn.rem-calc(40) 0;
+		}
+
+		// has-more-below is toggled in theme_components/js/modules/_recommendation-modal.js.
+		// The white layer fades the text out, the dark one over it reads as the
+		// shadow of an edge the rest of the quote sits under.
+		&::after {
+			background:
+				linear-gradient(to top, rgba(v.$black, 0.32) 0%, rgba(v.$black, 0.1) 40%, rgba(v.$black, 0) 100%),
+				linear-gradient(to top, v.$white 15%, rgba(v.$white, 0) 100%);
+			bottom: 0;
+			content: '';
+			height: fn.rem-calc(48);
+			left: 0;
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			right: 0;
+			transition: opacity 0.15s;
+		}
+
+		&.has-more-below::after {
+			opacity: 1;
+		}
+	}
+
+	&__title {
+		@include mx.element-invisible;
+	}
+
+	// Sits outside the scrolling area so the attribution stays on screen while the
+	// quote scrolls. padding-right clears the absolutely positioned close button,
+	// which is first in the DOM so tab order runs close, attribution, quote.
+	&__header {
+		border-bottom: 1px solid v.$border-gray;
+		flex: none;
+		margin-bottom: fn.rem-calc(20);
+		padding-bottom: fn.rem-calc(20);
+		padding-right: fn.rem-calc(52);
+		position: relative;
+	}
+
+	&__person {
+		.recommendation-wall__attribution {
+			align-items: center;
+			display: flex;
+			gap: fn.rem-calc(12);
+			margin-bottom: 0;
+		}
+	}
+
+	// min-height is what makes this scroll. As a flex item it defaults to
+	// min-height: auto, which refuses to shrink below its content, so the panel
+	// grows past its max-height and the overflow has nowhere to go.
+	&__body {
+		min-height: 0;
+		overflow-y: auto;
+		padding-bottom: fn.rem-calc(28);
+
+		@include bp.breakpoint(medium) {
+			padding-bottom: fn.rem-calc(40);
+		}
+
+		.recommendation-wall__quote {
+			font-size: fn.rem-calc(16);
+			line-height: 1.7;
+			margin: 0;
+
+			p {
+				margin: 0 0 fn.rem-calc(16);
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	&__close {
+		align-items: center;
+		background: v.$surface-tint;
+		border: 1px solid v.$border-gray;
+		border-radius: 50%;
+		color: v.$black;
+		cursor: pointer;
+		display: flex;
+		height: fn.rem-calc(36);
+		justify-content: center;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition: background 0.2s;
+		width: fn.rem-calc(36);
+
+		&::before {
+			content: '\2715';
+			font-size: fn.rem-calc(15);
+			line-height: 1;
+		}
+
+		&:hover {
+			background: v.$light-gray;
+		}
+
+		&:focus-visible {
+			outline: 2px solid v.$accent-2;
+			outline-offset: 2px;
+		}
+	}
+}
+
+@keyframes recommendation-modal-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes recommendation-modal-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes recommendation-modal-rise-in {
+	from {
+		transform: translateY(12px);
+	}
+	to {
+		transform: translateY(0);
 	}
 }
