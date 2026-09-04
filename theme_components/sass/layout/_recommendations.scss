@@ -1,7 +1,6 @@
 @use '../helpers/breakpoints' as bp;
 @use '../helpers/cards';
 @use '../helpers/functions' as fn;
-@use '../helpers/mixins' as mx;
 @use '../helpers/variables' as v;
 
 .recommendations {
@@ -136,6 +135,9 @@
 	display: grid;
 	gap: fn.rem-calc(24);
 	grid-template-columns: 1fr;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 
 	@include bp.breakpoint(medium) {
 		grid-template-columns: repeat(2, 1fr);
@@ -145,6 +147,13 @@
 		grid-template-columns: repeat(3, 1fr);
 	}
 
+	&__item {
+		display: flex;
+	}
+
+	// Lift and shadow match .case-studies__card. That card also scales on hover,
+	// which is skipped here because these are mostly body copy and magnifying the
+	// type is distracting.
 	&__card {
 		@include cards.clickable('.recommendation-wall__expand');
 
@@ -155,6 +164,27 @@
 		flex-direction: column;
 		margin: 0;
 		padding: fn.rem-calc(24);
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+		width: 100%;
+
+		&:hover,
+		&:focus-within {
+			border-color: v.$medium-gray;
+			box-shadow: 0 24px 18px -18px rgba(0, 0, 0, 0.18);
+			transform: translateY(-4px);
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+
+			&:hover,
+			&:focus-within {
+				transform: none;
+			}
+		}
 	}
 
 	&__attribution {
@@ -302,10 +332,6 @@
 		&.has-more-below::after {
 			opacity: 1;
 		}
-	}
-
-	&__title {
-		@include mx.element-invisible;
 	}
 
 	// Sits outside the scrolling area so the attribution stays on screen while the

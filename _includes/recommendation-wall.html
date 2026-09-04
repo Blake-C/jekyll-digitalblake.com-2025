@@ -7,46 +7,53 @@
 	document.documentElement.classList.add('has-js')
 </script>
 
-<div class="recommendation-wall">
+<ul class="recommendation-wall">
 	{%- for recommendation in site.data.recommendations -%}
-		<figure class="recommendation-wall__card">
-			<figcaption class="recommendation-wall__attribution">
-				{%- include recommendation-avatar.html recommendation=recommendation -%}
-				<div class="recommendations__meta">
-					<cite class="recommendations__name"
-						><a href="{{ recommendation.linkedin }}" target="_blank" rel="noopener">
-							{{- recommendation.name -}}
-						</a></cite
-					>
-					<span class="recommendations__role">
-						{{- recommendation.role }} &middot; {{ recommendation.company -}}
+		<li class="recommendation-wall__item">
+			<figure class="recommendation-wall__card">
+				<figcaption class="recommendation-wall__attribution">
+					{%- include recommendation-avatar.html recommendation=recommendation -%}
+					<div class="recommendations__meta">
+						<cite class="recommendations__name"
+							><a href="{{ recommendation.linkedin }}" target="_blank" rel="noopener">
+								{{- recommendation.name -}}
+							</a></cite
+						>
+						<span class="recommendations__role">
+							{{- recommendation.role }} &middot; {{ recommendation.company -}}
+						</span>
+						<span class="recommendations__role"
+							><time datetime="{{ recommendation.date | date: '%Y-%m-%d' }}">
+								{{- recommendation.date | date: '%B %-d, %Y' -}}
+							</time></span
+						>
+					</div>
+				</figcaption>
+				<blockquote class="recommendation-wall__quote">
+					{%- for paragraph in recommendation.quote -%}
+						<p>{{ paragraph }}</p>
+					{%- endfor -%}
+				</blockquote>
+				<button
+					type="button"
+					class="recommendation-wall__expand"
+					data-recommendation-label="{{ recommendation.name | escape }}, {{ recommendation.role | escape }} at {{ recommendation.company | escape }}"
+				>
+					Read the full recommendation<span class="show-for-sr">
+						from {{ recommendation.name | escape -}}
 					</span>
-					<span class="recommendations__role"
-						><time datetime="{{ recommendation.date | date: '%Y-%m-%d' }}">
-							{{- recommendation.date | date: '%B %-d, %Y' -}}
-						</time></span
-					>
-				</div>
-			</figcaption>
-			<blockquote class="recommendation-wall__quote">
-				{%- for paragraph in recommendation.quote -%}
-					<p>{{ paragraph }}</p>
-				{%- endfor -%}
-			</blockquote>
-			<button
-				type="button"
-				class="recommendation-wall__expand"
-				data-recommendation-label="{{ recommendation.name | escape }}, {{ recommendation.role | escape }} at {{ recommendation.company | escape }}"
-			>
-				Read the full recommendation<span class="show-for-sr"> from {{ recommendation.name | escape }}</span>
-			</button>
-		</figure>
+				</button>
+			</figure>
+		</li>
 	{%- endfor -%}
-</div>
+</ul>
 
-<dialog class="recommendation-modal" id="recommendation-modal" aria-labelledby="recommendation-modal-title">
+{%- comment -%}
+	The dialog is named with aria-label set on open rather than a heading, so the
+	page does not carry an empty <h2> in its outline until someone opens a card.
+{%- endcomment -%}
+<dialog class="recommendation-modal" id="recommendation-modal">
 	<div class="recommendation-modal__panel">
-		<h2 class="recommendation-modal__title" id="recommendation-modal-title"></h2>
 		<div class="recommendation-modal__header">
 			<button type="button" class="recommendation-modal__close" aria-label="Close"></button>
 			<div class="recommendation-modal__person"></div>

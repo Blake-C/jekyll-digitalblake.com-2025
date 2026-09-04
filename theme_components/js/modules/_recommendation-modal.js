@@ -36,8 +36,7 @@ function openModal(card, button) {
 
 	const person = modal.querySelector('.recommendation-modal__person')
 	const body = modal.querySelector('.recommendation-modal__body')
-	const title = modal.querySelector('.recommendation-modal__title')
-	if (!person || !body || !title) return
+	if (!person || !body) return
 
 	// The card already holds the full text, clipped by a max-height, so cloning
 	// from it keeps the page from shipping every recommendation twice.
@@ -47,7 +46,7 @@ function openModal(card, button) {
 
 	person.replaceChildren(attribution.cloneNode(true))
 	body.replaceChildren(quote.cloneNode(true))
-	title.textContent = button.dataset.recommendationLabel || ''
+	modal.setAttribute('aria-label', button.dataset.recommendationLabel || 'Recommendation')
 
 	trigger = button
 	modal.classList.remove('is-closing')
