@@ -1,7 +1,8 @@
 ---
 layout: case-study
 featured: true
-order: 120
+order: 130
+year: '2026'
 permalink: /case-studies/teleport-atlas/
 title: Teleport Atlas (Coding Challenge)
 description: 'A Teleport front-end coding challenge: the Atlas product landing page rebuilt from a Figma spec in Next.js, with Canvas product animations, a perfect axe score, and a 100 Lighthouse mobile run.'

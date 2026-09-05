@@ -38,6 +38,9 @@
 										<a class="case-studies__title-link" href="{{ site_item.url | relative_url }}">
 											{{- site_item.title -}}
 										</a>
+										{%- if site_item.year -%}
+											<span class="case-studies__year">{{ site_item.year }}</span>
+										{%- endif -%}
 									</p>
 									{%- if site_item.tech -%}
 										<ul class="case-studies__tags" aria-label="Technologies used">
@@ -87,6 +90,9 @@
 											>
 												{{- site_item.title -}}
 											</a>
+											{%- if site_item.year -%}
+												<span class="case-studies__year">{{ site_item.year }}</span>
+											{%- endif -%}
 										</p>
 										{%- if site_item.tech -%}
 											<ul class="case-studies__tags" aria-label="Technologies used">

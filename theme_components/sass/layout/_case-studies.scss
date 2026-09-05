@@ -115,6 +115,14 @@
 		text-decoration: none;
 	}
 
+	&__year {
+		color: rgba(v.$primary, 0.6);
+		font-size: fn.rem-calc(12);
+		font-weight: 400;
+		margin-left: fn.rem-calc(8);
+		white-space: nowrap;
+	}
+
 	&__tags {
 		display: flex;
 		flex-wrap: wrap;

@@ -1,7 +1,8 @@
 ---
 layout: case-study
 featured: false
-order: 60
+order: 70
+year: '2018'
 permalink: /case-studies/be-something-amazing/
 title: Be Something Amazing
 description: 'A Drupal 7 career exploration site with a full visual redesign and an interactive JavaScript filterable grid for discovering skilled-trade career paths — under 1 second on launch.'

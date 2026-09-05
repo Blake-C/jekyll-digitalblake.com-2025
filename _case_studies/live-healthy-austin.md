@@ -2,6 +2,7 @@
 layout: case-study
 featured: false
 order: 30
+year: '2015'
 permalink: /case-studies/live-healthy-austin/
 title: Live Healthy Austin
 description: "A mobile-responsive WordPress blog for St. David's HealthCare, built at Gray Digital Group in 2015 with a card-based home page, animated category navigation, and sub-one-second load times."

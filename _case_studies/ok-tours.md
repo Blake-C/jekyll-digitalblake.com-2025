@@ -2,6 +2,7 @@
 layout: case-study
 featured: false
 order: 10
+year: '2015'
 permalink: /case-studies/ok-tours/
 title: OK Tours!!!
 description: 'A Sitefinity CMS site for a regional bus tour operator, featuring a custom jQuery calendar, mobile-first design, and a social stream integration that helped drive a measurable increase in tours booked.'

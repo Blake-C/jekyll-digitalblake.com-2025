@@ -138,6 +138,9 @@ layout: base
 												>
 													{{- project.title -}}
 												</a>
+												{%- if project.year -%}
+													<span class="case-studies__year">{{ project.year }}</span>
+												{%- endif -%}
 											</p>
 											{%- if project.tech -%}
 												<ul class="case-studies__tags" aria-label="Technologies used">

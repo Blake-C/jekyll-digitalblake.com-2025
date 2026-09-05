@@ -1,7 +1,8 @@
 ---
 layout: case-study
 featured: true
-order: 115
+order: 120
+year: '2021 to 2022'
 permalink: /case-studies/txn-bank/
 title: TXN Bank
 description: 'A new WordPress site for a Texas community bank formed by a two-bank merger, with loan applications that merge into a PDF and route to DocuSign without any personal data being stored in WordPress.'
