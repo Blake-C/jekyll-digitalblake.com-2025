@@ -1,6 +1,6 @@
 ---
 layout: case-study
-featured: true
+featured: false
 order: 110
 permalink: /case-studies/touch-point-media/
 title: Touch Point Media
