@@ -19,7 +19,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     <h1 class="title">Blake Cerecero</h1>
                     <p class="line-1">Senior Web Developer</p>
                     <p class="line-2">JavaScript · PHP · WordPress · AI-Assisted Development</p>
-                    <p class="line-3">30+ CMS projects across agency and in-house roles, where I brought page loads down from 3 to 5 seconds to 1 to 2 seconds. I've worked on several 1000-page migrations over my 15 year career. One of these at Seismic increased our visitor traffic by 50% in the first year.</p>
+                    <p class="line-3">I've spent 15 years on 30+ CMS projects across agency and in-house roles, including two 1,000-page migrations, and I've cut page loads from 3 to 5 seconds down to 1 to 2 seconds. The 2022 rebuild of seismic.com increased visitor traffic by 50% in the first year.</p>
                     <div class="intro__cta">
                         {%- include email-link.html label="Email me" class="button button--primary-light" -%}
                         <a
