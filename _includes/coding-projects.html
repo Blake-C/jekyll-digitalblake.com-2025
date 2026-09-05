@@ -9,22 +9,42 @@
 				<div class="coding-project">
 					<h3 class="coding-project__title">{{ project.title }}</h3>
 
-					<p>
+					<div class="coding-project__meta-data">
+						<p class="coding-project__language">
+							<strong class="coding-project__subheading">Language: </strong>{{ project.language }}
+						</p>
+
+						{%- if project.status -%}
+							<p class="coding-project__status">
+								<strong class="coding-project__subheading">Status: </strong>{{ project.status }}
+							</p>
+						{%- endif -%}
+					</div>
+
+					<p class="coding-project__description">
 						{{ project.description }}
 					</p>
 
-					<p>
-						<strong>Language<br></strong>{{ project.language }}
-					</p>
+					<div class="coding-project__button-group">
+						<a
+							class="coding-project__link button button--primary-light"
+							aria-label="View {{ project.title }} (opens in a new tab)"
+							href="{{ project.link }}"
+							target="_blank"
+							rel="noreferrer noopener"
+							>Project</a
+						>
 
-					<a
-						class="coding-project__link"
-						aria-label="View {{ project.title }} (opens in a new tab)"
-						href="{{ project.link }}"
-						target="_blank"
-						rel="noreferrer noopener"
-						>View Project</a
-					>
+						{%- if project.article -%}
+							<a
+								class="coding-project__link button button--secondary-light"
+								aria-label="Read the {{ project.title }} write"
+								href="{{ project.article | relative_url }}"
+							>
+								Write-up<span class="show-for-sr"> on {{ project.title }}</span></a
+							>
+						{%- endif -%}
+					</div>
 				</div>
 			</div>
 		{%- endfor -%}
