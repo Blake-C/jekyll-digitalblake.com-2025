@@ -2,12 +2,12 @@
 layout: content-page
 title: Blake Cerecero
 permalink: /about/
-description: 'Senior web developer with 15-years building fast, accessible sites on WordPress, Drupal, Sitecore, and beyond.'
+description: 'Senior web developer with 15 years building fast, accessible sites on WordPress, Drupal, Sitecore, and beyond.'
 show_recommendations: true
 profile_schema: true
 ---
 
-<p>When I started University, the plan was to major in astronomy. Then the 2008 financial crisis hit, and I decided I was done taking out student loans, so I went back to Northwest Vista College, and focused on digital media. The digital media program is what eventually led me into web development. While I was there, I worked as a lab tech in the Digital Media department, where students came to me when they were stuck and it was my job to know the answer or find who did. Being the person who figures it out has followed me through every job since.</p>
+In university, my plan was to major in astronomy, but after the 2008 financial crisis happened, I decided I was done taking out student loans, so I went back to Northwest Vista College and focused on Digital Media and web development. While I was there, I worked as a lab tech in the Digital Media department, where students came to me when they were stuck, and it was my job to have an answer or find who did. In every subsequent job I've had since Vista, it's been my role to figure things out and make things work.
 
 ## Career
 
@@ -86,21 +86,21 @@ profile_schema: true
 
 ## What I do best
 
-<p>Architect CMS projects that allowed non-technical users to work independently. Custom Gutenberg blocks, complex migrations that don't drop search rankings, API integrations eliminating double data entry tasks, and front-ends built to allow the next developer to move the work forward. Having conducted interviews, trainings and team meetings I've become comfortable speaking truthfully in front of my teams in order to get the best results for our stakeholders.</p>
+Architect CMS projects that allowed non-technical users to work independently. Custom Gutenberg blocks, complex migrations that don't drop search rankings, API integrations eliminating double data entry tasks, and front-ends built to allow the next developer to move the work forward. Having conducted interviews, trainings and team meetings I've become comfortable speaking truthfully in front of my teams in order to get the best results for our stakeholders.
 
-<p>Even before my time at Northwest Vista College as a lab tech, "No" was never the answer I could give to a question or request being made of me. It has always been my job to find the answer or the person who did.</p>
+Even before my time at Northwest Vista College as a lab tech, "No" was never the answer I could give to a question or request being made of me. It has always been my job to find the answer or the person who did.
 
 ## How I work
 
-<p>Every project I've run started with client or stakeholder meetings to work out what the site has to do, followed by wireframes and design iterations before any code got written. On the build I read the design spec first and flag anything that will cause a development problem, then implement the component, build a full page with it, and send it back for stakeholder review before it ships. QA is its own step covering browser support, HTML validation, script errors, and usability.</p>
+Every project I've run started with client or stakeholder meetings to work out what the site has to accomplish, followed by wireframes and design iterations before any code was written. On the build I read the design spec first and flag anything that will cause a development problem, then implement the component, build a full page with it, and send it back for stakeholder review before it launched. QA is its own step covering browser support, HTML validation, script errors, and usability.
 
-<p>After launch I document the development standards, the analytics configuration, and the production workflows, then train the people who will be running the site. That has meant about 30 HR professionals at PPDG, client groups of 1 to 6 at Gray Digital Group, three content producers and the EMEA regional teams at Seismic, and the six-person agency team that took over seismic.com.</p>
+After launch I document the development standards, the analytics configuration, and the production workflows, then train the people who will be running the site. That has meant about 30 HR professionals at PPDG, client groups of 1 to 6 at Gray Digital Group, three content producers and the EMEA regional teams at Seismic, and the six-person agency team that took over seismic.com.
 
 ## What I'm looking for
 
-<p>Remote-first work with a flexible schedule. In-house, agency, or contract. Open to the right problem.</p>
+Remote-first work with a flexible schedule. In-house, agency, or contract. Open to the right problem.
 
-<p><strong>Outside of work:</strong> I spend a lot of time on YouTube and experimenting with AI tools, plus whatever apartment project I've decided I should probably finally finish.</p>
+**Outside of work:** I spend a lot of time on YouTube and experimenting with AI tools, plus whatever apartment project I've decided I should probably finally finish.
 
 <p class="resume-actions">
 	<a class="button button--primary" href="{{ '/resume/' | relative_url }}">View my resume</a>

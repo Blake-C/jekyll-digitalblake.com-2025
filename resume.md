@@ -2,11 +2,11 @@
 layout: content-page
 title: Resume
 permalink: /resume/
-description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Texas: 15-years across WordPress, Drupal, Sitecore, Joomla, and Jekyll, with a focus on large CMS migrations.'
+description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Texas: 15 years across WordPress, Drupal, Sitecore, Joomla, and Jekyll, with a focus on large CMS migrations.'
 profile_schema: true
 ---
 
-<p>Senior Web Developer based in San Antonio, Texas, with 15-years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch.</p>
+<p>Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch.</p>
 
 <p class="resume-actions">
 	<a class="button button--primary" href="{{ site.resume_url }}" target="_blank" rel="noopener">Download PDF resume</a>
