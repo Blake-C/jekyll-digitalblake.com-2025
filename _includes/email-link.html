@@ -1,2 +1,9 @@
 {%- assign _em = site.email | split: '@' -%}
-<a href="#" data-u="{{ _em[0] }}" data-d="{{ _em[1] }}" class="js-mailto">{{ include.label | default: 'Email Me' }}</a>
+<a
+	href="#"
+	data-u="{{ _em[0] }}"
+	data-d="{{ _em[1] }}"
+	class="js-mailto{% if include.class %} {{ include.class }}{% endif %}"
+>
+	{{- include.label | default: 'Email Me' -}}
+</a>

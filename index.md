@@ -2,7 +2,7 @@
 layout: base
 title: Home
 permalink: /
-description: 'Senior web developer with 15-years building fast, accessible sites on WordPress, JavaScript, PHP, and beyond.'
+description: 'Senior web developer with 15 years building fast, accessible sites on WordPress, JavaScript, PHP, and beyond.'
 preload_image: /assets/images/header-background.webp
 preload_image_mobile: /assets/images/header-background-sm.webp
 ---
@@ -18,15 +18,16 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     </p>
                     <h1 class="title">Blake Cerecero</h1>
                     <p class="line-1">Senior Web Developer</p>
-                    <p class="line-2">JavaScript · PHP · WordPress · React · AI-Assisted Development</p>
-                    <p class="line-3">30+ CMS projects across agency and in-house roles, with consistent improvements in site speeds going down from 5-3 seconds to 2-1 seconds. I've been involved in multiple 1,000 page migrations across my 15-year career seeing 50% increase in organic traffic after massive site overhauls.</p>
+                    <p class="line-2">JavaScript · PHP · WordPress · AI-Assisted Development</p>
+                    <p class="line-3">30+ CMS projects across agency and in-house roles, where I brought page loads down from 3 to 5 seconds to 1 to 2 seconds. I've worked on several 1000-page migrations over my 15 year career. One of these at Seismic increased our visitor traffic by 50% in the first year.</p>
                     <div class="intro__cta">
+                        {%- include email-link.html label="Email me" class="button button--primary-light" -%}
                         <a
                             href="https://www.linkedin.com/in/blakecerecero/"
-                            class="button button--primary-light"
+                            class="button button--secondary-light"
                             target="_blank"
                             rel="noreferrer noopener"
-                        >Get in touch</a>
+                        >LinkedIn<span class="show-for-sr"> (opens in a new tab)</span></a>
                         <a href="#code-samples" class="button button--secondary-light">Coding Projects</a>
                     </div>
                 </div>
