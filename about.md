@@ -9,7 +9,7 @@ profile_schema: true
 
 In university, my plan was to major in astronomy, but after the 2008 financial crisis happened, I decided I was done taking out student loans, so I went back to Northwest Vista College and focused on Digital Media and web development. While I was there, I worked as a lab tech in the Digital Media department, where students came to me when they were stuck, and it was my job to have an answer or find who did. In every subsequent job I've had since Vista, it's been my role to figure things out and make things work.
 
-Making things work is what I've been doing ever since I was caught up in a reduction in force (RIF) in July of 2025. Experimenting and utilizing AI tooling to further my own knowledge and expertise in how to build modern web-accessible sites. Currently building sites in React, NextJS, TypeScript using Sanity CMS; check out the [Teleport Atlas](/case-studies/teleport-atlas/) case study.
+I've been experimenting and utilizing AI tooling to further my own knowledge and expertise in how to build modern [web-accessible](/2026/07/24/web-accessibility-standards-and-law-wcag-eaa-us/) sites. Currently building sites in React, NextJS, TypeScript using Sanity CMS; check out the [Teleport Atlas](/case-studies/teleport-atlas/) case study. Being caught up in a reduction in force (RIF) hasn't slowed me down in the [coding projects](/coding-projects/) I've created, the [articles](/articles/) I've written, and the [kind words](/recommendations/) received by my former colleagues.
 
 ## Career
 
