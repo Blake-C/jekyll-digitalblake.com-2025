@@ -17,15 +17,16 @@
 	a {
 		color: v.$white;
 		display: inline-block;
-		font-size: fn.rem-calc(14);
+		font-size: fn.rem-calc(12);
 		font-weight: 700;
-		padding: 3px 8px;
+		margin: 3px 8px;
 		text-decoration: none;
 		text-transform: uppercase;
 		transition: all 0.3s;
 
 		@include bp.breakpoint(large) {
-			padding: 3px 15px;
+			font-size: fn.rem-calc(13);
+			margin: 3px 13px;
 		}
 
 		&:hover,

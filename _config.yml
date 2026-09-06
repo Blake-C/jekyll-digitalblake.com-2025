@@ -74,12 +74,15 @@ resume_url: '/assets/uploads/resume/Blake-Cerecero-Resume.pdf?v=3'
 # Navigation items (shown in header nav)
 # home_href: anchor used when the nav item is rendered on the homepage
 nav_pages:
-    - title: Code
-      url: '/coding-projects/'
-      home_href: '#code-samples'
     - title: Case Studies
       url: '/case-studies/'
       home_href: '#case-studies'
+    - title: Recs
+      url: '/recommendations/'
+      home_href: '#recommendations'
+    - title: Code
+      url: '/coding-projects/'
+      home_href: '#code-samples'
     - title: Articles
       url: '/articles/'
       home_href: '#recent-writing'
