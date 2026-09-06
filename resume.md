@@ -6,11 +6,11 @@ description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Tex
 profile_schema: true
 ---
 
-Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch. Regularly experimenting with new tools and technologies, to create solutions for both clients and myself.
+Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch. I regularly experiment with new tools and technologies to create solutions for both clients and myself.
 
-I've redeveloped my [starter framework](/coding-projects/) for building WordPress websites, built an exit intent pop-up plugin for capturing leads that would leave a request-a-demo form, and built a Claude code overwrite extension to optimize features to work the way I need. You can find my thoughts on LLM writing, challenges building with Sanity and NextJS, and what to look out for when building sites that need to be WCAG conformant on the [articles](/articles/) page.
+I've redeveloped my [starter framework](/coding-projects/) for building WordPress websites, built an exit-intent popup plugin for capturing leads that would leave a request-a-demo form, and built a Claude Code overwrite extension to optimize features to work the way I need. You can find my thoughts on LLM writing, challenges building with Sanity and Next.js, and what to look out for when building sites that need to be WCAG conformant on the [articles](/articles/) page.
 
-I've received many kind words and [recommendations](/recommendations/) from my colleagues after leaving Seismic as part of a reduction in force (RIF). And after taking some time to recharge, I've been coming up to speed on AI tooling using Claude Code for several integrations and projects, and then also utilizing those same skills on a coding challenge. I've continued to do my research in utilizing this new tool chain in preparation for my next role.
+I've received many kind words and [recommendations](/recommendations/) from my colleagues after leaving Seismic as part of a reduction in force (RIF). After taking some time to recharge, I came up to speed on AI tooling with Claude Code across several integrations and projects, and then used those same skills on a coding challenge. I've continued to research this new tool chain in preparation for my next role.
 
 Please feel free to download the PDF version of my resume below or read it here on the page.
 
@@ -67,7 +67,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<ul class="career-timeline__bullets">
 			<li>Built Teleport's Atlas product landing page from a Figma spec in Next.js (App Router), going from nothing to a working page with Canvas product animations in about twelve hours.</li>
 			<li>Scored a perfect axe run with zero WCAG 2.1 AA issues and a 100 Lighthouse mobile result across performance, accessibility, best practices, and SEO.</li>
-			<li>Cut page weight from about 2.5MB to roughly 950KB, including roughly an 89% drop in the font payload from subsetting with fonttools and Brotli.</li>
+			<li>Cut page weight from about 2.5MB to roughly 950KB, including an 89% drop in the font payload from subsetting with fonttools and Brotli.</li>
 			<li>Hardened the build and supply chain with SHA-pinned GitHub Actions, a pnpm cooldown and allowlist against a frozen lockfile, and escaped JSON-LD.</li>
 			<li>Moved the page onto Sanity as a headless CMS afterward, with visual editing and a publish webhook. Source is public on <a href="https://github.com/Blake-C/teleport-web-eng-coding-challenge" target="_blank" rel="noopener">GitHub</a>.</li>
 		</ul>
@@ -78,7 +78,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 			<li>Two 1,000-page migrations: WordPress to WordPress in 2022 and WordPress to Sitecore in 2025, keeping the site live throughout each cutover.</li>
 			<li>Served as QA triage lead across a cross-functional team of 20+ during a high-pressure rebrand sprint.</li>
 			<li>Migrated from TranslatePress to WPML for multilingual support and trained content staff and EMEA regional teams on the new workflow. The 2022 relaunch drove a 50% increase in site visitors.</li>
-			<li>Improved page load times from roughly 3s to 2s across both migration cycles.</li>
+			<li>Improved page load times from roughly 3 seconds to 2 seconds across both migration cycles.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
@@ -86,7 +86,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<ul class="career-timeline__bullets">
 			<li>Integrated the Google Maps JavaScript API to build an interactive property map for filtering and searching.</li>
 			<li>Added real-estate schema markup to property detail pages for greater search relevance.</li>
-			<li>Reduced the image library from 20GB to 8GB by automating WebP conversion and compression on every upload, improving load times from roughly 3 to 5s down to 1 to 2s.</li>
+			<li>Reduced the image library from 20GB to 8GB by automating WebP conversion and compression on every upload, improving load times from roughly 3 to 5 seconds down to 1 to 2 seconds.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
@@ -108,7 +108,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Exit Intent Popup Plugin <span class="career-timeline__dates"><a href="https://github.com/Blake-C/wp-exit-intent-popups" target="_blank" rel="noopener">github.com/Blake-C/wp-exit-intent-popups</a></span></p>
 		<ul class="career-timeline__bullets">
-			<li>Built a WordPress plugin for exit-intent and timed popups with A/B testing, impression tracking, and a per-popup conversion dashboard with CSV export.</li>
+			<li>Built a WordPress plugin for exit-intent and timed popups with A/B testing, impression tracking, and a per-popup conversion dashboard that exports to CSV.</li>
 			<li>Implemented exit-intent detection for desktop (cursor exit) and mobile (scroll-reversal heuristic) with six configurable position modes.</li>
 			<li>Added GA4 event tracking for impressions, CTA clicks, and dismissals.</li>
 			<li>Built the front end in vanilla JavaScript to WCAG 2.1 AA, with ARIA dialog attributes, a keyboard focus trap, ESC support, and a reduced-motion fallback.</li>
@@ -166,7 +166,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 			<li>Coordinated the migration of all sites to a new server running the latest PHP, MySQL, and Apache.</li>
 			<li>Designed and built an employee portal on Joomla 2.5 for 600+ field employees.</li>
 			<li>Trained a corporate office of 30+ employees on the operation and business rules of the portal.</li>
-			<li>Designed and built Plaza Lecea Event Center website on Joomla 2.5.</li>
+			<li>Designed and built the Plaza Lecea Event Center website on Joomla 2.5.</li>
 		</ul>
 	</div>
 </div>
