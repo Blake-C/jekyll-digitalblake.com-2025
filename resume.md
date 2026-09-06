@@ -6,7 +6,7 @@ description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Tex
 profile_schema: true
 ---
 
-<p>Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch.</p>
+Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch. Regularly experimenting with new tools and technologies, to create solutions for both clients and myself.
 
 <p class="resume-actions">
 	<a class="button button--primary" href="{{ site.resume_url }}" target="_blank" rel="noopener">Download PDF resume</a>
