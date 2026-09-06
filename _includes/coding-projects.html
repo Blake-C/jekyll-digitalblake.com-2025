@@ -19,6 +19,12 @@
 								<strong class="coding-project__subheading">Status: </strong>{{ project.status }}
 							</p>
 						{%- endif -%}
+
+						{%- if project.year -%}
+							<p class="coding-project__year">
+								<strong class="coding-project__subheading">Year: </strong>{{ project.year }}
+							</p>
+						{%- endif -%}
 					</div>
 
 					<p class="coding-project__description">

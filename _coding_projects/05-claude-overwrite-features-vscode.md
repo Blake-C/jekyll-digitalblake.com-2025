@@ -2,6 +2,7 @@
 title: Claude Overwrite Features (VS Code)
 featured: false
 status: In daily use
+year: 2026
 description: A companion VS Code extension that patches five features in Claude Code's VS Code extension that didn't match how I work, and adds commands that route Claude to a local Ollama model when needed. I found the five issues from daily use and wrote out the change I wanted, then directed Claude Code through the implementation.
 language: TypeScript
 link: https://github.com/Blake-C/claude-overwrite-features-vscode
