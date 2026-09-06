@@ -66,8 +66,7 @@
 	}
 
 	.line-3 {
-		// Montserrat v9 renders Medium (500) lighter than the prior v7.2 cut;
-		// 600 matches the original visual weight at no byte cost (variable font).
+		font-size: fn.rem-calc(15);
 		font-weight: 600;
 		margin-top: 64px;
 	}
