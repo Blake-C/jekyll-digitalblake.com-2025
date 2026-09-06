@@ -7,7 +7,7 @@ preload_image: /assets/images/header-background.webp
 preload_image_mobile: /assets/images/header-background-sm.webp
 ---
 
-<main id="content">
+<main id="content" class="home-page">
     <section class="intro">
         <div class="row align-middle">
             <div class="large-7 medium-12 small-12 columns">
@@ -28,7 +28,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                             target="_blank"
                             rel="noreferrer noopener"
                         >LinkedIn<span class="show-for-sr"> (opens in a new tab)</span></a>
-                        <a href="#code-samples" class="button button--secondary-light">Coding Projects</a>
+                        <a href="#case-studies" class="button button--secondary-light">Case Studies</a>
                     </div>
                 </div>
             </div>
@@ -51,12 +51,12 @@ preload_image_mobile: /assets/images/header-background-sm.webp
         </div>
     </section>
 
-    {%- include coding-projects.html featured_only=true -%}
-
     {%- include case-studies.html featured_only=true -%}
 
-    {%- include recent-articles.html -%}
-
     {%- include recommendations.html -%}
+
+    {%- include coding-projects.html featured_only=true -%}
+
+    {%- include recent-articles.html -%}
 
 </main>

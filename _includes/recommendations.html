@@ -1,5 +1,5 @@
 {%- assign featured_recommendations = site.data.recommendations | where: 'featured', true | sort: 'featured_order' -%}
-<section class="recommendations" aria-labelledby="recommendations-title">
+<section id="recommendations" class="recommendations" aria-labelledby="recommendations-title">
 	<div class="row">
 		<div class="medium-12 columns">
 			<h2 class="recommendations__title" id="recommendations-title">What colleagues say</h2>
@@ -12,7 +12,11 @@
 								{%- include recommendation-avatar.html recommendation=recommendation -%}
 								<div class="recommendations__meta">
 									<cite class="recommendations__name"
-										><a href="{{ recommendation.linkedin }}" target="_blank" rel="noopener">
+										><a
+											href="{{ recommendation.linkedin }}"
+											target="_blank"
+											rel="noopener"
+										>
 											{{- recommendation.name -}}
 										</a></cite
 									>
@@ -26,7 +30,7 @@
 				{%- endfor -%}
 			</div>
 			<p class="recommendations__more">
-				<a href="{{ '/recommendations/' | relative_url }}"
+				<a class="button button--secondary-light" href="{{ '/recommendations/' | relative_url }}"
 					>Read all {{ site.data.recommendations | size }} recommendations</a
 				>
 			</p>

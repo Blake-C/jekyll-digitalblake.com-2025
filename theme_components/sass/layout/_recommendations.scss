@@ -3,6 +3,12 @@
 @use '../helpers/functions' as fn;
 @use '../helpers/variables' as v;
 
+.home-page {
+	.recommendations {
+		background: v.$accent-1;
+	}
+}
+
 .recommendations {
 	background: v.$primary;
 	color: v.$white;

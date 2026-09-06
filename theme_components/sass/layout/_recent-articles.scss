@@ -4,7 +4,7 @@
 @use '../helpers/variables' as v;
 
 .recent-articles {
-	background: v.$accent-1;
+	background: v.$primary;
 	color: v.$white;
 	padding-bottom: fn.rem-calc(80);
 	padding-top: fn.rem-calc(80);
