@@ -19,6 +19,7 @@ tech:
     - Sanity
     - Vercel
     - Canvas
+    - Font Subsetting
     - Coding Challenge
 link: https://teleport-atlas.vercel.app/
 link_text: View Live Demo

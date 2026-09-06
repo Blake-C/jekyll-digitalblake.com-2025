@@ -40,6 +40,9 @@ tech:
     - Sitecore
     - WPML
     - PHP
+    - Internationalization
+    - WCAG 2.1 AA
+    - Systems Security
 link: https://seismic.com
 link_text: View Live Site
 ---

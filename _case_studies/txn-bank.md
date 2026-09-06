@@ -22,15 +22,12 @@ link: 'https://www.txn.bank/'
 link_text: View Live Site
 tech:
     - WordPress
-    - PHP 7
     - Foundation 6
     - Gravity Forms
     - Formstack
     - DocuSign
     - Calconic
     - Google Maps
-    - SCSS
-    - ES6
     - WCAG 2.1 AA
 ---
 
