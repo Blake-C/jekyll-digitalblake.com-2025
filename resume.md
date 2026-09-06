@@ -8,6 +8,8 @@ profile_schema: true
 
 Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch. Regularly experimenting with new tools and technologies, to create solutions for both clients and myself.
 
+After leaving Seismic as part of a reduction in force (RIF) and taking some time to myself, I've been working on coming up to speed on AI tooling using Claude Code for several integrations and projects, and then also utilizing those same skills on a coding challenge. I've continued to do my research in utilizing this new tool chain in preparation for my next role. Please feel free to download the PDF version of my resume below or read it here on the page.
+
 <p class="resume-actions">
 	<a class="button button--primary" href="{{ site.resume_url }}" target="_blank" rel="noopener">Download PDF resume</a>
 </p>
