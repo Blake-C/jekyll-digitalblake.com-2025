@@ -9,7 +9,7 @@ profile_schema: true
 
 In university, my plan was to major in astronomy, but after the 2008 financial crisis happened, I decided I was done taking out student loans, so I went back to Northwest Vista College and focused on Digital Media and web development. While I was there, I worked as a lab tech in the Digital Media department, where students came to me when they were stuck, and it was my job to have an answer or find who did. In every subsequent job I've had since Vista, it's been my role to figure things out and make things work.
 
-Making things work is what I've been doing ever since I was caught up in a reduction in force (RIF) in July of 2025. Experimenting and utilizing AI tooling to further my own knowledge and expertise in how to build modern web-accessible sites. Currently learning how to build sites in React, NextJS, TypeScript using Sanity CMS.
+Making things work is what I've been doing ever since I was caught up in a reduction in force (RIF) in July of 2025. Experimenting and utilizing AI tooling to further my own knowledge and expertise in how to build modern web-accessible sites. Currently building sites in React, NextJS, TypeScript using Sanity CMS; check out the [Teleport Atlas](/case-studies/teleport-atlas/) case study.
 
 ## Career
 
@@ -94,9 +94,17 @@ Even before my time at Northwest Vista College as a lab tech, "No" was never the
 
 ## How I work
 
-Every project I've run started with client or stakeholder meetings to work out what the site has to accomplish, followed by wireframes and design iterations before any code was written. On the build I read the design spec first and flag anything that will cause a development problem, then implement the component, build a full page with it, and send it back for stakeholder review before it launched. QA is its own step covering browser support, HTML validation, script errors, and usability.
+Every project I've run started with client or stakeholder meetings to work out what the site has to accomplish, followed by wireframes and design iterations before any code was written. On the build I read the design spec first and flag anything that will cause a development problem, then implement the component, build a full page with it, and send it back for stakeholder review before it launched. QA and Testing is its own step covering browser support, HTML validation, script errors, and usability.
+
+When I’m reviewing AI code, I’m more concerned about items that have security risks or high-impact implications to the project as a whole. Just like with individual tasks that you choose to work on throughout your day, you need to be cognizant of the ordering that you choose and pick your battles. When it comes to items that are more frivolous, such as a purely design-driven item, I’m not as nearly concerned. For instance, the supply-chain implications of using pnpm over npm and [supply-chain hardening](/2026/05/15/supply-chain-attacks-got-smarter/) are things I’m more diligent on, as opposed to a hero background, which is purely decorative. So long as it doesn't hurt the page performance and does what I wanted, that is my driving goal.
 
 After launch I document the development standards, the analytics configuration, and the production workflows, then train the people who will be running the site. That has meant about 30 HR professionals at PPDG, client groups of 1 to 6 at Gray Digital Group, three content producers and the EMEA regional teams at Seismic, and the six-person agency team that took over seismic.com.
+
+### Testing
+
+If you’re building an application that has business logic and it’s going to be long-lived and you need to make sure that it’s doing exactly what it needs to do and nothing more, unit testing is needed there. On a marketing website, I feel it’s added complexity for something that’s going to be short-lived. Visual regression testing is what I would add to a marketing website. It’s easy to automate and gives you a visual indication when something breaks.
+
+I've had discussions with other developers that you can just have AI write the testing for you. However, the AI tool might not be testing the right thing, and you still need to understand what’s being tested in the first place. Testing isn’t always about whether it’s doing what I need it to do; it’s about the edge cases, and the AI tool might not pick up on those. It is a developer's job to make sure things are getting done correctly, not just that they are done.
 
 ## What I'm looking for
 

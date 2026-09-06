@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'My Very Fun, Super Duper Evening'
+title: 'A tale of caution using LMMs to refactor dot files'
 description: 'An LLM refactor of my dotfiles sourced my workspace files, so every new shell launched more shells. I fixed it from macOS Recovery Mode with diskutil.'
 date: 2026-04-23 06:14:09 CDT -0500
 categories: ['Articles']

@@ -4,7 +4,7 @@ featured: true
 order: 130
 year: '2026'
 permalink: /case-studies/teleport-atlas/
-title: Teleport Atlas (Coding Challenge)
+title: Teleport Atlas
 description: 'A Teleport front-end coding challenge: the Atlas product landing page rebuilt from a Figma spec in Next.js, with Canvas product animations, a perfect axe score, and a 100 Lighthouse mobile run.'
 thumbnail: /assets/uploads/2026/07/teleport-atlas-thumbnail.webp
 image: /assets/uploads/2026/07/teleport-atlas-demo-product-for-sale-full-page-screenshot.webp
@@ -19,6 +19,7 @@ tech:
     - Sanity
     - Vercel
     - Canvas
+    - Coding Challenge
 link: https://teleport-atlas.vercel.app/
 link_text: View Live Demo
 ---
