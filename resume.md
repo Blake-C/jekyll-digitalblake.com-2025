@@ -10,7 +10,7 @@ Senior Web Developer based in San Antonio, Texas, with 15 years building and mig
 
 I've redeveloped my [starter framework](/coding-projects/) for building WordPress websites, built an exit intent pop-up plugin for capturing leads that would leave a request-a-demo form, and built a Claude code overwrite extension to optimize features to work the way I need. You can find my thoughts on LLM writing, challenges building with Sanity and NextJS, and what to look out for when building sites that need to be WCAG conformant on the [articles](/articles/) page.
 
-I've received many kind words and [recommendations](/recommendations/) from my colleagues after leaving Seismic as part of a reduction in force (RIF). And after taking some time to recharge, I've been working on coming up to speed on AI tooling using Claude Code for several integrations and projects, and then also utilizing those same skills on a coding challenge. I've continued to do my research in utilizing this new tool chain in preparation for my next role.
+I've received many kind words and [recommendations](/recommendations/) from my colleagues after leaving Seismic as part of a reduction in force (RIF). And after taking some time to recharge, I've been coming up to speed on AI tooling using Claude Code for several integrations and projects, and then also utilizing those same skills on a coding challenge. I've continued to do my research in utilizing this new tool chain in preparation for my next role.
 
 Please feel free to download the PDF version of my resume below or read it here on the page.
 
