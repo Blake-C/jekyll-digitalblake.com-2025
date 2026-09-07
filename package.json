@@ -40,6 +40,7 @@
 		"format": "prettier --write .",
 		"test": "node --test test/*.test.mjs",
 		"test:content": "node --test test/content.test.mjs",
+		"test:ci": "node --test test/content.test.mjs test/site-contract.test.mjs",
 		"test:e2e": "playwright test",
 		"lint": "pnpm run lint:js && pnpm run lint:css",
 		"lint:js": "eslint .",

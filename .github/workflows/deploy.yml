@@ -40,8 +40,8 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             # Dependency advisories are split by whether the package ships. The only production
-            # dependencies are micromodal and prismjs, the two things bundled into assets/js/, and
-            # those gate the deploy. Everything else (sass, eslint, stylelint, esbuild, postcss and
+            # dependency is prismjs, the one thing bundled into assets/js/, and it gates the
+            # deploy. Everything else (sass, eslint, stylelint, esbuild, playwright, postcss and
             # their trees) runs here and on a laptop, then exits, on input that is this repo's own
             # source. Advisories there are almost all parser denial-of-service, so they are reported
             # and reviewed rather than allowed to block a static site.
@@ -97,17 +97,74 @@ jobs:
             - name: Validate HTML with html-proofer
               run: bundle exec htmlproofer ./_site --disable-external --ignore-empty-mailto
 
+            # Front matter invariants plus the built-output contract: structured data
+            # per page type, canonical and og:url agreement, robots directives, image
+            # dimensions, asset resolution. None of it is visible to htmlproofer.
+            #
+            # test:ci and not test, which also runs test/build-determinism.test.mjs.
+            # That one shells out to build:fonts and build:images, and this workflow
+            # deliberately does not run those steps or install fonttools and
+            # ImageMagick. Determinism stays a local check.
+            - name: Run regression tests
+              run: pnpm run test:ci
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
               with:
                   path: _site/
+
+            # A plain copy of the build for the browser-tests job. The Pages artifact
+            # above is a tarball shaped for the deploy action, not for another job to
+            # read.
+            - name: Upload site for browser tests
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+              with:
+                  name: site
+                  path: _site/
+                  retention-days: 1
+
+    # Playwright's browser builds are glibc-only, so this runs in the official
+    # image rather than on the runner. It is the same image docker-compose uses
+    # locally, and its tag must match the @playwright/test version in package.json.
+    browser-tests:
+        runs-on: ubuntu-latest
+        needs: build
+        container:
+            image: mcr.microsoft.com/playwright:v1.62.1-noble
+            options: --ipc=host
+        steps:
+            - name: Checkout
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+            - name: Install Node dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Download the built site
+              uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+              with:
+                  name: site
+                  path: _site
+
+            - name: Run browser tests
+              run: pnpm exec playwright test
+
+            - name: Upload the report when they fail
+              if: failure()
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+              with:
+                  name: playwright-report
+                  path: playwright-report/
+                  retention-days: 7
 
     deploy:
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
-        needs: build
+        needs: [build, browser-tests]
         steps:
             - name: Deploy to GitHub Pages
               id: deployment
