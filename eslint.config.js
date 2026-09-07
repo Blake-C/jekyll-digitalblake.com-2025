@@ -31,7 +31,7 @@ module.exports = [
 		},
 	},
 	{
-		files: ['script/**/*.mjs'],
+		files: ['script/**/*.mjs', 'test/**/*.mjs'],
 		languageOptions: {
 			ecmaVersion: 2022,
 			sourceType: 'module',

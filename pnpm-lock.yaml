@@ -70,6 +70,9 @@ importers:
             husky:
                 specifier: 'catalog:'
                 version: 9.1.7
+            js-yaml:
+                specifier: ^4.3.1
+                version: 4.3.1
             lint-staged:
                 specifier: 'catalog:'
                 version: 17.3.0
