@@ -86,8 +86,6 @@ nav_pages:
     - title: Articles
       url: '/articles/'
       home_href: '#recent-writing'
-    - title: About
-      url: '/about/'
     - title: Resume
       url: '/resume/'
 
