@@ -25,7 +25,7 @@ pre[class*='language-'],
  *
  * The `div` qualifier is not decoration. prism-toolbar.css selects
  * `div.code-toolbar > ...`, so a rule led by the class alone loses on
- * specificity and the colour never applies. Descendant rather than child
+ * specificity and the color never applies. Descendant rather than child
  * because the copy button wraps its label in a further span.
  */
 div.code-toolbar > .toolbar > .toolbar-item {

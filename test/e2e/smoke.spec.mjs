@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * Proves the setup itself before any behaviour is asserted: the arm64 Playwright
+ * Proves the setup itself before any behavior is asserted: the arm64 Playwright
  * image runs, node_modules resolves across the bind mount from the app service,
  * and serve.mjs serves the build.
  */

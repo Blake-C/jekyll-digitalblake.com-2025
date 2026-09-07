@@ -65,7 +65,22 @@ docker compose run --rm app pnpm run format         # Prettier (all files)
 # HTML validation (run after jekyll build)
 docker compose run --rm app pnpm run check:html    # what CI runs: internal links only
 docker compose run --rm app pnpm run check:links   # adds external links, minus known bot-blockers
+
+# Tests
+docker compose run --rm app pnpm run test:content  # front matter only, no build needed
+docker compose run --rm app pnpm test              # all node:test suites; needs a prior build
+docker compose run --rm playwright                 # browser tests, own compose service
 ```
+
+### Testing
+
+Two layers. `node:test` asserts what the build emits and that the build scripts are deterministic; Playwright asserts what a browser does with that output. The suite table, the coverage gaps, and the CI split are in the `## Testing` section of `README.md`; do not duplicate them here.
+
+Three things that are easy to get wrong:
+
+- **The Playwright image tag must equal the `@playwright/test` version.** It runs in its own compose service because Playwright's browser builds are glibc-only and the app image is Alpine, which it does not support.
+- **`test:ci` is not `test`.** `test/build-determinism.test.mjs` shells out to `build:fonts` and `build:images`, which CI does not run and has no tooling for, so CI runs the narrower script and determinism stays local.
+- **Adding a page type means adding an assertion.** A new branch in `_includes/head.html` needs a matching case in `test/site-contract.test.mjs`. The suite exists because a branch there tested `page.layout == 'website-case-study'` while the layout was `case-study`, so every case study shipped without its `CreativeWork` block. It rendered fine and `htmlproofer` passed.
 
 `check:html` matches `.github/workflows/deploy.yml` exactly, so a pass here means CI passes. `check:links` also hits the network. Its `--ignore-urls` list covers hosts that refuse automated requests (LinkedIn answers 999, CodePen/npm/claude.ai/linoxide/Businesswire/Server Fault answer 403) plus `youtube-nocookie.com`, which appears only as a `preconnect` resource hint in `_includes/head.html` and is not a navigable URL. Those links are fine in a browser; without the list they bury real failures under several hundred false ones.
 

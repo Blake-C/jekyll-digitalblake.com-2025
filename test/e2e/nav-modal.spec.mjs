@@ -40,7 +40,7 @@ test('the open dialog is modal, so focus cannot reach the page behind', async ({
 	// showModal() puts the dialog in the top layer and makes the rest inert, so
 	// tabbing cycles within it. Chromium passes through <body> at the wrap point,
 	// which is not an escape: what must never happen is focus landing on a control
-	// behind the dialog. Inertness and the top layer are browser behaviour, so a
+	// behind the dialog. Inertness and the top layer are browser behavior, so a
 	// DOM shim cannot check any of this.
 	const escaped = []
 	let landedInside = 0
