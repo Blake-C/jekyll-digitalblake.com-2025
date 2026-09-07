@@ -116,7 +116,9 @@
 	}
 
 	&__year {
-		color: rgba(v.$primary, 0.6);
+		// WCAG AA: 0.6 alpha lands on #747485 over the card, which is 4.46:1 and
+		// just under the 4.5:1 threshold for text this size.
+		color: rgba(v.$primary, 0.7);
 		font-size: fn.rem-calc(12);
 		font-weight: 400;
 		margin-left: fn.rem-calc(8);

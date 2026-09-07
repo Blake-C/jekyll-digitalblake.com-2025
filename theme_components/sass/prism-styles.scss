@@ -18,6 +18,24 @@ pre[class*='language-'],
 	line-height: 1.5;
 }
 
+/*
+ * WCAG AA: the toolbar plugin ships #bbb for the language label and the copy
+ * button, which is 4.44:1 against its own background once the toolbar is
+ * visible. Every page with a code block carried it.
+ *
+ * The `div` qualifier is not decoration. prism-toolbar.css selects
+ * `div.code-toolbar > ...`, so a rule led by the class alone loses on
+ * specificity and the colour never applies. Descendant rather than child
+ * because the copy button wraps its label in a further span.
+ */
+div.code-toolbar > .toolbar > .toolbar-item {
+	a,
+	button,
+	span {
+		color: #c8c8c5;
+	}
+}
+
 /* WCAG AA: okaidia's #f92672 is 3.92:1 on #272822; Monokai Pro pink is ~5.4:1 */
 .token.property,
 .token.tag,
