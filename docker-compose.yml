@@ -22,6 +22,30 @@ services:
         tty: true
         stdin_open: true
 
+    # Playwright does not support musl: its browser builds are glibc-only, and the
+    # app image above is Alpine. So the browser tests get their own service on the
+    # official image, which is Ubuntu 24.04 with the browsers already installed.
+    # Nothing downloads a browser at install time, and CI runs this same image.
+    #
+    # The tag must match the @playwright/test version in package.json exactly.
+    # A mismatch between the driver and the bundled browsers is a runtime error.
+    #
+    # node_modules comes from the bind mount, so dependencies install once through
+    # the app service and run from here.
+    playwright:
+        image: mcr.microsoft.com/playwright:v1.62.1-noble
+        volumes:
+            - .:/app
+        working_dir: /app
+        # Chromium's default /dev/shm is too small in a container and it crashes
+        # under load. The Playwright docs call for host IPC rather than raising it.
+        ipc: host
+        environment:
+            CI: ${CI:-}
+        # The Playwright image ships Node and npm but not pnpm, so this calls the
+        # binary pnpm already linked into node_modules rather than going through it.
+        command: node_modules/.bin/playwright test
+
 volumes:
     bundle_cache:
     pnpm_store:

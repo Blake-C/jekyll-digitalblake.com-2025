@@ -46,3 +46,7 @@ notes
 # interview.md, and draft.md, one directory per slug. Raw dictation and abandoned
 # drafts, so they stay out of a public repo. The finished post goes in _posts.
 _drafts/
+
+# Playwright output
+test-results/
+playwright-report/

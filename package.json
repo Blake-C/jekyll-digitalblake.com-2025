@@ -13,7 +13,9 @@
 		"not IE 11"
 	],
 	"devDependencies": {
+		"@axe-core/playwright": "4.13.0",
 		"@eslint/js": "10.0.1",
+		"@playwright/test": "1.62.1",
 		"@resvg/resvg-js": "2.6.2",
 		"@shopify/prettier-plugin-liquid": "^1.11.0",
 		"autoprefixer": "^10.5.4",
@@ -38,6 +40,7 @@
 		"format": "prettier --write .",
 		"test": "node --test test/*.test.mjs",
 		"test:content": "node --test test/content.test.mjs",
+		"test:e2e": "playwright test",
 		"lint": "pnpm run lint:js && pnpm run lint:css",
 		"lint:js": "eslint .",
 		"lint:css": "stylelint \"theme_components/sass/**/*.scss\"",

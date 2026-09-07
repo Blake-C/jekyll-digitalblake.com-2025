@@ -31,12 +31,23 @@ module.exports = [
 		},
 	},
 	{
-		files: ['script/**/*.mjs', 'test/**/*.mjs'],
+		files: ['script/**/*.mjs', 'test/**/*.mjs', 'playwright.config.mjs'],
 		languageOptions: {
 			ecmaVersion: 2022,
 			sourceType: 'module',
 			globals: {
 				...globals.node,
+			},
+		},
+	},
+	{
+		// Browser specs run in Node but pass callbacks to page.evaluate(), whose
+		// bodies execute in the page. Both sets of globals are legitimate here.
+		files: ['test/e2e/**/*.mjs'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+				...globals.browser,
 			},
 		},
 	},

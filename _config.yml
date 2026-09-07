@@ -115,6 +115,8 @@ exclude:
     # Build tooling and asset sources. The pipeline runs before jekyll build and
     # writes its output to assets/, so none of this needs to ship.
     - script/
+    - test/ # regression suites; run against the build, never part of it
+    - playwright.config.mjs
     - theme_components/
     - Dockerfile
     - docker-compose.yml
