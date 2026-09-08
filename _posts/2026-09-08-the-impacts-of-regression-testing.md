@@ -10,15 +10,16 @@ image: '/assets/uploads/2026/09/the-impacts-of-regression-testing.webp'
 
 ## What is Regression Testing?
 
-When a unit of functionality can be broken after modifications, you should consider adding regression testing to ensure that past functionality has not been broken.
-
-We are testing change in a collection of functionality to a less robust or mature state. This is done to identify bugs and issues before they reach the end user in the production environment. Usually regression testing can run as part of a CI/CD pipeline while deploying to production, but can be run locally as part of your development loop.
+Regression testing checks whether a group of features has changed to a less robust or mature state, so bugs and other issues get identified before they reach the end user in the production environment. Usually tests can run as part of a CI/CD pipeline while deploying to production, but can be run locally as part of your development loop.
 
 ## Where Regression Testing had an impact
 
-There were several instances where issues did not get caught until I added testing. One of these examples is my front matter for my JSON-LD markup provided on my case studies. I had a CreativeWork schema markup implemented that wasn't getting output because I had previously changed the name of this content type and that didn't get reflected in the header file. This is the exact type of regression where we can add a test to prevent the issue from reappearing in the future.
+There were several instances where issues did not get caught until I added regression testing. One of these examples on my own site is a content type name mismatch for the JSON-LD markup provided on the case studies. A CreativeWork schema implementation wasn't getting output because I had previously changed the name of this content type and that didn't get reflected in the header file. This is the exact type of regression where we can add a test to prevent the issue from reappearing in the future.
 
-That's 14 case studies that weren't getting their CreativeWork schema JSON-LD markup. In the `_includes/head.html` file I had a check for `page.layout == 'website-case-study'`. This should have been `page.layout == 'case-study'`. Once the issue was identified, I could add a check for the case study pages to locate them, add a verification to ensure the JSON-LD data structure was valid, and finally a check that the JSON-LD data was loading on the front-end page.
+That's 14 case studies that weren't getting their CreativeWork schema JSON-LD markup because the `_includes/head.html` file checked for `page.layout == 'website-case-study'`. This should have been `page.layout == 'case-study'`. Once the issue was identified, two tests could be added:
+
+- a test to verify the JSON-LD data was valid
+- a test to check that the JSON-LD data was loading on the front-end page
 
 The following is only a snippet of the test document:
 
@@ -51,7 +52,7 @@ test('each page type emits its structured data', () => {
 })
 ```
 
-There were also accessibility issues, such as with my code blocks on my personal website, that didn't get caught until Playwright was implemented to do additional testing alongside axe and Lighthouse that brought those sorts of issues to the surface. Using Playwright is like giving AI eyes. On my machine, Claude Code is locked down to the specific project being worked on, and doesn't have direct access to my browser, whereas with Playwright it has a way to actually see the web page, the profiler, and the console.
+There were also accessibility issues, such as with code blocks, that didn't get caught until Playwright was implemented to do additional testing alongside axe and Lighthouse that brought those issues to the surface. Using Playwright is like giving AI eyes. On my machine, Claude Code is locked down to the specific project being worked on, and doesn't have direct access to my browser, whereas with Playwright it has a way to actually see the web page, the profiler, and the console.
 
 ```js
 for (const [name, url] of Object.entries(PAGES)) {
@@ -77,11 +78,11 @@ test('the code block toolbar meets contrast in the state that shows it', async (
 })
 ```
 
-The Playwright testing also found that on my case study detail pages there was a layout shift where the page content would jump towards the center after my main CSS resolved. This happened because my critical CSS didn't contain the styles for the case studies that did the centering. This would have only been caught by either purposefully slowing down the loading of the page or via Playwright. The solution was to extract the styles in the case study CSS and move them over to my grid system where I could center that column and have that be a part of my critical CSS. It ultimately didn't save anything in terms of the size of my critical CSS, but it did fix the jumping issue that occurred on page load.
+Playwright also found layout shifting on the case study detail pages where the page content would jump towards the center after main CSS resolved. This happened because the critical CSS didn't contain the styles for the case studies that did the centering. This would have only been caught by either purposefully slowing down the loading of the page or via Playwright. The solution was to extract the styles in the case study CSS and move them over to the grid system where I could center that column and have that be a part of the critical CSS. It ultimately didn't save anything in terms of the size of the critical CSS, but it did fix the jumping issue that occurred on page load.
 
-A trickier example where Playwright caught a regression that I didn't think to test in the first place was when I switched out a WebP graphic for an SVG as part of my case studies background image. It turned out that that image, the SVG, had 10 Gaussian blurs inside of it that came out of a Sketch export. Those 10 Gaussian blurs slowed down the page so much that the Lighthouse performance score under mobile emulation dropped to 57. I was able to switch those Gaussian blurs to radial gradients, improving the score back up into the 90s. Now Playwright is using Lighthouse to score my pages, and we have a baseline for how low any score should be able to drop. Anything that triggers these tests in the future will now get caught and can be corrected.
+A trickier example where Playwright caught a regression that I didn't think to test in the first place was when I switched out a WebP graphic for an SVG as part of the case studies background image. It turned out that that image, the SVG, had 10 Gaussian blurs inside of it that came out of a Sketch export. Those 10 Gaussian blurs slowed down the page so much that the Lighthouse performance score under mobile emulation dropped to 57. Switching those Gaussian blurs to radial gradients improved the score into the 90s. Now Playwright is using Lighthouse to score the pages, and we have a baseline for how low any score should be able to drop. Anything that triggers these tests in the future will now get caught and can be corrected.
 
-And then finally there was an instance where Lighthouse's accessibility audit caught issues that axe didn't. One example is the labels on my coding project buttons not passing [WCAG 2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), a `label-content-name-mismatch` violation. I was able to get rid of an ARIA label that was not needed and just use a screen reader text-only section that extended the button text to read properly for when the button click opens in a new window. Another is an accessibility issue with one of my tables, which was missing one of the [headings](https://www.browserstack.com/docs/accessibility/rules/a11y-engine/td-has-header); the heading was not necessary, but it adds additional context for screen reader users to understand the table better. In both instances Lighthouse and axe complemented each other.
+And then finally there was an instance where Lighthouse's accessibility audit caught issues that axe didn't. One example is the labels on the coding project buttons not passing [WCAG 2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), a `label-content-name-mismatch` violation. I was able to get rid of an ARIA label that was not needed and just use a screen reader text-only section that extended the button text to read properly for when the button click opens in a new window. Another is an accessibility issue with one of the HTML tables, which was missing one of the [headings](https://www.browserstack.com/docs/accessibility/rules/a11y-engine/td-has-header); the heading was not necessary, but it adds additional context for screen reader users to understand the table better. In both instances Lighthouse and axe complemented each other.
 
 ## A past example where Regression Testing could have been useful
 
@@ -111,7 +112,7 @@ When running tests on only those items you changed, these tests should take a ma
 - **Nightly scheduled:** longer length segments which can be followed up on the next day
 - **Pre-release deployment:** full project end-to-end testing run early enough for priority and modifications to be made
 
-I think the moderate path to follow is to be running tests on changes that you perform while developing, but then prior to your deployment window and merging into main, you run the full test suite to catch any blockers. Not all of us are running Facebook.com or Instagram-level applications. So we need to keep our expectations in check and build our tests accordingly. Don't over-leverage yourself on testing if the cost and time don't justify the effort. You can choose to be very specific in whatever your key high-priority items are and test those and leave the rest to manual testing.
+The moderate path to follow is to be running tests on changes that you perform while developing, but then prior to your deployment window and merging into main, you run the full test suite to catch any blockers. Not all of us are running Facebook.com or Instagram-level applications. So we need to keep our expectations in check and build our tests accordingly. Don't over-leverage yourself on testing if the cost and time don't justify the effort. You can choose to be very specific in whatever your key high-priority items are and test those and leave the rest to manual testing.
 
 If your tests take a long time to run without an adequate amount of benefit or your tests are testing the wrong things, giving false positives, they will start to be ignored, completely negating the benefits that you would get from regression testing. You must do proper upfront analysis of what you want to test, the benefits you expect to get from them, and the cost it will take to implement those tests, to determine what you need to test in the first place.
 
