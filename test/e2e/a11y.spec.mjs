@@ -22,7 +22,7 @@ const PAGES = {
 }
 
 /**
- * Waits for the Prism toolbar to stop moving before anything measures colour.
+ * Waits for the Prism toolbar to stop moving before anything measures color.
  *
  * Prism injects the toolbar after load, and prism-toolbar.css transitions it to
  * `opacity: 0` over 0.3s. For those 300ms the toolbar is partly visible, and
@@ -58,7 +58,7 @@ for (const [name, url] of Object.entries(PAGES)) {
 
 test('the code block toolbar meets contrast in the state that shows it', async ({ page }) => {
 	// The resting state is invisible, so the check above says nothing about the
-	// colours a user actually reads. This is the state that carried the real
+	// colors a user actually reads. This is the state that carried the real
 	// defect: the plugin ships #bbb, which measures 4.44:1 here.
 	await page.goto('/case-studies/teleport-atlas/')
 	await settleCodeToolbar(page)
