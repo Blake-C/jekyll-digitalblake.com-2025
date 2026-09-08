@@ -117,6 +117,7 @@ exclude:
     - script/
     - test/ # regression suites; run against the build, never part of it
     - playwright.config.mjs
+    - playwright.lighthouse.config.mjs
     - theme_components/
     - Dockerfile
     - docker-compose.yml

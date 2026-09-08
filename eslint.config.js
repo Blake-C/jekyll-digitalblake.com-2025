@@ -31,7 +31,7 @@ module.exports = [
 		},
 	},
 	{
-		files: ['script/**/*.mjs', 'test/**/*.mjs', 'playwright.config.mjs'],
+		files: ['script/**/*.mjs', 'test/**/*.mjs', 'playwright*.config.mjs'],
 		languageOptions: {
 			ecmaVersion: 2022,
 			sourceType: 'module',

@@ -1,0 +1,53 @@
+{
+	"comment": [
+		"Thresholds for test/lighthouse/budgets.spec.mjs. Edit here, not in the spec.",
+		"",
+		"Set from 15 measurements: three full runs of the spec across the five pages below.",
+		"Observed performance 92 to 99, FCP 1205 to 2256ms, LCP 1953 to 3081ms, TBT 0 to 2ms,",
+		"CLS 0 to 0.034, Speed Index 1205 to 2256ms.",
+		"",
+		"Ceilings sit roughly a third above the observed maximum. That absorbs the container",
+		"load that moves FCP by a full second between runs while still catching a real",
+		"regression, such as a render-blocking script or an image without dimensions.",
+		"Re-measure with three runs before tightening any of these; every run prints its",
+		"numbers on a line starting with LH.",
+		"",
+		"cumulative-layout-shift is unitless. Every other metric is milliseconds."
+	],
+
+	"categories": {
+		"performance": 85,
+		"accessibility": 100,
+		"best-practices": 100,
+		"seo": 100
+	},
+
+	"metrics": {
+		"first-contentful-paint": 3000,
+		"largest-contentful-paint": 4000,
+		"total-blocking-time": 200,
+		"cumulative-layout-shift": 0.1,
+		"speed-index": 3000
+	},
+
+	"audits": [
+		"label-content-name-mismatch",
+		"td-has-header",
+		"image-alt",
+		"meta-viewport",
+		"errors-in-console",
+		"deprecations",
+		"is-on-https",
+		"valid-source-maps",
+		"charset",
+		"doctype"
+	],
+
+	"pages": {
+		"home": "/",
+		"post": "/2026/04/28/swiftui-vs-appkit-macos-ui-performance/",
+		"case study": "/case-studies/teleport-atlas/",
+		"guide": "/guides/building-with-claude-code/",
+		"recommendations": "/recommendations/"
+	}
+}
