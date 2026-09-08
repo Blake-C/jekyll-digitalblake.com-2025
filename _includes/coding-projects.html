@@ -32,22 +32,27 @@
 					</p>
 
 					<div class="coding-project__button-group">
+						{%- comment -%}
+							Accessible names extend the visible word rather than replacing it.
+							An aria-label overrides the text a sighted user reads, so "Project"
+							labelled "View Teleport Atlas" fails WCAG 2.5.3 Label in Name: someone
+							using voice control says what they see and hits nothing. It also
+							suppressed the show-for-sr span below, which was doing the same job.
+						{%- endcomment -%}
 						<a
 							class="coding-project__link button button--primary-light"
-							aria-label="View {{ project.title }} (opens in a new tab)"
 							href="{{ project.link }}"
 							target="_blank"
 							rel="noreferrer noopener"
-							>Project</a
+							>Project<span class="show-for-sr">: {{ project.title }} (opens in a new tab)</span></a
 						>
 
 						{%- if project.article -%}
 							<a
 								class="coding-project__link button button--secondary-light"
-								aria-label="Read the {{ project.title }} write"
 								href="{{ project.article | relative_url }}"
 							>
-								Write-up<span class="show-for-sr"> on {{ project.title }}</span></a
+								Write-up<span class="show-for-sr">: {{ project.title }}</span></a
 							>
 						{%- endif -%}
 					</div>

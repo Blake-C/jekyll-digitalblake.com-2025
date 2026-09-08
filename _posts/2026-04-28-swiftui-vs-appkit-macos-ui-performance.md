@@ -41,7 +41,7 @@ When a value held in [`@State`](https://developer.apple.com/documentation/swiftu
 
 ## Fundamental Differences
 
-|                   | AppKit                      | SwiftUI                                                |
+| Aspect            | AppKit                      | SwiftUI                                                |
 | ----------------- | --------------------------- | ------------------------------------------------------ |
 | Paradigm          | Imperative                  | Declarative                                            |
 | View type         | Reference (class)           | Value (struct)                                         |
