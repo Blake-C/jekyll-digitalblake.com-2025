@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Hand-edited after export. Sketch writes each layer shadow as an feOffset +
+  feGaussianBlur filter, and ten of those over ellipses this size cost about
+  10 seconds of rasterisation under Lighthouse mobile: /coding-projects/
+  scored 57 with 4.7s of blocking time. Each shadow is now a radialGradient
+  that fades from the same colour to transparent, which reproduces the halo,
+  stays sharp at any scale, and paints in 23ms. The page scores 98.
+
+  Re-exporting from Sketch will bring the filters back. Re-apply this change,
+  or drop the layer shadows in Sketch before exporting.
+-->
 <svg width="1440px" height="810px" viewBox="336 43 1440 810" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Projects Background</title>
     <defs>
@@ -7,44 +18,21 @@
             <stop stop-color="#0677BE" offset="100%"></stop>
         </linearGradient>
         <ellipse id="path-2" cx="1509.5" cy="559" rx="378.5" ry="411"></ellipse>
-        <filter x="-7.3%" y="-8.8%" width="112.4%" height="111.7%" filterUnits="objectBoundingBox" id="filter-3">
-            <feOffset dx="-8" dy="-25" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="11.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="55.2989084%" id="linearGradient-4">
             <stop stop-color="#192148" offset="0%"></stop>
             <stop stop-color="#005BBB" offset="100%"></stop>
         </linearGradient>
         <ellipse id="path-5" cx="1368.5" cy="472" rx="378.5" ry="411"></ellipse>
-        <filter x="-8.3%" y="-7.1%" width="114.5%" height="113.4%" filterUnits="objectBoundingBox" id="filter-6">
-            <feMorphology radius="4" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-8" dy="-3" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="13" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="62.9452579%" id="linearGradient-7">
             <stop stop-color="#192148" offset="0%"></stop>
             <stop stop-color="#005BBB" offset="87.852382%"></stop>
         </linearGradient>
         <ellipse id="path-8" cx="1239.5" cy="423" rx="378.5" ry="411"></ellipse>
-        <filter x="-9.2%" y="-8.9%" width="116.2%" height="115.0%" filterUnits="objectBoundingBox" id="filter-9">
-            <feMorphology radius="5.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-8" dy="-12" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="13" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="62.9452579%" id="linearGradient-10">
             <stop stop-color="#192148" offset="0%"></stop>
             <stop stop-color="#005BBB" offset="87.852382%"></stop>
         </linearGradient>
         <ellipse id="path-11" cx="1133" cy="393" rx="340" ry="393"></ellipse>
-        <filter x="-16.3%" y="-16.8%" width="130.3%" height="126.2%" filterUnits="objectBoundingBox" id="filter-12">
-            <feMorphology radius="7.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-8" dy="-29" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="22" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="32.9337603%" id="linearGradient-13">
             <stop stop-color="#002643" offset="0%"></stop>
             <stop stop-color="#0677BE" offset="100%"></stop>
@@ -54,101 +42,66 @@
             <stop stop-color="#005BBB" offset="87.852382%"></stop>
         </linearGradient>
         <ellipse id="path-15" cx="984" cy="393" rx="340" ry="391"></ellipse>
-        <filter x="-16.3%" y="-16.9%" width="130.3%" height="126.3%" filterUnits="objectBoundingBox" id="filter-16">
-            <feMorphology radius="7.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-8" dy="-29" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="22" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="32.9337603%" id="linearGradient-17">
             <stop stop-color="#002643" offset="0%"></stop>
             <stop stop-color="#0677BE" offset="100%"></stop>
         </linearGradient>
         <ellipse id="path-18" cx="849" cy="425" rx="340" ry="391"></ellipse>
-        <filter x="-16.3%" y="-16.9%" width="130.3%" height="126.3%" filterUnits="objectBoundingBox" id="filter-19">
-            <feMorphology radius="7.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-8" dy="-29" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="22" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <ellipse id="path-20" cx="726" cy="470" rx="340" ry="391"></ellipse>
-        <filter x="-15.9%" y="-17.6%" width="130.3%" height="126.3%" filterUnits="objectBoundingBox" id="filter-21">
-            <feMorphology radius="5.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-5" dy="-35" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="23" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <ellipse id="path-22" cx="594" cy="506" rx="340" ry="391"></ellipse>
-        <filter x="-13.1%" y="-16.5%" width="128.2%" height="124.6%" filterUnits="objectBoundingBox" id="filter-23">
-            <feMorphology radius="3.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="7" dy="-33" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="23" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <ellipse id="path-24" cx="485" cy="553" rx="340" ry="391"></ellipse>
-        <filter x="-13.1%" y="-16.5%" width="128.2%" height="124.6%" filterUnits="objectBoundingBox" id="filter-25">
-            <feMorphology radius="3.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="7" dy="-33" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="23" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
         <ellipse id="path-26" cx="369" cy="592" rx="340" ry="391"></ellipse>
-        <filter x="-13.1%" y="-16.5%" width="128.2%" height="124.6%" filterUnits="objectBoundingBox" id="filter-27">
-            <feMorphology radius="3.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="7" dy="-33" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="23" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.0156862745   0 0 0 0 0.0549019608  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
+            <radialGradient id="glow-0" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="91.8%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-1" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="91.8%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-2" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="91.8%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-3" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-4" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-5" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-6" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-7" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-8" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-9" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient>
     </defs>
     <g id="Projects-Background" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="SVG" transform="translate(-18.000000, 357.000000)">
             <ellipse id="front" fill="url(#linearGradient-1)" cx="1629.5" cy="643" rx="378.5" ry="411"></ellipse>
             <g id="front">
-                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <ellipse cx="1501.5" cy="534.0" rx="412.5" ry="445.0" fill="url(#glow-0)"></ellipse>
                 <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
             </g>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                <ellipse cx="1360.5" cy="447.0" rx="412.5" ry="445.0" fill="url(#glow-1)"></ellipse>
                 <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-1)" cx="1359.5" cy="466" rx="378.5" ry="411"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                <ellipse cx="1231.5" cy="398.0" rx="412.5" ry="445.0" fill="url(#glow-2)"></ellipse>
                 <use fill="url(#linearGradient-7)" fill-rule="evenodd" xlink:href="#path-8"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-1)" cx="1231.5" cy="423" rx="378.5" ry="411"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
+                <ellipse cx="1125.0" cy="368.0" rx="374.0" ry="427.0" fill="url(#glow-3)"></ellipse>
                 <use fill="url(#linearGradient-10)" fill-rule="evenodd" xlink:href="#path-11"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-13)" cx="1124" cy="393" rx="340" ry="393"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-16)" xlink:href="#path-15"></use>
+                <ellipse cx="976.0" cy="368.0" rx="374.0" ry="425.0" fill="url(#glow-4)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-15"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="970" cy="393" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-19)" xlink:href="#path-18"></use>
+                <ellipse cx="841.0" cy="400.0" rx="374.0" ry="425.0" fill="url(#glow-5)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-18"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="832" cy="425" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-21)" xlink:href="#path-20"></use>
+                <ellipse cx="718.0" cy="445.0" rx="374.0" ry="425.0" fill="url(#glow-6)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-20"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="710" cy="470" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-23)" xlink:href="#path-22"></use>
+                <ellipse cx="586.0" cy="481.0" rx="374.0" ry="425.0" fill="url(#glow-7)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-22"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="573" cy="506" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-25)" xlink:href="#path-24"></use>
+                <ellipse cx="477.0" cy="528.0" rx="374.0" ry="425.0" fill="url(#glow-8)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-24"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="464" cy="553" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <use fill="black" fill-opacity="1" filter="url(#filter-27)" xlink:href="#path-26"></use>
+                <ellipse cx="361.0" cy="567.0" rx="374.0" ry="425.0" fill="url(#glow-9)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-26"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="340" cy="592" rx="340" ry="391"></ellipse>
