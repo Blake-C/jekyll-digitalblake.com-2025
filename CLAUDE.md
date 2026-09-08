@@ -69,7 +69,8 @@ docker compose run --rm app pnpm run check:links   # adds external links, minus 
 # Tests
 docker compose run --rm app pnpm run test:content  # front matter only, no build needed
 docker compose run --rm app pnpm test              # all node:test suites; needs a prior build
-docker compose run --rm playwright                 # browser tests, own compose service
+docker compose run --rm playwright                 # browser tests (Chromium), own compose service
+docker compose run --rm playwright npm run test:e2e:all      # Chromium, Firefox and WebKit
 docker compose run --rm playwright npm run test:lighthouse   # performance budgets, local only
 ```
 

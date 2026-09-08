@@ -56,7 +56,11 @@ services:
             - '24212:24212' # playwright show-trace
         # The Playwright image ships Node and npm but not pnpm, so this calls the
         # binary pnpm already linked into node_modules rather than going through it.
-        command: node_modules/.bin/playwright test
+        #
+        # Chromium only by default, which is the 8 second loop. Firefox and WebKit
+        # are configured too: run `npm run test:e2e:all` in this service for all
+        # three, which takes about 36 seconds. CI always runs all three.
+        command: node_modules/.bin/playwright test --project=chromium
 
 volumes:
     bundle_cache:

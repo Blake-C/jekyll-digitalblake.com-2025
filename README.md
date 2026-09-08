@@ -98,7 +98,7 @@ Two layers, split by what they read. `node:test` checks the files the build emit
 | `test/build-determinism.test.mjs` | `build:fonts` and `build:images` idempotency, the style watcher matching `build:styles` byte for byte, asset hash purity                                            | Runs its own  |
 | `test/e2e/`                       | Browser behavior: nav modal, recommendation modal, reading progress, table wrapping, YouTube facade, keyboard paths, axe at WCAG 2.1 AA, console and network errors | Yes           |
 
-**Not covered.** No screenshot baselines; see First paint below for what replaces them. Chromium only, so no Firefox or WebKit. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
+**Not covered.** No screenshot baselines; see First paint below for what replaces them. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
 
 ### First paint
 
@@ -139,10 +139,17 @@ docker compose run --rm app pnpm run test:content
 docker compose run --rm app pnpm run build
 docker compose run --rm app pnpm test
 
-# Browser tests. Own service: Playwright's browser builds are glibc-only and the
-# app image is Alpine, which it does not support.
+# Browser tests, Chromium only. Own service: Playwright's browser builds are
+# glibc-only and the app image is Alpine, which it does not support.
 docker compose run --rm playwright
+
+# All three engines: Chromium, Firefox and WebKit
+docker compose run --rm playwright npm run test:e2e:all
 ```
+
+Chromium alone takes 8 seconds and all three take 36, so Chromium is the default for the local loop. CI runs every project. All three engines ship in the Playwright image, so there is nothing to install.
+
+WebKit earns its place: both modals are built on `<dialog>`, the one modern API here with real cross-engine history.
 
 The Playwright image tag in `docker-compose.yml` must match the `@playwright/test` version in `package.json` exactly. A mismatch between the driver and the bundled browsers is a runtime error.
 

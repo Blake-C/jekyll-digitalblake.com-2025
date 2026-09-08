@@ -6,9 +6,19 @@ const PORT = Number(process.env.PORT ?? 24210)
 
 export default defineConfig({
 	testDir: './test/e2e',
-	// Chromium only for now. Firefox and WebKit cost image size and runtime for
-	// a site whose JavaScript is a handful of small modules.
-	projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+	// All three engines are already in the Playwright image, so the only cost is
+	// runtime: 8s for chromium alone against 36s for all three. Chromium stays
+	// the default run to keep the local loop short, and CI runs every project.
+	// Pick one with --project=<name>.
+	//
+	// WebKit matters more than its share of traffic suggests. Both modals are
+	// built on <dialog>, which is the one modern API here with real cross-engine
+	// history.
+	projects: [
+		{ name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+		{ name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+		{ name: 'webkit', use: { ...devices['Desktop Safari'] } },
+	],
 	use: {
 		baseURL: `http://localhost:${PORT}`,
 		trace: 'on-first-retry',

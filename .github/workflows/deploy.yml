@@ -148,8 +148,10 @@ jobs:
                   name: site
                   path: _site
 
+            # Every project, not just chromium. The engines ship in the image, so
+            # the whole cost is about 30 seconds of runtime.
             - name: Run browser tests
-              run: pnpm exec playwright test
+              run: pnpm run test:e2e:all
 
             - name: Upload the report when they fail
               if: failure()
