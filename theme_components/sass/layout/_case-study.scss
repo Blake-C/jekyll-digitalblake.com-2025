@@ -64,15 +64,6 @@
 	}
 }
 
-// Center the 9-col content column when no sidebar is present
-// Parent .row is display: flex, so margin: auto works without extra grid classes
-.case-study-content-col {
-	@include bp.breakpoint(large) {
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
 // "More Case Studies" section reuses .case-studies__card as <a> — needs text-decoration reset
 a.case-studies__card {
 	text-decoration: none;

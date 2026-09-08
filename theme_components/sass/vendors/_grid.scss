@@ -11,6 +11,8 @@
  *   .columns                              — flex item with responsive gutter
  *   .small-N / .medium-N / .large-N       — explicit width (N = 1–12)
  *   .small-offset-N / .medium-offset-N / .large-offset-N — left margin (N = 0–11)
+ *   .small-centered / .medium-centered / .large-centered — centre a column with no
+ *       sibling beside it, for a row that has no sidebar
  *   .small-up-N / .medium-up-N / .large-up-N — block grid, N items per row (1–8)
  */
 
@@ -59,6 +61,13 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	margin-left: math.div(100%, $grid-columns) * $n;
 }
 
+// A column narrower than the row sits left by default, because the row is a
+// flex container. This centres it, for layouts that drop the sidebar.
+@mixin -column-centered() {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 @mixin -block-grid($n) {
 	flex-wrap: wrap;
 
@@ -84,6 +93,11 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	}
 }
 
+/* Centred column — small (always) */
+.small-centered {
+	@include -column-centered;
+}
+
 /* Block grid — small (always) */
 @for $i from 1 through 8 {
 	.small-up-#{$i} {
@@ -104,6 +118,10 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 		}
 	}
 
+	.medium-centered {
+		@include -column-centered;
+	}
+
 	@for $i from 1 through 8 {
 		.medium-up-#{$i} {
 			@include -block-grid($i);
@@ -122,6 +140,10 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 		.large-offset-#{$i} {
 			@include -column-offset($i);
 		}
+	}
+
+	.large-centered {
+		@include -column-centered;
 	}
 
 	@for $i from 1 through 8 {

@@ -31,11 +31,11 @@
 @use 'layout/archive';
 @use 'layout/posts';
 @use 'layout/callouts';
-// The individual case study page, not the card grid below. Its
-// .case-study-content-col centres the content column at the large breakpoint,
-// so without this the title sat 145px to the left at first paint and jumped
-// when the deferred stylesheet landed. Desktop only, which is why it went
-// unnoticed. Costs about 1.2KB.
+// The individual case study page, not the card grid below. Its header rules
+// (.entry-title margin, __tech-tags, __meta) all sit above the fold, so without
+// this the content moved 26px when the deferred stylesheet landed. The column
+// centring that used to live here is now .large-centered in the grid, but the
+// rest of the partial is still needed at first paint. Costs about 1.2KB.
 @use 'layout/case-study';
 @use 'layout/case-studies';
 // Guide pages put the table of contents column beside the content. Without
