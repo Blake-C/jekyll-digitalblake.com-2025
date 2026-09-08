@@ -98,7 +98,22 @@ Two layers, split by what they read. `node:test` checks the files the build emit
 | `test/build-determinism.test.mjs` | `build:fonts` and `build:images` idempotency, the style watcher matching `build:styles` byte for byte, asset hash purity                                            | Runs its own  |
 | `test/e2e/`                       | Browser behavior: nav modal, recommendation modal, reading progress, table wrapping, YouTube facade, keyboard paths, axe at WCAG 2.1 AA, console and network errors | Yes           |
 
-**Not covered.** No visual or screenshot baselines. Chromium only, so no Firefox or WebKit. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
+**Not covered.** No screenshot baselines; see First paint below for what replaces them. Chromium only, so no Firefox or WebKit. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
+
+### First paint
+
+`test/e2e/first-paint.spec.mjs` loads each page twice, once with the deferred stylesheet blocked and once normally, and fails if anything above the fold moves between the two. Five pages at 390, 768 and 1280.
+
+It exists instead of screenshot baselines. The recurring visual bug in this repo is a rule missing from critical CSS, which corrects itself once `global-styles` loads, so a screenshot taken after load sees nothing wrong. Seven of the fifteen SCSS fixes in the last year were that bug.
+
+There is no baseline image to store or re-approve. Each page is compared against itself, so a design change costs this spec nothing.
+
+Two rules follow from it:
+
+- **Critical CSS must import its layout partials in the same relative order as `global-styles.scss`.** Both emit the same selectors at the same specificity, so source order decides the winner, and a mismatch means the page resolves differently before and after the stylesheet lands. `test/content.test.mjs` enforces the ordering.
+- **A partial added to critical CSS goes in its `global-styles` position**, not at the end.
+
+Accepted exceptions are listed in the spec with the reason and the cost of fixing them.
 
 ### Lighthouse budgets
 
