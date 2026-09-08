@@ -10,17 +10,34 @@
 @use 'partials/base';
 @use 'partials/generic-styles';
 @use 'vendors/grid';
+
+// The layout partials below must stay in the same relative order as
+// global-styles.scss, and test/content.test.mjs enforces that.
+// Both files emit the same rules for selectors like .entry-title, at the same
+// specificity, so the winner is decided by source order alone. When the two
+// orders disagreed, `.entry-title` resolved to a different margin before and
+// after the deferred stylesheet arrived, and the case study header shifted 8px
+// on every width. Critical CSS is only a faithful preview of the settled page
+// if its cascade matches.
+// Adding a partial here means putting it in its global-styles position, not at
+// the end.
+@use 'layout/about';
+@use 'layout/coding-projects';
 @use 'layout/header';
+@use 'layout/intro';
 @use 'layout/main';
 @use 'layout/menu';
-@use 'layout/intro';
 @use 'layout/sidebar';
+@use 'layout/archive';
 @use 'layout/posts';
 @use 'layout/callouts';
-@use 'layout/about';
-@use 'layout/archive';
+// The individual case study page, not the card grid below. Its
+// .case-study-content-col centres the content column at the large breakpoint,
+// so without this the title sat 145px to the left at first paint and jumped
+// when the deferred stylesheet landed. Desktop only, which is why it went
+// unnoticed. Costs about 1.2KB.
+@use 'layout/case-study';
 @use 'layout/case-studies';
-@use 'layout/coding-projects';
 // Guide pages put the table of contents column beside the content. Without
 // these rules in the first paint the nav renders at browser defaults, and the
 // reflow when the deferred stylesheet lands measured 0.762 CLS on two runs in

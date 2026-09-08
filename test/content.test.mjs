@@ -149,6 +149,29 @@ test('case study images all exist on disk', () => {
 	}
 })
 
+test('critical CSS imports its layout partials in the same order as global CSS', () => {
+	const layoutOrder = file =>
+		[...readFileSync(join(ROOT, 'theme_components/sass', file), 'utf8').matchAll(/@use '(layout\/[a-z-]+)'/g)].map(
+			match => match[1],
+		)
+
+	const critical = layoutOrder('critical-styles.scss')
+	const global = layoutOrder('global-styles.scss')
+	assert.ok(critical.length > 0 && global.length > 0, 'no layout imports found in one of the entry points')
+
+	// Both files emit the same rules for selectors such as .entry-title, at the
+	// same specificity, so source order alone decides the winner. If critical
+	// orders them differently the page resolves one way before the deferred
+	// stylesheet lands and another way after, and elements shift. That is how
+	// the case study header came to move 8px at every width.
+	let position = -1
+	for (const partial of critical) {
+		const next = global.indexOf(partial, position + 1)
+		assert.notEqual(next, -1, `${partial} comes out of order in critical-styles.scss, or is missing from global`)
+		position = next
+	}
+})
+
 test('every author entry has a name', () => {
 	for (const [slug, author] of Object.entries(authors)) {
 		assert.ok(author?.name, `author "${slug}": missing name`)
