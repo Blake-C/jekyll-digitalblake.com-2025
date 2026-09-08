@@ -3,9 +3,13 @@
   Hand-edited after export. Sketch writes each layer shadow as an feOffset +
   feGaussianBlur filter, and ten of those over ellipses this size cost about
   10 seconds of rasterisation under Lighthouse mobile: /coding-projects/
-  scored 57 with 4.7s of blocking time. Each shadow is now a radialGradient
-  that fades from the same colour to transparent, which reproduces the halo,
-  stays sharp at any scale, and paints in 23ms. The page scores 98.
+  scored 57 with 4.7s of blocking time. Each shadow is now a radialGradient,
+  which reproduces the halo, stays sharp at any scale, and paints in 23ms.
+
+  The stops model a blurred edge rather than a flat fill: transparent well
+  inside the shape, peaking at the edge, fading out over 75px. A flat fill
+  exposes a wide crescent of solid colour, which reads as a hard band between
+  the arcs instead of the soft blend the shadows gave.
 
   Re-exporting from Sketch will bring the filters back. Re-apply this change,
   or drop the layer shadows in Sketch before exporting.
@@ -51,57 +55,57 @@
         <ellipse id="path-22" cx="594" cy="506" rx="340" ry="391"></ellipse>
         <ellipse id="path-24" cx="485" cy="553" rx="340" ry="391"></ellipse>
         <ellipse id="path-26" cx="369" cy="592" rx="340" ry="391"></ellipse>
-            <radialGradient id="glow-0" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="91.8%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-1" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="91.8%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-2" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="91.8%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-3" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-4" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-5" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-6" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-7" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-8" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient><radialGradient id="glow-9" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.5" offset="0%"></stop><stop stop-color="#00040E" stop-opacity="0.5" offset="90.9%"></stop><stop stop-color="#00040E" stop-opacity="0" offset="100%"></stop></radialGradient>
+            <radialGradient id="glow-0" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="70.23%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="76.85%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="83.46%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="89.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="95.04%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-1" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="70.23%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="76.85%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="83.46%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="89.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="95.04%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-2" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="70.23%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="76.85%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="83.46%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="89.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="95.04%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-3" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-4" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-5" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-6" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-7" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-8" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient><radialGradient id="glow-9" gradientUnits="objectBoundingBox" cx="50%" cy="50%" r="50%"><stop stop-color="#00040E" stop-opacity="0.000" offset="0.00%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="67.47%"></stop><stop stop-color="#00040E" stop-opacity="0.180" offset="74.70%"></stop><stop stop-color="#00040E" stop-opacity="0.450" offset="81.93%"></stop><stop stop-color="#00040E" stop-opacity="0.189" offset="88.25%"></stop><stop stop-color="#00040E" stop-opacity="0.063" offset="94.58%"></stop><stop stop-color="#00040E" stop-opacity="0.000" offset="100.00%"></stop></radialGradient>
     </defs>
     <g id="Projects-Background" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="SVG" transform="translate(-18.000000, 357.000000)">
             <ellipse id="front" fill="url(#linearGradient-1)" cx="1629.5" cy="643" rx="378.5" ry="411"></ellipse>
             <g id="front">
-                <ellipse cx="1501.5" cy="534.0" rx="412.5" ry="445.0" fill="url(#glow-0)"></ellipse>
+                <ellipse cx="1501.5" cy="534.0" rx="453.5" ry="486.0" fill="url(#glow-0)"></ellipse>
                 <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
             </g>
             <g id="edge">
-                <ellipse cx="1360.5" cy="447.0" rx="412.5" ry="445.0" fill="url(#glow-1)"></ellipse>
+                <ellipse cx="1360.5" cy="447.0" rx="453.5" ry="486.0" fill="url(#glow-1)"></ellipse>
                 <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-1)" cx="1359.5" cy="466" rx="378.5" ry="411"></ellipse>
             <g id="edge">
-                <ellipse cx="1231.5" cy="398.0" rx="412.5" ry="445.0" fill="url(#glow-2)"></ellipse>
+                <ellipse cx="1231.5" cy="398.0" rx="453.5" ry="486.0" fill="url(#glow-2)"></ellipse>
                 <use fill="url(#linearGradient-7)" fill-rule="evenodd" xlink:href="#path-8"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-1)" cx="1231.5" cy="423" rx="378.5" ry="411"></ellipse>
             <g id="edge">
-                <ellipse cx="1125.0" cy="368.0" rx="374.0" ry="427.0" fill="url(#glow-3)"></ellipse>
+                <ellipse cx="1125.0" cy="368.0" rx="415.0" ry="468.0" fill="url(#glow-3)"></ellipse>
                 <use fill="url(#linearGradient-10)" fill-rule="evenodd" xlink:href="#path-11"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-13)" cx="1124" cy="393" rx="340" ry="393"></ellipse>
             <g id="edge">
-                <ellipse cx="976.0" cy="368.0" rx="374.0" ry="425.0" fill="url(#glow-4)"></ellipse>
+                <ellipse cx="976.0" cy="368.0" rx="415.0" ry="466.0" fill="url(#glow-4)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-15"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="970" cy="393" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <ellipse cx="841.0" cy="400.0" rx="374.0" ry="425.0" fill="url(#glow-5)"></ellipse>
+                <ellipse cx="841.0" cy="400.0" rx="415.0" ry="466.0" fill="url(#glow-5)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-18"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="832" cy="425" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <ellipse cx="718.0" cy="445.0" rx="374.0" ry="425.0" fill="url(#glow-6)"></ellipse>
+                <ellipse cx="718.0" cy="445.0" rx="415.0" ry="466.0" fill="url(#glow-6)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-20"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="710" cy="470" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <ellipse cx="586.0" cy="481.0" rx="374.0" ry="425.0" fill="url(#glow-7)"></ellipse>
+                <ellipse cx="586.0" cy="481.0" rx="415.0" ry="466.0" fill="url(#glow-7)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-22"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="573" cy="506" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <ellipse cx="477.0" cy="528.0" rx="374.0" ry="425.0" fill="url(#glow-8)"></ellipse>
+                <ellipse cx="477.0" cy="528.0" rx="415.0" ry="466.0" fill="url(#glow-8)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-24"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="464" cy="553" rx="340" ry="391"></ellipse>
             <g id="edge">
-                <ellipse cx="361.0" cy="567.0" rx="374.0" ry="425.0" fill="url(#glow-9)"></ellipse>
+                <ellipse cx="361.0" cy="567.0" rx="415.0" ry="466.0" fill="url(#glow-9)"></ellipse>
                 <use fill="url(#linearGradient-14)" fill-rule="evenodd" xlink:href="#path-26"></use>
             </g>
             <ellipse id="front" fill="url(#linearGradient-17)" cx="340" cy="592" rx="340" ry="391"></ellipse>
