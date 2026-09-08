@@ -21,3 +21,8 @@
 @use 'layout/archive';
 @use 'layout/case-studies';
 @use 'layout/coding-projects';
+// Guide pages put the table of contents column beside the content. Without
+// these rules in the first paint the nav renders at browser defaults, and the
+// reflow when the deferred stylesheet lands measured 0.762 CLS on two runs in
+// five, taking the performance score from 99 to 75. Costs about 1.8KB.
+@use 'layout/pillar';
