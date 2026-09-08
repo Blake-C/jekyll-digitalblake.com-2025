@@ -42,6 +42,18 @@ services:
         ipc: host
         environment:
             CI: ${CI:-}
+        # UI Mode and the Trace Viewer are both web apps the CLI can serve over
+        # HTTP, so they work from here with no display and no VNC. They bind to
+        # 0.0.0.0 rather than localhost, otherwise the container keeps them to
+        # itself. Ports come from this project's block in
+        # digitalblake-system-setup/notes/dev-ports.md.
+        #
+        # `docker compose run` ignores these unless you pass --service-ports.
+        # See the Testing section of README.md for the commands.
+        ports:
+            - '24210:24210' # static server for _site (test/e2e/serve.mjs)
+            - '24211:24211' # playwright test --ui
+            - '24212:24212' # playwright show-trace
         # The Playwright image ships Node and npm but not pnpm, so this calls the
         # binary pnpm already linked into node_modules rather than going through it.
         command: node_modules/.bin/playwright test

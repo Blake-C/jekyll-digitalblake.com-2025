@@ -76,9 +76,11 @@ docker compose run --rm playwright                 # browser tests, own compose 
 
 Two layers. `node:test` asserts what the build emits and that the build scripts are deterministic; Playwright asserts what a browser does with that output. The suite table, the coverage gaps, and the CI split are in the `## Testing` section of `README.md`; do not duplicate them here.
 
-Three things that are easy to get wrong:
+Things that are easy to get wrong:
 
 - **The Playwright image tag must equal the `@playwright/test` version.** It runs in its own compose service because Playwright's browser builds are glibc-only and the app image is Alpine, which it does not support.
+- **Never run `pnpm` on the host.** `node_modules` is bind-mounted and shared, and pnpm recreates it for whichever platform invoked it, swapping the esbuild binary and breaking the other side until the next install. Every Node command goes through Docker.
+- **UI Mode and the Trace Viewer serve over HTTP** from the Playwright service on ports 24211 and 24212, so they need no display. `codegen`, `--headed`, and `--debug` need a browser window and cannot run there. README has the commands.
 - **`test:ci` is not `test`.** `test/build-determinism.test.mjs` shells out to `build:fonts` and `build:images`, which CI does not run and has no tooling for, so CI runs the narrower script and determinism stays local.
 - **Adding a page type means adding an assertion.** A new branch in `_includes/head.html` needs a matching case in `test/site-contract.test.mjs`. The suite exists because a branch there tested `page.layout == 'website-case-study'` while the layout was `case-study`, so every case study shipped without its `CreativeWork` block. It rendered fine and `htmlproofer` passed.
 

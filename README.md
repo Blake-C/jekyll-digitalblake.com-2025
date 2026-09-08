@@ -115,6 +115,56 @@ docker compose run --rm playwright
 
 The Playwright image tag in `docker-compose.yml` must match the `@playwright/test` version in `package.json` exactly. A mismatch between the driver and the bundled browsers is a runtime error.
 
+### UI Mode and the Trace Viewer
+
+Both are web apps the Playwright CLI can serve over HTTP, so they run from the container with no display and no VNC. They bind to `0.0.0.0`, since binding to localhost would keep them inside the container.
+
+`docker compose run` ignores published ports unless you pass `--service-ports`, the same reason `docker compose up` is used for the dev server.
+
+The Playwright image ships Node and npm only, so these commands use `npm run`.
+
+```bash
+# UI Mode: run, watch, and step through tests. Open http://localhost:24211
+docker compose run --rm --service-ports playwright npm run test:e2e:ui
+
+# Trace Viewer: open a recorded trace. Open http://localhost:24212
+docker compose run --rm --service-ports playwright \
+    npm run test:e2e:trace -- test-results/<test-dir>/trace.zip
+```
+
+Record a trace to open with the second command. The config only keeps one on a retry, so force it:
+
+```bash
+docker compose run --rm playwright node_modules/.bin/playwright test <spec> --trace on
+```
+
+Traces land in `test-results/`, which is gitignored. [trace.playwright.dev](https://trace.playwright.dev) opens the same `trace.zip` files by drag and drop and needs no local server; it runs entirely in the browser and uploads nothing.
+
+UI Mode also has a **Pick locator** control, which covers most of what `codegen` is for without leaving the container.
+
+### Codegen, headed mode, and the Inspector
+
+These three drive a visible browser window, and the container has no display, so they cannot be served over HTTP the way the two above can. Run them from a **separate** Playwright install on the host:
+
+```bash
+mkdir -p ~/.local/playwright-codegen && cd ~/.local/playwright-codegen
+npm init -y && npm install -D @playwright/test@1.62.1
+npx playwright install chromium
+```
+
+Then serve the built site from the container and point codegen at it:
+
+```bash
+# terminal 1
+docker compose run --rm --service-ports playwright node test/e2e/serve.mjs
+# terminal 2
+cd ~/.local/playwright-codegen && npx playwright codegen http://localhost:24210/
+```
+
+Keep that install at the same version as `package.json`, and paste generated code into `test/e2e/` by hand.
+
+> **Do not run `pnpm` on the host in this repo.** `node_modules` is bind-mounted and shared with the container, and pnpm recreates it for whichever platform invoked it. A host `pnpm exec` swaps the Linux esbuild binary for the macOS one and breaks the container build; the next `pnpm` call inside the container swaps it back, at about twelve seconds a time. That is why the codegen install above lives outside the repo and uses `npm`.
+
 **In CI.** Both layers gate the deploy. The build job runs `pnpm run test:ci`, which is the content and contract suites; the `browser-tests` job runs Playwright in the same image used locally. `test:ci` deliberately skips `build-determinism`, which shells out to `build:fonts` and `build:images`, which CI does not run and has no tooling for. That one stays local.
 
 **Adding a test with a feature.** A new page type, or a new branch in `_includes/head.html`, gets an assertion in `test/site-contract.test.mjs`. A new front matter key that other templates depend on gets one in `test/content.test.mjs`. A new JS module gets a spec in `test/e2e/`.
