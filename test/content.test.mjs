@@ -149,6 +149,29 @@ test('case study images all exist on disk', () => {
 	}
 })
 
+test('case study thumbnails match the dimensions the card template hardcodes', () => {
+	// _includes/case-studies.html writes width="600" height="400" on every card,
+	// which is what reserves the space before the lazy image loads. A thumbnail
+	// with a different shape still renders at its own ratio, because base.scss
+	// sets img { height: auto }, so the reserved box is the wrong height and the
+	// grid shifts as each one arrives.
+	const template = readFileSync(join(ROOT, '_includes/case-studies.html'), 'utf8')
+	const declared = template.match(/width="(\d+)"\s*\n\s*height="(\d+)"/)
+	assert.ok(declared, 'no hardcoded width/height found in the card template')
+
+	const ratio = Number(declared[1]) / Number(declared[2])
+	const dimensions = JSON.parse(readFileSync(join(ROOT, '_data/image_dimensions.json'), 'utf8'))
+
+	for (const { name, data } of caseStudies) {
+		const size = dimensions[data.thumbnail]
+		assert.ok(size, `${name}: ${data.thumbnail} has no entry in image_dimensions.json`)
+		assert.ok(
+			Math.abs(size.width / size.height - ratio) < 0.01,
+			`${name}: thumbnail is ${size.width}x${size.height}, but the card reserves ${declared[1]}x${declared[2]}`,
+		)
+	}
+})
+
 test('critical CSS imports its layout partials in the same order as global CSS', () => {
 	const layoutOrder = file =>
 		[...readFileSync(join(ROOT, 'theme_components/sass', file), 'utf8').matchAll(/@use '(layout\/[a-z-]+)'/g)].map(
