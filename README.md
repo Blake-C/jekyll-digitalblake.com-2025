@@ -98,7 +98,23 @@ Two layers, split by what they read. `node:test` checks the files the build emit
 | `test/build-determinism.test.mjs` | `build:fonts` and `build:images` idempotency, the style watcher matching `build:styles` byte for byte, asset hash purity                                            | Runs its own  |
 | `test/e2e/`                       | Browser behavior: nav modal, recommendation modal, reading progress, table wrapping, YouTube facade, keyboard paths, axe at WCAG 2.1 AA, console and network errors | Yes           |
 
-**Not covered.** No visual or screenshot baselines. No Lighthouse or performance budgets. Chromium only, so no Firefox or WebKit. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
+**Not covered.** No visual or screenshot baselines. Chromium only, so no Firefox or WebKit. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
+
+### Lighthouse budgets
+
+Five pages are held to category scores, metric ceilings, and a list of audits that must keep passing. Thresholds live in `test/lighthouse/budgets.json`; the spec reads them, so tuning a budget needs no code change.
+
+```bash
+docker compose run --rm playwright npm run test:lighthouse
+```
+
+Every run prints its measurements on a line starting with `LH`, so a run doubles as a measurement. Set thresholds from three runs of this spec rather than from a one-off script: the test runner and its web server add load, and FCP reads several hundred milliseconds higher under it.
+
+**These run against the local build, not the deployed site, and that is deliberate.** Cloudflare injects `/cdn-cgi/challenge-platform/` at the edge, that script calls the deprecated `StorageType.persistent`, and Lighthouse charges the deprecation to the page. The live Best Practices score is 81 for that reason alone. Nothing in this repo builds that script and no commit here can fix it, so gating on it would mean a permanently red check that says nothing about the code. The same pages score 100 against `_site`.
+
+Two audits are affected the other way and are not asserted: `test/e2e/serve.mjs` sends no cache headers and no compression, so `cache-insight` and `document-latency-insight` always fail and byte weights are uncompressed. The performance score is therefore pessimistic against production rather than optimistic.
+
+This is local and on demand. It is not wired into CI, where Lighthouse timings on shared runners vary enough to produce false failures.
 
 ```bash
 # Fast loop, no build required

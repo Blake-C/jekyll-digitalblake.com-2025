@@ -70,6 +70,7 @@ docker compose run --rm app pnpm run check:links   # adds external links, minus 
 docker compose run --rm app pnpm run test:content  # front matter only, no build needed
 docker compose run --rm app pnpm test              # all node:test suites; needs a prior build
 docker compose run --rm playwright                 # browser tests, own compose service
+docker compose run --rm playwright npm run test:lighthouse   # performance budgets, local only
 ```
 
 ### Testing
@@ -80,6 +81,7 @@ Things that are easy to get wrong:
 
 - **The Playwright image tag must equal the `@playwright/test` version.** It runs in its own compose service because Playwright's browser builds are glibc-only and the app image is Alpine, which it does not support.
 - **Never run `pnpm` on the host.** `node_modules` is bind-mounted and shared, and pnpm recreates it for whichever platform invoked it, swapping the esbuild binary and breaking the other side until the next install. Every Node command goes through Docker.
+- **Lighthouse budgets run against `_site`, never the live site.** Cloudflare injects a challenge script that uses a deprecated API, which costs the deployed site its Best Practices score. No commit here can change that, so gating on it would be permanently red. Thresholds are in `test/lighthouse/budgets.json`; re-measure over three runs before tightening one.
 - **UI Mode and the Trace Viewer serve over HTTP** from the Playwright service on ports 24211 and 24212, so they need no display. `codegen`, `--headed`, and `--debug` need a browser window and cannot run there. README has the commands.
 - **`test:ci` is not `test`.** `test/build-determinism.test.mjs` shells out to `build:fonts` and `build:images`, which CI does not run and has no tooling for, so CI runs the narrower script and determinism stays local.
 - **Adding a page type means adding an assertion.** A new branch in `_includes/head.html` needs a matching case in `test/site-contract.test.mjs`. The suite exists because a branch there tested `page.layout == 'website-case-study'` while the layout was `case-study`, so every case study shipped without its `CreativeWork` block. It rendered fine and `htmlproofer` passed.
