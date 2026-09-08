@@ -23,8 +23,24 @@
 								{% endif %}
 							>
 								<div class="case-studies__image-wrap">
+									{%- comment -%}
+										The first row is in the viewport on the archive page, where this grid
+										starts at the top. Lazy-loading the LCP image delays it: Lighthouse
+										scored lcp-discovery 0 on /case-studies/ with "LCP resources should
+										not use loading=lazy". The home page shows the same grid lower down,
+										so it passes no eager_count and everything stays lazy.
+									{%- endcomment -%}
+									{%- assign eager_count = include.eager_count | default: 0 | plus: 0 -%}
+									{%- if forloop.index <= eager_count -%}
+										{%- assign img_loading = 'eager' -%}
+									{%- else -%}
+										{%- assign img_loading = 'lazy' -%}
+									{%- endif -%}
 									<img
-										loading="lazy"
+										loading="{{ img_loading }}"
+										{% if forloop.index == 1 and eager_count > 0 %}
+											fetchpriority="high"
+										{% endif %}
 										width="600"
 										height="400"
 										class="case-studies__image wp-post-image"

@@ -2,6 +2,10 @@
 layout: base
 title: Coding Projects
 permalink: /coding-projects/
+# The section's background image is the LCP element here, and fetchpriority
+# cannot go on a CSS background. head.html turns this into a preload with
+# fetchpriority=high, which is what lcp-discovery asks for.
+preload_image: /assets/images/projects-background.svg
 description: 'A full archive of open-source and personal coding projects built with PHP, JavaScript, Swift, and more.'
 show_recommendations: true
 body_class: coding-projects-page
