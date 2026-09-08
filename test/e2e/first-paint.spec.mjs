@@ -100,7 +100,11 @@ for (const [name, path] of Object.entries(PAGES)) {
 		test(`${name} is laid out correctly before the deferred CSS loads, at ${width}px`, async ({ page }) => {
 			await page.setViewportSize({ width, height: 900 })
 
-			const blockGlobalCss = route => route.abort()
+			// Fulfilled empty rather than aborted. An aborted subresource stops
+			// WebKit firing `load`, so page.goto never resolves and every check
+			// here times out. An empty stylesheet loads normally and applies
+			// nothing, which is the same thing for this purpose.
+			const blockGlobalCss = route => route.fulfill({ status: 200, contentType: 'text/css', body: '' })
 			await page.route(/global-styles.*\.css/, blockGlobalCss)
 			await page.goto(path)
 			await page.evaluate(() => document.fonts?.ready)
