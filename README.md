@@ -91,12 +91,12 @@ Two layers, split by what they read. `node:test` checks the files the build emit
 
 `htmlproofer` still runs alongside them and is not replaced: it validates markup and link targets, which neither layer does.
 
-| Suite                             | Covers                                                                                                                                                 | Needs a build |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| `test/content.test.mjs`           | Front matter invariants: filename and date agreement, pillar and author references, unique case study `order`, images on disk                          | No            |
-| `test/site-contract.test.mjs`     | Built output: structured data per page type, valid JSON-LD, canonical and `og:url`, robots directives, image dimensions and alt text, asset resolution | Yes           |
-| `test/build-determinism.test.mjs` | `build:fonts` and `build:images` idempotency, the style watcher matching `build:styles` byte for byte, asset hash purity                               | Runs its own  |
-| `test/e2e/`                       | Browser behavior: nav modal, reading progress, table wrapping, YouTube facade, keyboard paths, axe at WCAG 2.1 AA, console and network errors          | Yes           |
+| Suite                             | Covers                                                                                                                                                              | Needs a build |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `test/content.test.mjs`           | Front matter invariants: filename and date agreement, pillar and author references, unique case study `order`, images on disk                                       | No            |
+| `test/site-contract.test.mjs`     | Built output: structured data per page type, valid JSON-LD, canonical and `og:url`, robots directives, image dimensions and alt text, asset resolution              | Yes           |
+| `test/build-determinism.test.mjs` | `build:fonts` and `build:images` idempotency, the style watcher matching `build:styles` byte for byte, asset hash purity                                            | Runs its own  |
+| `test/e2e/`                       | Browser behavior: nav modal, recommendation modal, reading progress, table wrapping, YouTube facade, keyboard paths, axe at WCAG 2.1 AA, console and network errors | Yes           |
 
 **Not covered.** No visual or screenshot baselines. No Lighthouse or performance budgets. Chromium only, so no Firefox or WebKit. `_case_studies` body HTML is rendered raw and is not checked; see [Security notes](#security-notes).
 
