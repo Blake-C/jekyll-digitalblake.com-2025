@@ -30,11 +30,15 @@ const dirty = (...paths) =>
 		.filter(Boolean)
 
 test('build:fonts leaves the tree clean when its inputs have not changed', () => {
+	// Compared against the state going in, not against an empty list. Asserting
+	// the directory is clean makes the test fail on any unrelated edit that
+	// happens to be uncommitted, which says nothing about the script.
+	const before = dirty('assets/fonts')
 	pnpm('build:fonts')
 	pnpm('build:fonts')
 	assert.deepEqual(
 		dirty('assets/fonts'),
-		[],
+		before,
 		'build:fonts rewrote a font. SOURCE_DATE_EPOCH in script/build-fonts.mjs is what keeps ' +
 			'fonttools from stamping the current time into head.modified, which would change the ' +
 			'hashed URL on every build and make every visitor re-download the font.',
@@ -42,8 +46,9 @@ test('build:fonts leaves the tree clean when its inputs have not changed', () =>
 })
 
 test('build:images leaves the tree clean when its inputs have not changed', () => {
+	const before = dirty('assets/images', 'assets/uploads')
 	pnpm('build:images')
-	assert.deepEqual(dirty('assets/images', 'assets/uploads'), [], 'build:images re-encoded an unchanged image')
+	assert.deepEqual(dirty('assets/images', 'assets/uploads'), before, 'build:images re-encoded an unchanged image')
 })
 
 test('the style watcher and build:styles produce identical bytes', () => {

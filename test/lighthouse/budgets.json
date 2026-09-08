@@ -2,7 +2,7 @@
 	"comment": [
 		"Thresholds for test/lighthouse/budgets.spec.mjs. Edit here, not in the spec.",
 		"",
-		"Set from 15 measurements: three full runs of the spec across the five pages below.",
+		"Set from repeated runs of the spec across the seven pages below.",
 		"Observed performance 92 to 99, FCP 1205 to 2256ms, LCP 1953 to 3081ms, TBT 0 to 2ms,",
 		"CLS 0 to 0.034, Speed Index 1205 to 2256ms.",
 		"",
@@ -48,6 +48,8 @@
 		"post": "/2026/04/28/swiftui-vs-appkit-macos-ui-performance/",
 		"case study": "/case-studies/teleport-atlas/",
 		"guide": "/guides/building-with-claude-code/",
-		"recommendations": "/recommendations/"
+		"recommendations": "/recommendations/",
+		"case studies archive": "/case-studies/",
+		"coding projects": "/coding-projects/"
 	}
 }
