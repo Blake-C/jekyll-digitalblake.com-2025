@@ -3,7 +3,7 @@ layout: post
 title: 'Shai Hulud npm Attack: How It Worked and How I Hardened My Repos'
 description: 'The Shai Hulud worm poisoned a pnpm cache in GitHub Actions to hit TanStack and 170+ npm packages. How it worked and the steps I took to harden my repos.'
 date: 2026-05-15 04:41:03 CDT -0500
-modified_date: 2026-07-29 13:31:47 CDT -0500
+modified_date: 2026-09-09 17:23:42 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
@@ -301,3 +301,80 @@ Most of what's above is one or two lines of configuration. Some of it, like `min
 - **The payload did not run from a postinstall script.** The article called it a postinstall script in four places. Snyk's writeup shows the injected dependency using a `prepare` script, and Wiz's shows the UiPath packages using a `preinstall` script. An `allowBuilds` allowlist blocks all of these, so the advice was right even though the hook name was wrong.
 
 Two smaller scope corrections went in at the same time. `blockExoticSubdeps` restricts transitive dependencies rather than any dependency, and Socket flagged the malicious versions within six minutes rather than detecting the attack itself. The persistence paths are also now written as `.claude/settings.json` and `.vscode/tasks.json` in the project, which is where Snyk's file table puts them, rather than under the home directory.
+
+**Updated September 9, 2026 (Update 3):** This site's repo moved to pnpm 12.3.4. The configuration printed above is the pnpm 11 config as it stood in May 2026, and it stays there as the record of what I ran then. Four of its keys no longer apply, three of them because they never worked at all.
+
+pnpm 12 stopped ignoring a key it does not recognize. The [pnpm 12.0 release post](https://pnpm.io/blog/releases/12.0) says pnpm 12 reports the unknown key and suggests the closest real setting name when the key looks like a typo, and that the command fails when the project pins a pnpm version the running version satisfies. Running pnpm 12.3.4 against the config above flagged four keys:
+
+- **`confirmModulesPurge: false`** was a pnpm 11 setting, and pnpm 12 names it as one when it rejects the key. The section above describes it as the fix for a CI prompt before `node_modules` is purged. pnpm 12 purges without asking, so there is no prompt left to answer, which I confirmed by installing with no TTY attached to the container.
+- **`strictDeprecatedDependencies: warn`** was never a pnpm setting. It does not appear in the [pnpm 10.x settings reference](https://pnpm.io/10.x/settings) that was current when I wrote that config, and pnpm 12 reports it as unrecognized. pnpm warns about deprecated packages without it.
+- **`fetchRetryMinTimeout`** and **`fetchRetryMaxTimeout`** are spelled `fetchRetryMintimeout` and `fetchRetryMaxtimeout`, with a lowercase t, in that [same reference](https://pnpm.io/10.x/settings). pnpm ignored the camelCase spelling in the config above, so the retry timeouts never applied.
+
+Three settings are new:
+
+- **`trustPolicy: no-downgrade`**: Refuses a version whose publisher evidence is weaker than an earlier version of the same package had. pnpm's [dependency resolution settings](https://pnpm.io/settings/dependency-resolution) describe a package that used to come from a trusted publisher and now arrives with only provenance, or with no trust evidence, as one that fails the install. `minimumReleaseAge` does not cover that case, because a hijacked version that nobody reports still installs once the seven days are up. `trustPolicy` would not have stopped the compromised TanStack packages, since the attacker published those through the trusted publishing binding described earlier and that leaves the publisher evidence unchanged. It applies to the stage after, where the worm published other maintainers' packages with the credentials it had harvested, and any of those whose earlier versions came from a trusted publisher would fail the check.
+- **`verifyDepsBeforeRun: error`**: Stops a `pnpm run` whose `node_modules` no longer matches the lockfile, with `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. In this repo `node_modules` is bind-mounted into the container and shared with the host, and a modules directory written by an older pnpm blocked the 12.3.4 install until I deleted it.
+- **`engineStrict: true`**: Fails instead of warning when a package declares an `engines` range the runtime does not meet.
+
+The deploy workflow also runs `pnpm audit signatures`, which checks every installed tarball against the signature npm published for it.
+
+```yaml
+- name: Verify registry signatures
+  run: pnpm audit signatures
+```
+
+The CVE audit next to `pnpm audit signatures` is split, so the production run blocks the deploy and the development run reports without gating it. The signature check is not split, so a tarball whose bytes do not match what npm signed blocks the deploy in either tree.
+
+pnpm 12 documents `blockExoticSubdeps` as [defaulting to true](https://pnpm.io/settings/dependency-resolution), so the line in the config above no longer changes anything. I kept it, because a later pnpm release can change that default and the value written in the file would still apply.
+
+pnpm 12 also records the package manager in the lockfile, so `pnpm-lock.yaml` in this repo now pins pnpm's own platform binaries by SHA-512 hash and pnpm itself is hash-checked on install.
+
+This is the current `pnpm-workspace.yaml`, with the comments stripped:
+
+```yaml
+packages:
+    - '.'
+
+frozenLockfile: true
+saveExact: true
+auditLevel: moderate
+verifyStoreIntegrity: true
+verifyDepsBeforeRun: error
+engineStrict: true
+blockExoticSubdeps: true
+minimumReleaseAge: 10080 # (7 days - configure to your liking)
+trustPolicy: no-downgrade
+
+minimumReleaseAgeExclude:
+    - node-releases
+
+fetchTimeout: 60000
+fetchRetryMintimeout: 1000
+fetchRetryMaxtimeout: 10000
+
+allowBuilds:
+    '@parcel/watcher': true
+    esbuild: true
+
+overrides:
+    js-yaml: '^4.3.2'
+    nanoid: '^3.3.18'
+    brace-expansion: '^5.0.9'
+    fast-uri: '^3.1.6'
+    postcss-selector-parser: '^7.1.2'
+    immutable: '^5.1.8'
+    browserslist: '^4.28.7'
+    baseline-browser-mapping: '^2.11.0'
+    colord: '^2.9.4'
+
+catalog:
+    prismjs: 1.30.0
+    eslint: 10.9.1
+    stylelint: 17.14.1
+    esbuild: 0.28.2
+    sass: 1.103.1
+    husky: 9.1.7
+    lint-staged: 17.4.1
+```
+
+`minimumReleaseAgeExclude` and `overrides` are both new since May. `minimumReleaseAgeExclude` names the one package allowed past `minimumReleaseAge`, and `overrides` forces patched versions of transitive dependencies, which the Next.js app earlier in this article does through the `pnpm.overrides` field in `package.json`.
