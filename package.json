@@ -2,10 +2,10 @@
 	"name": "jekyll-digitalblake-com-2025",
 	"version": "1.0.0",
 	"private": true,
-	"packageManager": "pnpm@11.10.0",
+	"packageManager": "pnpm@12.3.4",
 	"engines": {
 		"node": ">=24",
-		"pnpm": "11.10.0"
+		"pnpm": "12.3.4"
 	},
 	"browserslist": [
 		"defaults and supports es6-module",

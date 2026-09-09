@@ -1,11 +1,14 @@
 packages:
     - '.'
 
-# pnpm v11 configuration
+# pnpm v12 configuration
 # Non-auth/registry settings (moved from .npmrc — pnpm v11 requirement)
-
-# Allow pnpm to purge the modules directory without TTY confirmation (needed in containers/CI)
-confirmModulesPurge: false
+#
+# v12 rejects a setting it does not recognize instead of ignoring it, so every key
+# here is one `pnpm config list` reports back. confirmModulesPurge was dropped with
+# v11: the Rust CLI purges the modules directory without asking, so there is nothing
+# left to pre-answer. strictDeprecatedDependencies was never a real pnpm setting in
+# any version and had never taken effect; pnpm warns about deprecated packages anyway.
 
 # Enforce frozen lockfile in all environments
 frozenLockfile: true
@@ -30,13 +33,11 @@ minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
     - node-releases
 
-# Warn about deprecated packages
-strictDeprecatedDependencies: warn
-
-# Network resilience
+# Network resilience. The two retry keys are spelled with a lowercase t, matching
+# npm's fetch-retry-mintimeout; the camelCase spelling is silently ignored.
 fetchTimeout: 60000
-fetchRetryMinTimeout: 1000
-fetchRetryMaxTimeout: 10000
+fetchRetryMintimeout: 1000
+fetchRetryMaxtimeout: 10000
 
 allowBuilds:
     '@parcel/watcher': true

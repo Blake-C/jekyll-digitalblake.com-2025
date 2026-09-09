@@ -40,8 +40,12 @@ ENV PATH="/opt/fonttools/bin:$PATH"
 # Store Corepack cache in a global path accessible to all users
 ENV COREPACK_HOME=/usr/local/share/corepack
 
-# Enable Corepack and activate pnpm 11.10.0
-RUN corepack enable && corepack prepare pnpm@11.10.0 --activate
+# Enable Corepack and activate pnpm 12.3.4.
+# pnpm 12 splits out a platform-native binary that corepack fetches on first run
+# rather than during `prepare`. appuser cannot write to COREPACK_HOME, so without
+# a warm-up here the first pnpm command in the container dies with EACCES trying
+# to save pnpm-native.tgz. Running the CLI once as root caches it for every user.
+RUN corepack enable && corepack prepare pnpm@12.3.4 --activate && pnpm --version
 
 # Install Bundler matching Gemfile.lock
 RUN gem install bundler:4.0.15 --no-document
