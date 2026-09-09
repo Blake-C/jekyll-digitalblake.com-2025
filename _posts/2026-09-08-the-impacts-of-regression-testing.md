@@ -1,16 +1,29 @@
 ---
 layout: post
 title: 'The Impacts of Regression Testing'
-description: 'Adding Playwright and Lighthouse to my own site found missing JSON-LD on 14 case studies, WCAG violations axe missed, a layout shift, and an SVG that scored 57.'
+description: 'Adding Playwright and Lighthouse to my own site found missing JSON-LD on 14 case studies, WCAG violations axe missed, a layout shift, and an SVG dropping performance score to 57.'
 date: 2026-09-08 14:30:39 CDT -0500
 categories: ['Articles']
 tags: ['testing', 'regression-testing', 'playwright', 'lighthouse', 'accessibility', 'performance', 'jekyll']
 image: '/assets/uploads/2026/09/the-impacts-of-regression-testing.webp'
 ---
 
+<aside class="callout">
+	<h2 class="callout__title">TL;DR</h2>
+	<ul>
+		<li><strong>14 case studies rendered without their <code>CreativeWork</code> JSON-LD</strong> because <code>_includes/head.html</code> still checked for <code>website-case-study</code> after the layout was renamed to <code>case-study</code>. Two tests were created, one to ensure that the JSON-LD blocks parse and another making sure they loading on every page. </li>
+		<li><strong>A 300ms fade-in on the code block toolbar was measured as a contrast of 1.53:1, failing 4 runs out of 10.</strong> axe was reaching the toolbar before Prism finished, so the test now waits for the toolbar to reach its resting opacity before axe measures color.</li>
+		<li><strong>Case study layouts centered themselves only after main CSS loaded causing a layout shift.</strong> Moving these styles to the grid system allowed them to load with the critical CSS. Repeated runs now measure cumulative layout shift from 0 to 0.034 against a ceiling of 0.1.</li>
+    	<li><strong>10 Gaussian blurs in a Sketch SVG export dropped a page's mobile emulation performance score to 57.</strong> Replacing them with radial gradients brought the score back into the 90s, and the budget now fails anything under 85.</li>
+    	<li><strong>Lighthouse reported two accessibility violations that axe didn't, because axe skips experimental rules by default.</strong> Those were a Label in Name violation on the coding project buttons and an HTML table missing a header. One tool does not stand in for the other, so review both sets of results for inconsistencies.</li>
+    	<li><strong>A Marketo form on seismic.com broke when a change to one instance of the form caused a regression in another.</strong> Integration and functional tests would have been useful there, and they never got implemented because the team didn't have the time.</li>
+    </ul>
+
+</aside>
+
 ## What is Regression Testing?
 
-Regression testing checks that behavior which already worked still works after a change, so bugs and other issues get identified before they reach the end user in the production environment. Usually tests can run as part of a CI/CD pipeline while deploying to production, but can be run locally as part of your development loop.
+Regression testing checks that behavior which already worked still works after a change, so bugs and other issues get identified before they reach the end user in the production environment. Usually tests can run as part of a CI/CD pipeline while deploying to production, but can run locally as part of your development loop.
 
 ## Where Regression Testing had an impact
 
@@ -52,7 +65,7 @@ test('each page type emits its structured data', () => {
 })
 ```
 
-There were also accessibility issues, such as with code blocks, that didn't get caught until Playwright was implemented to do additional testing alongside axe and Lighthouse, which brought those issues to the surface. On my machine, Claude Code is locked down to the specific project being worked on, and doesn't have direct access to my browser, whereas with Playwright Claude Code has a way to actually see the web page, the profiler, and the console.
+There were also accessibility issues, such as with code blocks, that didn't get caught until Playwright was implemented to do additional testing alongside axe and Lighthouse, which brought those issues to the surface. On my machine, Claude Code is locked down to the specific project being worked on and doesn't have direct access to my browser, whereas with Playwright Claude Code has a way to actually see the web page, the profiler, and the console.
 
 On the code blocks, there was an issue with a 300 millisecond fade-in being reported as a contrast of 1.53:1, failing 4 runs out of 10. This was due to axe getting to the toolbar before Prism, the script that powers the code blocks. In the below example, `settleCodeToolbar` gets us past that fade-in to do a true test of the final page.
 
