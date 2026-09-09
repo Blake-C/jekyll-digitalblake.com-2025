@@ -46,32 +46,43 @@ allowBuilds:
 
 # Force patched transitive dependencies across the tree (each has a single version in the tree,
 # so a blanket override is safe). Snyk-flagged; not caught by the npm/GitHub advisory DB.
-#   js-yaml <4.3.1             — quadratic CPU consumption resolving !!omap, high (CVE-2026-59870,
-#                                GHSA-5p4m-2wfm-xmqj); supersedes the earlier GHSA-h67p-54hq-rp68 pin
-#   nanoid <3.3.17             — custom generators loop indefinitely when size is zero, high
+#   js-yaml <4.3.2             — maxTotalMergeKeys does not bound CPU for empty merge sources, high
+#                                (GHSA-2883-xcg3-v3hh), which bypasses the earlier GHSA-5p4m-2wfm-xmqj fix
+#   nanoid <3.3.18             — custom generators loop indefinitely when size is zero, high
 #                                (GHSA-2v37-7h3g-55p8); reaches the tree through postcss
 #   brace-expansion <=5.0.8    — OOM DoS via unbounded intermediate arrays, high (GHSA-rgw5-rvv9-x895),
 #                                which bypasses the earlier GHSA-mh99-v99m-4gvg fix
-#   fast-uri <=3.1.4           — host confusion via backslash authority introducer, high
-#                                (GHSA-7p8r-x3mc-p8w7), which bypasses the earlier GHSA-v2hh-gcrm-f6hx fix
+#   fast-uri <3.1.6            — SSRF via malformed IPv6 and repeated percent-decoding, plus host
+#                                confusion via percent-encoded schemes and skipped IDN canonicalization,
+#                                high (GHSA-jqff-g426-hqxp and three siblings); bypasses GHSA-7p8r-x3mc-p8w7
 #   postcss-selector-parser    — uncontrolled recursion (CVE-2026-9358), consolidates 7.1.1 onto the patch
 #   immutable <5.1.8 (via sass) — 32-bit trie overflow + hash-collision DoS, high (GHSA-v56q-mh7h-f735, GHSA-xvcm-6775-5m9r)
+#   browserslist <4.28.7       — unbounded cache growth (CVE-2026-73089, GHSA-c83g-rgw3-j3cx) and a
+#                                prototype write through untrusted browserslist-stats.json
+#                                (CVE-2026-73088, GHSA-73wf-gq98-2v4g), both high; via autoprefixer
+#   baseline-browser-mapping <2.11.0 — process termination on invalid input, moderate
+#                                (GHSA-w5vr-8v7q-w6rv); reaches the tree through browserslist
+#   colord <2.9.4              — slow rejection of oversized malformed color strings, moderate
+#                                (GHSA-2wm5-q62r-hmrv); reaches the tree through stylelint
 overrides:
-    js-yaml: '^4.3.1'
-    nanoid: '^3.3.17'
+    js-yaml: '^4.3.2'
+    nanoid: '^3.3.18'
     brace-expansion: '^5.0.9'
-    fast-uri: '^3.1.5'
+    fast-uri: '^3.1.6'
     postcss-selector-parser: '^7.1.2'
     immutable: '^5.1.8'
+    browserslist: '^4.28.7'
+    baseline-browser-mapping: '^2.11.0'
+    colord: '^2.9.4'
 
 catalog:
     # Production dependencies
     prismjs: 1.30.0
 
     # Dev dependencies — build tools and linters most exposed to supply chain risk
-    eslint: 10.8.0
+    eslint: 10.9.1
     stylelint: 17.14.1
-    esbuild: 0.28.1
-    sass: 1.102.0
+    esbuild: 0.28.2
+    sass: 1.103.1
     husky: 9.1.7
-    lint-staged: 17.3.0
+    lint-staged: 17.4.1
