@@ -260,7 +260,7 @@ Husky runs lint-staged on commit:
 
 `trustPolicy: no-downgrade` sits beside the age gate and catches what it cannot. A hijacked release that waits out seven days still passes `minimumReleaseAge`; it does not pass a check on whether the publisher evidence got weaker than an earlier version of the same package had. If an upgrade fails on trust rather than age, read the release before reaching for `trustPolicyExclude`.
 
-`verifyDepsBeforeRun: error` stops a `pnpm run` whose `node_modules` no longer matches the lockfile, with `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. The fix is `pnpm install`, through Docker. It exists because `node_modules` is bind-mounted and drifts silently: a host `pnpm` swaps the esbuild binary for the wrong platform, and a modules directory written by an older pnpm blocked the 12.3.4 upgrade until it was deleted.
+`verifyDepsBeforeRun: error` checks `node_modules` against the lockfile before `pnpm run` and `pnpm exec`, and fails with `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN` when they disagree. The fix is `pnpm install`, through Docker. pnpm's default for this setting is `install`, which reinstalls instead of stopping; `error` is set because `node_modules` is bind-mounted and a host `pnpm` swaps the esbuild binary for the wrong platform, which is worth a hard stop rather than a silent repair. It does not gate `pnpm install` itself, so it would not have caught the stale modules directory that blocked the 12.3.4 upgrade.
 
 Lockfile-changing installs need `pnpm install --no-frozen-lockfile`, since `frozenLockfile: true` is set repo-wide.
 

@@ -22,16 +22,17 @@ auditLevel: moderate
 # Verify content hashes against the store on every install
 verifyStoreIntegrity: true
 
-# Stop a `pnpm run` whose node_modules does not match the lockfile. node_modules is
-# bind-mounted and shared with the host, so it drifts in ways a build does not report:
-# a host pnpm swaps the esbuild binary for the wrong platform, and a modules directory
-# left over from an older pnpm broke the 12.3.4 install outright. Accepts true, false,
-# "install", "warn", "error" or "prompt"; "prompt" would hang a container.
+# Check node_modules against the lockfile before `pnpm run` and `pnpm exec`. The
+# documented values are install, warn, error, prompt and false, and the default is
+# install, which quietly reinstalls when the two disagree. node_modules is bind-mounted
+# and shared with the host, where a host pnpm swaps the esbuild binary for the wrong
+# platform, so a hard stop is worth more here than an automatic fix. "prompt" would
+# hang a container.
 verifyDepsBeforeRun: error
 
-# Fail rather than warn when a package declares an engines range the runtime misses.
-# Everything runs in Docker, where the range is satisfied by construction, so in
-# practice this only fires when pnpm is run on the host, which is already forbidden.
+# Refuse to install a dependency that declares itself incompatible with the running
+# Node version. This repo's own engines range fails the install either way, so what
+# this setting adds is the same check applied to dependencies.
 engineStrict: true
 
 # Block git repos, tarballs, and other non-registry sources as subdependencies

@@ -310,24 +310,24 @@ pnpm 12 stopped ignoring a key it does not recognize. The [pnpm 12.0 release pos
 - **`strictDeprecatedDependencies: warn`** was never a pnpm setting. It does not appear in the [pnpm 10.x settings reference](https://pnpm.io/10.x/settings) that was current when I wrote that config, and pnpm 12 reports it as unrecognized. pnpm warns about deprecated packages without it.
 - **`fetchRetryMinTimeout`** and **`fetchRetryMaxTimeout`** are spelled `fetchRetryMintimeout` and `fetchRetryMaxtimeout`, with a lowercase t, in that [same reference](https://pnpm.io/10.x/settings). pnpm ignored the camelCase spelling in the config above, so the retry timeouts never applied.
 
-Three settings are new:
+Three settings are new to this config, and none of them are new in pnpm 12. All three were available when I wrote the config above, and I had simply not turned them on:
 
-- **`trustPolicy: no-downgrade`**: Refuses a version whose publisher evidence is weaker than an earlier version of the same package had. pnpm's [dependency resolution settings](https://pnpm.io/settings/dependency-resolution) describe a package that used to come from a trusted publisher and now arrives with only provenance, or with no trust evidence, as one that fails the install. `minimumReleaseAge` does not cover that case, because a hijacked version that nobody reports still installs once the seven days are up. `trustPolicy` would not have stopped the compromised TanStack packages, since the attacker published those through the trusted publishing binding described earlier and that leaves the publisher evidence unchanged. It applies to the stage after, where the worm published other maintainers' packages with the credentials it had harvested, and any of those whose earlier versions came from a trusted publisher would fail the check.
-- **`verifyDepsBeforeRun: error`**: Stops a `pnpm run` whose `node_modules` no longer matches the lockfile, with `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. In this repo `node_modules` is bind-mounted into the container and shared with the host, and a modules directory written by an older pnpm blocked the 12.3.4 install until I deleted it.
-- **`engineStrict: true`**: Fails instead of warning when a package declares an `engines` range the runtime does not meet.
+- **`trustPolicy: no-downgrade`**, [added in pnpm 10.21.0](https://pnpm.io/settings/dependency-resolution): Refuses a version whose trust evidence is weaker than an earlier release of the same package had. pnpm's documentation gives the case of a package that was previously published by a trusted publisher and now has only provenance or no trust evidence, and says the install fails. The comparison runs on publish date rather than on semver. `minimumReleaseAge` does not cover that case, because a hijacked version that nobody reports still installs once the seven days are up. `trustPolicy` would not have stopped the compromised TanStack packages, since the attacker published those through the trusted publishing binding described earlier and that leaves the trust evidence unchanged. It applies to the stage after, where the worm published other maintainers' packages with the credentials it had harvested.
+- **`verifyDepsBeforeRun: error`**: Checks `node_modules` against the lockfile before `pnpm run` and `pnpm exec`. The [default is `install`](https://pnpm.io/settings/build), which runs an install when the two disagree, and `error` throws `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN` instead. In this repo `node_modules` is bind-mounted into the container and shared with the host, so I would rather a script stop and tell me than reinstall underneath me.
+- **`engineStrict: true`**: Refuses to install a dependency that declares itself incompatible with the running Node version. A project's own `engines` field [fails the install either way](https://pnpm.io/settings/cli), so this changes what happens with dependencies and not with this repo's own `engines` range.
 
-The deploy workflow also runs `pnpm audit signatures`, which checks every installed tarball against the signature npm published for it.
+The deploy workflow also runs [`pnpm audit signatures`](https://pnpm.io/cli/audit), added in pnpm 11.1.0, which verifies the ECDSA signatures of installed packages against the public keys each registry publishes. It exits non-zero when a signature is invalid, and also when a registry advertises signing keys and a package arrived without one.
 
 ```yaml
 - name: Verify registry signatures
   run: pnpm audit signatures
 ```
 
-The CVE audit next to `pnpm audit signatures` is split, so the production run blocks the deploy and the development run reports without gating it. The signature check is not split, so a tarball whose bytes do not match what npm signed blocks the deploy in either tree.
+The CVE audit next to `pnpm audit signatures` is split, so the production run blocks the deploy and the development run reports without gating it. The signature check is not split, so a package whose signature does not verify blocks the deploy in either tree.
 
-pnpm 12 documents `blockExoticSubdeps` as [defaulting to true](https://pnpm.io/settings/dependency-resolution), so the line in the config above no longer changes anything. I kept it, because a later pnpm release can change that default and the value written in the file would still apply.
+The `blockExoticSubdeps: true` line in the config above has matched the default [since pnpm 10.26.0](https://pnpm.io/settings/dependency-resolution), so it changes nothing. I kept it, because a later pnpm release can change that default and the value written in the file would still apply.
 
-pnpm 12 also records the package manager in the lockfile, so `pnpm-lock.yaml` in this repo now pins pnpm's own platform binaries by SHA-512 hash and pnpm itself is hash-checked on install.
+pnpm 12 writes the package manager's resolution info into the lockfile when a project declares it through the legacy `packageManager` field, [which this repo does](https://pnpm.io/package_json). `pnpm-lock.yaml` now pins pnpm's own platform binaries by SHA-512 hash.
 
 This is the current `pnpm-workspace.yaml`, with the comments stripped:
 
