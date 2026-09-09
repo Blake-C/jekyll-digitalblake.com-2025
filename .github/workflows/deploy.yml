@@ -97,14 +97,9 @@ jobs:
             - name: Validate HTML with html-proofer
               run: bundle exec htmlproofer ./_site --disable-external --ignore-empty-mailto
 
-            # Front matter invariants plus the built-output contract: structured data
-            # per page type, canonical and og:url agreement, robots directives, image
-            # dimensions, asset resolution. None of it is visible to htmlproofer.
-            #
-            # test:ci and not test, which also runs test/build-determinism.test.mjs.
-            # That one shells out to build:fonts and build:images, and this workflow
-            # deliberately does not run those steps or install fonttools and
-            # ImageMagick. Determinism stays a local check.
+            # test:ci and not test, because test/build-determinism.test.mjs shells out
+            # to build:fonts and build:images, which this workflow does not run and has
+            # no fonttools or ImageMagick for.
             - name: Run regression tests
               run: pnpm run test:ci
 
@@ -113,9 +108,8 @@ jobs:
               with:
                   path: _site/
 
-            # A plain copy of the build for the browser-tests job. The Pages artifact
-            # above is a tarball shaped for the deploy action, not for another job to
-            # read.
+            # The Pages artifact above is a tarball shaped for the deploy action, so
+            # browser-tests needs a plain copy of the build.
             - name: Upload site for browser tests
               uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
               with:
@@ -124,8 +118,8 @@ jobs:
                   retention-days: 1
 
     # Playwright's browser builds are glibc-only, so this runs in the official
-    # image rather than on the runner. It is the same image docker-compose uses
-    # locally, and its tag must match the @playwright/test version in package.json.
+    # image and not on the runner. The tag must match the @playwright/test version
+    # in package.json.
     browser-tests:
         runs-on: ubuntu-latest
         needs: build
@@ -148,8 +142,8 @@ jobs:
                   name: site
                   path: _site
 
-            # Every project, not just chromium. The engines ship in the image, so
-            # the whole cost is about 30 seconds of runtime.
+            # All three engines. They ship in the image, so the cost is about 30
+            # seconds of runtime.
             - name: Run browser tests
               run: pnpm run test:e2e:all
 

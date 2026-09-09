@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 /**
- * Serves _site for the browser tests.
+ * Serves _site for the browser tests. The Playwright image carries no Ruby, so
+ * `jekyll serve` is unavailable there, and a static-server package would mean
+ * another dependency through the release-age gate for twenty lines of work.
  *
- * The Playwright image carries no Ruby, so `jekyll serve` is not available
- * there, and pulling in a static-server package would put another dependency
- * through the release-age gate for about twenty lines of work. Writing it here
- * also makes the serving rules explicit rather than inherited: a directory URL
- * resolves to index.html and a miss returns 404.html, which is what GitHub
- * Pages does with this build.
+ * A directory URL resolves to index.html and a miss returns 404.html, which is
+ * what GitHub Pages does with this build.
  */
 import { createServer } from 'node:http'
 import { readFile, stat } from 'node:fs/promises'
@@ -36,8 +34,6 @@ const TYPES = {
 	'.map': 'application/json; charset=utf-8',
 }
 
-/** Resolves a URL path to a file, or null. Directory paths fall back to
- *  index.html the way a static host serves them. */
 async function resolve(urlPath) {
 	// normalize collapses any ../ before the path is joined, so a request cannot
 	// escape _site.

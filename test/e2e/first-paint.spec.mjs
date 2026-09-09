@@ -1,27 +1,18 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * Checks that the page is laid out correctly before the deferred stylesheet
- * arrives.
+ * Checks the page is laid out correctly before the deferred stylesheet arrives.
+ * A rule missing from critical CSS corrects itself once global-styles loads, so
+ * anything measured after load sees nothing wrong.
  *
- * This is the failure this repo actually keeps having. Seven of the fifteen
- * SCSS fixes in the last year were a rule missing from critical CSS: the
- * hamburger bumping on desktop, the nav modal flashing, the Prism line-number
- * resize race, a 0.762 layout shift on guide pages, and a case study title
- * sitting 145px to the left. Each one corrected itself once global-styles
- * loaded, so a screenshot taken after load sees nothing wrong.
+ * There is no stored baseline. Each page is compared against itself, once with
+ * the deferred stylesheet blocked and once normally, so a redesign needs no
+ * re-approval here. Blocking the request rather than racing it makes the
+ * first-paint state permanent and the measurement deterministic.
  *
- * There is no stored baseline. Each page is compared against itself: once with
- * the deferred stylesheet blocked, once normally. Nothing needs re-approving
- * when the design changes, and a redesign costs this file nothing.
- *
- * Blocking the request rather than racing it also makes the first-paint state
- * permanent, so the measurement is deterministic instead of timing-dependent.
- *
- * Only x, y and width are compared. Height is not: a container's height depends
- * on children below the fold, which critical CSS deliberately does not style.
- * Vertical movement still gets caught, because anything growing above an
- * element pushes that element's y.
+ * Height is not compared, because a container's height depends on children below
+ * the fold that critical CSS does not style. Vertical movement is still caught,
+ * since anything growing above an element pushes that element's y.
  */
 const TOLERANCE_PX = 2
 
@@ -50,21 +41,17 @@ const PAGES = {
 }
 
 // 390 and 1280 sit either side of the 900px hamburger cutoff, and 768 is the
-// medium breakpoint. Two of the bugs above were visible at one width only.
+// medium breakpoint.
 const WIDTHS = [390, 768, 1280]
 
-/**
- * Known first-paint differences that are accepted rather than fixed, with the
- * reason. Anything not listed here is a failure.
- */
+/** Accepted first-paint differences, with the reason. Anything not listed here
+ *  is a failure. */
 const ALLOWED = {
 	'/recommendations/': {
-		'.recommendation-wall': [
-			'layout/recommendations is not in critical CSS, so the quote clamp arrives late and',
-			'the wall renders full height at first paint. Adding it costs about 7KB inlined into',
-			'every one of the 200 pages to fix the first paint of this one, which is why it has',
-			'not been done. Revisit if the wall is ever used on the home page.',
-		].join(' '),
+		'.recommendation-wall':
+			'layout/recommendations is not in critical CSS, so the quote clamp arrives late and the wall ' +
+			'renders full height at first paint. Adding it would inline about 7KB into all 200 pages to fix ' +
+			'the first paint of this one.',
 	},
 }
 
@@ -85,7 +72,8 @@ async function geometry(page) {
 	}, SELECTORS)
 }
 
-/** Waits for the preloaded stylesheet to actually be applied, not merely fetched. */
+/** Waits for the preloaded stylesheet to be applied, which is later than
+ *  fetched. */
 async function stylesheetApplied(page) {
 	await page.waitForFunction(() =>
 		[...document.querySelectorAll('link')].some(
@@ -100,10 +88,8 @@ for (const [name, path] of Object.entries(PAGES)) {
 		test(`${name} is laid out correctly before the deferred CSS loads, at ${width}px`, async ({ page }) => {
 			await page.setViewportSize({ width, height: 900 })
 
-			// Fulfilled empty rather than aborted. An aborted subresource stops
-			// WebKit firing `load`, so page.goto never resolves and every check
-			// here times out. An empty stylesheet loads normally and applies
-			// nothing, which is the same thing for this purpose.
+			// Fulfilled empty and not aborted, because an aborted subresource stops
+			// WebKit firing `load` and page.goto never resolves.
 			const blockGlobalCss = route => route.fulfill({ status: 200, contentType: 'text/css', body: '' })
 			await page.route(/global-styles.*\.css/, blockGlobalCss)
 			await page.goto(path)
@@ -119,8 +105,8 @@ for (const [name, path] of Object.entries(PAGES)) {
 			const moved = []
 
 			for (const [selector, after] of Object.entries(settled)) {
-				// Critical CSS covers the first screen. Below that, a late-arriving
-				// rule moving something is expected rather than a defect.
+				// Critical CSS only covers the first screen, so a late rule moving
+				// something below it is expected.
 				if (after.top >= 900) continue
 				if (selector in allowed) continue
 

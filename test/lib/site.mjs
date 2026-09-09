@@ -1,12 +1,9 @@
 /**
- * Reads the built site in _site and pulls out the pieces the contract tests
- * assert on.
+ * Reads the built site in _site for the contract tests.
  *
- * Tags are matched with regexes rather than parsed, which is the same approach
- * _plugins/lazy_images.rb already takes against this same markup. A real parser
- * would be a dependency, and every dependency here has to clear the 7-day
- * minimumReleaseAge gate and the audit split for no gain: the input is output
- * this repo generated, not arbitrary HTML from the network.
+ * Tags are matched with regexes because the input is markup this repo generated,
+ * and a parser would mean another dependency through the release-age gate.
+ * _plugins/lazy_images.rb takes the same approach against the same markup.
  */
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs'
 import { join, dirname, relative, sep } from 'node:path'
@@ -16,8 +13,8 @@ export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 export const SITE_DIR = join(ROOT, '_site')
 export const SITE_URL = 'https://digitalblake.com'
 
-/** Pages that carry no breadcrumb by design: the home page is the root of one,
- *  and 404 has no title of its own so jsonld-breadcrumb.html emits nothing. */
+/** The home page is the root of a breadcrumb, and 404 has no title of its own,
+ *  so jsonld-breadcrumb.html emits nothing for either. */
 export const NO_BREADCRUMB = new Set(['/', '/404.html'])
 
 export function requireSite() {
@@ -37,8 +34,6 @@ function walkHtml(dir, found = []) {
 	return found
 }
 
-/** Site path for a built file: index.html at the root is `/`, a nested
- *  index.html is its directory, anything else keeps its filename. */
 export function urlForFile(file) {
 	const rel = relative(SITE_DIR, file).split(sep).join('/')
 	if (rel === 'index.html') return '/'
@@ -48,7 +43,6 @@ export function urlForFile(file) {
 
 let cached = null
 
-/** Every rendered HTML page, as { file, url, html }. */
 export function pages() {
 	if (cached) return cached
 	requireSite()
@@ -58,14 +52,13 @@ export function pages() {
 	return cached
 }
 
-/** Read one attribute off a single tag string. */
 export function attr(tag, name) {
 	const match = tag.match(new RegExp(`\\b${name}\\s*=\\s*"([^"]*)"`))
 	return match ? match[1] : null
 }
 
-/** All tags of one element name. Attributes in head.html wrap across lines, so
- *  this deliberately matches newlines inside the tag. */
+/** Attributes in head.html wrap across lines, so this matches newlines inside
+ *  the tag. */
 export function tags(html, element) {
 	return html.match(new RegExp(`<${element}\\b[^>]*>`, 'g')) ?? []
 }
@@ -84,7 +77,6 @@ export function metaProperty(html, property) {
 	return found.length ? attr(found[0], 'content') : null
 }
 
-/** Every href for a given rel, so duplicates are visible to the caller. */
 export function linkHrefs(html, rel) {
 	return findByAttr(html, 'link', 'rel', rel).map(tag => attr(tag, 'href'))
 }
@@ -93,13 +85,12 @@ export function imgTags(html) {
 	return tags(html, 'img')
 }
 
-/** Raw contents of each ld+json block, unparsed. */
 export function jsonLdBlocks(html) {
 	return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => m[1])
 }
 
-/** Every schema.org @type on a page, flattening arrays and @graph wrappers.
- *  Throws if a block is not valid JSON, which is the point of the check. */
+/** Flattens arrays and @graph wrappers. Throws on a block that is not valid
+ *  JSON, which callers rely on. */
 export function jsonLdTypes(html) {
 	const types = []
 	const collect = node => {

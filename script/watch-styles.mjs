@@ -21,11 +21,10 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SASS_DIR = join(ROOT, 'theme_components/sass')
 const DEBOUNCE_MS = 150
 
-// `--once` builds a single time and exits instead of watching. Since a build
-// writes only the bytes that differ, running it straight after `build:styles`
-// writes nothing when the two pipelines agree, which is how
-// test/build-determinism.test.mjs checks that they still do. It skips the
-// manifest reset below, which is dev-server behavior and not part of that.
+// `--once` builds a single time and exits. A build writes only the bytes that
+// differ, so running it after `build:styles` writes nothing while the two
+// pipelines agree, which is what test/build-determinism.test.mjs asserts. It
+// skips the manifest reset below, which is dev-server behavior.
 const once = process.argv.includes('--once')
 
 // `critical` marks the stylesheet inlined into <head>: it takes the URL rewrite

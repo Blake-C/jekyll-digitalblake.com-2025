@@ -1,12 +1,8 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * The nav modal, driven through the page rather than through its module.
- *
- * A Node DOM shim once tested initNavModal() and showNavModal() directly, passed
- * 16 checks, and the hamburger still did nothing, because the bug was in how
- * global-scripts.js wired them together. So every test here starts from a real
- * page load and a real click.
+ * The nav modal, driven through the page so that global-scripts.js wiring the
+ * module up is covered along with the module itself.
  *
  * The hamburger only exists below $nav-breakpoint (900px), so these run narrow.
  */
@@ -37,11 +33,9 @@ test('the open dialog is modal, so focus cannot reach the page behind', async ({
 	await hamburger(page).click()
 	await expect(modal(page)).toBeVisible()
 
-	// showModal() puts the dialog in the top layer and makes the rest inert, so
-	// tabbing cycles within it. Chromium passes through <body> at the wrap point,
-	// which is not an escape: what must never happen is focus landing on a control
-	// behind the dialog. Inertness and the top layer are browser behavior, so a
-	// DOM shim cannot check any of this.
+	// Chromium passes through <body> at the wrap point, so the assertion is on
+	// focus never landing on a control behind the dialog and not on every stop
+	// being inside it.
 	const escaped = []
 	let landedInside = 0
 
@@ -100,8 +94,8 @@ test('a stray click on the backdrop does not dismiss the menu', async ({ page })
 	await hamburger(page).click()
 	await expect(modal(page)).toBeVisible()
 
-	// Deliberate: a mistaken tap on a phone should not close the nav. The close
-	// button is the way out.
+	// A mistaken tap on a phone must not close the nav. The close button is the
+	// way out.
 	await page.mouse.click(5, 5)
 	await expect(modal(page)).toBeVisible()
 })

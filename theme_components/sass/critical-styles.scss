@@ -11,15 +11,10 @@
 @use 'partials/generic-styles';
 @use 'vendors/grid';
 
-// The layout partials below must stay in the same relative order as
-// global-styles.scss, and test/content.test.mjs enforces that.
-// Both files emit the same rules for selectors like .entry-title, at the same
-// specificity, so the winner is decided by source order alone. When the two
-// orders disagreed, `.entry-title` resolved to a different margin before and
-// after the deferred stylesheet arrived, and the case study header shifted 8px
-// on every width. Critical CSS is only a faithful preview of the settled page
-// if its cascade matches.
-// Adding a partial here means putting it in its global-styles position, not at
+// The layout partials below must keep the same relative order as
+// global-styles.scss, enforced by test/content.test.mjs. Both files emit the
+// same selectors at the same specificity, so source order alone decides the
+// cascade, and a new partial goes in its global-styles position rather than at
 // the end.
 @use 'layout/about';
 @use 'layout/coding-projects';
@@ -32,14 +27,10 @@
 @use 'layout/posts';
 @use 'layout/callouts';
 // The individual case study page, not the card grid below. Its header rules
-// (.entry-title margin, __tech-tags, __meta) all sit above the fold, so without
-// this the content moved 26px when the deferred stylesheet landed. The column
-// centring that used to live here is now .large-centered in the grid, but the
-// rest of the partial is still needed at first paint. Costs about 1.2KB.
+// (.entry-title margin, __tech-tags, __meta) all sit above the fold. Costs
+// about 1.2KB.
 @use 'layout/case-study';
 @use 'layout/case-studies';
-// Guide pages put the table of contents column beside the content. Without
-// these rules in the first paint the nav renders at browser defaults, and the
-// reflow when the deferred stylesheet lands measured 0.762 CLS on two runs in
-// five, taking the performance score from 99 to 75. Costs about 1.8KB.
+// The table of contents column on guide pages. Without these the nav paints at
+// browser defaults and the reflow measured up to 0.762 CLS. Costs about 1.8KB.
 @use 'layout/pillar';

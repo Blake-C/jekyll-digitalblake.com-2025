@@ -1,18 +1,13 @@
 {
 	"comment": [
-		"Thresholds for test/lighthouse/budgets.spec.mjs. Edit here, not in the spec.",
+		"Thresholds for test/lighthouse/budgets.spec.mjs. cumulative-layout-shift is unitless;",
+		"every other metric is milliseconds.",
 		"",
-		"Set from repeated runs of the spec across the seven pages below.",
-		"Observed performance 92 to 99, FCP 1205 to 2256ms, LCP 1953 to 3081ms, TBT 0 to 2ms,",
-		"CLS 0 to 0.034, Speed Index 1205 to 2256ms.",
-		"",
-		"Ceilings sit roughly a third above the observed maximum. That absorbs the container",
-		"load that moves FCP by a full second between runs while still catching a real",
-		"regression, such as a render-blocking script or an image without dimensions.",
-		"Re-measure with three runs before tightening any of these; every run prints its",
-		"numbers on a line starting with LH.",
-		"",
-		"cumulative-layout-shift is unitless. Every other metric is milliseconds."
+		"Measured across the pages below: performance 92 to 99, FCP 1205 to 2256ms, LCP 1953 to",
+		"3081ms, TBT 0 to 2ms, CLS 0 to 0.034, Speed Index 1205 to 2256ms. Ceilings sit about a",
+		"third above the observed maximum, which absorbs the container load that moves FCP by a",
+		"full second between runs. Re-measure over three runs before tightening one; every run",
+		"prints its numbers on a line starting with LH."
 	],
 
 	"categories": {

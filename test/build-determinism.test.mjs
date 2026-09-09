@@ -1,11 +1,6 @@
 /**
- * The build scripts claim to be deterministic. CLAUDE.md states each of these
- * properties in words and nothing enforced them, so a change that broke one
- * would show up as churn in a later diff rather than as a failure here.
- *
- * These run the real scripts, so this is the slow file. It mutates nothing when
- * the properties hold, which is the point: a dirty tree afterwards is the
- * failure.
+ * The build scripts are meant to be deterministic. These run the real scripts,
+ * so this is the slow file, and a dirty tree afterwards is the failure.
  */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -22,7 +17,6 @@ const run = (command, args) =>
 
 const pnpm = script => run('pnpm', ['run', script])
 
-/** Paths git reports as changed under the given directories. */
 const dirty = (...paths) =>
 	run('git', ['status', '--porcelain', '--', ...paths])
 		.split('\n')
@@ -30,9 +24,8 @@ const dirty = (...paths) =>
 		.filter(Boolean)
 
 test('build:fonts leaves the tree clean when its inputs have not changed', () => {
-	// Compared against the state going in, not against an empty list. Asserting
-	// the directory is clean makes the test fail on any unrelated edit that
-	// happens to be uncommitted, which says nothing about the script.
+	// Compared against the state going in, since asserting an empty list would
+	// fail on any unrelated uncommitted edit.
 	const before = dirty('assets/fonts')
 	pnpm('build:fonts')
 	pnpm('build:fonts')

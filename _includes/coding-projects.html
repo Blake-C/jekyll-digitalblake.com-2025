@@ -33,11 +33,10 @@
 
 					<div class="coding-project__button-group">
 						{%- comment -%}
-							Accessible names extend the visible word rather than replacing it.
-							An aria-label overrides the text a sighted user reads, so "Project"
-							labelled "View Teleport Atlas" fails WCAG 2.5.3 Label in Name: someone
-							using voice control says what they see and hits nothing. It also
-							suppressed the show-for-sr span below, which was doing the same job.
+							The accessible name extends the visible word instead of replacing it.
+							An aria-label overrides the text a sighted user reads, which fails WCAG
+							2.5.3 Label in Name: someone using voice control says what they see and
+							hits nothing.
 						{%- endcomment -%}
 						<a
 							class="coding-project__link button button--primary-light"

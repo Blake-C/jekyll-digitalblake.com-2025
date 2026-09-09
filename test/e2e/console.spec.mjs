@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * Nothing errors in the console and nothing fails to load.
- *
- * This is the only check that can see a Content-Security-Policy problem. The CSP
- * in head.html is a hand-maintained string; tightening it, or adding a resource
- * from a host it does not list, blocks that resource in the browser and reports
- * nothing anywhere else in this repo's tooling.
+ * Nothing errors in the console and nothing fails to load. The CSP in head.html
+ * is a hand-maintained string, and a resource from a host it does not list is
+ * blocked in the browser with nothing else in this repo's tooling reporting it.
  */
 const PAGES = {
 	home: '/',

@@ -61,8 +61,7 @@ $grid-gutter-medium: 2.5rem; /* 40px */
 	margin-left: math.div(100%, $grid-columns) * $n;
 }
 
-// A column narrower than the row sits left by default, because the row is a
-// flex container. This centres it, for layouts that drop the sidebar.
+// The row is a flex container, so a column narrower than it sits left.
 @mixin -column-centered() {
 	margin-left: auto;
 	margin-right: auto;

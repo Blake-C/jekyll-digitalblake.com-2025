@@ -1,12 +1,6 @@
 /**
- * What the build must emit. Everything here is invisible to htmlproofer, which
- * checks that markup is well formed and that links resolve, not that the right
- * metadata is present on the right page.
- *
- * The case that motivated this file: head.html selected the case study JSON-LD
- * on `page.layout == 'website-case-study'` while the layout is `case-study`, so
- * every case study shipped without its CreativeWork block. The pages rendered,
- * the links resolved, and htmlproofer passed.
+ * What the build must emit. htmlproofer checks that markup is well formed and
+ * that links resolve, so none of these assertions overlap with it.
  *
  * Reads _site, so run a build first.
  */
@@ -42,8 +36,8 @@ const isGuide = url => /^\/guides\/[^/]+\/$/.test(url)
 const isArchive = url => /^\/(category|tag|author)\//.test(url)
 const isPaged = url => url.includes('/page/')
 
-/** Pages that opt into ProfilePage schema, read from source so adding one does
- *  not mean editing this file. */
+/** Read from source, so adding a profile_schema page does not mean editing this
+ *  file. */
 const profileUrls = new Set(
 	readdirSync(ROOT)
 		.filter(name => name.endsWith('.md'))

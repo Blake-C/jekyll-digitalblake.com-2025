@@ -24,11 +24,10 @@
 							>
 								<div class="case-studies__image-wrap">
 									{%- comment -%}
-										The first row is in the viewport on the archive page, where this grid
-										starts at the top. Lazy-loading the LCP image delays it: Lighthouse
-										scored lcp-discovery 0 on /case-studies/ with "LCP resources should
-										not use loading=lazy". The home page shows the same grid lower down,
-										so it passes no eager_count and everything stays lazy.
+										Lazy-loading the LCP image delays it and fails Lighthouse's
+										lcp-discovery audit. Callers where this grid starts at the top of the
+										page pass an eager_count; the home page shows it lower down and passes
+										none, so everything there stays lazy.
 									{%- endcomment -%}
 									{%- assign eager_count = include.eager_count | default: 0 | plus: 0 -%}
 									{%- if forloop.index <= eager_count -%}

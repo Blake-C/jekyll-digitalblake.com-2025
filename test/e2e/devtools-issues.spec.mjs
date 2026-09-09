@@ -1,21 +1,13 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * The DevTools Issues panel, read over CDP.
+ * The DevTools Issues panel, read over CDP. Issues are not console messages, so
+ * console.spec.mjs cannot see them. Chrome reports Content Security Policy
+ * violations, deprecated API use, mixed content, cookie problems, and
+ * low-contrast text here, and none of it surfaces unless DevTools is open.
  *
- * Issues are not console messages, so console.spec.mjs cannot see them. This is
- * where Chrome reports Content Security Policy violations, deprecated API use,
- * mixed content, cookie problems, and low-contrast text: the class of defect
- * that is silent unless someone happens to open DevTools.
- *
- * That makes it a useful pair to the CSP meta assertion in
- * test/site-contract.test.mjs. The static test checks the header is present and
- * shaped right; this one catches the header actually blocking something.
- *
- * The set of checks Chrome ships grows with each release, so this gets stricter
- * over time on its own. It is pinned to whatever Chromium the Playwright version
- * bundles, which lags stable Chrome: a warning visible in a current browser may
- * not appear here for some months.
+ * The checks come from whatever Chromium the pinned Playwright version bundles,
+ * which lags stable Chrome by some months.
  */
 const PAGES = {
 	home: '/',
@@ -28,7 +20,6 @@ const PAGES = {
 
 for (const [name, path] of Object.entries(PAGES)) {
 	test(`the ${name} page reports no DevTools issues`, async ({ page, browserName }) => {
-		// CDP is Chromium only.
 		test.skip(browserName !== 'chromium', 'the Audits domain is a Chromium protocol')
 
 		const cdp = await page.context().newCDPSession(page)

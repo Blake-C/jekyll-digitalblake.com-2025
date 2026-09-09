@@ -6,14 +6,9 @@ const PORT = Number(process.env.PORT ?? 24210)
 
 export default defineConfig({
 	testDir: './test/e2e',
-	// All three engines are already in the Playwright image, so the only cost is
-	// runtime: 8s for chromium alone against 36s for all three. Chromium stays
-	// the default run to keep the local loop short, and CI runs every project.
-	// Pick one with --project=<name>.
-	//
-	// WebKit matters more than its share of traffic suggests. Both modals are
-	// built on <dialog>, which is the one modern API here with real cross-engine
-	// history.
+	// All three engines ship in the Playwright image, so the only cost is runtime:
+	// 8s for chromium alone against 36s for all three. Chromium is the default
+	// local run and CI runs every project.
 	projects: [
 		{ name: 'chromium', use: { ...devices['Desktop Chrome'] } },
 		{ name: 'firefox', use: { ...devices['Desktop Firefox'] } },
@@ -23,8 +18,7 @@ export default defineConfig({
 		baseURL: `http://localhost:${PORT}`,
 		trace: 'on-first-retry',
 	},
-	// Serves the production build in _site, so these tests read the same output
-	// the node:test contract tests do.
+	// Serves _site, so these read the same output the contract tests do.
 	webServer: {
 		command: `node test/e2e/serve.mjs`,
 		url: `http://localhost:${PORT}/`,

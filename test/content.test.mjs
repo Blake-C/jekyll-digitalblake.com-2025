@@ -1,10 +1,7 @@
 /**
- * Front matter invariants. Every failure mode here fails open: the build
- * succeeds, the page renders, and the only symptom is something quietly
- * missing. A post joins no pillar, a card loses its image, an archive sorts
- * wrong. None of it is visible to htmlproofer.
- *
- * Needs no build, so this is the fast local loop.
+ * Front matter invariants. Every failure here fails open, so the build succeeds
+ * and the page renders with something missing that htmlproofer does not check.
+ * Reads source only, so it needs no build.
  */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -18,11 +15,9 @@ const REQUIRED_POST_KEYS = ['layout', 'title', 'description', 'date', 'categorie
 const REQUIRED_CASE_STUDY_KEYS = ['layout', 'title', 'description', 'order', 'featured', 'permalink', 'thumbnail']
 const CASE_STUDY_IMAGE_KEYS = ['thumbnail', 'image', 'hero_image', 'og_image']
 
-/** Splits front matter off a Jekyll document. Returns the parsed data plus the
- *  raw block, because dates are read from the raw text: `date: 2026-07-24
- *  17:25:33 -0500` parses to a Date, and converting that back to a day is the
- *  timezone bug the Dockerfile's tzdata comment describes. Comparing the
- *  literal characters sidesteps it. */
+/** Returns the raw block alongside the parsed data, because `date:` parses to a
+ *  Date and converting that back to a day shifts the timezone. Date checks
+ *  compare the literal characters instead. */
 function frontMatter(file) {
 	const source = readFileSync(file, 'utf8')
 	const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)
@@ -40,7 +35,6 @@ const caseStudies = collect('_case_studies')
 const pillars = yaml.load(readFileSync(join(ROOT, '_data/pillars.yml'), 'utf8'))
 const authors = yaml.load(readFileSync(join(ROOT, '_data/authors.yml'), 'utf8'))
 
-/** Root-level pages, keyed by the permalink they claim. */
 const rootPages = new Map(
 	readdirSync(ROOT)
 		.filter(name => name.endsWith('.md'))
@@ -150,11 +144,9 @@ test('case study images all exist on disk', () => {
 })
 
 test('case study thumbnails match the dimensions the card template hardcodes', () => {
-	// _includes/case-studies.html writes width="600" height="400" on every card,
-	// which is what reserves the space before the lazy image loads. A thumbnail
-	// with a different shape still renders at its own ratio, because base.scss
-	// sets img { height: auto }, so the reserved box is the wrong height and the
-	// grid shifts as each one arrives.
+	// base.scss sets img { height: auto }, so a thumbnail with a different ratio
+	// renders at its own shape while the card reserves the wrong height, and the
+	// grid shifts as each image arrives.
 	const template = readFileSync(join(ROOT, '_includes/case-studies.html'), 'utf8')
 	const declared = template.match(/width="(\d+)"\s*\n\s*height="(\d+)"/)
 	assert.ok(declared, 'no hardcoded width/height found in the card template')
@@ -182,11 +174,9 @@ test('critical CSS imports its layout partials in the same order as global CSS',
 	const global = layoutOrder('global-styles.scss')
 	assert.ok(critical.length > 0 && global.length > 0, 'no layout imports found in one of the entry points')
 
-	// Both files emit the same rules for selectors such as .entry-title, at the
-	// same specificity, so source order alone decides the winner. If critical
-	// orders them differently the page resolves one way before the deferred
-	// stylesheet lands and another way after, and elements shift. That is how
-	// the case study header came to move 8px at every width.
+	// Both files emit the same selectors at the same specificity, so source order
+	// alone decides the winner, and a mismatch makes the page resolve one way
+	// before the deferred stylesheet lands and another way after.
 	let position = -1
 	for (const partial of critical) {
 		const next = global.indexOf(partial, position + 1)

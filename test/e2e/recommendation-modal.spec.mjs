@@ -1,17 +1,13 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * The recommendation modal on /recommendations/.
+ * The recommendation modal on /recommendations/. It clones content out of the
+ * card that opened it, so the assertions are mostly about the right text
+ * arriving and then being cleared again.
  *
- * It clones content out of the card that opened it rather than the page
- * shipping every recommendation twice, so the assertions here are mostly about
- * the right text arriving and then being cleared again. The clamp and scroll
- * hint exist because CSS cannot ask whether a box overflows, which makes them
- * measurement code, and measurement code is what regresses quietly.
- *
- * Its backdrop closes the dialog. The nav modal's deliberately does not. That
+ * Its backdrop closes the dialog and the nav modal's does not, and that
  * difference is asserted in both files so neither drifts onto the other's
- * behavior unnoticed.
+ * behavior.
  */
 const PAGE = '/recommendations/'
 
@@ -46,9 +42,8 @@ test('opening a card fills the dialog with that card and labels it', async ({ pa
 	await expect(modal(page)).toHaveAttribute('aria-label', label)
 	await expect(page.locator('.recommendation-modal__person figcaption')).toBeAttached()
 
-	// Both sides are read and normalized together. Comparing a card's innerText
-	// against the dialog's fails on whitespace alone, because the card clips its
-	// quote and the two collapse paragraph breaks differently.
+	// Normalized on both sides, because the card clips its quote and the two
+	// collapse paragraph breaks differently, so raw innerText never matches.
 	const quote = await page.evaluate(() => {
 		const normalize = text => (text ?? '').replace(/\s+/g, ' ').trim()
 		const button = document.querySelector('.recommendation-wall__expand')
@@ -81,11 +76,9 @@ test('the close button clears the dialog and returns focus to the card', async (
 	await expect(modal(page)).toBeHidden()
 	await expect(page.locator('html')).not.toHaveClass(/has-modal-open/)
 
-	// Asserts the behavior, not the line that implements it. Deleting
-	// `trigger?.focus()` from the close handler leaves this passing, because
-	// Chromium restores focus to whatever was focused when showModal() ran, and
-	// clicking the card focused it. The module's call still matters for browsers
-	// this suite does not run, so it is not dead code.
+	// Chromium restores focus to whatever was focused when showModal() ran, so
+	// this passes even without `trigger?.focus()` in the close handler. That call
+	// still matters for browsers this suite does not run.
 	await expect(first).toBeFocused()
 
 	// Cloned content is dropped on close, so a stale quote cannot flash on the
@@ -153,8 +146,8 @@ test('opening a second card replaces the first card content', async ({ page }) =
 test('is-clamped marks exactly the cards whose quote overflows', async ({ page }) => {
 	await ready(page)
 
-	// Compared against a live measurement rather than a fixed count, so the
-	// assertion holds at any viewport.
+	// Compared against a live measurement, since how many cards overflow depends
+	// on the viewport.
 	const wrong = await page.evaluate(() => {
 		const TOLERANCE = 4
 		return [...document.querySelectorAll('.recommendation-wall__card')]

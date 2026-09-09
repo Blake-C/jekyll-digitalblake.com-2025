@@ -22,16 +22,12 @@ services:
         tty: true
         stdin_open: true
 
-    # Playwright does not support musl: its browser builds are glibc-only, and the
-    # app image above is Alpine. So the browser tests get their own service on the
-    # official image, which is Ubuntu 24.04 with the browsers already installed.
-    # Nothing downloads a browser at install time, and CI runs this same image.
+    # Playwright's browser builds are glibc-only and the app image above is
+    # Alpine, so the browser tests run on the official image instead. node_modules
+    # comes from the bind mount, so dependencies install through the app service.
     #
-    # The tag must match the @playwright/test version in package.json exactly.
-    # A mismatch between the driver and the bundled browsers is a runtime error.
-    #
-    # node_modules comes from the bind mount, so dependencies install once through
-    # the app service and run from here.
+    # The tag must match the @playwright/test version in package.json exactly. A
+    # mismatch between the driver and the bundled browsers is a runtime error.
     playwright:
         image: mcr.microsoft.com/playwright:v1.62.1-noble
         volumes:
@@ -42,24 +38,19 @@ services:
         ipc: host
         environment:
             CI: ${CI:-}
-        # UI Mode and the Trace Viewer are both web apps the CLI can serve over
-        # HTTP, so they work from here with no display and no VNC. They bind to
-        # 0.0.0.0 rather than localhost, otherwise the container keeps them to
-        # itself. Ports come from this project's block in
+        # UI Mode and the Trace Viewer serve over HTTP, so they need no display.
+        # Both bind to 0.0.0.0, otherwise the container keeps them to itself.
+        # Ports come from this project's block in
         # digitalblake-system-setup/notes/dev-ports.md.
         #
         # `docker compose run` ignores these unless you pass --service-ports.
-        # See the Testing section of README.md for the commands.
         ports:
             - '24210:24210' # static server for _site (test/e2e/serve.mjs)
             - '24211:24211' # playwright test --ui
             - '24212:24212' # playwright show-trace
         # The Playwright image ships Node and npm but not pnpm, so this calls the
-        # binary pnpm already linked into node_modules rather than going through it.
-        #
-        # Chromium only by default, which is the 8 second loop. Firefox and WebKit
-        # are configured too: run `npm run test:e2e:all` in this service for all
-        # three, which takes about 36 seconds. CI always runs all three.
+        # binary pnpm already linked into node_modules. Chromium only, since
+        # `npm run test:e2e:all` covers the other two engines on demand.
         command: node_modules/.bin/playwright test --project=chromium
 
 volumes:

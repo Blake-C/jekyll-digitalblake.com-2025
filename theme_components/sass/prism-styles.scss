@@ -20,13 +20,11 @@ pre[class*='language-'],
 
 /*
  * WCAG AA: the toolbar plugin ships #bbb for the language label and the copy
- * button, which is 4.44:1 against its own background once the toolbar is
- * visible. Every page with a code block carried it.
+ * button, which is 4.44:1 once the toolbar is visible.
  *
- * The `div` qualifier is not decoration. prism-toolbar.css selects
- * `div.code-toolbar > ...`, so a rule led by the class alone loses on
- * specificity and the color never applies. Descendant rather than child
- * because the copy button wraps its label in a further span.
+ * prism-toolbar.css selects `div.code-toolbar > ...`, so the `div` qualifier is
+ * needed or this loses on specificity. Descendant and not child, because the
+ * copy button wraps its label in a further span.
  */
 div.code-toolbar > .toolbar > .toolbar-item {
 	a,

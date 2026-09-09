@@ -2,13 +2,9 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
 /**
- * WCAG 2.1 AA, one page of each type. The global rule is that new UI gets an
- * accessibility check; this makes the check automatic for the page types that
- * already exist.
- *
- * axe finds roughly a third of accessibility defects, so a pass here is a floor
- * and not a conformance claim. The keyboard paths in nav-modal.spec.mjs and
- * modules.spec.mjs cover what it cannot see.
+ * WCAG 2.1 AA, one page of each type. axe only catches what is detectable from
+ * the DOM, so a pass here is a floor and not a conformance claim. The keyboard
+ * paths in nav-modal.spec.mjs and modules.spec.mjs cover what it cannot see.
  */
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
 
@@ -22,14 +18,10 @@ const PAGES = {
 }
 
 /**
- * Waits for the Prism toolbar to stop moving before anything measures color.
- *
- * Prism injects the toolbar after load, and prism-toolbar.css transitions it to
- * `opacity: 0` over 0.3s. For those 300ms the toolbar is partly visible, and
- * axe computes contrast against that blend: a run caught mid-fade reports
- * figures like 1.53:1 that correspond to no state a user ever sees. Without
- * this wait the case study check failed about four runs in ten, and passed the
- * rest because axe got there before Prism did.
+ * Prism injects the toolbar after load and prism-toolbar.css fades it to
+ * `opacity: 0` over 0.3s. axe computes contrast against that partly visible
+ * blend, giving figures that match no state a user ever sees, so nothing may
+ * measure color until the fade finishes.
  */
 async function settleCodeToolbar(page) {
 	const block = page.locator('div.code-toolbar').first()
@@ -58,8 +50,7 @@ for (const [name, url] of Object.entries(PAGES)) {
 
 test('the code block toolbar meets contrast in the state that shows it', async ({ page }) => {
 	// The resting state is invisible, so the check above says nothing about the
-	// colors a user actually reads. This is the state that carried the real
-	// defect: the plugin ships #bbb, which measures 4.44:1 here.
+	// colors a user reads on hover.
 	await page.goto('/case-studies/teleport-atlas/')
 	await settleCodeToolbar(page)
 

@@ -1,16 +1,15 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * Proves the setup itself before any behavior is asserted: the arm64 Playwright
- * image runs, node_modules resolves across the bind mount from the app service,
- * and serve.mjs serves the build.
+ * Proves the setup before any behavior is asserted: the Playwright image runs,
+ * node_modules resolves across the bind mount, and serve.mjs serves the build.
  */
 test('the home page loads and renders its own stylesheet', async ({ page }) => {
 	await page.goto('/')
 	await expect(page).toHaveTitle(/DigitalBlake/)
 
-	// Proves the deferred stylesheet actually swapped in. Critical CSS alone
-	// would leave this unset.
+	// Critical CSS alone leaves this unset, so a color proves the deferred
+	// stylesheet swapped in.
 	const background = await page.locator('body').evaluate(element => getComputedStyle(element).backgroundColor)
 	expect(background).not.toBe('rgba(0, 0, 0, 0)')
 })

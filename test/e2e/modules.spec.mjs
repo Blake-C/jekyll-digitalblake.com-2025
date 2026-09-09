@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test'
 
-/** Posts chosen for the feature each one exercises. */
 const POST_WITH_TABLE = '/2026/04/28/swiftui-vs-appkit-macos-ui-performance/'
 const POST_WITH_VIDEO = '/2026/05/15/supply-chain-attacks-got-smarter/'
 
@@ -39,8 +38,7 @@ test('the YouTube facade stays a still image until it is activated', async ({ pa
 	const facade = page.locator('.youtube-facade[data-video-id]').first()
 	await expect(facade).toBeAttached()
 
-	// The whole point of the facade: no iframe, and so no request to YouTube,
-	// until someone asks for the video.
+	// No iframe means no request to YouTube until someone asks for the video.
 	await expect(page.locator('iframe')).toHaveCount(0)
 
 	await facade.click()

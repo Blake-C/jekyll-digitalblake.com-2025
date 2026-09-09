@@ -4,35 +4,26 @@ import { fileURLToPath } from 'node:url'
 import lighthouse from 'lighthouse'
 
 /**
- * Lighthouse budgets, run against the local build.
+ * Lighthouse budgets, run against _site and never the deployed site. Cloudflare
+ * injects /cdn-cgi/challenge-platform/ at the edge, that script calls the
+ * deprecated `StorageType.persistent`, and Lighthouse charges the deprecation to
+ * the page, costing the live site its Best Practices score. No commit here can
+ * change that.
  *
- * Running these against the deployed site would be wrong. Cloudflare injects
- * /cdn-cgi/challenge-platform/ at the edge, that script calls the deprecated
- * `StorageType.persistent`, and Lighthouse charges the deprecation to the page.
- * The live Best Practices score is 81 for that reason alone. It is nothing this
- * repo builds and nothing a commit here can fix, so gating on it would mean a
- * permanently red check that says nothing about the code. Against _site the
- * same pages score 100.
- *
- * Two audits are affected the other way, and neither is asserted here:
  * test/e2e/serve.mjs sends no cache headers and no compression, so
  * `cache-insight` and `document-latency-insight` always fail and byte weights
- * are uncompressed. That makes the performance score pessimistic against
- * production rather than optimistic, which is the safe direction.
+ * are uncompressed. Neither is asserted, and both make the performance score
+ * pessimistic against production.
  *
- * One page gets one Lighthouse run and every budget is checked against it. The
- * run is deliberately not cached across tests: a retry has to measure again,
- * otherwise it just re-reads the number that already failed.
- *
- * Thresholds live in budgets.json. Set them from measured runs of this spec,
- * not from a standalone script: the test runner and its web server add load,
- * and FCP here reads several hundred milliseconds higher than it does outside.
+ * Thresholds live in budgets.json. Set them from runs of this spec, since the
+ * test runner and its web server add load that reads several hundred
+ * milliseconds onto FCP.
  */
 const BUDGETS = JSON.parse(readFileSync(fileURLToPath(new URL('./budgets.json', import.meta.url)), 'utf8'))
 const DEBUG_PORT = Number(process.env.LH_DEBUG_PORT ?? 24213)
 
-// Lighthouse drives the browser itself over CDP, so it needs one with remote
-// debugging open rather than the page fixture the other specs use.
+// Lighthouse drives the browser itself over CDP, so it needs one launched with
+// remote debugging open instead of the page fixture the other specs use.
 let browser
 
 test.beforeAll(async () => {
@@ -63,8 +54,8 @@ for (const [name, path] of Object.entries(BUDGETS.pages)) {
 			]),
 		)
 
-		// Reported on every run, pass or fail, so a run doubles as a measurement.
-		// Thresholds should be set from these numbers rather than guessed.
+		// Reported on every run, pass or fail, so thresholds can be set from these
+		// numbers.
 		await testInfo.attach('lighthouse', {
 			body: JSON.stringify({ path, scores, measured }, null, '\t'),
 			contentType: 'application/json',
