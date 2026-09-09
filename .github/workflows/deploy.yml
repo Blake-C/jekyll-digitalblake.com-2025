@@ -49,6 +49,13 @@ jobs:
             # This is not the supply-chain control. A hijacked dev package running a postinstall
             # script is a real threat, and it is covered by minimumReleaseAge, blockExoticSubdeps,
             # and verifyStoreIntegrity in pnpm-workspace.yaml. Those are unaffected by this split.
+            # Registry signature verification, and deliberately not split by dev/prod the
+            # way the advisory audits below are. A bad signature means the tarball is not
+            # what the registry signed, which is tampering rather than a severity call, so
+            # it blocks the deploy no matter which tree the package sits in.
+            - name: Verify registry signatures
+              run: pnpm audit signatures
+
             - name: Audit dependencies (production)
               run: pnpm audit --prod --audit-level=high
 

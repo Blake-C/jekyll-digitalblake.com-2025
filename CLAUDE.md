@@ -258,11 +258,17 @@ Husky runs lint-staged on commit:
 
 `.github/dependabot.yml` sets `cooldown.default-days: 7` on the npm ecosystem to match. Without it, Dependabot proposes the absolute latest version and its update job fails against the gate. Cooldown covers version updates only; security updates still arrive immediately and can hit the gate.
 
+`trustPolicy: no-downgrade` sits beside the age gate and catches what it cannot. A hijacked release that waits out seven days still passes `minimumReleaseAge`; it does not pass a check on whether the publisher evidence got weaker than an earlier version of the same package had. If an upgrade fails on trust rather than age, read the release before reaching for `trustPolicyExclude`.
+
+`verifyDepsBeforeRun: error` stops a `pnpm run` whose `node_modules` no longer matches the lockfile, with `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. The fix is `pnpm install`, through Docker. It exists because `node_modules` is bind-mounted and drifts silently: a host `pnpm` swaps the esbuild binary for the wrong platform, and a modules directory written by an older pnpm blocked the 12.3.4 upgrade until it was deleted.
+
 Lockfile-changing installs need `pnpm install --no-frozen-lockfile`, since `frozenLockfile: true` is set repo-wide.
 
 ### CI/CD
 
 GitHub Actions (`.github/workflows/deploy.yml`) triggers on push to `main`: installs deps → security scans (`pnpm audit`, Snyk for npm/Gemfile/code) → builds styles/scripts → hashes assets → `jekyll build` → `htmlproofer` → deploys to GitHub Pages (custom domain `digitalblake.com`).
+
+**Registry signatures are checked separately from advisories and are not split.** `pnpm audit signatures` verifies that every installed tarball matches what the registry signed, and it blocks the deploy for dev and production packages alike. A failure there means the bytes are not what was published, which is not a severity judgment the way an advisory is.
 
 **Dependency advisories are split by whether the package ships.** `pnpm audit --prod` and `snyk test` without `--dev` block the deploy. The matching `--dev` runs are `continue-on-error: true`, so they report but do not gate. The only production dependency is `prismjs`; everything else runs in CI or on a laptop against this repo's own source and then exits, and the advisories there have been almost entirely parser denial-of-service. Before this split, a quadratic-complexity bug in a linter's YAML parser could stop a static site from deploying, and roughly half a dozen commits went to nothing but chasing those.
 
