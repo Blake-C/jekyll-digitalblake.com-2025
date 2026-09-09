@@ -10,7 +10,7 @@ image: '/assets/uploads/2026/09/the-impacts-of-regression-testing.webp'
 
 ## What is Regression Testing?
 
-Regression testing checks whether a group of features has changed to a less robust or mature state, so bugs and other issues get identified before they reach the end user in the production environment. Usually tests can run as part of a CI/CD pipeline while deploying to production, but can be run locally as part of your development loop.
+Regression testing checks that behavior which already worked still works after a change, so bugs and other issues get identified before they reach the end user in the production environment. Usually tests can run as part of a CI/CD pipeline while deploying to production, but can be run locally as part of your development loop.
 
 ## Where Regression Testing had an impact
 
@@ -52,9 +52,26 @@ test('each page type emits its structured data', () => {
 })
 ```
 
-There were also accessibility issues, such as with code blocks, that didn't get caught until Playwright was implemented to do additional testing alongside axe and Lighthouse that brought those issues to the surface. Using Playwright is like giving AI eyes. On my machine, Claude Code is locked down to the specific project being worked on, and doesn't have direct access to my browser, whereas with Playwright it has a way to actually see the web page, the profiler, and the console.
+There were also accessibility issues, such as with code blocks, that didn't get caught until Playwright was implemented to do additional testing alongside axe and Lighthouse, which brought those issues to the surface. On my machine, Claude Code is locked down to the specific project being worked on, and doesn't have direct access to my browser, whereas with Playwright Claude Code has a way to actually see the web page, the profiler, and the console.
+
+On the code blocks, there was an issue with a 300 millisecond fade-in being reported as a contrast of 1.53:1, failing 4 runs out of 10. This was due to axe getting to the toolbar before Prism, the script that powers the code blocks. In the below example, `settleCodeToolbar` gets us past that fade-in to do a true test of the final page.
 
 ```js
+async function settleCodeToolbar(page) {
+	const block = page.locator('div.code-toolbar').first()
+	if ((await block.count()) === 0) return
+
+	const toolbar = page.locator('div.code-toolbar > .toolbar').first()
+	await toolbar.waitFor({ state: 'attached' })
+	await expect
+		.poll(() => toolbar.evaluate(element => getComputedStyle(element).opacity), {
+			message: 'the Prism toolbar never settled to its resting opacity',
+		})
+		.toBe('0')
+}
+
+const summarise = violations => violations.map(v => `${v.id} (${v.impact}) on ${v.nodes.length}: ${v.help}`)
+
 for (const [name, url] of Object.entries(PAGES)) {
 	test(`the ${name} page has no WCAG 2.1 AA violations`, async ({ page }) => {
 		await page.goto(url)
@@ -78,15 +95,15 @@ test('the code block toolbar meets contrast in the state that shows it', async (
 })
 ```
 
-Playwright also found layout shifting on the case study detail pages where the page content would jump towards the center after main CSS resolved. This happened because the critical CSS didn't contain the styles for the case studies that did the centering. This would have only been caught by either purposefully slowing down the loading of the page or via Playwright. The solution was to extract the styles in the case study CSS and move them over to the grid system where I could center that column and have that be a part of the critical CSS. It ultimately didn't save anything in terms of the size of the critical CSS, but it did fix the jumping issue that occurred on page load.
+Playwright also found layout shifting on the case study detail pages where the page content would jump towards the center after main CSS resolved. This happened because the critical CSS didn't contain the styles for the case studies that did the centering. This would have been caught by either purposefully slowing down the page load, loading on a clean cache, or via Playwright. The solution was to extract the styles in the case study CSS and move them over to the grid system where I could center that column and have that be a part of the critical CSS. With the fix in place, repeated runs using a ceiling of 0.1 measured cumulative layout shift (CLS) from 0 to 0.034. It ultimately didn't save anything in terms of the size of the critical CSS, but it did fix the jumping issue that occurred on page load.
 
-A trickier example where Playwright caught a regression that I didn't think to test in the first place was when I switched out a WebP graphic for an SVG as part of the case studies background image. It turned out that that image, the SVG, had 10 Gaussian blurs inside of it that came out of a Sketch export. Those 10 Gaussian blurs slowed down the page so much that the Lighthouse performance score under mobile emulation dropped to 57. Switching those Gaussian blurs to radial gradients improved the score into the 90s. Now Playwright is using Lighthouse to score the pages, and we have a baseline for how low any score should be able to drop. Anything that triggers these tests in the future will now get caught and can be corrected.
+A trickier example where Playwright caught a regression that I didn't think to test in the first place was when I switched out a WebP graphic for an SVG as part of the case studies background image. It turned out that that image, the SVG, had 10 Gaussian blurs inside of it that came out of a Sketch export. Those 10 Gaussian blurs slowed down the page so much that the Lighthouse performance score under mobile emulation dropped to 57. Switching those Gaussian blurs to radial gradients improved the score into the 90s. Now Playwright is using Lighthouse to score the pages, and we have a baseline of 85 for how low the performance score can drop. All other scores are kept at 100. Anything that drops a mobile emulation performance score to below 85 in the future will now get captured and can be corrected.
 
-And then finally there was an instance where Lighthouse's accessibility audit caught issues that axe didn't. One example is the labels on the coding project buttons not passing [WCAG 2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), a `label-content-name-mismatch` violation. I was able to get rid of an ARIA label that was not needed and just use a screen reader text-only section that extended the button text to read properly for when the button click opens in a new window. Another is an accessibility issue with one of the HTML tables, which was missing one of the [headings](https://www.browserstack.com/docs/accessibility/rules/a11y-engine/td-has-header); the heading was not necessary, but it adds additional context for screen reader users to understand the table better. In both instances Lighthouse and axe complemented each other.
+And then finally there was an instance where Lighthouse's accessibility audit caught issues that axe didn't due to a configuration difference. Both run axe-core under the hood, but axe lists the offending rules under experimental; those rules get skipped by default. One example is the labels on the coding project buttons not passing [WCAG 2.5.3 Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html), a `label-content-name-mismatch` violation. I was able to get rid of an ARIA label that was not needed and just use a screen reader text-only section that extended the button text to read properly for when the button click opens in a new window. Another is an accessibility issue with one of the HTML tables, which was missing one of the [headings](https://www.browserstack.com/docs/accessibility/rules/a11y-engine/td-has-header); the heading was not necessary, but it adds additional context for screen reader users to understand the table better. The lesson here is to remember that one test does not stand in for the other. You must also review the results for inconsistencies to make sure you have adequate coverage.
 
 ## A past example where Regression Testing could have been useful
 
-An example of high-priority testing would be when I worked on the seismic.com website. We had our request demo form, which is powered by Marketo. This is high priority because it's the primary intake pipeline for getting potential clients through the door to turn them into paying customers. In that case, we'd want to test both the integration and the functionality. Some of these test case selections can cross multiple purposes.
+An example of high-priority testing would be when I worked on the seismic.com website. We had our request-a-demo form, which is powered by Marketo. This is high priority because it's the primary intake pipeline for getting potential clients through the door to turn them into paying customers. We'd want to test both the integration and the functionality.
 
 In that testing, we'd want to make sure that all the fields were properly validated based on their input. So a name into a text field would pass, and any numbers would fail. An email in an email field would pass, but if it's a personal email it would fail. Same thing for the phone field. You then want to test both cases on your pass scenario and your fail scenario on submission. If it fails, do error messages appear and are they the error messages which you would expect to see based on whatever the failed test is?
 
@@ -101,7 +118,7 @@ Both the integration test and the functional testing would have been useful on s
 
 ## Automated testing and AI tooling do not replace the human
 
-AI has brought the implementation of testing down to such a low level that implementing tests across your project has become trivial. One of the downsides to that is that you might be overeager to add tests. Although I was able to use AI to more quickly build out tests, there were instances where some of the tests were flaky or an aborted sub-resource caused WebKit to hang. You need to be cognizant of the long-term maintenance of the tests and where the test itself could be the issue. A human still needs to be in the pipeline to catch what automated testing cannot, because the human can reason about what's **actually** happening on the screen versus what a test or prompt says **ought** to be happening.
+AI has brought the implementation of testing down to such a low level that implementing tests across your project has become trivial. One of the downsides to that is that you might be overeager to add tests. Although I was able to use AI to more quickly build out tests, there were instances where some of the tests were flaky, such as a 300ms fade-in causing a false contrast fail on my code blocks, or an aborted sub-resource causing WebKit to hang. You need to be cognizant of the long-term maintenance of the tests and where the test itself could be the issue. A human still needs to be in the pipeline to catch what automated testing cannot, because the human can reason about what's **actually** happening on the screen versus what a test or prompt says **ought** to be happening.
 
 ## Testing can be expensive
 
