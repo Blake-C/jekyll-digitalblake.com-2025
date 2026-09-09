@@ -144,8 +144,13 @@ jobs:
 
             # All three engines. They ship in the image, so the cost is about 30
             # seconds of runtime.
+            # HOME is set because the job runs as root while Actions points $HOME at
+            # /github/home, which the image owns as pwuser. Firefox refuses to start
+            # when it does not own $HOME; Chromium and WebKit do not check.
             - name: Run browser tests
               run: pnpm run test:e2e:all
+              env:
+                  HOME: /root
 
             - name: Upload the report when they fail
               if: failure()

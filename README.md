@@ -205,6 +205,8 @@ Keep that install at the same version as `package.json`, and paste generated cod
 
 **In CI.** Both layers gate the deploy. The build job runs `pnpm run test:ci`, which is the content and contract suites; the `browser-tests` job runs Playwright in the same image used locally. `test:ci` deliberately skips `build-determinism`, which shells out to `build:fonts` and `build:images`, which CI does not run and has no tooling for. That one stays local.
 
+The `browser-tests` job sets `HOME: /root`. A container job runs as root, but Actions points `$HOME` at `/github/home`, which the Playwright image owns as `pwuser`. Firefox refuses to start when it does not own `$HOME`, and Chromium and WebKit do not check, so leaving it unset fails every Firefox test at launch and passes the other two.
+
 **Adding a test with a feature.** A new page type, or a new branch in `_includes/head.html`, gets an assertion in `test/site-contract.test.mjs`. A new front matter key that other templates depend on gets one in `test/content.test.mjs`. A new JS module gets a spec in `test/e2e/`.
 
 ## Deployment
