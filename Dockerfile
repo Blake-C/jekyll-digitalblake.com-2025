@@ -1,5 +1,5 @@
 # Node 24 post-dates Alpine 3.23 so we copy the binary from the official Node image
-FROM node:24.18.0-alpine3.23 AS node
+FROM node:24.20.0-alpine3.23 AS node
 
 FROM ruby:3.4.10-alpine3.23
 
@@ -33,7 +33,7 @@ RUN apk add --no-cache \
 ENV FONTTOOLS_VENV=/opt/fonttools
 RUN python3 -m venv "$FONTTOOLS_VENV" \
     && "$FONTTOOLS_VENV/bin/pip" install --no-cache-dir \
-        'fonttools[woff]==4.55.3' \
+        'fonttools[woff]==4.64.0' \
         'brotli==1.1.0'
 ENV PATH="/opt/fonttools/bin:$PATH"
 
