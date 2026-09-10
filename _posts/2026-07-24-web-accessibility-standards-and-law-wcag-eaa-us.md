@@ -163,7 +163,7 @@ The tooling and process for testing a site against these criteria, including aut
 
 ## Updates
 
-**Updated September 9, 2026, Update 1:** The Harmonised European Standard EN 301 549 **V4.1.1** was published in September 2026. The article above describes **V4.1.0** as a draft from the ETSI approval process, its status back in July 2026. In lieu of updating the article, this update section has been impended.
+**Updated September 9, 2026, Update 1:** The Harmonised European Standard EN 301 549 **V4.1.1** was published in September 2026. The article above describes **V4.1.0** as a draft from the ETSI approval process, its status back in July 2026. In lieu of updating the article, this update section has been appended.
 
 Three things in **V4.1.1** affect what the preceding sections say:
 
