@@ -10,6 +10,11 @@ image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
 youtube_id: 'kYqpxJE4DyE'
 ---
 
+<aside class="callout">
+	<h2 class="callout__title">This article has four updates</h2>
+	<p>Text with a line through it was wrong and has been corrected. It is struck rather than deleted so that anyone who read an earlier version can see what changed. Each correction is listed in <a href="#updates">Updates</a> at the end of the article, along with what replaced it.</p>
+</aside>
+
 The Shai Hulud worm has now hit npm [four times](https://snyk.io/blog/tanstack-npm-packages-compromised/). The latest one compromised packages from TanStack, Mistral, UiPath, and 170+ other packages, and it [also reached PyPI](https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised). The Syntax.fm hosts covered it this week and, after watching, I spent an afternoon auditing my own repos.
 
 {% include youtube.html id="kYqpxJE4DyE" title="Shai Hulud Supply Chain Attack, Syntax.fm" %}
@@ -291,6 +296,8 @@ No TanStack maintainer had a password stolen and no maintainer laptop was compro
 Most of what's above is one or two lines of configuration. Some of it, like `minimumReleaseAge` and `blockExoticSubdeps`, pnpm 11 sets by default now.
 
 ---
+
+## Updates
 
 **Updated May 15, 2026 (Update 1):** Added two settings to the pnpm workspace configuration section: `blockExoticSubdeps` and `minimumReleaseAge`. The Syntax.fm hosts mentioned both, and I had left them out of the original config. `blockExoticSubdeps` prevents sub-dependencies from resolving to git repos or arbitrary tarballs. `minimumReleaseAge` enforces a 7-day freshness gate before any package version can be installed.
 
