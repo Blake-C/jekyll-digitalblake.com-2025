@@ -3,11 +3,16 @@ layout: post
 title: 'Web Accessibility Law and WCAG: EAA, ADA, and Section 508'
 description: 'Which WCAG version each accessibility law names and who must meet it, covering the European Accessibility Act, ADA Title II and III, and Section 508.'
 date: 2026-07-24 15:14:41 CDT -0500
-modified_date: 2026-07-28 02:11:06 CDT -0500
+modified_date: 2026-09-09 22:36:47 CDT -0500
 categories: ['Articles']
 tags: ['accessibility', 'wcag', 'web-standards', 'ada', 'european-accessibility-act', 'section-508', 'compliance']
 image: '/assets/uploads/2026/07/web-accessibility-standards-and-law-wcag-eaa-us-og.webp'
 ---
+
+<aside class="callout">
+	<h2 class="callout__title">Quick Note: Article Update</h2>
+	<p>The technical standard EN 301 549 <strong>V4.1.1</strong> was published in September 2026, updating its web clause to WCAG 2.2. The article below remains as it was in July 2026, and the update is detailed in the <a href="#updates">Updates</a> section at the bottom of this article.</p>
+</aside>
 
 <aside class="callout">
 	<h2 class="callout__title">TL;DR</h2>
@@ -154,8 +159,25 @@ The EAA applies based on where a service is offered, so a US site that offers a 
 
 The tooling and process for testing a site against these criteria, including automated scanners, manual review, and where AI fits, is in the companion article on [Testing for WCAG Conformance]({% post_url 2026-07-24-testing-web-accessibility-tools-automation-and-ai %}).
 
+---
+
+## Updates
+
+**Updated September 9, 2026, Update 1:** The Harmonised European Standard EN 301 549 **V4.1.1** was published in September 2026. The article above describes **V4.1.0** as a draft from the ETSI approval process, its status back in July 2026. In lieu of updating the article, this update section has been impended.
+
+Three things in **V4.1.1** affect what the preceding sections say:
+
+- Each requirement in clause 9 now reads "the web page shall satisfy WCAG 2.2 Success Criterion," where V3.2.1 named WCAG 2.1.
+- Annex ZB now aligns the standard with Directive (EU) 2019/882, and Annex ZA maps it to Directive (EU) 2016/2102.
+- V4.1.1 has not yet been cited in the Official Journal of the European Union. The standard notes that once it is cited, conforming to its normative clauses confers a presumption of conformity within the limits of its scope; until that citation occurs, WCAG 2.1 AA and [V3.2.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf) remain the benchmark for the EAA, and the W3C's WCAG overview still states that EN 301 549 currently uses WCAG 2.1.
+
+Additionally, the compliance dates mentioned in this article have not changed. The interim final rules setting these dates received comments through June 22, 2026 (DOJ) and July 6, 2026 (HHS), but neither department has released a final rule yet.
+
+---
+
 ## References
 
+- EN 301 549 V4.1.1 (2026-09), ETSI: [en_301549v040101p.pdf](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/en_301549v040101p.pdf)
 - WCAG overview, versions, and ISO/IEC 40500:2025, W3C WAI: [w3.org/WAI/standards-guidelines/wcag](https://www.w3.org/WAI/standards-guidelines/wcag/)
 - What's New in WCAG 2.2, W3C WAI: [w3.org/WAI/standards-guidelines/wcag/new-in-22](https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/)
 - WCAG 2.2 specification, W3C: [w3.org/TR/WCAG22](https://www.w3.org/TR/WCAG22/)
