@@ -3,7 +3,7 @@ layout: post
 title: 'Shai Hulud npm Attack: How It Worked and How I Hardened My Repos'
 description: 'The Shai Hulud worm poisoned a pnpm cache in GitHub Actions to hit TanStack and 170+ npm packages. How it worked and the steps I took to harden my repos.'
 date: 2026-05-15 04:41:03 CDT -0500
-modified_date: 2026-09-09 17:23:42 CDT -0500
+modified_date: 2026-09-09 18:10:46 CDT -0500
 categories: ['Articles']
 tags: ['security', 'supply-chain', 'pnpm', 'docker', 'github-actions', 'npm', 'nodejs']
 image: '/assets/uploads/2025/05/supply-chain-attacks-got-smarter.webp'
@@ -103,9 +103,9 @@ What each security-relevant setting does:
 
 - **`frozenLockfile: true`**: Refuses to install if `pnpm-lock.yaml` is out of sync with `package.json`. Prevents the "just run `pnpm install` and let it resolve" habit that pulls in versions nobody read in a code review.
 - **`saveExact: true`**: When you run `pnpm add`, it records `1.2.3` instead of `^1.2.3`. A caret range means "give me any compatible update automatically," which is how a compromised version gets installed on the next `pnpm install` without anyone reading it.
-- **`auditLevel: moderate`**: Runs a CVE check on every install and fails if anything rates moderate or higher. Catches known vulnerabilities before they make it into a build.
-- **`verifyStoreIntegrity: true`**: Re-hashes every cached package on each install. Detects if something tampered with a package in the local pnpm store between installs.
-- **`blockExoticSubdeps: true`**: Rejects any transitive dependency sourced from outside the npm registry. That covers git URLs, `file:` paths, `https:` tarballs, and similar. A sub-dependency pulled from one of those never went through npm's publishing process, so nothing about it is checked against the registry.
+- **`auditLevel: moderate`**: ~~Runs a CVE check on every install and fails if anything rates moderate or higher. Catches known vulnerabilities before they make it into a build.~~ See Update 4.
+- **`verifyStoreIntegrity: true`**: Re-hashes every cached package on each install. ~~Detects if something tampered with a package in the local pnpm store between installs.~~ See Update 4.
+- **`blockExoticSubdeps: true`**: ~~Rejects any transitive dependency sourced from outside the npm registry. That covers git URLs, `file:` paths, `https:` tarballs, and similar.~~ A sub-dependency pulled from a git repository or a tarball URL never went through npm's publishing process, so nothing about it is checked against the registry. See Update 4.
 - **`minimumReleaseAge: 10080`**: Refuses to install a package version published fewer than 7 days ago. Shai Hulud worked by publishing a malicious version and getting projects to install it in the first hours. A 7-day wait gives other people time to spot the version and report it first.
 - **`allowBuilds`**: Only the packages listed here can run install scripts. Everything else is blocked. In this repo, only `@parcel/watcher` needs a build script. The Shai Hulud payload ran from a `prepare` script and a `preinstall` script, and neither would have run here.
 - **`catalog:`**: Centralizes version pins for high-risk dependencies in one file. A version bump requires an explicit edit here, making it visible in code review rather than buried in a lockfile diff.
@@ -266,7 +266,7 @@ gitleaks runs first. If it finds a credential pattern in staged files, the commi
 
 ### Force patched versions of vulnerable transitive dependencies
 
-Sometimes a transitive dependency (something your dependencies depend on) has a known CVE and the upstream maintainer hasn't shipped a fix yet. pnpm lets you force a specific version across all consumers. From the Next.js app's `package.json`:
+Sometimes a transitive dependency (something your dependencies depend on) has a known CVE and the upstream maintainer hasn't shipped a fix yet. pnpm lets you force a specific version across all consumers. ~~From the Next.js app's `package.json`:~~
 
 ```json
 "pnpm": {
@@ -276,7 +276,7 @@ Sometimes a transitive dependency (something your dependencies depend on) has a 
 }
 ```
 
-Any package in the dependency tree that pulls in postcss gets `8.5.13` regardless of what version it declares.
+~~Any package in the dependency tree that pulls in postcss gets `8.5.13` regardless of what version it declares.~~ pnpm stopped reading the `pnpm` field in `package.json` in pnpm 11, which is the version both repos here were running, so the block above never took effect. Overrides go in `overrides:` in `pnpm-workspace.yaml`. See Update 4.
 
 ## Running tooling in Docker
 
@@ -377,4 +377,13 @@ catalog:
     lint-staged: 17.4.1
 ```
 
-`minimumReleaseAgeExclude` and `overrides` are both new since May. `minimumReleaseAgeExclude` names the one package allowed past `minimumReleaseAge`, and `overrides` forces patched versions of transitive dependencies, which the Next.js app earlier in this article does through the `pnpm.overrides` field in `package.json`.
+`minimumReleaseAgeExclude` and `overrides` are both new since May. `minimumReleaseAgeExclude` names the one package allowed past `minimumReleaseAge`, and `overrides` forces patched versions of transitive dependencies. This is the working location for overrides, and the `pnpm.overrides` block shown earlier in this article is not. Update 4 covers that.
+
+**Corrected September 9, 2026 (Update 4):** Four claims in the settings list above were wrong when this article was published. I checked each one against the pnpm 10.x documentation that was current in May 2026, and struck the sentences that were wrong so the earlier version stays readable.
+
+- **The `pnpm` field in `package.json` has not been read since pnpm 11.** The [pnpm 11.0 release post](https://pnpm.io/blog/releases/11.0) lists "pnpm no longer reads the `pnpm` field in `package.json`" among its changes. Both repos in this article were pinned to `pnpm@11.1.1`, so pnpm ignored the `pnpm.overrides` block above in the repo it was copied from. This site's repo keeps its overrides in `overrides:` in `pnpm-workspace.yaml`.
+- **`auditLevel` does not run an audit on install.** It sets the severity floor for the `pnpm audit` command, and the [audit documentation](https://pnpm.io/cli/audit) describes it as the same thing as the `--audit-level` flag. An install with outstanding advisories still succeeds. The setting was renamed to `audit.level` in pnpm 11.16.0, and the old name keeps working until the next major version.
+- **`verifyStoreIntegrity` detects corruption rather than tampering.** The [store settings](https://pnpm.io/settings/store) say it "does not make a store that is writable by untrusted users safe, because an attacker who can write to the store can alter both cached package contents and the metadata used to verify them." That sentence was in the pnpm 10.x documentation too.
+- **`blockExoticSubdeps` permits `file:` paths.** The [dependency resolution settings](https://pnpm.io/settings/dependency-resolution) name local file paths, workspace links and trusted GitHub repositories as sources a transitive dependency may still resolve from. `blockExoticSubdeps` blocks git repositories and direct tarball URLs.
+
+One claim above was right when it was published and is now out of date, so it is not struck. The minimum package age settings in Yarn, Bun and npm were all off by default when this article was published. [Yarn 4.15.0](https://github.com/yarnpkg/berry/releases/tag/%40yarnpkg/cli%2F4.15.0) came out on May 19, four days later, and applies a one day `npmMinimalAgeGate` by default.
