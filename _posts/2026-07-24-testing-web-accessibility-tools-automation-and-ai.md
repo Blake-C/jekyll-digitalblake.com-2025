@@ -3,7 +3,7 @@ layout: post
 title: 'Testing for WCAG Conformance: Tools, Manual Review, and AI'
 description: 'How to test a website against WCAG with axe-core, Lighthouse, WAVE, and Pa11y, what those tools miss, and where AI fits in manual review.'
 date: 2026-07-24 17:25:33 CDT -0500
-modified_date: 2026-07-28 02:11:06 CDT -0500
+modified_date: 2026-09-12 08:36:44 CDT -0500
 categories: ['Articles']
 tags: ['accessibility', 'wcag', 'testing', 'axe-core', 'automation', 'ai', 'web-development']
 image: '/assets/uploads/2026/07/testing-web-accessibility-tools-automation-and-ai-og.webp'
@@ -12,31 +12,29 @@ image: '/assets/uploads/2026/07/testing-web-accessibility-tools-automation-and-a
 <aside class="callout">
 	<h2 class="callout__title">TL;DR</h2>
 	<ul>
-		<li><strong>Run automated tools in CI.</strong> axe-core, Lighthouse, WAVE, and Pa11y are the common ones. Wiring one into the build stops regressions from shipping.</li>
-		<li><strong>Automation covers part of WCAG.</strong> Deque measured 57.38 percent of issues by volume across its audit sample. The share of WCAG success criteria a machine can test at all is smaller. Automation confirms that something exists, like an <code>alt</code> attribute or a contrast ratio, and it cannot read that thing and judge whether it is correct.</li>
-		<li><strong>Manual review is required for conformance.</strong> A keyboard-only pass, a screen reader pass, and a person judging the content cover the criteria automation cannot.</li>
-		<li><strong>AI can draft the contextual work.</strong> Vision models can write alt text and read a page for meaning. A model can also be confidently wrong, so a person verifies everything before it ships.</li>
-		<li><strong>Skip the overlay widgets.</strong> The Overlay Fact Sheet states that full compliance cannot be achieved with an overlay.</li>
-		<li><strong>The target:</strong> build and test to WCAG 2.1 Level AA today, with 2.2 AA next.</li>
+		<li><strong>Run automated tools in CI.</strong> Some these tools are: axe-core, Lighthouse, WAVE, and Pa11y. Wiring one of these into the build stops regressions from deploying to production.</li>
+		<li><strong>Automation covers part of WCAG.</strong> Deque measured 57.38 percent of issues by volume across its audit sample. The share of WCAG success criteria automation can test is smaller. Automation confirms that something exists, like an <code>alt</code> attribute or a contrast ratio, but it can't deduce meaning and judge whether it is correct.</li>
+		<li><strong>Manual review is required for conformance.</strong> A keyboard-only pass, a screen reader pass, and a human judging the content cover what automation can't.</li>
+		<li><strong>AI can draft the contextual work.</strong> Vision models can write alt text and read a page for meaning, but they can be confidently wrong. A human must verify before launching.</li>
+		<li><strong>Skip the overlay widgets.</strong> The "Overlay Fact Sheet" states that full compliance can't be achieved with an overlay.</li>
+		<li><strong>The legal compliance is to build for WCAG 2.1</strong>, but you should really be targeting WCAG 2.2 AA to be ahead of the curve.</li>
 	</ul>
 </aside>
 
-Web accessibility has a technical standard, the Web Content Accessibility Guidelines (WCAG), and a set of laws that require it. Which laws apply to a given site, and which WCAG version each one names, is covered in the companion reference on [web accessibility standards and law]({% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}). The working target below is WCAG 2.1 Level AA, the version nearly every current law names. WCAG 2.2 AA is next.
+If you're looking for a breakdown on the laws that apply to any given project, the WCAG versions for each type of project, you should check out the article on [web accessibility standards and law]({% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}). However, in this article, we're going to go over the technical standards for web accessibility given to us by the Web Content Accessibility Guidelines (WCAG) with most legalese pointing at WCAG 2.1 level AA, but you truly should be targeting WCAG 2.2 AA.
 
 ## Automated testing tools
 
-Testing WCAG conformance usually starts with automated tools, because they are fast, repeatable, and easy to run on every build. The common ones are:
+Testing WCAG conformance usually starts with automated tools, being fast, repeatable, and easy to run. A few to look at are:
 
 - [axe-core](https://github.com/dequelabs/axe-core), the Deque engine that most other tools are built on. Its README states that you can find on average 57 percent of WCAG issues automatically with it, and that it returns zero false positives. Deque publishes [seven integration packages](https://github.com/dequelabs/axe-core-npm) around it, including `@axe-core/playwright`, `@axe-core/puppeteer`, `@axe-core/webdriverio`, and `@axe-core/cli`. It also ships as the axe DevTools browser extension.
 - [Lighthouse](https://developer.chrome.com/docs/lighthouse/accessibility/scoring), built into Chrome DevTools. Its accessibility score weights results using axe's user impact assessments, and it runs alongside the performance checks.
 - [WAVE](https://wave.webaim.org/) from WebAIM, a browser extension and online tool that renders issues visually on the page.
 - [Pa11y](https://pa11y.org/), which publishes a command-line tool that loads web pages and highlights the accessibility issues it finds, plus Pa11y CI, a version geared toward use in CI.
 
-These tools catch the issues that have clear programmatic rules. Missing `alt` attributes, insufficient color contrast, missing form labels, empty buttons, and invalid ARIA usage all have a rule behind them. Wiring one of these tools into CI keeps regressions from shipping.
+These tools catch issues that have a clear programmatic rule behind them, including missing `alt` attributes, insufficient color contrast, missing form labels, empty buttons, and invalid ARIA usage. Using one of these tools just might help you prevent a regression from reaching your production environment.
 
 ## What passing and failing look like in code
-
-Each pair below is a common criterion, the markup that fails it, and the markup that passes.
 
 **Text alternatives (SC 1.1.1).** An image needs a text alternative that conveys its meaning, or an empty `alt` if it is purely decorative.
 
@@ -96,7 +94,7 @@ Each pair below is a common criterion, the markup that fails it, and the markup 
 <p id="email-err"><strong>Error:</strong> Enter a valid email address.</p>
 ```
 
-**Target Size, Minimum (SC 2.5.8, new in 2.2).** [The criterion](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) requires the target for pointer inputs to be at least 24 by 24 CSS pixels. It lists five exceptions, covering spacing around undersized targets, an equivalent control elsewhere on the page, targets inline in a sentence, sizing determined by the user agent, and cases where the size is essential. A tight row of icon buttons rendered at 16 pixels with no padding fails it.
+**Target Size, Minimum (SC 2.5.8, new in 2.2).** [The criterion](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) requires the target for pointer inputs to be at least 24 by 24 CSS pixels. It lists five exceptions, covering spacing around undersized targets, an equivalent control elsewhere on the page, targets inline in a sentence, sizing determined by the user agent, and cases where the size is essential. A tight row of icon buttons rendered at 16 pixels with no padding fails.
 
 ```css
 /* Fail: 16px icons, easy to mis-tap */
@@ -127,13 +125,13 @@ The broader fix for authentication is to support passkeys, email or OAuth sign-i
 
 ## What automation misses
 
-[Deque measured](https://www.deque.com/automated-accessibility-coverage-report/) that 57.38 percent of total issues across its audit sample were identified by its automated tests, counted by volume of issues. That page also describes the older and commonly cited figure of 20 to 30 percent. That figure counts how many individual WCAG success criteria a machine can test. Deque's figure counts issues found in real audits, so the two numbers measure different things. [One vendor estimate](https://testeragents.com/accessibility-testing-ai/) puts the machine-testable share of success criteria at 30 to 40 percent, and that page cites no published study for the number, so treat it as an estimate.
+[Deque measured](https://www.deque.com/automated-accessibility-coverage-report/) 57.38% of total issues across its audit sample were identified by its automated tests, counted by volume of issues. Their goal was to disprove the commonly sighted figure of 20 to 30 percent which counts how many individual WCAG success criteria automation can test. While Deque's figure counts issues found in real audits, which means the two figures measure different things. [One vendor estimate](https://testeragents.com/accessibility-testing-ai/) puts the machine-testable share of success criteria at 30 to 40 percent, they didn't cite any published study for this value; it should be treated as an estimate.
 
-Either way, a person has to be involved. Automation confirms that something exists. It cannot read that thing and judge whether it is correct.
+Regardless of which value is correct, automation only confirms the existence of an issue. You still need a human to review it and make a judgement call on how correct it might be.
 
-Alt text shows the difference. A product photo with `alt="DSC_0042"` or `alt="image"` passes every automated scan because the attribute is present, and it tells a screen reader user nothing. A person looks at the image, reads the alt text, and sees the problem.
+A product photo with `alt="DSC_0042"` or `alt="image"` passes every automated scan because the attribute is present, while telling a screen reader nothing about the actual image. A human can read the alt text and identify the problem.
 
-The same thing happens on other criteria. In each row below, the automated test passes and the structural requirement goes unmet.
+The following table shows several criteria that can be marked as passed by automated testing, but which part of it requires a human to make a correct judgement.
 
 | What the automated tool checks (and passes) | What a human still has to judge                                                |
 | ------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -146,37 +144,35 @@ The same thing happens on other criteria. In each row below, the automated test 
 | Elements carry ARIA roles and attributes    | Whether those roles match how the widget actually behaves for a screen reader  |
 | The DOM order is valid                      | Whether keyboard focus order matches the visual order and nothing traps focus  |
 
-A scanner cannot produce any of the answers in the right column. A person has to open the page, tab through it, turn on a screen reader, and decide.
-
-Automated tooling is the baseline. Add it to the build system and it catches mechanical regressions on every change. WCAG conformance still requires keyboard-only navigation, a screen reader pass, and a person judging whether the content is usable.
+Every change made to a codebase can run through your build system and automated tooling but only catch the mechanical regressions. In order to conform to WCAG it still requires a human to go in and check keyboard-only navigation, a screen reader pass, and the parts of the project that require judgment.
 
 <aside class="callout callout--related" aria-label="Related reading">
-	<p>For a related look at how the same accessibility semantics that help screen readers also get read by bots, see <a href="{% post_url 2026-06-26-identity-is-not-legitimacy-vetting-a-sales-lead-is-an-arms-race %}">the note on vetting sales leads.</a></p>
+	<p><strong>Additional Reading:</strong> For a related look at how the same accessibility semantics that help screen readers also get read by bots, see <a href="{% post_url 2026-06-26-identity-is-not-legitimacy-vetting-a-sales-lead-is-an-arms-race %}">the note on vetting sales leads.</a></p>
 </aside>
 
 ## Where AI fits
 
-Rule-based scanners check mechanics. They can tell whether an `alt` attribute exists and whether a contrast ratio passes, and they cannot evaluate meaning. Vision models can read an image and describe what is in it, which puts some judgment checks inside tooling for the first time.
+Rule-based scanners can tell whether an `alt` attribute exists and whether a contrast ratio passes, but they cannot evaluate meaning. Vision models can read an image and describe what is in it, which puts some judgment checks inside tooling.
 
-Take alt text. A vision model like Claude, GPT, or Gemini can look at an image, work out what it shows, and write a draft description that fits the context. A check that used to be fully manual becomes a fast first pass. The same reasoning applies to other judgment-heavy checks:
+A vision model like Claude, GPT, or Gemini can look at an image, work out what it shows, and write draft alt text that fits the context, turning a check that used to be fully manual into a fast first pass. The same reasoning applies to other judgment-heavy checks:
 
 - whether link text describes its destination
 - whether a heading structure matches the content
 - whether an ARIA role is plausible for the widget it sits on
 
-A model can also be confidently wrong. It can misread an image, miss the reason a particular image was chosen, or invent detail that is not there. AI-generated alt text that ships without review can be grammatically clean and factually wrong. So the person becomes a reviewer. The AI drafts, a person checks the draft against the actual image and its purpose on the page, and then it ships.
+A model can also be confidently wrong. It can misread an image, miss the reason a particular image was chosen, or invent detail that is not there. AI-generated alt text that ships without review can be grammatically clean but factually wrong. AI can draft, but a human checks the draft against the actual image and its purpose on the page, and then it ships.
 
-The [same vendor estimate](https://testeragents.com/accessibility-testing-ai/) puts the lift from AI at roughly 5 to 10 percentage points of the success criteria beyond the machine-testable baseline. That page cites no published study for the number either. AI does nothing for the parts that need a real assistive-technology pass, which includes screen reader experience, cognitive accessibility, and complex interactive components.
+The [previous vendor estimate](https://testeragents.com/accessibility-testing-ai/) puts the lift from AI at roughly 5 to 10 percentage points of the success criteria beyond the machine-testable baseline. That page cites no published study for that number either. AI does nothing for the parts that need a real assistive-technology pass, which includes screen reader experience, cognitive accessibility, and complex interactive components.
 
-Accessibility overlay widgets promise compliance from a single script. The [Overlay Fact Sheet](https://overlayfactsheet.com/en/), signed by more than a thousand accessibility practitioners, states that full compliance cannot be achieved with an overlay, and that overlays do not repair content in Flash, Java, Silverlight, PDF, HTML5 Canvas, SVG, or media files. Its recommendation is to remediate accessibility issues at the source of the original error.
+Accessibility overlay widgets promise compliance from a single script. The [Overlay Fact Sheet](https://overlayfactsheet.com/en/), signed by more than a thousand accessibility practitioners, states that full compliance cannot be achieved with an overlay, and that overlays do not repair content in "Flash, Java, Silverlight, PDF, HTML5 Canvas, SVG, or media files." Its recommendation is to remediate accessibility issues at the source of the original error.
 
 ## A layered testing setup
 
 A realistic setup has three layers.
 
-- Automated scanners run in CI on every change and catch the mechanical regressions.
+- Automated scanners run in CI on every change and catch mechanical regressions.
 - AI drafts the contextual work and suggests fixes.
-- A person runs the keyboard and screen reader passes and signs off on the parts only a human can judge.
+- A human runs the keyboard and screen reader passes and signs off on the parts only a human can judge.
 
 Which standard a given site owes, and under which law, is in the companion reference on [web accessibility standards and law]({% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}).
 
