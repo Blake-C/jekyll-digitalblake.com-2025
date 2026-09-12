@@ -9,7 +9,7 @@
 import { execFileSync } from 'child_process'
 import { readdirSync, statSync, existsSync, mkdtempSync, copyFileSync, rmSync } from 'fs'
 import { tmpdir } from 'os'
-import { join, extname, dirname, resolve, basename } from 'path'
+import { join, extname, dirname, resolve, basename, sep } from 'path'
 import { fileURLToPath } from 'url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -93,6 +93,15 @@ function processFile(filePath) {
 // lint-staged passes staged file paths as arguments
 const stagedFiles = process.argv.slice(2).map(f => resolve(f))
 const files = stagedFiles.length > 0 ? stagedFiles : DIRS.flatMap(walkDir)
+
+// A path outside DIRS means the lint-staged glob or the invocation is wrong.
+// Skipping it quietly would hide that and leave the script free to overwrite it.
+const outside = files.filter(f => !DIRS.some(dir => f === dir || f.startsWith(dir + sep)))
+if (outside.length > 0) {
+	const allowed = DIRS.map(dir => dir.replace(ROOT, '')).join(' or ')
+	for (const f of outside) console.error(`  ! ${f.replace(ROOT, '')}: outside ${allowed}`)
+	process.exit(1)
+}
 
 let optimized = 0
 let skipped = 0
