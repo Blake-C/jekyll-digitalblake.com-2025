@@ -120,7 +120,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 
 <div class="career-timeline">
 	<div class="career-timeline__item">
-		<p class="career-timeline__employer">DigitalBlake.com (Self-Employed) <span class="career-timeline__dates">July 2025 to Present</span></p>
+		<p class="career-timeline__employer">DigitalBlake.com (Self-Employed) <span class="career-timeline__dates">January 2026 to Present</span></p>
 		<p class="career-timeline__role">Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Applied AI-assisted development workflows across a Next.js and Sanity project, native macOS tooling, and digitalblake.com.</li>
