@@ -52,4 +52,4 @@ The team listing page is filterable by state, city, or license location. Selecti
 
 ![Republic Ranches associate detail page with photo, contact information, and contact form](/assets/uploads/2025/05/republic-ranches-associate-detail-page-has-contact-information-photo-and-form.webp)
 
-**Impact:** Page loads reduced from 3-5 seconds to 1-2 seconds. Image library reduced from 20GB to 8GB with automated WebP conversion and a 200KB upload cap routed to AWS S3. Location-based URL structure and real estate schema markup built into the property hierarchy. The client reported a significant increase in site traffic after the relaunch.
+**Impact:** Property tour bookings increased 10% after page loads dropped from 3 to 5 seconds down to 1 to 2 seconds. Image library reduced from 20GB to 8GB with automated WebP conversion and a 200KB upload cap routed to AWS S3. Location-based URL structure and real estate schema markup built into the property hierarchy. The client reported a significant increase in site traffic after the relaunch.
