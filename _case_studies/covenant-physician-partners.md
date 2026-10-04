@@ -42,7 +42,7 @@ The homepage opens with a full-bleed video that communicates what the organizati
 
 ![Covenant Physician Partners Who We Are page with content blocks and custom model section](/assets/uploads/2025/05/covenant-physician-partners-our-model-and-carousel.webp)
 
-The Who We Are page was built with the block-based WYSIWYG editor — this predated Gutenberg, so the layout relied on the editor's native block tools. At the bottom of the page sat a carousel where the standard dot pagination was replaced with individual letters that spelled out HEART. We built this as a custom component that let the client configure the word, with each letter linking to a corresponding value: Humility, Empathy, Accountability, Respect, and Teamwork.
+The Who We Are page was built with the block-based WYSIWYG editor, and because the site predated Gutenberg, the layout relied on the editor's native block tools. At the bottom of the page sat a carousel where the standard dot pagination was replaced with individual letters that spelled out HEART. We built this as a custom component that let the client configure the word, with each letter linking to a corresponding value: Humility, Empathy, Accountability, Respect, and Teamwork.
 
 ![Custom HEART carousel with letter-based pagination](/assets/uploads/2025/05/covenant-physician-partners-heart-carousel.webp)
 
@@ -60,7 +60,7 @@ The Connect With Us Today section uses Gravity Forms to handle position opportun
 
 The two most technically involved pages were Positions and Locations. Richard Baugh built a custom SVG map of the United States where clicking a state filters the listing below the map to only that state's results. Select menus alongside the map allowed for more granular filtering by specialty or category. The filtering and animation were handled by MixItUp, which gave a smooth transition as items entered and left the list.
 
-The backend used custom post types in WordPress for both locations and position opportunities. When a record was saved, a hook wrote a static JSON file to the server as part of the save process. At runtime, the page loaded directly from that JSON file rather than making database queries or going through PHP — this produced fast initial load times and allowed the MixItUp filtering to run without any additional API calls.
+The backend used custom post types in WordPress for both locations and position opportunities. When a record was saved, a hook wrote a static JSON file to the server as part of the save process. At runtime, the page loaded directly from that JSON file rather than making database queries or going through PHP, which produced fast initial load times and allowed the MixItUp filtering to run without any additional API calls.
 
 ![Location and position opportunity page with SVG US map and MixItUp filtering](/assets/uploads/2025/05/covenant-physician-partners-location-map-and-filtering-with-mix-it-up.webp)
 
