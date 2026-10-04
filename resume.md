@@ -127,8 +127,8 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<ul class="career-timeline__bullets">
 			<li>Served as internal development lead for the WordPress to Sitecore migration, working with an external agency's developers and designers, and audited <strong>200+ components</strong> to decide what to rebuild in Sitecore, migrate as static content, or leave in WordPress behind a reverse proxy set up with IT.</li>
 			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built several blog components in Sitecore, reworking the agency's version over a weekend and again the next day so it would stay flexible long term.</li>
-			<li>Explained to the agency several times that our design team needed to review Sitecore components in context on the page, because components delivered one by one led to changes after they were already built.</li>
-			<li>Documented 200+ Advanced Custom Fields components, development standards, analytics, and production workflows for clean handoffs to <strong>3 agency partners</strong>, and trained and onboarded the incoming team of <strong>6</strong>.</li>
+			<li>Explained to our agency partner that our design team needed to review Sitecore components in context on the page, because components delivered one by one led to changes after they were already built.</li>
+			<li>Documented 200+ Advanced Custom Fields components, development standards, analytics, and production workflows for clean handoffs to <strong>3 agency partners</strong>, and trained the incoming team of <strong>6</strong>.</li>
 			<li>Partnered with the security team to identify vulnerabilities, implemented monitoring to detect and block malicious traffic, and introduced automated alerting.</li>
 			<li>Led after-hours code deployments and QA for seismic.com with <strong>zero downtime</strong> from a deployment.</li>
 		</ul>
