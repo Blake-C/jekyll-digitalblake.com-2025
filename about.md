@@ -15,7 +15,7 @@ I've been experimenting with and using AI tooling to further my own knowledge an
 
 <div class="career-timeline">
 	<div class="career-timeline__item">
-		<p class="career-timeline__employer">Northwest Vista College, 1.5 years</p>
+		<p class="career-timeline__employer">Northwest Vista College, 1.25 years</p>
 		<p class="career-timeline__role">Lab Tech, Digital Media &amp; Cinematography</p>
 		<p class="career-timeline__description">Assisted students with software and equipment questions, managed lab operations, installed and maintained workstations, and organized the equipment library. First exposure to what it means to be the person who figures things out. My manager Alan Garner told me I was never allowed to say no. I was always supposed to find the solution to any issues that appeared, even if it meant finding someone else who knew the answer to them.</p>
 	</div>
