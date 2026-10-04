@@ -77,7 +77,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<ul class="career-timeline__bullets">
 			<li><strong>Two 1,000-page rebuilds</strong> of seismic.com, a phased WordPress to WordPress rebuild in 2022 that launched with about 40 pages and a rebuild in Sitecore in 2025, keeping the site live through each cutover.</li>
 			<li><strong>50% increase</strong> in site visitors after the 2022 relaunch.</li>
-			<li><strong>33% improvement</strong> in page load times, from roughly 3 seconds to 2 seconds across both rebuilds.</li>
+			<li><strong>33% faster page loads</strong> on the 2022 rebuild, from about 3 seconds to 2, then about 1 to 2 seconds after the move to Sitecore.</li>
 			<li>Served as QA triage lead across a cross-functional team of 20+ during a high-pressure rebrand sprint.</li>
 			<li>Migrated seismic.com from TranslatePress to WPML for multilingual support and trained 3 agency content producers and the French and German page content editors on the new workflow.</li>
 		</ul>
@@ -126,7 +126,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Served as internal development lead for the WordPress to Sitecore migration, working with an external agency's developers and designers, and audited <strong>200+ components</strong> to decide what to rebuild in Sitecore, migrate as static content, or leave in WordPress behind a reverse proxy set up with IT.</li>
-			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built several blog components in Sitecore, reworking the agency's version over a weekend and again the next day so it would stay flexible long term.</li>
+			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built several blog components in Sitecore.</li>
 			<li>Explained to our agency partner that our design team needed to review Sitecore components in context on the page, because components delivered one by one led to changes after they were already built.</li>
 			<li>Documented 200+ Advanced Custom Fields components, development standards, analytics, and production workflows for clean handoffs to <strong>3 agency partners</strong>, and trained the incoming team of <strong>6</strong>.</li>
 			<li>Partnered with the security team to identify vulnerabilities, implemented monitoring to detect and block malicious traffic, and introduced automated alerting.</li>
