@@ -10,7 +10,7 @@ Senior Web Developer based in San Antonio, Texas, with 15 years building and mig
 
 I've redeveloped my [starter framework](/coding-projects/) for building WordPress websites, built an exit-intent popup plugin for capturing leads that would leave a request-a-demo form, and built a Claude Code overwrite extension to optimize features to work the way I need. You can find my thoughts on LLM writing, challenges building with Sanity and Next.js, and what to look out for when building sites that need to be WCAG conformant on the [articles](/articles/) page.
 
-I've received many kind words and [recommendations](/recommendations/) from my colleagues after leaving Seismic as part of a reduction in force (RIF). After taking some time to recharge, I came up to speed on AI tooling with Claude Code across several integrations and projects, and then used those same skills on a coding challenge. I've continued to research this new tool chain in preparation for my next role.
+My former colleagues have written [recommendations](/recommendations/) about working with me. I've used Claude Code across several integrations and projects, including the Teleport Atlas coding challenge, and I continue to research this tool chain in preparation for my next role.
 
 Please feel free to download the PDF version of my resume below or read it here on the page.
 
@@ -75,9 +75,9 @@ Please feel free to download the PDF version of my resume below or read it here 
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates"><a href="/case-studies/seismic/">Seismic case study</a></span></p>
 		<ul class="career-timeline__bullets">
-			<li><strong>Two 1,000-page site migrations</strong> for seismic.com, WordPress to WordPress in 2022 and WordPress to Sitecore in 2025, keeping the site live throughout each cutover.</li>
+			<li><strong>Two 1,000-page rebuilds</strong> of seismic.com, a phased WordPress to WordPress rebuild in 2022 that launched with about 40 pages and a rebuild in Sitecore in 2025, keeping the site live through each cutover.</li>
 			<li><strong>50% increase</strong> in site visitors after the 2022 relaunch.</li>
-			<li><strong>33% improvement</strong> in page load times, from roughly 3 seconds to 2 seconds across both migration cycles.</li>
+			<li><strong>33% improvement</strong> in page load times, from roughly 3 seconds to 2 seconds across both rebuilds.</li>
 			<li>Served as QA triage lead across a cross-functional team of 20+ during a high-pressure rebrand sprint.</li>
 			<li>Migrated seismic.com from TranslatePress to WPML for multilingual support and trained 3 agency content producers and the French and German page content editors on the new workflow.</li>
 		</ul>
@@ -117,28 +117,30 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<p class="career-timeline__role">Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
 			<li>Researched and published on <a href="{% post_url 2026-07-24-testing-web-accessibility-tools-automation-and-ai %}">WCAG 2.1 AA conformance testing</a> and on <a href="{% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}">which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 each require</a>.</li>
-			<li>Built and maintain digitalblake.com on Jekyll with a Docker-isolated toolchain, esbuild, inlined critical CSS, and subset WOFF2 fonts, deployed by GitHub Actions running HTMLProofer and Snyk, with a gitleaks pre-commit scan and a pnpm release-age gate guarding the supply chain.</li>
-			<li>Designed and developed native macOS applications, directing AI tooling through the Swift implementation and publishing write-ups on the results, including a <a href="{% post_url 2026-04-28-swiftui-vs-appkit-macos-ui-performance %}">SwiftUI and AppKit UI performance comparison</a>.</li>
+			<li>Built and maintain digitalblake.com on Jekyll with a Docker-isolated toolchain, esbuild, inlined critical CSS, and subset WOFF2 fonts, deployed by GitHub Actions running HTMLProofer and Snyk.</li>
+			<li>Added Playwright and Node test runner <a href="{% post_url 2026-09-08-the-impacts-of-regression-testing %}">regression tests</a> to digitalblake.com, finding 14 case studies missing their CreativeWork JSON-LD, a layout shift from styles missing in the critical CSS, an SVG that dropped the mobile Lighthouse performance score to 57, and two accessibility violations that Lighthouse caught and axe skipped.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates">February 2022 to July 2025</span></p>
 		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
-			<li>Served as development lead for the WordPress-to-Sitecore migration, collaborating with design, brand, content, and SEO specialists and participating in leadership meetings to resolve technical conflicts.</li>
-			<li>Documented workflows across security, leadership, and privacy teams, enabling clean handoffs to <strong>3 agency partners</strong>.</li>
+			<li>Served as internal development lead for the WordPress to Sitecore migration, working with an external agency's developers and designers, and audited <strong>200+ components</strong> to decide what to rebuild in Sitecore, migrate as static content, or leave in WordPress behind a reverse proxy set up with IT.</li>
+			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built several blog components in Sitecore, reworking the agency's version over a weekend and again the next day so it would stay flexible long term.</li>
+			<li>Explained to the agency several times that our design team needed to review Sitecore components in context on the page, because components delivered one by one led to changes after they were already built.</li>
+			<li>Documented 200+ Advanced Custom Fields components, development standards, analytics, and production workflows for clean handoffs to <strong>3 agency partners</strong>, and trained and onboarded the incoming team of <strong>6</strong>.</li>
+			<li>Partnered with the security team to identify vulnerabilities, implemented monitoring to detect and block malicious traffic, and introduced automated alerting.</li>
 			<li>Led after-hours code deployments and QA for seismic.com with <strong>zero downtime</strong> from a deployment.</li>
-			<li>Onboarded a team of <strong>6 contractors</strong> on seismic.com operating procedures for developers and producers.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Gray Digital Group <span class="career-timeline__dates">January 2014 to February 2022</span></p>
 		<p class="career-timeline__role">Web Developer</p>
 		<ul class="career-timeline__bullets">
-			<li>Launched <strong>30+ client sites</strong> across WordPress, Joomla, Drupal, Sitefinity, and other CMSs.</li>
-			<li>Researched solutions based on client requirements to stabilize projects brought in from other agencies, and built upon them to deliver enterprise-level security and performance.</li>
+			<li>Launched <strong>30+ client sites</strong> across WordPress, Joomla, Drupal, Sitefinity, and other CMSs, handling each from estimates and wireframes through development and testing.</li>
+			<li>Stabilized projects brought in from other agencies, then built on them to deliver enterprise-level security and performance.</li>
+			<li>Consulted with account executives, senior developers, and partners to solve problems no one else wanted to touch.</li>
 			<li>Led client trainings for groups of 1 to 30 on the WordPress, Joomla, Drupal, and Sitefinity admin.</li>
-			<li>Quality assured sites for browser support, HTML validation, script errors, usability, and build quality.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
