@@ -6,13 +6,11 @@ description: 'Resume of Blake Cerecero, Senior Web Developer in San Antonio, Tex
 profile_schema: true
 ---
 
-Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch. I regularly experiment with new tools and technologies to create solutions for both clients and myself.
+Senior Web Developer based in San Antonio, Texas, with 15 years building and migrating CMS-driven sites. I lead high-stakes migrations, build custom Gutenberg blocks and API integrations, and document the workflows that let teams work on their own after launch.
 
-I've redeveloped my [starter framework](/coding-projects/) for building WordPress websites, built an exit-intent popup plugin for capturing leads that would leave a request-a-demo form, and built a Claude Code overwrite extension to optimize features to work the way I need. You can find my thoughts on LLM writing, challenges building with Sanity and Next.js, and what to look out for when building sites that need to be WCAG conformant on the [articles](/articles/) page.
+In 2026 I built [Core WP](https://github.com/Blake-C/core-wp) (a WordPress starter framework for Full Site Editing block themes), an exit-intent popup plugin for capturing leads that would leave a request-a-demo form, and a companion VS Code extension that patches five features in Claude Code's extension that didn't match how I work. On the [articles](/articles/) page you can find my thoughts on LLM writing, challenges building with Sanity and Next.js, and what to look out for when building sites that need to be WCAG conformant.
 
-My former colleagues have written [recommendations](/recommendations/) about working with me. I've used Claude Code across several integrations and projects, including the Teleport Atlas coding challenge, and I continue to research this tool chain in preparation for my next role.
-
-Please feel free to download the PDF version of my resume below or read it here on the page.
+I've used Claude Code across several integrations and projects, including the Teleport Atlas coding challenge, and I continue to research this tool chain. My former colleagues have written [recommendations](/recommendations/) about working with me.
 
 <p class="resume-actions">
 	<a class="button button--primary" href="{{ site.resume_url }}" target="_blank" rel="noopener">Download PDF resume</a>
@@ -35,7 +33,7 @@ Please feel free to download the PDF version of my resume below or read it here 
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Development Software</p>
-		<p class="skills-list__items">Docker, Git, webpack, pnpm, Composer, WP-CLI, ACF</p>
+		<p class="skills-list__items">Docker, Git, webpack, pnpm, Composer, WP-CLI, ACF, Gutenberg</p>
 	</div>
 	<div class="skills-list__group">
 		<p class="skills-list__label">Accessibility and QA</p>
@@ -50,19 +48,19 @@ Please feel free to download the PDF version of my resume below or read it here 
 		<p class="career-timeline__employer">Independent Work <span class="career-timeline__dates">January 2026 to Present</span></p>
 		<p class="career-timeline__role">Senior Web Developer</p>
 		<ul class="career-timeline__bullets">
-			<li>Researched and published on <a href="{% post_url 2026-07-24-testing-web-accessibility-tools-automation-and-ai %}">WCAG 2.1 AA conformance testing</a> and on <a href="{% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}">which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 require</a>.</li>
 			<li>Integrated Sanity.io as a headless CMS in the <a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">Teleport Atlas</a> project, with visual editing and a publish webhook, allowing live editing of pages without the need for a new deployment.</li>
 			<li>Added Playwright and Node test runner <a href="{% post_url 2026-09-08-the-impacts-of-regression-testing %}">regression tests</a> to digitalblake.com, finding 14 case studies missing their CreativeWork JSON-LD, a layout shift from styles missing in the critical CSS, an SVG that dropped the mobile Lighthouse performance score to 57, and two accessibility violations that Lighthouse caught and axe skipped.</li>
+			<li>Researched and published on <a href="{% post_url 2026-07-24-testing-web-accessibility-tools-automation-and-ai %}">WCAG 2.1 AA conformance testing</a> and on <a href="{% post_url 2026-07-24-web-accessibility-standards-and-law-wcag-eaa-us %}">which WCAG version the European Accessibility Act, ADA Title II and III, and Section 508 require</a>.</li>
 			<li>Built the <a href="https://github.com/Blake-C/core-wp" target="_blank" rel="noopener">Core WP</a> WordPress starter framework for Full Site Editing block themes. It runs on Docker, so every developer gets the same PHP, NGINX, and MariaDB setup, fixing instances of "well it works on my machine" situations.</li>
 			<li>Built the <a href="https://github.com/Blake-C/wp-personalization" target="_blank" rel="noopener">WP Personalization</a> plugin, a personalization layer for WordPress block themes. It works out a visitor's market segment and renders the matching layout, so a SaaS company can show one message to finance and another to healthcare.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates">February 2022 to July 2025</span></p>
-		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer</p>
+		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer in 2023</p>
 		<ul class="career-timeline__bullets">
 			<li>Served as internal development lead for the WordPress to Sitecore migration, working with an external agency's developers and designers, and audited <strong>200+ components</strong> to decide what to rebuild in Sitecore, migrate as static content, or leave in WordPress behind a reverse proxy set up with IT.</li>
-			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built several blog components in Sitecore.</li>
+			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built 5 blog components in Sitecore.</li>
 			<li>Documented 200+ Advanced Custom Fields components, development standards, analytics, and production workflows for clean handoffs to <strong>3 agency partners</strong>, and trained the incoming <strong>team of 6</strong>.</li>
 			<li>Partnered with the security team to identify vulnerabilities, implemented monitoring to detect and block malicious traffic, and introduced automated alerting.</li>
 			<li>Led after-hours code deployments and QA for seismic.com with <strong>zero downtime</strong> from a deployment.</li>
