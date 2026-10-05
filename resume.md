@@ -49,8 +49,8 @@ I've used Claude Code across several integrations and projects, including the Te
 		<p class="career-timeline__role">Senior Web Developer</p>
 		<p class="career-timeline__description">Career break from July 2025 to January 2026. Independent projects since then:</p>
 		<ul class="career-timeline__bullets">
-			<li><strong>Integrated Sanity.io as a headless CMS</strong> into the <a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">Teleport Atlas</a> build after the challenge, with visual editing and a publish webhook, so page edits go live without a redeploy (see Projects).</li>
-			<li><strong>Added Playwright and Node test runner</strong> <a href="{% post_url 2026-09-08-the-impacts-of-regression-testing %}">regression tests</a> to digitalblake.com, finding 14 case studies missing their schema, a layout shift from styles missing in the critical CSS, an SVG that dropped the mobile Lighthouse performance score to 57, and two accessibility violations.</li>
+			<li>Integrated Sanity.io as a headless CMS into the <a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">Teleport Atlas</a> build after the challenge, with visual editing and a publish webhook, so page edits go live without a redeploy (see Projects).</li>
+			<li>Added Playwright and Node test runner <a href="{% post_url 2026-09-08-the-impacts-of-regression-testing %}">regression tests</a> to digitalblake.com, finding 14 case studies missing their schema, a layout shift from styles missing in the critical CSS, an SVG that dropped the mobile Lighthouse performance score to 57, and two accessibility violations.</li>
 			<li>Built the <a href="https://github.com/Blake-C/core-wp" target="_blank" rel="noopener">Core WP</a> WordPress starter framework for Full Site Editing block themes. It runs on Docker, so every developer gets the same server setup.</li>
 		</ul>
 	</div>
@@ -58,11 +58,11 @@ I've used Claude Code across several integrations and projects, including the Te
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates">February 2022 to July 2025</span></p>
 		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer in 2023</p>
 		<ul class="career-timeline__bullets">
-			<li><strong>Led internal development</strong> for the 2025 WordPress to Sitecore migration (see Projects).</li>
-			<li><strong>Built an ROI calculator</strong> with an external agency over 2 sprints that turned Marketo form data into a PDF deck through an internal document generation tool, with no PII stored on seismic.com.</li>
-			<li><strong>Enhanced site security</strong> by enforcing two-factor authentication, restricting login to corporate VPN, and logging all site activity to prevent a vendor security failure from impacting seismic.com.</li>
-			<li><strong>Standardized the Marketo multi-step form</strong>, reducing the time it takes to build landing pages by about 4 hours per page. Wrote an operating guide for the production team on how to customize the forms.</li>
-			<li><strong>Led after-hours code deployments and QA</strong> for seismic.com over 4+ releases per month for 3.5 years with zero downtime from a deployment.</li>
+			<li>Led internal development for the 2025 WordPress to Sitecore migration (see Projects).</li>
+			<li>Built an ROI calculator with an external agency over 2 sprints that turned Marketo form data into a PDF deck through an internal document generation tool, with no PII stored on seismic.com.</li>
+			<li>Enhanced site security by enforcing two-factor authentication, restricting login to corporate VPN, and logging all site activity to prevent a vendor security failure from impacting seismic.com.</li>
+			<li>Standardized the Marketo multi-step form, reducing the time it takes to build landing pages by about 4 hours per page. Wrote an operating guide for the production team on how to customize the forms.</li>
+			<li>Led after-hours code deployments and QA for seismic.com over 4+ releases per month for 3.5 years with zero downtime from a deployment.</li>
 			<li>Migrated seismic.com from TranslatePress to WPML for multilingual support and trained 3 agency content producers and the French and German page content editors on the new workflow.</li>
 			<li>Served as QA triage lead across a cross-functional team of 20+, closing out 15 to 25 tickets every day.</li>
 		</ul>
@@ -71,10 +71,10 @@ I've used Claude Code across several integrations and projects, including the Te
 		<p class="career-timeline__employer">Gray Digital Group (GDG) <span class="career-timeline__dates">January 2014 to February 2022</span></p>
 		<p class="career-timeline__role">Web Developer</p>
 		<ul class="career-timeline__bullets">
-			<li><strong>Launched 30+ client sites</strong> across WordPress, Joomla, Drupal, Sitefinity, and other CMSs, handling each from estimates and wireframes through development and testing.</li>
-			<li><strong>Led client trainings for groups of 1 to 30</strong> on WordPress, Joomla, Drupal, and Sitefinity admin for small businesses, hospitals, and law enforcement organizations.</li>
-			<li><strong>Reduced project initialization by a day</strong> and sped up onboarding new developers by building the WP Foundation 6 starter framework to standardize WordPress tooling.</li>
-			<li><strong>1 to 2 second page load speed improvement</strong> and fewer logged PHP warnings after introducing tools such as SCSS, webpack, ESLint, and PHPCS to improve coding quality and performance.</li>
+			<li>Launched 30+ client sites across WordPress, Joomla, Drupal, Sitefinity, and other CMSs, handling each from estimates and wireframes through development and testing.</li>
+			<li>Led client trainings for groups of 1 to 30 on WordPress, Joomla, Drupal, and Sitefinity admin for small businesses, hospitals, and law enforcement organizations.</li>
+			<li>Reduced project initialization by a day and sped up onboarding new developers by building the WP Foundation 6 starter framework to standardize WordPress tooling.</li>
+			<li>1 to 2 second page load speed improvement and fewer logged PHP warnings after introducing tools such as SCSS, webpack, ESLint, and PHPCS to improve coding quality and performance.</li>
 		</ul>
 	</div>
 </div>
@@ -85,26 +85,26 @@ I've used Claude Code across several integrations and projects, including the Te
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates"><a href="/case-studies/seismic/">Seismic case study</a></span></p>
 		<ul class="career-timeline__bullets">
-			<li><strong>Served as internal development lead</strong> for the WordPress to Sitecore migration, and audited 200+ components to decide what to rebuild in Sitecore or leave in WordPress behind a reverse proxy.</li>
-			<li><strong>Stepped in to code</strong> when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built 5 blog components in Sitecore in 5 days.</li>
-			<li><strong>Trained a team of 6</strong> from the Seismic India office and led handoff to 2 agency partners on development standards, analytics, and production workflows.</li>
-			<li><strong>Observed a 40% decrease in page load times</strong> on the headless Next.js and Sitecore stack, going down from 2 to 3 seconds on WordPress to 1 to 2 seconds on Sitecore.</li>
+			<li>Served as internal development lead for the WordPress to Sitecore migration, and audited 200+ components to decide what to rebuild in Sitecore or leave in WordPress behind a reverse proxy.</li>
+			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built 5 blog components in Sitecore in 5 days.</li>
+			<li>Trained a team of 6 from the Seismic India office and led handoff to 2 agency partners on development standards, analytics, and production workflows.</li>
+			<li>Observed a 40% decrease in page load times on the headless Next.js and Sitecore stack, going down from 2 to 3 seconds on WordPress to 1 to 2 seconds on Sitecore.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Teleport Atlas (coding challenge) <span class="career-timeline__dates"><a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">teleport-atlas.vercel.app</a></span></p>
 		<ul class="career-timeline__bullets">
-			<li><strong>In 12 hours</strong>, built Teleport's Atlas product landing page from a Figma spec in Next.js (App Router), going from nothing to a working page with Canvas product animations.</li>
-			<li><strong>100 Lighthouse score</strong> in all four categories on mobile, with zero axe WCAG 2.1 AA issues.</li>
-			<li><strong>62% page weight reduction</strong> from 2.5MB to 950KB, including roughly an 89% drop in the font payload from subsetting with fonttools and Brotli.</li>
+			<li>In 12 hours, built Teleport's Atlas product landing page from a Figma spec in Next.js (App Router), going from nothing to a working page with Canvas product animations.</li>
+			<li>100 Lighthouse score in all four categories on mobile, with zero axe WCAG 2.1 AA issues.</li>
+			<li>62% page weight reduction from 2.5MB to 950KB, including roughly an 89% drop in the font payload from subsetting with fonttools and Brotli.</li>
 			<li>Secured the build and supply chain with SHA-pinned GitHub Actions, a pnpm 7-day release-age gate and allowlist against a frozen lockfile, and escaped JSON-LD data.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
 		<p class="career-timeline__employer">Republic Ranches (Gray Digital Group client) <span class="career-timeline__dates"><a href="/case-studies/republic-ranches/">Republic Ranches case study</a></span></p>
 		<ul class="career-timeline__bullets">
-			<li><strong>60% reduction</strong> in image library size from 20GB to 8GB by automating WebP conversion and compression on all uploads and moving the uploads directory to AWS to reduce load on the production server.</li>
-			<li><strong>10% more property tour bookings</strong> after cutting page loads from 3 to 5 seconds down to 1 to 2 seconds by optimizing styles and images and reducing the number of third-party plugins used on the site.</li>
+			<li>60% reduction in image library size from 20GB to 8GB by automating WebP conversion and compression on all uploads and moving the uploads directory to AWS to reduce load on the production server.</li>
+			<li>10% more property tour bookings after cutting page loads from 3 to 5 seconds down to 1 to 2 seconds by optimizing styles and images and reducing the number of third-party plugins used on the site.</li>
 			<li>Integrated the Google Maps JavaScript API to build an interactive property map for filtering and searching.</li>
 			<li>Added real estate schema markup on property detail pages for greater search engine relevance.</li>
 		</ul>
