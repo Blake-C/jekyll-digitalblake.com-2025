@@ -49,8 +49,8 @@ I've used Claude Code across several integrations and projects, including the Te
 		<p class="career-timeline__role">Senior Web Developer</p>
 		<p class="career-timeline__description">Career break from July 2025 to January 2026. Independent projects since then:</p>
 		<ul class="career-timeline__bullets">
-			<li>Integrated Sanity.io as a headless CMS into the <a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">Teleport Atlas</a> build after the challenge, with visual editing and a publish webhook, so page edits go live without a redeploy (see Projects).</li>
-			<li>Added Playwright and Node test runner <a href="{% post_url 2026-09-08-the-impacts-of-regression-testing %}">regression tests</a> to digitalblake.com, finding 14 case studies missing their schema, a layout shift from styles missing in the critical CSS, an SVG that dropped the mobile Lighthouse performance score to 57, and two accessibility violations.</li>
+			<li>Integrated Sanity.io as a headless CMS into the <a href="https://teleport-atlas.vercel.app/" target="_blank" rel="noopener">Teleport Atlas</a> build after finishing the coding challenge, with visual editing and a publish webhook, so page edits go live without a redeploy (see Projects).</li>
+			<li>Added Playwright <a href="{% post_url 2026-09-08-the-impacts-of-regression-testing %}">tests</a> to digitalblake.com that catch missing case study schema, CSS layout shifts, SVG performance drops, and accessibility violations before they ship.</li>
 			<li>Built the <a href="https://github.com/Blake-C/core-wp" target="_blank" rel="noopener">Core WP</a> WordPress starter framework for Full Site Editing block themes. It runs on Docker, so every developer gets the same server setup.</li>
 		</ul>
 	</div>
@@ -58,7 +58,7 @@ I've used Claude Code across several integrations and projects, including the Te
 		<p class="career-timeline__employer">Seismic <span class="career-timeline__dates">February 2022 to July 2025</span></p>
 		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer in 2023</p>
 		<ul class="career-timeline__bullets">
-			<li>Led internal development for the 2025 WordPress to Sitecore migration (see Projects).</li>
+			<li>Led internal development for the 2025 WordPress to Sitecore migration with 2 agency partners, audited 200+ components, built 5 Sitecore components, and cut page load time by 40% (see Projects).</li>
 			<li>Built an ROI calculator with an external agency over 2 sprints that turned Marketo form data into a PDF deck through an internal document generation tool, with no PII stored on seismic.com.</li>
 			<li>Enhanced site security by enforcing two-factor authentication, restricting login to corporate VPN, and logging all site activity to prevent a vendor security failure from impacting seismic.com.</li>
 			<li>Standardized the Marketo multi-step form, reducing the time it takes to build landing pages by about 4 hours per page. Wrote an operating guide for the production team on how to customize the forms.</li>
@@ -88,7 +88,8 @@ I've used Claude Code across several integrations and projects, including the Te
 			<li>Served as internal development lead for the WordPress to Sitecore migration, and audited 200+ components to decide what to rebuild in Sitecore or leave in WordPress behind a reverse proxy.</li>
 			<li>Stepped in to code when the agency could not deliver all the work, ramped up on Sitecore, TypeScript, GraphQL, and Tailwind under a live deadline, and built 5 blog components in Sitecore in 5 days.</li>
 			<li>Trained a team of 6 from the Seismic India office and led handoff to 2 agency partners on development standards, analytics, and production workflows.</li>
-			<li>Observed a 40% decrease in page load times on the headless Next.js and Sitecore stack, going down from 2 to 3 seconds on WordPress to 1 to 2 seconds on Sitecore.</li>
+			<li>Cut page load times by 40% on the headless Next.js and Sitecore stack, going down from 2 to 3 seconds on WordPress to 1 to 2 seconds on Sitecore.</li>
+			<li>Reviewed 3 to 4 React components per week, giving detailed feedback on changes and regressions in Jira and closing tickets as issues were resolved.</li>
 		</ul>
 	</div>
 	<div class="career-timeline__item">
@@ -107,14 +108,7 @@ I've used Claude Code across several integrations and projects, including the Te
 			<li>10% more property tour bookings after cutting page loads from 3 to 5 seconds down to 1 to 2 seconds by optimizing styles and images and reducing the number of third-party plugins used on the site.</li>
 			<li>Integrated the Google Maps JavaScript API to build an interactive property map for filtering and searching.</li>
 			<li>Added real estate schema markup on property detail pages for greater search engine relevance.</li>
-		</ul>
-	</div>
-	<div class="career-timeline__item">
-		<p class="career-timeline__employer">Exit Intent Popup Plugin <span class="career-timeline__dates"><a href="https://github.com/Blake-C/wp-exit-intent-popups" target="_blank" rel="noopener">github.com/Blake-C/wp-exit-intent-popups</a></span></p>
-		<ul class="career-timeline__bullets">
-			<li>Built a WordPress plugin for exit-intent and timed popups with A/B testing, GA4 impression tracking, and a per-popup conversion dashboard with CSV export.</li>
-			<li>Implemented exit-intent detection for both desktop (cursor exit via mouseleave) and mobile (scroll-reversal trigger), with six configurable position modes including cursor-relative modal placement.</li>
-			<li>Built the frontend in vanilla JavaScript with WCAG 2.1 AA conformance: ARIA dialog attributes, keyboard focus trap, ESC key support, and reduced-motion animation fallback.</li>
+			<li>Developed 10 custom Gutenberg blocks and post types so the client could manage content after launch, including custom navigation schema so breadcrumbs would follow state, region, county, property order.</li>
 		</ul>
 	</div>
 </div>
