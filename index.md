@@ -18,7 +18,7 @@ preload_image_mobile: /assets/images/header-background-sm.webp
                     </p>
                     <h1 class="title">Blake Cerecero</h1>
                     <p class="line-1">Senior Web Developer</p>
-                    <p class="line-2">JavaScript · PHP & WordPress · React & Next.js</p>
+                    <p class="line-2">JavaScript · PHP & WordPress · Next.js</p>
                     <p class="line-3">Over 15 years, I've worked on 30+ CMS projects across agency and in-house roles. At Seismic I worked on two 1,000-page rebuilds of seismic.com, as QA triage lead on the 2022 WordPress rebuild, which increased visitor traffic by 50% in the first year, and as internal development lead for the 2025 move to Sitecore.</p>
                     <div class="intro__cta">
                         {%- include email-link.html label="Email me" class="button button--primary-light" -%}

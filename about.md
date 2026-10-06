@@ -9,7 +9,7 @@ profile_schema: true
 
 In university, my plan was to major in astronomy, but after the 2008 financial crisis happened, I decided I was done taking out student loans, so I went back to Northwest Vista College and focused on Digital Media and web development. While I was there, I worked as a lab tech in the Digital Media department, where students came to me when they were stuck. In every subsequent job I've had since Vista, it's been my role to figure things out and make things work.
 
-I've been experimenting with and using AI tooling to further my own knowledge and expertise in how to build modern [web-accessible](/2026/07/24/web-accessibility-standards-and-law-wcag-eaa-us/) sites. I'm currently building sites in React, Next.js, and TypeScript using Sanity CMS; check out the [Teleport Atlas](/case-studies/teleport-atlas/) case study. Since leaving Seismic I've kept building [coding projects](/coding-projects/) and writing [articles](/articles/), and my former colleagues have shared many [kind words](/recommendations/) about working with me.
+I've been experimenting with and using AI tooling to further my own knowledge and expertise in how to build modern [web-accessible](/2026/07/24/web-accessibility-standards-and-law-wcag-eaa-us/) sites. I'm currently building sites in Next.js and Sanity CMS; check out the [Teleport Atlas](/case-studies/teleport-atlas/) case study. Since leaving Seismic I've kept building [coding projects](/coding-projects/) and writing [articles](/articles/), and my former colleagues have shared many [kind words](/recommendations/) about working with me.
 
 ## Career
 

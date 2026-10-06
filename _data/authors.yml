@@ -10,15 +10,12 @@ digitalblake:
     knowsAbout:
         - WordPress
         - Drupal
-        - Sitecore
         - Joomla
         - Jekyll
         - Sanity
         - Headless CMS
         - Static site generators
         - JavaScript
-        - TypeScript
-        - React
         - Next.js
         - PHP
         - CMS migrations
