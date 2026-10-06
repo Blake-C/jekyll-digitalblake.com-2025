@@ -59,7 +59,7 @@ I've used Claude Code across several integrations and projects, including the Te
 		<p class="career-timeline__role">Web Developer, promoted to Senior Web Developer in 2023</p>
 		<ul class="career-timeline__bullets">
 			<li>Led internal development for the 2025 WordPress to Sitecore migration with 2 agency partners, audited 200+ components, built 5 Sitecore components, and cut page load time by 40% (see Projects).</li>
-			<li>Built an ROI calculator with an external agency over 2 sprints that turned Marketo form data into a PDF deck through an internal document generation tool, with no PII stored on seismic.com.</li>
+			<li>Built an ROI calculator with an external agency over 4 sprints that turned Marketo form data into a PDF deck through an internal document generation tool, with no PII stored on seismic.com.</li>
 			<li>Enhanced site security by enforcing two-factor authentication, restricting login to corporate VPN, and logging all site activity to prevent a vendor security failure from impacting seismic.com.</li>
 			<li>Standardized the Marketo multi-step form, reducing the time it takes to build landing pages by about 4 hours per page. Wrote an operating guide for the production team on how to customize the forms.</li>
 			<li>Led after-hours code deployments and QA for seismic.com over 4+ releases per month for 3.5 years with zero downtime from a deployment.</li>
@@ -73,7 +73,7 @@ I've used Claude Code across several integrations and projects, including the Te
 		<ul class="career-timeline__bullets">
 			<li>Launched 30+ client sites across WordPress, Joomla, Drupal, Sitefinity, and other CMSs, handling each from estimates and wireframes through development and testing.</li>
 			<li>Led client trainings for groups of 1 to 30 on WordPress, Joomla, Drupal, and Sitefinity admin for small businesses, hospitals, and law enforcement organizations.</li>
-			<li>Reduced project initialization by a day and sped up onboarding new developers by building the WP Foundation 6 starter framework to standardize WordPress tooling.</li>
+			<li>Reduced project initialization by a day and sped up onboarding new developers by adopting WP Foundation 6, a starter framework I built on my own time, as the base for GDG projects.</li>
 			<li>1 to 2 second page load speed improvement and fewer logged PHP warnings after introducing tools such as SCSS, webpack, ESLint, and PHPCS to improve coding quality and performance.</li>
 		</ul>
 	</div>
