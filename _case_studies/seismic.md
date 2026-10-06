@@ -79,4 +79,4 @@ Sitecore's server-side rendering brought load times into the 1 to 2 second range
 
 ![seismic.com after the 2025 migration to Sitecore](/assets/uploads/2025/05/seismic-2025-home-page-redesign.webp)
 
-**Impact:** Cross-functional team of 20+ across development, design, content, SEO, and brand. Two 1,000-page rebuilds, on WordPress in 2022 and in Sitecore in 2025. Three agency partnerships documented and handed off. Load times reduced from about 3s to 2s on WordPress, then to 1 to 2s on Sitecore SSR. The 2022 launch drove a 50% increase in site visitors within the first year.
+**Impact:** Cross-functional team of 20+ across development, design, content, SEO, and brand. Two 1,000-page rebuilds, on WordPress in 2022 and in Sitecore in 2025. Two agency partnerships documented and handed off. Load times reduced from about 3s to 2s on WordPress, then to 1 to 2s on Sitecore SSR. The 2022 launch drove a 50% increase in site visitors within the first year.
