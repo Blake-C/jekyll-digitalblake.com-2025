@@ -237,7 +237,6 @@
 	// margin-top holds the button at the bottom, so it lines up across a row of
 	// cards the grid has stretched to a common height.
 	&__expand {
-		align-self: flex-start;
 		background: none;
 		border: 0;
 		color: v.$accent-1;

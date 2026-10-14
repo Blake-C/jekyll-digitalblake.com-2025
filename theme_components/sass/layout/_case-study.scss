@@ -40,6 +40,13 @@
 	&__actions {
 		margin-bottom: fn.rem-calc(32);
 		margin-top: fn.rem-calc(32);
+
+		@include bp.breakpoint(small only) {
+			.button {
+				display: block;
+				width: 100%;
+			}
+		}
 	}
 
 	.entry-title {
