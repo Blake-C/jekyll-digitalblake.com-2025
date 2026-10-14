@@ -67,31 +67,40 @@ allowBuilds:
     esbuild: true
 
 # Force patched transitive dependencies across the tree (each has a single version in the tree,
-# so a blanket override is safe). Snyk-flagged; not caught by the npm/GitHub advisory DB.
-#   js-yaml <4.3.2             — maxTotalMergeKeys does not bound CPU for empty merge sources, high
-#                                (GHSA-2883-xcg3-v3hh), which bypasses the earlier GHSA-5p4m-2wfm-xmqj fix
-#   nanoid <3.3.18             — custom generators loop indefinitely when size is zero, high
-#                                (GHSA-2v37-7h3g-55p8); reaches the tree through postcss
-#   brace-expansion <=5.0.8    — OOM DoS via unbounded intermediate arrays, high (GHSA-rgw5-rvv9-x895),
-#                                which bypasses the earlier GHSA-mh99-v99m-4gvg fix
-#   fast-uri <3.1.6            — SSRF via malformed IPv6 and repeated percent-decoding, plus host
-#                                confusion via percent-encoded schemes and skipped IDN canonicalization,
-#                                high (GHSA-jqff-g426-hqxp and three siblings); bypasses GHSA-7p8r-x3mc-p8w7
-#   postcss-selector-parser    — uncontrolled recursion (CVE-2026-9358), consolidates 7.1.1 onto the patch
-#   immutable <5.1.8 (via sass) — 32-bit trie overflow + hash-collision DoS, high (GHSA-v56q-mh7h-f735, GHSA-xvcm-6775-5m9r)
-#   browserslist <4.28.7       — unbounded cache growth (CVE-2026-73089, GHSA-c83g-rgw3-j3cx) and a
-#                                prototype write through untrusted browserslist-stats.json
-#                                (CVE-2026-73088, GHSA-73wf-gq98-2v4g), both high; via autoprefixer
-#   baseline-browser-mapping <2.11.0 — process termination on invalid input, moderate
-#                                (GHSA-w5vr-8v7q-w6rv); reaches the tree through browserslist
-#   colord <2.9.4              — slow rejection of oversized malformed color strings, moderate
-#                                (GHSA-2wm5-q62r-hmrv); reaches the tree through stylelint
+# so a blanket override is safe). Flagged by Snyk or pnpm audit.
+#   js-yaml <4.3.2:            maxTotalMergeKeys does not bound CPU for empty merge sources, high
+#                              (GHSA-2883-xcg3-v3hh), which bypasses the earlier GHSA-5p4m-2wfm-xmqj fix
+#   nanoid <3.3.18:            custom generators loop indefinitely when size is zero, high
+#                              (GHSA-2v37-7h3g-55p8); reaches the tree through postcss
+#   brace-expansion <5.0.12:   stack exhaustion from nested brace groups and from parseCommaParts, high
+#                              (GHSA-qhr7-859c-m2p7, GHSA-6j4f-fj2g-mc7p), and quadratic expansion of
+#                              `{a},b}`, moderate (GHSA-q2hr-2g5m-vwhr); each bypasses the fix before it
+#   fast-uri <3.1.8:           inconsistent host case normalization via percent-encoded octets, moderate
+#                              (GHSA-hrr3-gc8f-f4qj), after the SSRF and host confusion fixes in 3.1.6
+#                              (GHSA-jqff-g426-hqxp and three siblings)
+#   postcss-selector-parser <7.1.6: quadratic flat selector parsing, moderate (GHSA-rj75-hqrm-r3gf),
+#                              after the uncontrolled recursion fix in 7.1.2 (CVE-2026-9358)
+#   source-map-js <1.2.2:      event-loop DoS through indexed source-map section offsets, high
+#                              (GHSA-68fv-2mgg-jv7q); reaches the tree through sass and postcss
+#   immutable <5.1.8:          32-bit trie overflow and hash-collision DoS, high (GHSA-v56q-mh7h-f735,
+#                              GHSA-xvcm-6775-5m9r); via sass
+#   browserslist <4.28.7:      unbounded cache growth (CVE-2026-73089, GHSA-c83g-rgw3-j3cx) and a
+#                              prototype write through untrusted browserslist-stats.json
+#                              (CVE-2026-73088, GHSA-73wf-gq98-2v4g), both high; via autoprefixer
+#   baseline-browser-mapping <2.11.0: process termination on invalid input, moderate
+#                              (GHSA-w5vr-8v7q-w6rv); reaches the tree through browserslist
+#   colord <2.9.4:             slow rejection of oversized malformed color strings, moderate
+#                              (GHSA-2wm5-q62r-hmrv); reaches the tree through stylelint
+#
+# braces 3.0.3 (GHSA-vfj7-8cjw-p6xm, high) has no patched release. It reaches the tree only through
+# stylelint's file globbing over this repo's own SCSS, so it is left in place.
 overrides:
     js-yaml: '^4.3.2'
     nanoid: '^3.3.18'
-    brace-expansion: '^5.0.9'
-    fast-uri: '^3.1.6'
-    postcss-selector-parser: '^7.1.2'
+    brace-expansion: '^5.0.12'
+    fast-uri: '^3.1.8'
+    postcss-selector-parser: '^7.1.6'
+    source-map-js: '^1.2.2'
     immutable: '^5.1.8'
     browserslist: '^4.28.7'
     baseline-browser-mapping: '^2.11.0'
