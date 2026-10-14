@@ -186,7 +186,7 @@ These three drive a visible browser window, and the container has no display, so
 
 ```bash
 mkdir -p ~/.local/playwright-codegen && cd ~/.local/playwright-codegen
-npm init -y && npm install -D @playwright/test@1.62.1
+npm init -y && npm install -D @playwright/test@1.63.0
 npx playwright install chromium
 ```
 

@@ -29,7 +29,7 @@ services:
     # The tag must match the @playwright/test version in package.json exactly. A
     # mismatch between the driver and the bundled browsers is a runtime error.
     playwright:
-        image: mcr.microsoft.com/playwright:v1.62.1-noble
+        image: mcr.microsoft.com/playwright:v1.63.0-noble
         volumes:
             - .:/app
         working_dir: /app

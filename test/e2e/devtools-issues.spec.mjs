@@ -32,7 +32,19 @@ for (const [name, path] of Object.entries(PAGES)) {
 		await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
 		await page.waitForTimeout(1000)
 
-		const found = issues.map(issue => `${issue.code}: ${JSON.stringify(issue.details).slice(0, 200)}`)
+		// Chromium 153 reports LazyLoadImageIssue for any lazy image styled with
+		// `height: auto`, even when its width and height attributes already reserve
+		// the box before it loads. An image missing either attribute is still a
+		// failure.
+		const sized = new Set(
+			await page.$$eval('img[loading=lazy][width][height]', imgs => imgs.map(img => img.getAttribute('src'))),
+		)
+		const found = issues
+			.filter(
+				issue =>
+					!(issue.code === 'LazyLoadImageIssue' && sized.has(issue.details.lazyLoadImageIssueDetails.url)),
+			)
+			.map(issue => `${issue.code}: ${JSON.stringify(issue.details).slice(0, 200)}`)
 		expect(found, `DevTools reported issues on ${path}`).toEqual([])
 	})
 }
