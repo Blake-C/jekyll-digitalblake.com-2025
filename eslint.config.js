@@ -8,9 +8,11 @@ module.exports = [
 			'assets/js/*.min.js',
 			'_site/**',
 			'_site_dev/**',
-			// Gitignored article working files. Scratch scripts written while drafting
-			// are not shipped code, and linting them fails the whole run.
+			// Gitignored working files: article drafts, and diagnostic output and saved
+			// pages under tmp/. None of it is shipped code, and linting it fails the
+			// whole run.
 			'_drafts/**',
+			'tmp/**',
 			'node_modules/**',
 			'vendor/**',
 			'_includes/critical.min.css',
