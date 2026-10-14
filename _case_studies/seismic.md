@@ -5,7 +5,7 @@ order: 140
 year: '2022 to 2025'
 permalink: /case-studies/seismic/
 title: Seismic
-description: 'A ground-up WordPress rebuild of seismic.com through a major rebrand, from about 40 pages at the phase one launch to about 1,000 pages over later phases, followed by a rebuild in Sitecore in 2025. The 2022 launch drove a 50% traffic increase within the first year.'
+description: 'A ground-up WordPress rebuild of seismic.com, from about 40 pages at the phase one launch to about 1,000 pages over later phases, followed by a rebuild in Sitecore in 2025. The 2022 launch drove a 50% traffic increase within the first year.'
 thumbnail: /assets/uploads/2025/05/seismic-thumbnail.webp
 image: /assets/uploads/2025/05/seismic-full-screenshot.webp
 hero_image: /assets/uploads/2025/05/seismic-hero.webp
@@ -37,20 +37,34 @@ team:
 tech:
     - WordPress
     - Gutenberg
-    - Sitecore
+    - ACF
     - WPML
     - PHP
     - Internationalization
-    - Systems Security
+    - Sitecore
+    - TypeScript
+    - GraphQL
+    - Tailwind
 link: https://seismic.com
 link_text: View Live Site
 ---
 
-Seismic builds enterprise sales enablement software used by global sales teams. I was recruited specifically for production-level WordPress development (PHP, JavaScript, and custom Gutenberg work) and was onboarded and shipping code within two days of starting. Over three and a half years I worked across every phase of the site: a ground-up redesign, an internationalization platform migration, a phase two blog and tooling build, two agency transitions, and a full platform migration from WordPress to Sitecore.
+<aside class="callout">
+	<h2 class="callout__title">Key Takeaways</h2>
+	<ul>
+		<li>Rebuilt seismic.com on WordPress with custom Gutenberg blocks in 2022, from about 40 pages at the phase one launch to about 1,000 pages, and the 2022 rebuild drove a 50% increase in site visitors within the first year.</li>
+		<li>Led the move from TranslatePress to WPML so German and French content each got its own page with a correct canonical URL, and trained the editors on the new workflow.</li>
+		<li>Required two-factor authentication for every user, restricted the admin to approved IPs and the corporate VPN, and logged every login, page view, and content change, with no security issues on the site from then until the move to Sitecore.</li>
+		<li>Audited 200+ components for the 2025 Sitecore migration and built blog components in Sitecore, TypeScript, GraphQL, and Tailwind, and Sitecore's server-side rendering cut page loads from 2 to 3 seconds to 1 to 2 seconds.</li>
+		<li>Documented the site and trained the incoming teams through two agency handoffs and the arrival of a new internal team of 6.</li>
+	</ul>
+</aside>
+
+Seismic builds enterprise sales enablement software used by global sales teams. I was hired as a Web Developer specifically for production-level WordPress development (PHP, JavaScript, and custom Gutenberg work), was onboarded and shipping code within two days of starting, and was promoted to Senior Web Developer in 2023. Over three and a half years I worked across every phase of the site: a ground-up redesign, an internationalization platform migration, a phase two blog and tooling build, two agency transitions, and a full platform migration from WordPress to Sitecore.
 
 ## The 2022 redesign
 
-For the first project, the 2022 redesign of seismic.com, we duplicated the site, stripped out the old theme, and rebuilt it on a new WordPress theme with a library of custom Gutenberg blocks. Phase one launched about 40 pages, including the home page and product pages, and kept parts of the old theme on pages we couldn't finish in time. Phases two and three rebuilt the blog, enablement explainers, and resources, which completed the rebuild at about 1,000 pages. The design-to-development workflow ran in tight cycles: review a design spec, flag any development constraints, implement the component, build a full page, send it back for stakeholder review, address the annotated feedback, close out the markers, and ship. Partway through the project I transitioned from component development to QA lead, reading and resolving comments left by designers and stakeholders across pages already in build, coordinating with the lead developer and the external agency, and pushing updates while the rest of the team focused on core development. We were regularly working 12 to 16 hour days in the final stretch against a hard marketing deadline. The launch went out on time, and the 2022 rebuild drove a 50% increase in site visitors within the first year.
+For the first project, the 2022 redesign of seismic.com, we duplicated the site, stripped out the old theme, and rebuilt it on a new WordPress theme with a library of custom Gutenberg blocks. Phase one launched about 40 pages, including the home page and product pages, and kept parts of the old theme on pages we couldn't finish in time. Phases two and three rebuilt the blog, enablement explainers, and resources, which completed the rebuild at about 1,000 pages. The design-to-development workflow ran in tight cycles: review a design spec, flag any development constraints, implement the component, build a full page, send it back for stakeholder review, address the annotated feedback, close out the markers, and ship. Partway through the project I transitioned from component development to QA lead, reading and resolving comments left by designers and stakeholders across pages already in build, coordinating with the lead developer and the external agency, and pushing updates while the rest of the team focused on core development. We were regularly working 12 to 16 hour days in the final stretch against a hard marketing deadline. The site launched on time with page loads of 1 to 2 seconds, and the 2022 rebuild drove a 50% increase in site visitors within the first year.
 
 ![Cards and carousel blocks built for the 2022 seismic.com redesign](/assets/uploads/2025/05/seismic-2022-home-page-cards-and-carousel-blocks.webp)
 
@@ -105,7 +119,7 @@ The agency had built the blog on the same template as the resource pages, which 
 
 Our internal design team expected to review Sitecore components in context on the page, while the agency delivered them one by one, so the design team asked for changes after components were already built. I stepped in several times to explain to the agency how the design team expected components to be handed to them, which smoothed out communication between the two teams.
 
-Sitecore's server-side rendering brought load times into the 1 to 2 second range.
+Page loads on the WordPress site had risen to 2 to 3 seconds as new features were added after 2022, and Sitecore's server-side rendering brought them back down to 1 to 2 seconds.
 
 In about the last two months of the migration, we onboarded two teams at the same time while we were still building the site. A new Grazitti team knowledgeable in Sitecore joined first so they would know what was being built, and toward the end Seismic hired a new internal team of 6 in its India office to manage the site going forward. We had to get both teams working on parts of the project quickly to help us finish it. Throughout, I answered their questions about how things worked, who was responsible for what, and which internal teams at Seismic were stakeholders for each part of the site, such as the HR team for the career pages and careers portal and the podcast team for the podcast pages. I also introduced them to other groups within Seismic, such as the security team and Cloud Engineering, so they would have a working relationship with them.
 
