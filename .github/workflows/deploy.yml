@@ -5,10 +5,10 @@ on:
         branches:
             - main
 
+# The deploy job is the only one that publishes, so it alone gets pages and id-token.
+# build and browser-tests run dependency code and need nothing past a read checkout.
 permissions:
     contents: read
-    pages: write
-    id-token: write
 
 concurrency:
     group: pages
@@ -20,6 +20,8 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  persist-credentials: false
 
             - name: Setup pnpm
               uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
@@ -63,8 +65,10 @@ jobs:
               run: pnpm audit --dev --audit-level=high
               continue-on-error: true
 
+            # Pinned, and to a release at least 7 days old, to match minimumReleaseAge in
+            # pnpm-workspace.yaml. npm install -g does not read that setting.
             - name: Install Snyk CLI
-              run: npm install -g snyk
+              run: npm install -g snyk@1.1307.4
 
             - name: Snyk SCA – Node production dependencies
               run: snyk test --file=package.json --severity-threshold=high
@@ -136,6 +140,8 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  persist-credentials: false
 
             - name: Setup pnpm
               uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
@@ -168,6 +174,9 @@ jobs:
                   retention-days: 7
 
     deploy:
+        permissions:
+            pages: write
+            id-token: write
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
