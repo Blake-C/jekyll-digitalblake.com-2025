@@ -1,7 +1,7 @@
 # Node 24 post-dates Alpine 3.23 so we copy the binary from the official Node image
-FROM node:24.20.0-alpine3.23 AS node
+FROM node:24.21.0-alpine3.23 AS node
 
-FROM ruby:3.4.10-alpine3.23
+FROM ruby:3.4.11-alpine3.23
 
 # Bring in Node 24 from the node stage
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
@@ -9,6 +9,10 @@ COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
     && ln -sf /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack
+
+# The base image is only as current as its last publish, so packages it already
+# ships, such as OpenSSL and zlib, lag behind Alpine's security fixes until upgraded here.
+RUN apk upgrade --no-cache
 
 # Install build tools, ImageMagick, Python, git, and tzdata.
 # tzdata is required for the `timezone: America/Chicago` setting in _config.yml.
