@@ -11,7 +11,7 @@ image: '/assets/uploads/2026/09/the-impacts-of-regression-testing.webp'
 <aside class="callout">
 	<h2 class="callout__title">TL;DR</h2>
 	<ul>
-		<li><strong>14 case studies rendered without their <code>CreativeWork</code> JSON-LD</strong> because <code>_includes/head.html</code> still checked for <code>website-case-study</code> after the layout was renamed to <code>case-study</code>. Two tests were created, one to ensure that the JSON-LD blocks parse and another making sure they loading on every page. </li>
+		<li><strong>14 case studies rendered without their <code>CreativeWork</code> JSON-LD</strong> because <code>_includes/head.html</code> still checked for <code>website-case-study</code> after the layout was renamed to <code>case-study</code>. Two tests were created, one to ensure that the JSON-LD blocks parse and another making sure they load on every page. </li>
 		<li><strong>A 300ms fade-in on the code block toolbar was measured as a contrast of 1.53:1, failing 4 runs out of 10.</strong> axe was reaching the toolbar before Prism finished, so the test now waits for the toolbar to reach its resting opacity before axe measures color.</li>
 		<li><strong>Case study layouts centered themselves only after main CSS loaded causing a layout shift.</strong> Moving these styles to the grid system allowed them to load with the critical CSS. Repeated runs now measure cumulative layout shift from 0 to 0.034 against a ceiling of 0.1.</li>
     	<li><strong>10 Gaussian blurs in a Sketch SVG export dropped a page's mobile emulation performance score to 57.</strong> Replacing them with radial gradients brought the score back into the 90s, and the budget now fails anything under 85.</li>
